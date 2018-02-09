@@ -32,13 +32,19 @@ import java.util.List;
 /**
  * Created by Simeon on 3/15/2015.
  */
-public class IsolinearCircuit extends MOBaseItem {
+public class IsolinearCircuit extends MOBaseItem implements IAdvancedModelProvider {
     public static final String[] subItemNames = {"mk1", "mk2", "mk3", "mk4"};
 
     public IsolinearCircuit(String name) {
         super(name);
         this.setHasSubtypes(true);
     }
+
+    @Override
+    public String[] getSubNames() {
+        return subItemNames;
+    }
+
 
     @Override
     public int getMetadata(int damage) {
