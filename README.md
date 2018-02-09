@@ -10,7 +10,7 @@
 </h2>
 -->
 
-[![Build Status](https://travis-ci.org/simeonradivoev/MatterOverdrive.svg?branch=1.8.9)](https://travis-ci.org/simeonradivoev/MatterOverdrive)
+[![Build Status](http://jenkins.k-4u.nl/job/MatterOverdrive/badge/icon)](http://jenkins.k-4u.nl/job/MatterOverdrive/)
 
 ## Current Developer: TheCodedOne
 
