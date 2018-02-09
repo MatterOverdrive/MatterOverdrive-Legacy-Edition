@@ -5,7 +5,7 @@
   },
   "pattern": [
     "#G#",
-    "#Q#",
+    "#B#",
     "#G#"
   ],
   "type": "minecraft:crafting_shaped",

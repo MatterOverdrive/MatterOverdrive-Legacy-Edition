@@ -5,7 +5,7 @@
   "pattern": [
     "IGI",
     "DFC",
-    "OMO"
+    " M "
   ],
   "type": "forge:ore_shaped",
   "key": {
@@ -28,6 +28,6 @@
     },
     "M": {
       "item": "matteroverdrive:machine_casing"
-    }
+    },
   }
 }
