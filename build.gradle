@@ -54,7 +54,7 @@ dependencies {
 
     deobfCompile group: 'mcp.mobius.waila', name: 'Hwyla', version: '1.8.23-B38_1.12'
 
-    compile "com.astro.clib:CLib:1.0.1.27:deobf"
+    compile "com.astro.clib:CLib:1.0.1.28:deobf"
 }
 
 processResources {
@@ -80,5 +80,45 @@ processResources {
 jar {
     manifest {
         attributes 'FMLAT': 'mo_at.cfg'
+    }
+}
+
+task("uploadJars") {
+    description = "uploads JARs"
+    if (System.getenv("local_maven") != null) {
+        apply plugin: 'maven'
+        uploadArchives {
+            repositories {
+                mavenDeployer {
+                    repository(url: "file://" + System.getenv("local_maven"))
+                    pom {
+                        groupId = project.group
+                        version = project.version
+                        artifactId = project.archivesBaseName
+                        project {
+                            name project.archivesBaseName
+                            packaging 'jar'
+                            description project.archivesBaseName
+                            issueManagement {
+                                system 'github'
+                                url 'https://github.com/MatterOverdrive/MatterOverdrive/issues'
+                            }
+                            developers {
+                                developer {
+                                    id 'TheCodedOne'
+                                    name 'TheCodedOne'
+                                    roles { role 'developer' }
+                                }
+                                developer {
+                                    id 'Dev-Osmium'
+                                    name 'Dev-Osmium'
+                                    roles { role 'developer' }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
