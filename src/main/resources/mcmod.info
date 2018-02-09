@@ -5,14 +5,15 @@
     "description": "A mod that dwells within matter and energy.",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "http://simeon.co.vu/Mods/MatterOverdrive/",
+    "url": "https://mo.simeonradivoev.com",
     "updateUrl": "",
     "authorList": [
       "Coded",
       "Simeon Radivoev",
-      "Shadowfacts"
+      "Shadowfacts",
+      "Dev_Osmium"
     ],
     "credits": "",
-    "logoFile": "/logo.png"
+    "logoFile": "/mo_logo.png"
   }
 ]
