@@ -4,6 +4,7 @@ import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.inventory.IBlockScanner;
 import matteroverdrive.client.RenderHandler;
+import matteroverdrive.machines.dimensional_pylon.TileEntityMachineDimensionalPylon;
 import matteroverdrive.util.math.MOMathHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -31,7 +32,7 @@ public class DimensionalRiftsRender implements IWorldLastRenderer {
     @Override
     public void onRenderWorldLast(RenderHandler handler, RenderWorldLastEvent event) {
         //// TODO: 3/24/2016 Add support for offhand
-        if (Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND) != null) {
+        if (!Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND).isEmpty()) {
             ItemStack heldItem = Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND);
             if (heldItem.getItem() instanceof IBlockScanner && ((IBlockScanner) heldItem.getItem()).showsGravitationalWaves(heldItem)) {
                 GlStateManager.pushMatrix();
@@ -62,6 +63,7 @@ public class DimensionalRiftsRender implements IWorldLastRenderer {
 
                 for (int x = 0; x < vewDistance; x++) {
                     for (int z = 0; z < vewDistance; z++) {
+
                         float yPos = MatterOverdrive.moWorld.getDimensionalRifts().getValueAt(new Vec3d(viewEntityPosRound.x + x - vewDistance / 2, 0, viewEntityPosRound.z + z - vewDistance / 2));
                         yPos *= Math.sin((x / (double) vewDistance) * Math.PI) * Math.sin((z / (double) vewDistance) * Math.PI);
                         points[x][z] = yPos;

@@ -33,6 +33,7 @@ import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.server.permission.DefaultPermissionHandler;
 import org.apache.logging.log4j.Level;
 
 import java.text.ParseException;

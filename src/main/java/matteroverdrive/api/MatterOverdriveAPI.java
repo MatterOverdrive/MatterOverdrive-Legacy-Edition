@@ -16,55 +16,37 @@
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
 
-package matteroverdrive.core;
+package matteroverdrive.api;
 
-import matteroverdrive.MatterOverdrive;
-import matteroverdrive.api.IMOApi;
 import matteroverdrive.api.android.IAndroidStatRegistry;
 import matteroverdrive.api.android.IAndroidStatRenderRegistry;
 import matteroverdrive.api.dialog.IDialogRegistry;
 import matteroverdrive.api.matter.IMatterRegistry;
 import matteroverdrive.api.renderer.IBionicPartRenderRegistry;
 import matteroverdrive.api.starmap.IStarmapRenderRegistry;
-import matteroverdrive.proxy.ClientProxy;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by Simeon on 7/20/2015.
  */
-public class Api implements IMOApi {
-    public static final Api INSTANCE = new Api();
+public interface MatterOverdriveAPI {
+    IMatterRegistry getMatterRegistry();
 
-    @Override
-    public IMatterRegistry getMatterRegistry() {
-        return MatterOverdrive.matterRegistry;
-    }
+    IAndroidStatRegistry getAndroidStatRegistry();
 
-    @Override
-    public IAndroidStatRegistry getAndroidStatRegistry() {
-        return MatterOverdrive.statRegistry;
-    }
+    IDialogRegistry getDialogRegistry();
 
-    @Override
-    public IDialogRegistry getDialogRegistry() {
-        return MatterOverdrive.dialogRegistry;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
-    public IAndroidStatRenderRegistry getAndroidStatRenderRegistry() {
-        return ClientProxy.renderHandler.getStatRenderRegistry();
-    }
+    IAndroidStatRenderRegistry getAndroidStatRenderRegistry();
 
-    @Override
-    public IBionicPartRenderRegistry getBionicStatRenderRegistry() {
-        return ClientProxy.renderHandler.getBionicPartRenderRegistry();
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
-    public IStarmapRenderRegistry getStarmapRenderRegistry() {
-        return ClientProxy.renderHandler.getStarmapRenderRegistry();
+    IBionicPartRenderRegistry getBionicStatRenderRegistry();
+
+    @SideOnly(Side.CLIENT)
+    IStarmapRenderRegistry getStarmapRenderRegistry();
+
+    static MatterOverdriveAPI getInstance() {
+        return MOApi.instance();
     }
 }

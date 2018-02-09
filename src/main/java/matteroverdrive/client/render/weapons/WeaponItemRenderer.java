@@ -18,6 +18,7 @@
 
 package matteroverdrive.client.render.weapons;
 
+import com.astro.clib.client.model.ModelUtil;
 import com.google.common.collect.ImmutableMap;
 import matteroverdrive.client.resources.data.WeaponMetadataSection;
 import matteroverdrive.items.weapon.EnergyWeapon;
@@ -50,17 +51,14 @@ import javax.annotation.Nonnull;
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Vector3f;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Simeon on 11/8/2015.
  */
 @SideOnly(Side.CLIENT)
 public abstract class WeaponItemRenderer implements IBakedModel {
-    private final Matrix4f identity;
+    private Matrix4f identity;
     protected ResourceLocation weaponModelLocation;
     protected OBJModel weaponModel;
     protected WeaponMetadataSection weaponMetadata;
@@ -69,6 +67,10 @@ public abstract class WeaponItemRenderer implements IBakedModel {
 
     public WeaponItemRenderer(ResourceLocation weaponModelLocation) {
         this.weaponModelLocation = weaponModelLocation;
+    }
+
+    public void init() {
+
         createModel(this.weaponModelLocation);
         loadWeaponMetadata();
 
@@ -130,21 +132,25 @@ public abstract class WeaponItemRenderer implements IBakedModel {
             ImmutableMap<String, String> customOptions = new ImmutableMap.Builder<String, String>().put("flip-v", "true").put("ambient", "false").build();
             weaponModel = (OBJModel) weaponModel.process(customOptions);
         } catch (Exception e) {
-            MOLog.error("Missing weapon model.", e);
+            MOLog.error("Missing weapon model. %s", e, weaponModelLocation.toString());
         }
     }
 
     @SuppressWarnings("deprecation")
     public void bakeModel() {
+        if (weaponModel == null) {
+            MOLog.error("Missing weapon model. Unable to bake %s", weaponModelLocation.toString());
+            return;
+        }
         List<String> visibleGroups = new ArrayList<>();
         visibleGroups.add(OBJModel.Group.ALL);
-        bakedModel = (OBJModel.OBJBakedModel) weaponModel.bake(new OBJModel.OBJState(visibleGroups, true), DefaultVertexFormats.ITEM, input -> {
-            return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(input.toString());
-        });
+        bakedModel = (OBJModel.OBJBakedModel) weaponModel.bake(new OBJModel.OBJState(visibleGroups, true), DefaultVertexFormats.ITEM, input -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(input.toString()));
     }
 
     @Override
     public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType type) {
+        if (ModelUtil.ITEM_TRANSFORMS.containsKey(type))
+            return Pair.of(this, ModelUtil.ITEM_TRANSFORMS.get(type).getMatrix());
         Matrix4f mat = transforms.get(type);
         if (mat == null) mat = identity;
         return ImmutablePair.of(this, mat);
@@ -175,6 +181,8 @@ public abstract class WeaponItemRenderer implements IBakedModel {
     @Nonnull
     @Override
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
+        if(bakedModel==null)
+            return Collections.emptyList();
         return bakedModel.getQuads(state, side, rand);
     }
 

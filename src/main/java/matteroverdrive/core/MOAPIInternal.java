@@ -16,34 +16,56 @@
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
 
-package matteroverdrive.api;
+package matteroverdrive.core;
 
+import matteroverdrive.MatterOverdrive;
+import matteroverdrive.api.MatterOverdriveAPI;
 import matteroverdrive.api.android.IAndroidStatRegistry;
 import matteroverdrive.api.android.IAndroidStatRenderRegistry;
 import matteroverdrive.api.dialog.IDialogRegistry;
 import matteroverdrive.api.matter.IMatterRegistry;
 import matteroverdrive.api.renderer.IBionicPartRenderRegistry;
 import matteroverdrive.api.starmap.IStarmapRenderRegistry;
+import matteroverdrive.proxy.ClientProxy;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by Simeon on 7/20/2015.
  */
-public interface IMOApi {
-    IMatterRegistry getMatterRegistry();
+public class MOAPIInternal implements MatterOverdriveAPI {
+    public static final MOAPIInternal INSTANCE = new MOAPIInternal();
 
-    IAndroidStatRegistry getAndroidStatRegistry();
+    @Override
+    public IMatterRegistry getMatterRegistry() {
+        return MatterOverdrive.matterRegistry;
+    }
 
-    IDialogRegistry getDialogRegistry();
+    @Override
+    public IAndroidStatRegistry getAndroidStatRegistry() {
+        return MatterOverdrive.statRegistry;
+    }
 
+    @Override
+    public IDialogRegistry getDialogRegistry() {
+        return MatterOverdrive.dialogRegistry;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
-    IAndroidStatRenderRegistry getAndroidStatRenderRegistry();
+    public IAndroidStatRenderRegistry getAndroidStatRenderRegistry() {
+        return ClientProxy.renderHandler.getStatRenderRegistry();
+    }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    IBionicPartRenderRegistry getBionicStatRenderRegistry();
+    public IBionicPartRenderRegistry getBionicStatRenderRegistry() {
+        return ClientProxy.renderHandler.getBionicPartRenderRegistry();
+    }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    IStarmapRenderRegistry getStarmapRenderRegistry();
-
+    public IStarmapRenderRegistry getStarmapRenderRegistry() {
+        return ClientProxy.renderHandler.getStarmapRenderRegistry();
+    }
 }

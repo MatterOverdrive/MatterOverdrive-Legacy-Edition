@@ -19,6 +19,7 @@
 package matteroverdrive;
 
 import com.astro.clib.proxy.impl.ProxyHolder;
+import com.astro.clib.tech.CLibTech;
 import matteroverdrive.commands.AndoidCommands;
 import matteroverdrive.commands.MatterRegistryCommands;
 import matteroverdrive.commands.QuestCommands;
@@ -44,11 +45,15 @@ import matteroverdrive.util.DialogFactory;
 import matteroverdrive.util.QuestFactory;
 import matteroverdrive.util.WeaponFactory;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import java.util.concurrent.ExecutorService;
@@ -98,10 +103,12 @@ public class MatterOverdrive {
 
     static {
         FluidRegistry.enableUniversalBucket();
+        CLibTech.enable();
     }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(this);
         AndroidPlayer.register();
         OverdriveExtendedProperties.register();
         matterRegistry = new MatterRegistry();

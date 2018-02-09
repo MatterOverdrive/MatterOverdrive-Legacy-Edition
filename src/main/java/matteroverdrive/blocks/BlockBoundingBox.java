@@ -24,6 +24,7 @@ import matteroverdrive.blocks.includes.MOBlockContainer;
 import matteroverdrive.tile.IMultiBlockTileEntity;
 import matteroverdrive.tile.TileEntityBoundingBox;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.ParticleManager;
@@ -78,7 +79,6 @@ public class BlockBoundingBox extends MOBlockContainer<TileEntityBoundingBox> im
 
     @Nonnull
     @Override
-    @Deprecated
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.INVISIBLE;
     }

@@ -18,7 +18,8 @@
 
 package matteroverdrive.items.armour;
 
-import matteroverdrive.MatterOverdrive;
+import com.astro.clib.api.render.ItemModelProvider;
+import com.astro.clib.client.ClientUtil;
 import matteroverdrive.Reference;
 import matteroverdrive.client.model.ModelTritaniumArmor;
 import matteroverdrive.proxy.ClientProxy;
@@ -34,7 +35,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import com.astro.clib.api.render.ItemModelProvider;
 
 /**
  * Created by Simeon on 11/1/2015.
@@ -87,7 +87,7 @@ public class TritaniumArmor extends ItemArmor implements ItemModelProvider {
 
     @Override
     public void initItemModel() {
-        MatterOverdrive.PROXY.registerItemModel(this, 0, getRegistryName().getResourcePath());
+        ClientUtil.registerModel(this, this.getRegistryName().toString());
     }
 
 }

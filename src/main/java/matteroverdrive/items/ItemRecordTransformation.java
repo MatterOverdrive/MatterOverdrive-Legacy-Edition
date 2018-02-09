@@ -1,6 +1,7 @@
 package matteroverdrive.items;
 
 import com.astro.clib.api.render.ItemModelProvider;
+import com.astro.clib.client.ClientUtil;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.init.MatterOverdriveSounds;
@@ -29,7 +30,7 @@ public class ItemRecordTransformation extends ItemRecord implements ItemModelPro
 
     @Override
     public void initItemModel() {
-        MatterOverdrive.PROXY.registerItemModel(this, 0, getRegistryName());
+        ClientUtil.registerModel(this, this.getRegistryName().toString());
     }
 
 }

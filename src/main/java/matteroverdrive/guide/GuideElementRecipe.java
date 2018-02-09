@@ -18,13 +18,15 @@
 
 package matteroverdrive.guide;
 
+import matteroverdrive.Reference;
+import net.minecraft.util.ResourceLocation;
 import org.w3c.dom.Element;
 
 /**
  * Created by Simeon on 8/29/2015.
  */
 public class GuideElementRecipe extends GuideElementAbstract {
-    //TODO: REWRITE
+    private static final ResourceLocation background = new ResourceLocation(Reference.PATH_ELEMENTS + "guide_recipe.png");
 
     @Override
     protected void loadContent(MOGuideEntry entry, Element element, int width, int height) {

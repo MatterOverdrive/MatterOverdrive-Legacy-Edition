@@ -39,13 +39,10 @@ import matteroverdrive.init.MatterOverdriveIcons;
 import matteroverdrive.starmap.GalaxyClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -86,14 +83,9 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(mouseHandler);
         MinecraftForge.EVENT_BUS.register(GalaxyClient.getInstance());
         MinecraftForge.EVENT_BUS.register(new MatterOverdriveIcons());
-        MinecraftForge.EVENT_BUS.register(renderHandler);
         MinecraftForge.EVENT_BUS.register(new TooltipHandler());
         MinecraftForge.EVENT_BUS.register(androidHud);
-        MinecraftForge.EVENT_BUS.register(mouseHandler);
         MinecraftForge.EVENT_BUS.register(questHud);
-        MinecraftForge.EVENT_BUS.register(renderHandler);
-        MinecraftForge.EVENT_BUS.register(GalaxyClient.getInstance());
-        MinecraftForge.EVENT_BUS.register(androidHud);
         MinecraftForge.EVENT_BUS.register(weaponHandler);
         MinecraftForge.EVENT_BUS.register(holoIcons);
     }
@@ -114,10 +106,11 @@ public class ClientProxy extends CommonProxy {
         super.preInit(event);
         OBJLoader.INSTANCE.addDomain(Reference.MOD_ID);
 
-        RenderHandler.registerItemRendererVarients();
+        Minecraft.getMinecraft().getResourcePackRepository().rprMetadataSerializer.registerMetadataSectionType(new WeaponMetadataSectionSerializer(), WeaponMetadataSection.class);
 
         renderHandler = new RenderHandler();
         renderHandler.registerEntityRenderers();
+        renderHandler.createItemRenderers();
     }
 
     @Override
@@ -134,15 +127,11 @@ public class ClientProxy extends CommonProxy {
         weaponHandler = new ClientWeaponHandler();
         questHud = new GuiQuestHud();
 
-        RenderHandler.registerCustomStateMappers();
-        Minecraft.getMinecraft().getResourcePackRepository().rprMetadataSerializer.registerMetadataSectionType(new WeaponMetadataSectionSerializer(), WeaponMetadataSection.class);
-
         registerSubscribtions();
 
         //region Render Handler Functions
         //region Create
         //renderHandler.createBlockRenderers();
-        renderHandler.createItemRenderers();
         renderHandler.createTileEntityRenderers(MatterOverdrive.configHandler);
         renderHandler.createBioticStatRenderers();
         renderHandler.createStarmapRenderers();
@@ -153,7 +142,7 @@ public class ClientProxy extends CommonProxy {
         renderHandler.registerWeaponLayers();
         renderHandler.registerTileEntitySpecialRenderers();
         renderHandler.registerBlockColors();
-        renderHandler.registerItemRenderers();
+
         renderHandler.registerItemColors();
         renderHandler.registerBioticStatRenderers();
         renderHandler.registerBionicPartRenderers();
@@ -187,15 +176,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public CommonWeaponHandler getWeaponHandler() {
         return weaponHandler;
-    }
-
-    @Override
-    public void registerItemModel(Item item, int meta, String path) {
-        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Reference.MOD_ID + ":" + path, "inventory"));
-    }
-
-    public void registerItemModel(Item item, int meta, ResourceLocation path) {
-        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Reference.MOD_ID + ":" + path.getResourceDomain(), "inventory"));
     }
 
     @Override

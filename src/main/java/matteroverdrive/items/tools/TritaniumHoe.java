@@ -1,5 +1,6 @@
 package matteroverdrive.items.tools;
 
+import com.astro.clib.client.ClientUtil;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.init.MatterOverdriveItems;
@@ -20,7 +21,7 @@ public class TritaniumHoe extends ItemHoe implements ItemModelProvider {
 
     @Override
     public void initItemModel() {
-        MatterOverdrive.PROXY.registerItemModel(this, 0, getRegistryName().getResourcePath());
+        ClientUtil.registerModel(this, this.getRegistryName().toString());
     }
 
 }

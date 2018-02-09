@@ -229,7 +229,7 @@ public class PageGuideDescription extends ElementBaseGroup {
                     MOLog.log(Level.ERROR, e, "there was a problem reading language file for entry %s", entry.getDisplayName());
                 }
             } else {
-                MOLog.warn("Guide Entry file for %s missing at: %s", entry.getDisplayName(), entry.getDescriptionPath("language"));
+                MOLog.warn("Guide Entry file for %s missing at: %s", entry.getDisplayName(), entry.getDescriptionPath(Minecraft.getMinecraft().gameSettings.language));
             }
         }
     }

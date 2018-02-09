@@ -57,7 +57,6 @@ public class MatterOverdriveGuides {
         androidCategory = new GuideCategory("android").setHoloIcon("android_slot_arms");
         MatterOverdriveGuide.registerCategory(androidCategory);
 
-
         //region General
         //Ore
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.dilithium_ore).setGroup("resources"), 3, 0);
@@ -81,8 +80,9 @@ public class MatterOverdriveGuides {
                 new ItemStack(MatterOverdrive.BLOCKS.forceGlass),
                 new ItemStack(MatterOverdrive.BLOCKS.fusionReactorIO)).setGroup("power"), 3, 3);
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.gravitational_anomaly).setGroup("power"), 4, 3);
-        addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.solar_panel).setGroup("power"), 3, 4);
-        addEntry(generalCategory, new MOGuideEntry("batteries").setStackIcons(new ItemStack(MatterOverdrive.ITEMS.battery), new ItemStack(MatterOverdrive.ITEMS.hc_battery), new ItemStack(MatterOverdrive.ITEMS.creative_battery)).setGroup("power"), 4, 4);
+        addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.pylon).setGroup("power"), 3, 4);
+        addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.solar_panel).setGroup("power"), 4, 4);
+        addEntry(generalCategory, new MOGuideEntry("batteries").setStackIcons(new ItemStack(MatterOverdrive.ITEMS.battery), new ItemStack(MatterOverdrive.ITEMS.hc_battery), new ItemStack(MatterOverdrive.ITEMS.creative_battery)).setGroup("power"), 3, 5);
         //Matter
         addEntry(generalCategory, new MOGuideEntry("matter_transport").setStackIcons(MatterOverdrive.BLOCKS.heavy_matter_pipe).setGroup("matter"), 6, 0);
         addEntry(generalCategory, new MOGuideEntry("matter_fail").setStackIcons(MatterOverdrive.ITEMS.matter_dust).setGroup("matter"), 7, 0);
@@ -97,7 +97,7 @@ public class MatterOverdriveGuides {
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.network_router).setGroup("matter_network"), 7, 5);
         //endregion
         //Items
-        int itemsY = 6;
+        int itemsY = 7;
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.spacetime_equalizer).setGroup("items"), 0, itemsY);
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.security_protocol).setGroup("items"), 1, itemsY);
         addEntry(generalCategory, new MOGuideEntry("upgrades").setStackIcons(MatterOverdrive.ITEMS.item_upgrade).setGroup("items"), 2, itemsY);

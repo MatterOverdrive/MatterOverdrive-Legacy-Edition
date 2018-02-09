@@ -18,6 +18,8 @@
 
 package matteroverdrive.client;
 
+import com.astro.clib.api.render.ItemModelProvider;
+import com.astro.clib.client.ClientUtil;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import matteroverdrive.MatterOverdrive;
@@ -48,13 +50,9 @@ import matteroverdrive.entity.monster.EntityRangedRogueAndroidMob;
 import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
 import matteroverdrive.entity.weapon.PlasmaBolt;
 import matteroverdrive.handler.ConfigurationHandler;
+import matteroverdrive.init.MatterOverdriveBlocks;
+import matteroverdrive.init.MatterOverdriveItems;
 import matteroverdrive.init.OverdriveBioticStats;
-import matteroverdrive.items.IsolinearCircuit;
-import matteroverdrive.items.ItemUpgrade;
-import matteroverdrive.items.SecurityProtocol;
-import matteroverdrive.items.android.RougeAndroidParts;
-import matteroverdrive.items.food.AndroidPill;
-import matteroverdrive.items.weapon.module.WeaponModuleBarrel;
 import matteroverdrive.items.weapon.module.WeaponModuleColor;
 import matteroverdrive.items.weapon.module.WeaponModuleHoloSights;
 import matteroverdrive.items.weapon.module.WeaponModuleSniperScope;
@@ -70,14 +68,11 @@ import matteroverdrive.tile.*;
 import matteroverdrive.util.MOLog;
 import matteroverdrive.world.dimensions.alien.AlienColorsReloadListener;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -92,12 +87,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.MinecraftForge;
@@ -198,26 +189,8 @@ public class RenderHandler {
 
     public RenderHandler() {
         customRenderers = new ArrayList<>();
-    }
-
-    public static void registerItemRendererVarients() {
-        regItemRenderVer(MatterOverdrive.ITEMS.item_upgrade, "upgrade", ItemUpgrade.subItemNames);
-        regItemRenderVer(MatterOverdrive.ITEMS.weapon_module_barrel, "barrel", WeaponModuleBarrel.names);
-        regItemRenderVer(MatterOverdrive.ITEMS.isolinear_circuit, "isolinear_circuit", IsolinearCircuit.subItemNames);
-        regItemRenderVer(MatterOverdrive.ITEMS.androidPill, "android_pill", AndroidPill.names);
-        regItemRenderVer(MatterOverdrive.ITEMS.security_protocol, "security_protocol", SecurityProtocol.types);
-        regItemRenderVer(MatterOverdrive.ITEMS.androidParts, "rogue_android_part", RougeAndroidParts.names);
-        regItemRenderVer(MatterOverdrive.ITEMS.androidParts, "weapon_module_color", WeaponModuleColor.names);
-    }
-
-    public static void registerCustomStateMappers() {
-        ModelLoader.setCustomStateMapper(MatterOverdrive.BLOCKS.alienLeaves, new StateMap.Builder().ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
-    }
-
-    private static void regItemRenderVer(Item item, String name, String[] subNames) {
-        for (String subName : subNames) {
-            ModelBakery.registerItemVariants(item, new ResourceLocation(Reference.MOD_ID, name + "_" + subName));
-        }
+        MinecraftForge.EVENT_BUS.register(this);
+        weaponRenderHandler = new WeaponRenderHandler();
     }
 
     public void init(World world, TextureManager textureManager) {
@@ -232,7 +205,6 @@ public class RenderHandler {
         pipeRenderManager = new PipeRenderManager();
         dimensionalRiftsRender = new DimensionalRiftsRender();
         spaceSkyRenderer = new SpaceSkyRenderer();
-        weaponRenderHandler = new WeaponRenderHandler();
 
         moduleSniperScopeRender = new ModuleSniperScopeRender(weaponRenderHandler);
         moduleHoloSightsRender = new ModuleHoloSightsRender(weaponRenderHandler);
@@ -248,6 +220,20 @@ public class RenderHandler {
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(alienColorsReloadListener);
         if (Minecraft.getMinecraft().getFramebuffer().enableStencil()) {
             stencilBuffer = MinecraftForgeClient.reserveStencilBit();
+        }
+    }
+
+    @SubscribeEvent
+    public void modelLoadEvent(ModelRegistryEvent event) {
+        for (Item item : MatterOverdriveItems.items) {
+            if (item instanceof ItemModelProvider)
+                ((ItemModelProvider) item).initItemModel();
+        }
+        for (Block block : MatterOverdriveBlocks.blocks) {
+            if (block instanceof ItemModelProvider)
+                ((ItemModelProvider) block).initItemModel();
+            else
+                ClientUtil.registerWithMapper(block);
         }
     }
 
@@ -380,6 +366,14 @@ public class RenderHandler {
         rendererIonSniper = new ItemRendererIonSniper();
     }
 
+    public void activateItemRenderers() {
+        rendererPhaser.init();
+        rendererPhaserRifle.init();
+        rendererOmniTool.init();
+        renderPlasmaShotgun.init();
+        rendererIonSniper.init();
+    }
+
     public void bakeItemModels() {
         weaponRenderHandler.onModelBake(Minecraft.getMinecraft().getTextureMapBlocks(), this);
         rendererPhaser.bakeModel();
@@ -412,6 +406,7 @@ public class RenderHandler {
         event.getModelRegistry().putObject(new ModelResourceLocation(MatterOverdrive.ITEMS.ionSniper.getRegistryName(), "inventory"), rendererIonSniper);
         event.getModelRegistry().putObject(new ModelResourceLocation(MatterOverdrive.ITEMS.plasmaShotgun.getRegistryName(), "inventory"), renderPlasmaShotgun);
 
+        activateItemRenderers();
         bakeItemModels();
     }
 
@@ -420,128 +415,6 @@ public class RenderHandler {
         if (event.getMap() == Minecraft.getMinecraft().getTextureMapBlocks()) {
             weaponRenderHandler.onTextureStich(Minecraft.getMinecraft().getTextureMapBlocks(), this);
         }
-    }
-
-    public void registerItemRenderers() {
-        regItemRender(MatterOverdrive.ITEMS.dataPad);
-        regItemRender(MatterOverdrive.ITEMS.scoutShip);
-        regItemRender(MatterOverdrive.ITEMS.buildingBase);
-        regItemRender(MatterOverdrive.ITEMS.buildingMatterExtractor);
-        regItemRender(MatterOverdrive.ITEMS.buildingResidential);
-        regItemRender(MatterOverdrive.ITEMS.buildingShipHangar);
-        regItemRender(MatterOverdrive.ITEMS.contract);
-        regItemRender(MatterOverdrive.ITEMS.dilithium_crystal);
-        regItemRender(MatterOverdrive.ITEMS.earl_gray_tea);
-        regItemRender(MatterOverdrive.ITEMS.emergency_ration);
-        regItemRender(MatterOverdrive.ITEMS.forceFieldEmitter);
-        regItemRender(MatterOverdrive.ITEMS.h_compensator);
-        regItemRender(MatterOverdrive.ITEMS.integration_matrix);
-        regItemRender(MatterOverdrive.ITEMS.machine_casing);
-        regItemRender(MatterOverdrive.ITEMS.me_conversion_matrix);
-        regItemRender(MatterOverdrive.ITEMS.plasmaCore);
-        regItemRender(MatterOverdrive.ITEMS.portableDecomposer);
-        regItemRender(MatterOverdrive.ITEMS.romulan_ale);
-        regItemRender(MatterOverdrive.ITEMS.s_magnet);
-        regItemRender(MatterOverdrive.ITEMS.shipFactory);
-        regItemRender(MatterOverdrive.ITEMS.sniperScope);
-        regItemRender(MatterOverdrive.ITEMS.tritaniumSpine);
-        regItemRender(MatterOverdrive.ITEMS.tritaniumChestplate);
-        regItemRender(MatterOverdrive.ITEMS.tritanium_dust);
-        regItemRender(MatterOverdrive.ITEMS.tritaniumHelmet);
-        regItemRender(MatterOverdrive.ITEMS.tritaniumHoe);
-        regItemRender(MatterOverdrive.ITEMS.tritaniumShovel);
-        regItemRender(MatterOverdrive.ITEMS.tritanium_nugget);
-        regItemRender(MatterOverdrive.ITEMS.tritaniumLeggings);
-        regItemRender(MatterOverdrive.ITEMS.tritaniumPickaxe);
-        regItemRender(MatterOverdrive.ITEMS.tritanium_plate);
-        regItemRender(MatterOverdrive.ITEMS.tritaniumSword);
-        regItemRender(MatterOverdrive.ITEMS.wrench);
-        regItemRender(MatterOverdrive.ITEMS.battery);
-        regItemRender(MatterOverdrive.ITEMS.hc_battery);
-        regItemRender(MatterOverdrive.ITEMS.creative_battery);
-        regItemRender(MatterOverdrive.ITEMS.energyPack);
-        regItemRender(MatterOverdrive.ITEMS.pattern_drive);
-        //regItemRender(MatterOverdrive.items.creativePatternDrive);
-        regItemRender(MatterOverdrive.ITEMS.spacetime_equalizer);
-        regItemRender(MatterOverdrive.ITEMS.item_upgrade, "upgrade", ItemUpgrade.subItemNames);
-        regItemRender(MatterOverdrive.ITEMS.weapon_module_color, "weapon_module_color", WeaponModuleColor.names);
-        regItemRender(MatterOverdrive.ITEMS.weapon_module_barrel, "barrel", WeaponModuleBarrel.names);
-        regItemRender(MatterOverdrive.ITEMS.isolinear_circuit, "isolinear_circuit", IsolinearCircuit.subItemNames);
-        regItemRender(MatterOverdrive.ITEMS.matter_dust);
-        regItemRender(MatterOverdrive.ITEMS.matter_dust_refined);
-        regItemRender(MatterOverdrive.ITEMS.androidPill, "android_pill", AndroidPill.names);
-        regItemRender(MatterOverdrive.ITEMS.security_protocol, "security_protocol", SecurityProtocol.types);
-        regItemRender(MatterOverdrive.ITEMS.androidParts, "rogue_android_part", RougeAndroidParts.names);
-        regItemRender(MatterOverdrive.ITEMS.tritanium_ingot);
-        regItemRender(MatterOverdrive.ITEMS.transportFlashDrive);
-        regItemRender(MatterOverdrive.ITEMS.networkFlashDrive);
-        regItemRender(MatterOverdrive.ITEMS.weaponHandle);
-        regItemRender(MatterOverdrive.ITEMS.weaponReceiver);
-        regItemRender(MatterOverdrive.ITEMS.matter_scanner);
-        regItemRender(MatterOverdrive.ITEMS.phaser);
-        regItemRender(MatterOverdrive.ITEMS.phaserRifle);
-        regItemRender(MatterOverdrive.ITEMS.plasmaShotgun);
-        regItemRender(MatterOverdrive.ITEMS.omniTool);
-        regItemRender(MatterOverdrive.ITEMS.ionSniper);
-        regItemRender(MatterOverdrive.ITEMS.omniTool);
-        regItemRender(MatterOverdrive.ITEMS.plasmaShotgun);
-        regItemRender(MatterOverdrive.ITEMS.colonizerShip);
-        regItemRender(MatterOverdrive.ITEMS.tritaniumBoots);
-        regItemRender(MatterOverdrive.ITEMS.buildingPowerGenerator);
-        regItemRender(MatterOverdrive.ITEMS.weaponModuleRicochet);
-
-        regItemRender(MatterOverdrive.BLOCKS.weapon_station);
-        regItemRender(MatterOverdrive.BLOCKS.androidStation);
-        regItemRender(MatterOverdrive.BLOCKS.replicator);
-        regItemRender(MatterOverdrive.BLOCKS.decomposer);
-        regItemRender(MatterOverdrive.BLOCKS.recycler);
-        regItemRender(MatterOverdrive.BLOCKS.matter_analyzer);
-        regItemRender(MatterOverdrive.BLOCKS.transporter);
-        regItemRender(MatterOverdrive.BLOCKS.network_router);
-        regItemRender(MatterOverdrive.BLOCKS.network_switch);
-        regItemRender(MatterOverdrive.BLOCKS.fusion_reactor_coil);
-        regItemRender(MatterOverdrive.BLOCKS.machine_hull);
-        regItemRender(MatterOverdrive.BLOCKS.fusionReactorIO);
-        regItemRender(MatterOverdrive.BLOCKS.dilithium_ore);
-        regItemRender(MatterOverdrive.BLOCKS.tritaniumOre);
-        regItemRender(MatterOverdrive.BLOCKS.tritanium_block);
-        regItemRender(MatterOverdrive.BLOCKS.starMap);
-        regItemRender(MatterOverdrive.BLOCKS.solar_panel);
-        regItemRender(MatterOverdrive.BLOCKS.matter_pipe);
-        regItemRender(MatterOverdrive.BLOCKS.heavy_matter_pipe);
-        regItemRender(MatterOverdrive.BLOCKS.network_pipe);
-        regItemRender(MatterOverdrive.BLOCKS.spacetimeAccelerator);
-        regItemRender(MatterOverdrive.BLOCKS.forceGlass);
-        regItemRender(MatterOverdrive.BLOCKS.pattern_monitor);
-        regItemRender(MatterOverdrive.BLOCKS.holoSign);
-        regItemRender(MatterOverdrive.BLOCKS.pattern_storage);
-        regItemRender(MatterOverdrive.BLOCKS.inscriber);
-        regItemRender(MatterOverdrive.BLOCKS.gravitational_anomaly);
-        regItemRender(MatterOverdrive.BLOCKS.fusion_reactor_controller);
-        regItemRender(MatterOverdrive.BLOCKS.pylon);
-        regItemRender(MatterOverdrive.BLOCKS.tritaniumCrate);
-        regItemRender(MatterOverdrive.BLOCKS.tritaniumCrateYellow);
-
-        regItemRender(MatterOverdrive.BLOCKS.decorative_stripes);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_coils);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_clean);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_vent_dark);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_vent_bright);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_holo_matrix);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_tritanium_plate);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_carbon_fiber_plate);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_floor_tiles);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_floor_tiles_green);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_floor_noise);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_tritanium_plate_stripe);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_floor_tile_white);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_white_plate);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_tritanium_plate_colored, 16);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_engine_exhaust_plasma);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_beams, 2);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_matter_tube, 2);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_tritanium_lamp, 2);
-        regItemRender(MatterOverdrive.BLOCKS.decorative_separator, 2);
     }
 
     public void registerItemColors() {
@@ -582,38 +455,6 @@ public class RenderHandler {
             else if (stack.getItemDamage() == 2) return 0xffe400;
             return 0xffffff;
         }, MatterOverdrive.ITEMS.androidPill);
-    }
-
-    private <T extends Item> void regItemRender(T item, String name, String[] subNames) {
-        for (int i = 0; i < subNames.length; i++) {
-            regItemRender(item, i, name + "_" + subNames[i]);
-        }
-    }
-
-    private <T extends Item> void regItemRender(T item, int meta, String name) {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(Reference.MOD_ID + ":" + name, "inventory"));
-    }
-
-    private <T extends Item> void regItemRender(T item, int meta) {
-        ResourceLocation name = item.getRegistryName();
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(name, "inventory"));
-    }
-
-    private <T extends Item> void regItemRender(T item) {
-        ResourceLocation name = item.getRegistryName();
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(name, "inventory"));
-    }
-
-    private void regItemRender(Block block, int metaCount) {
-        ResourceLocation name = block.getRegistryName();
-        for (int i = 0; i < metaCount; i++) {
-            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), i, new ModelResourceLocation(name, "inventory"));
-        }
-    }
-
-    private void regItemRender(Block block) {
-        ResourceLocation name = block.getRegistryName();
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(name, "inventory"));
     }
 
     public void createEntityRenderers(RenderManager renderManager) {

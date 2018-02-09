@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:contract_market"
+  },
+  "variants": {
+    "normal": {"model": "matteroverdrive:contract_market"},
+    "facing=north": { "model": "matteroverdrive:contract_market"},
+    "facing=south": { "model": "matteroverdrive:contract_market","y": 180 },
+    "facing=west":  { "model": "matteroverdrive:contract_market","y": 270 },
+    "facing=east":  { "model": "matteroverdrive:contract_market","y": 90 },
+    "inventory": {
+      "model": "matteroverdrive:contract_market",
+      "transform": "forge:default-block"
+    }
+  }
+}

@@ -20,10 +20,12 @@ package matteroverdrive.proxy;
 
 import com.astro.clib.proxy.impl.ProxyClass;
 import matteroverdrive.MatterOverdrive;
-import net.minecraft.block.Block;
+import matteroverdrive.Reference;
+import matteroverdrive.compat.MatterOverdriveCompat;
+import matteroverdrive.handler.GoogleAnalyticsCommon;
+import matteroverdrive.handler.weapon.CommonWeaponHandler;
+import matteroverdrive.starmap.GalaxyServer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -31,11 +33,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
-import matteroverdrive.Reference;
-import matteroverdrive.compat.MatterOverdriveCompat;
-import matteroverdrive.handler.GoogleAnalyticsCommon;
-import matteroverdrive.handler.weapon.CommonWeaponHandler;
-import matteroverdrive.starmap.GalaxyServer;
 
 @ProxyClass(modid = Reference.MOD_ID,side= Side.SERVER)
 public class CommonProxy {
@@ -77,17 +74,6 @@ public class CommonProxy {
 
     public GoogleAnalyticsCommon getGoogleAnalytics() {
         return googleAnalyticsCommon;
-    }
-
-    public void registerItemModel(Item item, int meta, ResourceLocation path) {
-
-    }
-    public void registerItemModel(Item item, int meta, String path) {
-
-    }
-
-    public void registerItemModel(Block block, int meta, String path) {
-        registerItemModel(Item.getItemFromBlock(block), meta, path);
     }
 
     public boolean hasTranslation(String key) {

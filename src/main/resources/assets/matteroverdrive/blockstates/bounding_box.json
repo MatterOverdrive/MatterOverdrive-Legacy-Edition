@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:grass"
+  },
+  "variants": {
+    "normal": {"model": "minecraft:grass"},
+    "inventory": {
+      "model": "minecraft:grass",
+      "transform": "forge:default-block"
+    }
+  }
+}

@@ -11,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
@@ -112,6 +113,11 @@ public class BlockPylon extends MOBlockContainer<TileEntityMachineDimensionalPyl
 
         }
         return super.shouldSideBeRendered(state, world, pos, side);
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return state.getValue(TYPE) == MultiblockType.DUMMY ? EnumBlockRenderType.INVISIBLE : super.getRenderType(state);
     }
 
     public enum MultiblockType implements IStringSerializable {

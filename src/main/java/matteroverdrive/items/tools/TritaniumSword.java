@@ -1,11 +1,11 @@
 package matteroverdrive.items.tools;
 
-import matteroverdrive.MatterOverdrive;
+import com.astro.clib.api.render.ItemModelProvider;
+import com.astro.clib.client.ClientUtil;
 import matteroverdrive.Reference;
 import matteroverdrive.init.MatterOverdriveItems;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.ResourceLocation;
-import com.astro.clib.api.render.ItemModelProvider;
 
 /**
  * @author shadowfacts
@@ -20,7 +20,7 @@ public class TritaniumSword extends ItemSword implements ItemModelProvider {
 
     @Override
     public void initItemModel() {
-        MatterOverdrive.PROXY.registerItemModel(this, 0, getRegistryName().getResourcePath());
+        ClientUtil.registerModel(this, this.getRegistryName().toString());
     }
 
 }
