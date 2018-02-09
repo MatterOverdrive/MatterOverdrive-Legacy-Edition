@@ -1,5 +1,5 @@
 # Matter Overdrive
-![alt tag](https://raw.githubusercontent.com/simeonradivoev/MatterOverdrive/master/MatterOverdriveLogo.png)
+![alt tag](https://raw.githubusercontent.com/MatterOverdrive/MatterOverdrive/master/MatterOverdriveLogo.png)
 <!--
 <h2 align="center">
 <a href='https://mo.simeonradivoev.com/'>Website</a> | 
@@ -21,18 +21,17 @@
 * [Issues](#issues)
 * [Building](#building)
 * [IMC](#imc)
-* [Donations](#donations)
 
 ## About
 Matter Overdrive is a Minecraft mod inspired by the popular Sci-fi TV series Star Trek. It dwells in the concept of replicating and transforming one type matter into another.
 Although it may seem overpowered, Matter Overdrive takes a more realistic approach and requires the player to build a complex system before even the simplest replication can be achieved.
 
 ## Contacts
-* [Simeon Radivoev](simeonradivoev@gmail.com) (DEPRECATED)
+* [@TheCodedOne](https://twitter.com/TheCodedOne)
 * [Dev_Osmium](mailto:devosmium@gmail.com)
 * [@DevOsmium](https://twitter.com/DevOsmium)
 * [Website](http://devosmium.ddns.net/matteroverdrive/matteroverdrive.html)
-* IRC: **#matteroverdrive** at **irc.esper.net**
+* [Discord](https://discord.gg/PC5GXyQ)
 
 ## Features
 * [Matter Scanner](https://mo.simeonradivoev.com/items/matter_scanner/), for scanning matter patterns for replication.
@@ -49,13 +48,13 @@ Although it may seem overpowered, Matter Overdrive takes a more realistic approa
 ![Matter Overdrive Blocks and Items](https://media-elerium.cursecdn.com/attachments/210/237/main_screenshot.png)
 
 ## Issues
-If you have any crashes, problems or suggestions just open a [new Issue](https://github.com/simeonradivoev/MatterOverdrive/issues/new).
+If you have any crashes, problems or suggestions just open a [new Issue](https://github.com/MatterOverdrive/MatterOverdrive/issues/new).
 If your crash or problem was fixed, but is not yet released as a public download you can always download the latest [Dev Build](https://mo.simeonradivoev.com/builds/).
 
 ## Building
 1. Clone this repository via 
   - SSH `git clone git@github.com:simeonradivoev/MatterOverdrive.git` or 
-  - HTTPS `git clone https://github.com/simeonradivoev/MatterOverdrive.git`
+  - HTTPS `git clone https://github.com/MatterOverdrive/MatterOverdrive.git`
 2. Setup workspace (This currently does not work due to a ping timeout on rx14's mvn server.)
   - Decompiled source `gradlew setupDecompWorkspace`
   - Obfuscated source `gradlew setupDevWorkspace`
@@ -67,9 +66,4 @@ If your crash or problem was fixed, but is not yet released as a public download
   - Don't forget to install [Lombok](https://projectlombok.org)
   
 ## IMC
-See the example on [IMC](https://github.com/simeonradivoev/MatterOverdrive/blob/master/src/main/java/matteroverdrive/api/IMC.java) or you can see the [IMC handler](https://github.com/simeonradivoev/MatterOverdrive/blob/master/src/main/java/matteroverdrive/imc/MOIMCHandler.java).
-
-## Donations
-Donations go a long way to helping me continue working on Matter Overdrive, making exciting new features.
-
-[![Donate](https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KGKJSVXZQXWXS)
+See the example on [IMC](https://github.com/MatterOverdrive/MatterOverdrive/blob/master/src/main/java/matteroverdrive/api/IMC.java) or you can see the [IMC handler](https://github.com/MatterOverdrive/MatterOverdrive/blob/master/src/main/java/matteroverdrive/imc/MOIMCHandler.java).
