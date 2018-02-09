@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.tritanium_lamp",
+    "count": 2
+  },
+  "pattern": [
+    "###",
+    "#G#",
+    "GGG"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "matteroverdrive:decorative.tritanium_plate"
+    },
+    "G": {
+      "item": "#DUSTGLOWSTONE"
+    }
+  }
+}

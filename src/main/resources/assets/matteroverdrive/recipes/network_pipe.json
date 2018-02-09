@@ -1,0 +1,30 @@
+{
+  "result": {
+    "item": "matteroverdrive:network_pipe",
+    "count": 16
+  },
+  "pattern": [
+    "IGI",
+    "BCB",
+    "IGI"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "#INGOTGOLD"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    },
+    "M": {
+      "item": "matteroverdrive:s_magnet"
+    }
+  }
+}

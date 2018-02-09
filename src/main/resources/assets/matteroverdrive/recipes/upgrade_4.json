@@ -1,0 +1,27 @@
+{
+  "result": {
+    "item": "matteroverdrive:upgrade",
+    "data": 4
+  },
+  "pattern": [
+    " E ",
+    "RUR",
+    " G "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "U": {
+      "item": "matteroverdrive:upgrade",
+      "data": 0
+    },
+    "E": {
+      "item": "#ENDERPEARL"
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    }
+  }
+}

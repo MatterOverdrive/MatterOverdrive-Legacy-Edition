@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "matteroverdrive:spacetime_accelerator"
+  },
+  "pattern": [
+    "THT",
+    "DDD",
+    "THT"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    },
+    "H": {
+      "item": "matteroverdrive:h_compensator"
+    }
+  }
+}

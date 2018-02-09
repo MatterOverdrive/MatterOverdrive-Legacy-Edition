@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.carbon_fiber_plate",
+    "count": 8
+  },
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "matteroverdrive:decorative.tritanium_plate"
+    },
+    "C": {
+      "item": "minecraft:coal",
+      "data": 0
+    }
+  }
+}

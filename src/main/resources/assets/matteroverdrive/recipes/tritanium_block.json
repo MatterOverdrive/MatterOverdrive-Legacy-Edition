@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "matteroverdrive:tritanium_block"
+  },
+  "pattern": [
+    "TTT",
+    "TTT",
+    "TTT"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "T": {
+      "item": "#INGOTTRITANIUM"
+    }
+  }
+}

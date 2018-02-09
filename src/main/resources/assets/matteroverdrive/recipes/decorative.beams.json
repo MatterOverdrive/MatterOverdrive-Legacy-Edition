@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.beams",
+    "count": 6
+  },
+  "pattern": [
+    "#T#",
+    "#T#",
+    "#T#"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "matteroverdrive:decorative.tritanium_plate"
+    },
+    "T": {
+      "item": "#NUGGETTRITANIUM"
+    }
+  }
+}

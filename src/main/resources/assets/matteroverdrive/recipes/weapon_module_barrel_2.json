@@ -1,0 +1,29 @@
+{
+  "result": {
+    "item": "matteroverdrive:weapon_module_barrel",
+    "data": 2
+  },
+  "pattern": [
+    " B ",
+    "BRB",
+    "DTD"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "minecraft:blaze_rod"
+    },
+    "B": {
+      "item": "minecraft:tnt"
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "D": {
+      "item": "#GEMDIAMOND"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    }
+  }
+}

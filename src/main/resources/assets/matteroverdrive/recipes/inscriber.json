@@ -1,0 +1,31 @@
+{
+  "result": {
+    "item": "matteroverdrive:inscriber"
+  },
+  "pattern": [
+    "IDI",
+    "TPT",
+    "RMR"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "result": {
+    "item": "matteroverdrive:charging_station"
+  },
+  "pattern": [
+    " F ",
+    "EDR",
+    "BMB"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "matteroverdrive:hc_battery"
+    },
+    "R": {
+      "item": "minecraft:repeater"
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "F": {
+      "item": "matteroverdrive:forcefield_emitter"
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

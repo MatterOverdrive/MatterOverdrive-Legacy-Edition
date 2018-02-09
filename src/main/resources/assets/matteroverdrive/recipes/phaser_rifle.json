@@ -1,0 +1,39 @@
+{
+  "result": {
+    "item": "matteroverdrive:phaser_rifle"
+  },
+  "pattern": [
+    "III",
+    "SPC",
+    "WHB"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:plasma_core"
+    },
+    "B": {
+      "item": "matteroverdrive:battery"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "S": {
+      "item": "matteroverdrive:weapon_receiver"
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    },
+    "W": {
+      "item": "minecraft:wool",
+      "data": 0
+    },
+    "H": {
+      "item": "matteroverdrive:weapon_handle"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  }
+}

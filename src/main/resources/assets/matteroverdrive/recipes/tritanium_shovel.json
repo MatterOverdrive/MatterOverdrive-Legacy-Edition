@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "matteroverdrive:tritanium_shovel"
+  },
+  "pattern": [
+    " X ",
+    " # ",
+    " # "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "#STICKWOOD"
+    },
+    "X": {
+      "item": "#INGOTTRITANIUM"
+    }
+  }
+}

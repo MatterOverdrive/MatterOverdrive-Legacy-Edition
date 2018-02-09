@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.white_plate",
+    "count": 8
+  },
+  "pattern": [
+    "#W#",
+    "###",
+    "#W#"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "matteroverdrive:decorative.tritanium_plate"
+    },
+    "W": {
+      "item": "minecraft:wool",
+      "data": 0
+    }
+  }
+}

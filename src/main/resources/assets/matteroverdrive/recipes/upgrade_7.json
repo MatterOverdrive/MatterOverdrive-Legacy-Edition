@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "matteroverdrive:upgrade",
+    "data": 7
+  },
+  "pattern": [
+    " R ",
+    "MUM",
+    " R "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "U": {
+      "item": "matteroverdrive:upgrade",
+      "data": 0
+    },
+    "M": {
+      "item": "matteroverdrive:s_magnet"
+    }
+  }
+}

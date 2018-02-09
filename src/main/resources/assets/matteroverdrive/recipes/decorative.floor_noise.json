@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.floor_noise",
+    "count": 32
+  },
+  "pattern": [
+    "#G#",
+    "#Q#",
+    "#G#"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:bone"
+    },
+    "#": {
+      "item": "minecraft:clay"
+    },
+    "G": {
+      "item": "minecraft:gravel"
+    }
+  }
+}

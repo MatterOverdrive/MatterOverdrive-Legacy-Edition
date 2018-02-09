@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "matteroverdrive:heavy_matter_pipe",
+    "count": 8
+  },
+  "pattern": [
+    "RMR",
+    "TMT",
+    "RMR"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "M": {
+      "item": "matteroverdrive:s_magnet"
+    }
+  }
+}

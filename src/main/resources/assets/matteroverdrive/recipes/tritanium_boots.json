@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "matteroverdrive:tritanium_boots"
+  },
+  "pattern": [
+    "   ",
+    "X X",
+    "X X"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "X": {
+      "item": "#INGOTTRITANIUM"
+    }
+  }
+}

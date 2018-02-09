@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.tritanium_plate",
+    "count": 16
+  },
+  "pattern": [
+    "SSS",
+    "S#S",
+    "SSS"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "S": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  }
+}

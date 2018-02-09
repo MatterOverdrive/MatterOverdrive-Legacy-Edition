@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "matteroverdrive:force_glass",
+    "count": 4
+  },
+  "pattern": [
+    " G ",
+    "GTG",
+    " G "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  }
+}

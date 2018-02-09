@@ -1,0 +1,45 @@
+{
+  "result": {
+    "item": "matteroverdrive:android_station"
+  },
+  "pattern": [
+    "THA",
+    "2F3",
+    "GMR"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "A": {
+      "item": "matteroverdrive:rogue_android_part",
+      "data": 1
+    },
+    "2": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "3": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "T": {
+      "item": "matteroverdrive:rogue_android_part",
+      "data": 3
+    },
+    "F": {
+      "item": "matteroverdrive:forcefield_emitter"
+    },
+    "G": {
+      "item": "#DUSTGLOWSTONE"
+    },
+    "H": {
+      "item": "matteroverdrive:rogue_android_part",
+      "data": 0
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "matteroverdrive:matter_scanner"
+  },
+  "pattern": [
+    "III",
+    "GDG",
+    "IRI"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "D": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

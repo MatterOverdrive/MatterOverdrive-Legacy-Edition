@@ -1,0 +1,32 @@
+{
+  "result": {
+    "item": "matteroverdrive:integration_matrix"
+  },
+  "pattern": [
+    " M ",
+    "GPG",
+    "DED"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    },
+    "E": {
+      "item": "#ENDERPEARL"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

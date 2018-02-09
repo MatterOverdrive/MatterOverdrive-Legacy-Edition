@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "matteroverdrive:network_flash_drive"
+  },
+  "pattern": [
+    "RCR"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    }
+  }
+}

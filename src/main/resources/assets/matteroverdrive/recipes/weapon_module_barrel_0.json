@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "matteroverdrive:weapon_module_barrel",
+    "data": 0
+  },
+  "pattern": [
+    " G ",
+    "RDR",
+    " T "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "matteroverdrive:fusion_reactor_io"
+  },
+  "pattern": [
+    "TGT",
+    "C C",
+    "TGT"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    }
+  }
+}

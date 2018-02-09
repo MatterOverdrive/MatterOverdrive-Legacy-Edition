@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "matteroverdrive:pattern_monitor"
+  },
+  "pattern": [
+    " H ",
+    "1N1",
+    " F "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "1": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "F": {
+      "item": "matteroverdrive:network_flash_drive"
+    },
+    "H": {
+      "item": "matteroverdrive:holo_sign"
+    },
+    "N": {
+      "item": "matteroverdrive:network_switch"
+    }
+  }
+}

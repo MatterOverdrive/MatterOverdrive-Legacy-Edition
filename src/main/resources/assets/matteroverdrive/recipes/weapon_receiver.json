@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "matteroverdrive:weapon_receiver"
+  },
+  "pattern": [
+    "IRT",
+    "   ",
+    "IIT"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "T": {
+      "item": "#INGOTTRITANIUM"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

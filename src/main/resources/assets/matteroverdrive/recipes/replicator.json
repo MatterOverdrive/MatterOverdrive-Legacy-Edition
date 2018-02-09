@@ -1,0 +1,38 @@
+{
+  "result": {
+    "item": "matteroverdrive:replicator"
+  },
+  "pattern": [
+    "PCF",
+    "IHI",
+    "NTM"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:pattern_drive"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "F": {
+      "item": "matteroverdrive:network_flash_drive"
+    },
+    "H": {
+      "item": "matteroverdrive:h_compensator"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    },
+    "M": {
+      "item": "matteroverdrive:me_conversion_matrix"
+    },
+    "N": {
+      "item": "matteroverdrive:integration_matrix"
+    }
+  }
+}

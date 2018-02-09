@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "matteroverdrive:matter_pipe",
+    "count": 8
+  },
+  "pattern": [
+    " G ",
+    "IMI",
+    " G "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    },
+    "M": {
+      "item": "matteroverdrive:s_magnet"
+    }
+  }
+}

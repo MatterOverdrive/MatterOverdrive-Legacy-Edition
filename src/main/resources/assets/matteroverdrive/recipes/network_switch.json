@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "matteroverdrive:network_switch"
+  },
+  "pattern": [
+    " G ",
+    "CFC",
+    "OMO"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    },
+    "F": {
+      "item": "matteroverdrive:network_flash_drive"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

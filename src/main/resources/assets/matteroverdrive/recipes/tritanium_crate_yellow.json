@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "matteroverdrive:tritanium_crate_yellow"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:dye",
+      "data": 11
+    },
+    {
+      "item": "matteroverdrive:tritanium_crate"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

@@ -1,0 +1,32 @@
+{
+  "result": {
+    "item": "matteroverdrive:ion_sniper"
+  },
+  "pattern": [
+    "ICI",
+    "SPP",
+    " HB"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:plasma_core"
+    },
+    "B": {
+      "item": "matteroverdrive:battery"
+    },
+    "S": {
+      "item": "matteroverdrive:weapon_receiver"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 3
+    },
+    "H": {
+      "item": "matteroverdrive:weapon_handle"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

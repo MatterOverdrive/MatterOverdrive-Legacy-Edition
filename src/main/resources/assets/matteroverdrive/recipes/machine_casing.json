@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "matteroverdrive:machine_casing"
+  },
+  "pattern": [
+    " T ",
+    "I I",
+    "GRG"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    },
+    "I": {
+      "item": "#INGOTTRITANIUM"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.separator",
+    "count": 8
+  },
+  "pattern": [
+    "###",
+    "#N#",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "matteroverdrive:decorative.tritanium_plate"
+    },
+    "N": {
+      "item": "#NUGGETTRITANIUM"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "matteroverdrive:fusion_reactor_coil"
+  },
+  "pattern": [
+    "TMT",
+    "M M",
+    "CMC"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "M": {
+      "item": "matteroverdrive:s_magnet"
+    }
+  }
+}

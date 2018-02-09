@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "matteroverdrive:security_protocol"
+  },
+  "pattern": [
+    "PP",
+    "CP"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "#PAPER"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    }
+  }
+}

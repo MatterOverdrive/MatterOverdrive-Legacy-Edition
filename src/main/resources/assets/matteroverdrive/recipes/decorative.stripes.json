@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.stripes",
+    "count": 8
+  },
+  "pattern": [
+    "#B#",
+    "###",
+    "#Y#"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:dye",
+      "data": 0
+    },
+    "#": {
+      "item": "matteroverdrive:decorative.tritanium_plate"
+    },
+    "Y": {
+      "item": "minecraft:dye",
+      "data": 11
+    }
+  }
+}

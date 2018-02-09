@@ -1,0 +1,29 @@
+{
+  "result": {
+    "item": "matteroverdrive:decomposer"
+  },
+  "pattern": [
+    "TCT",
+    "S S",
+    "NTM"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "S": {
+      "item": "minecraft:sticky_piston"
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "M": {
+      "item": "matteroverdrive:me_conversion_matrix"
+    },
+    "N": {
+      "item": "matteroverdrive:integration_matrix"
+    }
+  }
+}

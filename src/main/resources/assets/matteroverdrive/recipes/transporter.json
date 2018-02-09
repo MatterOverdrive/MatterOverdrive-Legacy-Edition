@@ -1,0 +1,38 @@
+{
+  "result": {
+    "item": "matteroverdrive:transporter"
+  },
+  "pattern": [
+    "TGT",
+    "CMC",
+    "NBH"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "matteroverdrive:hc_battery"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "E": {
+      "item": "#ENDERPEARL"
+    },
+    "G": {
+      "item": "#GLOWSTONE"
+    },
+    "H": {
+      "item": "matteroverdrive:h_compensator"
+    },
+    "M": {
+      "item": "matteroverdrive:me_conversion_matrix"
+    },
+    "N": {
+      "item": "matteroverdrive:integration_matrix"
+    }
+  }
+}

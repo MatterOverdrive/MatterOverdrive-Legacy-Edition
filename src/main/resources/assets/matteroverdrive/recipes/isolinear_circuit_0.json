@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "matteroverdrive:isolinear_circuit",
+    "data": 0
+  },
+  "pattern": [
+    "I",
+    "R",
+    "G"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

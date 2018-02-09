@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "matteroverdrive:hc_battery"
+  },
+  "pattern": [
+    " P ",
+    "DBD",
+    " P "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "B": {
+      "item": "matteroverdrive:battery"
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    }
+  }
+}

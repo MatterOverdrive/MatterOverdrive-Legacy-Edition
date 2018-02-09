@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "matteroverdrive:contract_market"
+  },
+  "pattern": [
+    " T ",
+    "GEG",
+    " M "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "T": {
+      "item": "#INGOTTRITANIUM"
+    },
+    "E": {
+      "item": "#GEMEMERALD"
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

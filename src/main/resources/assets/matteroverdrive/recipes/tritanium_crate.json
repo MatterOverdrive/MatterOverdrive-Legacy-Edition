@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "matteroverdrive:tritanium_crate"
+  },
+  "pattern": [
+    "   ",
+    "TCT",
+    " T "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:chest"
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    }
+  }
+}

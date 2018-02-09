@@ -1,0 +1,33 @@
+{
+  "result": {
+    "item": "matteroverdrive:h_compensator"
+  },
+  "pattern": [
+    " M ",
+    "CPC",
+    "DED"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

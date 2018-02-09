@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.floor_tiles_green",
+    "count": 32
+  },
+  "pattern": [
+    "#G#",
+    "#Q#",
+    "#G#"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "Q": {
+      "item": "#GEMQUARTZ"
+    },
+    "#": {
+      "item": "minecraft:clay"
+    },
+    "G": {
+      "item": "minecraft:dye",
+      "data": 1
+    }
+  }
+}

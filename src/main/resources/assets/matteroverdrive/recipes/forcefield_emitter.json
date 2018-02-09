@@ -1,0 +1,32 @@
+{
+  "result": {
+    "item": "matteroverdrive:forcefield_emitter"
+  },
+  "pattern": [
+    "CGC",
+    "CDC",
+    "P1P"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "1": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    },
+    "C": {
+      "item": "matteroverdrive:s_magnet"
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    },
+    "E": {
+      "item": "#ENDERPEARL"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "result": {
+    "item": "matteroverdrive:upgrade",
+    "data": 2
+  },
+  "pattern": [
+    " B ",
+    "RUR",
+    " C "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "matteroverdrive:battery"
+    },
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "C": {
+      "item": "#GEMQUARTZ"
+    },
+    "U": {
+      "item": "matteroverdrive:upgrade",
+      "data": 0
+    }
+  }
+}

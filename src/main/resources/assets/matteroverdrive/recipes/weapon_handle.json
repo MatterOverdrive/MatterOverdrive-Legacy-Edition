@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "matteroverdrive:weapon_handle"
+  },
+  "pattern": [
+    "TWT",
+    "I I",
+    "I I"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "T": {
+      "item": "#INGOTTRITANIUM"
+    },
+    "W": {
+      "item": "minecraft:wool",
+      "data": 15
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

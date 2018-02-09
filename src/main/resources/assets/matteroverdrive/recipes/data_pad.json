@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "matteroverdrive:data_pad"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "minecraft:air"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

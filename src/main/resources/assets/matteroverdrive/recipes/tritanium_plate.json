@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "matteroverdrive:tritanium_plate"
+  },
+  "pattern": [
+    "TT"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "T": {
+      "item": "#INGOTTRITANIUM"
+    }
+  }
+}

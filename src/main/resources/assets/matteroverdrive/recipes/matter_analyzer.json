@@ -1,0 +1,32 @@
+{
+  "result": {
+    "item": "matteroverdrive:matter_analyzer"
+  },
+  "pattern": [
+    " C ",
+    "PMF",
+    "ONO"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:pattern_drive"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "F": {
+      "item": "matteroverdrive:network_flash_drive"
+    },
+    "M": {
+      "item": "matteroverdrive:me_conversion_matrix"
+    },
+    "N": {
+      "item": "matteroverdrive:integration_matrix"
+    },
+    "O": {
+      "item": "#BLOCKIRON"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "matteroverdrive:plasma_core"
+  },
+  "pattern": [
+    "GI ",
+    "MCM",
+    " IG"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "C": {
+      "item": "matteroverdrive:matter_container"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    },
+    "M": {
+      "item": "matteroverdrive:s_magnet"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "matteroverdrive:tritanium_chestplate"
+  },
+  "pattern": [
+    "X X",
+    "XCX",
+    "XXX"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "X": {
+      "item": "#INGOTTRITANIUM"
+    }
+  }
+}

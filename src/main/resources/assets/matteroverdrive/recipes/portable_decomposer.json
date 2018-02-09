@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "matteroverdrive:portable_decomposer"
+  },
+  "pattern": [
+    " T ",
+    "IPM",
+    " T "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "item": "minecraft:sticky_piston"
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "I": {
+      "item": "matteroverdrive:integration_matrix"
+    },
+    "M": {
+      "item": "matteroverdrive:me_conversion_matrix"
+    }
+  }
+}

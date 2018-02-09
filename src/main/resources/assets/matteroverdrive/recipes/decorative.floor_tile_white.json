@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.floor_tile_white",
+    "count": 32
+  },
+  "pattern": [
+    "#W#",
+    "#Q#",
+    "#W#"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "Q": {
+      "item": "#GEMQUARTZ"
+    },
+    "#": {
+      "item": "minecraft:clay"
+    },
+    "W": {
+      "item": "minecraft:dye",
+      "data": 15
+    }
+  }
+}

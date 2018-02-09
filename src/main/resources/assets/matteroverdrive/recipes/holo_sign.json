@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "matteroverdrive:holo_sign"
+  },
+  "pattern": [
+    "GGG",
+    "g0g",
+    " T "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "0": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "g": {
+      "item": "#DUSTGLOWSTONE"
+    }
+  }
+}

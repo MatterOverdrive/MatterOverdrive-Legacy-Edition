@@ -1,0 +1,32 @@
+{
+  "result": {
+    "item": "matteroverdrive:weapon_station"
+  },
+  "pattern": [
+    "   ",
+    "GFR",
+    "CMB"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "matteroverdrive:battery"
+    },
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "F": {
+      "item": "matteroverdrive:forcefield_emitter"
+    },
+    "G": {
+      "item": "#DUSTGLOWSTONE"
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

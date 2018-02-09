@@ -1,0 +1,33 @@
+{
+  "result": {
+    "item": "matteroverdrive:phaser"
+  },
+  "pattern": [
+    "IGI",
+    "IPH",
+    "WCW"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:plasma_core"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "W": {
+      "item": "minecraft:wool",
+      "data": 0
+    },
+    "H": {
+      "item": "matteroverdrive:weapon_handle"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

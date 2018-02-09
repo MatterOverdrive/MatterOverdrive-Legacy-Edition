@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "matteroverdrive:me_conversion_matrix"
+  },
+  "pattern": [
+    "EIE",
+    "CDC",
+    "EIE"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "D": {
+      "item": "#GEMDILITHIUM"
+    },
+    "E": {
+      "item": "#ENDERPEARL"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

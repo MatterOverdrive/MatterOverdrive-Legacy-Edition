@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "matteroverdrive:s_magnet",
+    "count": 4
+  },
+  "pattern": [
+    "RRR",
+    "TET",
+    "RRR"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "T": {
+      "item": "#INGOTTRITANIUM"
+    },
+    "E": {
+      "item": "#ENDERPEARL"
+    }
+  }
+}

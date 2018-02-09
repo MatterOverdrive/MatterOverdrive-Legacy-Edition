@@ -1,0 +1,33 @@
+{
+  "result": {
+    "item": "matteroverdrive:network_router"
+  },
+  "pattern": [
+    "IGI",
+    "DFC",
+    "OMO"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    },
+    "D": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "F": {
+      "item": "matteroverdrive:network_flash_drive"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

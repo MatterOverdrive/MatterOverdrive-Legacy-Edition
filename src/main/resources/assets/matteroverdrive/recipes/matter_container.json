@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "matteroverdrive:matter_container",
+    "count": 4
+  },
+  "pattern": [
+    "TMT",
+    " T "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "T": {
+      "item": "#INGOTTRITANIUM"
+    },
+    "M": {
+      "item": "matteroverdrive:s_magnet"
+    }
+  }
+}

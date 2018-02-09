@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "matteroverdrive:decorative.tritanium_plate_colored",
+    "count": 8
+  },
+  "pattern": [
+    "###",
+    "#D#",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "matteroverdrive:decorative.tritanium_plate"
+    },
+    "D": {
+      "item": "minecraft:dye",
+      "data": 0
+    }
+  }
+}

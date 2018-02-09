@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "matteroverdrive:weapon_module_barrel",
+    "data": 1
+  },
+  "pattern": [
+    " G ",
+    "BFB",
+    " T "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "F": {
+      "item": "minecraft:fire_charge"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    }
+  }
+}

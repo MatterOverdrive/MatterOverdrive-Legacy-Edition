@@ -1,0 +1,35 @@
+{
+  "result": {
+    "item": "matteroverdrive:omni_tool"
+  },
+  "pattern": [
+    "IFC",
+    "SPI",
+    " BH"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "matteroverdrive:plasma_core"
+    },
+    "B": {
+      "item": "matteroverdrive:battery"
+    },
+    "S": {
+      "item": "matteroverdrive:weapon_receiver"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "F": {
+      "item": "matteroverdrive:forcefield_emitter"
+    },
+    "H": {
+      "item": "matteroverdrive:weapon_handle"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

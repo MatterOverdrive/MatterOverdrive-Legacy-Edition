@@ -1,0 +1,27 @@
+{
+  "result": {
+    "item": "matteroverdrive:upgrade",
+    "data": 0
+  },
+  "pattern": [
+    " R ",
+    " C ",
+    " T "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 0
+    },
+    "T": {
+      "item": "matteroverdrive:tritanium_plate"
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    }
+  }
+}

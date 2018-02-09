@@ -1,0 +1,27 @@
+{
+  "result": {
+    "item": "matteroverdrive:sniper_scope"
+  },
+  "pattern": [
+    "IIC",
+    "GFG",
+    "III"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "F": {
+      "item": "matteroverdrive:forcefield_emitter"
+    },
+    "G": {
+      "item": "minecraft:stained_glass_pane",
+      "data": 5
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

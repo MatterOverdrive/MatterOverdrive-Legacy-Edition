@@ -1,0 +1,30 @@
+{
+  "result": {
+    "item": "matteroverdrive:solar_panel"
+  },
+  "pattern": [
+    "CGC",
+    "GQG",
+    "KMK"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "Q": {
+      "item": "#BLOCKQUARTZ"
+    },
+    "C": {
+      "item": "minecraft:coal",
+      "data": 0
+    },
+    "G": {
+      "item": "#BLOCKGLASS"
+    },
+    "K": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 1
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

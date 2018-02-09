@@ -1,0 +1,27 @@
+{
+  "result": {
+    "item": "matteroverdrive:upgrade",
+    "data": 1
+  },
+  "pattern": [
+    " R ",
+    "GUG",
+    " E "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "U": {
+      "item": "matteroverdrive:upgrade",
+      "data": 0
+    },
+    "E": {
+      "item": "#GEMEMERALD"
+    },
+    "G": {
+      "item": "#DUSTGLOWSTONE"
+    }
+  }
+}
