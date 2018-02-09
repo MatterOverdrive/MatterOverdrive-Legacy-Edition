@@ -191,6 +191,8 @@ public class RenderHandler {
         customRenderers = new ArrayList<>();
         MinecraftForge.EVENT_BUS.register(this);
         weaponRenderHandler = new WeaponRenderHandler();
+        moduleSniperScopeRender = new ModuleSniperScopeRender(weaponRenderHandler);
+        moduleHoloSightsRender = new ModuleHoloSightsRender(weaponRenderHandler);
     }
 
     public void init(World world, TextureManager textureManager) {
@@ -206,8 +208,6 @@ public class RenderHandler {
         dimensionalRiftsRender = new DimensionalRiftsRender();
         spaceSkyRenderer = new SpaceSkyRenderer();
 
-        moduleSniperScopeRender = new ModuleSniperScopeRender(weaponRenderHandler);
-        moduleHoloSightsRender = new ModuleHoloSightsRender(weaponRenderHandler);
 
         addCustomRenderer(matterScannerInfoHandler);
         addCustomRenderer(renderParticlesHandler);

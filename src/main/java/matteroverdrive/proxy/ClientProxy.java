@@ -109,6 +109,7 @@ public class ClientProxy extends CommonProxy {
         renderHandler = new RenderHandler();
         renderHandler.registerEntityRenderers();
         renderHandler.createItemRenderers();
+        renderHandler.registerWeaponModuleRenders();
     }
 
     @Override
@@ -136,7 +137,6 @@ public class ClientProxy extends CommonProxy {
         renderHandler.createModels();
         //endregion
         //region Register
-        renderHandler.registerWeaponModuleRenders();
         renderHandler.registerWeaponLayers();
         renderHandler.registerTileEntitySpecialRenderers();
         renderHandler.registerBlockColors();
@@ -145,7 +145,6 @@ public class ClientProxy extends CommonProxy {
         renderHandler.registerBioticStatRenderers();
         renderHandler.registerBionicPartRenderers();
         renderHandler.registerStarmapRenderers();
-        renderHandler.registerWeaponModuleRenders();
         //endregion
         //endregion
 

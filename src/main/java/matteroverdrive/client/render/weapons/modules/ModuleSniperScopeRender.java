@@ -57,6 +57,8 @@ public class ModuleSniperScopeRender extends ModuleRenderAbstract {
     @Override
     @SuppressWarnings("deprecation")
     public void onModelBake(TextureMap textureMap, RenderHandler renderHandler) {
+        if (scopeModel == null)
+            scopeModel = renderHandler.getObjModel(scopeModelLocation, new ImmutableMap.Builder<String, String>().put("flip-v", "true").put("ambient", "false").build());
         List<String> visibleGroups = new ArrayList<>();
         visibleGroups.add("sniper_scope");
         scopeBakedModelBase = scopeModel.bake(new OBJModel.OBJState(visibleGroups, true), DefaultVertexFormats.ITEM, RenderHandler.modelTextureBakeFunc);
@@ -67,7 +69,8 @@ public class ModuleSniperScopeRender extends ModuleRenderAbstract {
 
     @Override
     public void onTextureStich(TextureMap textureMap, RenderHandler renderHandler) {
-        scopeModel = renderHandler.getObjModel(scopeModelLocation, new ImmutableMap.Builder<String, String>().put("flip-v", "true").put("ambient", "false").build());
+        if (scopeModel == null)
+            scopeModel = renderHandler.getObjModel(scopeModelLocation, new ImmutableMap.Builder<String, String>().put("flip-v", "true").put("ambient", "false").build());
         renderHandler.registerModelTextures(textureMap, scopeModel);
     }
 }
