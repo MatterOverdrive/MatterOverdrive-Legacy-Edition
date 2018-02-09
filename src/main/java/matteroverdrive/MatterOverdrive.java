@@ -18,7 +18,6 @@
 
 package matteroverdrive;
 
-import com.astro.clib.proxy.impl.ProxyHolder;
 import com.astro.clib.tech.CLibTech;
 import matteroverdrive.commands.AndoidCommands;
 import matteroverdrive.commands.MatterRegistryCommands;
@@ -39,7 +38,6 @@ import matteroverdrive.imc.MOIMCHandler;
 import matteroverdrive.init.*;
 import matteroverdrive.matter_network.MatterNetworkRegistry;
 import matteroverdrive.network.PacketPipeline;
-import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.proxy.CommonProxy;
 import matteroverdrive.util.AndroidPartsFactory;
 import matteroverdrive.util.DialogFactory;
@@ -50,6 +48,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
@@ -74,10 +73,10 @@ public class MatterOverdrive {
     @Mod.Instance(Reference.MOD_ID)
     public static MatterOverdrive INSTANCE;
 
+    @SidedProxy(clientSide = "matteroverdrive.proxy.ClientProxy",serverSide = "matteroverdrive.proxy.CommonProxy")
     public static CommonProxy PROXY;
 
     public MatterOverdrive() {
-        PROXY=new ClientProxy();
     }
 
     public static TickHandler tickHandler;

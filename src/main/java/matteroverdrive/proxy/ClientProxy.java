@@ -67,7 +67,6 @@ public class ClientProxy extends CommonProxy {
     public ClientProxy() {
         weaponHandler = new ClientWeaponHandler();
         googleAnalyticsCommon = new GoogleAnalyticsClient();
-
     }
 
     public static ClientProxy instance() {
