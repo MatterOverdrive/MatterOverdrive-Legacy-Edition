@@ -18,187 +18,137 @@
 
 package matteroverdrive.items.includes;
 
-import cofh.api.energy.IEnergyContainerItem;
-import matteroverdrive.init.MatterOverdriveCapabilities;
+import matteroverdrive.api.EmptyEnergyStorage;
 import matteroverdrive.util.MOEnergyHelper;
-import net.darkhax.tesla.api.ITeslaHolder;
-import net.darkhax.tesla.api.implementation.BaseTeslaContainer;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static matteroverdrive.util.MOEnergyHelper.setDefaultEnergyTag;
+public abstract class MOItemEnergyContainer extends MOBaseItem {
 
-public class MOItemEnergyContainer extends MOBaseItem implements IEnergyContainerItem
-{
-	protected int capacity;
-	protected int maxReceive;
-	protected int maxExtract;
+    public MOItemEnergyContainer(String name) {
+        super(name);
+        setMaxStackSize(1);
+    }
 
-	public MOItemEnergyContainer(String name)
-	{
-		this(name, 32000);
-	}
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return getStorage(stack).getMaxEnergyStored();
+    }
 
-	public MOItemEnergyContainer(String name, int capacity)
-	{
-		this(name, capacity, capacity, capacity);
-	}
+    @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+        return true;
+    }
 
-	public MOItemEnergyContainer(String name, int capacity, int maxTransfer)
-	{
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        IEnergyStorage storage = getStorage(stack);
+        return (storage.getMaxEnergyStored() - storage.getEnergyStored()) / (double) storage.getMaxEnergyStored();
+    }
 
-		this(name, capacity, maxTransfer, maxTransfer);
-	}
+    @Override
+    public int getRGBDurabilityForDisplay(ItemStack stack) {
+        return 15866137;
+    }
 
-	public MOItemEnergyContainer(String name, int capacity, int maxReceive, int maxExtract)
-	{
-		super(name);
-		this.capacity = capacity;
-		this.maxReceive = maxReceive;
-		this.maxExtract = maxExtract;
-	}
+    @Override
+    public void addDetails(ItemStack stack, EntityPlayer player, @Nullable World worldIn, List<String> infos) {
+        IEnergyStorage storage = getStorage(stack);
+        infos.add(TextFormatting.YELLOW + MOEnergyHelper.formatEnergy(storage.getEnergyStored(), storage.getMaxEnergyStored()));
+    }
 
-	@Override
-	public int getMaxDamage(ItemStack stack)
-	{
-		return getMaxEnergyStored(stack);
-	}
+    @Override
+    public boolean hasDetails(ItemStack itemStack) {
+        return true;
+    }
 
-	@Override
-	public boolean showDurabilityBar(ItemStack stack)
-	{
-		return true;
-	}
+    public static EnergyContainer getStorage(ItemStack stack) {
+        if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
+            return (EnergyContainer)stack.getCapability(CapabilityEnergy.ENERGY, null);
+        return EmptyEnergyStorage.INSTANCE;
+    }
 
-	@Override
-	public double getDurabilityForDisplay(ItemStack stack)
-	{
-		return (getMaxEnergyStored(stack) - getEnergyStored(stack)) / (double)getMaxDamage(stack);
-	}
+    public ICapabilitySerializable<NBTTagCompound> createProvider(ItemStack stack) {
+        return new EnergyProvider(getCapacity(), getInput(), getOutput());
+    }
 
-	@Override
-	public void addDetails(ItemStack stack, EntityPlayer player, List<String> infos)
-	{
-		ITeslaHolder holder = stack.getCapability(MatterOverdriveCapabilities.TESLA_HOLDER, null);
-		infos.add(TextFormatting.YELLOW + MOEnergyHelper.formatEnergy(holder.getStoredPower(), holder.getCapacity()));
-	}
+    protected abstract int getCapacity();
 
-	@Override
-	public boolean hasDetails(ItemStack itemStack)
-	{
-		return true;
-	}
+    protected abstract int getInput();
 
-	public MOItemEnergyContainer setCapacity(int capacity)
-	{
+    protected abstract int getOutput();
 
-		this.capacity = capacity;
-		return this;
-	}
+    protected boolean addPoweredItem() {
+        return true;
+    }
 
-	public void setMaxTransfer(int maxTransfer)
-	{
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+        if (isInCreativeTab(tab)) {
+            items.add(new ItemStack(this));
+            if (addPoweredItem()) {
+                ItemStack powered = new ItemStack(this);
+                EnergyContainer storage = getStorage(powered);
+                storage.setFull();
+                items.add(powered);
+            }
+        }
+    }
 
-		setMaxReceive(maxTransfer);
-		setMaxExtract(maxTransfer);
-	}
+    @Nullable
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
+        return createProvider(stack);
+    }
 
-	public void setMaxReceive(int maxReceive)
-	{
+    public static class EnergyProvider implements ICapabilitySerializable<NBTTagCompound> {
 
-		this.maxReceive = maxReceive;
-	}
+        private EnergyContainer container;
 
-	public void setMaxExtract(int maxExtract)
-	{
+        public EnergyProvider(int capacity, int input, int output) {
+            container = new EnergyContainer(capacity, input, output);
+        }
 
-		this.maxExtract = maxExtract;
-	}
+        public EnergyProvider(int capacity, int through) {
+            this(capacity, through, through);
+        }
 
-	/* IEnergyContainerItem */
-	@Override
-	public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate)
-	{
-		return (int)container.getCapability(MatterOverdriveCapabilities.TESLA_CONSUMER, null).givePower(maxReceive, simulate);
-	}
+        @Override
+        public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+            return capability == CapabilityEnergy.ENERGY;
+        }
 
-	@Override
-	public int extractEnergy(ItemStack container, int maxExtract, boolean simulate)
-	{
-		return (int)container.getCapability(MatterOverdriveCapabilities.TESLA_PRODUCER, null).takePower(maxExtract, simulate);
-	}
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+            if (capability == CapabilityEnergy.ENERGY) {
+                return CapabilityEnergy.ENERGY.cast(container);
+            }
+            return null;
+        }
 
-	public void setEnergyStored(ItemStack container, int amount)
-	{
-		NBTTagCompound tag = new NBTTagCompound();
-		tag.setLong("TeslaPower", amount);
-		((BaseTeslaContainer)container.getCapability(MatterOverdriveCapabilities.TESLA_HOLDER, null)).deserializeNBT(tag);
-	}
+        @Override
+        public NBTTagCompound serializeNBT() {
+            return container.serializeNBT();
+        }
 
-	@Override
-	public int getEnergyStored(ItemStack container)
-	{
-		return (int)container.getCapability(MatterOverdriveCapabilities.TESLA_HOLDER, null).getStoredPower();
-	}
-
-	@Override
-	public int getMaxEnergyStored(ItemStack container)
-	{
-		return capacity;
-	}
-
-	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
-	{
-		return new TeslaProvider(capacity, maxReceive, maxExtract);
-	}
-
-	public static class TeslaProvider implements ICapabilitySerializable<NBTTagCompound> {
-
-		private BaseTeslaContainer tesla;
-
-		public TeslaProvider(int capacity, int input, int output)
-		{
-			tesla = new BaseTeslaContainer(capacity, input, output);
-		}
-
-		@Override
-		public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
-		{
-			return capability == MatterOverdriveCapabilities.TESLA_HOLDER || capability == MatterOverdriveCapabilities.TESLA_PRODUCER || capability == MatterOverdriveCapabilities.TESLA_CONSUMER;
-		}
-
-		@Override
-		@SuppressWarnings("unchecked")
-		public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
-		{
-			if (capability == MatterOverdriveCapabilities.TESLA_HOLDER || capability == MatterOverdriveCapabilities.TESLA_PRODUCER || capability == MatterOverdriveCapabilities.TESLA_CONSUMER)
-			{
-				return (T)tesla;
-			}
-			return null;
-		}
-
-		@Override
-		public NBTTagCompound serializeNBT()
-		{
-			return tesla.serializeNBT();
-		}
-
-		@Override
-		public void deserializeNBT(NBTTagCompound tag)
-		{
-			tesla.deserializeNBT(tag);
-		}
-	}
-
+        @Override
+        public void deserializeNBT(NBTTagCompound tag) {
+            container.deserializeNBT(tag);
+        }
+    }
 }

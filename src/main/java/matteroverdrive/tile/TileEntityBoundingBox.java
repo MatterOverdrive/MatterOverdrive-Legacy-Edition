@@ -26,141 +26,135 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.common.capabilities.Capability;
+
+import javax.annotation.Nullable;
 
 /**
  * @author shadowfacts
  */
-public class TileEntityBoundingBox extends TileEntity implements IMOTileEntity, ITickable
-{
+public class TileEntityBoundingBox extends TileEntity implements IMOTileEntity, ITickable {
 
-	private int tick = 0;
-	private BlockPos ownerPos;
-	private Block ownerBlock;
+    private int tick = 0;
+    private BlockPos ownerPos;
+    private Block ownerBlock;
 
-	@Override
-	public void update()
-	{
-		tick++;
-		if (tick == 80)
-		{ // update every 4 seconds (assuming 20 TPS)
-			tick = 0;
+    @Override
+    public void update() {
+        tick++;
+        if (tick == 80) { // update every 4 seconds (assuming 20 TPS)
+            tick = 0;
 
-			if (worldObj != null)
-			{
-				if (!ownerPresent())
-				{
-					worldObj.setBlockToAir(getPos());
-				}
-			}
+            if (world != null) {
+                if (!ownerPresent()) {
+                    world.setBlockToAir(getPos());
+                }
+            }
 
-		}
-	}
+        }
+    }
 
-	private boolean ownerPresent()
-	{
-		if (ownerPos != null)
-		{
-			return worldObj.getBlockState(ownerPos).getBlock() == ownerBlock;
-		}
-		return true;
-	}
+    private boolean ownerPresent() {
+        if (ownerPos != null) {
+            return world.getBlockState(ownerPos).getBlock() == ownerBlock;
+        }
+        return true;
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag)
-	{
-		super.readFromNBT(tag);
-		ownerPos = BlockPos.fromLong(tag.getLong("owner"));
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+        ownerPos = BlockPos.fromLong(tag.getLong("owner"));
 
-		String ownerModid = tag.getString("owner_block_modid");
-		String ownerName = tag.getString("owner_block_name");
-		Block block = Block.REGISTRY.getObject(new ResourceLocation(ownerModid, ownerName));
-		if (block == null)
-		{
-			MOLog.error("Missing owner block " + ownerModid + ":" + ownerName);
-		}
-		else
-		{
-			ownerBlock = block;
-		}
-	}
+        String ownerModid = tag.getString("owner_block_modid");
+        String ownerName = tag.getString("owner_block_name");
+        Block block = Block.REGISTRY.getObject(new ResourceLocation(ownerModid, ownerName));
+        if (block == null) {
+            MOLog.error("Missing owner block " + ownerModid + ":" + ownerName);
+        } else {
+            ownerBlock = block;
+        }
+    }
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound tag)
-	{
-		super.writeToNBT(tag);
-		if (ownerPos != null)
-		{
-			tag.setLong("owner", ownerPos.toLong());
-		}
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+        if (ownerPos != null) {
+            tag.setLong("owner", ownerPos.toLong());
+        }
 
-		if (ownerBlock != null)
-		{
-			ResourceLocation id = ownerBlock.getRegistryName();
-			tag.setString("owner_block_modid", id.getResourceDomain());
-			tag.setString("owner_block_name", id.getResourcePath());
-		}
-		return tag;
-	}
+        if (ownerBlock != null) {
+            ResourceLocation id = ownerBlock.getRegistryName();
+            tag.setString("owner_block_modid", id.getResourceDomain());
+            tag.setString("owner_block_name", id.getResourcePath());
+        }
+        return tag;
+    }
 
-	public BlockPos getOwnerPos()
-	{
-		return ownerPos;
-	}
+    public BlockPos getOwnerPos() {
+        return ownerPos;
+    }
 
-	public void setOwnerPos(BlockPos ownerPos)
-	{
-		this.ownerPos = ownerPos;
-	}
+    public void setOwnerPos(BlockPos ownerPos) {
+        this.ownerPos = ownerPos;
+    }
 
-	public Block getOwnerBlock()
-	{
-		return ownerBlock;
-	}
+    public Block getOwnerBlock() {
+        return ownerBlock;
+    }
 
-	public void setOwnerBlock(Block ownerBlock)
-	{
-		this.ownerBlock = ownerBlock;
-	}
+    public TileEntity getOwnerTile() {
+        return world.getTileEntity(getOwnerPos());
+    }
 
-	@Override
-	public void onPlaced(World world, EntityLivingBase entityLiving)
-	{
+    public void setOwnerBlock(Block ownerBlock) {
+        this.ownerBlock = ownerBlock;
+    }
 
-	}
+    @Override
+    public void onPlaced(World world, EntityLivingBase entityLiving) {
 
-	@Override
-	public void writeToDropItem(ItemStack itemStack)
-	{
+    }
 
-	}
+    @Override
+    public void writeToDropItem(ItemStack itemStack) {
 
-	@Override
-	public void readFromPlaceItem(ItemStack itemStack)
-	{
+    }
 
-	}
+    @Override
+    public void readFromPlaceItem(ItemStack itemStack) {
 
-	@Override
-	public void onAdded(World world, BlockPos pos, IBlockState state)
-	{
+    }
 
-	}
+    @Override
+    public void onAdded(World world, BlockPos pos, IBlockState state) {
 
-	@Override
-	public void onDestroyed(World worldIn, BlockPos pos, IBlockState state)
-	{
+    }
 
-	}
+    @Override
+    public void onDestroyed(World worldIn, BlockPos pos, IBlockState state) {
 
-	@Override
-	public void onNeighborBlockChange(IBlockAccess world, BlockPos pos, IBlockState state, Block neighborBlock)
-	{
+    }
 
-	}
+    @Override
+    public void onNeighborBlockChange(IBlockAccess world, BlockPos pos, IBlockState state, Block neighborBlock) {
+
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+        return getOwnerTile().hasCapability(capability, facing);
+    }
+
+    @Nullable
+    @Override
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        return getOwnerTile().getCapability(capability, facing);
+    }
 }

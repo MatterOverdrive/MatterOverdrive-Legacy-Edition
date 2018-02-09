@@ -21,8 +21,7 @@ package matteroverdrive.init;
 /**
  * Created by Simeon on 3/17/2015.
  */
-public class MatterOverdriveIcons
-{
+public class MatterOverdriveIcons {
 	/*public static IIcon Base;
 	public static IIcon Recycler;
     public static IIcon Vent;

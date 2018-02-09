@@ -1,0 +1,27 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">Space-Time Equalizer</title>
+        <text class="matter-text text-block">When dealing with [block name=gravitational_anomaly] there is only one item that can help you fight that gravitational pull.
+            The Space-Time Equalizer negates the effects of the [block name=gravitational_anomaly] on the entity wearing it.
+            The Equalizer can be warn on the Chest and provides the protection equivalent of iron armor.</text>
+        <text class="matter-text text-block">Although the equalizer is quite helpful with anomalies, it does slow the entity wearing it, down to a crawl.</text>
+    </page>
+</entry>

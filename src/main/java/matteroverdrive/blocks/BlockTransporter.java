@@ -27,17 +27,15 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class BlockTransporter extends MOMatterEnergyStorageBlock<TileEntityMachineTransporter>
-{
+public class BlockTransporter extends MOMatterEnergyStorageBlock<TileEntityMachineTransporter> {
 
-	public BlockTransporter(Material material, String name)
-	{
-		super(material, name, true, true);
-		setHardness(20.0F);
-		this.setResistance(9.0f);
-		this.setHarvestLevel("pickaxe", 2);
-		this.setHasGui(true);
-	}
+    public BlockTransporter(Material material, String name) {
+        super(material, name, true, true);
+        setHardness(20.0F);
+        this.setResistance(9.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        this.setHasGui(true);
+    }
 
 	/*@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister)
@@ -47,9 +45,9 @@ public class BlockTransporter extends MOMatterEnergyStorageBlock<TileEntityMachi
 		this.iconFront = iconRegister.registerIcon(Reference.MOD_ID + ":transporter_front");
 	}*/
 
-	/**
-	 * Gets the block's texture. Args: side, meta
-	 */
+    /**
+     * Gets the block's texture. Args: side, meta
+     */
 	/*@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int metadata)
     {
@@ -64,18 +62,15 @@ public class BlockTransporter extends MOMatterEnergyStorageBlock<TileEntityMachi
 
     	return this.blockIcon;
     }*/
+    @Override
+    public Class<TileEntityMachineTransporter> getTileEntityClass() {
+        return TileEntityMachineTransporter.class;
+    }
 
-	@Override
-	public Class<TileEntityMachineTransporter> getTileEntityClass()
-	{
-		return TileEntityMachineTransporter.class;
-	}
-
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityMachineTransporter();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityMachineTransporter();
+    }
 
 }

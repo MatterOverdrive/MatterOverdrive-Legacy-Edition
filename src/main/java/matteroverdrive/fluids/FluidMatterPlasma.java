@@ -25,12 +25,10 @@ import net.minecraftforge.fluids.Fluid;
 /**
  * Created by Simeon on 8/20/2015.
  */
-public class FluidMatterPlasma extends Fluid
-{
-	public FluidMatterPlasma(String fluidName)
-	{
-		super(fluidName, new ResourceLocation(Reference.MOD_ID, "fluids/matter_plasma/still"), new ResourceLocation(Reference.MOD_ID, "fluids/matter_plasma/flowing"));
-		setViscosity(8000);
-		setLuminosity(15);
-	}
+public class FluidMatterPlasma extends Fluid {
+    public FluidMatterPlasma(String fluidName) {
+        super(fluidName, new ResourceLocation(Reference.MOD_ID, "fluids/matter_plasma/still"), new ResourceLocation(Reference.MOD_ID, "fluids/matter_plasma/flowing"));
+        setViscosity(8000);
+        setLuminosity(15);
+    }
 }

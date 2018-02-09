@@ -26,64 +26,53 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 /**
  * Created by Simeon on 9/12/2015.
  */
-public class BioticStatMinimap extends AbstractBioticStat
-{
-	public BioticStatMinimap(String name, int xp)
-	{
-		super(name, xp);
-	}
+public class BioticStatMinimap extends AbstractBioticStat {
+    public BioticStatMinimap(String name, int xp) {
+        super(name, xp);
+    }
 
-	@Override
-	public void onAndroidUpdate(AndroidPlayer android, int level)
-	{
+    @Override
+    public void onAndroidUpdate(AndroidPlayer android, int level) {
 
-	}
+    }
 
-	@Override
-	public void onActionKeyPress(AndroidPlayer androidPlayer, int level, boolean server)
-	{
+    @Override
+    public void onActionKeyPress(AndroidPlayer androidPlayer, int level, boolean server) {
 
-	}
+    }
 
-	@Override
-	public void onKeyPress(AndroidPlayer androidPlayer, int level, int keycode, boolean down)
-	{
+    @Override
+    public void onKeyPress(AndroidPlayer androidPlayer, int level, int keycode, boolean down) {
 
-	}
+    }
 
-	@Override
-	public void onLivingEvent(AndroidPlayer androidPlayer, int level, LivingEvent event)
-	{
+    @Override
+    public void onLivingEvent(AndroidPlayer androidPlayer, int level, LivingEvent event) {
 
-	}
+    }
 
-	@Override
-	public void changeAndroidStats(AndroidPlayer androidPlayer, int level, boolean enabled)
-	{
+    @Override
+    public void changeAndroidStats(AndroidPlayer androidPlayer, int level, boolean enabled) {
 
-	}
+    }
 
-	@Override
-	public Multimap<String, AttributeModifier> attributes(AndroidPlayer androidPlayer, int level)
-	{
-		return null;
-	}
+    @Override
+    public Multimap<String, AttributeModifier> attributes(AndroidPlayer androidPlayer, int level) {
+        return null;
+    }
 
-	@Override
-	public boolean isEnabled(AndroidPlayer android, int level)
-	{
-		return super.isEnabled(android, level) && android.getEnergyStored() > 0;
-	}
+    @Override
+    public boolean isEnabled(AndroidPlayer android, int level) {
+        return super.isEnabled(android, level) && android.getEnergyStored() > 0;
+    }
 
-	@Override
-	public boolean isActive(AndroidPlayer androidPlayer, int level)
-	{
-		return true;
-	}
+    @Override
+    public boolean isActive(AndroidPlayer androidPlayer, int level) {
+        return true;
+    }
 
-	@Override
-	public int getDelay(AndroidPlayer androidPlayer, int level)
-	{
-		return 0;
-	}
+    @Override
+    public int getDelay(AndroidPlayer androidPlayer, int level) {
+        return 0;
+    }
 }

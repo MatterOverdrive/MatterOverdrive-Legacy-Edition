@@ -26,62 +26,56 @@ import matteroverdrive.util.MOStringHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * Created by Simeon on 12/20/2015.
  */
-public class ItemBuildingPowerGenerator extends ItemBuildingAbstract implements IPlanetStatChange
-{
-	private static final int POWER_GENERATION = 8;
-	private static final int MATTER_CONSUPTION = 2;
+public class ItemBuildingPowerGenerator extends ItemBuildingAbstract implements IPlanetStatChange {
+    private static final int POWER_GENERATION = 8;
+    private static final int MATTER_CONSUPTION = 2;
 
-	public ItemBuildingPowerGenerator(String name)
-	{
-		super(name);
-	}
+    public ItemBuildingPowerGenerator(String name) {
+        super(name);
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void addDetails(ItemStack itemstack, EntityPlayer player, List<String> infos)
-	{
-		super.addDetails(itemstack, player, infos);
-		infos.add(TextFormatting.GREEN + MOStringHelper.translateToLocal(PlanetStatType.ENERGY_PRODUCTION) + ": +" + POWER_GENERATION);
-		infos.add(TextFormatting.RED + MOStringHelper.translateToLocal(PlanetStatType.MATTER_PRODUCTION) + ": -" + MATTER_CONSUPTION);
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addDetails(ItemStack itemstack, EntityPlayer player, @Nullable World worldIn, List<String> infos) {
+        super.addDetails(itemstack, player, worldIn, infos);
+        infos.add(TextFormatting.GREEN + MOStringHelper.translateToLocal(PlanetStatType.ENERGY_PRODUCTION) + ": +" + POWER_GENERATION);
+        infos.add(TextFormatting.RED + MOStringHelper.translateToLocal(PlanetStatType.MATTER_PRODUCTION) + ": -" + MATTER_CONSUPTION);
+    }
 
-	@Override
-	public BuildingType getType(ItemStack building)
-	{
-		return BuildingType.GENERATOR;
-	}
+    @Override
+    public BuildingType getType(ItemStack building) {
+        return BuildingType.GENERATOR;
+    }
 
-	@Override
-	protected int getBuildLengthUnscaled(ItemStack buildableStack, Planet planet)
-	{
-		return 20 * 60 * 12;
-	}
+    @Override
+    protected int getBuildLengthUnscaled(ItemStack buildableStack, Planet planet) {
+        return 20 * 60 * 12;
+    }
 
-	@Override
-	public boolean canBuild(ItemStack building, Planet planet, List<String> info)
-	{
-		return true;
-	}
+    @Override
+    public boolean canBuild(ItemStack building, Planet planet, List<String> info) {
+        return true;
+    }
 
-	@Override
-	public float changeStat(ItemStack stack, Planet planet, PlanetStatType statType, float original)
-	{
-		switch (statType)
-		{
-			case ENERGY_PRODUCTION:
-				return original + POWER_GENERATION;
-			case MATTER_PRODUCTION:
-				return original - MATTER_CONSUPTION;
-			default:
-				return original;
-		}
-	}
+    @Override
+    public float changeStat(ItemStack stack, Planet planet, PlanetStatType statType, float original) {
+        switch (statType) {
+            case ENERGY_PRODUCTION:
+                return original + POWER_GENERATION;
+            case MATTER_PRODUCTION:
+                return original - MATTER_CONSUPTION;
+            default:
+                return original;
+        }
+    }
 }

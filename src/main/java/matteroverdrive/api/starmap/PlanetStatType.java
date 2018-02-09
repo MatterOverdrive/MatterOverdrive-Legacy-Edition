@@ -21,27 +21,24 @@ package matteroverdrive.api.starmap;
 /**
  * Created by Simeon on 12/19/2015.
  */
-public enum PlanetStatType
-{
-	FLEET_SIZE("fleet_size"),
-	BUILDINGS_SIZE("building_size"),
-	SHIP_BUILD_SPEED("ship_build_speed"),
-	BUILDING_BUILD_SPEED("building_build_speed"),
-	MATTER_STORAGE("matter_storage"),
-	ENERGY_PRODUCTION("energy_production"),
-	POPULATION_COUNT("population_count"),
-	HAPPINESS("happiness"),
-	MATTER_PRODUCTION("matter_production");
+public enum PlanetStatType {
+    FLEET_SIZE("fleet_size"),
+    BUILDINGS_SIZE("building_size"),
+    SHIP_BUILD_SPEED("ship_build_speed"),
+    BUILDING_BUILD_SPEED("building_build_speed"),
+    MATTER_STORAGE("matter_storage"),
+    ENERGY_PRODUCTION("energy_production"),
+    POPULATION_COUNT("population_count"),
+    HAPPINESS("happiness"),
+    MATTER_PRODUCTION("matter_production");
 
-	private final String unlocalizedName;
+    private final String unlocalizedName;
 
-	PlanetStatType(String unlocalizedName)
-	{
-		this.unlocalizedName = unlocalizedName;
-	}
+    PlanetStatType(String unlocalizedName) {
+        this.unlocalizedName = unlocalizedName;
+    }
 
-	public String getUnlocalizedName()
-	{
-		return unlocalizedName;
-	}
+    public String getUnlocalizedName() {
+        return unlocalizedName;
+    }
 }

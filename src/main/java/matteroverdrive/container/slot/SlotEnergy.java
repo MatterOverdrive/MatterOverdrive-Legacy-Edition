@@ -25,16 +25,13 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by Simeon on 4/8/2015.
  */
-public class SlotEnergy extends MOSlot
-{
-	public SlotEnergy(IInventory inventory, int index, int x, int y)
-	{
-		super(inventory, index, x, y);
-	}
+public class SlotEnergy extends MOSlot {
+    public SlotEnergy(IInventory inventory, int index, int x, int y) {
+        super(inventory, index, x, y);
+    }
 
-	@Override
-	public boolean isValid(ItemStack itemStack)
-	{
-		return MOEnergyHelper.isEnergyContainerItem(itemStack);
-	}
+    @Override
+    public boolean isValid(ItemStack itemStack) {
+        return MOEnergyHelper.isEnergyContainerItem(itemStack);
+    }
 }

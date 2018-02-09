@@ -23,7 +23,6 @@ import matteroverdrive.gui.element.MOElementBase;
 /**
  * Created by Simeon on 4/8/2015.
  */
-public interface IButtonHandler
-{
-	void handleElementButtonClick(MOElementBase element, String elementName, int mouseButton);
+public interface IButtonHandler {
+    void handleElementButtonClick(MOElementBase element, String elementName, int mouseButton);
 }

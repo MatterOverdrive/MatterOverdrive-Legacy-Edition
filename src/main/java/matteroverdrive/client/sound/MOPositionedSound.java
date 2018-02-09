@@ -26,30 +26,25 @@ import net.minecraft.util.SoundEvent;
 /**
  * Created by Simeon on 12/6/2015.
  */
-public class MOPositionedSound extends PositionedSound
-{
-	public MOPositionedSound(SoundEvent event, SoundCategory category, float volume, float pitch)
-	{
-		super(event, category);
-		this.pitch = pitch;
-		this.volume = volume;
-	}
+public class MOPositionedSound extends PositionedSound {
+    public MOPositionedSound(SoundEvent event, SoundCategory category, float volume, float pitch) {
+        super(event, category);
+        this.pitch = pitch;
+        this.volume = volume;
+    }
 
-	public void setPosition(float x, float y, float z)
-	{
-		this.xPosF = x;
-		this.yPosF = y;
-		this.zPosF = z;
-	}
+    public void setPosition(float x, float y, float z) {
+        this.xPosF = x;
+        this.yPosF = y;
+        this.zPosF = z;
+    }
 
-	public void setRepeat(boolean repeat)
-	{
-		this.repeat = repeat;
-	}
+    public void setRepeat(boolean repeat) {
+        this.repeat = repeat;
+    }
 
-	public MOPositionedSound setAttenuationType(ISound.AttenuationType type)
-	{
-		attenuationType = type;
-		return this;
-	}
+    public MOPositionedSound setAttenuationType(ISound.AttenuationType type) {
+        attenuationType = type;
+        return this;
+    }
 }

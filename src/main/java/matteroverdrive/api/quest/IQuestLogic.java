@@ -28,35 +28,34 @@ import java.util.Random;
 /**
  * Created by Simeon on 11/19/2015.
  */
-public interface IQuestLogic
-{
-	void loadFromJson(JsonObject jsonObject);
+public interface IQuestLogic {
+    void loadFromJson(JsonObject jsonObject);
 
-	String modifyTitle(QuestStack questStack, String original);
+    String modifyTitle(QuestStack questStack, String original);
 
-	boolean canAccept(QuestStack questStack, EntityPlayer entityPlayer);
+    boolean canAccept(QuestStack questStack, EntityPlayer entityPlayer);
 
-	String modifyInfo(QuestStack questStack, String info);
+    String modifyInfo(QuestStack questStack, String info);
 
-	boolean isObjectiveCompleted(QuestStack questStack, EntityPlayer entityPlayer, int objectiveIndex);
+    boolean isObjectiveCompleted(QuestStack questStack, EntityPlayer entityPlayer, int objectiveIndex);
 
-	String modifyObjective(QuestStack questStack, EntityPlayer entityPlayer, String objective, int objectiveIndex);
+    String modifyObjective(QuestStack questStack, EntityPlayer entityPlayer, String objective, int objectiveIndex);
 
-	int modifyObjectiveCount(QuestStack questStack, EntityPlayer entityPlayer, int count);
+    int modifyObjectiveCount(QuestStack questStack, EntityPlayer entityPlayer, int count);
 
-	void initQuestStack(Random random, QuestStack questStack);
+    void initQuestStack(Random random, QuestStack questStack);
 
-	QuestLogicState onEvent(QuestStack questStack, Event event, EntityPlayer entityPlayer);
+    QuestLogicState onEvent(QuestStack questStack, Event event, EntityPlayer entityPlayer);
 
-	boolean areQuestStacksEqual(QuestStack questStackOne, QuestStack questStackTwo);
+    boolean areQuestStacksEqual(QuestStack questStackOne, QuestStack questStackTwo);
 
-	void onQuestTaken(QuestStack questStack, EntityPlayer entityPlayer);
+    void onQuestTaken(QuestStack questStack, EntityPlayer entityPlayer);
 
-	void onQuestCompleted(QuestStack questStack, EntityPlayer entityPlayer);
+    void onQuestCompleted(QuestStack questStack, EntityPlayer entityPlayer);
 
-	int modifyXP(QuestStack questStack, EntityPlayer entityPlayer, int originalXp);
+    int modifyXP(QuestStack questStack, EntityPlayer entityPlayer, int originalXp);
 
-	void modifyRewards(QuestStack questStack, EntityPlayer entityPlayer, List<IQuestReward> rewards);
+    void modifyRewards(QuestStack questStack, EntityPlayer entityPlayer, List<IQuestReward> rewards);
 
-	String getID();
+    String getID();
 }

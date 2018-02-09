@@ -28,30 +28,25 @@ import java.util.Map;
 /**
  * Created by Simeon on 9/10/2015.
  */
-public class AndroidBionicPartRenderRegistry implements IBionicPartRenderRegistry
-{
-	private final Map<Class<? extends IBionicPart>, IBionicPartRenderer> rendererMap;
+public class AndroidBionicPartRenderRegistry implements IBionicPartRenderRegistry {
+    private final Map<Class<? extends IBionicPart>, IBionicPartRenderer> rendererMap;
 
-	public AndroidBionicPartRenderRegistry()
-	{
-		rendererMap = new HashMap<>();
-	}
+    public AndroidBionicPartRenderRegistry() {
+        rendererMap = new HashMap<>();
+    }
 
-	@Override
-	public void register(Class<? extends IBionicPart> partClass, IBionicPartRenderer renderer)
-	{
-		rendererMap.put(partClass, renderer);
-	}
+    @Override
+    public void register(Class<? extends IBionicPart> partClass, IBionicPartRenderer renderer) {
+        rendererMap.put(partClass, renderer);
+    }
 
-	@Override
-	public IBionicPartRenderer removeRenderer(Class<? extends IBionicPart> partClass)
-	{
-		return rendererMap.remove(partClass);
-	}
+    @Override
+    public IBionicPartRenderer removeRenderer(Class<? extends IBionicPart> partClass) {
+        return rendererMap.remove(partClass);
+    }
 
-	@Override
-	public IBionicPartRenderer getRenderer(Class<? extends IBionicPart> partClass)
-	{
-		return rendererMap.get(partClass);
-	}
+    @Override
+    public IBionicPartRenderer getRenderer(Class<? extends IBionicPart> partClass) {
+        return rendererMap.get(partClass);
+    }
 }

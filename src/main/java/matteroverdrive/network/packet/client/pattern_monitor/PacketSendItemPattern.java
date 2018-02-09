@@ -31,42 +31,34 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 4/26/2015.
  */
-public class PacketSendItemPattern extends PacketAbstract
-{
-	ItemPatternMapping itemPatternMapping;
+public class PacketSendItemPattern extends PacketAbstract {
+    ItemPatternMapping itemPatternMapping;
 
-	public PacketSendItemPattern()
-	{
-		super();
-	}
+    public PacketSendItemPattern() {
+        super();
+    }
 
-	public PacketSendItemPattern(int containerId, ItemPatternMapping itemPatternMapping)
-	{
-		this.itemPatternMapping = itemPatternMapping;
-	}
+    public PacketSendItemPattern(int containerId, ItemPatternMapping itemPatternMapping) {
+        this.itemPatternMapping = itemPatternMapping;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf)
-	{
-		itemPatternMapping = new ItemPatternMapping(buf);
-	}
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        itemPatternMapping = new ItemPatternMapping(buf);
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf)
-	{
-		itemPatternMapping.writeToBuffer(buf);
-	}
+    @Override
+    public void toBytes(ByteBuf buf) {
+        itemPatternMapping.writeToBuffer(buf);
+    }
 
-	public static class ClientHandler extends AbstractClientPacketHandler<PacketSendItemPattern>
-	{
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void handleClientMessage(EntityPlayerSP player, PacketSendItemPattern message, MessageContext ctx)
-		{
-			if (player.openContainer instanceof ContainerPatternMonitor)
-			{
-				((ContainerPatternMonitor)player.openContainer).setItemPattern(message.itemPatternMapping);
-			}
-		}
-	}
+    public static class ClientHandler extends AbstractClientPacketHandler<PacketSendItemPattern> {
+        @SideOnly(Side.CLIENT)
+        @Override
+        public void handleClientMessage(EntityPlayerSP player, PacketSendItemPattern message, MessageContext ctx) {
+            if (player.openContainer instanceof ContainerPatternMonitor) {
+                ((ContainerPatternMonitor) player.openContainer).setItemPattern(message.itemPatternMapping);
+            }
+        }
+    }
 }

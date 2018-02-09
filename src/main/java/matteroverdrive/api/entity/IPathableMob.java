@@ -24,13 +24,12 @@ import net.minecraft.util.math.Vec3d;
 /**
  * Created by Simeon on 12/13/2015.
  */
-public interface IPathableMob<T extends EntityCreature>
-{
-	Vec3d getCurrentTarget();
+public interface IPathableMob<T extends EntityCreature> {
+    Vec3d getCurrentTarget();
 
-	void onTargetReached(Vec3d pos);
+    void onTargetReached(Vec3d pos);
 
-	boolean isNearTarget(Vec3d pos);
+    boolean isNearTarget(Vec3d pos);
 
-	T getEntity();
+    T getEntity();
 }

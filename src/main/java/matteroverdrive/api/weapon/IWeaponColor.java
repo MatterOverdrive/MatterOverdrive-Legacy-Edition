@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by Simeon on 12/9/2015.
  */
-public interface IWeaponColor extends IWeaponModule
-{
-	int getColor(ItemStack module, ItemStack weapon);
+public interface IWeaponColor extends IWeaponModule {
+    int getColor(ItemStack module, ItemStack weapon);
 }

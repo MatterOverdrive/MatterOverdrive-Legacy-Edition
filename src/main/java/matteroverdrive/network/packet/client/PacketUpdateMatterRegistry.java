@@ -32,39 +32,32 @@ import java.util.Map;
 /**
  * Created by Simeon on 5/9/2015.
  */
-public class PacketUpdateMatterRegistry extends PacketAbstract
-{
-	private static Map<String, MatterEntryItem> entries;
+public class PacketUpdateMatterRegistry extends PacketAbstract {
+    private static Map<String, MatterEntryItem> entries;
 
-	public PacketUpdateMatterRegistry()
-	{
-		super();
-	}
+    public PacketUpdateMatterRegistry() {
+        super();
+    }
 
-	public PacketUpdateMatterRegistry(MatterRegistry matterRegistry)
-	{
-		super();
-	}
+    public PacketUpdateMatterRegistry(MatterRegistry matterRegistry) {
+        super();
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf)
-	{
+    @Override
+    public void fromBytes(ByteBuf buf) {
 
-	}
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf)
-	{
+    @Override
+    public void toBytes(ByteBuf buf) {
 
-	}
+    }
 
-	public static class ClientHandler extends AbstractClientPacketHandler<PacketUpdateMatterRegistry>
-	{
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void handleClientMessage(EntityPlayerSP player, PacketUpdateMatterRegistry message, MessageContext ctx)
-		{
-			//MatterOverdrive.matterRegistry.hasComplitedRegistration = true;
-		}
-	}
+    public static class ClientHandler extends AbstractClientPacketHandler<PacketUpdateMatterRegistry> {
+        @SideOnly(Side.CLIENT)
+        @Override
+        public void handleClientMessage(EntityPlayerSP player, PacketUpdateMatterRegistry message, MessageContext ctx) {
+            //MatterOverdrive.matterRegistry.hasComplitedRegistration = true;
+        }
+    }
 }

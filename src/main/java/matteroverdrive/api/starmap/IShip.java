@@ -24,9 +24,8 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by Simeon on 6/24/2015.
  */
-public interface IShip extends IBuildable
-{
-	ShipType getType(ItemStack ship);
+public interface IShip extends IBuildable {
+    ShipType getType(ItemStack ship);
 
-	void onTravel(ItemStack stack, Planet to);
+    void onTravel(ItemStack stack, Planet to);
 }

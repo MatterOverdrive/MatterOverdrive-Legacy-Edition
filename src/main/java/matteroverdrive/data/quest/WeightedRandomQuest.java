@@ -24,18 +24,15 @@ import net.minecraft.util.WeightedRandom;
 /**
  * Created by Simeon on 11/22/2015.
  */
-public class WeightedRandomQuest extends WeightedRandom.Item
-{
-	final Quest quest;
+public class WeightedRandomQuest extends WeightedRandom.Item {
+    final Quest quest;
 
-	public WeightedRandomQuest(Quest quest, int weight)
-	{
-		super(weight);
-		this.quest = quest;
-	}
+    public WeightedRandomQuest(Quest quest, int weight) {
+        super(weight);
+        this.quest = quest;
+    }
 
-	public Quest getQuest()
-	{
-		return quest;
-	}
+    public Quest getQuest() {
+        return quest;
+    }
 }

@@ -27,35 +27,30 @@ import net.minecraft.entity.player.InventoryPlayer;
 /**
  * Created by Simeon on 11/8/2015.
  */
-public class GuiChargingStation extends MOGuiMachine<TileEntityMachineChargingStation>
-{
-	MOElementEnergy energy;
+public class GuiChargingStation extends MOGuiMachine<TileEntityMachineChargingStation> {
+    MOElementEnergy energy;
 
-	public GuiChargingStation(InventoryPlayer inventoryPlayer, TileEntityMachineChargingStation chargingStation)
-	{
-		super(ContainerFactory.createMachineContainer(chargingStation, inventoryPlayer), chargingStation);
-		name = "charging_station";
-		energy = new MOElementEnergy(this, 80, 40, chargingStation.getEnergyStorage());
-		energy.setTexture(Reference.TEXTURE_RF_METER, 32, 64);
-	}
+    public GuiChargingStation(InventoryPlayer inventoryPlayer, TileEntityMachineChargingStation chargingStation) {
+        super(ContainerFactory.createMachineContainer(chargingStation, inventoryPlayer), chargingStation);
+        name = "charging_station";
+        energy = new MOElementEnergy(this, 80, 40, chargingStation.getEnergyStorage());
+        energy.setTexture(Reference.TEXTURE_RF_METER, 32, 64);
+    }
 
-	@Override
-	public void initGui()
-	{
-		super.initGui();
-		pages.get(0).addElement(energy);
-		AddMainPlayerSlots(inventorySlots, pages.get(0));
-		AddHotbarPlayerSlots(inventorySlots, this);
-	}
+    @Override
+    public void initGui() {
+        super.initGui();
+        pages.get(0).addElement(energy);
+        AddMainPlayerSlots(inventorySlots, pages.get(0));
+        AddHotbarPlayerSlots(inventorySlots, this);
+    }
 
-	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
-	{
-		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		if (pages.get(0).isVisible())
-		{
-			fontRendererObj.drawString(String.format("Range: %s", machine.getRage()), 100, 50, Reference.COLOR_HOLO.getColor());
-			fontRendererObj.drawString(String.format("Charge Rate: %s", machine.getMaxCharging()), 100, 62, Reference.COLOR_HOLO.getColor());
-		}
-	}
+    @Override
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+        if (pages.get(0).isVisible()) {
+            fontRenderer.drawString(String.format("Range: %s", machine.getRage()), 100, 50, Reference.COLOR_HOLO.getColor());
+            fontRenderer.drawString(String.format("Charge Rate: %s", machine.getMaxCharging()), 100, 62, Reference.COLOR_HOLO.getColor());
+        }
+    }
 }

@@ -25,25 +25,24 @@ import net.minecraft.client.gui.ScaledResolution;
 /**
  * Created by Simeon on 9/8/2015.
  */
-public interface IAndroidHudElement
-{
-	boolean isVisible(AndroidPlayer android);
+public interface IAndroidHudElement {
+    boolean isVisible(AndroidPlayer android);
 
-	void drawElement(AndroidPlayer androidPlayer, ScaledResolution resolution, float ticks);
+    void drawElement(AndroidPlayer androidPlayer, ScaledResolution resolution, float ticks);
 
-	int getWidth(ScaledResolution resolution, AndroidPlayer androidPlayer);
+    int getWidth(ScaledResolution resolution, AndroidPlayer androidPlayer);
 
-	int getHeight(ScaledResolution resolution, AndroidPlayer androidPlayer);
+    int getHeight(ScaledResolution resolution, AndroidPlayer androidPlayer);
 
-	void setX(int x);
+    void setX(int x);
 
-	void setY(int y);
+    void setY(int y);
 
-	void setBaseColor(Color color);
+    void setBaseColor(Color color);
 
-	void setBackgroundAlpha(float alpha);
+    void setBackgroundAlpha(float alpha);
 
-	AndroidHudPosition getPosition();
+    AndroidHudPosition getPosition();
 
-	String getName();
+    String getName();
 }

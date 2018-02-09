@@ -26,62 +26,56 @@ import matteroverdrive.util.MOStringHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * Created by Simeon on 12/20/2015.
  */
-public class ItemBuildingMatterExtractor extends ItemBuildingAbstract implements IPlanetStatChange
-{
-	private static final int MATTER_PRODUCTION = 10;
-	private static final int ENERGY_DRAIN = 6;
+public class ItemBuildingMatterExtractor extends ItemBuildingAbstract implements IPlanetStatChange {
+    private static final int MATTER_PRODUCTION = 10;
+    private static final int ENERGY_DRAIN = 6;
 
-	public ItemBuildingMatterExtractor(String name)
-	{
-		super(name);
-	}
+    public ItemBuildingMatterExtractor(String name) {
+        super(name);
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void addDetails(ItemStack itemstack, EntityPlayer player, List<String> infos)
-	{
-		super.addDetails(itemstack, player, infos);
-		infos.add(TextFormatting.GREEN + MOStringHelper.translateToLocal(PlanetStatType.MATTER_PRODUCTION) + ": +" + MATTER_PRODUCTION);
-		infos.add(TextFormatting.RED + MOStringHelper.translateToLocal(PlanetStatType.ENERGY_PRODUCTION) + ": -" + ENERGY_DRAIN);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addDetails(ItemStack itemstack, EntityPlayer player, @Nullable World worldIn, List<String> infos) {
+        super.addDetails(itemstack, player, worldIn, infos);
+        infos.add(TextFormatting.GREEN + MOStringHelper.translateToLocal(PlanetStatType.MATTER_PRODUCTION) + ": +" + MATTER_PRODUCTION);
+        infos.add(TextFormatting.RED + MOStringHelper.translateToLocal(PlanetStatType.ENERGY_PRODUCTION) + ": -" + ENERGY_DRAIN);
+    }
 
-	@Override
-	public BuildingType getType(ItemStack building)
-	{
-		return BuildingType.ORE_EXTRACTOR;
-	}
+    @Override
+    public BuildingType getType(ItemStack building) {
+        return BuildingType.ORE_EXTRACTOR;
+    }
 
-	@Override
-	protected int getBuildLengthUnscaled(ItemStack buildableStack, Planet planet)
-	{
-		return 20 * 60 * 12;
-	}
+    @Override
+    protected int getBuildLengthUnscaled(ItemStack buildableStack, Planet planet) {
+        return 20 * 60 * 12;
+    }
 
-	@Override
-	public boolean canBuild(ItemStack building, Planet planet, List<String> info)
-	{
-		return true;
-	}
+    @Override
+    public boolean canBuild(ItemStack building, Planet planet, List<String> info) {
+        return true;
+    }
 
-	@Override
-	public float changeStat(ItemStack stack, Planet planet, PlanetStatType statType, float original)
-	{
-		switch (statType)
-		{
-			case MATTER_PRODUCTION:
-				return original + MATTER_PRODUCTION;
-			case ENERGY_PRODUCTION:
-				return original - ENERGY_DRAIN;
-			default:
-				return original;
-		}
-	}
+    @Override
+    public float changeStat(ItemStack stack, Planet planet, PlanetStatType statType, float original) {
+        switch (statType) {
+            case MATTER_PRODUCTION:
+                return original + MATTER_PRODUCTION;
+            case ENERGY_PRODUCTION:
+                return original - ENERGY_DRAIN;
+            default:
+                return original;
+        }
+    }
 }

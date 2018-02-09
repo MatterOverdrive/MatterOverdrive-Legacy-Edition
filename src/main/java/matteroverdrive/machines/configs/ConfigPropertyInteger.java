@@ -23,57 +23,48 @@ import net.minecraft.nbt.NBTTagCompound;
 /**
  * Created by Simeon on 8/16/2015.
  */
-public class ConfigPropertyInteger extends ConfigPropertyAbstract
-{
-	private final int min;
-	private final int max;
-	private int value;
+public class ConfigPropertyInteger extends ConfigPropertyAbstract {
+    private final int min;
+    private final int max;
+    private int value;
 
-	public ConfigPropertyInteger(String name, String unlocalizedName, int min, int max, int def)
-	{
-		super(name, unlocalizedName);
-		this.min = min;
-		this.max = max;
-		this.value = def;
-	}
+    public ConfigPropertyInteger(String name, String unlocalizedName, int min, int max, int def) {
+        super(name, unlocalizedName);
+        this.min = min;
+        this.max = max;
+        this.value = def;
+    }
 
-	@Override
-	public Object getValue()
-	{
-		return value;
-	}
+    @Override
+    public Object getValue() {
+        return value;
+    }
 
-	@Override
-	public void setValue(Object value)
-	{
-		this.value = (int)value;
-	}
+    @Override
+    public void setValue(Object value) {
+        this.value = (int) value;
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound nbt)
-	{
-		nbt.setInteger(getUnlocalizedName(), value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound nbt) {
+        nbt.setInteger(getUnlocalizedName(), value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound nbt)
-	{
-		value = nbt.getInteger(getUnlocalizedName());
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        value = nbt.getInteger(getUnlocalizedName());
+    }
 
-	@Override
-	public Class getType()
-	{
-		return Integer.class;
-	}
+    @Override
+    public Class getType() {
+        return Integer.class;
+    }
 
-	public int getMin()
-	{
-		return min;
-	}
+    public int getMin() {
+        return min;
+    }
 
-	public int getMax()
-	{
-		return max;
-	}
+    public int getMax() {
+        return max;
+    }
 }

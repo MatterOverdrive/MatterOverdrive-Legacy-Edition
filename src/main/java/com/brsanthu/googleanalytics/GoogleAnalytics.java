@@ -47,320 +47,320 @@ import static com.brsanthu.googleanalytics.GaUtils.isNotEmpty;
 /**
  * This is the main class of this library that accepts the requests from clients and
  * sends the events to Google Analytics (GA).
- *
+ * <p>
  * Clients needs to instantiate this object with {@link GoogleAnalyticsConfig} and {@link DefaultRequest}.
  * Configuration contains sensible defaults so one could just initialize using one of the convenience constructors.
- *
+ * <p>
  * This object is ThreadSafe and it is intended that clients create one instance of this for each GA Tracker Id
  * and reuse each time an event needs to be posted.
- *
+ * <p>
  * This object contains resources which needs to be shutdown/disposed. So {@link #close()} method is called
  * to release all resources. Once close method is called, this instance cannot be reused so create new instance
  * if required.
  */
 public class GoogleAnalytics {
 
-	private static final Charset UTF8 = Charset.forName("UTF-8");
-	//private static final Logger logger = LoggerFactory.getLogger(GoogleAnalytics.class);
+    private static final Charset UTF8 = Charset.forName("UTF-8");
+    //private static final Logger logger = LoggerFactory.getLogger(GoogleAnalytics.class);
 
-	private GoogleAnalyticsConfig config = null;
-	private DefaultRequest defaultRequest = null;
-	private CloseableHttpClient httpClient = null;
-	private ThreadPoolExecutor executor = null;
-	private GoogleAnalyticsStats stats = new GoogleAnalyticsStats();
+    private GoogleAnalyticsConfig config = null;
+    private DefaultRequest defaultRequest = null;
+    private CloseableHttpClient httpClient = null;
+    private ThreadPoolExecutor executor = null;
+    private GoogleAnalyticsStats stats = new GoogleAnalyticsStats();
 
-	public GoogleAnalytics(String trackingId) {
-		this(new GoogleAnalyticsConfig(), new DefaultRequest().trackingId(trackingId));
-	}
+    public GoogleAnalytics(String trackingId) {
+        this(new GoogleAnalyticsConfig(), new DefaultRequest().trackingId(trackingId));
+    }
 
-	public GoogleAnalytics(GoogleAnalyticsConfig config, String trackingId) {
-		this(config, new DefaultRequest().trackingId(trackingId));
-	}
+    public GoogleAnalytics(GoogleAnalyticsConfig config, String trackingId) {
+        this(config, new DefaultRequest().trackingId(trackingId));
+    }
 
-	public GoogleAnalytics(String trackingId, String appName, String appVersion) {
-		this(new GoogleAnalyticsConfig(), trackingId, appName, appVersion);
-	}
+    public GoogleAnalytics(String trackingId, String appName, String appVersion) {
+        this(new GoogleAnalyticsConfig(), trackingId, appName, appVersion);
+    }
 
-	public GoogleAnalytics(GoogleAnalyticsConfig config, String trackingId, String appName, String appVersion) {
-		this(config, new DefaultRequest().trackingId(trackingId).applicationName(appName).applicationVersion(appVersion));
-	}
+    public GoogleAnalytics(GoogleAnalyticsConfig config, String trackingId, String appName, String appVersion) {
+        this(config, new DefaultRequest().trackingId(trackingId).applicationName(appName).applicationVersion(appVersion));
+    }
 
-	public GoogleAnalytics(GoogleAnalyticsConfig config, DefaultRequest defaultRequest) {
-		if (config.isDiscoverRequestParameters() && config.getRequestParameterDiscoverer() != null) {
-			config.getRequestParameterDiscoverer().discoverParameters(config, defaultRequest);
-		}
+    public GoogleAnalytics(GoogleAnalyticsConfig config, DefaultRequest defaultRequest) {
+        if (config.isDiscoverRequestParameters() && config.getRequestParameterDiscoverer() != null) {
+            config.getRequestParameterDiscoverer().discoverParameters(config, defaultRequest);
+        }
 
-		MOLog.info("Initializing Google Analytics with config=" + config + " and defaultRequest=" + defaultRequest);
+        MOLog.info("Initializing Google Analytics with config=" + config + " and defaultRequest=" + defaultRequest);
 
-		this.config = config;
-		this.defaultRequest = defaultRequest;
-		this.httpClient = createHttpClient(config);
-	}
+        this.config = config;
+        this.defaultRequest = defaultRequest;
+        this.httpClient = createHttpClient(config);
+    }
 
-	public GoogleAnalyticsConfig getConfig() {
-		return config;
-	}
+    public GoogleAnalyticsConfig getConfig() {
+        return config;
+    }
 
-	public HttpClient getHttpClient() {
-		return httpClient;
-	}
+    public HttpClient getHttpClient() {
+        return httpClient;
+    }
 
-	public DefaultRequest getDefaultRequest() {
-		return defaultRequest;
-	}
+    public void setHttpClient(CloseableHttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
 
-	public void setDefaultRequest(DefaultRequest request) {
-		this.defaultRequest = request;
-	}
+    public DefaultRequest getDefaultRequest() {
+        return defaultRequest;
+    }
 
-	public void setHttpClient(CloseableHttpClient httpClient) {
-		this.httpClient = httpClient;
-	}
+    public void setDefaultRequest(DefaultRequest request) {
+        this.defaultRequest = request;
+    }
 
-	@SuppressWarnings({ "rawtypes" })
-	public GoogleAnalyticsResponse post(GoogleAnalyticsRequest request) {
-		GoogleAnalyticsResponse response = new GoogleAnalyticsResponse();
-		if (!config.isEnabled()) {
-			return response;
-		}
+    @SuppressWarnings({"rawtypes"})
+    public GoogleAnalyticsResponse post(GoogleAnalyticsRequest request) {
+        GoogleAnalyticsResponse response = new GoogleAnalyticsResponse();
+        if (!config.isEnabled()) {
+            return response;
+        }
 
-		CloseableHttpResponse httpResponse = null;
-		try {
-			List<NameValuePair> postParms = new ArrayList<NameValuePair>();
+        CloseableHttpResponse httpResponse = null;
+        try {
+            List<NameValuePair> postParms = new ArrayList<NameValuePair>();
 
-			//MatterOverdrive.log.debug("Processing " + request);
+            //MatterOverdrive.log.debug("Processing " + request);
 
-			//Process the parameters
-			processParameters(request, postParms);
+            //Process the parameters
+            processParameters(request, postParms);
 
-			//Process custom dimensions
-			processCustomDimensionParameters(request, postParms);
+            //Process custom dimensions
+            processCustomDimensionParameters(request, postParms);
 
-			//Process custom metrics
-			processCustomMetricParameters(request, postParms);
+            //Process custom metrics
+            processCustomMetricParameters(request, postParms);
 
-			//MatterOverdrive.log.debug("Processed all parameters and sending the request " + postParms);
-			
-			HttpPost httpPost = new HttpPost(config.getUrl());
-			httpPost.setEntity(new UrlEncodedFormEntity(postParms, UTF8));
+            //MatterOverdrive.log.debug("Processed all parameters and sending the request " + postParms);
 
-			httpResponse = (CloseableHttpResponse) httpClient.execute(httpPost);
-			response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
-			response.setPostedParms(postParms);
-			
-			EntityUtils.consumeQuietly(httpResponse.getEntity());
+            HttpPost httpPost = new HttpPost(config.getUrl());
+            httpPost.setEntity(new UrlEncodedFormEntity(postParms, UTF8));
 
-			if (config.isGatherStats()) {
-				gatherStats(request);
-			}
+            httpResponse = (CloseableHttpResponse) httpClient.execute(httpPost);
+            response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
+            response.setPostedParms(postParms);
 
-		} catch (Exception e) {
-			if (e instanceof UnknownHostException) {
-				MOLog.warn("Coudln't connect to Google Analytics. Internet may not be available. " + e.toString());
-			} else {
-				MOLog.warn("Exception while sending the Google Analytics tracker request " + request, e);
-			}
-		} finally {
-			try {
-				httpResponse.close();
-			} catch (Exception e2) {
-				//ignore
-			}
-		}
+            EntityUtils.consumeQuietly(httpResponse.getEntity());
 
-		return response;
-	}
+            if (config.isGatherStats()) {
+                gatherStats(request);
+            }
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void processParameters(GoogleAnalyticsRequest request, List<NameValuePair> postParms) {
-		Map<GoogleAnalyticsParameter, String> requestParms = request.getParameters();
-		Map<GoogleAnalyticsParameter, String> defaultParms = defaultRequest.getParameters();
-		for (GoogleAnalyticsParameter parm : defaultParms.keySet()) {
-			String value = requestParms.get(parm);
-			String defaultValue = defaultParms.get(parm);
-			if (isEmpty(value) && !isEmpty(defaultValue)) {
-				requestParms.put(parm, defaultValue);
-			}
-		}
-		for (GoogleAnalyticsParameter key : requestParms.keySet()) {
-			postParms.add(new BasicNameValuePair(key.getParameterName(), requestParms.get(key)));
-		}
-	}
-	
-	/**
-	 * Processes the custom dimensions and adds the values to list of parameters, which would be posted to GA.
-	 * 
-	 * @param request
-	 * @param postParms
-	 */
-	private void processCustomDimensionParameters(@SuppressWarnings("rawtypes") GoogleAnalyticsRequest request, List<NameValuePair> postParms) {
-		Map<String, String> customDimParms = new HashMap<String, String>();
-		for (String defaultCustomDimKey : defaultRequest.customDimensions().keySet()) {
-			customDimParms.put(defaultCustomDimKey, defaultRequest.customDimensions().get(defaultCustomDimKey));
-		}
+        } catch (Exception e) {
+            if (e instanceof UnknownHostException) {
+                MOLog.warn("Coudln't connect to Google Analytics. Internet may not be available. " + e.toString());
+            } else {
+                MOLog.warn("Exception while sending the Google Analytics tracker request " + request, e);
+            }
+        } finally {
+            try {
+                httpResponse.close();
+            } catch (Exception e2) {
+                //ignore
+            }
+        }
 
-		@SuppressWarnings("unchecked")
-		Map<String, String> requestCustomDims = request.customDimensions();
-		for (String requestCustomDimKey : requestCustomDims.keySet()) {
-			customDimParms.put(requestCustomDimKey, requestCustomDims.get(requestCustomDimKey));
-		}
-		
-		for (String key : customDimParms.keySet()) {
-			postParms.add(new BasicNameValuePair(key, customDimParms.get(key)));
-		}
-	}
+        return response;
+    }
 
-	/**
-	 * Processes the custom metrics and adds the values to list of parameters, which would be posted to GA.
-	 * 
-	 * @param request
-	 * @param postParms
-	 */
-	private void processCustomMetricParameters(@SuppressWarnings("rawtypes") GoogleAnalyticsRequest request, List<NameValuePair> postParms) {
-		Map<String, String> customMetricParms = new HashMap<String, String>();
-		for (String defaultCustomMetricKey : defaultRequest.custommMetrics().keySet()) {
-			customMetricParms.put(defaultCustomMetricKey, defaultRequest.custommMetrics().get(defaultCustomMetricKey));
-		}
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private void processParameters(GoogleAnalyticsRequest request, List<NameValuePair> postParms) {
+        Map<GoogleAnalyticsParameter, String> requestParms = request.getParameters();
+        Map<GoogleAnalyticsParameter, String> defaultParms = defaultRequest.getParameters();
+        for (GoogleAnalyticsParameter parm : defaultParms.keySet()) {
+            String value = requestParms.get(parm);
+            String defaultValue = defaultParms.get(parm);
+            if (isEmpty(value) && !isEmpty(defaultValue)) {
+                requestParms.put(parm, defaultValue);
+            }
+        }
+        for (GoogleAnalyticsParameter key : requestParms.keySet()) {
+            postParms.add(new BasicNameValuePair(key.getParameterName(), requestParms.get(key)));
+        }
+    }
 
-		@SuppressWarnings("unchecked")
-		Map<String, String> requestCustomMetrics = request.custommMetrics();
-		for (String requestCustomDimKey : requestCustomMetrics.keySet()) {
-			customMetricParms.put(requestCustomDimKey, requestCustomMetrics.get(requestCustomDimKey));
-		}
-		
-		for (String key : customMetricParms.keySet()) {
-			postParms.add(new BasicNameValuePair(key, customMetricParms.get(key)));
-		}
-	}
-	
-	
-	private void gatherStats(@SuppressWarnings("rawtypes") GoogleAnalyticsRequest request) {
-		String hitType = request.hitType();
+    /**
+     * Processes the custom dimensions and adds the values to list of parameters, which would be posted to GA.
+     *
+     * @param request
+     * @param postParms
+     */
+    private void processCustomDimensionParameters(@SuppressWarnings("rawtypes") GoogleAnalyticsRequest request, List<NameValuePair> postParms) {
+        Map<String, String> customDimParms = new HashMap<String, String>();
+        for (String defaultCustomDimKey : defaultRequest.customDimensions().keySet()) {
+            customDimParms.put(defaultCustomDimKey, defaultRequest.customDimensions().get(defaultCustomDimKey));
+        }
 
-		if ("pageview".equalsIgnoreCase(hitType)) {
-			stats.pageViewHit();
+        @SuppressWarnings("unchecked")
+        Map<String, String> requestCustomDims = request.customDimensions();
+        for (String requestCustomDimKey : requestCustomDims.keySet()) {
+            customDimParms.put(requestCustomDimKey, requestCustomDims.get(requestCustomDimKey));
+        }
 
-		} else if ("appview".equalsIgnoreCase(hitType)) {
-			stats.appViewHit();
+        for (String key : customDimParms.keySet()) {
+            postParms.add(new BasicNameValuePair(key, customDimParms.get(key)));
+        }
+    }
 
-		} else if ("event".equalsIgnoreCase(hitType)) {
-			stats.eventHit();
+    /**
+     * Processes the custom metrics and adds the values to list of parameters, which would be posted to GA.
+     *
+     * @param request
+     * @param postParms
+     */
+    private void processCustomMetricParameters(@SuppressWarnings("rawtypes") GoogleAnalyticsRequest request, List<NameValuePair> postParms) {
+        Map<String, String> customMetricParms = new HashMap<String, String>();
+        for (String defaultCustomMetricKey : defaultRequest.custommMetrics().keySet()) {
+            customMetricParms.put(defaultCustomMetricKey, defaultRequest.custommMetrics().get(defaultCustomMetricKey));
+        }
 
-		} else if ("item".equalsIgnoreCase(hitType)) {
-			stats.itemHit();
+        @SuppressWarnings("unchecked")
+        Map<String, String> requestCustomMetrics = request.custommMetrics();
+        for (String requestCustomDimKey : requestCustomMetrics.keySet()) {
+            customMetricParms.put(requestCustomDimKey, requestCustomMetrics.get(requestCustomDimKey));
+        }
 
-		} else if ("transaction".equalsIgnoreCase(hitType)) {
-			stats.transactionHit();
+        for (String key : customMetricParms.keySet()) {
+            postParms.add(new BasicNameValuePair(key, customMetricParms.get(key)));
+        }
+    }
 
-		} else if ("social".equalsIgnoreCase(hitType)) {
-			stats.socialHit();
 
-		} else if ("timing".equalsIgnoreCase(hitType)) {
-			stats.timingHit();
-		}
-	}
+    private void gatherStats(@SuppressWarnings("rawtypes") GoogleAnalyticsRequest request) {
+        String hitType = request.hitType();
 
-	public Future<GoogleAnalyticsResponse> postAsync(final RequestProvider requestProvider) {
-		if (!config.isEnabled()) {
-			return null;
-		}
+        if ("pageview".equalsIgnoreCase(hitType)) {
+            stats.pageViewHit();
 
-		Future<GoogleAnalyticsResponse> future = getExecutor().submit(new Callable<GoogleAnalyticsResponse>() {
-			public GoogleAnalyticsResponse call() throws Exception {
-				try {
-					@SuppressWarnings("rawtypes")
-					GoogleAnalyticsRequest request = requestProvider.getRequest();
-					if (request != null) {
-						return post(request);
-					}
-				} catch (Exception e) {
-					MOLog.warn("Request Provider (" + requestProvider +") thrown exception " + e.toString() + " and hence nothing is posted to GA.");
-				}
+        } else if ("appview".equalsIgnoreCase(hitType)) {
+            stats.appViewHit();
 
-				return null;
-			}
-		});
-		return future;
-	}
+        } else if ("event".equalsIgnoreCase(hitType)) {
+            stats.eventHit();
 
-	@SuppressWarnings("rawtypes")
-	public Future<GoogleAnalyticsResponse> postAsync(final GoogleAnalyticsRequest request) {
-		if (!config.isEnabled()) {
-			return null;
-		}
+        } else if ("item".equalsIgnoreCase(hitType)) {
+            stats.itemHit();
 
-		Future<GoogleAnalyticsResponse> future = getExecutor().submit(new Callable<GoogleAnalyticsResponse>() {
-			public GoogleAnalyticsResponse call() throws Exception {
-				return post(request);
-			}
-		});
-		return future;
-	}
+        } else if ("transaction".equalsIgnoreCase(hitType)) {
+            stats.transactionHit();
 
-	public void close() {
-		try {
-			executor.shutdown();
-		} catch (Exception e) {
-			//ignore
-		}
+        } else if ("social".equalsIgnoreCase(hitType)) {
+            stats.socialHit();
 
-		try {
-			httpClient.close();
-		} catch (IOException e) {
-			//ignore
-		}
-	}
+        } else if ("timing".equalsIgnoreCase(hitType)) {
+            stats.timingHit();
+        }
+    }
 
-	protected CloseableHttpClient createHttpClient(GoogleAnalyticsConfig config) {
-		PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
-		connManager.setDefaultMaxPerRoute(getDefaultMaxPerRoute(config));
+    public Future<GoogleAnalyticsResponse> postAsync(final RequestProvider requestProvider) {
+        if (!config.isEnabled()) {
+            return null;
+        }
 
-		HttpClientBuilder builder = HttpClients.custom().setConnectionManager(connManager);
+        Future<GoogleAnalyticsResponse> future = getExecutor().submit(new Callable<GoogleAnalyticsResponse>() {
+            public GoogleAnalyticsResponse call() throws Exception {
+                try {
+                    @SuppressWarnings("rawtypes")
+                    GoogleAnalyticsRequest request = requestProvider.getRequest();
+                    if (request != null) {
+                        return post(request);
+                    }
+                } catch (Exception e) {
+                    MOLog.warn("Request Provider (" + requestProvider + ") thrown exception " + e.toString() + " and hence nothing is posted to GA.");
+                }
 
-		if (isNotEmpty(config.getUserAgent())) {
-			builder.setUserAgent(config.getUserAgent());
-		}
+                return null;
+            }
+        });
+        return future;
+    }
 
-		if (isNotEmpty(config.getProxyHost())) {
-			builder.setProxy(new HttpHost(config.getProxyHost(), config.getProxyPort()));
+    @SuppressWarnings("rawtypes")
+    public Future<GoogleAnalyticsResponse> postAsync(final GoogleAnalyticsRequest request) {
+        if (!config.isEnabled()) {
+            return null;
+        }
 
-			if (isNotEmpty(config.getProxyUserName())) {
-				BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-				credentialsProvider.setCredentials(new AuthScope(config.getProxyHost(), config.getProxyPort()),
-						new UsernamePasswordCredentials(config.getProxyUserName(), config.getProxyPassword()));
-				builder.setDefaultCredentialsProvider(credentialsProvider);
-			}
-		}
+        Future<GoogleAnalyticsResponse> future = getExecutor().submit(new Callable<GoogleAnalyticsResponse>() {
+            public GoogleAnalyticsResponse call() throws Exception {
+                return post(request);
+            }
+        });
+        return future;
+    }
 
-		return builder.build();
-	}
+    public void close() {
+        try {
+            executor.shutdown();
+        } catch (Exception e) {
+            //ignore
+        }
 
-	protected int getDefaultMaxPerRoute(GoogleAnalyticsConfig config) {
-		return Math.max(config.getMaxThreads(), 1);
-	}
+        try {
+            httpClient.close();
+        } catch (IOException e) {
+            //ignore
+        }
+    }
 
-	protected ThreadPoolExecutor getExecutor() {
-		if (executor == null) {
-			executor = createExecutor(config);
-		}
-		return executor;
-	}
+    protected CloseableHttpClient createHttpClient(GoogleAnalyticsConfig config) {
+        PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
+        connManager.setDefaultMaxPerRoute(getDefaultMaxPerRoute(config));
 
-	protected synchronized ThreadPoolExecutor createExecutor(GoogleAnalyticsConfig config) {
-		return new ThreadPoolExecutor(0, config.getMaxThreads(), 5, TimeUnit.MINUTES, new LinkedBlockingDeque<Runnable>(), createThreadFactory());
-	}
+        HttpClientBuilder builder = HttpClients.custom().setConnectionManager(connManager);
 
-	protected ThreadFactory createThreadFactory() {
-		return new GoogleAnalyticsThreadFactory(config.getThreadNameFormat());
-	}
+        if (isNotEmpty(config.getUserAgent())) {
+            builder.setUserAgent(config.getUserAgent());
+        }
 
-	public GoogleAnalyticsStats getStats() {
-		return stats;
-	}
+        if (isNotEmpty(config.getProxyHost())) {
+            builder.setProxy(new HttpHost(config.getProxyHost(), config.getProxyPort()));
 
-	public void resetStats() {
-		stats = new GoogleAnalyticsStats();
-	}
+            if (isNotEmpty(config.getProxyUserName())) {
+                BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+                credentialsProvider.setCredentials(new AuthScope(config.getProxyHost(), config.getProxyPort()),
+                        new UsernamePasswordCredentials(config.getProxyUserName(), config.getProxyPassword()));
+                builder.setDefaultCredentialsProvider(credentialsProvider);
+            }
+        }
+
+        return builder.build();
+    }
+
+    protected int getDefaultMaxPerRoute(GoogleAnalyticsConfig config) {
+        return Math.max(config.getMaxThreads(), 1);
+    }
+
+    protected ThreadPoolExecutor getExecutor() {
+        if (executor == null) {
+            executor = createExecutor(config);
+        }
+        return executor;
+    }
+
+    protected synchronized ThreadPoolExecutor createExecutor(GoogleAnalyticsConfig config) {
+        return new ThreadPoolExecutor(0, config.getMaxThreads(), 5, TimeUnit.MINUTES, new LinkedBlockingDeque<Runnable>(), createThreadFactory());
+    }
+
+    protected ThreadFactory createThreadFactory() {
+        return new GoogleAnalyticsThreadFactory(config.getThreadNameFormat());
+    }
+
+    public GoogleAnalyticsStats getStats() {
+        return stats;
+    }
+
+    public void resetStats() {
+        stats = new GoogleAnalyticsStats();
+    }
 }
 
 class GoogleAnalyticsThreadFactory implements ThreadFactory {
@@ -368,10 +368,10 @@ class GoogleAnalyticsThreadFactory implements ThreadFactory {
     private String threadNameFormat = null;
 
     public GoogleAnalyticsThreadFactory(String threadNameFormat) {
-    	this.threadNameFormat = threadNameFormat;
-	}
+        this.threadNameFormat = threadNameFormat;
+    }
 
-	public Thread newThread(Runnable r) {
+    public Thread newThread(Runnable r) {
         Thread thread = new Thread(Thread.currentThread().getThreadGroup(), r, MessageFormat.format(threadNameFormat, threadNumber.getAndIncrement()), 0);
         thread.setDaemon(true);
         thread.setPriority(Thread.MIN_PRIORITY);

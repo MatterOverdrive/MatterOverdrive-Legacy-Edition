@@ -11,29 +11,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 4/28/2015.
  */
-public class PacketReplicationComplete extends TileEntityUpdatePacket
-{
-	public PacketReplicationComplete()
-	{
-		super();
-	}
+public class PacketReplicationComplete extends TileEntityUpdatePacket {
+    public PacketReplicationComplete() {
+        super();
+    }
 
-	public PacketReplicationComplete(TileEntity entity)
-	{
-		super(entity);
-	}
+    public PacketReplicationComplete(TileEntity entity) {
+        super(entity);
+    }
 
-	public static class ClientHandler extends AbstractClientPacketHandler<PacketReplicationComplete>
-	{
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void handleClientMessage(EntityPlayerSP player, PacketReplicationComplete message, MessageContext ctx)
-		{
-			TileEntity entity = message.getTileEntity(player.worldObj);
-			if (entity instanceof TileEntityMachineReplicator)
-			{
-				((TileEntityMachineReplicator)entity).beginSpawnParticles();
-			}
-		}
-	}
+    public static class ClientHandler extends AbstractClientPacketHandler<PacketReplicationComplete> {
+        @SideOnly(Side.CLIENT)
+        @Override
+        public void handleClientMessage(EntityPlayerSP player, PacketReplicationComplete message, MessageContext ctx) {
+            TileEntity entity = message.getTileEntity(player.world);
+            if (entity instanceof TileEntityMachineReplicator) {
+                ((TileEntityMachineReplicator) entity).beginSpawnParticles();
+            }
+        }
+    }
 }

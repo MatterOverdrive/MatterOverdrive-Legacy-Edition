@@ -23,7 +23,6 @@ import matteroverdrive.gui.element.MOElementBase;
 /**
  * Created by Simeon on 4/9/2015.
  */
-public interface GuiElementList
-{
-	MOElementBase addElement(MOElementBase elementBase);
+public interface GuiElementList {
+    MOElementBase addElement(MOElementBase elementBase);
 }

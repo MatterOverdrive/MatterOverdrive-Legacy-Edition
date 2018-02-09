@@ -27,21 +27,18 @@ import net.minecraftforge.fml.common.eventhandler.Event;
  * When canceled, the entry will not be registered.
  * This is a good in-game way to remove matter for items, even when the configs have custom values.
  */
-public class MOEventRegisterMatterEntry extends Event
-{
-	/**
-	 * The matter entry being registered.
-	 */
-	public final IMatterEntry entry;
+public class MOEventRegisterMatterEntry extends Event {
+    /**
+     * The matter entry being registered.
+     */
+    public final IMatterEntry entry;
 
-	public MOEventRegisterMatterEntry(IMatterEntry entry)
-	{
-		this.entry = entry;
-	}
+    public MOEventRegisterMatterEntry(IMatterEntry entry) {
+        this.entry = entry;
+    }
 
-	@Override
-	public boolean isCancelable()
-	{
-		return true;
-	}
+    @Override
+    public boolean isCancelable() {
+        return true;
+    }
 }

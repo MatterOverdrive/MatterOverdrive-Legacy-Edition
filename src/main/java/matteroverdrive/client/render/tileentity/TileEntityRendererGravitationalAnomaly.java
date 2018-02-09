@@ -35,58 +35,57 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 /**
  * Created by Simeon on 5/12/2015.
  */
-public class TileEntityRendererGravitationalAnomaly extends TileEntitySpecialRenderer
-{
-	public static final ResourceLocation core = new ResourceLocation(Reference.PATH_BLOCKS + "gravitational_anomaly_core.png");
-	public static final ResourceLocation glow = new ResourceLocation(Reference.PATH_BLOCKS + "gravitational_anomaly_glow.png");
-	public static final ResourceLocation black = new ResourceLocation(Reference.PATH_BLOCKS + "black.png");
+public class TileEntityRendererGravitationalAnomaly extends TileEntitySpecialRenderer {
+    public static final ResourceLocation core = new ResourceLocation(Reference.PATH_BLOCKS + "gravitational_anomaly_core.png");
+    public static final ResourceLocation anti = new ResourceLocation(Reference.PATH_BLOCKS + "anti_gravitational_anomaly_core.png");
+    public static final ResourceLocation glow = new ResourceLocation(Reference.PATH_BLOCKS + "gravitational_anomaly_glow.png");
+    public static final ResourceLocation black = new ResourceLocation(Reference.PATH_BLOCKS + "black.png");
 
-	private final Sphere sphere_model;
+    private final Sphere sphere_model;
 
-	public TileEntityRendererGravitationalAnomaly()
-	{
-		sphere_model = new Sphere();
-	}
+    public TileEntityRendererGravitationalAnomaly() {
+        sphere_model = new Sphere();
+    }
 
-	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float ticks, int destroyStage)
-	{
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		long time = Minecraft.getMinecraft().theWorld.getWorldTime();
-		float speed = ((TileEntityGravitationalAnomaly)tileEntity).getBreakStrength();
-		double resonateSpeed = 0.2;
-		double radius = ((TileEntityGravitationalAnomaly)tileEntity).getEventHorizon();
+    @Override
+    public void render(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        long time = Minecraft.getMinecraft().world.getWorldTime();
+        float speed = 1;
+        double resonateSpeed = 0.1;
+        double radius = ((TileEntityGravitationalAnomaly) tileEntity).getEventHorizon();
 
-		radius = radius * Math.sin(time * resonateSpeed) * 0.1 + radius * 0.9;
+        radius = radius * Math.sin(time * resonateSpeed) * 0.1 + radius * 0.9;
 
-		GlStateManager.pushMatrix();
-		GlStateManager.disableLighting();
+        GlStateManager.pushMatrix();
+        GlStateManager.disableLighting();
 
-		GlStateManager.translate(x + 0.5, y + 0.5, z + 0.5);
-		GlStateManager.scale(radius, radius, radius);
+        GlStateManager.translate(x + 0.5, y + 0.5, z + 0.5);
+        GlStateManager.scale(radius, radius, radius);
+        //TODO: SHAAAADERS
 
-		GlStateManager.disableCull();
-		GlStateManager.disableTexture2D();
-		GlStateManager.color(0, 0, 0, 1);
-		sphere_model.draw((float)0.5, 8, 8);
-		GlStateManager.enableTexture2D();
-		GlStateManager.enableCull();
+        GlStateManager.disableCull();
+        GlStateManager.disableTexture2D();
+        GlStateManager.color(0, 0, 0, 1);
+        sphere_model.draw((float) 0.33, 8, 8);
+        GlStateManager.enableTexture2D();
+        GlStateManager.enableCull();
 
-		GlStateManager.enableBlend();
-		GlStateManager.scale(2, 2, 2);
-		GlStateManager.rotate(player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * ticks, 0, -1, 0);
-		GlStateManager.rotate(player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * ticks, 1, 0, 0);
-		GlStateManager.rotate(time * speed, 0, 0, 1);
-		GlStateManager.translate(-0.5, -0.5, 0);
-		GlStateManager.color(1, 1, 1);
-		GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		bindTexture(core);
-		RenderUtils.drawPlane(1);
-		bindTexture(glow);
-		RenderUtils.drawPlane(1);
+        GlStateManager.enableBlend();
+        GlStateManager.scale(2, 2, 2);
+        GlStateManager.rotate(player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks, 0, -1, 0);
+        GlStateManager.rotate(player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * partialTicks, 1, 0, 0);
+        GlStateManager.rotate(time * speed, 0, 0, 1);
+        GlStateManager.translate(-0.5, -0.5, 0);
+        GlStateManager.color(1, 1, 1);
+        GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        bindTexture(core);
+        RenderUtils.drawPlane(1);
+        /*bindTexture(glow);
+        RenderUtils.drawPlane(1);*/
 
-		GlStateManager.disableBlend();
-		GlStateManager.enableLighting();
-		GlStateManager.popMatrix();
-	}
+        GlStateManager.disableBlend();
+        GlStateManager.enableLighting();
+        GlStateManager.popMatrix();
+    }
 }

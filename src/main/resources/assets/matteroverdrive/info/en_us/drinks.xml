@@ -1,0 +1,27 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">Drinks</title>
+        <preview index="0" size="2" style="float:left;margin-right:7px"></preview>
+        <text class="matter-text text-block" style="width:210px;margin-top:4px">Romulan ale is a highly intoxicating alcoholic beverage of Romulan origin with a characteristic blue color.</text>
+        <preview index="1" size="2" style="float:left;margin-right:7px"></preview>
+        <text class="matter-text text-block" style="width:210px;margin-top:4px">A special blend of tea, the Earl Grey melange was named after Charles Grey, the Second Earl Grey, who apparently received a diplomatic gift of this blend. It receives its distinctive flavor and aroma from bergamot oil, derived from a fragrant citrus fruit native to Earth's Mediterranean region.</text>
+    </page>
+</entry>

@@ -28,35 +28,29 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 3/16/2015.
  */
-public class DatabaseSlot extends Slot
-{
-	public DatabaseSlot(boolean isMainSlot)
-	{
-		super(isMainSlot);
-	}
+public class DatabaseSlot extends Slot {
+    public DatabaseSlot(boolean isMainSlot) {
+        super(isMainSlot);
+    }
 
-	@Override
-	public boolean isValidForSlot(ItemStack itemStack)
-	{
-		return MatterHelper.isMatterScanner(itemStack);
-	}
+    @Override
+    public boolean isValidForSlot(ItemStack itemStack) {
+        return MatterHelper.isMatterScanner(itemStack);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public HoloIcon getHoloIcon()
-	{
-		return ClientProxy.holoIcons.getIcon("scanner");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public HoloIcon getHoloIcon() {
+        return ClientProxy.holoIcons.getIcon("scanner");
+    }
 
-	@Override
-	public int getMaxStackSize()
-	{
-		return 1;
-	}
+    @Override
+    public int getMaxStackSize() {
+        return 1;
+    }
 
-	@Override
-	public String getUnlocalizedTooltip()
-	{
-		return "gui.tooltip.slot.database";
-	}
+    @Override
+    public String getUnlocalizedTooltip() {
+        return "gui.tooltip.slot.database";
+    }
 }

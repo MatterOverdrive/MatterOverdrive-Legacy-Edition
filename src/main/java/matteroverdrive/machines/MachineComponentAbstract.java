@@ -24,27 +24,22 @@ import net.minecraft.world.World;
 /**
  * Created by Simeon on 7/19/2015.
  */
-public abstract class MachineComponentAbstract<T extends MOTileEntityMachine> implements IMachineComponent
-{
-	protected final T machine;
+public abstract class MachineComponentAbstract<T extends MOTileEntityMachine> implements IMachineComponent {
+    protected final T machine;
 
-	public MachineComponentAbstract(T machine)
-	{
-		this.machine = machine;
-	}
+    public MachineComponentAbstract(T machine) {
+        this.machine = machine;
+    }
 
-	public T getMachine()
-	{
-		return machine;
-	}
+    public T getMachine() {
+        return machine;
+    }
 
-	public World getWorld()
-	{
-		return machine.getWorld();
-	}
+    public World getWorld() {
+        return machine.getWorld();
+    }
 
-	public BlockPos getPos()
-	{
-		return machine.getPos();
-	}
+    public BlockPos getPos() {
+        return machine.getPos();
+    }
 }

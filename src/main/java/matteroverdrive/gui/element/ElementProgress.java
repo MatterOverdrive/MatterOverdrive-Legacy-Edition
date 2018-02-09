@@ -28,136 +28,116 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.List;
 
-public class ElementProgress extends MOElementBase
-{
-	public static final ScaleTexture FILL_TEXTURE = new ScaleTexture(new ResourceLocation(Reference.PATH_ELEMENTS + "progress_slider_fill.png"), 9, 9).setOffsets(3, 6, 4, 4);
+public class ElementProgress extends MOElementBase {
+    public static final ScaleTexture FILL_TEXTURE = new ScaleTexture(new ResourceLocation(Reference.PATH_ELEMENTS + "progress_slider_fill.png"), 9, 9).setOffsets(3, 6, 4, 4);
 
-	float value;
-	float maxValue;
-	boolean showText = true;
-	int bgU;
-	int bgV;
-	int fillU;
-	int fillV;
-	int fillSizeX;
-	int fillSizeY;
-	int fillX;
-	int fillY;
-	int textX;
-	int textY;
-	String text;
-	int textColor;
+    float value;
+    float maxValue;
+    boolean showText = true;
+    int bgU;
+    int bgV;
+    int fillU;
+    int fillV;
+    int fillSizeX;
+    int fillSizeY;
+    int fillX;
+    int fillY;
+    int textX;
+    int textY;
+    String text;
+    int textColor;
 
-	public ElementProgress(MOGuiBase gui, int fillX, int fillY, int posX, int posY, int bgU, int bgV, int fillU, int fillV, int fillSizeX, int fillSizeY, int sizeX, int sizeY)
-	{
-		super(gui, posX, posY, sizeX, sizeY);
-		this.fillU = fillU;
-		this.fillV = fillV;
-		this.bgU = bgU;
-		this.bgV = bgV;
-		this.fillSizeX = fillSizeX;
-		this.fillSizeY = fillSizeY;
-		this.fillX = fillX;
-		this.fillY = fillY;
-	}
+    public ElementProgress(MOGuiBase gui, int fillX, int fillY, int posX, int posY, int bgU, int bgV, int fillU, int fillV, int fillSizeX, int fillSizeY, int sizeX, int sizeY) {
+        super(gui, posX, posY, sizeX, sizeY);
+        this.fillU = fillU;
+        this.fillV = fillV;
+        this.bgU = bgU;
+        this.bgV = bgV;
+        this.fillSizeX = fillSizeX;
+        this.fillSizeY = fillSizeY;
+        this.fillX = fillX;
+        this.fillY = fillY;
+    }
 
-	@Override
-	public void updateInfo()
-	{
+    @Override
+    public void updateInfo() {
 
-	}
+    }
 
-	@Override
-	public void init()
-	{
+    @Override
+    public void init() {
 
-	}
+    }
 
-	@Override
-	public void addTooltip(List<String> var1, int mouseX, int mouseY)
-	{
+    @Override
+    public void addTooltip(List<String> var1, int mouseX, int mouseY) {
 
-	}
+    }
 
-	@Override
-	public void drawBackground(int mouseX, int mouseY, float gameTicks)
-	{
-		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderUtils.bindTexture(texture);
-		drawTexturedModalRect(this.posX, this.posY, this.bgU, this.bgV, this.sizeX, this.sizeY);
+    @Override
+    public void drawBackground(int mouseX, int mouseY, float gameTicks) {
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderUtils.bindTexture(texture);
+        drawTexturedModalRect(this.posX, this.posY, this.bgU, this.bgV, this.sizeX, this.sizeY);
 
-		FILL_TEXTURE.render(this.fillX, this.fillY, this.Scale(this.fillSizeX), fillSizeY);
-		//drawTexturedModalRect(this.fillX,this.fillY,this.fillU,this.fillV,,this.fillSizeY);
+        FILL_TEXTURE.render(this.fillX, this.fillY, this.Scale(this.fillSizeX), fillSizeY);
+        //drawTexturedModalRect(this.fillX,this.fillY,this.fillU,this.fillV,,this.fillSizeY);
 
-		if (this.isShowText())
-		{
-			this.drawCenteredString(Minecraft.getMinecraft().fontRendererObj, this.text, this.posX + this.textX, this.posY + this.textY, this.textColor);
-		}
-	}
+        if (this.isShowText()) {
+            this.drawCenteredString(Minecraft.getMinecraft().fontRenderer, this.text, this.posX + this.textX, this.posY + this.textY, this.textColor);
+        }
+    }
 
-	@Override
-	public void drawForeground(int mouseX, int mouseY)
-	{
-	}
+    @Override
+    public void drawForeground(int mouseX, int mouseY) {
+    }
 
-	public float getValue()
-	{
-		return value;
-	}
+    public float getValue() {
+        return value;
+    }
 
-	public void setValue(float value)
-	{
-		this.value = value;
-	}
+    public void setValue(float value) {
+        this.value = value;
+    }
 
-	public boolean isShowText()
-	{
-		return showText;
-	}
+    public boolean isShowText() {
+        return showText;
+    }
 
-	public void setShowText(boolean value)
-	{
-		this.showText = value;
-	}
+    public void setShowText(boolean value) {
+        this.showText = value;
+    }
 
-	private int Scale(int value)
-	{
-		return (int)(value * (this.value / maxValue));
-	}
+    private int Scale(int value) {
+        return (int) (value * (this.value / maxValue));
+    }
 
-	public float getMaxValue()
-	{
-		return maxValue;
-	}
+    public float getMaxValue() {
+        return maxValue;
+    }
 
-	public void setMaxValue(float maxValue)
-	{
-		this.maxValue = maxValue;
-	}
+    public void setMaxValue(float maxValue) {
+        this.maxValue = maxValue;
+    }
 
-	public void SetTextPostition(int x, int y)
-	{
-		this.textX = x;
-		this.textY = y;
-	}
+    public void SetTextPostition(int x, int y) {
+        this.textX = x;
+        this.textY = y;
+    }
 
-	public String getText()
-	{
-		return text;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public void setText(String text)
-	{
-		this.text = text;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	public int getTextColor()
-	{
-		return textColor;
-	}
+    public int getTextColor() {
+        return textColor;
+    }
 
-	public void setTextColor(int textColor)
-	{
-		this.textColor = textColor;
-	}
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
 }

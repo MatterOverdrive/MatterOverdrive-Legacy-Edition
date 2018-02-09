@@ -28,17 +28,16 @@ import java.util.EnumSet;
 /**
  * Created by Simeon on 7/19/2015.
  */
-public interface IMachineComponent
-{
-	void readFromNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories);
+public interface IMachineComponent {
+    void readFromNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories);
 
-	void writeToNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk);
+    void writeToNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk);
 
-	void registerSlots(Inventory inventory);
+    void registerSlots(Inventory inventory);
 
-	boolean isAffectedByUpgrade(UpgradeTypes type);
+    boolean isAffectedByUpgrade(UpgradeTypes type);
 
-	boolean isActive();
+    boolean isActive();
 
-	void onMachineEvent(MachineEvent event);
+    void onMachineEvent(MachineEvent event);
 }

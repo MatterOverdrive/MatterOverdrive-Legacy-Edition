@@ -28,35 +28,29 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 3/16/2015.
  */
-public class EnergySlot extends Slot
-{
-	public EnergySlot(boolean isMainSlot)
-	{
-		super(isMainSlot);
-	}
+public class EnergySlot extends Slot {
+    public EnergySlot(boolean isMainSlot) {
+        super(isMainSlot);
+    }
 
-	@Override
-	public boolean isValidForSlot(ItemStack itemStack)
-	{
-		return MOEnergyHelper.isEnergyContainerItem(itemStack);
-	}
+    @Override
+    public boolean isValidForSlot(ItemStack itemStack) {
+        return MOEnergyHelper.isEnergyContainerItem(itemStack);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public HoloIcon getHoloIcon()
-	{
-		return ClientProxy.holoIcons.getIcon("energy");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public HoloIcon getHoloIcon() {
+        return ClientProxy.holoIcons.getIcon("energy");
+    }
 
-	@Override
-	public boolean keepOnDismantle()
-	{
-		return true;
-	}
+    @Override
+    public boolean keepOnDismantle() {
+        return true;
+    }
 
-	@Override
-	public String getUnlocalizedTooltip()
-	{
-		return "gui.tooltip.slot.energy";
-	}
+    @Override
+    public String getUnlocalizedTooltip() {
+        return "gui.tooltip.slot.energy";
+    }
 }

@@ -19,13 +19,9 @@
 package matteroverdrive.machines.fusionReactorController;
 
 
-import cofh.api.energy.IEnergyConnection;
-import cofh.api.energy.IEnergyReceiver;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.inventory.UpgradeTypes;
 import matteroverdrive.blocks.includes.MOBlock;
-import matteroverdrive.init.MatterOverdriveBlocks;
-import matteroverdrive.init.MatterOverdriveCapabilities;
 import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.machines.events.MachineEvent;
 import matteroverdrive.machines.fusionReactorController.components.ComponentComputers;
@@ -48,7 +44,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -69,472 +65,380 @@ import static matteroverdrive.util.MOBlockHelper.getOppositeSide;
 		@Optional.Interface(modid = "OpenComputers", iface = "li.cil.oc.api.network.SimpleComponent"),
 		@Optional.Interface(modid = "OpenComputers", iface = "li.cil.oc.api.network.ManagedPeripheral")
 })*/
-public class TileEntityMachineFusionReactorController extends MOTileEntityMachineMatter
-{
-	public static final int[] positions = new int[] {0, 5, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 5, 4, 5, 5, 5, 6, 5, 7, 4, 8, 3, 9, 2, 10, 1, 10, 0, 10, -1, 10, -2, 10, -3, 9, -4, 8, -5, 7, -5, 6, -5, 5, -5, 4, -5, 3, -4, 2, -3, 1, -2, 0, -1, 0};
-	public static final int[] blocks = new int[] {255, 2, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 2};
-	public static final int positionsCount = positions.length / 2;
-	public static int STRUCTURE_CHECK_DELAY = 40;
-	public static int MAX_GRAVITATIONAL_ANOMALY_DISTANCE = 3;
-	public static int ENERGY_STORAGE = 100000000;
-	public static int MATTER_STORAGE = 2048;
-	public static int ENERGY_PER_TICK = 2048;
-	public static double MATTER_DRAIN_PER_TICK = 1.0D / 80.0D;
-	private final TimeTracker structureCheckTimer;
-	private final MultiBlockTileStructureMachine multiBlock;
-	private boolean validStructure = false;
-	private String monitorInfo = "INVALID STRUCTURE";
-	private float energyEfficiency;
-	private int energyPerTick;
-	private BlockPos anomalyPosition;
-	private float matterPerTick;
-	private float matterDrain;
-	private ComponentComputers componentComputers;
+public class TileEntityMachineFusionReactorController extends MOTileEntityMachineMatter {
+    public static final int[] positions = new int[]{0, 5, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 5, 4, 5, 5, 5, 6, 5, 7, 4, 8, 3, 9, 2, 10, 1, 10, 0, 10, -1, 10, -2, 10, -3, 9, -4, 8, -5, 7, -5, 6, -5, 5, -5, 4, -5, 3, -4, 2, -3, 1, -2, 0, -1, 0};
+    public static final int[] blocks = new int[]{255, 2, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 2};
+    public static final int positionsCount = positions.length / 2;
+    public static int STRUCTURE_CHECK_DELAY = 40;
+    public static int MAX_GRAVITATIONAL_ANOMALY_DISTANCE = 3;
+    public static int ENERGY_STORAGE = 100000000;
+    public static int MATTER_STORAGE = 2048;
+    public static int ENERGY_PER_TICK = 2048;
+    public static double MATTER_DRAIN_PER_TICK = 1.0D / 80.0D;
+    private final TimeTracker structureCheckTimer;
+    private final MultiBlockTileStructureMachine multiBlock;
+    private boolean validStructure = false;
+    private String monitorInfo = "INVALID STRUCTURE";
+    private float energyEfficiency;
+    private int energyPerTick;
+    private BlockPos anomalyPosition;
+    private float matterPerTick;
+    private float matterDrain;
+    private ComponentComputers componentComputers;
 
 
-	public TileEntityMachineFusionReactorController()
-	{
-		super(4);
+    public TileEntityMachineFusionReactorController() {
+        super(4);
 
-		structureCheckTimer = new TimeTracker();
-		energyStorage.setCapacity(ENERGY_STORAGE);
-		energyStorage.setOutputRate(ENERGY_STORAGE);
-		energyStorage.setInputRate(0);
+        structureCheckTimer = new TimeTracker();
+        energyStorage.setCapacity(ENERGY_STORAGE);
+        energyStorage.setMaxExtract(ENERGY_STORAGE);
+        energyStorage.setMaxReceive(0);
 
-		matterStorage.setCapacity(MATTER_STORAGE);
-		matterStorage.setMaxExtract(0);
-		matterStorage.setMaxReceive(MATTER_STORAGE);
+        matterStorage.setCapacity(MATTER_STORAGE);
+        matterStorage.setMaxExtract(0);
+        matterStorage.setMaxReceive(MATTER_STORAGE);
 
-		multiBlock = new MultiBlockTileStructureMachine(this);
-	}
+        multiBlock = new MultiBlockTileStructureMachine(this);
+    }
 
-	@Override
-	public SoundEvent getSound()
-	{
-		return null;
-	}
+    @Override
+    public SoundEvent getSound() {
+        return null;
+    }
 
-	@Override
-	public void writeCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk)
-	{
-		super.writeCustomNBT(nbt, categories, toDisk);
-		if (categories.contains(MachineNBTCategory.DATA))
-		{
-			nbt.setBoolean("ValidStructure", validStructure);
-			nbt.setString("MonitorInfo", monitorInfo);
-			nbt.setFloat("EnergyEfficiency", energyEfficiency);
-			nbt.setFloat("MatterPerTick", matterPerTick);
-			nbt.setInteger("EnergyPerTick", energyPerTick);
-		}
-	}
+    @Override
+    public void writeCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk) {
+        super.writeCustomNBT(nbt, categories, toDisk);
+        if (categories.contains(MachineNBTCategory.DATA)) {
+            nbt.setBoolean("ValidStructure", validStructure);
+            nbt.setString("MonitorInfo", monitorInfo);
+            nbt.setFloat("EnergyEfficiency", energyEfficiency);
+            nbt.setFloat("MatterPerTick", matterPerTick);
+            nbt.setInteger("EnergyPerTick", energyPerTick);
+        }
+    }
 
-	@Override
-	public void readCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories)
-	{
-		super.readCustomNBT(nbt, categories);
-		if (categories.contains(MachineNBTCategory.DATA))
-		{
-			validStructure = nbt.getBoolean("ValidStructure");
-			monitorInfo = nbt.getString("MonitorInfo");
-			energyEfficiency = nbt.getFloat("EnergyEfficiency");
-			matterPerTick = nbt.getFloat("MatterPerTick");
-			energyPerTick = nbt.getInteger("EnergyPerTick");
-		}
-	}
+    @Override
+    public void readCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
+        super.readCustomNBT(nbt, categories);
+        if (categories.contains(MachineNBTCategory.DATA)) {
+            validStructure = nbt.getBoolean("ValidStructure");
+            monitorInfo = nbt.getString("MonitorInfo");
+            energyEfficiency = nbt.getFloat("EnergyEfficiency");
+            matterPerTick = nbt.getFloat("MatterPerTick");
+            energyPerTick = nbt.getInteger("EnergyPerTick");
+        }
+    }
 
-	@Override
-	public void update()
-	{
-		super.update();
-		if (!worldObj.isRemote)
-		{
-			//System.out.println("Fusion Reactor Update in chunk that is loaded:" + worldObj.getChunkFromBlockCoords(xCoord,zCoord).isChunkLoaded);
-			manageStructure();
-			manageEnergyGeneration();
-			manageEnergyExtract();
-		}
-	}
+    @Override
+    public void update() {
+        super.update();
+        if (!world.isRemote) {
+            //System.out.println("Fusion Reactor Update in chunk that is loaded:" + world.getChunkFromBlocks(x,z).isChunkLoaded);
+            manageStructure();
+            manageEnergyGeneration();
+            manageEnergyExtract();
+        }
+    }
 
-	@Override
-	protected void registerComponents()
-	{
-		super.registerComponents();
-		componentComputers = new ComponentComputers(this);
-		addComponent(componentComputers);
-	}
+    @Override
+    protected void registerComponents() {
+        super.registerComponents();
+        componentComputers = new ComponentComputers(this);
+        addComponent(componentComputers);
+    }
 
-	@Override
-	public boolean hasSound()
-	{
-		return false;
-	}
+    @Override
+    public boolean hasSound() {
+        return false;
+    }
 
-	@Override
-	public boolean getServerActive()
-	{
-		return isValidStructure() &&
-				isGeneratingPower();
-	}
+    @Override
+    public boolean getServerActive() {
+        return isValidStructure() &&
+                isGeneratingPower();
+    }
 
-	@Override
-	public float soundVolume()
-	{
-		return 0;
-	}
+    @Override
+    public float soundVolume() {
+        return 0;
+    }
 
-	public Vec3d getPosition(int i, EnumFacing facing)
-	{
-		if (i < positionsCount)
-		{
-			EnumFacing back = facing.getOpposite();
-			Vec3d pos = new Vec3d(TileEntityMachineFusionReactorController.positions[i * 2], 0, TileEntityMachineFusionReactorController.positions[(i * 2) + 1]);
+    public Vec3d getPosition(int i, EnumFacing facing) {
+        if (i < positionsCount) {
+            EnumFacing back = facing.getOpposite();
+            Vec3d pos = new Vec3d(TileEntityMachineFusionReactorController.positions[i * 2], 0, TileEntityMachineFusionReactorController.positions[(i * 2) + 1]);
 
-			if (back == EnumFacing.NORTH)
-			{
-				pos = pos.rotateYaw((float)Math.PI);
-			}
-			else if (back == EnumFacing.WEST)
-			{
-				pos = pos.rotateYaw((float)(Math.PI + Math.PI / 2));
-			}
-			else if (back == EnumFacing.EAST)
-			{
-				pos = pos.rotatePitch((float)(Math.PI / 2));
-			}
-			else if (back == EnumFacing.UP)
-			{
-				pos = pos.rotatePitch((float)(Math.PI / 2));
-			}
-			else if (back == EnumFacing.DOWN)
-			{
-				pos = pos.rotatePitch((float)(Math.PI + Math.PI / 2));
+            if (back == EnumFacing.NORTH) {
+                pos = pos.rotateYaw((float) Math.PI);
+            } else if (back == EnumFacing.WEST) {
+                pos = pos.rotateYaw((float) (Math.PI + Math.PI / 2));
+            } else if (back == EnumFacing.EAST) {
+                pos = pos.rotatePitch((float) (Math.PI / 2));
+            } else if (back == EnumFacing.UP) {
+                pos = pos.rotatePitch((float) (Math.PI / 2));
+            } else if (back == EnumFacing.DOWN) {
+                pos = pos.rotatePitch((float) (Math.PI + Math.PI / 2));
 
-			}
+            }
 
-			return pos;
-		}
-		return null;
-	}
+            return pos;
+        }
+        return null;
+    }
 
-	@Override
-	public void invalidate()
-	{
-		super.invalidate();
-		multiBlock.invalidate();
-	}
+    @Override
+    public void invalidate() {
+        super.invalidate();
+        multiBlock.invalidate();
+    }
 
-	public void manageStructure()
-	{
-		if (structureCheckTimer.hasDelayPassed(worldObj, STRUCTURE_CHECK_DELAY))
-		{
-			multiBlock.update();
-			EnumFacing side = worldObj.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION);
-			int anomalyDistance = MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1;
-			boolean validStructure = true;
-			String info = this.monitorInfo;
-			float energyEfficiency = this.energyEfficiency;
-			float matterPerTick = this.matterPerTick;
+    public void manageStructure() {
+        if (structureCheckTimer.hasDelayPassed(world, STRUCTURE_CHECK_DELAY)) {
+            multiBlock.update();
+            EnumFacing side = world.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION);
+            int anomalyDistance = MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1;
+            boolean validStructure = true;
+            String info = this.monitorInfo;
+            float energyEfficiency = this.energyEfficiency;
+            float matterPerTick = this.matterPerTick;
 
-			for (int i = 0; i < positionsCount; i++)
-			{
-				Vec3d offset = getPosition(i, side);
-				BlockPos position = new BlockPos(getPos().getX() + (int)round(offset.xCoord), getPos().getY() + (int)round(offset.yCoord), getPos().getZ() + (int)round(offset.zCoord));
+            for (int i = 0; i < positionsCount; i++) {
+                Vec3d offset = getPosition(i, side);
+                BlockPos position = new BlockPos(getPos().getX() + (int) round(offset.x), getPos().getY() + (int) round(offset.y), getPos().getZ() + (int) round(offset.z));
 
-				if (blocks[i] == 255)
-				{
-					BlockPos anomalyOffset = checkForGravitationalAnomaly(position, getAboveSide(side));
+                if (blocks[i] == 255) {
+                    BlockPos anomalyOffset = checkForGravitationalAnomaly(position, getAboveSide(side));
 
-					if (anomalyOffset != null)
-					{
-						anomalyDistance = (int)Math.sqrt((anomalyOffset.getX() * anomalyOffset.getY()) + (anomalyOffset.getY() * anomalyOffset.getY()) + (anomalyOffset.getZ() * anomalyOffset.getZ()));
-						if (anomalyDistance > MAX_GRAVITATIONAL_ANOMALY_DISTANCE)
-						{
-							validStructure = false;
-							info = "GRAVITATIONAL\nANOMALY\nTOO\nFAR";
-							break;
-						}
-						anomalyPosition = anomalyOffset.add(offset.xCoord, offset.yCoord, offset.zCoord);
-					}
-					else
-					{
-						validStructure = false;
-						info = "NO\nGRAVITATIONAL\nANOMALY";
-						anomalyPosition = null;
-						break;
-					}
+                    if (anomalyOffset != null) {
+                        anomalyDistance = (int) Math.sqrt((anomalyOffset.getX() * anomalyOffset.getY()) + (anomalyOffset.getY() * anomalyOffset.getY()) + (anomalyOffset.getZ() * anomalyOffset.getZ()));
+                        if (anomalyDistance > MAX_GRAVITATIONAL_ANOMALY_DISTANCE) {
+                            validStructure = false;
+                            info = "GRAVITATIONAL\nANOMALY\nTOO\nFAR";
+                            break;
+                        }
+                        anomalyPosition = anomalyOffset.add(offset.x, offset.y, offset.z);
+                    } else {
+                        validStructure = false;
+                        info = "NO\nGRAVITATIONAL\nANOMALY";
+                        anomalyPosition = null;
+                        break;
+                    }
 
-					energyEfficiency = 1f - ((float)anomalyDistance / (float)(MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1));
-					energyPerTick = (int)Math.round(ENERGY_PER_TICK * getEnergyEfficiency() * getGravitationalAnomalyEnergyMultiply());
-					double energyMultipy = getGravitationalAnomalyEnergyMultiply();
-					matterPerTick = (float)(MATTER_DRAIN_PER_TICK * energyMultipy);
-				}
-				else
-				{
-					Block block = worldObj.getBlockState(position).getBlock();
-					TileEntity tileEntity = worldObj.getTileEntity(position);
+                    energyEfficiency = 1f - ((float) anomalyDistance / (float) (MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1));
+                    energyPerTick = (int) Math.round(ENERGY_PER_TICK * getEnergyEfficiency() * getGravitationalAnomalyEnergyMultiply());
+                    double energyMultipy = getGravitationalAnomalyEnergyMultiply();
+                    matterPerTick = (float) (MATTER_DRAIN_PER_TICK * energyMultipy);
+                } else {
+                    Block block = world.getBlockState(position).getBlock();
+                    TileEntity tileEntity = world.getTileEntity(position);
 
-					if (block == Blocks.AIR)
-					{
-						validStructure = false;
-						info = "INVALID\nSTRUCTURE";
-						break;
-					}
-					else if (block == MatterOverdrive.blocks.machine_hull)
-					{
-						if (blocks[i] == 1)
-						{
-							validStructure = false;
-							info = "NEED\nMORE\nCOILS";
-							break;
-						}
-					}
-					else if (block == MatterOverdrive.blocks.fusion_reactor_coil || tileEntity instanceof IMultiBlockTile)
-					{
-						if (blocks[i] == 0)
-						{
-							validStructure = false;
-							info = "INVALID\nMATERIALS";
-							break;
-						}
-					}
-					else if (block == MatterOverdrive.blocks.decomposer)
-					{
-						if (blocks[i] != 2)
-						{
-							validStructure = false;
-							info = "INVALID\nMATERIALS";
-							break;
-						}
-					}
-					else
-					{
-						validStructure = false;
-						info = "INVALID\nMATERIALS";
-						break;
-					}
+                    if (block == Blocks.AIR) {
+                        validStructure = false;
+                        info = "INVALID\nSTRUCTURE";
+                        break;
+                    } else if (block == MatterOverdrive.BLOCKS.machine_hull) {
+                        if (blocks[i] == 1) {
+                            validStructure = false;
+                            info = "NEED\nMORE\nCOILS";
+                            break;
+                        }
+                    } else if (block == MatterOverdrive.BLOCKS.fusion_reactor_coil || tileEntity instanceof IMultiBlockTile) {
+                        if (blocks[i] == 0) {
+                            validStructure = false;
+                            info = "INVALID\nMATERIALS";
+                            break;
+                        }
+                    } else if (block == MatterOverdrive.BLOCKS.decomposer) {
+                        if (blocks[i] != 2) {
+                            validStructure = false;
+                            info = "INVALID\nMATERIALS";
+                            break;
+                        }
+                    } else {
+                        validStructure = false;
+                        info = "INVALID\nMATERIALS";
+                        break;
+                    }
 
-					if (tileEntity instanceof IMultiBlockTile)
-					{
-						multiBlock.addMultiBlockTile((IMultiBlockTile)tileEntity);
-					}
-				}
-			}
+                    if (tileEntity instanceof IMultiBlockTile) {
+                        multiBlock.addMultiBlockTile((IMultiBlockTile) tileEntity);
+                    }
+                }
+            }
 
-			if (validStructure)
-			{
-				info = "POWER " + Math.round((1f - ((float)anomalyDistance / (float)(MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1))) * 100) + "%";
-				info += "\nCHARGE " + DecimalFormat.getPercentInstance().format((double)getEnergyStored(EnumFacing.DOWN) / (double)getMaxEnergyStored(EnumFacing.DOWN));
-				info += "\nMATTER " + DecimalFormat.getPercentInstance().format((double)matterStorage.getMatterStored() / (double)matterStorage.getCapacity());
-			}
-			else
-			{
-				energyEfficiency = 0;
-			}
+            if (validStructure) {
+                info = "POWER " + Math.round((1f - ((float) anomalyDistance / (float) (MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1))) * 100) + "%";
+                info += "\nCHARGE " + DecimalFormat.getPercentInstance().format((double) getEnergyStorage().getEnergyStored() / (double) getEnergyStorage().getMaxEnergyStored());
+                info += "\nMATTER " + DecimalFormat.getPercentInstance().format((double) matterStorage.getMatterStored() / (double) matterStorage.getCapacity());
+            } else {
+                energyEfficiency = 0;
+            }
 
-			if (this.validStructure != validStructure || !this.monitorInfo.equals(info) || this.energyEfficiency != energyEfficiency || this.matterPerTick != matterPerTick)
-			{
-				this.validStructure = validStructure;
-				this.monitorInfo = info;
-				this.energyEfficiency = energyEfficiency;
-				this.matterPerTick = matterPerTick;
-				forceSync();
-			}
-		}
-	}
+            if (this.validStructure != validStructure || !this.monitorInfo.equals(info) || this.energyEfficiency != energyEfficiency || this.matterPerTick != matterPerTick) {
+                this.validStructure = validStructure;
+                this.monitorInfo = info;
+                this.energyEfficiency = energyEfficiency;
+                this.matterPerTick = matterPerTick;
+                forceSync();
+            }
+        }
+    }
 
-	private void manageEnergyGeneration()
-	{
-		if (isActive())
-		{
-			int energyPerTick = getEnergyPerTick();
-			int energyRecived = energyStorage.modifyEnergyStored(energyPerTick);
-			if (energyRecived != 0)
-			{
-				matterDrain += getMatterDrainPerTick() * ((float)energyRecived / (float)energyPerTick);
-				if (MathHelper.floor_float(matterDrain) >= 1)
-				{
-					matterStorage.modifyMatterStored(-MathHelper.floor_float(matterDrain));
-					matterDrain -= MathHelper.floor_float(matterDrain);
-				}
-				UpdateClientPower();
-			}
-		}
-	}
+    private void manageEnergyGeneration() {
+        if (isActive()) {
+            int energyPerTick = getEnergyPerTick();
+            int energyRecived = energyStorage.modifyEnergyStored(energyPerTick);
+            if (energyRecived != 0) {
+                matterDrain += getMatterDrainPerTick() * ((float) energyRecived / (float) energyPerTick);
+                if (MathHelper.floor(matterDrain) >= 1) {
+                    matterStorage.modifyMatterStored(-MathHelper.floor(matterDrain));
+                    matterDrain -= MathHelper.floor(matterDrain);
+                }
+                UpdateClientPower();
+            }
+        }
+    }
 
-	private void manageEnergyExtract()
-	{
-		if (energyStorage.getEnergyStored() > 0)
-		{
-			for (IMultiBlockTile tile : multiBlock.getTiles())
-			{
-				if (tile instanceof TileEntityFusionReactorPart)
-				{
-					manageExtractFrom((TileEntityFusionReactorPart)tile);
-				}
-			}
-		}
+    private void manageEnergyExtract() {
+        if (energyStorage.getEnergyStored() > 0) {
+            for (IMultiBlockTile tile : multiBlock.getTiles()) {
+                if (tile instanceof TileEntityFusionReactorPart) {
+                    manageExtractFrom((TileEntityFusionReactorPart) tile);
+                }
+            }
+        }
 
-		manageExtractFrom(this);
-	}
+        manageExtractFrom(this);
+    }
 
-	private void manageExtractFrom(MOTileEntityMachineEnergy source)
-	{
-		TileEntity entity;
-		int energy;
-		int startDir = random.nextInt(6);
+    private void manageExtractFrom(MOTileEntityMachineEnergy source) {
+        TileEntity entity;
+        int energy;
+        int startDir = random.nextInt(6);
 
-		for (int i = 0; i < 6; i++)
-		{
-			energy = Math.min(energyStorage.getEnergyStored(), ENERGY_STORAGE);
-			EnumFacing dir = EnumFacing.VALUES[(i + startDir) % 6];
-			entity = worldObj.getTileEntity(source.getPos().offset(dir));
+        for (int i = 0; i < 6; i++) {
+            energy = Math.min(energyStorage.getEnergyStored(), ENERGY_STORAGE);
+            EnumFacing dir = EnumFacing.VALUES[(i + startDir) % 6];
+            entity = world.getTileEntity(source.getPos().offset(dir));
 
-			if (entity instanceof IEnergyConnection)
-			{
-				((IEnergyConnection)entity).canConnectEnergy(dir.getOpposite());
-			}
+            if (entity != null) {
+                if (entity.hasCapability(CapabilityEnergy.ENERGY, dir.getOpposite())) {
+                    energyStorage.modifyEnergyStored(-entity.getCapability(CapabilityEnergy.ENERGY, dir.getOpposite()).receiveEnergy(energy, false));
+                }
+            }
+        }
+    }
 
-			if (entity instanceof IEnergyReceiver)
-			{
-				int receivedEnergy = ((IEnergyReceiver)entity).receiveEnergy(dir.getOpposite(), energy, false);
-				energyStorage.modifyEnergyStored(-receivedEnergy);
-			}
-		}
-	}
+    @Override
+    public boolean isCharging() {
+        return this.inventory.getStackInSlot(energySlotID) != null && MOEnergyHelper.isEnergyContainerItem(this.inventory.getStackInSlot(energySlotID));
+    }
 
-	@Override
-	public boolean isCharging()
-	{
-		return this.inventory.getStackInSlot(energySlotID) != null && MOEnergyHelper.isEnergyContainerItem(this.inventory.getStackInSlot(energySlotID));
-	}
+    @Override
+    protected void manageCharging() {
+        if (isCharging()) {
+            if (!this.world.isRemote) {
+                int maxExtracted = Math.min((int) energyStorage.getOutputRate(), energyStorage.getEnergyStored());
+                int extracted = MOEnergyHelper.insertEnergyIntoContainer(this.inventory.getStackInSlot(energySlotID), maxExtracted, false);
+                energyStorage.modifyEnergyStored(extracted);
+            }
+        }
+    }
 
-	@Override
-	protected void manageCharging()
-	{
-		if (isCharging())
-		{
-			if (!this.worldObj.isRemote)
-			{
-				int maxExtracted = Math.min((int)energyStorage.getOutputRate(), energyStorage.getEnergyStored());
-				int extracted = MOEnergyHelper.insertEnergyIntoContainer(this.inventory.getStackInSlot(energySlotID), maxExtracted, false);
-				energyStorage.modifyEnergyStored(extracted);
-			}
-		}
-	}
+    public int getEnergyPerTick() {
+        return energyPerTick;
+    }
 
-	public int getEnergyPerTick()
-	{
-		return energyPerTick;
-	}
+    public double getGravitationalAnomalyEnergyMultiply() {
+        if (anomalyPosition != null) {
+            TileEntity entity = world.getTileEntity(getPos().add(anomalyPosition));
+            if (entity instanceof TileEntityGravitationalAnomaly) {
+                return ((TileEntityGravitationalAnomaly) entity).getRealMassUnsuppressed();
+            }
+        }
+        return 0;
+    }
 
-	public double getGravitationalAnomalyEnergyMultiply()
-	{
-		if (anomalyPosition != null)
-		{
-			TileEntity entity = worldObj.getTileEntity(getPos().add(anomalyPosition));
-			if (entity instanceof TileEntityGravitationalAnomaly)
-			{
-				return ((TileEntityGravitationalAnomaly)entity).getRealMassUnsuppressed();
-			}
-		}
-		return 0;
-	}
+    public float getMatterDrainPerTick() {
+        return matterPerTick;
+    }
 
-	public float getMatterDrainPerTick()
-	{
-		return matterPerTick;
-	}
+    public boolean isGeneratingPower() {
+        return getEnergyEfficiency() > 0
+                && getEnergyStorage().getEnergyStored() < getEnergyStorage().getMaxEnergyStored()
+                && matterStorage.getMatterStored() > getMatterDrainPerTick();
+    }
 
-	public boolean isGeneratingPower()
-	{
-		return getEnergyEfficiency() > 0
-				&& getEnergyStorage().getEnergyStored() < getEnergyStorage().getMaxEnergyStored()
-				&& matterStorage.getMatterStored() > getMatterDrainPerTick();
-	}
+    public float getEnergyEfficiency() {
+        return energyEfficiency;
+    }
 
-	public float getEnergyEfficiency()
-	{
-		return energyEfficiency;
-	}
+    private BlockPos checkForGravitationalAnomaly(BlockPos position, EnumFacing up) {
+        for (int i = -MAX_GRAVITATIONAL_ANOMALY_DISTANCE; i < MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1; i++) {
+            Block block = world.getBlockState(position.offset(up, i)).getBlock();
+            if (block != null && block == MatterOverdrive.BLOCKS.gravitational_anomaly) {
+                return new BlockPos(0, 0, 0).offset(up, i);
+            }
+        }
 
-	private BlockPos checkForGravitationalAnomaly(BlockPos position, EnumFacing up)
-	{
-		for (int i = -MAX_GRAVITATIONAL_ANOMALY_DISTANCE; i < MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1; i++)
-		{
-			Block block = worldObj.getBlockState(position.offset(up, i)).getBlock();
-			if (block != null && block == MatterOverdrive.blocks.gravitational_anomaly)
-			{
-				return new BlockPos(0, 0, 0).offset(up, i);
-			}
-		}
+        return null;
+    }
 
-		return null;
-	}
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
 
-	public boolean shouldRenderInPass(int pass)
-	{
-		return pass == 1;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox() {
+        EnumFacing backSide = getOppositeSide(world.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION));
+        return new AxisAlignedBB(getPos().getX(), getPos().getY(), getPos().getZ(), getPos().getX() + backSide.getDirectionVec().getX() * 10, getPos().getY() + backSide.getDirectionVec().getY() * 10, getPos().getZ() + backSide.getDirectionVec().getZ() * 10);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public AxisAlignedBB getRenderBoundingBox()
-	{
-		EnumFacing backSide = getOppositeSide(worldObj.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION));
-		return new AxisAlignedBB(getPos().getX(), getPos().getY(), getPos().getZ(), getPos().getX() + backSide.getDirectionVec().getX() * 10, getPos().getY() + backSide.getDirectionVec().getY() * 10, getPos().getZ() + backSide.getDirectionVec().getZ() * 10);
-	}
+    public boolean isValidStructure() {
+        return validStructure;
+    }
 
-	public boolean isValidStructure()
-	{
-		return validStructure;
-	}
+    public String getMonitorInfo() {
+        return monitorInfo;
+    }
 
-	public String getMonitorInfo()
-	{
-		return monitorInfo;
-	}
+    @Override
+    public boolean isAffectedByUpgrade(UpgradeTypes type) {
+        return type == UpgradeTypes.PowerStorage || type == UpgradeTypes.Range || type == UpgradeTypes.Speed;
+    }
 
-	@Override
-	public boolean isAffectedByUpgrade(UpgradeTypes type)
-	{
-		return type == UpgradeTypes.PowerStorage || type == UpgradeTypes.Range || type == UpgradeTypes.Speed;
-	}
+    @Override
+    protected void onMachineEvent(MachineEvent event) {
 
-	@Override
-	protected void onMachineEvent(MachineEvent event)
-	{
+    }
 
-	}
+    @Override
+    public int[] getSlotsForFace(EnumFacing side) {
+        return new int[0];
+    }
 
-	@Override
-	public int[] getSlotsForFace(EnumFacing side)
-	{
-		return new int[0];
-	}
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityEnergy.ENERGY) {
+            return true;
+        }
+        return super.hasCapability(capability, facing);
+    }
 
-	@Override
-	public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing)
-	{
-		if (capability == MatterOverdriveCapabilities.TESLA_PRODUCER)
-		{
-			return true;
-		}
-		return super.hasCapability(capability, facing);
-	}
+    @Nonnull
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityEnergy.ENERGY) {
+            return (T) energyStorage;
+        }
+        return super.getCapability(capability, facing);
+    }
 
-	@Nonnull
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
-	{
-		if (capability == MatterOverdriveCapabilities.TESLA_PRODUCER)
-		{
-			return (T)energyStorage;
-		}
-		return super.getCapability(capability, facing);
-	}
-
-	//region All Computers
+    //region All Computers
 	/*//region ComputerCraft
 	@Override
 	@Optional.Method(modid = "ComputerCraft")
@@ -587,5 +491,5 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
 		return componentComputers.invoke(method,context,args);
 	}
     //endregion*/
-	//endregion
+    //endregion
 }

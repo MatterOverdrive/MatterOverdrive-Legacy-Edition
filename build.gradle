@@ -1,97 +1,84 @@
-// Define properties file
-ext.configFile = file "build.properties"
-
-configFile.withReader {
-    // Load config.
-    def prop = new Properties()
-    prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop
-}
-
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'maven'
-apply plugin: 'com.jfrog.bintray'
-apply from: 'gradle/scripts/dependencies.gradle'
-apply from: 'gradle/scripts/artifacts.gradle'
-
 buildscript {
     repositories {
         jcenter()
-        mavenCentral()
-        maven {
-            name = "ForgeFS"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
+        maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+apply plugin: 'net.minecraftforge.gradle.forge'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
 
-version = "${config.mc_version}-${config.mod_version}"
+def mod_version = '2.0.0'
+
+version = "1.12.2-"+mod_version
 
 if (System.getenv('TRAVIS_BUILD_NUMBER') != null) {
     version += "-build-" + System.getenv('TRAVIS_BUILD_NUMBER')
 }
 
-def getDate() {
-    def date = new Date()
-    def formattedDate = date.format('dd.MM.yyyy')
-    return formattedDate
-}
+group= "matteroverdrive"
+archivesBaseName = "MatterOverdrive"
 
-group= "${config.mo_group}"
-archivesBaseName = "${config.mo_base_name}"
 
 minecraft {
-    version = config.mc_version + "-" + config.forge_version
+    version = "1.12.2-14.23.1.2607"
     runDir = "run"
-    mappings = config.mcp_mappings
-
-    makeObfSourceJar = false
+    mappings = "snapshot_20171003"
 
     replaceIn "Reference.java"
-    replace "@VERSION@", config.mod_version
-	replace "@DATE@", getDate()
+    replace "@VERSION@", version
+}
+
+repositories {
+    maven {
+        name "tterrag"
+        url "http://maven.tterrag.com"
+    }
+    maven {url "http://tehnut.info/maven"}
+    maven {url "http://modmaven.k-4u.nl"}
+    maven {
+        name "progwml6"
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+}
+
+dependencies {
+    deobfProvided "mezz.jei:jei_1.12.2:4.8.5.138:api"
+    runtime "mezz.jei:jei_1.12.2:4.8.5.138"
+
+    deobfCompile group: 'mcp.mobius.waila', name: 'Hwyla', version: '1.8.23-B38_1.12'
+
+    compile "com.astro.clib:CLib:1.0.1.27:deobf"
 }
 
 processResources {
-    inputs.property "version", config.mod_version
-    inputs.property "mcversion", config.mc_version
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
 
-    from (sourceSets.main.resources.srcDirs) {
-        include "mcmod.info"
-        expand "version": config.mod_version, "mcversion": config.mc_version
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-    from (sourceSets.main.resources.srcDirs) {
-        exclude "mcmod.info"
+
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
     }
 }
 
-bintray {
-    user = 'simeonradivoev'
-    key = System.getenv('BINTRAY_KEY')
-    pkg {
-        repo = 'MatterOverdrive'
-        name = 'mo'
-        userOrg = 'simeonradivoev'
-        version {
-            name = config.mc_version + '-' + config.mod_version
-            released  = new Date()
-            desc = System.getenv('TRAVIS_COMMIT')
-        }
-        filesSpec {
-            from 'build/libs'
-            into 'builds'
-        }
-        publish = true
+
+jar {
+    manifest {
+        attributes 'FMLAT': 'mo_at.cfg'
     }
 }

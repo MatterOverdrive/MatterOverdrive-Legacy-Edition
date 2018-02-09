@@ -33,75 +33,62 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Created by Simeon on 6/17/2015.
  */
 @SideOnly(Side.CLIENT)
-public class GalaxyClient extends GalaxyCommon
-{
-	//region Private Vars
-	private static GalaxyClient instance;
-	//endregion
+public class GalaxyClient extends GalaxyCommon {
+    //region Private Vars
+    private static GalaxyClient instance;
+    //endregion
 
-	//region Constructors
-	public GalaxyClient()
-	{
-		super();
-	}
-	//endregion
+    //region Constructors
+    public GalaxyClient() {
+        super();
+    }
+    //endregion
 
-	//region Getters and Setters
-	public static GalaxyClient getInstance()
-	{
-		if (instance == null)
-		{
-			instance = new GalaxyClient();
-		}
+    //region Getters and Setters
+    public static GalaxyClient getInstance() {
+        if (instance == null) {
+            instance = new GalaxyClient();
+        }
 
-		return instance;
-	}
+        return instance;
+    }
 
-	public boolean canSeePlanetInfo(Planet planet, EntityPlayer player)
-	{
-		if (planet.isOwner(player) || player.capabilities.isCreativeMode)
-		{
-			return true;
-		}
+    public boolean canSeePlanetInfo(Planet planet, EntityPlayer player) {
+        if (planet.isOwner(player) || player.capabilities.isCreativeMode) {
+            return true;
+        }
 
-		for (ItemStack shipStack : planet.getFleet())
-		{
-			if (((IShip)shipStack.getItem()).isOwner(shipStack, player))
-			{
-				return true;
-			}
-		}
+        for (ItemStack shipStack : planet.getFleet()) {
+            if (((IShip) shipStack.getItem()).isOwner(shipStack, player)) {
+                return true;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public boolean canSeeStarInfo(Star star, EntityPlayer player)
-	{
-		for (Planet planet : star.getPlanets())
-		{
-			if (canSeePlanetInfo(planet, player))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	//endregion
+    public boolean canSeeStarInfo(Star star, EntityPlayer player) {
+        for (Planet planet : star.getPlanets()) {
+            if (canSeePlanetInfo(planet, player)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    //endregion
 
-	//region Events
-	@SubscribeEvent
-	public void onClientTick(TickEvent.ClientTickEvent event)
-	{
-		if (Minecraft.getMinecraft().theWorld != null &&
-				theGalaxy != null &&
-				!Minecraft.getMinecraft().isGamePaused() &&
-				Minecraft.getMinecraft().theWorld.isRemote &&
-				Minecraft.getMinecraft().theWorld.provider.getDimension() == 0 &&
-				event.phase == TickEvent.Phase.START &&
-				Minecraft.getMinecraft().theWorld != null)
-		{
-			theGalaxy.update(Minecraft.getMinecraft().theWorld);
-		}
-	}
-	//endregion
+    //region Events
+    @SubscribeEvent
+    public void onClientTick(TickEvent.ClientTickEvent event) {
+        if (Minecraft.getMinecraft().world != null &&
+                theGalaxy != null &&
+                !Minecraft.getMinecraft().isGamePaused() &&
+                Minecraft.getMinecraft().world.isRemote &&
+                Minecraft.getMinecraft().world.provider.getDimension() == 0 &&
+                event.phase == TickEvent.Phase.START &&
+                Minecraft.getMinecraft().world != null) {
+            theGalaxy.update(Minecraft.getMinecraft().world);
+        }
+    }
+    //endregion
 }

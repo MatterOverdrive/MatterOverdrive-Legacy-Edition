@@ -29,24 +29,20 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 11/22/2015.
  */
-public class BlockContractMarket extends BlockMonitor<TileEntityMachineContractMarket>
-{
-	public BlockContractMarket(Material material, String name)
-	{
-		super(material, name);
-		setHasGui(true);
-	}
+public class BlockContractMarket extends BlockMonitor<TileEntityMachineContractMarket> {
+    public BlockContractMarket(Material material, String name) {
+        super(material, name);
+        setHasGui(true);
+    }
 
-	@Override
-	public Class<TileEntityMachineContractMarket> getTileEntityClass()
-	{
-		return TileEntityMachineContractMarket.class;
-	}
+    @Override
+    public Class<TileEntityMachineContractMarket> getTileEntityClass() {
+        return TileEntityMachineContractMarket.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityMachineContractMarket();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityMachineContractMarket();
+    }
 }

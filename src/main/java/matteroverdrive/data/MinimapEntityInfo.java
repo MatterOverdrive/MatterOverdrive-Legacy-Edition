@@ -26,65 +26,53 @@ import net.minecraft.entity.player.EntityPlayer;
 /**
  * Created by Simeon on 9/7/2015.
  */
-public class MinimapEntityInfo
-{
-	boolean isAttacking;
-	int entityID;
+public class MinimapEntityInfo {
+    boolean isAttacking;
+    int entityID;
 
-	public MinimapEntityInfo()
-	{
-	}
+    public MinimapEntityInfo() {
+    }
 
-	public MinimapEntityInfo(EntityLivingBase entityLivingBase, EntityPlayer player)
-	{
-		if (entityLivingBase instanceof EntityLiving && ((EntityLiving)entityLivingBase).getAttackTarget() != null)
-		{
-			isAttacking = ((EntityLiving)entityLivingBase).getAttackTarget().equals(player);
-		}
+    public MinimapEntityInfo(EntityLivingBase entityLivingBase, EntityPlayer player) {
+        if (entityLivingBase instanceof EntityLiving && ((EntityLiving) entityLivingBase).getAttackTarget() != null) {
+            isAttacking = ((EntityLiving) entityLivingBase).getAttackTarget().equals(player);
+        }
 
-		entityID = entityLivingBase.getEntityId();
-	}
+        entityID = entityLivingBase.getEntityId();
+    }
 
-	public static boolean hasInfo(EntityLivingBase entityLivingBase, EntityPlayer player)
-	{
-		if (entityLivingBase instanceof EntityLiving && ((EntityLiving)entityLivingBase).getAttackTarget() != null)
-		{
-			return ((EntityLiving)entityLivingBase).getAttackTarget().equals(player);
-		}
-		return false;
-	}
+    public static boolean hasInfo(EntityLivingBase entityLivingBase, EntityPlayer player) {
+        if (entityLivingBase instanceof EntityLiving && ((EntityLiving) entityLivingBase).getAttackTarget() != null) {
+            return ((EntityLiving) entityLivingBase).getAttackTarget().equals(player);
+        }
+        return false;
+    }
 
-	public MinimapEntityInfo writeToBuffer(ByteBuf buf)
-	{
-		buf.writeBoolean(isAttacking);
-		buf.writeInt(entityID);
-		return this;
-	}
+    public MinimapEntityInfo writeToBuffer(ByteBuf buf) {
+        buf.writeBoolean(isAttacking);
+        buf.writeInt(entityID);
+        return this;
+    }
 
-	public MinimapEntityInfo readFromBuffer(ByteBuf buf)
-	{
-		isAttacking = buf.readBoolean();
-		entityID = buf.readInt();
-		return this;
-	}
+    public MinimapEntityInfo readFromBuffer(ByteBuf buf) {
+        isAttacking = buf.readBoolean();
+        entityID = buf.readInt();
+        return this;
+    }
 
-	public int getEntityID()
-	{
-		return entityID;
-	}
+    public int getEntityID() {
+        return entityID;
+    }
 
-	public void setEntityID(int entityID)
-	{
-		this.entityID = entityID;
-	}
+    public void setEntityID(int entityID) {
+        this.entityID = entityID;
+    }
 
-	public boolean isAttacking()
-	{
-		return isAttacking;
-	}
+    public boolean isAttacking() {
+        return isAttacking;
+    }
 
-	public void setIsAttacking(boolean isAttacking)
-	{
-		this.isAttacking = isAttacking;
-	}
+    public void setIsAttacking(boolean isAttacking) {
+        this.isAttacking = isAttacking;
+    }
 }

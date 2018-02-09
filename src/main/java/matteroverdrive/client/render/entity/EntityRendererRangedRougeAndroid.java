@@ -22,30 +22,24 @@ import matteroverdrive.Reference;
 import matteroverdrive.client.data.Color;
 import matteroverdrive.client.model.MOModelRenderColored;
 import matteroverdrive.entity.monster.EntityRangedRogueAndroidMob;
-import matteroverdrive.entity.monster.EntityRougeAndroidMob;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 
 /**
  * Created by Simeon on 11/15/2015.
  */
-public class EntityRendererRangedRougeAndroid extends EntityRendererRougeAndroid<EntityRangedRogueAndroidMob>
-{
-	public static final ResourceLocation texture = new ResourceLocation(Reference.PATH_ENTITIES + "android_ranged.png");
-	final MOModelRenderColored visorModel;
+public class EntityRendererRangedRougeAndroid extends EntityRendererRougeAndroid<EntityRangedRogueAndroidMob> {
+    public static final ResourceLocation texture = new ResourceLocation(Reference.PATH_ENTITIES + "android_ranged.png");
+    final MOModelRenderColored visorModel;
 
-	public EntityRendererRangedRougeAndroid(RenderManager renderManager)
-	{
-		super(renderManager, new ModelBiped(0, 0, 96, 64), 0, false);
-		visorModel = new MOModelRenderColored(modelBipedMain, 64, 0);
-		visorModel.setDisableLighting(true);
-		visorModel.addBox(-4, -8, -4, 8, 8, 8);
-		((ModelBiped)mainModel).bipedHead.addChild(visorModel);
-		modelBipedMain.bipedHead.addChild(visorModel);
-	}
+    public EntityRendererRangedRougeAndroid(RenderManager renderManager) {
+        super(renderManager, new ModelBiped(0, 0, 96, 64), 0, false);
+        visorModel = new MOModelRenderColored(mainModel, 64, 0);
+        visorModel.setDisableLighting(true);
+        visorModel.addBox(-4, -8, -4, 8, 8, 8);
+        ((ModelBiped) mainModel).bipedHead.addChild(visorModel);
+    }
 
     /*@Override
 	protected void func_82422_c()
@@ -56,19 +50,17 @@ public class EntityRendererRangedRougeAndroid extends EntityRendererRougeAndroid
         GlStateManager.scale(0.6,0.6,0.6);
     }*/
 
-	@Override
-	protected ResourceLocation getEntityTexture(EntityRangedRogueAndroidMob entity)
-	{
-		return texture;
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(EntityRangedRogueAndroidMob entity) {
+        return texture;
+    }
 
-	@Override
-	public void doRender(EntityRangedRogueAndroidMob entity, double x, double y, double z, float entityYaw, float partialTicks)
-	{
-		visorModel.setColor(new Color(entity.getVisorColor()));
+    @Override
+    public void doRender(EntityRangedRogueAndroidMob entity, double x, double y, double z, float entityYaw, float partialTicks) {
+        visorModel.setColor(new Color(entity.getVisorColor()));
 
-		this.modelBipedMain.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
-		super.doRender(entity, x, y, z, entityYaw, partialTicks);
-	}
+        ((ModelBiped) mainModel).rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
+        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+    }
 
 }

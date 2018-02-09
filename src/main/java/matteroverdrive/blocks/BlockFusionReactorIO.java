@@ -30,28 +30,24 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 10/30/2015.
  */
-public class BlockFusionReactorIO extends MOBlockMachine<TileEntityFusionReactorPart>
-{
-	public BlockFusionReactorIO(Material material, String name)
-	{
-		super(material, name);
-		setHardness(30.0F);
-		this.setResistance(10.0f);
-		this.setHarvestLevel("pickaxe", 2);
-	}
+public class BlockFusionReactorIO extends MOBlockMachine<TileEntityFusionReactorPart> {
+    public BlockFusionReactorIO(Material material, String name) {
+        super(material, name);
+        setHardness(30.0F);
+        this.setResistance(10.0f);
+        this.setHarvestLevel("pickaxe", 2);
+    }
 
-	@Override
-	public Class<TileEntityFusionReactorPart> getTileEntityClass()
-	{
-		return TileEntityFusionReactorPart.class;
-	}
+    @Override
+    public Class<TileEntityFusionReactorPart> getTileEntityClass() {
+        return TileEntityFusionReactorPart.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityFusionReactorPart();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityFusionReactorPart();
+    }
 
     /*@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)

@@ -33,45 +33,38 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 7/20/2015.
  */
-public class Api implements IMOApi
-{
-	public static final Api INSTANCE = new Api();
+public class Api implements IMOApi {
+    public static final Api INSTANCE = new Api();
 
-	@Override
-	public IMatterRegistry getMatterRegistry()
-	{
-		return MatterOverdrive.matterRegistry;
-	}
+    @Override
+    public IMatterRegistry getMatterRegistry() {
+        return MatterOverdrive.matterRegistry;
+    }
 
-	@Override
-	public IAndroidStatRegistry getAndroidStatRegistry()
-	{
-		return MatterOverdrive.statRegistry;
-	}
+    @Override
+    public IAndroidStatRegistry getAndroidStatRegistry() {
+        return MatterOverdrive.statRegistry;
+    }
 
-	@Override
-	public IDialogRegistry getDialogRegistry()
-	{
-		return MatterOverdrive.dialogRegistry;
-	}
+    @Override
+    public IDialogRegistry getDialogRegistry() {
+        return MatterOverdrive.dialogRegistry;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IAndroidStatRenderRegistry getAndroidStatRenderRegistry()
-	{
-		return ClientProxy.renderHandler.getStatRenderRegistry();
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IAndroidStatRenderRegistry getAndroidStatRenderRegistry() {
+        return ClientProxy.renderHandler.getStatRenderRegistry();
+    }
 
-	@Override
-	public IBionicPartRenderRegistry getBionicStatRenderRegistry()
-	{
-		return ClientProxy.renderHandler.getBionicPartRenderRegistry();
-	}
+    @Override
+    public IBionicPartRenderRegistry getBionicStatRenderRegistry() {
+        return ClientProxy.renderHandler.getBionicPartRenderRegistry();
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IStarmapRenderRegistry getStarmapRenderRegistry()
-	{
-		return ClientProxy.renderHandler.getStarmapRenderRegistry();
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IStarmapRenderRegistry getStarmapRenderRegistry() {
+        return ClientProxy.renderHandler.getStarmapRenderRegistry();
+    }
 }

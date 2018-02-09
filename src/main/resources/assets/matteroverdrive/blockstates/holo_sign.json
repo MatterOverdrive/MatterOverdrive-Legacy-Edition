@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:holo_sign"
+  },
+  "variants": {
+    "normal": {"model": "matteroverdrive:holo_sign"},
+    "facing=north": { "model": "matteroverdrive:holo_sign"},
+    "facing=south": { "model": "matteroverdrive:holo_sign","y": 180 },
+    "facing=west":  { "model": "matteroverdrive:holo_sign","y": 270 },
+    "facing=east":  { "model": "matteroverdrive:holo_sign","y": 90 },
+    "inventory": {
+      "model": "matteroverdrive:holo_sign",
+      "transform": "forge:default-block"
+    }
+  }
+}

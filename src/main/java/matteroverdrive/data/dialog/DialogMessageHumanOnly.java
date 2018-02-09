@@ -25,26 +25,21 @@ import net.minecraft.entity.player.EntityPlayer;
 /**
  * Created by Simeon on 8/12/2015.
  */
-public class DialogMessageHumanOnly extends DialogMessage
-{
-	public DialogMessageHumanOnly()
-	{
-		super();
-	}
+public class DialogMessageHumanOnly extends DialogMessage {
+    public DialogMessageHumanOnly() {
+        super();
+    }
 
-	public DialogMessageHumanOnly(String message)
-	{
-		super(message);
-	}
+    public DialogMessageHumanOnly(String message) {
+        super(message);
+    }
 
-	public DialogMessageHumanOnly(String message, String question)
-	{
-		super(message, question);
-	}
+    public DialogMessageHumanOnly(String message, String question) {
+        super(message, question);
+    }
 
-	@Override
-	public boolean isVisible(IDialogNpc npc, EntityPlayer player)
-	{
-		return MOPlayerCapabilityProvider.GetAndroidCapability(player) == null || !MOPlayerCapabilityProvider.GetAndroidCapability(player).isAndroid();
-	}
+    @Override
+    public boolean isVisible(IDialogNpc npc, EntityPlayer player) {
+        return MOPlayerCapabilityProvider.GetAndroidCapability(player) == null || !MOPlayerCapabilityProvider.GetAndroidCapability(player).isAndroid();
+    }
 }

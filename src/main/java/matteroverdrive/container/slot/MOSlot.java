@@ -28,49 +28,46 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 4/8/2015.
  */
-public class MOSlot extends Slot
-{
-	protected String unlocalizedTooltip;
-	boolean isVisible = true;
+public class MOSlot extends Slot {
+    protected String unlocalizedTooltip;
+    boolean isVisible = true;
 
-	public MOSlot(IInventory inventory, int slot, int x, int y)
-	{
-		super(inventory, slot, x, y);
-	}
+    public MOSlot(IInventory inventory, int slot, int x, int y) {
+        super(inventory, slot, x, y);
+    }
 
-	@SideOnly(Side.CLIENT)
-	public boolean func_111238_b()
-	{
-		return isVisible;
-	}
+    @SideOnly(Side.CLIENT)
+    public boolean func_111238_b() {
+        return isVisible;
+    }
 
-	/**
-	 * Check if the stack is a valid item for this slot. Always true beside for the armor slots.
-	 */
-	@Override
-	public boolean isItemValid(ItemStack itemStack)
-	{
-		return isValid(itemStack);
-	}
+    @Override
+    public ItemStack getStack() {
+        return super.getStack() == null ? ItemStack.EMPTY : super.getStack();
+    }
 
-	public boolean isValid(ItemStack itemStack)
-	{
-		return true;
-	}
+    /**
+     * Check if the stack is a valid item for this slot. Always true beside for the armor slots.
+     */
+    @Override
+    public boolean isItemValid(ItemStack itemStack) {
+        return isValid(itemStack);
+    }
 
-	public void setVisible(boolean visible)
-	{
-		this.isVisible = visible;
-	}
+    public boolean isValid(ItemStack itemStack) {
+        return true;
+    }
 
-	@SideOnly(Side.CLIENT)
-	public HoloIcon getHoloIcon()
-	{
-		return null;
-	}
+    public void setVisible(boolean visible) {
+        this.isVisible = visible;
+    }
 
-	public String getUnlocalizedTooltip()
-	{
-		return unlocalizedTooltip;
-	}
+    @SideOnly(Side.CLIENT)
+    public HoloIcon getHoloIcon() {
+        return null;
+    }
+
+    public String getUnlocalizedTooltip() {
+        return unlocalizedTooltip;
+    }
 }

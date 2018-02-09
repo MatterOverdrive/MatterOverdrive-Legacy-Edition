@@ -21,7 +21,6 @@ package matteroverdrive.api.matter_network;
 /**
  * Created by Simeon on 4/19/2015.
  */
-public interface IMatterNetworkClient
-{
-	IMatterNetworkComponent getMatterNetworkComponent();
+public interface IMatterNetworkClient {
+    IMatterNetworkComponent getMatterNetworkComponent();
 }

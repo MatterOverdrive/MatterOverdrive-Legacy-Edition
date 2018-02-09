@@ -20,17 +20,16 @@ package matteroverdrive.world.buildings;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 
 import java.util.Random;
 
 /**
  * Created by Simeon on 11/26/2015.
  */
-public interface IMOWorldGenBuilding<T extends MOWorldGenBuilding.ImageGenWorker>
-{
-	String getName();
+public interface IMOWorldGenBuilding<T extends MOWorldGenBuilding.ImageGenWorker> {
+    String getName();
 
-	void generate(Random random, BlockPos pos, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, int layer, int placeNotify, T worker);
+    void generate(Random random, BlockPos pos, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, int layer, int placeNotify, T worker);
 }

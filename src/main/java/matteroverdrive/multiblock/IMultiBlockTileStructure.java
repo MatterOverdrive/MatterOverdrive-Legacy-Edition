@@ -21,11 +21,10 @@ package matteroverdrive.multiblock;
 /**
  * Created by Simeon on 10/30/2015.
  */
-public interface IMultiBlockTileStructure
-{
-	boolean addMultiBlockTile(IMultiBlockTile block);
+public interface IMultiBlockTileStructure {
+    boolean addMultiBlockTile(IMultiBlockTile block);
 
-	void removeMultiBlockTile(IMultiBlockTile block);
+    void removeMultiBlockTile(IMultiBlockTile block);
 
-	boolean containsMultiBlockTile(IMultiBlockTile block);
+    boolean containsMultiBlockTile(IMultiBlockTile block);
 }

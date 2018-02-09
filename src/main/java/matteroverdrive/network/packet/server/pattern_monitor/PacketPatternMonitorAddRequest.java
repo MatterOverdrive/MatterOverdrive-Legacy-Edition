@@ -15,56 +15,47 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 /**
  * Created by Simeon on 4/26/2015.
  */
-public class PacketPatternMonitorAddRequest extends TileEntityUpdatePacket
-{
-	private ItemPattern pattern;
-	private int amount;
+public class PacketPatternMonitorAddRequest extends TileEntityUpdatePacket {
+    private ItemPattern pattern;
+    private int amount;
 
-	public PacketPatternMonitorAddRequest()
-	{
-		super();
-	}
+    public PacketPatternMonitorAddRequest() {
+        super();
+    }
 
-	public PacketPatternMonitorAddRequest(TileEntityMachinePatternMonitor monitor, ItemPattern pattern, int amount)
-	{
-		super(monitor);
-		this.pattern = pattern;
-		this.amount = amount;
-	}
+    public PacketPatternMonitorAddRequest(TileEntityMachinePatternMonitor monitor, ItemPattern pattern, int amount) {
+        super(monitor);
+        this.pattern = pattern;
+        this.amount = amount;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf)
-	{
-		super.fromBytes(buf);
-		pattern = ItemPattern.fromBuffer(buf);
-		amount = buf.readShort();
-	}
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        super.fromBytes(buf);
+        pattern = ItemPattern.fromBuffer(buf);
+        amount = buf.readShort();
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf)
-	{
-		super.toBytes(buf);
-		ItemPattern.writeToBuffer(buf, pattern);
-		buf.writeShort(amount);
-	}
+    @Override
+    public void toBytes(ByteBuf buf) {
+        super.toBytes(buf);
+        ItemPattern.writeToBuffer(buf, pattern);
+        buf.writeShort(amount);
+    }
 
-	public static class ServerHandler extends AbstractServerPacketHandler<PacketPatternMonitorAddRequest>
-	{
-		@Override
-		public void handleServerMessage(EntityPlayerMP player, PacketPatternMonitorAddRequest message, MessageContext ctx)
-		{
-			TileEntity entity = message.getTileEntity(player.worldObj);
-			if (entity != null && entity instanceof TileEntityMachinePatternMonitor)
-			{
-				TileEntityMachinePatternMonitor monitor = (TileEntityMachinePatternMonitor)entity;
+    public static class ServerHandler extends AbstractServerPacketHandler<PacketPatternMonitorAddRequest> {
+        @Override
+        public void handleServerMessage(EntityPlayerMP player, PacketPatternMonitorAddRequest message, MessageContext ctx) {
+            TileEntity entity = message.getTileEntity(player.world);
+            if (entity != null && entity instanceof TileEntityMachinePatternMonitor) {
+                TileEntityMachinePatternMonitor monitor = (TileEntityMachinePatternMonitor) entity;
 
-				if (monitor != null)
-				{
-					MatterNetworkTaskReplicatePattern task = new MatterNetworkTaskReplicatePattern(message.pattern, message.amount);
-					task.setState(MatterNetworkTaskState.WAITING);
-					monitor.getComponent(ComponentTaskProcessingPatternMonitor.class).addReplicateTask(task);
-				}
-			}
-		}
-	}
+                if (monitor != null) {
+                    MatterNetworkTaskReplicatePattern task = new MatterNetworkTaskReplicatePattern(message.pattern, message.amount);
+                    task.setState(MatterNetworkTaskState.WAITING);
+                    monitor.getComponent(ComponentTaskProcessingPatternMonitor.class).addReplicateTask(task);
+                }
+            }
+        }
+    }
 }

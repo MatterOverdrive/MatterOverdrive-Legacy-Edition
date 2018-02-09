@@ -1,0 +1,27 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">Tritanium</title>
+        <preview index="0" size="2" style="margin-bottom:7px"></preview>
+        <text class="matter-text text-block">$itemName is a metal known to be as twice as hard as [item mod=minecraft name=diamond].
+            It is mainly used as a construction material in most Matter Overdrive machines, but can be used to craft [guide name=tritanium_tools] and [guide name=tritanium_armor] as well.</text>
+        <text class="matter-text text-block">Tritanium can broken into 9 [item name=tritanium_nugget] and 2 ingots can be compressed to create [item name=tritanium_plate].</text>
+    </page>
+</entry>

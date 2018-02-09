@@ -18,28 +18,18 @@
 
 package matteroverdrive.blocks.includes;
 
+import com.astro.clib.api.TileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.shadowfacts.shadowmc.block.TileEntityProvider;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public abstract class MOBlockContainer<TE extends TileEntity> extends MOBlock implements TileEntityProvider<TE>
-{
-	public MOBlockContainer(Material material, String name)
-	{
-		super(material, name);
-		this.isBlockContainer = true;
-	}
+public abstract class MOBlockContainer<TE extends TileEntity> extends MOBlock implements TileEntityProvider<TE> {
+    public MOBlockContainer(Material material, String name) {
+        super(material, name);
+        if (hasTileEntity(getDefaultState()) && TileEntity.getKey(getTileEntityClass()) == null)
+            GameRegistry.registerTileEntity(getTileEntityClass(), "matteroverdrive:" + name);
+    }
 
-	@Override
-	public abstract Class<TE> getTileEntityClass();
-
-	@Override
-	public boolean hasTileEntity(IBlockState state)
-	{
-		return true;
-	}
-
+    @Override
+    public abstract Class<TE> getTileEntityClass();
 }

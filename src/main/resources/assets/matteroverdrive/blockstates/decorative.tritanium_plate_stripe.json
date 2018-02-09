@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_bottom_top",
+    "textures": {
+      "bottom": "matteroverdrive:blocks/tritanium_plate",
+      "top": "matteroverdrive:blocks/tritanium_plate",
+      "side": "matteroverdrive:blocks/tritanium_plate_yellow_stripe",
+      "particle": "matteroverdrive:blocks/tritanium_plate_yellow_stripe"
+    }
+  },
+  "variants": {
+    "normal": {"model": "cube_bottom_top"},
+    "inventory": {
+      "model": "cube_bottom_top",
+      "transform": "forge:default-block"
+    }
+  }
+}

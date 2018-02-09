@@ -19,112 +19,97 @@
 package matteroverdrive.data;
 
 import matteroverdrive.api.matter.IMatterHandler;
-import matteroverdrive.init.MatterOverdriveFluids;
+import matteroverdrive.init.OverdriveFluids;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 
 /**
  * Created by Simeon on 8/7/2015.
  */
-public class MatterStorage extends FluidTank implements IMatterHandler
-{
+public class MatterStorage extends FluidTank implements IMatterHandler {
 
-	private int maxExtract;
-	private int maxReceive;
+    private int maxExtract;
+    private int maxReceive;
 
-	public MatterStorage(int capacity)
-	{
-		this(capacity, capacity, capacity);
-	}
+    public MatterStorage(int capacity) {
+        this(capacity, capacity, capacity);
+    }
 
-	public MatterStorage(int capacity, int maxTransfer) {
-		this(capacity, maxTransfer, maxTransfer);
-	}
+    public MatterStorage(int capacity, int maxTransfer) {
+        this(capacity, maxTransfer, maxTransfer);
+    }
 
-	public MatterStorage(int capacity, int maxExtract, int maxReceive)
-	{
-		super(capacity);
-		this.maxExtract = maxExtract;
-		this.maxReceive = maxReceive;
-	}
+    public MatterStorage(int capacity, int maxExtract, int maxReceive) {
+        super(capacity);
+        this.maxExtract = maxExtract;
+        this.maxReceive = maxReceive;
+    }
 
-	public int getMaxExtract()
-	{
-		return maxExtract;
-	}
+    public int getMaxExtract() {
+        return maxExtract;
+    }
 
-	public int getMaxReceive()
-	{
-		return maxReceive;
-	}
+    public void setMaxExtract(int maxExtract) {
+        this.maxExtract = maxExtract;
+    }
 
-	public void setMaxExtract(int maxExtract)
-	{
-		this.maxExtract = maxExtract;
-	}
+    public int getMaxReceive() {
+        return maxReceive;
+    }
 
-	public void setMaxReceive(int maxReceive)
-	{
-		this.maxReceive = maxReceive;
-	}
+    public void setMaxReceive(int maxReceive) {
+        this.maxReceive = maxReceive;
+    }
 
-	@Override
-	public boolean canFillFluidType(FluidStack fluid)
-	{
-		return fluid.getFluid() == MatterOverdriveFluids.matterPlasma;
-	}
+    @Override
+    public boolean canFillFluidType(FluidStack fluid) {
+        return fluid.getFluid() == OverdriveFluids.matterPlasma;
+    }
 
-	@Override
-	public boolean canDrainFluidType(FluidStack fluid)
-	{
-		return fluid.getFluid() == MatterOverdriveFluids.matterPlasma;
-	}
+    @Override
+    public boolean canDrainFluidType(FluidStack fluid) {
+        return fluid.getFluid() == OverdriveFluids.matterPlasma;
+    }
 
-	@Override
-	public int modifyMatterStored(int amount)
-	{
-		int lastAmount = getFluid() == null ? 0 : getFluid().amount;
-		int newAmount = lastAmount + amount;
-		newAmount = MathHelper.clamp_int(newAmount, 0, getCapacity());
-		setMatterStored(newAmount);
-		return lastAmount - newAmount;
-	}
+    @Override
+    public int modifyMatterStored(int amount) {
+        int lastAmount = getFluid() == null ? 0 : getFluid().amount;
+        int newAmount = lastAmount + amount;
+        newAmount = MathHelper.clamp(newAmount, 0, getCapacity());
+        setMatterStored(newAmount);
+        return lastAmount - newAmount;
+    }
 
-	@Override
-	public int getMatterStored()
-	{
-		return getFluidAmount();
-	}
+    @Override
+    public int getMatterStored() {
+        return getFluidAmount();
+    }
 
-	@Override
-	public void setMatterStored(int amount)
-	{
-		if (amount <= 0) {
-			setFluid(null);
-		}
-		else
-		{
-			drainInternal(getFluidAmount(), true);
-			fillInternal(new FluidStack(MatterOverdriveFluids.matterPlasma, amount), true);
-		}
-	}
+    @Override
+    public void setMatterStored(int amount) {
+        if (amount <= 0) {
+            setFluid(null);
+        } else {
+            drainInternal(getFluidAmount(), true);
+            fillInternal(new FluidStack(OverdriveFluids.matterPlasma, amount), true);
+        }
+    }
 
-	@Override
-	public int receiveMatter(int amount, boolean simulate)
-	{
-		return fill(new FluidStack(MatterOverdriveFluids.matterPlasma, amount), !simulate);
-	}
+    @Override
+    public int receiveMatter(int amount, boolean simulate) {
+        return fill(new FluidStack(OverdriveFluids.matterPlasma, amount), !simulate);
+    }
 
-	@Override
-	public int extractMatter(int amount, boolean simulate)
-	{
-		FluidStack drained = drain(amount, !simulate);
-		if (drained == null) {
-			return 0;
-		} else {
-			return drained.amount;
-		}
-	}
+    @Override
+    public int extractMatter(int amount, boolean simulate) {
+        FluidStack drained = drain(amount, !simulate);
+        if (drained == null) {
+            return 0;
+        } else {
+            return drained.amount;
+        }
+    }
 
 //	private final FluidStack fluidStack;
 //	protected int capacity;
@@ -143,7 +128,7 @@ public class MatterStorage extends FluidTank implements IMatterHandler
 //
 //	public MatterStorage(int capacity, int maxExtract, int maxReceive)
 //	{
-//		fluidStack = new FluidStack(MatterOverdriveFluids.matterPlasma, 0);
+//		fluidStack = new FluidStack(OverdriveFluids.matterPlasma, 0);
 //		this.maxExtract = maxExtract;
 //		this.maxReceive = maxReceive;
 //		this.capacity = capacity;
@@ -169,7 +154,7 @@ public class MatterStorage extends FluidTank implements IMatterHandler
 //
 //	public int extractMatter(int amount, boolean simulate)
 //	{
-//		int maxDrain = MathHelper.clamp_int(Math.min(amount, getMaxExtract()), 0, getFluid().amount);
+//		int maxDrain = MathHelper.clamp(Math.min(amount, getMaxExtract()), 0, getFluid().amount);
 //
 //		if (!simulate)
 //		{
@@ -182,7 +167,7 @@ public class MatterStorage extends FluidTank implements IMatterHandler
 //	@Override
 //	public int receiveMatter(EnumFacing side, int amount, boolean simulate)
 //	{
-//		int maxFill = MathHelper.clamp_int(Math.min(amount, getMaxReceive()), 0, getCapacity() - getFluid().amount);
+//		int maxFill = MathHelper.clamp(Math.min(amount, getMaxReceive()), 0, getCapacity() - getFluid().amount);
 //
 //		if (!simulate)
 //		{
@@ -196,7 +181,7 @@ public class MatterStorage extends FluidTank implements IMatterHandler
 //	{
 //		int lastAmount = getFluid().amount;
 //		getFluid().amount += amount;
-//		getFluid().amount = MathHelper.clamp_int(getFluid().amount, 0, getCapacity());
+//		getFluid().amount = MathHelper.clamp(getFluid().amount, 0, getCapacity());
 //		return lastAmount - amount;
 //	}
 //
@@ -266,7 +251,7 @@ public class MatterStorage extends FluidTank implements IMatterHandler
 //		}
 //		else
 //		{
-//			return new FluidStack(MatterOverdriveFluids.matterPlasma, drained);
+//			return new FluidStack(OverdriveFluids.matterPlasma, drained);
 //		}
 //	}
 //

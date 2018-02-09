@@ -18,64 +18,49 @@ import java.util.List;
 /**
  * Created by Simeon on 2/8/2016.
  */
-public class PacketSendAndroidEffects extends PacketAbstract
-{
-	int androidId;
-	List<AndroidEffects.Effect> effects;
+public class PacketSendAndroidEffects extends PacketAbstract {
+    int androidId;
+    List<AndroidEffects.Effect> effects;
 
-	public PacketSendAndroidEffects()
-	{
-	}
+    public PacketSendAndroidEffects() {
+    }
 
-	public PacketSendAndroidEffects(int androidId, List<AndroidEffects.Effect> effects)
-	{
-		this.androidId = androidId;
-		this.effects = effects;
-	}
+    public PacketSendAndroidEffects(int androidId, List<AndroidEffects.Effect> effects) {
+        this.androidId = androidId;
+        this.effects = effects;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf)
-	{
-		androidId = buf.readInt();
-		try
-		{
-			effects = AndroidEffects.readEffectsListFromBuffer(buf);
-		}
-		catch (IOException e)
-		{
-			MOLog.log(Level.ERROR, e, "There was a problem while receiving android effects for player");
-		}
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        androidId = buf.readInt();
+        try {
+            effects = AndroidEffects.readEffectsListFromBuffer(buf);
+        } catch (IOException e) {
+            MOLog.log(Level.ERROR, e, "There was a problem while receiving android effects for player");
+        }
 
-	}
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf)
-	{
-		buf.writeInt(androidId);
-		try
-		{
-			AndroidEffects.writeEffectsListToPacketBuffer(effects, buf);
-		}
-		catch (IOException e)
-		{
-			MOLog.log(Level.ERROR, e, "There was a problem while sending android effects to player");
-		}
-	}
+    @Override
+    public void toBytes(ByteBuf buf) {
+        buf.writeInt(androidId);
+        try {
+            AndroidEffects.writeEffectsListToPacketBuffer(effects, buf);
+        } catch (IOException e) {
+            MOLog.log(Level.ERROR, e, "There was a problem while sending android effects to player");
+        }
+    }
 
-	public static class ClientHandler extends AbstractClientPacketHandler<PacketSendAndroidEffects>
-	{
-		@Override
-		public void handleClientMessage(EntityPlayerSP player, PacketSendAndroidEffects message, MessageContext ctx)
-		{
-			if (message.effects != null)
-			{
-				Entity entity = player.worldObj.getEntityByID(message.androidId);
-				if (entity instanceof EntityPlayer)
-				{
-					AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(entity);
-					androidPlayer.getAndroidEffects().updateEffectsFromList(message.effects);
-				}
-			}
-		}
-	}
+    public static class ClientHandler extends AbstractClientPacketHandler<PacketSendAndroidEffects> {
+        @Override
+        public void handleClientMessage(EntityPlayerSP player, PacketSendAndroidEffects message, MessageContext ctx) {
+            if (message.effects != null) {
+                Entity entity = player.world.getEntityByID(message.androidId);
+                if (entity instanceof EntityPlayer) {
+                    AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(entity);
+                    androidPlayer.getAndroidEffects().updateEffectsFromList(message.effects);
+                }
+            }
+        }
+    }
 }

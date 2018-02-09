@@ -9,35 +9,28 @@ import net.minecraftforge.fml.relauncher.Side;
 /**
  * Created by Simeon on 1/5/2016.
  */
-public class MOEventScan extends PlayerEvent
-{
-	public final ItemStack scannerStack;
-	public final RayTraceResult position;
-	private final Side side;
+public class MOEventScan extends PlayerEvent {
+    public final ItemStack scannerStack;
+    public final RayTraceResult position;
+    private final Side side;
 
-	public MOEventScan(EntityPlayer player, ItemStack scannetStack, RayTraceResult position)
-	{
-		super(player);
-		if (player.worldObj.isRemote)
-		{
-			side = Side.CLIENT;
-		}
-		else
-		{
-			side = Side.SERVER;
-		}
-		this.scannerStack = scannetStack;
-		this.position = position;
-	}
+    public MOEventScan(EntityPlayer player, ItemStack scannetStack, RayTraceResult position) {
+        super(player);
+        if (player.world.isRemote) {
+            side = Side.CLIENT;
+        } else {
+            side = Side.SERVER;
+        }
+        this.scannerStack = scannetStack;
+        this.position = position;
+    }
 
-	public Side getSide()
-	{
-		return side;
-	}
+    public Side getSide() {
+        return side;
+    }
 
-	@Override
-	public boolean isCancelable()
-	{
-		return true;
-	}
+    @Override
+    public boolean isCancelable() {
+        return true;
+    }
 }

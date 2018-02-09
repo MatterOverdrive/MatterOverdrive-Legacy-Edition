@@ -1,0 +1,6 @@
+{
+  "parent": "matteroverdrive:item/isolinear_circuit",
+  "textures": {
+    "layer0": "matteroverdrive:items/isolinear_circuit_mk1"
+  }
+}

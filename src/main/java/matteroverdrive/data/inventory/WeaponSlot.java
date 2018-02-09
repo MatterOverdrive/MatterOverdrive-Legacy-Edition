@@ -24,27 +24,22 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by Simeon on 4/13/2015.
  */
-public class WeaponSlot extends Slot
-{
-	public WeaponSlot(boolean isMainSlot)
-	{
-		super(isMainSlot);
-	}
+public class WeaponSlot extends Slot {
+    public WeaponSlot(boolean isMainSlot) {
+        super(isMainSlot);
+    }
 
-	public boolean isValidForSlot(ItemStack item)
-	{
-		return WeaponHelper.isWeapon(item);
-	}
+    public boolean isValidForSlot(ItemStack item) {
+        return WeaponHelper.isWeapon(item);
+    }
 
-	@Override
-	public int getMaxStackSize()
-	{
-		return 1;
-	}
+    @Override
+    public int getMaxStackSize() {
+        return 1;
+    }
 
-	@Override
-	public String getUnlocalizedTooltip()
-	{
-		return "gui.tooltip.slot.weapon";
-	}
+    @Override
+    public String getUnlocalizedTooltip() {
+        return "gui.tooltip.slot.weapon";
+    }
 }

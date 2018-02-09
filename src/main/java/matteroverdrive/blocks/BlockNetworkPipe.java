@@ -38,57 +38,47 @@ import static matteroverdrive.util.MOBlockHelper.RotationType;
 /**
  * Created by Simeon on 3/15/2015.
  */
-public class BlockNetworkPipe extends BlockPipe<TileEntityNetworkPipe> implements IDismantleable
-{
+public class BlockNetworkPipe extends BlockPipe<TileEntityNetworkPipe> implements IDismantleable {
 
-	public BlockNetworkPipe(Material material, String name)
-	{
-		super(material, name);
-		setHardness(10.0F);
-		this.setResistance(9.0f);
-		setRotationType(RotationType.PREVENT);
-	}
+    public BlockNetworkPipe(Material material, String name) {
+        super(material, name);
+        setHardness(10.0F);
+        this.setResistance(9.0f);
+        setRotationType(RotationType.PREVENT);
+    }
 
-	@Override
-	public Class<TileEntityNetworkPipe> getTileEntityClass()
-	{
-		return TileEntityNetworkPipe.class;
-	}
+    @Override
+    public Class<TileEntityNetworkPipe> getTileEntityClass() {
+        return TileEntityNetworkPipe.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityNetworkPipe();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityNetworkPipe();
+    }
 
-	@Override
-	public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, BlockPos pos, boolean returnDrops)
-	{
-		ArrayList<ItemStack> items = new ArrayList<>();
-		IBlockState state = world.getBlockState(pos);
+    @Override
+    public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, BlockPos pos, boolean returnDrops) {
+        ArrayList<ItemStack> items = new ArrayList<>();
+        IBlockState state = world.getBlockState(pos);
 
-		if (!returnDrops)
-		{
-			state.getBlock().harvestBlock(world, player, pos, state, world.getTileEntity(pos), null);
-			state.getBlock().removedByPlayer(state, world, pos, player, true);
-		}
-		else
-		{
-			state.getBlock().removedByPlayer(state, world, pos, player, true);
-			state.getBlock().breakBlock(world, pos, state);
-			for (ItemStack itemStack : getDrops(world, pos, state, 0))
-			{
-				MOInventoryHelper.insertItemStackIntoInventory(player.inventory, itemStack, EnumFacing.DOWN);
-			}
-		}
+        if (!returnDrops) {
+            state.getBlock().harvestBlock(world, player, pos, state, world.getTileEntity(pos), null);
+            state.getBlock().removedByPlayer(state, world, pos, player, true);
+        } else {
+            state.getBlock().removedByPlayer(state, world, pos, player, true);
+            state.getBlock().breakBlock(world, pos, state);
+            for (ItemStack itemStack : getDrops(world, pos, state, 0)) {
+                MOInventoryHelper.insertItemStackIntoInventory(player.inventory, itemStack, EnumFacing.DOWN);
+            }
+        }
 
-		return items;
-	}
+        return items;
+    }
 
-	@Override
-	public boolean canDismantle(EntityPlayer player, World world, BlockPos pos)
-	{
-		return true;
-	}
+    @Override
+    public boolean canDismantle(EntityPlayer player, World world, BlockPos pos) {
+        return true;
+    }
 }

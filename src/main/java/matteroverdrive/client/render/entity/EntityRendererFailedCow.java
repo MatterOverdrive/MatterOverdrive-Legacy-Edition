@@ -1,7 +1,6 @@
 package matteroverdrive.client.render.entity;
 
 import matteroverdrive.Reference;
-import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.renderer.entity.RenderCow;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.passive.EntityCow;
@@ -10,18 +9,15 @@ import net.minecraft.util.ResourceLocation;
 /**
  * Created by Simeon on 5/28/2015.
  */
-public class EntityRendererFailedCow extends RenderCow
-{
+public class EntityRendererFailedCow extends RenderCow {
 
-	private static final ResourceLocation cowTextures = new ResourceLocation(Reference.PATH_ENTITIES + "failed_cow.png");
+    private static final ResourceLocation cowTextures = new ResourceLocation(Reference.PATH_ENTITIES + "failed_cow.png");
 
-	public EntityRendererFailedCow(RenderManager renderManager)
-	{
-		super(renderManager, new ModelCow(), 0.7f);
-	}
+    public EntityRendererFailedCow(RenderManager renderManager) {
+        super(renderManager);
+    }
 
-	protected ResourceLocation getEntityTexture(EntityCow entity)
-	{
-		return cowTextures;
-	}
+    protected ResourceLocation getEntityTexture(EntityCow entity) {
+        return cowTextures;
+    }
 }

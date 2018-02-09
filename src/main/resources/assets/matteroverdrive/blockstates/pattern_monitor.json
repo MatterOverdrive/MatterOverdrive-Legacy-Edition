@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:pattern_monitor"
+  },
+  "variants": {
+    "normal": {"model": "matteroverdrive:pattern_monitor"},
+    "facing=north": { "model": "matteroverdrive:pattern_monitor"},
+    "facing=south": { "model": "matteroverdrive:pattern_monitor","y": 180 },
+    "facing=west":  { "model": "matteroverdrive:pattern_monitor","y": 270 },
+    "facing=east":  { "model": "matteroverdrive:pattern_monitor","y": 90 },
+    "inventory": {
+      "model": "matteroverdrive:pattern_monitor",
+      "transform": "forge:default-block"
+    }
+  }
+}

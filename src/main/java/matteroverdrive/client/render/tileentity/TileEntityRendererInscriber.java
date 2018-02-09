@@ -27,26 +27,23 @@ import java.util.Random;
 /**
  * Created by Simeon on 11/9/2015.
  */
-public class TileEntityRendererInscriber extends TileEntitySpecialRenderer
-{
-	private final Random random;
-	//private IModelCustom model;
-	private float nextHeadX, nextHeadY;
-	private float lastHeadX, lastHeadY;
-	private EntityItem item;
+public class TileEntityRendererInscriber extends TileEntitySpecialRenderer {
+    private final Random random;
+    //private IModelCustom model;
+    private float nextHeadX, nextHeadY;
+    private float lastHeadX, lastHeadY;
+    private EntityItem item;
 
-	public TileEntityRendererInscriber()
-	{
-		//model = AdvancedModelLoader.loadModel(new ResourceLocation(Reference.MODEL_INSCRIBER));
-		random = new Random();
-	}
+    public TileEntityRendererInscriber() {
+        //model = AdvancedModelLoader.loadModel(new ResourceLocation(Reference.MODEL_INSCRIBER));
+        random = new Random();
+    }
 
-	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float ticks, int destoryStage)
-	{
+    @Override
+    public void render(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		/*if (item == null)
 		{
-            item = new EntityItem(tileEntity.getWorldObj());
+            item = new EntityItem(tileEntity.getworld());
             item.setEntityItemStack(new ItemStack(MatterOverdrive.items.isolinear_circuit,1,2));
         }
 
@@ -60,7 +57,7 @@ public class TileEntityRendererInscriber extends TileEntitySpecialRenderer
             glPushMatrix();
             bindTexture(new ResourceLocation(Reference.PATH_BLOCKS + "inscriber.png"));
             GlStateManager.translate(x + 0.5, y, z + 0.5);
-            RenderUtils.rotateFromBlock(tileEntity.getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+            RenderUtils.rotateFromBlock(tileEntity.getWorld(), tileEntity.x, tileEntity.y, tileEntity.z);
             glPushMatrix();
             GlStateManager.translate(0, 0.6, headX);
             model.renderPart("rail");
@@ -88,5 +85,5 @@ public class TileEntityRendererInscriber extends TileEntitySpecialRenderer
             }
             glPopMatrix();
         }*/
-	}
+    }
 }

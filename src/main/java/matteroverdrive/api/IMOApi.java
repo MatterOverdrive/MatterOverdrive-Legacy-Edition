@@ -30,21 +30,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 7/20/2015.
  */
-public interface IMOApi
-{
-	IMatterRegistry getMatterRegistry();
+public interface IMOApi {
+    IMatterRegistry getMatterRegistry();
 
-	IAndroidStatRegistry getAndroidStatRegistry();
+    IAndroidStatRegistry getAndroidStatRegistry();
 
-	IDialogRegistry getDialogRegistry();
+    IDialogRegistry getDialogRegistry();
 
-	@SideOnly(Side.CLIENT)
-	IAndroidStatRenderRegistry getAndroidStatRenderRegistry();
+    @SideOnly(Side.CLIENT)
+    IAndroidStatRenderRegistry getAndroidStatRenderRegistry();
 
-	@SideOnly(Side.CLIENT)
-	IBionicPartRenderRegistry getBionicStatRenderRegistry();
+    @SideOnly(Side.CLIENT)
+    IBionicPartRenderRegistry getBionicStatRenderRegistry();
 
-	@SideOnly(Side.CLIENT)
-	IStarmapRenderRegistry getStarmapRenderRegistry();
+    @SideOnly(Side.CLIENT)
+    IStarmapRenderRegistry getStarmapRenderRegistry();
 
 }

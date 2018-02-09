@@ -24,19 +24,18 @@ import net.minecraft.nbt.NBTTagCompound;
  * @autor Simeon
  * @since 8/16/2015
  */
-public interface IConfigProperty
-{
-	String getKey();
+public interface IConfigProperty {
+    String getKey();
 
-	String getUnlocalizedName();
+    String getUnlocalizedName();
 
-	Object getValue();
+    Object getValue();
 
-	void setValue(Object value);
+    void setValue(Object value);
 
-	void writeToNBT(NBTTagCompound nbt);
+    void writeToNBT(NBTTagCompound nbt);
 
-	void readFromNBT(NBTTagCompound nbt);
+    void readFromNBT(NBTTagCompound nbt);
 
-	Class getType();
+    Class getType();
 }

@@ -24,16 +24,13 @@ import net.minecraft.entity.ai.EntityAIAttackMelee;
 /**
  * Created by Simeon on 12/12/2015.
  */
-public class EntityAIAndroidAttackOnCollide extends EntityAIAttackMelee
-{
-	public EntityAIAndroidAttackOnCollide(EntityCreature creature, double speed, boolean useLongMemory)
-	{
-		super(creature, speed, useLongMemory);
-	}
+public class EntityAIAndroidAttackOnCollide extends EntityAIAttackMelee {
+    public EntityAIAndroidAttackOnCollide(EntityCreature creature, double speed, boolean useLongMemory) {
+        super(creature, speed, useLongMemory);
+    }
 
-	@Override
-	public void resetTask()
-	{
+    @Override
+    public void resetTask() {
 
-	}
+    }
 }

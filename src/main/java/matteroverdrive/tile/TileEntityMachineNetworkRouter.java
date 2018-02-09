@@ -24,24 +24,20 @@ import net.minecraft.util.EnumFacing;
 /**
  * Created by Simeon on 3/11/2015.
  */
-public class TileEntityMachineNetworkRouter extends TileEntityMachinePacketQueue
-{
+public class TileEntityMachineNetworkRouter extends TileEntityMachinePacketQueue {
 
-	public TileEntityMachineNetworkRouter()
-	{
-		super(4);
-		playerSlotsHotbar = true;
-	}
+    public TileEntityMachineNetworkRouter() {
+        super(4);
+        playerSlotsHotbar = true;
+    }
 
-	@Override
-	protected void onMachineEvent(MachineEvent event)
-	{
+    @Override
+    protected void onMachineEvent(MachineEvent event) {
 
-	}
+    }
 
-	@Override
-	public int[] getSlotsForFace(EnumFacing side)
-	{
-		return new int[0];
-	}
+    @Override
+    public int[] getSlotsForFace(EnumFacing side) {
+        return new int[0];
+    }
 }

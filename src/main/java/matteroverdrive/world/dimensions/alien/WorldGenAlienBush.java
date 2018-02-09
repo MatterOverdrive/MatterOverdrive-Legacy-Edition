@@ -2,7 +2,6 @@ package matteroverdrive.world.dimensions.alien;
 
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.blocks.alien.BlockLeavesAlien;
-import matteroverdrive.init.MatterOverdriveBlocks;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -15,25 +14,21 @@ import java.util.Random;
 /**
  * Created by Simeon on 3/4/2016.
  */
-public class WorldGenAlienBush extends WorldGenerator
-{
-	@Override
-	public boolean generate(World worldIn, Random rand, BlockPos position)
-	{
-		boolean flag = false;
+public class WorldGenAlienBush extends WorldGenerator {
+    @Override
+    public boolean generate(World worldIn, Random rand, BlockPos position) {
+        boolean flag = false;
 
-		for (int i = 0; i < 64; ++i)
-		{
-			BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+        for (int i = 0; i < 64; ++i) {
+            BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-			if (worldIn.isAirBlock(blockpos) && (!worldIn.provider.getHasNoSky() || blockpos.getY() < 254) && Blocks.DOUBLE_PLANT.canPlaceBlockAt(worldIn, blockpos))
-			{
-				worldIn.setBlockState(blockpos, MatterOverdrive.blocks.alienLeaves.getDefaultState().withProperty(BlockLeavesAlien.VARIANT, BlockLeavesAlien.EnumType.BUSH).withProperty(BlockLeaves.DECAYABLE, false), 2);
-				worldIn.setBlockState(blockpos.offset(EnumFacing.UP), MatterOverdrive.blocks.alienLeaves.getDefaultState().withProperty(BlockLeavesAlien.VARIANT, BlockLeavesAlien.EnumType.BUSH).withProperty(BlockLeaves.DECAYABLE, false), 2);
-				flag = true;
-			}
-		}
+            if (worldIn.isAirBlock(blockpos) && (worldIn.provider.hasSkyLight() || blockpos.getY() < 254) && Blocks.DOUBLE_PLANT.canPlaceBlockAt(worldIn, blockpos)) {
+                worldIn.setBlockState(blockpos, MatterOverdrive.BLOCKS.alienLeaves.getDefaultState().withProperty(BlockLeavesAlien.VARIANT, BlockLeavesAlien.EnumType.BUSH).withProperty(BlockLeaves.DECAYABLE, false), 2);
+                worldIn.setBlockState(blockpos.offset(EnumFacing.UP), MatterOverdrive.BLOCKS.alienLeaves.getDefaultState().withProperty(BlockLeavesAlien.VARIANT, BlockLeavesAlien.EnumType.BUSH).withProperty(BlockLeaves.DECAYABLE, false), 2);
+                flag = true;
+            }
+        }
 
-		return flag;
-	}
+        return flag;
+    }
 }

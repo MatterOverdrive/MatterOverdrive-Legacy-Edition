@@ -26,66 +26,58 @@ import matteroverdrive.starmap.data.Planet;
 import matteroverdrive.util.MOStringHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * Created by Simeon on 7/2/2015.
  */
-public class ItemBuildingBase extends ItemBuildingAbstract implements IPlanetStatChange
-{
-	private static final int BUILDING_SIZE_INCREASE = 2;
+public class ItemBuildingBase extends ItemBuildingAbstract implements IPlanetStatChange {
+    private static final int BUILDING_SIZE_INCREASE = 2;
 
-	public ItemBuildingBase(String name)
-	{
-		super(name);
-	}
+    public ItemBuildingBase(String name) {
+        super(name);
+    }
 
-	@Override
-	public BuildingType getType(ItemStack building)
-	{
-		return BuildingType.BASE;
-	}
+    @Override
+    public BuildingType getType(ItemStack building) {
+        return BuildingType.BASE;
+    }
 
-	@SideOnly(Side.CLIENT)
-	public void addDetails(ItemStack itemstack, EntityPlayer player, List<String> infos)
-	{
-		super.addDetails(itemstack, player, infos);
-		if (infos.size() >= 2)
-		{
-			infos.set(1, String.format((String)infos.get(1), BUILDING_SIZE_INCREASE));
-		}
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addDetails(ItemStack itemstack, EntityPlayer player, @Nullable World worldIn, List<String> infos) {
+        super.addDetails(itemstack, player, worldIn, infos);
+        if (infos.size() >= 2) {
+            infos.set(1, String.format(infos.get(1), BUILDING_SIZE_INCREASE));
+        }
+    }
 
-	@Override
-	public boolean canBuild(ItemStack building, Planet planet, List<String> info)
-	{
-		for (ItemStack buildingStack : planet.getBuildings())
-		{
-			if (buildingStack.getItem() instanceof IBuilding && ((IBuilding)buildingStack.getItem()).getType(buildingStack) == BuildingType.BASE)
-			{
-				info.add(MOStringHelper.translateToLocal("gui.tooltip.starmap.has_base"));
-				return false;
-			}
-		}
-		return true;
-	}
+    @Override
+    public boolean canBuild(ItemStack building, Planet planet, List<String> info) {
+        for (ItemStack buildingStack : planet.getBuildings()) {
+            if (buildingStack.getItem() instanceof IBuilding && ((IBuilding) buildingStack.getItem()).getType(buildingStack) == BuildingType.BASE) {
+                info.add(MOStringHelper.translateToLocal("gui.tooltip.starmap.has_base"));
+                return false;
+            }
+        }
+        return true;
+    }
 
-	@Override
-	public int getBuildLengthUnscaled(ItemStack building, Planet planet)
-	{
-		return 20 * 500;
-	}
+    @Override
+    public int getBuildLengthUnscaled(ItemStack building, Planet planet) {
+        return 20 * 500;
+    }
 
-	@Override
-	public float changeStat(ItemStack stack, Planet planet, PlanetStatType statType, float original)
-	{
-		if (statType == PlanetStatType.BUILDINGS_SIZE)
-		{
-			return original + BUILDING_SIZE_INCREASE;
-		}
-		return original;
-	}
+    @Override
+    public float changeStat(ItemStack stack, Planet planet, PlanetStatType statType, float original) {
+        if (statType == PlanetStatType.BUILDINGS_SIZE) {
+            return original + BUILDING_SIZE_INCREASE;
+        }
+        return original;
+    }
 }

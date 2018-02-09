@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:spacetime_accelerator"
+  },
+  "variants": {
+    "normal": {
+      "model": "matteroverdrive:spacetime_accelerator"
+    },
+    "inventory": {
+      "model": "matteroverdrive:spacetime_accelerator",
+      "transform": "forge:default-block"
+    }
+  }
+}

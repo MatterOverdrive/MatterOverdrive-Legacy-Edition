@@ -30,35 +30,31 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 3/16/2015.
  */
-public class BlockMatterAnalyzer extends MOBlockMachine<TileEntityMachineMatterAnalyzer>
-{
-	public static float MACHINE_VOLUME;
+public class BlockMatterAnalyzer extends MOBlockMachine<TileEntityMachineMatterAnalyzer> {
+    public static float MACHINE_VOLUME;
 /*    private IIcon iconTop;
 	private IIcon iconFront;
     private IIcon iconFronAnim;*/
 
-	public BlockMatterAnalyzer(Material material, String name)
-	{
-		super(material, name);
-		setHasRotation();
-		setHardness(20.0F);
-		this.setResistance(5.0f);
-		this.setHarvestLevel("pickaxe", 2);
-		setHasGui(true);
-	}
+    public BlockMatterAnalyzer(Material material, String name) {
+        super(material, name);
+        setHasRotation();
+        setHardness(20.0F);
+        this.setResistance(5.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        setHasGui(true);
+    }
 
-	@Override
-	public Class<TileEntityMachineMatterAnalyzer> getTileEntityClass()
-	{
-		return TileEntityMachineMatterAnalyzer.class;
-	}
+    @Override
+    public Class<TileEntityMachineMatterAnalyzer> getTileEntityClass() {
+        return TileEntityMachineMatterAnalyzer.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityMachineMatterAnalyzer();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityMachineMatterAnalyzer();
+    }
 
     /*@Override
 	@SideOnly(Side.CLIENT)

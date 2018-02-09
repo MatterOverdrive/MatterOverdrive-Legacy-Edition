@@ -1,0 +1,37 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title" style="margin-bottom:6px">The $itemName</title>
+        <preview size="8" style="text-align:center;margin-bottom:-14px;margin-top:-8px"></preview>
+        <text class="matter-text text-block">The $itemName is a rapid fire Energy weapon, that fires phaser bolts. It also allows the player to zoom in for higher accuracy.</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title" style="margin-bottom:6px">Customization</title>
+        <text class="matter-text text-block">Like most energy weapons the $itemName can be rapidly recharged by [item name=energy_pack],
+            overhead if fired continually without stopping and can be upgraded using weapon modules at the [block name=weapon_station].</text>
+        <text class="matter-text text-block">The $itemName allows for all types of weapon modules including weapon sights.</text>
+        <image width="128" height="64" src="guide/phaser_rifle_modules.png" style="text-align:center;"></image>
+    </page>
+    <page class="padded-page">
+    <title size="2" class="matter-text small-title" style="margin-bottom:6px">Stats</title>
+        <tooltip></tooltip>
+        <text class="matter-text text-block">The $itemName can also be dropped by Ranged Rogue Androids. There are also Legendary versions of the rifle dropped only by Legendary Rogue Androids. The Legendary versions can have increased base stats that can stack with weapon modules. Stats such as higher meta fire rate and greater accuracy.</text>
+    </page>
+</entry>

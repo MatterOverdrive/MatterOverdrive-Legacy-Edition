@@ -21,10 +21,8 @@ package matteroverdrive.api.exceptions;
 /**
  * Created by Simeon on 7/20/2015.
  */
-public class CoreInaccessibleException extends RuntimeException
-{
-	public CoreInaccessibleException(String message, Object... params)
-	{
-		super(String.format(message, params));
-	}
+public class CoreInaccessibleException extends RuntimeException {
+    public CoreInaccessibleException(String message, Object... params) {
+        super(String.format(message, params));
+    }
 }

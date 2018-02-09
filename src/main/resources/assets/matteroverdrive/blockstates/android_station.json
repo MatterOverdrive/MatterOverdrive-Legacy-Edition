@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:android_station",
+    "textures": {
+      "bottom": "matteroverdrive:blocks/weapon_station_bottom",
+      "top": "matteroverdrive:blocks/weapon_station_top",
+      "side": "matteroverdrive:blocks/android_station_side",
+      "particle": "matteroverdrive:blocks/android_station_side"
+    }
+  },
+  "variants": {
+    "normal": {
+      "model": "matteroverdrive:android_station"
+    },
+    "inventory": {
+      "model": "matteroverdrive:android_station",
+      "transform": "forge:default-block"
+    }
+  }
+}

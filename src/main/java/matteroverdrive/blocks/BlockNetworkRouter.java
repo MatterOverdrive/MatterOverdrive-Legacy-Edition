@@ -32,18 +32,16 @@ import static matteroverdrive.util.MOBlockHelper.RotationType;
 /**
  * Created by Simeon on 3/11/2015.
  */
-public class BlockNetworkRouter extends MOBlockMachine<TileEntityMachineNetworkRouter>
-{
+public class BlockNetworkRouter extends MOBlockMachine<TileEntityMachineNetworkRouter> {
 
-	public BlockNetworkRouter(Material material, String name)
-	{
-		super(material, name);
-		setHardness(20.0F);
-		this.setResistance(9.0f);
-		this.setHarvestLevel("pickaxe", 2);
-		setHasGui(true);
-		setRotationType(RotationType.PREVENT);
-	}
+    public BlockNetworkRouter(Material material, String name) {
+        super(material, name);
+        setHardness(20.0F);
+        this.setResistance(9.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        setHasGui(true);
+        setRotationType(RotationType.PREVENT);
+    }
 
   /*  @Override
 	@SideOnly(Side.CLIENT)
@@ -60,16 +58,14 @@ public class BlockNetworkRouter extends MOBlockMachine<TileEntityMachineNetworkR
         return blockIcon;
     }*/
 
-	@Override
-	public Class<TileEntityMachineNetworkRouter> getTileEntityClass()
-	{
-		return TileEntityMachineNetworkRouter.class;
-	}
+    @Override
+    public Class<TileEntityMachineNetworkRouter> getTileEntityClass() {
+        return TileEntityMachineNetworkRouter.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityMachineNetworkRouter();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityMachineNetworkRouter();
+    }
 }

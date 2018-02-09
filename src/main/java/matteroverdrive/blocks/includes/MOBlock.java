@@ -18,7 +18,7 @@
 
 package matteroverdrive.blocks.includes;
 
-import lombok.Setter;
+import com.astro.clib.api.render.ItemModelProvider;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.IMOTileEntity;
@@ -30,14 +30,13 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.shadowfacts.shadowmc.item.ItemModelProvider;
 
 import javax.annotation.Nonnull;
 
@@ -47,175 +46,143 @@ import static matteroverdrive.util.MOBlockHelper.SIDE_LEFT;
 /**
  * Created by Simeon on 3/24/2015.
  */
-public class MOBlock extends Block implements ItemModelProvider
-{
-	public static final PropertyDirection PROPERTY_DIRECTION = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-	private BlockStateContainer blockState;
-	private boolean hasRotation;
-	private int rotationType;
-	@Setter
-	protected AxisAlignedBB boundingBox = FULL_BLOCK_AABB;
+public class MOBlock extends Block implements ItemModelProvider {
+    public static final PropertyDirection PROPERTY_DIRECTION = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    protected AxisAlignedBB boundingBox = FULL_BLOCK_AABB;
+    private BlockStateContainer blockState;
+    private boolean hasRotation;
+    private int rotationType;
 
-	public MOBlock(Material material, String name)
-	{
-		super(material);
-		setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
-		this.blockState = createBlockState();
-		this.setDefaultState(getBlockState().getBaseState());
-		this.fullBlock = getDefaultState().isOpaqueCube();
-		this.lightOpacity = fullBlock ? 255 : 0;
-		this.setUnlocalizedName(name);
-		setCreativeTab(MatterOverdrive.tabMatterOverdrive);
-		rotationType = RotationType.FOUR_WAY;
-	}
+    public void setBoundingBox(AxisAlignedBB boundingBox) {
+        this.boundingBox = boundingBox;
+    }
 
-	@Override
-	public void initItemModel()
-	{
-		MatterOverdrive.proxy.registerItemModel(this, 0, getRegistryName().getResourcePath());
-	}
+    public MOBlock(Material material, String name) {
+        super(material);
+        setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
+        this.blockState = createBlockState();
+        this.setDefaultState(getBlockState().getBaseState());
+        this.fullBlock = getDefaultState().isOpaqueCube();
+        this.lightOpacity = fullBlock ? 255 : 0;
+        this.setUnlocalizedName(name);
+        setCreativeTab(MatterOverdrive.TAB_OVERDRIVE);
+        rotationType = RotationType.FOUR_WAY;
+    }
 
-	@Nonnull
-	@Override
-	@Deprecated
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		return boundingBox;
-	}
+    @Override
+    public void initItemModel() {
+        MatterOverdrive.PROXY.registerItemModel(this, 0, getRegistryName().getResourcePath());
+    }
 
-	@Nonnull
-	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		if (hasRotation)
-		{
-			return new BlockStateContainer(this, PROPERTY_DIRECTION);
-		}
-		return super.createBlockState();
-	}
+    @Nonnull
+    @Override
+    @Deprecated
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return boundingBox;
+    }
 
-	@Nonnull
-	@Override
-	@Deprecated
-	public IBlockState getStateFromMeta(int meta)
-	{
-		if (hasRotation)
-		{
-			return getDefaultState().withProperty(PROPERTY_DIRECTION, EnumFacing.VALUES[meta]);
-		}
-		else
-		{
-			return super.getStateFromMeta(meta);
-		}
-	}
+    @Nonnull
+    @Override
+    protected BlockStateContainer createBlockState() {
+        if (hasRotation) {
+            return new BlockStateContainer(this, PROPERTY_DIRECTION);
+        }
+        return super.createBlockState();
+    }
 
-	@Override
-	public int getMetaFromState(IBlockState state)
-	{
-		if (hasRotation)
-		{
-			EnumFacing facing = state.getValue(PROPERTY_DIRECTION);
-			return facing.ordinal();
-		}
-		else
-		{
-			return super.getMetaFromState(state);
-		}
-	}
+    @Nonnull
+    @Override
+    @Deprecated
+    public IBlockState getStateFromMeta(int meta) {
+        if (hasRotation) {
+            return getDefaultState().withProperty(PROPERTY_DIRECTION, EnumFacing.VALUES[meta]);
+        } else {
+            return super.getStateFromMeta(meta);
+        }
+    }
 
-	/**
-	 * Called whenever the block is added into the world. Args: world, x, y, z
-	 */
-	@Override
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
-	{
-		super.onBlockAdded(worldIn, pos, state);
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        if (hasRotation) {
+            EnumFacing facing = state.getValue(PROPERTY_DIRECTION);
+            return facing.ordinal();
+        } else {
+            return super.getMetaFromState(state);
+        }
+    }
 
-		IMOTileEntity tileEntity = (IMOTileEntity)worldIn.getTileEntity(pos);
-		if (tileEntity != null)
-		{
-			tileEntity.onAdded(worldIn, pos, state);
-		}
-	}
+    /**
+     * Called whenever the block is added into the world. Args: world, x, y, z
+     */
+    @Override
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+        super.onBlockAdded(worldIn, pos, state);
 
-	@Override
-	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor)
-	{
-		super.onNeighborChange(world, pos, neighbor);
-		IMOTileEntity tileEntity = (IMOTileEntity)world.getTileEntity(pos);
-		if (tileEntity != null)
-		{
-			tileEntity.onNeighborBlockChange(world, pos, world.getBlockState(pos), world.getBlockState(neighbor).getBlock());
-		}
-	}
+        IMOTileEntity tileEntity = (IMOTileEntity) worldIn.getTileEntity(pos);
+        if (tileEntity != null) {
+            tileEntity.onAdded(worldIn, pos, state);
+        }
+    }
 
-	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, ItemStack stack)
-	{
-		if (hasRotation)
-		{
-			EnumFacing enumfacing = EnumFacing.fromAngle(placer.rotationYaw).getOpposite();
-			return getDefaultState().withProperty(PROPERTY_DIRECTION, enumfacing);
-		}
-		return getDefaultState();
-	}
+    @Override
+    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
+        super.onNeighborChange(world, pos, neighbor);
+        IMOTileEntity tileEntity = (IMOTileEntity) world.getTileEntity(pos);
+        if (tileEntity != null) {
+            tileEntity.onNeighborBlockChange(world, pos, world.getBlockState(pos), world.getBlockState(neighbor).getBlock());
+        }
+    }
 
-	public boolean rotateBlock(World worldObj, BlockPos pos, EnumFacing axis)
-	{
-		if (rotationType >= 0)
-		{
-			IBlockState state = worldObj.getBlockState(pos);
-			for (IProperty prop : state.getProperties().keySet())
-			{
-				if (prop.getName().equals(PROPERTY_DIRECTION))
-				{
-					EnumFacing facing = state.getValue(PROPERTY_DIRECTION);
+    @Override
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+        if (hasRotation)
+            return getDefaultState().withProperty(PROPERTY_DIRECTION, EnumFacing.fromAngle(placer.rotationYaw).getOpposite());
+        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
+    }
 
-					if (rotationType == RotationType.FOUR_WAY)
-					{
-						facing = EnumFacing.VALUES[SIDE_LEFT[facing.ordinal() % SIDE_LEFT.length]];
-					}
-					else if (rotationType == RotationType.SIX_WAY)
-					{
-						if (facing.ordinal() < 6)
-						{
-							facing = EnumFacing.VALUES[(facing.ordinal() + 1) % 6];
-						}
-					}
+    public boolean rotateBlock(World world, BlockPos pos, EnumFacing axis) {
+        if (rotationType >= 0) {
+            IBlockState state = world.getBlockState(pos);
+            for (IProperty prop : state.getProperties().keySet()) {
+                if (prop.getName().equals(PROPERTY_DIRECTION)) {
+                    EnumFacing facing = state.getValue(PROPERTY_DIRECTION);
 
-					worldObj.setBlockState(pos, worldObj.getBlockState(pos).withProperty(PROPERTY_DIRECTION, facing), 3);
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+                    if (rotationType == RotationType.FOUR_WAY) {
+                        facing = EnumFacing.VALUES[SIDE_LEFT[facing.ordinal() % SIDE_LEFT.length]];
+                    } else if (rotationType == RotationType.SIX_WAY) {
+                        if (facing.ordinal() < 6) {
+                            facing = EnumFacing.VALUES[(facing.ordinal() + 1) % 6];
+                        }
+                    }
 
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	{
-		if (hasTileEntity(state) && worldIn.getTileEntity(pos) != null && worldIn.getTileEntity(pos) instanceof MOTileEntity)
-		{
-			((MOTileEntity)worldIn.getTileEntity(pos)).onDestroyed(worldIn, pos, state);
-		}
-		super.breakBlock(worldIn, pos, state);
-	}
+                    world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTY_DIRECTION, facing), 3);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-	public void setRotationType(int type)
-	{
-		rotationType = type;
-	}
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        if (hasTileEntity(state) && worldIn.getTileEntity(pos) != null && worldIn.getTileEntity(pos) instanceof MOTileEntity) {
+            ((MOTileEntity) worldIn.getTileEntity(pos)).onDestroyed(worldIn, pos, state);
+        }
+        super.breakBlock(worldIn, pos, state);
+    }
 
-	public void setHasRotation()
-	{
-		this.hasRotation = true;
-		this.blockState = createBlockState();
-		this.setDefaultState(this.blockState.getBaseState());
-	}
+    public void setRotationType(int type) {
+        rotationType = type;
+    }
 
-	@Override
-	public BlockStateContainer getBlockState()
-	{
-		return this.blockState;
-	}
+    public void setHasRotation() {
+        this.hasRotation = true;
+        this.blockState = createBlockState();
+        this.setDefaultState(this.blockState.getBaseState());
+    }
+
+    @Override
+    public BlockStateContainer getBlockState() {
+        return this.blockState;
+    }
 }

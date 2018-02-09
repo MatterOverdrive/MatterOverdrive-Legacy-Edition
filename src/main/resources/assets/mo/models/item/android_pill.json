@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "mo:items/pill_bottom",
-    "layer1": "mo:items/pill_top"
-  }
-}

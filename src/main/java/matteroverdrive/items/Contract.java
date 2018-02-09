@@ -37,89 +37,75 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * Created by Simeon on 11/22/2015.
  */
-public class Contract extends MOBaseItem
-{
-	public Contract(String name)
-	{
-		super(name);
-	}
+public class Contract extends MOBaseItem {
+    public Contract(String name) {
+        super(name);
+    }
 
-	public QuestStack getQuest(ItemStack itemStack)
-	{
-		if (itemStack.getTagCompound() != null)
-		{
-			return QuestStack.loadFromNBT(itemStack.getTagCompound());
-		}
-		return null;
-	}
+    public QuestStack getQuest(ItemStack itemStack) {
+        if (itemStack.getTagCompound() != null) {
+            return QuestStack.loadFromNBT(itemStack.getTagCompound());
+        }
+        return null;
+    }
 
-	@Override
-	public boolean hasDetails(ItemStack stack)
-	{
-		return true;
-	}
+    @Override
+    public boolean hasDetails(ItemStack stack) {
+        return true;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addDetails(ItemStack itemstack, EntityPlayer player, List<String> infos)
-	{
-		QuestStack questStack = QuestStack.loadFromNBT(itemstack.getTagCompound());
-		if (questStack != null)
-		{
-			for (int i = 0; i < questStack.getObjectivesCount(player); i++)
-			{
-				infos.add(MatterOverdrive.questFactory.getFormattedQuestObjective(player, questStack, i));
-			}
-		}
-	}
 
-	@Override
-	public String getItemStackDisplayName(ItemStack itemStack)
-	{
-		if (itemStack.getTagCompound() != null)
-		{
-			QuestStack questStack = QuestStack.loadFromNBT(itemStack.getTagCompound());
-			return questStack.getTitle();
-		}
-		return super.getItemStackDisplayName(itemStack);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addDetails(ItemStack itemstack, EntityPlayer player, @Nullable World worldIn, List<String> infos) {
+        QuestStack questStack = QuestStack.loadFromNBT(itemstack.getTagCompound());
+        if (questStack != null) {
+            for (int i = 0; i < questStack.getObjectivesCount(player); i++) {
+                infos.add(MatterOverdrive.questFactory.getFormattedQuestObjective(player, questStack, i));
+            }
+        }
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
-	{
-		if (worldIn.isRemote)
-		{
-			openGui(itemStackIn);
-			return ActionResult.newResult(EnumActionResult.SUCCESS, itemStackIn);
-		}
-		else
-		{
-			QuestStack questStack = getQuest(itemStackIn);
-			if (questStack == null)
-			{
-				Quest quest = ((WeightedRandomQuest)WeightedRandom.getRandomItem(itemRand, MatterOverdriveQuests.contractGeneration)).getQuest();
-				questStack = MatterOverdrive.questFactory.generateQuestStack(itemRand, quest);
-				NBTTagCompound questTag = new NBTTagCompound();
-				questStack.writeToNBT(questTag);
-				itemStackIn.setTagCompound(questTag);
-				return ActionResult.newResult(EnumActionResult.SUCCESS, itemStackIn);
-			}
-		}
-		return ActionResult.newResult(EnumActionResult.PASS, itemStackIn);
-	}
+    @Override
+    public String getItemStackDisplayName(ItemStack itemStack) {
+        if (itemStack.getTagCompound() != null) {
+            QuestStack questStack = QuestStack.loadFromNBT(itemStack.getTagCompound());
+            return questStack.getTitle();
+        }
+        return super.getItemStackDisplayName(itemStack);
+    }
 
-	@SideOnly(Side.CLIENT)
-	private void openGui(ItemStack stack)
-	{
-		QuestStack questStack = getQuest(stack);
-		if (questStack != null)
-		{
-			Minecraft.getMinecraft().displayGuiScreen(new GuiQuestPreview(getQuest(stack)));
-		}
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+        ItemStack itemStackIn = playerIn.getHeldItem(handIn);
+        if (worldIn.isRemote) {
+            openGui(itemStackIn);
+            return ActionResult.newResult(EnumActionResult.SUCCESS, itemStackIn);
+        } else {
+            QuestStack questStack = getQuest(itemStackIn);
+            if (questStack == null) {
+                Quest quest = ((WeightedRandomQuest) WeightedRandom.getRandomItem(itemRand, MatterOverdriveQuests.contractGeneration)).getQuest();
+                questStack = MatterOverdrive.questFactory.generateQuestStack(itemRand, quest);
+                NBTTagCompound questTag = new NBTTagCompound();
+                questStack.writeToNBT(questTag);
+                itemStackIn.setTagCompound(questTag);
+                return ActionResult.newResult(EnumActionResult.SUCCESS, itemStackIn);
+            }
+        }
+        return ActionResult.newResult(EnumActionResult.PASS, itemStackIn);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void openGui(ItemStack stack) {
+        QuestStack questStack = getQuest(stack);
+        if (questStack != null) {
+            Minecraft.getMinecraft().displayGuiScreen(new GuiQuestPreview(getQuest(stack)));
+        }
+    }
 }

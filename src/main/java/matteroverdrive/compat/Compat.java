@@ -12,45 +12,41 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Compat
-{
+public @interface Compat {
 
-	/**
-	 * The mod id that this compat module is for.
-	 */
-	String value();
+    /**
+     * The mod id that this compat module is for.
+     */
+    String value();
 
-	/**
-	 * Used to mark a method of a compatibility module to be run in the pre-initialization phase.
-	 * Any method marked with this annotation must have 1 argument, a {@link net.minecraftforge.fml.common.event.FMLPreInitializationEvent}.
-	 * Any method marked with this annotation must be static.
-	 */
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.METHOD)
-	@interface PreInit
-	{
-	}
+    /**
+     * Used to mark a method of a compatibility module to be run in the pre-initialization phase.
+     * Any method marked with this annotation must have 1 argument, a {@link net.minecraftforge.fml.common.event.FMLPreInitializationEvent}.
+     * Any method marked with this annotation must be static.
+     */
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.METHOD)
+    @interface PreInit {
+    }
 
-	/**
-	 * Used to mark a method of a compatibility module to be run in the initialization phase.
-	 * Any method marked with this annotation must have 1 argument, a {@link net.minecraftforge.fml.common.event.FMLInitializationEvent}.
-	 * Any method marked with this annotation must be static.
-	 */
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.METHOD)
-	@interface Init
-	{
-	}
+    /**
+     * Used to mark a method of a compatibility module to be run in the initialization phase.
+     * Any method marked with this annotation must have 1 argument, a {@link net.minecraftforge.fml.common.event.FMLInitializationEvent}.
+     * Any method marked with this annotation must be static.
+     */
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.METHOD)
+    @interface Init {
+    }
 
-	/**
-	 * Used to mark a method of a compatibility module to be run in the post-initialization phase.
-	 * Any method marked with this annotation must have 1 argument, a {@link net.minecraftforge.fml.common.event.FMLPostInitializationEvent}.
-	 * Any method marked with this annotation must be static.
-	 */
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.METHOD)
-	@interface PostInit
-	{
-	}
+    /**
+     * Used to mark a method of a compatibility module to be run in the post-initialization phase.
+     * Any method marked with this annotation must have 1 argument, a {@link net.minecraftforge.fml.common.event.FMLPostInitializationEvent}.
+     * Any method marked with this annotation must be static.
+     */
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.METHOD)
+    @interface PostInit {
+    }
 
 }

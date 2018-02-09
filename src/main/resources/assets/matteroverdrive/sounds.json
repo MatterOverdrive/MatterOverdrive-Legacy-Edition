@@ -1,0 +1,98 @@
+{
+    "weapons.phaser_beam": {"category": "player","sounds": [{"name": "matteroverdrive:phaser/phaser_beam_0", "stream": false}]},
+    "weapons.phaser_switch_mode": {"category": "player","sounds": [{"name": "matteroverdrive:phaser/phaser_switch_mode", "stream": false}]},
+    "scanner_beep": {"category": "player","sounds": [{"name": "matteroverdrive:matter_scanner/scanner_beep", "stream": false}]},
+    "scanner_success": {"category": "player","sounds": [{"name": "matteroverdrive:matter_scanner/scanner_success_2", "stream": false}]},
+    "scanner_fail": {"category": "player","sounds": [{"name": "matteroverdrive:matter_scanner/scanner_fail", "stream": false}]},
+    "scanner_scanning": {"category": "player","sounds": [{"name": "matteroverdrive:matter_scanner/scanner_scanning", "stream": false}]},
+    "replicate_success": {"category": "block","sounds": [{"name": "matteroverdrive:replicator/replicate_success", "stream": false}]},
+    "analyzer": {"category": "block","sounds": [{"name": "matteroverdrive:blocks/analyzer", "stream": false}]},
+    "decomposer": {"category": "block","sounds": [{"name": "matteroverdrive:blocks/decomposer", "stream": false}]},
+    "machine": {"category": "block","sounds": [{"name": "matteroverdrive:blocks/machine", "stream": false}]},
+    "transporter": {"category": "block","sounds": [{"name": "matteroverdrive:transporter/transporter_0", "stream": false}]},
+    "windy": {"category": "block","sounds": [{"name": "matteroverdrive:windy", "stream": false}]},
+    "anomaly_consume": {"category": "block","sounds": [{"name": "matteroverdrive:gravitational_anomaly/consume", "stream": false}]},
+    "electric_machine": {"category": "block","sounds": [{"name": "matteroverdrive:electric_machine", "stream": false}]},
+    "force_field": {"category": "block","sounds": [{"name": "matteroverdrive:force_field", "stream": false}]},
+    "failed_animal_die": {"category": "neutral","sounds": [
+      {"name": "matteroverdrive:entities/failed_animal_die_0", "stream": false},
+      {"name": "matteroverdrive:entities/failed_animal_die_1", "stream": false}
+    ]},
+    "failed_animal_idle_chicken": {"category": "neutral","sounds": [{"name": "matteroverdrive:entities/failed_animal_idle_chicken", "stream": false}]},
+    "failed_animal_idle_pig": {"category": "neutral","sounds": [{"name": "matteroverdrive:entities/failed_animal_idle_pig", "stream": false}]},
+    "failed_animal_idle_cow": {"category": "neutral","sounds": [{"name": "matteroverdrive:entities/failed_animal_idle_cow", "stream": false}]},
+    "failed_animal_idle_sheep": {"category": "neutral","sounds": [{"name": "matteroverdrive:entities/failed_animal_idle_sheep", "stream": false}]},
+    "gui.button_soft": {"category": "master","sounds": [
+      {"name": "matteroverdrive:gui/button_soft_0", "stream": false},
+      {"name": "matteroverdrive:gui/button_soft_1", "stream": false}
+    ]},
+    "gui.button_loud": {"category": "master","sounds": [
+      {"name": "matteroverdrive:gui/button_loud_0", "stream": false},
+      {"name": "matteroverdrive:gui/button_loud_1", "stream": false}
+    ]},
+    "gui.button_expand": {"category": "master","sounds": [{"name": "matteroverdrive:gui/button_expand", "stream": false}]},
+    "gui.biotic_stat_unlock": {"category": "master","sounds": [{"name": "matteroverdrive:gui/biotic_stat_unlock", "stream": false}]},
+    "music.transformation": {"category": "music","sounds": [{"name": "matteroverdrive:music/transformation_music", "stream": true}]},
+    "gui.glitch": {"category": "master","sounds": [
+      {"name": "matteroverdrive:gui/glitch_0", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_1", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_2", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_3", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_4", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_5", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_6", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_7", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_8", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_9", "stream": false},
+      {"name": "matteroverdrive:gui/glitch_10", "stream": false}
+    ]},
+    "android.teleport": {"category": "player","sounds": [{"name": "matteroverdrive:entities/android_teleport", "stream": false}]},
+    "android.shield_loop": {"category": "player","sounds": [{"name": "matteroverdrive:shield_loop", "stream": true}]},
+    "android.shield_hit": {"category": "player","sounds": [
+      {"name": "matteroverdrive:shield_hit_0", "stream": false},
+      {"name": "matteroverdrive:shield_hit_1", "stream": false}
+    ]},
+    "android.cloak_on": {"category": "player","sounds": [{"name": "matteroverdrive:entities/cloak_on", "stream": false}]},
+    "android.cloak_off": {"category": "player","sounds": [{"name": "matteroverdrive:entities/cloak_off", "stream": false}]},
+    "weapons.phaser_rifle_shot": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/phaser_rifle_shot", "stream": false}]},
+    "weapons.overheat_alarm": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/overheat_alarm", "stream": false}]},
+    "weapons.overheat": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/overheat_med", "stream": false}]},
+    "weapons.reload": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/reload", "stream": false}]},
+    "android.night_vision": {"category": "player","sounds": [{"name": "matteroverdrive:night_vision", "stream": false}]},
+    "android.power_down": {"category": "player","sounds": [{"name": "matteroverdrive:power_down", "stream": false}]},
+    "weapons.bolt_hit": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/bolt_hit_0", "stream": false}]},
+    "weapons.sizzle": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/sizzle", "stream": false}]},
+    "weapons.omni_tool_hum": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/omni_tool_hum", "stream": false}]},
+    "blocks.crate_open": {"category": "block","sounds": [{"name": "matteroverdrive:blocks/crate_open", "stream": false}]},
+    "blocks.crate_close": {"category": "block","sounds": [{"name": "matteroverdrive:blocks/crate_close", "stream": false}]},
+    "weapons.laser_ricochet": {"category": "player","sounds": [
+      {"name": "matteroverdrive:weapon/laser_ricochet_0", "stream": false},
+      {"name": "matteroverdrive:weapon/laser_ricochet_1", "stream": false}
+    ]},
+    "weapons.laser_fire": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/laser_fire_0", "stream": false}]},
+    "gui.quest_complete": {"category": "master","sounds": [{"name": "matteroverdrive:gui/quest_complete", "stream": false}]},
+    "gui.quest_started": {"category": "master","sounds": [{"name": "matteroverdrive:gui/quest_started", "stream": false}]},
+    "weapons.plasma_shotgun_shot": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/plasma_shotgun_shot", "stream": false}]},
+    "weapons.plasma_shotgun_charging": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/plasma_shotgun_charging", "stream": false}]},
+    "weapons.sniper_rifle_fire": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/sniper_rifle_fire", "stream": false}]},
+    "android.shield_power_up": {"category": "player","sounds": [{"name": "matteroverdrive:shield_power_up", "stream": false}]},
+    "android.shield_power_down": {"category": "player","sounds": [{"name": "matteroverdrive:shield_power_up", "stream": false}]},
+    "mobs.rogue_android_say": {"category": "hostile","sounds": [
+      {"name": "matteroverdrive:entities/rogue_android_say_0","stream":false},
+      {"name": "matteroverdrive:entities/rogue_android_say_1","stream":false},
+      {"name": "matteroverdrive:entities/rogue_android_say_2","stream":false}
+    ]},
+    "mobs.rogue_android_death": {"category": "hostile","sounds": [
+      {"name": "matteroverdrive:entities/rogue_android_death_0","stream":false},
+      {"name": "matteroverdrive:entities/rogue_android_death_1","stream":false}
+    ]},
+    "android.shockwave": {"category": "player","sounds": [{"name": "matteroverdrive:shockwave", "stream": false}]},
+    "fx.electric_arc": {"category": "block","sounds": [
+      {"name": "matteroverdrive:blocks/pylon/electric_arc_0", "stream": false},
+      {"name": "matteroverdrive:blocks/pylon/electric_arc_1", "stream": false},
+      {"name": "matteroverdrive:blocks/pylon/electric_arc_2", "stream": false},
+      {"name": "matteroverdrive:blocks/pylon/electric_arc_3", "stream": false}
+    ]},
+    "blocks.pylon": {"category": "block","sounds": [{"name": "matteroverdrive:blocks/pylon/pylon", "stream": false}]},
+    "weapons.explosive_shot": {"category": "player","sounds": [{"name": "matteroverdrive:weapon/explosive_shot", "stream": false}]}
+}

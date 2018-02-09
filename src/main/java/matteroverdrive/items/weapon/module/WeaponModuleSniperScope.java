@@ -28,63 +28,52 @@ import net.minecraft.util.ResourceLocation;
 /**
  * Created by Simeon on 12/8/2015.
  */
-public class WeaponModuleSniperScope extends MOBaseItem implements IWeaponScope
-{
-	public WeaponModuleSniperScope(String name)
-	{
-		super(name);
-		setCreativeTab(MatterOverdrive.tabMatterOverdrive_modules);
-		this.setMaxDamage(0);
-		this.setMaxStackSize(1);
-	}
+public class WeaponModuleSniperScope extends MOBaseItem implements IWeaponScope {
+    public WeaponModuleSniperScope(String name) {
+        super(name);
+        setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_MODULES);
+        this.setMaxDamage(0);
+        this.setMaxStackSize(1);
+    }
 
-	@Override
-	public float getZoomAmount(ItemStack scopeStack, ItemStack weapon)
-	{
-		return 0.85f;
-	}
+    @Override
+    public float getZoomAmount(ItemStack scopeStack, ItemStack weapon) {
+        return 0.85f;
+    }
 
-	@Override
-	public float getAccuracyModify(ItemStack scopeStack, ItemStack weaponStack, boolean zoomed, float originalAccuracy)
-	{
-		if (zoomed)
-		{
-			return originalAccuracy * 0.4f;
-		}
-		return originalAccuracy + 4f;
-	}
+    @Override
+    public float getAccuracyModify(ItemStack scopeStack, ItemStack weaponStack, boolean zoomed, float originalAccuracy) {
+        if (zoomed) {
+            return originalAccuracy * 0.4f;
+        }
+        return originalAccuracy + 4f;
+    }
 
-	@Override
-	public int getSlot(ItemStack module)
-	{
-		return Reference.MODULE_SIGHTS;
-	}
+    @Override
+    public int getSlot(ItemStack module) {
+        return Reference.MODULE_SIGHTS;
+    }
 
-	@Override
-	public String getModelPath()
-	{
-		return Reference.PATH_MODEL_ITEMS + "sniper_scope.obj";
-	}
+    @Override
+    public String getModelPath() {
+        return Reference.PATH_MODEL_ITEMS + "sniper_scope.obj";
+    }
 
-	@Override
-	public ResourceLocation getModelTexture(ItemStack module)
-	{
-		return new ResourceLocation(Reference.PATH_ITEM + "sniper_scope_texture.png");
-	}
+    @Override
+    public ResourceLocation getModelTexture(ItemStack module) {
+        return new ResourceLocation(Reference.PATH_ITEM + "sniper_scope_texture.png");
+    }
 
-	@Override
-	public String getModelName(ItemStack module)
-	{
-		return "sniper_scope";
-	}
+    @Override
+    public String getModelName(ItemStack module) {
+        return "sniper_scope";
+    }
 
-	@Override
-	public float modifyWeaponStat(int statID, ItemStack module, ItemStack weapon, float originalStat)
-	{
-		if (statID == Reference.WS_RANGE)
-		{
-			return originalStat * 1.5f;
-		}
-		return originalStat;
-	}
+    @Override
+    public float modifyWeaponStat(int statID, ItemStack module, ItemStack weapon, float originalStat) {
+        if (statID == Reference.WS_RANGE) {
+            return originalStat * 1.5f;
+        }
+        return originalStat;
+    }
 }

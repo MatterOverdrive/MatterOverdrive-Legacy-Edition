@@ -29,28 +29,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 11/22/2015.
  */
-public class DialogMessageBackTo extends DialogMessageBack
-{
-	IDialogMessage destination;
+public class DialogMessageBackTo extends DialogMessageBack {
+    IDialogMessage destination;
 
-	public DialogMessageBackTo()
-	{
-		super();
-	}
+    public DialogMessageBackTo() {
+        super();
+    }
 
-	public DialogMessageBackTo(String message, IDialogMessage destination)
-	{
-		super(message);
-		this.destination = destination;
-	}
+    public DialogMessageBackTo(String message, IDialogMessage destination) {
+        super(message);
+        this.destination = destination;
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	protected void setAsGuiActiveMessage(IDialogNpc npc, EntityPlayer player)
-	{
-		if (Minecraft.getMinecraft().currentScreen instanceof GuiDialog)
-		{
-			((GuiDialog)Minecraft.getMinecraft().currentScreen).setCurrentMessage(destination);
-		}
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    protected void setAsGuiActiveMessage(IDialogNpc npc, EntityPlayer player) {
+        if (Minecraft.getMinecraft().currentScreen instanceof GuiDialog) {
+            ((GuiDialog) Minecraft.getMinecraft().currentScreen).setCurrentMessage(destination);
+        }
+    }
 }

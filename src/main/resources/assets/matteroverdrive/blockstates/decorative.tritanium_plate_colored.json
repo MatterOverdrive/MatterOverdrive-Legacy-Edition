@@ -1,0 +1,32 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:base/cube_colored_all",
+    "textures": {
+      "all": "matteroverdrive:blocks/tritanium_plate_colorless"
+    }
+  },
+  "variants": {
+    "normal": {"model": "matteroverdrive:base/cube_colored_all"},
+    "color=white":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=orange":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=magenta":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=light_blue":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=yellow":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=lime":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=pink":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=gray":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=silver":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=cyan":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=purple":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=blue":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=brown":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=green":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=red":{"model": "matteroverdrive:base/cube_colored_all"},
+    "color=black":{"model": "matteroverdrive:base/cube_colored_all"},
+    "inventory": {
+      "model": "matteroverdrive:base/cube_colored_all",
+      "transform": "forge:default-block"
+    }
+  }
+}

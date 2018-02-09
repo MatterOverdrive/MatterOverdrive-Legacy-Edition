@@ -28,36 +28,31 @@ import java.util.concurrent.Callable;
 /**
  * Created by Simeon on 7/13/2015.
  */
-public class VersionCheckThread implements Callable<String>
-{
-	final String url;
+public class VersionCheckThread implements Callable<String> {
+    final String url;
 
-	public VersionCheckThread(String url)
-	{
-		this.url = url;
-	}
+    public VersionCheckThread(String url) {
+        this.url = url;
+    }
 
-	@Override
-	public String call() throws Exception
-	{
-		return readFromUrl(url);
-	}
+    @Override
+    public String call() throws Exception {
+        return readFromUrl(url);
+    }
 
-	private String readFromUrl(String urlPath) throws IOException
-	{
-		URL url = new URL(urlPath);
-		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-		connection.setRequestMethod("GET");
-		BufferedReader in = new BufferedReader(
-				new InputStreamReader(connection.getInputStream()));
-		String inputLine;
-		StringBuilder response = new StringBuilder();
+    private String readFromUrl(String urlPath) throws IOException {
+        URL url = new URL(urlPath);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
 
-		while ((inputLine = in.readLine()) != null)
-		{
-			response.append(inputLine);
-		}
-		in.close();
-		return response.toString();
-	}
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        return response.toString();
+    }
 }

@@ -28,29 +28,24 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 3/16/2015.
  */
-public class MatterSlot extends Slot
-{
-	public MatterSlot(boolean isMainSlot)
-	{
-		super(isMainSlot);
-	}
+public class MatterSlot extends Slot {
+    public MatterSlot(boolean isMainSlot) {
+        super(isMainSlot);
+    }
 
-	@Override
-	public boolean isValidForSlot(ItemStack itemStack)
-	{
-		return MatterHelper.containsMatter(itemStack);
-	}
+    @Override
+    public boolean isValidForSlot(ItemStack itemStack) {
+        return MatterHelper.containsMatter(itemStack);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public HoloIcon getHoloIcon()
-	{
-		return ClientProxy.holoIcons.getIcon("decompose");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public HoloIcon getHoloIcon() {
+        return ClientProxy.holoIcons.getIcon("decompose");
+    }
 
-	@Override
-	public String getUnlocalizedTooltip()
-	{
-		return "gui.tooltip.slot.matter";
-	}
+    @Override
+    public String getUnlocalizedTooltip() {
+        return "gui.tooltip.slot.matter";
+    }
 }

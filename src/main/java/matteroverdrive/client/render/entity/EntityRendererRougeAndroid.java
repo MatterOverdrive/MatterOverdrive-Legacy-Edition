@@ -25,9 +25,6 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -36,49 +33,40 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Created by Simeon on 5/26/2015.
  */
 @SideOnly(Side.CLIENT)
-public class EntityRendererRougeAndroid<T extends EntityRougeAndroidMob> extends RenderBiped<T>
-{
-	public static final ResourceLocation texture = new ResourceLocation(Reference.PATH_ENTITIES + "android.png");
-	public static final ResourceLocation texture_hologram = new ResourceLocation(Reference.PATH_ENTITIES + "android_holo.png");
-	private final boolean hologram;
+public class EntityRendererRougeAndroid<T extends EntityRougeAndroidMob> extends RenderBiped<T> {
+    public static final ResourceLocation texture = new ResourceLocation(Reference.PATH_ENTITIES + "android.png");
+    public static final ResourceLocation texture_hologram = new ResourceLocation(Reference.PATH_ENTITIES + "android_holo.png");
+    private final boolean hologram;
 
-	public EntityRendererRougeAndroid(RenderManager renderManager, ModelBiped modelBiped, float f, boolean hologram) {
-		super(renderManager, modelBiped, f, 1);
-		this.hologram = hologram;
-	}
+    public EntityRendererRougeAndroid(RenderManager renderManager, ModelBiped modelBiped, float f, boolean hologram) {
+        super(renderManager, modelBiped, f);
+        this.hologram = hologram;
+    }
 
-	public EntityRendererRougeAndroid(RenderManager renderManager, boolean hologram)
-	{
-		this(renderManager, new ModelBiped(), 0, hologram);
-	}
+    public EntityRendererRougeAndroid(RenderManager renderManager, boolean hologram) {
+        this(renderManager, new ModelBiped(), 0, hologram);
+    }
 
-	@Override
-	protected ResourceLocation getEntityTexture(T entity)
-	{
-		if (hologram)
-		{
-			return texture_hologram;
-		}
-		else
-		{
-			return texture;
-		}
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(T entity) {
+        if (hologram) {
+            return texture_hologram;
+        } else {
+            return texture;
+        }
+    }
 
-	@Override
-	protected boolean canRenderName(T entity)
-	{
-		return entity.getTeam() != null || Minecraft.getMinecraft().thePlayer.getDistanceToEntity(entity) < 18;
-	}
+    @Override
+    protected boolean canRenderName(T entity) {
+        return entity.getTeam() != null || Minecraft.getMinecraft().player.getDistance(entity) < 18;
+    }
 
-	@Override
-	protected void preRenderCallback(T entity, float partialTicks)
-	{
-		if (entity.getIsLegendary())
-		{
-			GlStateManager.scale(1.5, 1.5, 1.5);
-		}
-		super.preRenderCallback(entity, partialTicks);
-	}
+    @Override
+    protected void preRenderCallback(T entity, float partialTicks) {
+        if (entity.getIsLegendary()) {
+            GlStateManager.scale(1.5, 1.5, 1.5);
+        }
+        super.preRenderCallback(entity, partialTicks);
+    }
 
 }

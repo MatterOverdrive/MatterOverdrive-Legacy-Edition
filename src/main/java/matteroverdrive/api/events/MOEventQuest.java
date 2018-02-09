@@ -28,44 +28,36 @@ import java.util.List;
 /**
  * Created by Simeon on 11/19/2015.
  */
-public class MOEventQuest extends PlayerEvent
-{
-	public final QuestStack questStack;
+public class MOEventQuest extends PlayerEvent {
+    public final QuestStack questStack;
 
-	public MOEventQuest(QuestStack questStack, EntityPlayer entityPlayer)
-	{
-		super(entityPlayer);
-		this.questStack = questStack;
-	}
+    public MOEventQuest(QuestStack questStack, EntityPlayer entityPlayer) {
+        super(entityPlayer);
+        this.questStack = questStack;
+    }
 
-	public static class Completed extends MOEventQuest
-	{
-		public int xp;
-		public List<IQuestReward> rewards;
+    public static class Completed extends MOEventQuest {
+        public int xp;
+        public List<IQuestReward> rewards;
 
-		public Completed(QuestStack questStack, EntityPlayer entityPlayer, int xp, List<IQuestReward> rewards)
-		{
-			super(questStack, entityPlayer);
-			this.xp = xp;
-			this.rewards = rewards;
-		}
+        public Completed(QuestStack questStack, EntityPlayer entityPlayer, int xp, List<IQuestReward> rewards) {
+            super(questStack, entityPlayer);
+            this.xp = xp;
+            this.rewards = rewards;
+        }
 
-		public boolean isCancelable()
-		{
-			return true;
-		}
-	}
+        public boolean isCancelable() {
+            return true;
+        }
+    }
 
-	public static class Added extends MOEventQuest
-	{
-		public Added(QuestStack questStack, EntityPlayer entityPlayer)
-		{
-			super(questStack, entityPlayer);
-		}
+    public static class Added extends MOEventQuest {
+        public Added(QuestStack questStack, EntityPlayer entityPlayer) {
+            super(questStack, entityPlayer);
+        }
 
-		public boolean isCancelable()
-		{
-			return true;
-		}
-	}
+        public boolean isCancelable() {
+            return true;
+        }
+    }
 }

@@ -27,23 +27,20 @@ import net.minecraftforge.fml.relauncher.Side;
 /**
  * Created by Simeon on 11/22/2015.
  */
-public class MOEventDialogInteract extends PlayerEvent
-{
-	public final IDialogNpc npc;
-	public final IDialogOption dialogOption;
-	public final Side side;
+public class MOEventDialogInteract extends PlayerEvent {
+    public final IDialogNpc npc;
+    public final IDialogOption dialogOption;
+    public final Side side;
 
-	public MOEventDialogInteract(EntityPlayer player, IDialogNpc npc, IDialogOption dialogOption, Side side)
-	{
-		super(player);
-		this.npc = npc;
-		this.dialogOption = dialogOption;
-		this.side = side;
-	}
+    public MOEventDialogInteract(EntityPlayer player, IDialogNpc npc, IDialogOption dialogOption, Side side) {
+        super(player);
+        this.npc = npc;
+        this.dialogOption = dialogOption;
+        this.side = side;
+    }
 
-	@Override
-	public boolean isCancelable()
-	{
-		return true;
-	}
+    @Override
+    public boolean isCancelable() {
+        return true;
+    }
 }

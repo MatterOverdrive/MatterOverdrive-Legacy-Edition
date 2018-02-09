@@ -37,238 +37,252 @@ import matteroverdrive.items.weapon.module.*;
 import matteroverdrive.util.MOLog;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.shadowfacts.shadowmc.item.ModItems;
 
-public class MatterOverdriveItems extends ModItems
-{
-	public final static Item.ToolMaterial TOOL_MATERIAL_TRITANIUM = EnumHelper.addToolMaterial("TRITANIUM", 2, 3122, 6f, 2f, 14);
-	public final static ItemArmor.ArmorMaterial ARMOR_MATERIAL_TRITANIUM = EnumHelper.addArmorMaterial("TRITANIUM", "tritanium", 66, new int[] {4, 9, 7, 4}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2f);
+import java.util.ArrayList;
+import java.util.List;
 
-	private int registeredCount = 0;
+@Mod.EventBusSubscriber
 
-//	Materials
-	public MOItemOre dilithium_crystal;
-	public MOItemOre tritanium_ingot;
-	public MOItemOre tritanium_nugget;
-	public MOItemOre tritanium_dust;
-	public MOBaseItem tritanium_plate;
-	public MatterDust matter_dust;
-	public MatterDust matter_dust_refined;
+public class MatterOverdriveItems {
+    public final static Item.ToolMaterial TOOL_MATERIAL_TRITANIUM = EnumHelper.addToolMaterial("TRITANIUM", 2, 3122, 6f, 2f, 14);
+    public final static ItemArmor.ArmorMaterial ARMOR_MATERIAL_TRITANIUM = EnumHelper.addArmorMaterial("TRITANIUM", "tritanium", 66, new int[]{4, 9, 7, 4}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2f);
+    public static List<Item> items = new ArrayList<>();
+    //	Materials
+    public MOItemOre dilithium_crystal;
+    public MOItemOre tritanium_ingot;
+    public MOItemOre tritanium_nugget;
+    public MOItemOre tritanium_dust;
+    public MOBaseItem tritanium_plate;
+    public MatterDust matter_dust;
+    public MatterDust matter_dust_refined;
 
-//	Food(ish)
-	public AndroidPill androidPill;
-	public MOItemFood emergency_ration;
-	public EarlGrayTea earl_gray_tea;
-	public RomulanAle romulan_ale;
+    //	Food(ish)
+    public AndroidPill androidPill;
+    public MOItemFood emergency_ration;
+    public EarlGrayTea earl_gray_tea;
+    public RomulanAle romulan_ale;
 
-//	Storage
-	public Battery battery;
-	public Battery hc_battery;
-	public Battery creative_battery;
-	public MatterContainer matterContainer;
+    //	Storage
+    public Battery battery;
+    public Battery hc_battery;
+    public Battery creative_battery;
+    public MatterContainer matterContainer;
 
-//	Crafting
-	public MOBaseItem me_conversion_matrix;
-	public MOBaseItem h_compensator;
-	public MOBaseItem integration_matrix;
-	public MOBaseItem machine_casing;
-	public MOBaseItem s_magnet;
-	public IsolinearCircuit isolinear_circuit;
-	public MOBaseItem forceFieldEmitter;
-	public MOBaseItem weaponHandle;
-	public MOBaseItem weaponReceiver;
-	public MOBaseItem plasmaCore;
+    //	Crafting
+    public MOBaseItem me_conversion_matrix;
+    public MOBaseItem h_compensator;
+    public MOBaseItem integration_matrix;
+    public MOBaseItem machine_casing;
+    public MOBaseItem s_magnet;
+    public IsolinearCircuit isolinear_circuit;
+    public MOBaseItem forceFieldEmitter;
+    public MOBaseItem weaponHandle;
+    public MOBaseItem weaponReceiver;
+    public MOBaseItem plasmaCore;
 
-//	Weapons
-	public Phaser phaser;
-	public PhaserRifle phaserRifle;
-	public PlasmaShotgun plasmaShotgun;
-	public IonSniper ionSniper;
-	public OmniTool omniTool;
+    //	Weapons
+    public Phaser phaser;
+    public PhaserRifle phaserRifle;
+    public PlasmaShotgun plasmaShotgun;
+    public IonSniper ionSniper;
+    public OmniTool omniTool;
 
-//	Weapon Modules
-	public WeaponModuleColor weapon_module_color;
-	public WeaponModuleBarrel weapon_module_barrel;
-	public WeaponModuleSniperScope sniperScope;
-	public WeaponModuleRicochet weaponModuleRicochet;
-	public WeaponModuleHoloSights weaponModuleHoloSights;
+    //	Weapon Modules
+    public WeaponModuleColor weapon_module_color;
+    public WeaponModuleBarrel weapon_module_barrel;
+    public WeaponModuleSniperScope sniperScope;
+    public WeaponModuleRicochet weaponModuleRicochet;
+    public WeaponModuleHoloSights weaponModuleHoloSights;
 
-//	Tools
-	public Wrench wrench;
-	public TritaniumAxe tritaniumAxe;
-	public TritaniumPickaxe tritaniumPickaxe;
-	public TritaniumSword tritaniumSword;
-	public TritaniumHoe tritaniumHoe;
-	public TritaniumShovel tritaniumShovel;
-	public TritaniumArmor tritaniumHelmet;
-	public TritaniumArmor tritaniumChestplate;
-	public TritaniumArmor tritaniumLeggings;
-	public TritaniumArmor tritaniumBoots;
+    //	Tools
+    public Wrench wrench;
+    public TritaniumAxe tritaniumAxe;
+    public TritaniumPickaxe tritaniumPickaxe;
+    public TritaniumSword tritaniumSword;
+    public TritaniumHoe tritaniumHoe;
+    public TritaniumShovel tritaniumShovel;
+    public TritaniumArmor tritaniumHelmet;
+    public TritaniumArmor tritaniumChestplate;
+    public TritaniumArmor tritaniumLeggings;
+    public TritaniumArmor tritaniumBoots;
 
-//	Ships & Buildings
-	public ShipFactory shipFactory;
-	public ItemScoutShip scoutShip;
-	public ItemColonizerShip colonizerShip;
-	public ItemBuildingBase buildingBase;
-	public ItemBuildingResidential buildingResidential;
-	public ItemBuildingMatterExtractor buildingMatterExtractor;
-	public ItemBuildingShipHangar buildingShipHangar;
-	public ItemBuildingPowerGenerator buildingPowerGenerator;
+    //	Ships & Buildings
+    public ShipFactory shipFactory;
+    public ItemScoutShip scoutShip;
+    public ItemColonizerShip colonizerShip;
+    public ItemBuildingBase buildingBase;
+    public ItemBuildingResidential buildingResidential;
+    public ItemBuildingMatterExtractor buildingMatterExtractor;
+    public ItemBuildingShipHangar buildingShipHangar;
+    public ItemBuildingPowerGenerator buildingPowerGenerator;
 
-//	Android
-	public RougeAndroidParts androidParts;
-	public TritaniumSpine tritaniumSpine;
+    //	Android
+    public RougeAndroidParts androidParts;
+    public TritaniumSpine tritaniumSpine;
 
-//	Misc
-	public MatterScanner matter_scanner;
-	public PatternDrive pattern_drive;
-	public NetworkFlashDrive networkFlashDrive;
-	public ItemUpgrade item_upgrade;
-	public TransportFlashDrive transportFlashDrive;
-	public EnergyPack energyPack;
-	public DataPad dataPad;
-	public Contract contract;
-	public PortableDecomposer portableDecomposer;
-	public SecurityProtocol security_protocol;
-	public SpacetimeEqualizer spacetime_equalizer;
-	public ItemRecordTransformation recordTransformation;
+    //	Misc
+    public MatterScanner matter_scanner;
+    public PatternDrive pattern_drive;
+    public NetworkFlashDrive networkFlashDrive;
+    public ItemUpgrade item_upgrade;
+    public TransportFlashDrive transportFlashDrive;
+    public EnergyPack energyPack;
+    public DataPad dataPad;
+    public Contract contract;
+    public PortableDecomposer portableDecomposer;
+    public SecurityProtocol security_protocol;
+    public SpacetimeEqualizer spacetime_equalizer;
+    public ItemRecordTransformation recordTransformation;
+    private int registeredCount = 0;
 
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+        items.forEach(i -> event.getRegistry().register(i));
+    }
 
-	@Override
-	public void init()
-	{
+    private static void addToDungons(Item item, int min, int max, int chance) {
+        /*ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));
+        ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));
+        ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));
+        ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));
+        ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));*/
+    }
 
-		MOLog.info("Registering items");
+    public void init() {
+
+        MOLog.info("Registering items");
 
 //		Materials
-		dilithium_crystal = register(new MOItemOre("dilithium_crystal", "gemDilithium"));
-		tritanium_ingot = register(new MOItemOre("tritanium_ingot", "ingotTritanium"));
-		tritanium_nugget = register(new MOItemOre("tritanium_nugget", "nuggetTritanium"));
-		tritanium_dust = register(new MOItemOre("tritanium_dust", "dustTritanium"));
-		tritanium_plate = register(new MOBaseItem("tritanium_plate"));
-		matter_dust = register(new MatterDust("matter_dust", "matterDust", false));
-		matter_dust_refined = register(new MatterDust("matter_dust_refined", "matterDustRefined", true));
+        dilithium_crystal = register(new MOItemOre("dilithium_crystal", "gemDilithium"));
+        tritanium_ingot = register(new MOItemOre("tritanium_ingot", "ingotTritanium"));
+        tritanium_nugget = register(new MOItemOre("tritanium_nugget", "nuggetTritanium"));
+        tritanium_dust = register(new MOItemOre("tritanium_dust", "dustTritanium"));
+        tritanium_plate = register(new MOBaseItem("tritanium_plate"));
+        matter_dust = register(new MatterDust("matter_dust", "matterDust", false));
+        matter_dust_refined = register(new MatterDust("matter_dust_refined", "matterDustRefined", true));
 
 //		Food(ish)
-		androidPill = register(new AndroidPill("android_pill"));
-		emergency_ration = register(new MOItemFood("emergency_ration", 8, 0.8f, false));
-		earl_gray_tea = register(new EarlGrayTea("earl_gray_tea"));
-		romulan_ale = register(new RomulanAle("romulan_ale"));
+        androidPill = register(new AndroidPill("android_pill"));
+        emergency_ration = register(new MOItemFood("emergency_ration", 8, 0.8f, false));
+        earl_gray_tea = register(new EarlGrayTea("earl_gray_tea"));
+        romulan_ale = register(new RomulanAle("romulan_ale"));
 
 //		Storage
-		battery = register(new Battery("battery", 1 << 19, 400, 800));
-		hc_battery = register(new Battery("hc_battery", 1 << 20, 4096, 4096));
-		creative_battery = register(new CreativeBattery("creative_battery", 1 << 24, 8192, 8192));
-		matterContainer = register(new MatterContainer("matter_container"));
+        battery = register(new Battery("battery", 1 << 19, 400, 800));
+        hc_battery = register(new Battery("hc_battery", 1 << 20, 4096, 4096));
+        creative_battery = register(new CreativeBattery("creative_battery"));
+        matterContainer = register(new MatterContainer("matter_container"));
 
 //		Crafting
-		me_conversion_matrix = register(new MOBaseItem("me_conversion_matrix"));
-		h_compensator = register(new MOBaseItem("h_compensator"));
-		integration_matrix = register(new MOBaseItem("integration_matrix"));
-		machine_casing = register(new MOBaseItem("machine_casing"));
-		s_magnet = register(new MOBaseItem("s_magnet"));
-		isolinear_circuit = register(new IsolinearCircuit("isolinear_circuit"));
-		forceFieldEmitter = register(new MOBaseItem("forcefield_emitter"));
-		weaponHandle = register(new MOBaseItem("weapon_handle"));
-		weaponReceiver = register(new MOBaseItem("weapon_receiver"));
-		plasmaCore = register(new MOBaseItem("plasma_core"));
+        me_conversion_matrix = register(new MOBaseItem("me_conversion_matrix"));
+        h_compensator = register(new MOBaseItem("h_compensator"));
+        integration_matrix = register(new MOBaseItem("integration_matrix"));
+        machine_casing = register(new MOBaseItem("machine_casing"));
+        s_magnet = register(new MOBaseItem("s_magnet"));
+        isolinear_circuit = register(new IsolinearCircuit("isolinear_circuit"));
+        forceFieldEmitter = register(new MOBaseItem("forcefield_emitter"));
+        weaponHandle = register(new MOBaseItem("weapon_handle"));
+        weaponReceiver = register(new MOBaseItem("weapon_receiver"));
+        plasmaCore = register(new MOBaseItem("plasma_core"));
 
 //		Weapons
-		phaser = register(new Phaser("phaser"));
-		phaserRifle = register(new PhaserRifle("phaser_rifle"));
-		plasmaShotgun = register(new PlasmaShotgun("plasma_shotgun"));
-		ionSniper = register(new IonSniper("ion_sniper"));
-		omniTool = register(new OmniTool("omni_tool"));
+        phaser = register(new Phaser("phaser"));
+        phaserRifle = register(new PhaserRifle("phaser_rifle"));
+        plasmaShotgun = register(new PlasmaShotgun("plasma_shotgun"));
+        ionSniper = register(new IonSniper("ion_sniper"));
+        omniTool = register(new OmniTool("omni_tool"));
 
 //		Weapon Modules
-		weapon_module_color = register(new WeaponModuleColor("weapon_module_color"));
-		weapon_module_barrel = register(new WeaponModuleBarrel("weapon_module_barrel"));
-		sniperScope = register(new WeaponModuleSniperScope("sniper_scope"));
-		weaponModuleRicochet = register(new WeaponModuleRicochet("weapon_module_ricochet"));
-		weaponModuleHoloSights = register(new WeaponModuleHoloSights("weapon_module_holo_sights"));
+        weapon_module_color = register(new WeaponModuleColor("weapon_module_color"));
+        weapon_module_barrel = register(new WeaponModuleBarrel("weapon_module_barrel"));
+        sniperScope = register(new WeaponModuleSniperScope("sniper_scope"));
+        weaponModuleRicochet = register(new WeaponModuleRicochet("weapon_module_ricochet"));
+        weaponModuleHoloSights = register(new WeaponModuleHoloSights("weapon_module_holo_sights"));
 
 //		Tools
-		wrench = register(new Wrench("tritanium_wrench"));
-		tritaniumAxe = register(new TritaniumAxe("tritanium_axe"));
-		tritaniumPickaxe = register(new TritaniumPickaxe("tritanium_pickaxe"));
-		tritaniumSword = register(new TritaniumSword("tritanium_sword"));
-		tritaniumHoe = register(new TritaniumHoe("tritanium_hoe"));
-		tritaniumShovel = register(new TritaniumShovel("tritanium_shovel"));
-		tritaniumHelmet = register(new TritaniumArmor("tritanium_helmet", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.HEAD));
-		tritaniumChestplate = register(new TritaniumArmor("tritanium_chestplate", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.CHEST));
-		tritaniumLeggings = register(new TritaniumArmor("tritanium_leggings", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.LEGS));
-		tritaniumBoots = register(new TritaniumArmor("tritanium_boots", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.FEET));
+        wrench = register(new Wrench("tritanium_wrench"));
+        tritaniumAxe = register(new TritaniumAxe("tritanium_axe"));
+        tritaniumPickaxe = register(new TritaniumPickaxe("tritanium_pickaxe"));
+        tritaniumSword = register(new TritaniumSword("tritanium_sword"));
+        tritaniumHoe = register(new TritaniumHoe("tritanium_hoe"));
+        tritaniumShovel = register(new TritaniumShovel("tritanium_shovel"));
+        tritaniumHelmet = register(new TritaniumArmor("tritanium_helmet", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.HEAD));
+        tritaniumChestplate = register(new TritaniumArmor("tritanium_chestplate", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.CHEST));
+        tritaniumLeggings = register(new TritaniumArmor("tritanium_leggings", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.LEGS));
+        tritaniumBoots = register(new TritaniumArmor("tritanium_boots", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.FEET));
 
 //		Ships & Buildings
-		shipFactory = register(new ShipFactory("ship_factory"));
-		scoutShip = register(new ItemScoutShip("scout_ship"));
-		colonizerShip = register(new ItemColonizerShip("ship_colonizer"));
-		buildingBase = register(new ItemBuildingBase("building_base"));
-		buildingResidential = register(new ItemBuildingResidential("building_residential"));
-		buildingMatterExtractor = register(new ItemBuildingMatterExtractor("building_matter_extractor"));
-		buildingShipHangar = register(new ItemBuildingShipHangar("building_ship_hangar"));
-		buildingPowerGenerator = register(new ItemBuildingPowerGenerator("building_power_generator"));
+        shipFactory = register(new ShipFactory("ship_factory"));
+        scoutShip = register(new ItemScoutShip("scout_ship"));
+        colonizerShip = register(new ItemColonizerShip("ship_colonizer"));
+        buildingBase = register(new ItemBuildingBase("building_base"));
+        buildingResidential = register(new ItemBuildingResidential("building_residential"));
+        buildingMatterExtractor = register(new ItemBuildingMatterExtractor("building_matter_extractor"));
+        buildingShipHangar = register(new ItemBuildingShipHangar("building_ship_hangar"));
+        buildingPowerGenerator = register(new ItemBuildingPowerGenerator("building_power_generator"));
 
 //		Android
-		androidParts = register(new RougeAndroidParts("rogue_android_part"));
-		tritaniumSpine = register(new TritaniumSpine("tritainum_spine"));
+        androidParts = register(new RougeAndroidParts("rogue_android_part"));
+        tritaniumSpine = register(new TritaniumSpine("tritainum_spine"));
 
 //		Misc
-		matter_scanner = register(new MatterScanner("matter_scanner"));
-		pattern_drive = register(new PatternDrive("pattern_drive", 2));
-		networkFlashDrive = register(new NetworkFlashDrive("network_flash_drive"));
-		item_upgrade = register(new ItemUpgrade("upgrade"));
-		transportFlashDrive = register(new TransportFlashDrive("transport_flash_drive"));
-		energyPack = register(new EnergyPack("energy_pack"));
-		dataPad = register(new DataPad("data_pad"));
-		contract = register(new Contract("contract"));
-		portableDecomposer = register(new PortableDecomposer("portable_decomposer", 128000, 256, 512, 0.1f));
-		security_protocol = register(new SecurityProtocol("security_protocol"));
-		spacetime_equalizer = register(new SpacetimeEqualizer("spacetime_equalizer"));
-		recordTransformation = register(new ItemRecordTransformation());
+        matter_scanner = register(new MatterScanner("matter_scanner"));
+        pattern_drive = register(new PatternDrive("pattern_drive", 2));
+        networkFlashDrive = register(new NetworkFlashDrive("network_flash_drive"));
+        item_upgrade = register(new ItemUpgrade("upgrade"));
+        transportFlashDrive = register(new TransportFlashDrive("transport_flash_drive"));
+        energyPack = register(new EnergyPack("energy_pack"));
+        dataPad = register(new DataPad("data_pad"));
+        contract = register(new Contract("contract"));
+        portableDecomposer = register(new PortableDecomposer("portable_decomposer", 512, 0.1f));
+        security_protocol = register(new SecurityProtocol("security_protocol"));
+        spacetime_equalizer = register(new SpacetimeEqualizer("spacetime_equalizer"));
+        recordTransformation = register(new ItemRecordTransformation());
 
 
-		MOLog.info("Finished registering items");
-		MOLog.info("Registered %d items", registeredCount);
+        MOLog.info("Finished registering items");
+        MOLog.info("Registered %d items", registeredCount);
 
 
-		TOOL_MATERIAL_TRITANIUM.setRepairItem(new ItemStack(tritanium_ingot));
-		ARMOR_MATERIAL_TRITANIUM.customCraftingMaterial = tritanium_ingot;
+        TOOL_MATERIAL_TRITANIUM.setRepairItem(new ItemStack(tritanium_ingot));
+        ARMOR_MATERIAL_TRITANIUM.setRepairItem(new ItemStack(tritanium_ingot));
 
-		MatterOverdrive.matterRegistry.register(dilithium_crystal, new ItemHandler(0, true));
-		MatterOverdrive.matterRegistry.register(tritanium_ingot, new ItemHandler(0, true));
-		MatterOverdrive.matterRegistry.register(tritanium_dust, new ItemHandler(0, true));
-		MatterOverdrive.matterRegistry.register(tritanium_plate, new ItemHandler(0, true));
+        MatterOverdrive.matterRegistry.register(dilithium_crystal, new ItemHandler(0, true));
+        MatterOverdrive.matterRegistry.register(tritanium_ingot, new ItemHandler(0, true));
+        MatterOverdrive.matterRegistry.register(tritanium_dust, new ItemHandler(0, true));
+        MatterOverdrive.matterRegistry.register(tritanium_plate, new ItemHandler(0, true));
 
-		GameRegistry.addSmelting(new ItemStack(tritanium_dust), new ItemStack(tritanium_ingot), 5);
-		GameRegistry.addSmelting(new ItemStack(MatterOverdrive.blocks.tritaniumOre), new ItemStack(tritanium_ingot), 10);
-	}
+        GameRegistry.addSmelting(new ItemStack(tritanium_dust), new ItemStack(tritanium_ingot), 5);
+        GameRegistry.addSmelting(new ItemStack(MatterOverdrive.BLOCKS.tritaniumOre), new ItemStack(tritanium_ingot), 10);
+    }
 
-	@Override
-	protected <T extends Item> T register(T item)
-	{
-		registeredCount++;
-		return super.register(item);
-	}
+    protected <T extends Item> T register(T item) {
+        items.add(item);
+        registeredCount++;
+        return item;
+    }
 
-	public void addToDungons()
-	{
-		weapon_module_color.addToDunguns();
-		androidPill.addToDunguns();
+    public void addToDungons() {
+        weapon_module_color.addToDunguns();
+        androidPill.addToDunguns();
 //		addToDungons(emergency_ration, 1, 8, 6);
 //		addToDungons(earl_gray_tea, 1, 2, 2);
 //		addToDungons(romulan_ale, 1, 2, 2);
 //		addToDungons(recordTransformation, 1, 2, 1);
 
-		addToMODungons();
-	}
+        addToMODungons();
+    }
 
-	public void addToMODungons()
-	{
-		// TODO: 3/25/2016 Find how to add to dungon chests
+    public void addToMODungons() {
+        // TODO: 3/25/2016 Find how to add to dungon chests
 		/*ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(emergency_ration),8,20,100));
 		ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(earl_gray_tea),4,10,50));
         ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(romulan_ale),4,10,50));
@@ -295,14 +309,5 @@ public class MatterOverdriveItems extends ModItems
         ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(me_conversion_matrix),1,2,10));
         ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(matterContainerFull),4,8,20));
         ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(phaser),1,1,10));*/
-	}
-
-	private static void addToDungons(Item item, int min, int max, int chance)
-	{
-        /*ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));
-        ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));
-        ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));
-        ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));
-        ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(new ItemStack(item),min,max,chance));*/
-	}
+    }
 }

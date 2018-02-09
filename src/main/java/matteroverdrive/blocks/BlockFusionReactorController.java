@@ -18,17 +18,13 @@
 
 package matteroverdrive.blocks;
 
-import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.blocks.includes.MOBlockMachine;
 import matteroverdrive.handler.ConfigurationHandler;
 import matteroverdrive.machines.fusionReactorController.TileEntityMachineFusionReactorController;
 import matteroverdrive.util.MOBlockHelper;
-import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -40,19 +36,17 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 5/14/2015.
  */
-public class BlockFusionReactorController extends MOBlockMachine<TileEntityMachineFusionReactorController>
-{
-	public BlockFusionReactorController(Material material, String name)
-	{
-		super(material, name);
-		setHardness(30.0F);
-		this.setResistance(10.0f);
-		this.setHarvestLevel("pickaxe", 2);
-		setHasGui(true);
-		lightValue = 10;
-		setRotationType(MOBlockHelper.RotationType.SIX_WAY);
-		setHasRotation();
-	}
+public class BlockFusionReactorController extends MOBlockMachine<TileEntityMachineFusionReactorController> {
+    public BlockFusionReactorController(Material material, String name) {
+        super(material, name);
+        setHardness(30.0F);
+        this.setResistance(10.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        setHasGui(true);
+        lightValue = 10;
+        setRotationType(MOBlockHelper.RotationType.SIX_WAY);
+        setHasRotation();
+    }
 
    /* @SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
@@ -71,42 +65,36 @@ public class BlockFusionReactorController extends MOBlockMachine<TileEntityMachi
         }
     }*/
 
-	@Override
-	public Class<TileEntityMachineFusionReactorController> getTileEntityClass()
-	{
-		return TileEntityMachineFusionReactorController.class;
-	}
+    @Override
+    public Class<TileEntityMachineFusionReactorController> getTileEntityClass() {
+        return TileEntityMachineFusionReactorController.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityMachineFusionReactorController();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityMachineFusionReactorController();
+    }
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		TileEntity tileEntity = worldIn.getTileEntity(pos);
-		if (tileEntity instanceof TileEntityMachineFusionReactorController)
-		{
-			if (((TileEntityMachineFusionReactorController)tileEntity).isValidStructure())
-			{
-				return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
-			}
-		}
-		return false;
-	}
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if (tileEntity instanceof TileEntityMachineFusionReactorController) {
+            if (((TileEntityMachineFusionReactorController) tileEntity).isValidStructure()) {
+                return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+            }
+        }
+        return false;
+    }
 
-	@Override
-	public void onConfigChanged(ConfigurationHandler config)
-	{
-		super.onConfigChanged(config);
-		TileEntityMachineFusionReactorController.ENERGY_STORAGE = config.getMachineInt(getUnlocalizedName(), "storage.energy", 100000000, String.format("How much energy can the %s hold", getLocalizedName()));
-		TileEntityMachineFusionReactorController.MATTER_STORAGE = config.getMachineInt(getUnlocalizedName(), "storage.matter", 2048, String.format("How much matter can the %s hold", getLocalizedName()));
-		TileEntityMachineFusionReactorController.ENERGY_PER_TICK = config.getMachineInt(getUnlocalizedName(), "output.energy", 2048, "The Energy Output per tick. Dependant on the size of the anomaly as well");
-		TileEntityMachineFusionReactorController.MATTER_DRAIN_PER_TICK = (float)config.getMachineDouble(getUnlocalizedName(), "drain.matter", 1D / 80D, "How much matter is drained per tick. Dependant on the size of the anomaly as well");
-		TileEntityMachineFusionReactorController.MAX_GRAVITATIONAL_ANOMALY_DISTANCE = config.getMachineInt(getUnlocalizedName(), "distance.anomaly", 3, "The maximum distance of the anomaly");
-		TileEntityMachineFusionReactorController.STRUCTURE_CHECK_DELAY = config.getMachineInt(getUnlocalizedName(), "check.delay", 40, "The time delay between each structure check");
-	}
+    @Override
+    public void onConfigChanged(ConfigurationHandler config) {
+        super.onConfigChanged(config);
+        TileEntityMachineFusionReactorController.ENERGY_STORAGE = config.getMachineInt(getUnlocalizedName(), "storage.energy", 100000000, String.format("How much energy can the %s hold", getLocalizedName()));
+        TileEntityMachineFusionReactorController.MATTER_STORAGE = config.getMachineInt(getUnlocalizedName(), "storage.matter", 2048, String.format("How much matter can the %s hold", getLocalizedName()));
+        TileEntityMachineFusionReactorController.ENERGY_PER_TICK = config.getMachineInt(getUnlocalizedName(), "output.energy", 2048, "The Energy Output per tick. Dependant on the size of the anomaly as well");
+        TileEntityMachineFusionReactorController.MATTER_DRAIN_PER_TICK = (float) config.getMachineDouble(getUnlocalizedName(), "drain.matter", 1D / 80D, "How much matter is drained per tick. Dependant on the size of the anomaly as well");
+        TileEntityMachineFusionReactorController.MAX_GRAVITATIONAL_ANOMALY_DISTANCE = config.getMachineInt(getUnlocalizedName(), "distance.anomaly", 3, "The maximum distance of the anomaly");
+        TileEntityMachineFusionReactorController.STRUCTURE_CHECK_DELAY = config.getMachineInt(getUnlocalizedName(), "check.delay", 40, "The time delay between each structure check");
+    }
 }

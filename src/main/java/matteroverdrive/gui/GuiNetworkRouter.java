@@ -26,23 +26,20 @@ import net.minecraft.entity.player.InventoryPlayer;
 /**
  * Created by Simeon on 3/13/2015.
  */
-public class GuiNetworkRouter extends MOGuiMachine<TileEntityMachineNetworkRouter>
-{
-	ElementConnections connections;
+public class GuiNetworkRouter extends MOGuiMachine<TileEntityMachineNetworkRouter> {
+    ElementConnections connections;
 
-	public GuiNetworkRouter(InventoryPlayer inventoryPlayer, TileEntityMachineNetworkRouter entity)
-	{
-		super(ContainerFactory.createMachineContainer(entity, inventoryPlayer), entity);
-		name = "network_router";
-		connections = new ElementConnections(this, 50, 42, xSize - 74, ySize, machine);
-	}
+    public GuiNetworkRouter(InventoryPlayer inventoryPlayer, TileEntityMachineNetworkRouter entity) {
+        super(ContainerFactory.createMachineContainer(entity, inventoryPlayer), entity);
+        name = "network_router";
+        connections = new ElementConnections(this, 50, 42, xSize - 74, ySize, machine);
+    }
 
-	@Override
-	public void initGui()
-	{
-		super.initGui();
-		pages.get(0).addElement(connections);
-		AddHotbarPlayerSlots(inventorySlots, this);
-	}
+    @Override
+    public void initGui() {
+        super.initGui();
+        pages.get(0).addElement(connections);
+        AddHotbarPlayerSlots(inventorySlots, this);
+    }
 
 }

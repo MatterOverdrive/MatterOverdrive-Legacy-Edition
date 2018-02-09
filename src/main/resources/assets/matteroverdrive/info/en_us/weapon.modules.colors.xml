@@ -1,0 +1,26 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">Weapon Color Modules</title>
+        <text class="matter-text text-block">All energy weapons including the [item name=phaser], [item name=phaser_rifle] and the [item name=omni_tool] can be customized with modules. One of those module types is the weapon color module.</text>
+        <text class="matter-text text-block">The weapon color modules can change the weapon's appearance by changing it's color. The can also change the beam color of the [item name=phaser] and the [item name=omni_tool] as well as the color of the plasma bolts fired by the [item name=phaser_rifle] and the [item name=omni_tool].</text>
+        <text class="matter-text text-block">The color module can only be found in dungeon chests and cannot be replicated nor crafted.</text>
+    </page>
+</entry>

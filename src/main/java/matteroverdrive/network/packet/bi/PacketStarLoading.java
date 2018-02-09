@@ -35,79 +35,65 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 12/19/2015.
  */
-public class PacketStarLoading extends PacketAbstract
-{
-	int quadrantID;
-	int starID;
-	Star star;
+public class PacketStarLoading extends PacketAbstract {
+    int quadrantID;
+    int starID;
+    Star star;
 
-	public PacketStarLoading()
-	{
-	}
+    public PacketStarLoading() {
+    }
 
-	public PacketStarLoading(int quadrantID, int starID)
-	{
-		this.quadrantID = quadrantID;
-		this.starID = starID;
-	}
+    public PacketStarLoading(int quadrantID, int starID) {
+        this.quadrantID = quadrantID;
+        this.starID = starID;
+    }
 
-	public PacketStarLoading(int quadrantID, Star star)
-	{
-		this.quadrantID = quadrantID;
-		this.star = star;
-	}
+    public PacketStarLoading(int quadrantID, Star star) {
+        this.quadrantID = quadrantID;
+        this.star = star;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf)
-	{
-		quadrantID = buf.readInt();
-		starID = buf.readInt();
-		star = new Star();
-		if (buf.readBoolean())
-		{
-			star = new Star();
-			star.readFromBuffer(buf);
-		}
-	}
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        quadrantID = buf.readInt();
+        starID = buf.readInt();
+        star = new Star();
+        if (buf.readBoolean()) {
+            star = new Star();
+            star.readFromBuffer(buf);
+        }
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf)
-	{
-		buf.writeInt(quadrantID);
-		buf.writeInt(starID);
-		buf.writeBoolean(star != null);
-		if (star != null)
-		{
-			star.writeToBuffer(buf);
-		}
-	}
+    @Override
+    public void toBytes(ByteBuf buf) {
+        buf.writeInt(quadrantID);
+        buf.writeInt(starID);
+        buf.writeBoolean(star != null);
+        if (star != null) {
+            star.writeToBuffer(buf);
+        }
+    }
 
-	public static class BiHandler extends AbstractBiPacketHandler<PacketStarLoading>
-	{
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void handleClientMessage(EntityPlayerSP player, PacketStarLoading message, MessageContext ctx)
-		{
-			Quadrant quadrant = GalaxyClient.getInstance().getTheGalaxy().getQuadrantMap().get(message.quadrantID);
-			if (quadrant != null && message.star != null)
-			{
-				quadrant.addStar(message.star);
-				message.star.setQuadrant(quadrant);
-			}
-		}
+    public static class BiHandler extends AbstractBiPacketHandler<PacketStarLoading> {
+        @SideOnly(Side.CLIENT)
+        @Override
+        public void handleClientMessage(EntityPlayerSP player, PacketStarLoading message, MessageContext ctx) {
+            Quadrant quadrant = GalaxyClient.getInstance().getTheGalaxy().getQuadrantMap().get(message.quadrantID);
+            if (quadrant != null && message.star != null) {
+                quadrant.addStar(message.star);
+                message.star.setQuadrant(quadrant);
+            }
+        }
 
-		@Override
-		public void handleServerMessage(EntityPlayerMP player, PacketStarLoading message, MessageContext ctx)
-		{
-			Quadrant quadrant = GalaxyServer.getInstance().getTheGalaxy().getQuadrantMap().get(message.quadrantID);
-			if (quadrant != null)
-			{
-				Star star = quadrant.getStarMap().get(message.starID);
-				if (star != null)
-				{
-					MatterOverdrive.packetPipeline.sendTo(new PacketStarLoading(message.quadrantID, star), player);
-				}
-			}
-		}
-	}
+        @Override
+        public void handleServerMessage(EntityPlayerMP player, PacketStarLoading message, MessageContext ctx) {
+            Quadrant quadrant = GalaxyServer.getInstance().getTheGalaxy().getQuadrantMap().get(message.quadrantID);
+            if (quadrant != null) {
+                Star star = quadrant.getStarMap().get(message.starID);
+                if (star != null) {
+                    MatterOverdrive.packetPipeline.sendTo(new PacketStarLoading(message.quadrantID, star), player);
+                }
+            }
+        }
+    }
 }

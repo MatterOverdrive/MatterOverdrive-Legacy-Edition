@@ -1,0 +1,18 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+      "all": "matteroverdrive:blocks/alien/alien_log_side"
+    }
+  },
+  "variants": {
+    "normal": {
+      "model": "cube_all"
+    },
+    "axis=y":  { "model": "cube_column","textures":{"end":"matteroverdrive:blocks/alien/alien_log_top","side":"matteroverdrive:blocks/alien/alien_log_side"} },
+    "axis=z":   { "model": "column_side","textures":{"end":"matteroverdrive:blocks/alien/alien_log_top","side":"matteroverdrive:blocks/alien/alien_log_side"}},
+    "axis=x":   { "model": "column_side", "y": 90 ,"textures":{"end":"matteroverdrive:blocks/alien/alien_log_top","side":"matteroverdrive:blocks/alien/alien_log_side"}},
+    "axis=none": { "model": "cube_all", "textures":{"all":"matteroverdrive:blocks/alien/alien_log_side"} }
+  }
+}

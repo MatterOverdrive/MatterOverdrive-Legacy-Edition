@@ -1,0 +1,23 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:base/orientable",
+    "textures": {
+      "bottom": "matteroverdrive:blocks/tritanium_lamp_bottom",
+      "top": "matteroverdrive:blocks/tritanium_lamp_top",
+      "side": "matteroverdrive:blocks/tritanium_lamp_sides",
+      "particle": "matteroverdrive:blocks/tritanium_lamp_bottom",
+      "front": "matteroverdrive:blocks/tritanium_plate_yellow_stripe",
+      "back": "matteroverdrive:blocks/tritanium_plate_yellow_stripe"
+    }
+  },
+  "variants": {
+    "normal": {"model": "matteroverdrive:base/orientable"},
+    "rotated=false": { "model": "matteroverdrive:base/orientable"},
+    "rotated=true": { "model": "matteroverdrive:base/orientable","y": 90 },
+    "inventory": {
+      "model": "matteroverdrive:base/orientable",
+      "transform": "forge:default-block"
+    }
+  }
+}

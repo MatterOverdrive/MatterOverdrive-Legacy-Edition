@@ -27,28 +27,23 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by Simeon on 8/7/2015.
  */
-public class EnchantmentOverclock extends Enchantment
-{
-	public EnchantmentOverclock(Enchantment.Rarity rarity)
-	{
-		super(rarity, EnumEnchantmentType.ALL, new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND, EntityEquipmentSlot.OFFHAND});
-		setName("matteroverdrive.weapon.damage");
-	}
+public class EnchantmentOverclock extends Enchantment {
+    public EnchantmentOverclock(Enchantment.Rarity rarity) {
+        super(rarity, EnumEnchantmentType.ALL, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND, EntityEquipmentSlot.OFFHAND});
+        setName("matteroverdrive.weapon.damage");
+    }
 
-	public boolean canApply(ItemStack itemStack)
-	{
-		return itemStack.getItem() instanceof IWeapon;
-	}
+    public boolean canApply(ItemStack itemStack) {
+        return itemStack.getItem() instanceof IWeapon;
+    }
 
-	@Override
-	public int getMinLevel()
-	{
-		return 1;
-	}
+    @Override
+    public int getMinLevel() {
+        return 1;
+    }
 
-	@Override
-	public int getMaxLevel()
-	{
-		return 4;
-	}
+    @Override
+    public int getMaxLevel() {
+        return 4;
+    }
 }

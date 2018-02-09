@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "mo:items/container_2",
-    "layer1": "mo:items/container_2_overlay"
-  }
-}

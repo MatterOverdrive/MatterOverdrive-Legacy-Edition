@@ -28,33 +28,27 @@ import net.minecraftforge.fml.relauncher.Side;
 /**
  * Created by Simeon on 3/23/2015.
  */
-public class MatterOverdriveWorld
-{
-	public final MOWorldGen worldGen;
-	private final DimensionalRifts dimensionalRifts;
+public class MatterOverdriveWorld {
+    public final MOWorldGen worldGen;
+    private final DimensionalRifts dimensionalRifts;
 
-	public MatterOverdriveWorld(ConfigurationHandler configurationHandler)
-	{
-		worldGen = new MOWorldGen(configurationHandler);
-		dimensionalRifts = new DimensionalRifts(0.04);
-		configurationHandler.subscribe(worldGen);
-	}
+    public MatterOverdriveWorld(ConfigurationHandler configurationHandler) {
+        worldGen = new MOWorldGen(configurationHandler);
+        dimensionalRifts = new DimensionalRifts(0.04);
+        configurationHandler.subscribe(worldGen);
+    }
 
-	public void onWorldTick(TickEvent.WorldTickEvent event)
-	{
-		if (event.side.equals(Side.SERVER))
-		{
-			worldGen.manageBuildingGeneration(event);
-		}
-	}
+    public void onWorldTick(TickEvent.WorldTickEvent event) {
+        if (event.side.equals(Side.SERVER)) {
+            worldGen.manageBuildingGeneration(event);
+        }
+    }
 
-	public void register()
-	{
-		GameRegistry.registerWorldGenerator(worldGen, 0);
-	}
+    public void register() {
+        GameRegistry.registerWorldGenerator(worldGen, 0);
+    }
 
-	public DimensionalRifts getDimensionalRifts()
-	{
-		return dimensionalRifts;
-	}
+    public DimensionalRifts getDimensionalRifts() {
+        return dimensionalRifts;
+    }
 }

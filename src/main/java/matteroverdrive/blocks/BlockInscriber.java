@@ -31,31 +31,27 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 11/9/2015.
  */
-public class BlockInscriber extends MOBlockMachine<TileEntityInscriber>
-{
-	public BlockInscriber(Material material, String name)
-	{
-		super(material, name);
-		setHardness(20.0F);
-		this.setResistance(9.0f);
-		this.setHarvestLevel("pickaxe", 2);
-		setHasGui(true);
-		setHasRotation();
-		setBoundingBox(new AxisAlignedBB(0, 0, 0, 1, 12/16d, 1));
-	}
+public class BlockInscriber extends MOBlockMachine<TileEntityInscriber> {
+    public BlockInscriber(Material material, String name) {
+        super(material, name);
+        setHardness(20.0F);
+        this.setResistance(9.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        setHasGui(true);
+        setHasRotation();
+        setBoundingBox(new AxisAlignedBB(0, 0, 0, 1, 12 / 16d, 1));
+    }
 
-	@Override
-	public Class<TileEntityInscriber> getTileEntityClass()
-	{
-		return TileEntityInscriber.class;
-	}
+    @Override
+    public Class<TileEntityInscriber> getTileEntityClass() {
+        return TileEntityInscriber.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityInscriber();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityInscriber();
+    }
 
     /*@Override
 	@SideOnly(Side.CLIENT)
@@ -70,10 +66,9 @@ public class BlockInscriber extends MOBlockMachine<TileEntityInscriber>
         return RendererBlockInscriber.renderID;
     }*/
 
-	@Override
-	@Deprecated
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    @Deprecated
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 }

@@ -26,58 +26,48 @@ import net.minecraft.util.math.Vec3d;
 /**
  * Created by Simeon on 12/11/2015.
  */
-public class EntityAIRangedRunFromMelee extends EntityAIBase
-{
-	Vec3d destinaton;
-	private double minDistanceSq;
-	private EntityCreature entity;
-	private double moveSpeed;
+public class EntityAIRangedRunFromMelee extends EntityAIBase {
+    Vec3d destinaton;
+    private double minDistanceSq;
+    private EntityCreature entity;
+    private double moveSpeed;
 
-	public EntityAIRangedRunFromMelee(EntityCreature entity, double moveSpeed)
-	{
-		this.entity = entity;
-		this.moveSpeed = moveSpeed;
-		//setMutexBits(1);
-	}
+    public EntityAIRangedRunFromMelee(EntityCreature entity, double moveSpeed) {
+        this.entity = entity;
+        this.moveSpeed = moveSpeed;
+        //setMutexBits(1);
+    }
 
-	@Override
-	public boolean shouldExecute()
-	{
-		if (this.entity.getAttackTarget() != null && this.entity.getNavigator().noPath())
-		{
-			double sqDistanceToTargetSq = this.entity.getDistanceSqToEntity(this.entity.getAttackTarget());
-			if (sqDistanceToTargetSq + 4 < minDistanceSq)
-			{
-				int distanceToRun = (int)Math.sqrt(minDistanceSq - sqDistanceToTargetSq);
-				destinaton = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.entity, distanceToRun, 4, new Vec3d(this.entity.getAttackTarget().posX, this.entity.getAttackTarget().posY, this.entity.getAttackTarget().posZ));
-				return destinaton != null;
-			}
-		}
-		return false;
-	}
+    @Override
+    public boolean shouldExecute() {
+        if (this.entity.getAttackTarget() != null && this.entity.getNavigator().noPath()) {
+            double sqDistanceToTargetSq = this.entity.getDistanceSq(this.entity.getAttackTarget());
+            if (sqDistanceToTargetSq + 4 < minDistanceSq) {
+                int distanceToRun = (int) Math.sqrt(minDistanceSq - sqDistanceToTargetSq);
+                destinaton = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.entity, distanceToRun, 4, new Vec3d(this.entity.getAttackTarget().posX, this.entity.getAttackTarget().posY, this.entity.getAttackTarget().posZ));
+                return destinaton != null;
+            }
+        }
+        return false;
+    }
 
-	@Override
-	public void startExecuting()
-	{
-		if (destinaton != null)
-		{
-			this.entity.getNavigator().tryMoveToXYZ(destinaton.xCoord, destinaton.yCoord, destinaton.zCoord, moveSpeed);
-		}
-	}
+    @Override
+    public void startExecuting() {
+        if (destinaton != null) {
+            this.entity.getNavigator().tryMoveToXYZ(destinaton.x, destinaton.y, destinaton.z, moveSpeed);
+        }
+    }
 
-	@Override
-	public boolean continueExecuting()
-	{
-		return !this.entity.getNavigator().noPath();
-	}
+    @Override
+    public boolean shouldContinueExecuting() {
+        return !entity.getNavigator().noPath();
+    }
 
-	public void setMinDistance(double minDistance)
-	{
-		this.minDistanceSq = minDistance * minDistance;
-	}
+    public void setMinDistance(double minDistance) {
+        this.minDistanceSq = minDistance * minDistance;
+    }
 
-	public void setMoveSpeed(double moveSpeed)
-	{
-		this.moveSpeed = moveSpeed;
-	}
+    public void setMoveSpeed(double moveSpeed) {
+        this.moveSpeed = moveSpeed;
+    }
 }

@@ -11,30 +11,24 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 /**
  * Created by Simeon on 3/19/2015.
  */
-public class TileEntityRendererPatterStorage extends TileEntitySpecialRenderer<TileEntityMachinePatternStorage>
-{
-	EntityItem itemEntity;
-	private IModel model;
-	private ResourceLocation texture;
-	private ResourceLocation ventTexture;
+public class TileEntityRendererPatterStorage extends TileEntitySpecialRenderer<TileEntityMachinePatternStorage> {
+    EntityItem itemEntity;
+    private IModel model;
+    private ResourceLocation texture;
+    private ResourceLocation ventTexture;
 
-	public TileEntityRendererPatterStorage()
-	{
-		texture = new ResourceLocation(Reference.PATH_BLOCKS + "pattern_storage.png");
-		ventTexture = new ResourceLocation(Reference.PATH_BLOCKS + "vent.png");
-		try
-		{
-			model = OBJLoader.INSTANCE.loadModel(new ResourceLocation(Reference.MODEL_PATTERN_STORAGE));
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+    public TileEntityRendererPatterStorage() {
+        texture = new ResourceLocation(Reference.PATH_BLOCKS + "pattern_storage.png");
+        ventTexture = new ResourceLocation(Reference.PATH_BLOCKS + "vent.png");
+        try {
+            model = OBJLoader.INSTANCE.loadModel(new ResourceLocation(Reference.MODEL_PATTERN_STORAGE));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	@Override
-	public void renderTileEntityAt(TileEntityMachinePatternStorage patternStorage, double x, double y, double z, float ticks, int destroyStage)
-	{
+    @Override
+    public void render(TileEntityMachinePatternStorage patternStorage, double x, double y, double z, float ticks, int destroyStage, float a) {
 		/*GL11.glPushMatrix();
 		GlStateManager.translate(x + 0.5f, y + 0.5f, z + 0.5f);
         RenderUtils.rotateFromBlock(patternStorage.getWorld(), patternStorage.getPos());
@@ -52,5 +46,5 @@ public class TileEntityRendererPatterStorage extends TileEntitySpecialRenderer<T
             }
         }
         GlStateManager.popMatrix();*/
-	}
+    }
 }

@@ -23,106 +23,91 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 /**
  * Created by Simeon on 3/16/2015.
  */
-public class Slot
-{
-	private ItemStack item;
-	private int id;
-	private boolean drops = true;
-	private boolean isMainSlot = false;
-	private boolean keepOnDismante = false;
-	private boolean sendToClient = false;
+public class Slot {
+    @Nonnull
+    private ItemStack item = ItemStack.EMPTY;
+    private int id;
+    private boolean drops = true;
+    private boolean isMainSlot = false;
+    private boolean keepOnDismante = false;
+    private boolean sendToClient = false;
 
-	public Slot(boolean isMainSlot)
-	{
-		this.isMainSlot = isMainSlot;
-	}
+    public Slot(boolean isMainSlot) {
+        this.isMainSlot = isMainSlot;
+    }
 
-	public boolean isValidForSlot(ItemStack item)
-	{
-		return true;
-	}
+    public boolean isValidForSlot(ItemStack item) {
+        return true;
+    }
 
-	@SideOnly(Side.CLIENT)
-	public HoloIcon getHoloIcon()
-	{
-		return null;
-	}
+    @SideOnly(Side.CLIENT)
+    public HoloIcon getHoloIcon() {
+        return null;
+    }
 
-	public ItemStack getItem()
-	{
-		return item;
-	}
+    @Nonnull
+    public ItemStack getItem() {
+        return item;
+    }
 
-	public void setItem(ItemStack item)
-	{
-		this.item = item;
-	}
+    public void setItem(@Nonnull ItemStack item) {
+        this.item = item;
+    }
 
-	public int getId()
-	{
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id)
-	{
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public boolean drops()
-	{
-		return drops;
-	}
+    public boolean drops() {
+        return drops;
+    }
 
-	public void setDrops(boolean drops)
-	{
-		this.drops = drops;
-	}
+    public void setDrops(boolean drops) {
+        this.drops = drops;
+    }
 
-	public boolean keepOnDismantle()
-	{
-		return keepOnDismante;
-	}
+    public boolean keepOnDismantle() {
+        return keepOnDismante;
+    }
 
-	public boolean isMainSlot()
-	{
-		return isMainSlot;
-	}
+    public boolean isMainSlot() {
+        return isMainSlot;
+    }
 
-	public void setMainSlot(boolean mainSlot)
-	{
-		this.isMainSlot = mainSlot;
-	}
+    public void setMainSlot(boolean mainSlot) {
+        this.isMainSlot = mainSlot;
+    }
 
-	public void setKeepOnDismante(boolean keepOnDismante)
-	{
-		this.keepOnDismante = keepOnDismante;
-	}
+    public void setKeepOnDismante(boolean keepOnDismante) {
+        this.keepOnDismante = keepOnDismante;
+    }
 
-	public int getMaxStackSize()
-	{
-		return 64;
-	}
+    public int getMaxStackSize() {
+        return 64;
+    }
 
-	public String getUnlocalizedTooltip()
-	{
-		return null;
-	}
+    public String getUnlocalizedTooltip() {
+        return null;
+    }
 
-	public Slot setSendToClient(boolean sendToClient)
-	{
-		this.sendToClient = sendToClient;
-		return this;
-	}
+    public Slot setSendToClient(boolean sendToClient) {
+        this.sendToClient = sendToClient;
+        return this;
+    }
 
-	public boolean sendsToClient()
-	{
-		return sendToClient;
-	}
+    public boolean sendsToClient() {
+        return sendToClient;
+    }
 
-	public void onSlotChanged()
-	{
-	}
+    public void onSlotChanged() {
+    }
 }

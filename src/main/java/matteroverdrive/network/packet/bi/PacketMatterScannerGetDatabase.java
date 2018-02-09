@@ -38,74 +38,62 @@ import java.util.List;
 /**
  * Created by Simeon on 5/5/2015.
  */
-public class PacketMatterScannerGetDatabase extends TileEntityUpdatePacket
-{
-	List<ItemPattern> list;
+public class PacketMatterScannerGetDatabase extends TileEntityUpdatePacket {
+    List<ItemPattern> list;
 
-	public PacketMatterScannerGetDatabase()
-	{
-		super();
-	}
+    public PacketMatterScannerGetDatabase() {
+        super();
+    }
 
-	public PacketMatterScannerGetDatabase(BlockPos position)
-	{
-		super(position);
-	}
+    public PacketMatterScannerGetDatabase(BlockPos position) {
+        super(position);
+    }
 
-	public PacketMatterScannerGetDatabase(List<ItemPattern> list)
-	{
-		this.list = list;
-	}
+    public PacketMatterScannerGetDatabase(List<ItemPattern> list) {
+        this.list = list;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf)
-	{
-		super.fromBytes(buf);
-		int size = buf.readInt();
-		//for (int i = 0;i < size;i++)
-		//{
-		//list.add(new ItemPattern(buf));
-		//}
-	}
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        super.fromBytes(buf);
+        int size = buf.readInt();
+        //for (int i = 0;i < size;i++)
+        //{
+        //list.add(new ItemPattern(buf));
+        //}
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf)
-	{
-		super.toBytes(buf);
-		//buf.writeInt(list.size());
-		//for (ItemPattern pattern : list)
-		//{
-		//pattern.writeToBuffer(buf);
-		//}
-	}
+    @Override
+    public void toBytes(ByteBuf buf) {
+        super.toBytes(buf);
+        //buf.writeInt(list.size());
+        //for (ItemPattern pattern : list)
+        //{
+        //pattern.writeToBuffer(buf);
+        //}
+    }
 
-	public static class Handler extends AbstractBiPacketHandler<PacketMatterScannerGetDatabase>
-	{
+    public static class Handler extends AbstractBiPacketHandler<PacketMatterScannerGetDatabase> {
 
-		public Handler()
-		{
-		}
+        public Handler() {
+        }
 
-		@Override
-		public void handleServerMessage(EntityPlayerMP player, PacketMatterScannerGetDatabase message, MessageContext ctx)
-		{
-			TileEntity tileEntity = message.getTileEntity(player.worldObj);
-			if (tileEntity instanceof IMatterDatabase)
-			{
-				//IMatterDatabase database = (IMatterDatabase) tileEntity;
-				//MatterOverdrive.packetPipeline.sendTo(new PacketMatterScannerGetDatabase(database.getPatterns()),player);
-			}
-		}
+        @Override
+        public void handleServerMessage(EntityPlayerMP player, PacketMatterScannerGetDatabase message, MessageContext ctx) {
+            TileEntity tileEntity = message.getTileEntity(player.world);
+            if (tileEntity instanceof IMatterDatabase) {
+                //IMatterDatabase database = (IMatterDatabase) tileEntity;
+                //MatterOverdrive.packetPipeline.sendTo(new PacketMatterScannerGetDatabase(database.getPatterns()),player);
+            }
+        }
 
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void handleClientMessage(EntityPlayerSP player, PacketMatterScannerGetDatabase message, MessageContext ctx)
-		{
-			if (Minecraft.getMinecraft().currentScreen instanceof GuiMatterScanner)
-			{
-				//GuiMatterScanner guiMatterScanner = (GuiMatterScanner)Minecraft.getMinecraft().currentScreen;
-				//guiMatterScanner.UpdatePatternList(message.list);
-			}
-		}
-	}
+        @SideOnly(Side.CLIENT)
+        @Override
+        public void handleClientMessage(EntityPlayerSP player, PacketMatterScannerGetDatabase message, MessageContext ctx) {
+            if (Minecraft.getMinecraft().currentScreen instanceof GuiMatterScanner) {
+                //GuiMatterScanner guiMatterScanner = (GuiMatterScanner)Minecraft.getMinecraft().currentScreen;
+                //guiMatterScanner.UpdatePatternList(message.list);
+            }
+        }
+    }
 }

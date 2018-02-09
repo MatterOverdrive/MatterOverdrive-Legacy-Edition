@@ -25,44 +25,44 @@ import java.util.Map;
  * @author Santhosh Kumar
  */
 public class GoogleAnalyticsResponse {
-	private int statusCode = 200;
-	private List<NameValuePair> postedParms = null;
+    private int statusCode = 200;
+    private List<NameValuePair> postedParms = null;
 
-	public Map<String, String> getPostedParmsAsMap() {
-		if (postedParms == null) {
-			return null;
-		}
-		
-		Map<String, String> paramsMap = new HashMap<String, String>();
-		for (NameValuePair pair : postedParms) {
-			paramsMap.put(pair.getName(), pair.getValue());
-		}
-		
-		return paramsMap;
-	}
+    public Map<String, String> getPostedParmsAsMap() {
+        if (postedParms == null) {
+            return null;
+        }
 
-	public List<NameValuePair> getPostedParms() {
-		return postedParms;
-	}
+        Map<String, String> paramsMap = new HashMap<String, String>();
+        for (NameValuePair pair : postedParms) {
+            paramsMap.put(pair.getName(), pair.getValue());
+        }
 
-	public void setPostedParms(List<NameValuePair> postedParms) {
-		this.postedParms = postedParms;
-	}
+        return paramsMap;
+    }
 
-	public void setStatusCode(int statusCode) {
-		this.statusCode = statusCode;
-	}
+    public List<NameValuePair> getPostedParms() {
+        return postedParms;
+    }
 
-	public int getStatusCode() {
-		return statusCode;
-	}
+    public void setPostedParms(List<NameValuePair> postedParms) {
+        this.postedParms = postedParms;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Response [statusCode=");
-		builder.append(statusCode);
-		builder.append("]");
-		return builder.toString();
-	}
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Response [statusCode=");
+        builder.append(statusCode);
+        builder.append("]");
+        return builder.toString();
+    }
 }

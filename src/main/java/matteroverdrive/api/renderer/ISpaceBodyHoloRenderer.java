@@ -28,13 +28,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Created by Simeon on 6/17/2015.
  */
 @SideOnly(Side.CLIENT)
-public interface ISpaceBodyHoloRenderer
-{
-	void renderBody(Galaxy galaxy, SpaceBody spaceBody, TileEntityMachineStarMap starMap, float partialTicks, float viewerDistance);
+public interface ISpaceBodyHoloRenderer {
+    void renderBody(Galaxy galaxy, SpaceBody spaceBody, TileEntityMachineStarMap starMap, float partialTicks, float viewerDistance);
 
-	void renderGUIInfo(Galaxy galaxy, SpaceBody spaceBody, TileEntityMachineStarMap starMap, float partialTicks, float opacity);
+    void renderGUIInfo(Galaxy galaxy, SpaceBody spaceBody, TileEntityMachineStarMap starMap, float partialTicks, float opacity);
 
-	boolean displayOnZoom(int zoom, SpaceBody spaceBody);
+    boolean displayOnZoom(int zoom, SpaceBody spaceBody);
 
-	double getHologramHeight(SpaceBody spaceBody);
+    double getHologramHeight(SpaceBody spaceBody);
 }

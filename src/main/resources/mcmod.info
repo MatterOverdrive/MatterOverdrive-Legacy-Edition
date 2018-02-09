@@ -1,17 +1,18 @@
 [
-{
-  "modid": "mo",
-  "name": "Matter Overdrive",
-  "description": "A mod that dwells within matter and energy.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "http://simeon.co.vu/Mods/MatterOverdrive/",
-  "updateUrl": "",
-  "authorList": ["Simeon Radivoev", "Shadowfacts"],
-  "credits": "",
-  "logoFile": "/MatterOverdriveLogo.png",
-  "screenshots": [],
-  "requiredMods": [ "ShadowMC", "Tesla" ],
-  "dependencies": []
-}
+  {
+    "modid": "matteroverdrive",
+    "name": "MatterOverdrive",
+    "description": "A mod that dwells within matter and energy.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "http://simeon.co.vu/Mods/MatterOverdrive/",
+    "updateUrl": "",
+    "authorList": [
+      "Coded",
+      "Simeon Radivoev",
+      "Shadowfacts"
+    ],
+    "credits": "",
+    "logoFile": "/logo.png"
+  }
 ]

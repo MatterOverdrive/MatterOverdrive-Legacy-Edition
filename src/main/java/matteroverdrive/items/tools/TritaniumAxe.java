@@ -23,24 +23,21 @@ import matteroverdrive.Reference;
 import matteroverdrive.init.MatterOverdriveItems;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.util.ResourceLocation;
-import net.shadowfacts.shadowmc.item.ItemModelProvider;
+import com.astro.clib.api.render.ItemModelProvider;
 
 /**
  * Created by Simeon on 11/1/2015.
  */
-public class TritaniumAxe extends ItemAxe implements ItemModelProvider
-{
-	public TritaniumAxe(String name)
-	{
-		super(MatterOverdriveItems.TOOL_MATERIAL_TRITANIUM, MatterOverdriveItems.TOOL_MATERIAL_TRITANIUM.getDamageVsEntity(), -3.1f);
-		setUnlocalizedName(name);
-		setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
-	}
+public class TritaniumAxe extends ItemAxe implements ItemModelProvider {
+    public TritaniumAxe(String name) {
+        super(MatterOverdriveItems.TOOL_MATERIAL_TRITANIUM, MatterOverdriveItems.TOOL_MATERIAL_TRITANIUM.getAttackDamage(), -3.1f);
+        setUnlocalizedName(name);
+        setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
+    }
 
-	@Override
-	public void initItemModel()
-	{
-		MatterOverdrive.proxy.registerItemModel(this, 0, getRegistryName().getResourcePath());
-	}
+    @Override
+    public void initItemModel() {
+        MatterOverdrive.PROXY.registerItemModel(this, 0, getRegistryName().getResourcePath());
+    }
 
 }

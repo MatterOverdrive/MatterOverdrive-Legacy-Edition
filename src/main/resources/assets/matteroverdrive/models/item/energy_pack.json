@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "matteroverdrive:items/container_2",
+    "layer1": "matteroverdrive:items/container_2_overlay"
+  }
+}

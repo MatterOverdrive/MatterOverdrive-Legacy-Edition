@@ -26,39 +26,31 @@ import net.minecraft.entity.player.EntityPlayer;
 /**
  * Created by Simeon on 8/10/2015.
  */
-public class DialogMessageTrade extends DialogMessage
-{
-	public DialogMessageTrade(JsonObject object)
-	{
-		super(object);
-	}
+public class DialogMessageTrade extends DialogMessage {
+    public DialogMessageTrade(JsonObject object) {
+        super(object);
+    }
 
-	public DialogMessageTrade()
-	{
-	}
+    public DialogMessageTrade() {
+    }
 
-	public DialogMessageTrade(String message)
-	{
-		super(message);
-	}
+    public DialogMessageTrade(String message) {
+        super(message);
+    }
 
-	public DialogMessageTrade(String message, String question)
-	{
-		super(message, question);
-	}
+    public DialogMessageTrade(String message, String question) {
+        super(message, question);
+    }
 
-	public DialogMessageTrade(String[] messages, String[] questions)
-	{
-		super(messages, questions);
-	}
+    public DialogMessageTrade(String[] messages, String[] questions) {
+        super(messages, questions);
+    }
 
-	@Override
-	public void onInteract(IDialogNpc npc, EntityPlayer player)
-	{
-		if (!player.worldObj.isRemote && npc.getEntity() instanceof IMerchant)
-		{
-			((IMerchant)npc.getEntity()).setCustomer(player);
-			player.displayVillagerTradeGui((IMerchant)npc);
-		}
-	}
+    @Override
+    public void onInteract(IDialogNpc npc, EntityPlayer player) {
+        if (!player.world.isRemote && npc.getEntity() instanceof IMerchant) {
+            ((IMerchant) npc.getEntity()).setCustomer(player);
+            player.displayVillagerTradeGui((IMerchant) npc);
+        }
+    }
 }

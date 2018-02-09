@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by Simeon on 2/17/2016.
  */
-public interface IWeaponLayer
-{
-	void renderLayer(WeaponMetadataSection weaponMeta, ItemStack weapon, float ticks);
+public interface IWeaponLayer {
+    void renderLayer(WeaponMetadataSection weaponMeta, ItemStack weapon, float ticks);
 }

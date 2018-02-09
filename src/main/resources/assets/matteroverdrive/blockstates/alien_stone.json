@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:alien/stone",
+    "textures": {
+      "all": "matteroverdrive:blocks/alien/alien_stone"
+    }
+  },
+  "variants": {
+    "normal": { "model": "matteroverdrive:alien/stone" }
+  }
+}

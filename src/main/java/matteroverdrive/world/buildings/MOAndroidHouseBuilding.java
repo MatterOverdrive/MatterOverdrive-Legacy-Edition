@@ -30,56 +30,50 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class MOAndroidHouseBuilding extends MOWorldGenBuilding
-{
-	public MOAndroidHouseBuilding(String name)
-	{
-		super(name, new ResourceLocation(Reference.PATH_WORLD_TEXTURES + "android_house.png"), 21, 21);
-		setyOffset(-2);
-		addMapping(0x00fffc, MatterOverdrive.blocks.decorative_beams, MatterOverdrive.blocks.decorative_carbon_fiber_plate, MatterOverdrive.blocks.decorative_white_plate);
-		addMapping(0x623200, Blocks.DIRT);
-		addMapping(0xffa200, MatterOverdrive.blocks.decorative_floor_tiles);
-		addMapping(0xfff600, MatterOverdrive.blocks.decorative_holo_matrix);
-		addMapping(0x80b956, Blocks.GRASS);
-		addMapping(0x539ac3, MatterOverdrive.blocks.decorative_tritanium_plate);
-		addMapping(0xb1c8d5, MatterOverdrive.blocks.decorative_floor_noise, MatterOverdrive.blocks.decorative_floor_tiles_green, MatterOverdrive.blocks.decorative_floor_tile_white);
-		addMapping(0x5f6569, MatterOverdrive.blocks.decorative_vent_dark);
-		addMapping(0xf1f1f1, Blocks.AIR);
-		addMapping(0xe400ff, MatterOverdrive.blocks.starMap);
-		addMapping(0x1850ad, MatterOverdrive.blocks.decorative_clean);
-		addMapping(0x9553c3, MatterOverdrive.blocks.forceGlass);
-		addMapping(0x35d6e0, MatterOverdrive.blocks.replicator);
-		addMapping(0x35e091, MatterOverdrive.blocks.network_switch);
-		addMapping(0xc8d43d, MatterOverdrive.blocks.tritaniumCrate);
-		addMapping(0x2a4071, MatterOverdrive.blocks.androidStation, MatterOverdrive.blocks.weapon_station);
-		addMapping(0xa13e5f, MatterOverdrive.blocks.network_pipe);
-		addMapping(0xa16a3e, MatterOverdrive.blocks.chargingStation);
-		addMapping(0x416173, MatterOverdrive.blocks.decorative_tritanium_plate_stripe);
-		addMapping(0x187716, MatterOverdrive.blocks.pattern_monitor);
-		addMapping(0xac7c1e, MatterOverdrive.blocks.decorative_vent_bright);
-		addMapping(0x007eff, MatterOverdrive.blocks.decorative_stripes);
-	}
+public class MOAndroidHouseBuilding extends MOWorldGenBuilding {
+    public MOAndroidHouseBuilding(String name) {
+        super(name, new ResourceLocation(Reference.PATH_WORLD_TEXTURES + "android_house.png"), 21, 21);
+        setyOffset(-2);
+        addMapping(0x00fffc, MatterOverdrive.BLOCKS.decorative_beams, MatterOverdrive.BLOCKS.decorative_carbon_fiber_plate, MatterOverdrive.BLOCKS.decorative_white_plate);
+        addMapping(0x623200, Blocks.DIRT);
+        addMapping(0xffa200, MatterOverdrive.BLOCKS.decorative_floor_tiles);
+        addMapping(0xfff600, MatterOverdrive.BLOCKS.decorative_holo_matrix);
+        addMapping(0x80b956, Blocks.GRASS);
+        addMapping(0x539ac3, MatterOverdrive.BLOCKS.decorative_tritanium_plate);
+        addMapping(0xb1c8d5, MatterOverdrive.BLOCKS.decorative_floor_noise, MatterOverdrive.BLOCKS.decorative_floor_tiles_green, MatterOverdrive.BLOCKS.decorative_floor_tile_white);
+        addMapping(0x5f6569, MatterOverdrive.BLOCKS.decorative_vent_dark);
+        addMapping(0xf1f1f1, Blocks.AIR);
+        addMapping(0xe400ff, MatterOverdrive.BLOCKS.starMap);
+        addMapping(0x1850ad, MatterOverdrive.BLOCKS.decorative_clean);
+        addMapping(0x9553c3, MatterOverdrive.BLOCKS.forceGlass);
+        addMapping(0x35d6e0, MatterOverdrive.BLOCKS.replicator);
+        addMapping(0x35e091, MatterOverdrive.BLOCKS.network_switch);
+        addMapping(0xc8d43d, MatterOverdrive.BLOCKS.tritaniumCrate);
+        addMapping(0x2a4071, MatterOverdrive.BLOCKS.androidStation, MatterOverdrive.BLOCKS.weapon_station);
+        addMapping(0xa13e5f, MatterOverdrive.BLOCKS.network_pipe);
+        addMapping(0xa16a3e, MatterOverdrive.BLOCKS.chargingStation);
+        addMapping(0x416173, MatterOverdrive.BLOCKS.decorative_tritanium_plate_stripe);
+        addMapping(0x187716, MatterOverdrive.BLOCKS.pattern_monitor);
+        addMapping(0xac7c1e, MatterOverdrive.BLOCKS.decorative_vent_bright);
+        addMapping(0x007eff, MatterOverdrive.BLOCKS.decorative_stripes);
+    }
 
-	@Override
-	protected void onGeneration(Random random, World world, BlockPos pos, WorldGenBuildingWorker worker)
-	{
-		for (int i = 0; i < random.nextInt(3) + 3; i++)
-		{
-			spawnAndroid(world, random, pos.add(7, i, 10));
-		}
-		spawnLegendary(world, random, pos.add(12, 4, 10));
-	}
+    @Override
+    protected void onGeneration(Random random, World world, BlockPos pos, WorldGenBuildingWorker worker) {
+        for (int i = 0; i < random.nextInt(3) + 3; i++) {
+            spawnAndroid(world, random, pos.add(7, i, 10));
+        }
+        spawnLegendary(world, random, pos.add(12, 4, 10));
+    }
 
-	@Override
-	public boolean shouldGenerate(Random random, World world, BlockPos pos)
-	{
-		return world.provider.getDimension() == 0;
-	}
+    @Override
+    public boolean shouldGenerate(Random random, World world, BlockPos pos) {
+        return world.provider.getDimension() == 0;
+    }
 
-	@Override
-	public void onBlockPlace(World world, IBlockState block, BlockPos pos, Random random, int color, ImageGenWorker worker)
-	{
-		// TODO: 3/25/2016 Find how to get chest gen hook
+    @Override
+    public void onBlockPlace(World world, IBlockState block, BlockPos pos, Random random, int color, ImageGenWorker worker) {
+        // TODO: 3/25/2016 Find how to get chest gen hook
 		/*if ((color & 0xffffff) == 0xc8d43d)
 		{
             TileEntity inventory = world.getTileEntity(pos);
@@ -91,47 +85,40 @@ public class MOAndroidHouseBuilding extends MOWorldGenBuilding
                 }
             }
         }*/
-	}
+    }
 
-	public void spawnAndroid(World world, Random random, BlockPos pos)
-	{
-		if (random.nextInt(100) < 60)
-		{
-			EntityRangedRogueAndroidMob androidMob = new EntityRangedRogueAndroidMob(world);
-			androidMob.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-			world.spawnEntityInWorld(androidMob);
-			androidMob.onInitialSpawn(world.getDifficultyForLocation(pos), null);
-			androidMob.enablePersistence();
-		}
-		else
-		{
-			EntityMeleeRougeAndroidMob androidMob = new EntityMeleeRougeAndroidMob(world);
-			androidMob.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-			world.spawnEntityInWorld(androidMob);
-			androidMob.onInitialSpawn(world.getDifficultyForLocation(pos), null);
-			androidMob.enablePersistence();
-		}
-	}
+    public void spawnAndroid(World world, Random random, BlockPos pos) {
+        if (random.nextInt(100) < 60) {
+            EntityRangedRogueAndroidMob androidMob = new EntityRangedRogueAndroidMob(world);
+            androidMob.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+            world.spawnEntity(androidMob);
+            androidMob.onInitialSpawn(world.getDifficultyForLocation(pos), null);
+            androidMob.enablePersistence();
+        } else {
+            EntityMeleeRougeAndroidMob androidMob = new EntityMeleeRougeAndroidMob(world);
+            androidMob.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+            world.spawnEntity(androidMob);
+            androidMob.onInitialSpawn(world.getDifficultyForLocation(pos), null);
+            androidMob.enablePersistence();
+        }
+    }
 
-	public void spawnLegendary(World world, Random random, BlockPos pos)
-	{
-		EntityRangedRogueAndroidMob legendaryMob = new EntityRangedRogueAndroidMob(world, 3, true);
-		legendaryMob.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-		world.spawnEntityInWorld(legendaryMob);
-		legendaryMob.onInitialSpawn(world.getDifficultyForLocation(pos), null);
-		legendaryMob.enablePersistence();
-	}
+    public void spawnLegendary(World world, Random random, BlockPos pos) {
+        EntityRangedRogueAndroidMob legendaryMob = new EntityRangedRogueAndroidMob(world, 3, true);
+        legendaryMob.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+        world.spawnEntity(legendaryMob);
+        legendaryMob.onInitialSpawn(world.getDifficultyForLocation(pos), null);
+        legendaryMob.enablePersistence();
+    }
 
-	@Override
-	public int getMetaFromColor(int color, Random random)
-	{
-		int alpha = 255 - getAlphaFromColor(color);
-		return (int)((alpha / 255d) * 10d);
-	}
+    @Override
+    public int getMetaFromColor(int color, Random random) {
+        int alpha = 255 - getAlphaFromColor(color);
+        return (int) ((alpha / 255d) * 10d);
+    }
 
-	@Override
-	public WorldGenBuildingWorker getNewWorkerInstance()
-	{
-		return new WorldGenBuildingWorker();
-	}
+    @Override
+    public WorldGenBuildingWorker getNewWorkerInstance() {
+        return new WorldGenBuildingWorker();
+    }
 }

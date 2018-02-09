@@ -22,40 +22,27 @@ import matteroverdrive.enchantment.EnchantmentOverclock;
 import matteroverdrive.handler.ConfigurationHandler;
 import matteroverdrive.util.IConfigSubscriber;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * Created by Simeon on 8/7/2015.
  */
-public class MatterOverdriveEnchantments implements IConfigSubscriber
-{
-	public static EnchantmentOverclock overclock;
+@Mod.EventBusSubscriber
+public class MatterOverdriveEnchantments implements IConfigSubscriber {
+    public static Enchantment overclock;
 
-	public static void init(FMLPreInitializationEvent event, ConfigurationHandler configurationHandler)
-	{
-		overclock = new EnchantmentOverclock(Enchantment.Rarity.COMMON);
+    public static void init(FMLPreInitializationEvent event, ConfigurationHandler configurationHandler) {
+        overclock = new EnchantmentOverclock(Enchantment.Rarity.COMMON).setRegistryName("overclock");
+    }
 
-		int id = configurationHandler.getInt("Overclock", ConfigurationHandler.CATEGORY_ENCHANTMENTS, 80);
-		while (id < 256)
-		{
-			try
-			{
-				Enchantment.REGISTRY.register(id, new ResourceLocation("overclock"), overclock);
-				break;
-			}
-			catch (IllegalArgumentException e)
-			{
-				id++;
-			}
-		}
+    public static void register(RegistryEvent.Register<Enchantment> event) {
+        event.getRegistry().register(overclock);
+    }
 
-		configurationHandler.setInt("Overclock", ConfigurationHandler.CATEGORY_ENCHANTMENTS, id);
-	}
+    @Override
+    public void onConfigChanged(ConfigurationHandler config) {
 
-	@Override
-	public void onConfigChanged(ConfigurationHandler config)
-	{
-
-	}
+    }
 }

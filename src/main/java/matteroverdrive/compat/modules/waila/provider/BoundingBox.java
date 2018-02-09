@@ -16,42 +16,35 @@ import java.util.List;
 /**
  * @author shadowfacts
  */
-public class BoundingBox implements IWailaDataProvider
-{
+public class BoundingBox implements IWailaDataProvider {
 
-	@Override
-	public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config)
-	{
-		if (accessor.getTileEntity() instanceof TileEntityBoundingBox)
-		{
-			TileEntityBoundingBox boundingBox = (TileEntityBoundingBox)accessor.getTileEntity();
-			return new ItemStack(boundingBox.getOwnerBlock());
-		}
-		return null;
-	}
+    @Override
+    public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        if (accessor.getTileEntity() instanceof TileEntityBoundingBox) {
+            TileEntityBoundingBox boundingBox = (TileEntityBoundingBox) accessor.getTileEntity();
+            return new ItemStack(boundingBox.getOwnerBlock());
+        }
+        return null;
+    }
 
-	@Override
-	public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config)
-	{
-		return null;
-	}
+    @Override
+    public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return null;
+    }
 
-	@Override
-	public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config)
-	{
-		return null;
-	}
+    @Override
+    public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return null;
+    }
 
-	@Override
-	public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config)
-	{
-		return null;
-	}
+    @Override
+    public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return null;
+    }
 
-	@Override
-	public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, BlockPos pos)
-	{
-		return null;
-	}
+    @Override
+    public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, BlockPos pos) {
+        return null;
+    }
 
 }

@@ -29,29 +29,24 @@ import java.util.TreeMap;
 /**
  * Created by Simeon on 9/10/2015.
  */
-public class EnumConfigProperty extends GuiConfigEntries.SelectValueEntry
-{
-	public EnumConfigProperty(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement)
-	{
-		super(owningScreen, owningEntryList, configElement, getSelectableValues(configElement));
-	}
+public class EnumConfigProperty extends GuiConfigEntries.SelectValueEntry {
+    public EnumConfigProperty(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement) {
+        super(owningScreen, owningEntryList, configElement, getSelectableValues(configElement));
+    }
 
-	private static Map<Object, String> getSelectableValues(IConfigElement configElement)
-	{
-		Map<Object, String> selectableValues = new TreeMap<>();
+    private static Map<Object, String> getSelectableValues(IConfigElement configElement) {
+        Map<Object, String> selectableValues = new TreeMap<>();
 
-		for (int i = 0; i < configElement.getValidValues().length; i++)
-		{
-			selectableValues.put(i, configElement.getValidValues()[i]);
-		}
+        for (int i = 0; i < configElement.getValidValues().length; i++) {
+            selectableValues.put(i, configElement.getValidValues()[i]);
+        }
 
-		return selectableValues;
-	}
+        return selectableValues;
+    }
 
-	@Override
-	public void updateValueButtonText()
-	{
-		super.updateValueButtonText();
-		btnValue.displayString = configElement.getValidValues()[Integer.parseInt(getCurrentValue())];
-	}
+    @Override
+    public void updateValueButtonText() {
+        super.updateValueButtonText();
+        btnValue.displayString = configElement.getValidValues()[Integer.parseInt(getCurrentValue())];
+    }
 }

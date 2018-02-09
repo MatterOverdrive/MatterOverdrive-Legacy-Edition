@@ -1,0 +1,47 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:replicator.obj",
+    "custom":{
+      "flip-v": true
+    },
+    "textures": {
+
+    }
+  },
+  "variants": {
+    "normal": {
+      "model": "matteroverdrive:replicator.obj"
+    },
+    "facing":{
+      "north":{
+        "transform": {
+          "rotation": {
+            "y":180
+          }
+        }
+      },
+      "south":{
+
+      },
+      "west": {
+        "transform": {
+          "rotation": {
+            "y": 270
+          }
+        }
+      },
+      "east":{
+        "transform": {
+          "rotation": {
+            "y":90
+          }
+        }
+      }
+    },
+    "inventory": {
+      "model": "matteroverdrive:replicator.obj",
+      "transform": "forge:default-block"
+    }
+  }
+}

@@ -18,18 +18,12 @@
 
 package matteroverdrive.blocks;
 
-import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.blocks.includes.MOBlockMachine;
 import matteroverdrive.tile.TileEntityMachineGravitationalStabilizer;
 import matteroverdrive.util.MOBlockHelper;
-import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -37,18 +31,16 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 5/12/2015.
  */
-public class BlockGravitationalStabilizer extends MOBlockMachine<TileEntityMachineGravitationalStabilizer>
-{
-	public BlockGravitationalStabilizer(Material material, String name)
-	{
-		super(material, name);
-		setHardness(20.0F);
-		this.setResistance(10.0f);
-		this.setHarvestLevel("pickaxe", 2);
-		lightValue = 10;
-		setRotationType(MOBlockHelper.RotationType.SIX_WAY);
-		setHasRotation();
-	}
+public class BlockGravitationalStabilizer extends MOBlockMachine<TileEntityMachineGravitationalStabilizer> {
+    public BlockGravitationalStabilizer(Material material, String name) {
+        super(material, name);
+        setHardness(20.0F);
+        this.setResistance(10.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        lightValue = 10;
+        setRotationType(MOBlockHelper.RotationType.SIX_WAY);
+        setHasRotation();
+    }
 
     /*@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
@@ -69,18 +61,16 @@ public class BlockGravitationalStabilizer extends MOBlockMachine<TileEntityMachi
         return MatterOverdriveIcons.Coil;
     }*/
 
-	@Override
-	public Class<TileEntityMachineGravitationalStabilizer> getTileEntityClass()
-	{
-		return TileEntityMachineGravitationalStabilizer.class;
-	}
+    @Override
+    public Class<TileEntityMachineGravitationalStabilizer> getTileEntityClass() {
+        return TileEntityMachineGravitationalStabilizer.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityMachineGravitationalStabilizer();
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityMachineGravitationalStabilizer();
 
-	}
+    }
 
 }

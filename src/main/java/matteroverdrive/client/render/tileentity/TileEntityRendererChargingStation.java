@@ -24,8 +24,7 @@ import net.minecraft.tileentity.TileEntity;
 /**
  * Created by Simeon on 7/8/2015.
  */
-public class TileEntityRendererChargingStation extends TileEntitySpecialRenderer
-{
+public class TileEntityRendererChargingStation extends TileEntitySpecialRenderer {
 	/*private IModelCustom model;
 
     public TileEntityRendererChargingStation()
@@ -33,12 +32,11 @@ public class TileEntityRendererChargingStation extends TileEntitySpecialRenderer
         model = AdvancedModelLoader.loadModel(new ResourceLocation(Reference.MODEL_CHARGING_STATION));
     }*/
 
-	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage)
-	{
+    @Override
+    public void render(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		/*if (tileEntity != null) {
             glPushMatrix();
-            float colorMul = (float)(Math.sin(Minecraft.getMinecraft().theWorld.getWorldTime() * 0.2));
+            float colorMul = (float)(Math.sin(Minecraft.getMinecraft().world.getWorldTime() * 0.2));
             GlStateManager.color(colorMul, colorMul, colorMul);
             GlStateManager.translate(x, y, z);
             bindTexture(TextureMap.locationBlocksTexture);
@@ -46,12 +44,12 @@ public class TileEntityRendererChargingStation extends TileEntitySpecialRenderer
             RenderUtils.disableLightmap();
             Tessellator.instance.startDrawingQuads();
             Matrix4f mat = new Matrix4f();
-            RenderUtils.rotateFromBlock(mat, tileEntity.getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+            RenderUtils.rotateFromBlock(mat, tileEntity.getWorld(), tileEntity.x, tileEntity.y, tileEntity.z);
             RenderUtils.tesseleteModelAsBlock(mat, ((WavefrontObject) model).groupObjects.get(1), MatterOverdriveIcons.charging_station, 0, 0, 0, (int)(colorMul * 20) + 220, false, null);
             Tessellator.instance.draw();
             RenderUtils.enableLightmap();
             GlStateManager.enableLighting();
             glPopMatrix();
         }*/
-	}
+    }
 }

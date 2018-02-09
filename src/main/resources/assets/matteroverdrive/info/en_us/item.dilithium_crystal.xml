@@ -1,0 +1,27 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">Dilithium Crystal</title>
+        <image width="64" height="64" src="guide/dilithium_crystal.png" style="float:left;margin-right:8px;margin-bottom:4px"></image>
+        <text class="matter-text text-block" style="width:180px">Dilithium is an extremely hard crystalline mineral that occurs naturally on some planets.
+            When placed in a high-frequency electromagnetic field, magnetic eddies are induced in its structure which keep charged particles away from the crystal lattice.</text>
+        <text class="matter-text text-block">Used by most Matter Overdrive machines. Dilithium can only be procured from [block name=dilithium_ore] by mining it with tool with an iron mining capability or above. Fortune enchantments can increase the amount of crystals, [block name=dilithium_ore] drops.</text>
+    </page>
+</entry>

@@ -23,14 +23,12 @@ import net.minecraft.client.model.ModelBiped;
 /**
  * Created by Simeon on 7/30/2015.
  */
-public class ModelSpacetimeEqualizer extends ModelBiped
-{
-	public ModelSpacetimeEqualizer()
-	{
-		super(0, 0.0F, 64, 32);
-		this.bipedHead.showModel = false;
-		this.bipedHeadwear.showModel = false;
-		this.bipedLeftArm.showModel = false;
-		this.bipedLeftLeg.showModel = false;
-	}
+public class ModelSpacetimeEqualizer extends ModelBiped {
+    public ModelSpacetimeEqualizer() {
+        super(0, 0.0F, 64, 32);
+        this.bipedHead.showModel = false;
+        this.bipedHeadwear.showModel = false;
+        this.bipedLeftArm.showModel = false;
+        this.bipedLeftLeg.showModel = false;
+    }
 }

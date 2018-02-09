@@ -21,16 +21,13 @@ package matteroverdrive.data.inventory;
 /**
  * Created by Simeon on 11/5/2015.
  */
-public class CrateSlot extends Slot
-{
+public class CrateSlot extends Slot {
 
-	public CrateSlot(boolean isMainSlot)
-	{
-		super(isMainSlot);
-	}
+    public CrateSlot(boolean isMainSlot) {
+        super(isMainSlot);
+    }
 
-	public boolean keepOnDismantle()
-	{
-		return true;
-	}
+    public boolean keepOnDismantle() {
+        return true;
+    }
 }

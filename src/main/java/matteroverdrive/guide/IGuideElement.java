@@ -26,17 +26,16 @@ import java.util.Map;
 /**
  * Created by Simeon on 8/28/2015.
  */
-public interface IGuideElement
-{
-	void setGUI(MOGuiBase gui);
+public interface IGuideElement {
+    void setGUI(MOGuiBase gui);
 
-	void loadElement(MOGuideEntry entry, Element element, Map<String, String> styleSheetMap, int width, int height);
+    void loadElement(MOGuideEntry entry, Element element, Map<String, String> styleSheetMap, int width, int height);
 
-	void drawElement(int width, int mouseX, int mouseY);
+    void drawElement(int width, int mouseX, int mouseY);
 
-	int getHeight();
+    int getHeight();
 
-	int getWidth();
+    int getWidth();
 
-	int getFloating();
+    int getFloating();
 }

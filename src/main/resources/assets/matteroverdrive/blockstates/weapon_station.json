@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:weapon_station",
+    "textures": {
+      "bottom": "matteroverdrive:blocks/weapon_station_bottom",
+      "top": "matteroverdrive:blocks/weapon_station_top",
+      "side": "matteroverdrive:blocks/weapon_station_side",
+      "particle": "matteroverdrive:blocks/weapon_station_side"
+    }
+  },
+  "variants": {
+    "normal": {
+      "model": "matteroverdrive:weapon_station"
+    },
+    "inventory": {
+      "model": "matteroverdrive:weapon_station",
+      "transform": "forge:default-block"
+    }
+  }
+}

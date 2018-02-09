@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "matteroverdrive:items/flash_drive",
+    "layer1": "matteroverdrive:items/flash_drive_overlay"
+  }
+}

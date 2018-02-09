@@ -31,34 +31,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Created by Simeon on 7/9/2015.
  */
 @SideOnly(Side.CLIENT)
-public class MouseHandler
-{
+public class MouseHandler {
 
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public void onMouseEvent(MouseEvent event)
-	{
-		if (GuiAndroidHud.showRadial)
-		{
-			GuiAndroidHud.radialDeltaX -= event.getDx() / 100D;
-			GuiAndroidHud.radialDeltaY += event.getDy() / 100D;
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onMouseEvent(MouseEvent event) {
+        if (GuiAndroidHud.showRadial) {
+            GuiAndroidHud.radialDeltaX -= event.getDx() / 100D;
+            GuiAndroidHud.radialDeltaY += event.getDy() / 100D;
 
-			double mag = Math.sqrt(GuiAndroidHud.radialDeltaX * GuiAndroidHud.radialDeltaX + GuiAndroidHud.radialDeltaY * GuiAndroidHud.radialDeltaY);
-			if (mag > 1.0D)
-			{
-				GuiAndroidHud.radialDeltaX /= mag;
-				GuiAndroidHud.radialDeltaY /= mag;
-			}
-		}
-		if (Minecraft.getMinecraft().thePlayer.getHeldItem(EnumHand.MAIN_HAND) != null && Minecraft.getMinecraft().thePlayer.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof IWeapon)
-		{
-			if (event.getButton() == 0 && event.isButtonstate())
-			{
-				if (((IWeapon)Minecraft.getMinecraft().thePlayer.getHeldItem(EnumHand.MAIN_HAND).getItem()).onLeftClick(Minecraft.getMinecraft().thePlayer.getHeldItem(EnumHand.MAIN_HAND), Minecraft.getMinecraft().thePlayer))
-				{
-					event.setCanceled(true);
-				}
-			}
-		}
-	}
+            double mag = Math.sqrt(GuiAndroidHud.radialDeltaX * GuiAndroidHud.radialDeltaX + GuiAndroidHud.radialDeltaY * GuiAndroidHud.radialDeltaY);
+            if (mag > 1.0D) {
+                GuiAndroidHud.radialDeltaX /= mag;
+                GuiAndroidHud.radialDeltaY /= mag;
+            }
+        }
+        if (Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND) != null && Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof IWeapon) {
+            if (event.getButton() == 0 && event.isButtonstate()) {
+                if (((IWeapon) Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND).getItem()).onLeftClick(Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND), Minecraft.getMinecraft().player)) {
+                    event.setCanceled(true);
+                }
+            }
+        }
+    }
 }

@@ -26,58 +26,52 @@ import matteroverdrive.util.MOStringHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * Created by Simeon on 12/20/2015.
  */
-public class ItemBuildingShipHangar extends ItemBuildingAbstract implements IPlanetStatChange
-{
-	private static final int SHIP_SPACES = 2;
+public class ItemBuildingShipHangar extends ItemBuildingAbstract implements IPlanetStatChange {
+    private static final int SHIP_SPACES = 2;
 
-	public ItemBuildingShipHangar(String name)
-	{
-		super(name);
-	}
+    public ItemBuildingShipHangar(String name) {
+        super(name);
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void addDetails(ItemStack itemstack, EntityPlayer player, List<String> infos)
-	{
-		super.addDetails(itemstack, player, infos);
-		infos.add(TextFormatting.GREEN + MOStringHelper.translateToLocal(PlanetStatType.FLEET_SIZE) + ": +" + SHIP_SPACES);
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addDetails(ItemStack itemstack, EntityPlayer player, @Nullable World worldIn, List<String> infos) {
+        super.addDetails(itemstack, player, worldIn, infos);
+        infos.add(TextFormatting.GREEN + MOStringHelper.translateToLocal(PlanetStatType.FLEET_SIZE) + ": +" + SHIP_SPACES);
+    }
 
-	@Override
-	public BuildingType getType(ItemStack building)
-	{
-		return BuildingType.OTHER;
-	}
+    @Override
+    public BuildingType getType(ItemStack building) {
+        return BuildingType.OTHER;
+    }
 
-	@Override
-	protected int getBuildLengthUnscaled(ItemStack buildableStack, Planet planet)
-	{
-		return 20 * 60 * 4;
-	}
+    @Override
+    protected int getBuildLengthUnscaled(ItemStack buildableStack, Planet planet) {
+        return 20 * 60 * 4;
+    }
 
-	@Override
-	public boolean canBuild(ItemStack building, Planet planet, List<String> info)
-	{
-		return true;
-	}
+    @Override
+    public boolean canBuild(ItemStack building, Planet planet, List<String> info) {
+        return true;
+    }
 
-	@Override
-	public float changeStat(ItemStack stack, Planet planet, PlanetStatType statType, float original)
-	{
-		switch (statType)
-		{
-			case FLEET_SIZE:
-				return original + SHIP_SPACES;
-			default:
-				return original;
-		}
-	}
+    @Override
+    public float changeStat(ItemStack stack, Planet planet, PlanetStatType statType, float original) {
+        switch (statType) {
+            case FLEET_SIZE:
+                return original + SHIP_SPACES;
+            default:
+                return original;
+        }
+    }
 }

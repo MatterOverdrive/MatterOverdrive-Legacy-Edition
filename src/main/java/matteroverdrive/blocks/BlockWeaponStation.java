@@ -13,19 +13,17 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 4/13/2015.
  */
-public class BlockWeaponStation extends MOBlockMachine<TileEntityWeaponStation>
-{
+public class BlockWeaponStation extends MOBlockMachine<TileEntityWeaponStation> {
 
-	public BlockWeaponStation(Material material, String name)
-	{
-		super(material, name);
-		setBoundingBox(new AxisAlignedBB(0, 0, 0, 1, 9/16d, 1));
-		setHardness(20.0F);
-		this.setResistance(9.0f);
-		this.setHarvestLevel("pickaxe", 2);
-		lightValue = 10;
-		setHasGui(true);
-	}
+    public BlockWeaponStation(Material material, String name) {
+        super(material, name);
+        setBoundingBox(new AxisAlignedBB(0, 0, 0, 1, 9 / 16d, 1));
+        setHardness(20.0F);
+        this.setResistance(9.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        lightValue = 10;
+        setHasGui(true);
+    }
 
     /*@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister)
@@ -54,25 +52,22 @@ public class BlockWeaponStation extends MOBlockMachine<TileEntityWeaponStation>
         }
     }*/
 
-	@Override
-	public Class<TileEntityWeaponStation> getTileEntityClass()
-	{
-		return TileEntityWeaponStation.class;
-	}
+    @Override
+    public Class<TileEntityWeaponStation> getTileEntityClass() {
+        return TileEntityWeaponStation.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityWeaponStation();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityWeaponStation();
+    }
 
-	@Override
-	@Deprecated
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    @Deprecated
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 
     /*@Override
 	public int getRenderType()

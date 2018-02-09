@@ -14,50 +14,42 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 12/30/2015.
  */
-public class PacketSyncTaskQueue extends TileEntityUpdatePacket
-{
-	int queueID;
-	ByteBuf byteBuf;
-	MatterNetworkTaskQueue taskQueue;
+public class PacketSyncTaskQueue extends TileEntityUpdatePacket {
+    int queueID;
+    ByteBuf byteBuf;
+    MatterNetworkTaskQueue taskQueue;
 
-	public PacketSyncTaskQueue()
-	{
-	}
+    public PacketSyncTaskQueue() {
+    }
 
-	public PacketSyncTaskQueue(IMatterNetworkDispatcher dispatcher, int taskQueue)
-	{
-		super(dispatcher.getPos());
-		this.taskQueue = dispatcher.getTaskQueue(taskQueue);
-		this.queueID = taskQueue;
-	}
+    public PacketSyncTaskQueue(IMatterNetworkDispatcher dispatcher, int taskQueue) {
+        super(dispatcher.getPos());
+        this.taskQueue = dispatcher.getTaskQueue(taskQueue);
+        this.queueID = taskQueue;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf)
-	{
-		super.fromBytes(buf);
-		queueID = buf.readByte();
-		byteBuf = buf;
-	}
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        super.fromBytes(buf);
+        queueID = buf.readByte();
+        byteBuf = buf;
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf)
-	{
-		super.toBytes(buf);
-		buf.writeByte(queueID);
-		taskQueue.writeToBuffer(buf);
-	}
+    @Override
+    public void toBytes(ByteBuf buf) {
+        super.toBytes(buf);
+        buf.writeByte(queueID);
+        taskQueue.writeToBuffer(buf);
+    }
 
-	public static class ClientHandler extends AbstractClientPacketHandler<PacketSyncTaskQueue>
-	{
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void handleClientMessage(EntityPlayerSP player, PacketSyncTaskQueue message, MessageContext ctx)
-		{
-			TileEntity tileEntity = message.getTileEntity(player.worldObj);
-			if (tileEntity != null && tileEntity instanceof IMatterNetworkDispatcher)
-			{
-				((IMatterNetworkDispatcher)tileEntity).getTaskQueue(message.queueID).readFromBuffer(message.byteBuf);
-			}
-		}
-	}
+    public static class ClientHandler extends AbstractClientPacketHandler<PacketSyncTaskQueue> {
+        @SideOnly(Side.CLIENT)
+        @Override
+        public void handleClientMessage(EntityPlayerSP player, PacketSyncTaskQueue message, MessageContext ctx) {
+            TileEntity tileEntity = message.getTileEntity(player.world);
+            if (tileEntity != null && tileEntity instanceof IMatterNetworkDispatcher) {
+                ((IMatterNetworkDispatcher) tileEntity).getTaskQueue(message.queueID).readFromBuffer(message.byteBuf);
+            }
+        }
+    }
 }

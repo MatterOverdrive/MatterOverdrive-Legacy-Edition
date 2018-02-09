@@ -18,28 +18,26 @@
 
 package matteroverdrive.data.recipes;
 
-import cofh.api.energy.IEnergyContainerItem;
-import matteroverdrive.MatterOverdrive;
-import matteroverdrive.init.MatterOverdriveCapabilities;
-import matteroverdrive.init.MatterOverdriveItems;
-import matteroverdrive.items.Battery;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapelessRecipes;
-
-import java.util.Arrays;
+import net.minecraft.util.NonNullList;
 
 /**
  * Created by Simeon on 8/2/2015.
  */
-public class EnergyPackRecipe extends ShapelessRecipes
-{
+public class EnergyPackRecipe extends ShapelessRecipes {
+    //TODO
+    public EnergyPackRecipe(String group, ItemStack output, NonNullList<Ingredient> ingredients) {
+        super(group, output, ingredients);
+    }
+/*
 	public EnergyPackRecipe(ItemStack... recipeitems)
 	{
 		super(new ItemStack(MatterOverdrive.items.energyPack), Arrays.asList(recipeitems));
 		for (ItemStack stack : recipeItems)
 		{
-			if (stack != null && stack.getItem() instanceof Battery)
+			if (!stack.isEmpty() && stack.getItem() instanceof Battery)
 			{
 
 				((Battery)stack.getItem()).setEnergyStored(stack, ((Battery)stack.getItem()).getMaxEnergyStored(stack));
@@ -60,11 +58,11 @@ public class EnergyPackRecipe extends ShapelessRecipes
 				int packEnergy = MatterOverdrive.items.energyPack.getEnergyAmount(inventoryCrafting.getStackInSlot(i));
 				if (energyStored > 0)
 				{
-					stack.stackSize = energyStored / packEnergy;
+					stack.getCount() = energyStored / packEnergy;
 					return stack;
 				}
 			}
 		}
 		return null;
-	}
+	}*/
 }

@@ -18,87 +18,84 @@
 
 package matteroverdrive.proxy;
 
+import com.astro.clib.proxy.impl.ProxyClass;
 import matteroverdrive.MatterOverdrive;
-import matteroverdrive.compat.MatterOverdriveCompat;
-import matteroverdrive.handler.GoogleAnalyticsCommon;
-import matteroverdrive.handler.weapon.CommonWeaponHandler;
-import matteroverdrive.items.tools.TritaniumAxe;
-import matteroverdrive.starmap.GalaxyServer;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import matteroverdrive.Reference;
+import matteroverdrive.compat.MatterOverdriveCompat;
+import matteroverdrive.handler.GoogleAnalyticsCommon;
+import matteroverdrive.handler.weapon.CommonWeaponHandler;
+import matteroverdrive.starmap.GalaxyServer;
 
-public class CommonProxy
-{
-	private final CommonWeaponHandler commonWeaponHandler;
-	protected GoogleAnalyticsCommon googleAnalyticsCommon;
+@ProxyClass(modid = Reference.MOD_ID,side= Side.SERVER)
+public class CommonProxy {
+    private final CommonWeaponHandler commonWeaponHandler;
+    protected GoogleAnalyticsCommon googleAnalyticsCommon;
 
-	public CommonProxy()
-	{
-		commonWeaponHandler = new CommonWeaponHandler();
-		googleAnalyticsCommon = new GoogleAnalyticsCommon();
-	}
+    public CommonProxy() {
+        commonWeaponHandler = new CommonWeaponHandler();
+        googleAnalyticsCommon = new GoogleAnalyticsCommon();
+    }
 
-	public void registerCompatModules()
-	{
-		MatterOverdriveCompat.registerModules();
-	}
+    public void registerCompatModules() {
+        MatterOverdriveCompat.registerModules();
+    }
 
-	public EntityPlayer getPlayerEntity(MessageContext ctx)
-	{
-		return ctx.getServerHandler().playerEntity;
-	}
+    public EntityPlayer getPlayerEntity(MessageContext ctx) {
+        return ctx.getServerHandler().player;
+    }
 
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		registerCompatModules();
-	}
+    public void preInit(FMLPreInitializationEvent event) {
+        registerCompatModules();
+    }
 
-	public void init(FMLInitializationEvent event)
-	{
-		MinecraftForge.EVENT_BUS.register(GalaxyServer.getInstance());
-		MinecraftForge.EVENT_BUS.register(getWeaponHandler());
-		MinecraftForge.EVENT_BUS.register(GalaxyServer.getInstance());
-		MatterOverdrive.configHandler.subscribe(GalaxyServer.getInstance());
-		MatterOverdrive.configHandler.subscribe(GalaxyServer.getInstance().getGalaxyGenerator());
-		MatterOverdrive.configHandler.subscribe(googleAnalyticsCommon);
-	}
+    public void init(FMLInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(GalaxyServer.getInstance());
+        MinecraftForge.EVENT_BUS.register(getWeaponHandler());
+        MinecraftForge.EVENT_BUS.register(GalaxyServer.getInstance());
+        MatterOverdrive.configHandler.subscribe(GalaxyServer.getInstance());
+        MatterOverdrive.configHandler.subscribe(GalaxyServer.getInstance().getGalaxyGenerator());
+        MatterOverdrive.configHandler.subscribe(googleAnalyticsCommon);
+    }
 
-	public void postInit(FMLPostInitializationEvent event)
-	{
-	}
+    public void postInit(FMLPostInitializationEvent event) {
+    }
 
-	public CommonWeaponHandler getWeaponHandler()
-	{
-		return commonWeaponHandler;
-	}
+    public CommonWeaponHandler getWeaponHandler() {
+        return commonWeaponHandler;
+    }
 
-	public GoogleAnalyticsCommon getGoogleAnalytics()
-	{
-		return googleAnalyticsCommon;
-	}
+    public GoogleAnalyticsCommon getGoogleAnalytics() {
+        return googleAnalyticsCommon;
+    }
 
-	public void registerItemModel(Item item, int meta, String path)
-	{
+    public void registerItemModel(Item item, int meta, ResourceLocation path) {
 
-	}
+    }
+    public void registerItemModel(Item item, int meta, String path) {
 
-	public void registerItemModel(Block block, int meta, String path) {
-		registerItemModel(Item.getItemFromBlock(block), meta, path);
-	}
+    }
 
-	public boolean hasTranslation(String key) {
-		return I18n.canTranslate(key);
-	}
+    public void registerItemModel(Block block, int meta, String path) {
+        registerItemModel(Item.getItemFromBlock(block), meta, path);
+    }
 
-	public String translateToLocal(String key, Object... params) {
-		return I18n.translateToLocalFormatted(key, params);
-	}
+    public boolean hasTranslation(String key) {
+        return I18n.canTranslate(key);
+    }
+
+    public String translateToLocal(String key, Object... params) {
+        return I18n.translateToLocalFormatted(key, params);
+    }
 
 }

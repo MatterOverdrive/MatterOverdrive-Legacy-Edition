@@ -8,19 +8,18 @@ import java.util.Iterator;
 /**
  * Created by Simeon on 1/20/2016.
  */
-public interface IGridNetwork<T extends IGridNode>
-{
-	void onNodeDestroy(final IBlockState blockState, T node);
+public interface IGridNetwork<T extends IGridNode> {
+    void onNodeDestroy(final IBlockState blockState, T node);
 
-	void addNode(T node);
+    void addNode(T node);
 
-	void removeNode(T node);
+    void removeNode(T node);
 
-	Collection<T> getNodes();
+    Collection<T> getNodes();
 
-	Iterator<T> getNodesIterator();
+    Iterator<T> getNodesIterator();
 
-	boolean canMerge(IGridNetwork network);
+    boolean canMerge(IGridNetwork network);
 
-	void recycle();
+    void recycle();
 }

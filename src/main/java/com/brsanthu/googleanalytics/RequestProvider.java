@@ -25,13 +25,13 @@ package com.brsanthu.googleanalytics;
  */
 public interface RequestProvider {
 
-	/**
-	 * Constructs and returns the request, that should be sent to GA. If this method throws exception,
-	 * nothing will be sent to GA.
-	 *
-	 * @return the request that must be sent to GA. Can return <code>null</code> and if so,
-	 * 		nothing will be sent to GA.
-	 */
-	@SuppressWarnings("rawtypes")
-	GoogleAnalyticsRequest getRequest();
+    /**
+     * Constructs and returns the request, that should be sent to GA. If this method throws exception,
+     * nothing will be sent to GA.
+     *
+     * @return the request that must be sent to GA. Can return <code>null</code> and if so,
+     * nothing will be sent to GA.
+     */
+    @SuppressWarnings("rawtypes")
+    GoogleAnalyticsRequest getRequest();
 }

@@ -26,27 +26,21 @@ import matteroverdrive.matter_network.tasks.MatterNetworkTaskStorePattern;
 /**
  * Created by Simeon on 7/15/2015.
  */
-public class ComponentMatterNetworkPatternStorage extends MatterNetworkComponentClient<TileEntityMachinePatternStorage>
-{
-	public ComponentMatterNetworkPatternStorage(TileEntityMachinePatternStorage patternStorage)
-	{
-		super(patternStorage);
-	}
+public class ComponentMatterNetworkPatternStorage extends MatterNetworkComponentClient<TileEntityMachinePatternStorage> {
+    public ComponentMatterNetworkPatternStorage(TileEntityMachinePatternStorage patternStorage) {
+        super(patternStorage);
+    }
 
-	@Override
-	public void onNetworkEvent(IMatterNetworkEvent event)
-	{
-		if (event instanceof IMatterNetworkEvent.Task && ((IMatterNetworkEvent.Task)event).task instanceof MatterNetworkTaskStorePattern)
-		{
-			onTask((MatterNetworkTaskStorePattern)((IMatterNetworkEvent.Task)event).task);
-		}
-	}
+    @Override
+    public void onNetworkEvent(IMatterNetworkEvent event) {
+        if (event instanceof IMatterNetworkEvent.Task && ((IMatterNetworkEvent.Task) event).task instanceof MatterNetworkTaskStorePattern) {
+            onTask((MatterNetworkTaskStorePattern) ((IMatterNetworkEvent.Task) event).task);
+        }
+    }
 
-	private void onTask(MatterNetworkTaskStorePattern task)
-	{
-		if (task.getState().belowOrEqual(MatterNetworkTaskState.WAITING) && rootClient.addItem(task.getItemStack(), task.getProgress(), false, null))
-		{
-			task.setState(MatterNetworkTaskState.FINISHED);
-		}
-	}
+    private void onTask(MatterNetworkTaskStorePattern task) {
+        if (task.getState().belowOrEqual(MatterNetworkTaskState.WAITING) && rootClient.addItem(task.getItemStack(), task.getProgress(), false, null)) {
+            task.setState(MatterNetworkTaskState.FINISHED);
+        }
+    }
 }

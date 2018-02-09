@@ -23,9 +23,8 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by Simeon on 12/8/2015.
  */
-public interface IWeaponScope extends IWeaponModule
-{
-	float getZoomAmount(ItemStack scopeStack, ItemStack weaponStack);
+public interface IWeaponScope extends IWeaponModule {
+    float getZoomAmount(ItemStack scopeStack, ItemStack weaponStack);
 
-	float getAccuracyModify(ItemStack scopeStack, ItemStack weaponStack, boolean zoomed, float originalAccuracy);
+    float getAccuracyModify(ItemStack scopeStack, ItemStack weaponStack, boolean zoomed, float originalAccuracy);
 }

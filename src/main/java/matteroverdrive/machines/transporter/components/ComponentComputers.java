@@ -36,10 +36,9 @@ import java.util.EnumSet;
 })*/
 public class ComponentComputers extends MachineComponentAbstract<TileEntityMachineTransporter>// implements IPeripheral
 {
-	public ComponentComputers(TileEntityMachineTransporter machine)
-	{
-		super(machine);
-	}
+    public ComponentComputers(TileEntityMachineTransporter machine) {
+        super(machine);
+    }
 	/*private static String[] methodNames = new String[] {
             "getLocations",
             "getSelectedLocation",
@@ -135,9 +134,9 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     *//**
  * args:
  * name (string) name of the new location
- * x (number) x coord of the new location
- * y (number) y coord of the new location
- * z (number) z coord of the new location
+ * x (number) x  of the new location
+ * y (number) y  of the new location
+ * z (number) z  of the new location
  *//*
     private Object[] computerAddLocation(Object[] args) {
         if (!(args[0] instanceof String)) {
@@ -191,7 +190,7 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     *//**
  * args:
  * id (number) numeric index of the location to select (first location has index 0)
- * x (number) the new X coordinate
+ * x (number) the new X inate
  *//*
     private Object[] computerSetX(Object[] args) {
         if (!(args[0] instanceof Double)) {
@@ -210,7 +209,7 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     *//**
  * args:
  * id (number) numeric index of the location to select (first location has index 0)
- * y (number) the new Y coordinate
+ * y (number) the new Y inate
  *//*
     private Object[] computerSetY(Object[] args) {
         if (!(args[0] instanceof Double)) {
@@ -229,7 +228,7 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     *//**
  * args:
  * id (number) numeric index of the location to select (first location has index 0)
- * z (number) the new Z coordinate
+ * z (number) the new Z inate
  *//*
     private Object[] computerSetZ(Object[] args) {
         if (!(args[0] instanceof Double)) {
@@ -247,13 +246,13 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
 
     */
 
-	/**
-	 * args:
-	 * mode (number) the redstone mode of the transporter
-	 * 		0: High redstone signal
-	 * 		1: Low redstone signal
-	 * 		2: Redstone disabled
-	 *//*
+    /**
+     * args:
+     * mode (number) the redstone mode of the transporter
+     * 0: High redstone signal
+     * 1: Low redstone signal
+     * 2: Redstone disabled
+     *//*
     private Object[] computerSetRedstoneMode(Object[] args) {
         if (!(args[0] instanceof Double)) {
             throw new IllegalArgumentException("Argument 1 must be a number from 0 to 2");
@@ -344,42 +343,36 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     }
     //endregion*/
 
-	//region Component Functions
-	@Override
-	public void readFromNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories)
-	{
+    //region Component Functions
+    @Override
+    public void readFromNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
 
-	}
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk)
-	{
+    @Override
+    public void writeToNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk) {
 
-	}
+    }
 
-	@Override
-	public void registerSlots(Inventory inventory)
-	{
+    @Override
+    public void registerSlots(Inventory inventory) {
 
-	}
+    }
 
-	@Override
-	public boolean isAffectedByUpgrade(UpgradeTypes type)
-	{
-		return false;
-	}
+    @Override
+    public boolean isAffectedByUpgrade(UpgradeTypes type) {
+        return false;
+    }
 
-	@Override
-	public boolean isActive()
-	{
-		return false;
-	}
+    @Override
+    public boolean isActive() {
+        return false;
+    }
 
-	@Override
-	public void onMachineEvent(MachineEvent event)
-	{
+    @Override
+    public void onMachineEvent(MachineEvent event) {
 
-	}
+    }
 
-	//endregion
+    //endregion
 }

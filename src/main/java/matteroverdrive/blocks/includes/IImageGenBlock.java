@@ -21,7 +21,6 @@ package matteroverdrive.blocks.includes;
 /**
  * Created by Simeon on 11/26/2015.
  */
-public interface IImageGenBlock
-{
-	int getBlockColor(int meta);
+public interface IImageGenBlock {
+    int getBlockColor(int meta);
 }

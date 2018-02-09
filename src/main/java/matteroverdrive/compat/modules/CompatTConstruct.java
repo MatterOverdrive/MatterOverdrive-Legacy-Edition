@@ -19,7 +19,7 @@
 package matteroverdrive.compat.modules;
 
 import matteroverdrive.compat.Compat;
-import matteroverdrive.init.MatterOverdriveFluids;
+import matteroverdrive.init.OverdriveFluids;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -28,20 +28,18 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
  * Created by Simeon on 11/1/2015.
  */
 @Compat(CompatTConstruct.ID)
-public class CompatTConstruct
-{
+public class CompatTConstruct {
 
-	public static final String ID = "tconstruct";
+    public static final String ID = "tconstruct";
 
-	@Compat.PreInit
-	public static void preInit(FMLPreInitializationEvent event)
-	{
-		NBTTagCompound tag = new NBTTagCompound();
-		tag.setString("fluid", MatterOverdriveFluids.moltenTritanium.getName());
-		tag.setString("ore", "Tritanium");
-		tag.setBoolean("toolforge", true);
+    @Compat.PreInit
+    public static void preInit(FMLPreInitializationEvent event) {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("fluid", OverdriveFluids.moltenTritanium.getName());
+        tag.setString("ore", "Tritanium");
+        tag.setBoolean("toolforge", true);
 
-		FMLInterModComms.sendMessage(ID, "integrateSmeltery", tag);
-	}
+        FMLInterModComms.sendMessage(ID, "integrateSmeltery", tag);
+    }
 
 }

@@ -30,25 +30,21 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 12/10/2015.
  */
-public class BlockAndroidSpawner extends MOBlockMachine<TileEntityAndroidSpawner>
-{
-	public BlockAndroidSpawner(Material material, String name)
-	{
-		super(material, name);
-		blockHardness = -1;
-		setHasGui(true);
-	}
+public class BlockAndroidSpawner extends MOBlockMachine<TileEntityAndroidSpawner> {
+    public BlockAndroidSpawner(Material material, String name) {
+        super(material, name);
+        blockHardness = -1;
+        setHasGui(true);
+    }
 
-	@Override
-	public Class<TileEntityAndroidSpawner> getTileEntityClass()
-	{
-		return TileEntityAndroidSpawner.class;
-	}
+    @Override
+    public Class<TileEntityAndroidSpawner> getTileEntityClass() {
+        return TileEntityAndroidSpawner.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityAndroidSpawner();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityAndroidSpawner();
+    }
 }

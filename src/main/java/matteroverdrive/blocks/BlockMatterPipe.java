@@ -30,26 +30,22 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 3/7/2015.
  */
-public class BlockMatterPipe extends BlockPipe<TileEntityMatterPipe>
-{
-	public BlockMatterPipe(Material material, String name)
-	{
-		super(material, name);
-		setHardness(10.0F);
-		this.setResistance(5.0f);
-		setRotationType(MOBlockHelper.RotationType.PREVENT);
-	}
+public class BlockMatterPipe extends BlockPipe<TileEntityMatterPipe> {
+    public BlockMatterPipe(Material material, String name) {
+        super(material, name);
+        setHardness(10.0F);
+        this.setResistance(5.0f);
+        setRotationType(MOBlockHelper.RotationType.PREVENT);
+    }
 
-	@Override
-	public Class<TileEntityMatterPipe> getTileEntityClass()
-	{
-		return TileEntityMatterPipe.class;
-	}
+    @Override
+    public Class<TileEntityMatterPipe> getTileEntityClass() {
+        return TileEntityMatterPipe.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
-	{
-		return new TileEntityMatterPipe();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+        return new TileEntityMatterPipe();
+    }
 }

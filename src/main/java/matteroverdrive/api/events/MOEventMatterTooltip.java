@@ -28,20 +28,17 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
  * It is connected to showing the matter values for all items.
  * When canceled, the matter info will not be shown.
  */
-public class MOEventMatterTooltip extends PlayerEvent
-{
-	public final ItemStack itemStack;
-	public final int matter;
+public class MOEventMatterTooltip extends PlayerEvent {
+    public final ItemStack itemStack;
+    public final int matter;
 
-	public MOEventMatterTooltip(ItemStack itemStack, int matter, EntityPlayer player)
-	{
-		super(player);
-		this.itemStack = itemStack;
-		this.matter = matter;
-	}
+    public MOEventMatterTooltip(ItemStack itemStack, int matter, EntityPlayer player) {
+        super(player);
+        this.itemStack = itemStack;
+        this.matter = matter;
+    }
 
-	public boolean isCancelable()
-	{
-		return true;
-	}
+    public boolean isCancelable() {
+        return true;
+    }
 }

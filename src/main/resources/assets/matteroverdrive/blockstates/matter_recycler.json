@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:base/orientable",
+    "textures": {
+      "bottom": "matteroverdrive:blocks/vent2",
+      "top": "matteroverdrive:blocks/decomposer_top",
+      "side": "matteroverdrive:blocks/recycler_side",
+      "particle": "matteroverdrive:blocks/recycler_side",
+      "front": "matteroverdrive:blocks/recycler_side",
+      "back": "matteroverdrive:blocks/recycler_side"
+    }
+  },
+  "variants": {
+    "normal": {"model": "matteroverdrive:base/orientable"},
+    "facing=north": { "model": "matteroverdrive:base/orientable"},
+    "facing=south": { "model": "matteroverdrive:base/orientable","y": 180 },
+    "facing=west":  { "model": "matteroverdrive:base/orientable","y": 270 },
+    "facing=east":  { "model": "matteroverdrive:base/orientable","y": 90 },
+    "inventory": {
+      "model": "matteroverdrive:base/orientable",
+      "transform": "forge:default-block"
+    }
+  }
+}

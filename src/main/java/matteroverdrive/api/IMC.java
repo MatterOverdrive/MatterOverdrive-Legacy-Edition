@@ -44,17 +44,16 @@ package matteroverdrive.api;
  *
  * @author shadowfacts
  */
-public interface IMC
-{
+public interface IMC {
 
-	/**
-	 * Adds the specified ItemStack to the Matter Registry blacklist
-	 */
-	String MATTER_REGISTRY_BLACKLIST = "registry:blacklist:add";
+    /**
+     * Adds the specified ItemStack to the Matter Registry blacklist
+     */
+    String MATTER_REGISTRY_BLACKLIST = "registry:blacklist:add";
 
-	String MATTER_REGISTRY_BLACKLIST_MOD = "registry:blacklist:mod:add";
+    String MATTER_REGISTRY_BLACKLIST_MOD = "registry:blacklist:mod:add";
 
-	String MATTER_REGISTER = "registry:matter:add";
+    String MATTER_REGISTER = "registry:matter:add";
 
-	String INSCRIBER_RECIPE = "registry:inscriber:recipe:add";
+    String INSCRIBER_RECIPE = "registry:inscriber:recipe:add";
 }

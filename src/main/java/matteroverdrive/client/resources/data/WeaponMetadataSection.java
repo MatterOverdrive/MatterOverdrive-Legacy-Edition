@@ -27,40 +27,31 @@ import java.util.Map;
 /**
  * Created by Simeon on 12/9/2015.
  */
-public class WeaponMetadataSection implements IMetadataSection
-{
-	private final Map<String, Vec3d> modulePositions;
+public class WeaponMetadataSection implements IMetadataSection {
+    private final Map<String, Vec3d> modulePositions;
 
-	public WeaponMetadataSection()
-	{
-		this.modulePositions = new HashMap<>();
-	}
+    public WeaponMetadataSection() {
+        this.modulePositions = new HashMap<>();
+    }
 
-	public Map<String, Vec3d> getModulePositions()
-	{
-		return modulePositions;
-	}
+    public Map<String, Vec3d> getModulePositions() {
+        return modulePositions;
+    }
 
-	public void setModulePosition(String module, Vec3d pos)
-	{
-		modulePositions.put(module, pos);
-	}
+    public void setModulePosition(String module, Vec3d pos) {
+        modulePositions.put(module, pos);
+    }
 
-	public Vec3d getModulePosition(String module, Vec3d def)
-	{
-		Vec3d moduelPos = modulePositions.get(module);
-		if (moduelPos != null)
-		{
-			return moduelPos;
-		}
-		else
-		{
-			return def;
-		}
-	}
+    public Vec3d getModulePosition(String module, Vec3d def) {
+        Vec3d moduelPos = modulePositions.get(module);
+        if (moduelPos != null) {
+            return moduelPos;
+        } else {
+            return def;
+        }
+    }
 
-	public Vec3d getModulePosition(String module)
-	{
-		return modulePositions.get(module);
-	}
+    public Vec3d getModulePosition(String module) {
+        return modulePositions.get(module);
+    }
 }

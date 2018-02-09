@@ -1,0 +1,5 @@
+newmtl vent
+map_Kd matteroverdrive:blocks/vent
+
+newmtl pattern_storage
+map_Kd matteroverdrive:blocks/pattern_storage

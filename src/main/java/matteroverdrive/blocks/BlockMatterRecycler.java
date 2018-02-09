@@ -30,18 +30,16 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 5/15/2015.
  */
-public class BlockMatterRecycler extends MOMatterEnergyStorageBlock<TileEntityMachineMatterRecycler>
-{
+public class BlockMatterRecycler extends MOMatterEnergyStorageBlock<TileEntityMachineMatterRecycler> {
 
-	public BlockMatterRecycler(Material material, String name)
-	{
-		super(material, name, true, true);
-		setHasRotation();
-		setHardness(20.0F);
-		this.setResistance(9.0f);
-		this.setHarvestLevel("pickaxe", 2);
-		setHasGui(true);
-	}
+    public BlockMatterRecycler(Material material, String name) {
+        super(material, name, true, true);
+        setHasRotation();
+        setHardness(20.0F);
+        this.setResistance(9.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        setHasGui(true);
+    }
 
     /*@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister)
@@ -77,18 +75,16 @@ public class BlockMatterRecycler extends MOMatterEnergyStorageBlock<TileEntityMa
         return this.getIcon(side, blockAccess.getBlockMetadata(x, y, z));
     }*/
 
-	@Override
-	public Class<TileEntityMachineMatterRecycler> getTileEntityClass()
-	{
-		return TileEntityMachineMatterRecycler.class;
-	}
+    @Override
+    public Class<TileEntityMachineMatterRecycler> getTileEntityClass() {
+        return TileEntityMachineMatterRecycler.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState meta)
-	{
-		return new TileEntityMachineMatterRecycler();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState meta) {
+        return new TileEntityMachineMatterRecycler();
+    }
 /*
 	@Override
     public int getRenderType()

@@ -32,16 +32,14 @@ import static matteroverdrive.util.MOBlockHelper.RotationType;
 /**
  * Created by Simeon on 5/1/2015.
  */
-public class BlockNetworkSwitch extends MOBlockMachine<TileEntityMachineNetworkSwitch>
-{
-	public BlockNetworkSwitch(Material material, String name)
-	{
-		super(material, name);
-		setHardness(20.0F);
-		this.setResistance(9.0f);
-		this.setHarvestLevel("pickaxe", 2);
-		setRotationType(RotationType.PREVENT);
-	}
+public class BlockNetworkSwitch extends MOBlockMachine<TileEntityMachineNetworkSwitch> {
+    public BlockNetworkSwitch(Material material, String name) {
+        super(material, name);
+        setHardness(20.0F);
+        this.setResistance(9.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        setRotationType(RotationType.PREVENT);
+    }
 
     /*@Override
 	@SideOnly(Side.CLIENT)
@@ -66,16 +64,14 @@ public class BlockNetworkSwitch extends MOBlockMachine<TileEntityMachineNetworkS
         return blockIcon;
     }*/
 
-	@Override
-	public Class<TileEntityMachineNetworkSwitch> getTileEntityClass()
-	{
-		return TileEntityMachineNetworkSwitch.class;
-	}
+    @Override
+    public Class<TileEntityMachineNetworkSwitch> getTileEntityClass() {
+        return TileEntityMachineNetworkSwitch.class;
+    }
 
-	@Nonnull
-	@Override
-	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState meta)
-	{
-		return new TileEntityMachineNetworkSwitch();
-	}
+    @Nonnull
+    @Override
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState meta) {
+        return new TileEntityMachineNetworkSwitch();
+    }
 }

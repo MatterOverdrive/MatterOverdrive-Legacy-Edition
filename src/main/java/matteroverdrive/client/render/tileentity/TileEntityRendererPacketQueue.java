@@ -29,28 +29,23 @@ import net.minecraft.tileentity.TileEntity;
 /**
  * Created by Simeon on 8/22/2015.
  */
-public class TileEntityRendererPacketQueue extends TileEntitySpecialRenderer
-{
-	final Block fakeBlock = new BlockNetworkSwitch(Material.IRON, "fake_block");
+public class TileEntityRendererPacketQueue extends TileEntitySpecialRenderer {
+    final Block fakeBlock = new BlockNetworkSwitch(Material.IRON, "fake_block");
 
-	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float ticks, int destoryStage)
-	{
-		GlStateManager.pushMatrix();
-		GlStateManager.translate(x, y, z);
-		if (tileEntity instanceof TileEntityMachinePacketQueue)
-		{
-			if (((TileEntityMachinePacketQueue)tileEntity).flashTime > 0)
-			{
-				renderBlock(fakeBlock);
-			}
-		}
+    @Override
+    public void render(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y, z);
+        if (tileEntity instanceof TileEntityMachinePacketQueue) {
+            if (((TileEntityMachinePacketQueue) tileEntity).flashTime > 0) {
+                renderBlock(fakeBlock);
+            }
+        }
 
-		GlStateManager.popMatrix();
-	}
+        GlStateManager.popMatrix();
+    }
 
-	private void renderBlock(Block block)
-	{
+    private void renderBlock(Block block) {
 		/*float distance = 0.1f;
 
         GlStateManager.disableLighting();
@@ -62,5 +57,5 @@ public class TileEntityRendererPacketQueue extends TileEntitySpecialRenderer
         GlStateManager.disableBlend();
         GlStateManager.enableLighting();
         RenderUtils.enableLightmap();*/
-	}
+    }
 }

@@ -23,27 +23,22 @@ import matteroverdrive.client.model.ModelHulkingScientist;
 import matteroverdrive.entity.monster.EntityMutantScientist;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 
 /**
  * Created by Simeon on 11/27/2015.
  */
-public class EntityRendererMutantScientist extends RenderBiped<EntityMutantScientist>
-{
+public class EntityRendererMutantScientist extends RenderBiped<EntityMutantScientist> {
 
-	private final ResourceLocation texture = new ResourceLocation(Reference.PATH_ENTITIES + "hulking_scinetist.png");
+    private final ResourceLocation texture = new ResourceLocation(Reference.PATH_ENTITIES + "hulking_scinetist.png");
 
-	public EntityRendererMutantScientist(RenderManager renderManager)
-	{
-		super(renderManager, new ModelHulkingScientist(), 0, 1);
-	}
+    public EntityRendererMutantScientist(RenderManager renderManager) {
+        super(renderManager, new ModelHulkingScientist(), 0);
+    }
 
-	@Override
-	protected ResourceLocation getEntityTexture(EntityMutantScientist entity)
-	{
-		return texture;
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(EntityMutantScientist entity) {
+        return texture;
+    }
 
 }

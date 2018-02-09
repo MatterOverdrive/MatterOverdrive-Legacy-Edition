@@ -14,16 +14,14 @@ import java.util.ArrayList;
 /**
  * Created by Simeon on 5/14/2015.
  */
-public class BlockFusionReactorCoil extends MOBlock implements IDismantleable
-{
+public class BlockFusionReactorCoil extends MOBlock implements IDismantleable {
 
-	public BlockFusionReactorCoil(Material material, String name)
-	{
-		super(material, name);
-		setHardness(30.0F);
-		this.setResistance(10.0f);
-		this.setHarvestLevel("pickaxe", 2);
-	}
+    public BlockFusionReactorCoil(Material material, String name) {
+        super(material, name);
+        setHardness(30.0F);
+        this.setResistance(10.0f);
+        this.setHarvestLevel("pickaxe", 2);
+    }
 
     /*@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int p_149691_1_, int p_149691_2_)
@@ -31,23 +29,20 @@ public class BlockFusionReactorCoil extends MOBlock implements IDismantleable
         return MatterOverdriveIcons.YellowStripes;
     }*/
 
-	@Override
-	public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, BlockPos pos, boolean returnDrops)
-	{
-		if (!returnDrops)
-		{
-			IBlockState state = world.getBlockState(pos);
-			world.setBlockToAir(pos);
-			dropBlockAsItem(world, pos, state, 0);
-		}
+    @Override
+    public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, BlockPos pos, boolean returnDrops) {
+        if (!returnDrops) {
+            IBlockState state = world.getBlockState(pos);
+            world.setBlockToAir(pos);
+            dropBlockAsItem(world, pos, state, 0);
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public boolean canDismantle(EntityPlayer player, World world, BlockPos pos)
-	{
-		return true;
-	}
+    @Override
+    public boolean canDismantle(EntityPlayer player, World world, BlockPos pos) {
+        return true;
+    }
 
 }

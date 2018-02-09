@@ -32,74 +32,67 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * Created by Simeon on 8/5/2015.
  */
-public class TransportFlashDrive extends MOBaseItem
-{
-	public TransportFlashDrive(String name)
-	{
-		super(name);
-		setMaxStackSize(1);
-	}
+public class TransportFlashDrive extends MOBaseItem {
+    public TransportFlashDrive(String name) {
+        super(name);
+        setMaxStackSize(1);
+    }
 
-	public void addDetails(ItemStack itemstack, EntityPlayer player, List<String> infos)
-	{
-		super.addDetails(itemstack, player, infos);
-		if (hasTarget(itemstack))
-		{
-			BlockPos target = getTarget(itemstack);
-			IBlockState state = player.worldObj.getBlockState(target);
-			Block block = state.getBlock();
-			infos.add(TextFormatting.YELLOW + String.format("[%s] %s", target.toString(), state.getMaterial() != Material.AIR ? block.getLocalizedName() : "Unknown"));
-		}
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addDetails(ItemStack itemstack, EntityPlayer player, @Nullable World worldIn, List<String> infos) {
+        super.addDetails(itemstack, player, worldIn, infos);
+        if (hasTarget(itemstack)) {
+            BlockPos target = getTarget(itemstack);
+            IBlockState state = player.world.getBlockState(target);
+            Block block = state.getBlock();
+            infos.add(TextFormatting.YELLOW + String.format("[%s] %s", target.toString(), state.getMaterial() != Material.AIR ? block.getLocalizedName() : "Unknown"));
+        }
+    }
 
-	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		IBlockState state = worldIn.getBlockState(pos);
-		if (state.getMaterial() != Material.AIR)
-		{
-			setTarget(stack, pos);
-			return EnumActionResult.SUCCESS;
-		}
-		removeTarget(stack);
-		return EnumActionResult.FAIL;
-	}
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack stack = player.getHeldItem(hand);
+        IBlockState state = worldIn.getBlockState(pos);
+        if (state.getMaterial() != Material.AIR) {
+            setTarget(stack, pos);
+            return EnumActionResult.SUCCESS;
+        }
+        removeTarget(stack);
+        return EnumActionResult.FAIL;
+    }
 
-	public void setTarget(ItemStack itemStack, BlockPos pos)
-	{
-		if (!itemStack.hasTagCompound())
-		{
-			itemStack.setTagCompound(new NBTTagCompound());
-		}
+    public void setTarget(ItemStack itemStack, BlockPos pos) {
+        if (!itemStack.hasTagCompound()) {
+            itemStack.setTagCompound(new NBTTagCompound());
+        }
 
-		itemStack.getTagCompound().setLong("target", pos.toLong());
-	}
+        itemStack.getTagCompound().setLong("target", pos.toLong());
+    }
 
-	public void removeTarget(ItemStack itemStack)
-	{
-		if (itemStack.hasTagCompound())
-		{
-			itemStack.setTagCompound(null);
-		}
-	}
+    public void removeTarget(ItemStack itemStack) {
+        if (itemStack.hasTagCompound()) {
+            itemStack.setTagCompound(null);
+        }
+    }
 
-	public BlockPos getTarget(ItemStack itemStack)
-	{
-		if (itemStack.getTagCompound() != null)
-		{
-			return BlockPos.fromLong(itemStack.getTagCompound().getLong("target"));
-		}
-		return null;
-	}
+    public BlockPos getTarget(ItemStack itemStack) {
+        if (itemStack.getTagCompound() != null) {
+            return BlockPos.fromLong(itemStack.getTagCompound().getLong("target"));
+        }
+        return null;
+    }
 
-	public boolean hasTarget(ItemStack itemStack)
-	{
-		return itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("taget", Constants.NBT.TAG_LONG);
-	}
+    public boolean hasTarget(ItemStack itemStack) {
+        return itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("taget", Constants.NBT.TAG_LONG);
+    }
 }
