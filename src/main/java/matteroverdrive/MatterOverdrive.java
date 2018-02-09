@@ -39,6 +39,7 @@ import matteroverdrive.imc.MOIMCHandler;
 import matteroverdrive.init.*;
 import matteroverdrive.matter_network.MatterNetworkRegistry;
 import matteroverdrive.network.PacketPipeline;
+import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.proxy.CommonProxy;
 import matteroverdrive.util.AndroidPartsFactory;
 import matteroverdrive.util.DialogFactory;
@@ -73,8 +74,12 @@ public class MatterOverdrive {
     @Mod.Instance(Reference.MOD_ID)
     public static MatterOverdrive INSTANCE;
 
-    @ProxyHolder
     public static CommonProxy PROXY;
+
+    public MatterOverdrive() {
+        PROXY=new ClientProxy();
+    }
+
     public static TickHandler tickHandler;
     public static PlayerEventHandler playerEventHandler;
     public static ConfigurationHandler configHandler;

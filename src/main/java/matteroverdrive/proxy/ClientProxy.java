@@ -53,7 +53,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-@ProxyClass(modid = Reference.MOD_ID,side=Side.CLIENT)
 public class ClientProxy extends CommonProxy {
     public static RenderHandler renderHandler;
     public static KeyHandler keyHandler;
