@@ -1,5 +1,5 @@
 # Matter Overdrive
-![alt tag](https://raw.githubusercontent.com/MatterOverdrive/MatterOverdrive/master/MatterOverdriveLogo.png)
+![alt tag](https://raw.githubusercontent.com/MatterOverdrive/MatterOverdrive/1.12.2/MatterOverdriveLogo.png)
 <!--
 <h2 align="center">
 <a href='https://mo.simeonradivoev.com/'>Website</a> | 
@@ -66,4 +66,4 @@ If your crash or problem was fixed, but is not yet released as a public download
   - Don't forget to install [Lombok](https://projectlombok.org)
   
 ## IMC
-See the example on [IMC](https://github.com/MatterOverdrive/MatterOverdrive/blob/master/src/main/java/matteroverdrive/api/IMC.java) or you can see the [IMC handler](https://github.com/MatterOverdrive/MatterOverdrive/blob/master/src/main/java/matteroverdrive/imc/MOIMCHandler.java).
+See the example on [IMC](https://github.com/MatterOverdrive/MatterOverdrive/blob/1.12.2/src/main/java/matteroverdrive/api/IMC.java) or you can see the [IMC handler](https://github.com/MatterOverdrive/MatterOverdrive/blob/1.12.2/src/main/java/matteroverdrive/imc/MOIMCHandler.java).
