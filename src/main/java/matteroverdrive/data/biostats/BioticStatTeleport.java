@@ -70,7 +70,7 @@ public class BioticStatTeleport extends AbstractBioticStat implements IConfigSub
     @Override
     public String getDetails(int level) {
         String keyName = TextFormatting.AQUA + GameSettings.getKeyDisplayString(ClientProxy.keyHandler.getBinding(KeyHandler.ABILITY_USE_KEY).getKeyCode()) + TextFormatting.GRAY;
-        return MOStringHelper.translateToLocal(getUnlocalizedDetails(), keyName, TextFormatting.YELLOW.toString() + ENERGY_PER_TELEPORT + " RF" + TextFormatting.GRAY);
+        return MOStringHelper.translateToLocal(getUnlocalizedDetails(), keyName, TextFormatting.YELLOW.toString() + ENERGY_PER_TELEPORT + " FE" + TextFormatting.GRAY);
     }
 
     @Override

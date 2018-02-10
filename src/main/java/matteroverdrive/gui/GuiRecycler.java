@@ -47,7 +47,7 @@ public class GuiRecycler extends MOGuiMachine<TileEntityMachineMatterRecycler> {
         recycle_progress.setMode(1);
         recycle_progress.setSize(24, 16);
         recycle_progress.setTexture(Reference.TEXTURE_ARROW_PROGRESS, 48, 16);
-        energyElement.setTexture(Reference.TEXTURE_RF_METER, 32, 64);
+        energyElement.setTexture(Reference.TEXTURE_FE_METER, 32, 64);
     }
 
     @Override

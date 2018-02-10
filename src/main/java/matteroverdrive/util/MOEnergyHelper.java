@@ -31,10 +31,8 @@ public class MOEnergyHelper {
     public static String ENERGY_UNIT;
 
     static {
-        ENERGY_UNIT = " " + MatterOverdrive.configHandler.config.getString("energyUnit", ConfigurationHandler.CATEGORY_CLIENT, "RF", "The unit to display energy in.", new String[]{"RF", "T"});
-        MatterOverdrive.configHandler.subscribe(config -> {
-            ENERGY_UNIT = " " + config.config.getString("energyUnit", ConfigurationHandler.CATEGORY_CLIENT, "RF", "The unit to display energy in.", new String[]{"RF", "T"});
-        });
+        ENERGY_UNIT = " " + MatterOverdrive.configHandler.config.getString("energyUnit", ConfigurationHandler.CATEGORY_CLIENT, "FE", "The unit to display energy in.", new String[]{"FE", "T"});
+        MatterOverdrive.configHandler.subscribe(config -> ENERGY_UNIT = " " + config.config.getString("energyUnit", ConfigurationHandler.CATEGORY_CLIENT, "FE", "The unit to display energy in.", new String[]{"FE", "T"}));
     }
 
     public static String formatEnergy(long energy, long capacity) {

@@ -39,11 +39,7 @@ public class MOElementEnergy extends MOElementBase {
     public MOElementEnergy(MOGuiBase gui, int posX, int posY, IEnergyStorage storage) {
         super(gui, posX, posY);
         this.storage = storage;
-        if (MOEnergyHelper.ENERGY_UNIT.endsWith("RF")) {
-            setTexture(Reference.TEXTURE_RF_METER, 32, 64);
-        } else {
-            setTexture(Reference.TEXTURE_TESLA_METER, 32, 64);
-        }
+        setTexture(Reference.TEXTURE_FE_METER, 32, 64);
         this.sizeX = 16;
         this.sizeY = 42;
         this.texW = 32;
@@ -63,7 +59,7 @@ public class MOElementEnergy extends MOElementBase {
     @Override
     public void addTooltip(List<String> list, int mouseX, int mouseY) {
         if (this.storage.getMaxEnergyStored() < 0) {
-            list.add("Infinite RF");
+            list.add("Infinite "+MOEnergyHelper.ENERGY_UNIT);
         } else {
             list.add(this.storage.getEnergyStored() + " / " + this.storage.getMaxEnergyStored() + MOEnergyHelper.ENERGY_UNIT);
         }

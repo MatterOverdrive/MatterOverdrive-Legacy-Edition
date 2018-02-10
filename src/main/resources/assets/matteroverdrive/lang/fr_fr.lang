@@ -155,7 +155,7 @@ tile.pattern_storage.config.transfer.energy=Vitesse de transfert d"énergie
 
 tile.machine_hull.name=Coque de machine
 tile.solar_panel.name=Panneau solaire
-tile.solar_panel.details=Produit des RF à l'aide de rayon de soleil
+tile.solar_panel.details=Produit des FE à l'aide de rayon de soleil
 tile.weapon_station.name=Armurerie
 tile.weapon_station.details=Utilisée pour améliorer et charger les armes
 tile.microwave.name=Micro-ondes
@@ -340,7 +340,7 @@ gui.tooltip.slot.bionic.other=Autre
 gui.tooltip.slot.bionic.battery=Batterie
 gui.tooltip.slot.database=Base de données des modèles
 gui.tooltip.slot.filter=Filtre réseau
-gui.tooltip.slot.energy=Energie RF
+gui.tooltip.slot.energy=Energie FE
 gui.tooltip.slot.matter=Matière
 gui.tooltip.slot.pattern_storage=Stockage de modèles
 gui.tooltip.slot.shielding=Protégé

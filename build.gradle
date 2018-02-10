@@ -15,7 +15,7 @@ compileJava {
 }
 
 def BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "0"
-def mod_version = "2.0.0.$BUILD_NUMBER"
+def mod_version = "0.6.0.$BUILD_NUMBER"
 
 version = "1.12.2-$mod_version"
 
@@ -29,7 +29,7 @@ minecraft {
     mappings = "snapshot_20171003"
 
     replaceIn "Reference.java"
-    replace "@VERSION@", version
+    replace "@VERSION@", mod_version
 }
 
 repositories {

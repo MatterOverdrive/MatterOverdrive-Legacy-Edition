@@ -51,7 +51,7 @@ public class BioticStatHighJump extends AbstractBioticStat implements IConfigSub
 
     @Override
     public String getDetails(int level) {
-        return MOStringHelper.translateToLocal(getUnlocalizedDetails(), TextFormatting.YELLOW.toString() + ENERGY_PER_JUMP + " RF" + TextFormatting.GRAY);
+        return MOStringHelper.translateToLocal(getUnlocalizedDetails(), TextFormatting.YELLOW.toString() + ENERGY_PER_JUMP + " FE" + TextFormatting.GRAY);
     }
 
     @Override

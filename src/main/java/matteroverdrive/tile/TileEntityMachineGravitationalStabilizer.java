@@ -97,10 +97,10 @@ public class TileEntityMachineGravitationalStabilizer extends MOTileEntityMachin
                 float r = (float) getBeamColorR();
                 float g = (float) getBeamColorG();
                 float b = (float) getBeamColorB();
-                    EnumFacing up = getAboveSide(world.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION)).getOpposite();
-                    GravitationalStabilizerBeamParticle particle = new GravitationalStabilizerBeamParticle(world, new Vector3f(getPos().getX() + 0.5f, getPos().getY() + 0.5f, getPos().getZ() + 0.5f), new Vector3f(hit.getBlockPos().getX() + 0.5f, hit.getBlockPos().getY() + 0.5f, hit.getBlockPos().getZ() + 0.5f), new Vector3f(up.getFrontOffsetX(), up.getFrontOffsetY(), up.getFrontOffsetZ()), 1f, 0.3f, 80);
-                    particle.setColor(r, g, b, 1);
-                    ClientProxy.renderHandler.getRenderParticlesHandler().addEffect(particle, RenderParticlesHandler.Blending.Additive);
+                EnumFacing up = getAboveSide(world.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION)).getOpposite();
+                GravitationalStabilizerBeamParticle particle = new GravitationalStabilizerBeamParticle(world, new Vector3f(getPos().getX() + 0.5f, getPos().getY() + 0.5f, getPos().getZ() + 0.5f), new Vector3f(hit.getBlockPos().getX() + 0.5f, hit.getBlockPos().getY() + 0.5f, hit.getBlockPos().getZ() + 0.5f), new Vector3f(up.getFrontOffsetX(), up.getFrontOffsetY(), up.getFrontOffsetZ()), 1f, 0.3f, 80);
+                particle.setColor(r, g, b, 1);
+                ClientProxy.renderHandler.getRenderParticlesHandler().addEffect(particle, RenderParticlesHandler.Blending.Additive);
             }
         }
     }
@@ -141,15 +141,15 @@ public class TileEntityMachineGravitationalStabilizer extends MOTileEntityMachin
     }
 
     public double getBeamColorR() {
-        return Color.getHSBColor((world.getWorldTime()%400)/400f,1.0f,1.0f).getRed()/255f;
+        return Color.getHSBColor((world.getWorldTime() % 400) / 400f, 1.0f, 1.0f).getRed() / 255f;
     }
 
     public double getBeamColorG() {
-        return Color.getHSBColor((world.getWorldTime()%400)/400f,1.0f,1.0f).getGreen()/255f;
+        return Color.getHSBColor((world.getWorldTime() % 400) / 400f, 1.0f, 1.0f).getGreen() / 255f;
     }
 
     public double getBeamColorB() {
-        return Color.getHSBColor((world.getWorldTime()%400)/400f,1.0f,1.0f).getBlue()/255f;
+        return Color.getHSBColor((world.getWorldTime() % 400) / 400f, 1.0f, 1.0f).getBlue() / 255f;
     }
 
     public RayTraceResult getHit() {
