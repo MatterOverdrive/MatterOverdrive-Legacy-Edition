@@ -40,8 +40,13 @@ import java.util.Map;
 /**
  * Created by Simeon on 4/10/2015.
  */
-public class ItemUpgrade extends MOBaseItem implements IUpgrade {
+public class ItemUpgrade extends MOBaseItem implements IUpgrade,IAdvancedModelProvider {
     public static final String[] subItemNames = {"base", "speed", "power", "failsafe", "range", "power_storage", "hyper_speed", "matter_storage"};
+
+    @Override
+    public String[] getSubNames() {
+        return subItemNames;
+    }
 
     public ItemUpgrade(String name) {
         super(name);

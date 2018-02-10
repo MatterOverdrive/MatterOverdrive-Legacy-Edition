@@ -44,7 +44,8 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdv
     public static final int FIRE_BARREL_ID = 1;
     public static final int EXPLOSION_BARREL_ID = 2;
     public static final int HEAL_BARREL_ID = 3;
-    public static final String[] names = {"damage", "fire", "explosion", "heal"};
+    public static final int DOOMSDAY_BARREL_ID = 4;
+    public static final String[] names = {"damage", "fire", "explosion", "heal", "doomsday"};
 
     @Override
     public String[] getSubNames() {
@@ -75,26 +76,32 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdv
         super.addDetails(itemstack, player, worldIn, infos);
         int damage = itemstack.getItemDamage();
         switch (damage) {
-            case 0:
+            case DAMAGE_BARREL_ID:
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_DAMAGE, 1.5f));
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.5f));
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EFFECT, 0.5f));
                 break;
-            case 1:
+            case FIRE_BARREL_ID:
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.5f));
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_DAMAGE, 0.75f));
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_FIRE_DAMAGE, 1));
                 break;
-            case 2:
+            case EXPLOSION_BARREL_ID:
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EXPLOSION_DAMAGE, 1));
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.2));
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EFFECT, 0.5));
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_FIRE_RATE, 0.15));
                 break;
-            case 3:
+            case HEAL_BARREL_ID:
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_DAMAGE, 0));
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.5));
                 infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_HEAL, 0.1));
+                break;
+            case DOOMSDAY_BARREL_ID:
+                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EXPLOSION_DAMAGE, 3.0));
+                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.2));
+                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EFFECT, 0.3));
+                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_FIRE_RATE, 0.05));
                 break;
         }
     }
@@ -123,7 +130,7 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdv
     public float modifyWeaponStat(int statID, ItemStack module, ItemStack weapon, float originalStat) {
         int damage = module.getItemDamage();
         switch (damage) {
-            case 0:
+            case DAMAGE_BARREL_ID:
                 if (statID == Reference.WS_DAMAGE) {
                     return originalStat * 1.5f;
                 } else if (statID == Reference.WS_AMMO) {
@@ -132,7 +139,7 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdv
                     return originalStat * 0.5f;
                 }
                 break;
-            case 1:
+            case FIRE_BARREL_ID:
                 if (statID == Reference.WS_AMMO) {
                     return originalStat * 0.5f;
                 }
@@ -143,7 +150,7 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdv
                     return originalStat + 1;
                 }
                 break;
-            case 2:
+            case EXPLOSION_BARREL_ID:
                 if (statID == Reference.WS_EXPLOSION_DAMAGE) {
                     return originalStat + 1f;
                 } else if (statID == Reference.WS_AMMO) {
@@ -154,13 +161,24 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdv
                     return originalStat * 2f;
                 }
                 break;
-            case 3:
+            case HEAL_BARREL_ID:
                 if (statID == Reference.WS_DAMAGE) {
                     return 0;
                 } else if (statID == Reference.WS_AMMO) {
                     return originalStat * 0.5f;
                 } else if (statID == Reference.WS_HEAL) {
                     return originalStat + 0.1f;
+                }
+                break;
+            case DOOMSDAY_BARREL_ID:
+                if (statID == Reference.WS_EXPLOSION_DAMAGE) {
+                    return originalStat+3.0f;
+                } else if (statID == Reference.WS_AMMO) {
+                    return originalStat * 0.2f;
+                } else if (statID == Reference.WS_EFFECT) {
+                    return originalStat * 0.3f;
+                } else if (statID == Reference.WS_FIRE_RATE) {
+                    return originalStat + 0.05f;
                 }
                 break;
         }

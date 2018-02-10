@@ -18,6 +18,8 @@
 
 package matteroverdrive.items;
 
+import com.astro.clib.api.render.ItemModelProvider;
+import com.astro.clib.client.ClientUtil;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.util.MOStringHelper;
@@ -36,12 +38,17 @@ import java.util.List;
 /**
  * Created by Simeon on 5/19/2015.
  */
-public class SpacetimeEqualizer extends ItemArmor {
+public class SpacetimeEqualizer extends ItemArmor implements ItemModelProvider{
     public SpacetimeEqualizer(String name) {
         super(ItemArmor.ArmorMaterial.IRON, 0, EntityEquipmentSlot.CHEST);
         setUnlocalizedName(name);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
         this.setCreativeTab(MatterOverdrive.TAB_OVERDRIVE);
+    }
+
+    @Override
+    public void initItemModel() {
+        ClientUtil.registerModel(this, this.getRegistryName().toString());
     }
 
     public void addInformation(ItemStack itemstack, EntityPlayer player, List infos, boolean p_77624_4_) {

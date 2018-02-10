@@ -112,6 +112,7 @@ item.matteroverdrive.weapon_module_barrel.damage.name=Dilithium Focusing Matrix
 item.matteroverdrive.weapon_module_barrel.fire.name=Incendiary Filter
 item.matteroverdrive.weapon_module_barrel.explosion.name=Burst Inductive Drum
 item.matteroverdrive.weapon_module_barrel.heal.name=Regenerative Converter
+item.matteroverdrive.weapon_module_barrel.doomsday.name=Degenerative Explosive Focusing Matrix (Doomsday)
 item.matteroverdrive.weapon_module_ricochet.name=Shot Rebound Module
 item.matteroverdrive.sniper_scope.name=Sniper Scope
 

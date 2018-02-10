@@ -22,7 +22,7 @@ import org.lwjgl.opengl.GL11;
  * Created by Simeon on 2/18/2016.
  */
 public class ModuleHoloSightsRender extends ModuleRenderAbstract {
-    private ResourceLocation sightsModelLocation = new ResourceLocation(Reference.PATH_MODEL + "item/holo_sights.obj");
+    private ResourceLocation sightsModelLocation = new ResourceLocation(Reference.PATH_MODEL + "item/weapon_module_holo_sights.obj");
     private OBJModel sightsModel;
     private IBakedModel sightsBakedModel;
 
@@ -68,11 +68,11 @@ public class ModuleHoloSightsRender extends ModuleRenderAbstract {
 
     @Override
     public void onModelBake(TextureMap textureMap, RenderHandler renderHandler) {
+        sightsModel = renderHandler.getObjModel(sightsModelLocation, new ImmutableMap.Builder<String, String>().put("flip-v", "true").put("ambient", "false").build());
         sightsBakedModel = sightsModel.bake(sightsModel.getDefaultState(), DefaultVertexFormats.ITEM, RenderHandler.modelTextureBakeFunc);
     }
 
     @Override
     public void onTextureStich(TextureMap textureMap, RenderHandler renderHandler) {
-        sightsModel = renderHandler.getObjModel(sightsModelLocation, new ImmutableMap.Builder<String, String>().put("flip-v", "true").put("ambient", "false").build());
     }
 }
