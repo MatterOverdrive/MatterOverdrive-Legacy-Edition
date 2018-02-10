@@ -21,6 +21,7 @@ package matteroverdrive.items.weapon.module;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.IWeaponModule;
+import matteroverdrive.items.IAdvancedModelProvider;
 import matteroverdrive.items.includes.MOBaseItem;
 import matteroverdrive.util.MOStringHelper;
 import net.minecraft.creativetab.CreativeTabs;
@@ -38,12 +39,17 @@ import java.util.List;
 /**
  * Created by Simeon on 4/15/2015.
  */
-public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule {
+public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdvancedModelProvider {
     public static final int DAMAGE_BARREL_ID = 0;
     public static final int FIRE_BARREL_ID = 1;
     public static final int EXPLOSION_BARREL_ID = 2;
     public static final int HEAL_BARREL_ID = 3;
     public static final String[] names = {"damage", "fire", "explosion", "heal"};
+
+    @Override
+    public String[] getSubNames() {
+        return names;
+    }
 
     public WeaponModuleBarrel(String name) {
         super(name);

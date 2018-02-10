@@ -23,6 +23,7 @@ import matteroverdrive.api.inventory.IBionicPart;
 import matteroverdrive.client.render.entity.EntityRendererRangedRougeAndroid;
 import matteroverdrive.client.render.entity.EntityRendererRougeAndroid;
 import matteroverdrive.entity.android_player.AndroidPlayer;
+import matteroverdrive.items.IAdvancedModelProvider;
 import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.util.MOStringHelper;
 import net.minecraft.client.model.ModelBiped;
@@ -47,9 +48,14 @@ import java.util.UUID;
 /**
  * Created by Simeon on 5/28/2015.
  */
-public class RougeAndroidParts extends BionicPart implements IBionicPart {
+public class RougeAndroidParts extends BionicPart implements IBionicPart,IAdvancedModelProvider{
     public static final String[] names = new String[]{"head", "arms", "legs", "chest"};
     final String[] healtModifiersIDs = new String[]{"1bb8df41-63d1-4f58-92c4-43adea7528b2", "73983b14-e605-40be-8567-36a9dec51d4f", "29419afc-63ad-4b74-87e2-38219e867119", "e4b38c80-7407-48fd-b837-8f36ae516c4d"};
+
+    @Override
+    public String[] getSubNames() {
+        return names;
+    }
 
     public RougeAndroidParts(String name) {
         super(name);
