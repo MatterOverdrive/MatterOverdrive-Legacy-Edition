@@ -7,6 +7,7 @@ import matteroverdrive.client.render.weapons.modules.IModuleRender;
 import matteroverdrive.client.resources.data.WeaponMetadataSection;
 import matteroverdrive.handler.weapon.ClientWeaponHandler;
 import matteroverdrive.items.weapon.EnergyWeapon;
+import matteroverdrive.machines.dimensional_pylon.TileEntityMachineDimensionalPylon;
 import matteroverdrive.util.MOInventoryHelper;
 import matteroverdrive.util.RenderUtils;
 import matteroverdrive.util.WeaponHelper;
@@ -26,6 +27,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -59,7 +61,7 @@ public class WeaponRenderHandler {
     public void onHandRender(RenderSpecificHandEvent event) {
         ItemStack weapon = event.getItemStack();
 
-        if (!weapon.isEmpty() && weapon.getItem() instanceof EnergyWeapon) {
+        if (event.getHand()== EnumHand.MAIN_HAND&&!weapon.isEmpty() && weapon.getItem() instanceof EnergyWeapon) {
             event.setCanceled(true);
 
             GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);

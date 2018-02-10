@@ -83,7 +83,7 @@ public class PlasmaBolt extends Entity implements IProjectile, IGravityEntity, I
 
     public PlasmaBolt(World world) {
         super(world);
-        //// TODO: 3/24/2016 Make the render Distance Higher 10
+        setRenderDistanceWeight(3);
         this.setSize(0.5F, 0.5F);
     }
 
