@@ -18,6 +18,7 @@
 
 package matteroverdrive.tile;
 
+import com.astro.clib.network.CEvents;
 import matteroverdrive.api.IScannable;
 import matteroverdrive.api.events.anomaly.MOEventGravitationalAnomalyConsume;
 import matteroverdrive.api.gravity.AnomalySuppressor;
@@ -345,6 +346,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
             MinecraftForge.EVENT_BUS.post(new MOEventGravitationalAnomalyConsume.Pre(entity, getPos()));
         } else {
             MinecraftForge.EVENT_BUS.post(new MOEventGravitationalAnomalyConsume.Post(entity, getPos()));
+            CEvents.markForUpdate(getPos(),this);
         }
 
         return true;

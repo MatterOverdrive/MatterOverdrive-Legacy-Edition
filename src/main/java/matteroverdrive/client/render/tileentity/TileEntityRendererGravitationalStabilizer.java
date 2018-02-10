@@ -46,7 +46,6 @@ public class TileEntityRendererGravitationalStabilizer extends TileEntitySpecial
 
     @Override
     public void render(TileEntityMachineGravitationalStabilizer stabilizer, double x, double y, double z, float ticks, int destroyStage, float a) {
-        System.out.println(1);
         if (stabilizer.getHit() != null) {
             RayTraceResult hit = stabilizer.getHit();
             TileEntity tileEntityHit = stabilizer.getWorld().getTileEntity(hit.getBlockPos());
@@ -112,7 +111,7 @@ public class TileEntityRendererGravitationalStabilizer extends TileEntitySpecial
 
     public void renderScreen(double x, double y, double z, TileEntityMachineGravitationalStabilizer stabilizer, TileEntityGravitationalAnomaly anomaly) {
 
-        EnumFacing side = anomaly.getWorld().getBlockState(stabilizer.getPos()).getValue(MOBlock.PROPERTY_DIRECTION).getOpposite();
+        EnumFacing side = anomaly.getWorld().getBlockState(stabilizer.getPos()).getValue(MOBlock.PROPERTY_DIRECTION);
 
         RenderUtils.beginDrawinngBlockScreen(x, y, z, side, Reference.COLOR_HOLO, stabilizer);
 

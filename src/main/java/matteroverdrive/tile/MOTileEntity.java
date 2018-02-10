@@ -18,16 +18,22 @@
 
 package matteroverdrive.tile;
 
+import com.astro.clib.network.CEvents;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.IMOTileEntity;
 import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.network.packet.server.PacketSendMachineNBT;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 /**
@@ -53,6 +59,33 @@ public abstract class MOTileEntity extends TileEntity implements IMOTileEntity {
         super.writeToNBT(nbt);
         writeCustomNBT(nbt, MachineNBTCategory.ALL_OPTS, true);
         return nbt;
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
+    @Nullable
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(this.getPos(), 0, this.getUpdateTag());
+    }
+
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
+        return oldState != newSate;
+    }
+
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        CEvents.markForUpdate(this.getPos(), this);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        this.readFromNBT(pkt.getNbtCompound());
     }
 
     public abstract void writeCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk);

@@ -26,9 +26,15 @@ import matteroverdrive.multiblock.IMultiBlockTile;
 import matteroverdrive.multiblock.IMultiBlockTileStructure;
 import matteroverdrive.multiblock.MultiBlockTileStructureMachine;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 /**
@@ -103,6 +109,39 @@ public class TileEntityFusionReactorPart extends MOTileEntityMachineMatter imple
     @Override
     public void readCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
 
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (structure != null && fusionReactorController != null) {
+            for (EnumFacing side : EnumFacing.VALUES) {
+                TileEntity tile = world.getTileEntity(getPos().offset(side));
+                if (tile == null || (tile instanceof IMultiBlockTile && structure.containsMultiBlockTile((IMultiBlockTile) tile)))
+                    continue;
+                if (tile.hasCapability(CapabilityEnergy.ENERGY, side.getOpposite())) {
+                    IEnergyStorage storage = tile.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
+                    if (storage == null)
+                        continue;
+                    storage.receiveEnergy(fusionReactorController.energyStorage.extractEnergy(storage.receiveEnergy(512, true), false), false);
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityEnergy.ENERGY)
+            return fusionReactorController != null;
+        return super.hasCapability(capability, facing);
+    }
+
+    @Nonnull
+    @Override
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+        if (fusionReactorController != null && capability == CapabilityEnergy.ENERGY)
+            return (T) fusionReactorController.energyStorage;
+        return super.getCapability(capability, facing);
     }
 
     @Override

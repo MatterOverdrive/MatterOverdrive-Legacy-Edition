@@ -18,6 +18,7 @@
 
 package matteroverdrive.tile;
 
+import com.astro.clib.network.CEvents;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.data.Inventory;
 import matteroverdrive.data.MachineEnergyStorage;
@@ -110,7 +111,7 @@ public abstract class MOTileEntityMachineEnergy extends MOTileEntityMachine {
     }
 
     public void UpdateClientPower() {
-        MatterOverdrive.packetPipeline.sendToAllAround(new PacketPowerUpdate(this), new NetworkRegistry.TargetPoint(world.provider.getDimension(), getPos().getX(), getPos().getY(), getPos().getZ(), ENERGY_CLIENT_SYNC_RANGE));
+        //MatterOverdrive.packetPipeline.sendToAllAround(new PacketPowerUpdate(this), new NetworkRegistry.TargetPoint(world.provider.getDimension(), getPos().getX(), getPos().getY(), getPos().getZ(), ENERGY_CLIENT_SYNC_RANGE));
     }
 
     @Override

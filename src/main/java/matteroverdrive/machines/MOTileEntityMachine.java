@@ -18,6 +18,7 @@
 
 package matteroverdrive.machines;
 
+import com.astro.clib.network.CEvents;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.IMOTileEntity;

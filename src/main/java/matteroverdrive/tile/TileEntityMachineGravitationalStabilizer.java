@@ -28,6 +28,7 @@ import matteroverdrive.init.MatterOverdriveSounds;
 import matteroverdrive.machines.events.MachineEvent;
 import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.util.math.MOMathHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundEvent;
@@ -89,6 +90,7 @@ public class TileEntityMachineGravitationalStabilizer extends MOTileEntityMachin
         }
     }
 
+
     @SideOnly(Side.CLIENT)
     void spawnParticles(World world) {
         if (hit != null && world.getTileEntity(hit.getBlockPos()) instanceof TileEntityGravitationalAnomaly) {
@@ -113,7 +115,7 @@ public class TileEntityMachineGravitationalStabilizer extends MOTileEntityMachin
     @Nonnull
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox() {
-        AxisAlignedBB bb = world.getBlockState(getPos()).getCollisionBoundingBox(world, getPos());
+        AxisAlignedBB bb = Block.FULL_BLOCK_AABB.offset(getPos());
         if (hit != null) {
             return bb.expand(hit.getBlockPos().getX() - getPos().getX(), hit.getBlockPos().getY() - getPos().getY(), hit.getBlockPos().getZ() - getPos().getZ());
         }
