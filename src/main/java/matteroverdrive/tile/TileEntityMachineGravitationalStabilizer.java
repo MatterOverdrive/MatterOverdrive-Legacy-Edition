@@ -92,7 +92,7 @@ public class TileEntityMachineGravitationalStabilizer extends MOTileEntityMachin
     @SideOnly(Side.CLIENT)
     void spawnParticles(World world) {
         if (hit != null && world.getTileEntity(hit.getBlockPos()) instanceof TileEntityGravitationalAnomaly) {
-            if (random.nextFloat() < 0.5f) {
+            if (random.nextFloat() < 0.3f) {
 
                 float r = (float) getBeamColorR();
                 float g = (float) getBeamColorG();
