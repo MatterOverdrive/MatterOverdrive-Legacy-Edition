@@ -18,7 +18,6 @@
 
 package matteroverdrive.client.render.weapons;
 
-import com.astro.clib.client.model.ModelUtil;
 import com.google.common.collect.ImmutableMap;
 import matteroverdrive.client.resources.data.WeaponMetadataSection;
 import matteroverdrive.items.weapon.EnergyWeapon;
@@ -87,8 +86,8 @@ public abstract class WeaponItemRenderer implements IBakedModel {
         mat = new Matrix4f();
         mat.setIdentity();
         mat.mul(getCombinedRotation(45f, 120f, 0f));
-        mat.setTranslation(new Vector3f(0f, 1.6f, 0f));
-        mat.setScale(2f);
+        mat.setTranslation(new Vector3f(0f, 0.6f, 0f));
+        mat.setScale(1.6f);
         transforms.put(ItemCameraTransforms.TransformType.GUI, mat);
 
         mat = new Matrix4f();
@@ -149,9 +148,14 @@ public abstract class WeaponItemRenderer implements IBakedModel {
 
     @Override
     public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType type) {
-        if (ModelUtil.ITEM_TRANSFORMS.containsKey(type))
-            return Pair.of(this, ModelUtil.ITEM_TRANSFORMS.get(type).getMatrix());
         Matrix4f mat = transforms.get(type);
+        if(type == ItemCameraTransforms.TransformType.GUI) {
+            mat = new Matrix4f();
+            mat.setIdentity();
+            mat.mul(getCombinedRotation(20f, 45f, 0f));
+            mat.setTranslation(new Vector3f(0.8f, 0.9f, 0f));
+            mat.setScale(1.5f);
+        }
         if (mat == null) mat = identity;
         return ImmutablePair.of(this, mat);
     }

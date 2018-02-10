@@ -25,8 +25,11 @@ import matteroverdrive.api.gravity.AnomalySuppressor;
 import matteroverdrive.api.gravity.IGravitationalAnomaly;
 import matteroverdrive.api.gravity.IGravityEntity;
 import matteroverdrive.client.sound.GravitationalAnomalySound;
+import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
 import matteroverdrive.fx.GravitationalAnomalyParticle;
 import matteroverdrive.init.MatterOverdriveSounds;
+import matteroverdrive.init.OverdriveBioticStats;
+import matteroverdrive.items.SpacetimeEqualizer;
 import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.util.MOLog;
 import matteroverdrive.util.MatterHelper;
@@ -69,6 +72,7 @@ import org.lwjgl.util.vector.Vector3f;
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by Simeon on 5/11/2015.
@@ -162,11 +166,10 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
 
         double distanceSq = entityPos.squareDistanceTo(blockPos);
         if (distanceSq < rangeSq) {
-            // TODO: 3/25/2016  find how to get equipment in slot
-			/*if ((Minecraft.getMinecraft().player.getEquipmentInSlot(3) != null && Minecraft.getMinecraft().player.getEquipmentInSlot(3).getItem() instanceof SpacetimeEqualizer)
-					|| Minecraft.getMinecraft().player.capabilities.disableDamage
-                    || AndroidPlayer.get(Minecraft.getMinecraft().player).isUnlocked(OverdriveBioticStats.equalizer,0))
-                return;*/
+			if ((!Minecraft.getMinecraft().player.inventory.armorItemInSlot(2).isEmpty() && Minecraft.getMinecraft().player.inventory.armorItemInSlot(2).getItem() instanceof SpacetimeEqualizer)
+					|| Minecraft.getMinecraft().player.capabilities.isCreativeMode
+                    || MOPlayerCapabilityProvider.GetAndroidCapability(Minecraft.getMinecraft().player).isUnlocked(OverdriveBioticStats.equalizer,0))
+                return;
 
             double acceleration = getAcceleration(distanceSq);
             Vec3d dir = blockPos.subtract(entityPos).normalize();
@@ -179,7 +182,6 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
         if (!GRAVITATION) {
             return;
         }
-
 
         double range = getMaxRange() + 1;
         AxisAlignedBB bb = new AxisAlignedBB(getPos().getX() - range, getPos().getY() - range, getPos().getZ() - range, getPos().getX() + range, getPos().getY() + range, getPos().getZ() + range);
@@ -206,12 +208,18 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
                     consume(entity);
                 }
 
-                // TODO: 3/25/2016  find how to get equipment in slot
-                /*if (entityObject instanceof EntityLivingBase) {
-                    ItemStack eq = ((EntityLivingBase) entityObject).getEquipmentInSlot(3);
-                    if (eq != null && eq.getItem() instanceof SpacetimeEqualizer)
+                if(entityObject instanceof EntityPlayer) //Players handle this clientside, no need to run on the server for no reason
+                    continue;
+
+                if (entityObject instanceof EntityLivingBase) {
+                    AtomicBoolean se = new AtomicBoolean(false);
+                    ((EntityLivingBase) entityObject).getArmorInventoryList().forEach(i -> {
+                        if (!i.isEmpty() && i.getItem() instanceof SpacetimeEqualizer)
+                            se.set(true);
+                    });
+                    if (se.get())
                         continue;
-                }*/
+                }
 
                 entity.addVelocity(dir.x, dir.y, dir.z);
             }

@@ -62,9 +62,7 @@ public class RecipeManager<M, R extends Recipe<M>> {
     public boolean isInput(ItemStack stack) {
         return recipes.stream()
                 .flatMap(r -> r.getInputs().stream())
-                .filter(s -> s.getItem() == stack.getItem() && s.getItemDamage() == stack.getItemDamage())
-                .findFirst()
-                .isPresent();
+                .anyMatch(s -> s.getItem() == stack.getItem() && s.getItemDamage() == stack.getItemDamage());
     }
 
     public List<R> getRecipes() {
