@@ -27,25 +27,21 @@ import net.minecraft.entity.player.EntityPlayer;
  * Created by Simeon on 9/7/2015.
  */
 public class MinimapEntityInfo {
-    boolean isAttacking;
-    int entityID;
+    private boolean isAttacking;
+    private int entityID;
 
     public MinimapEntityInfo() {
     }
 
     public MinimapEntityInfo(EntityLivingBase entityLivingBase, EntityPlayer player) {
         if (entityLivingBase instanceof EntityLiving && ((EntityLiving) entityLivingBase).getAttackTarget() != null) {
-            isAttacking = ((EntityLiving) entityLivingBase).getAttackTarget().equals(player);
+            isAttacking = player.equals(((EntityLiving) entityLivingBase).getAttackTarget());
         }
-
         entityID = entityLivingBase.getEntityId();
     }
 
     public static boolean hasInfo(EntityLivingBase entityLivingBase, EntityPlayer player) {
-        if (entityLivingBase instanceof EntityLiving && ((EntityLiving) entityLivingBase).getAttackTarget() != null) {
-            return ((EntityLiving) entityLivingBase).getAttackTarget().equals(player);
-        }
-        return false;
+        return entityLivingBase instanceof EntityLiving && ((EntityLiving) entityLivingBase).getAttackTarget() != null && player.equals(((EntityLiving) entityLivingBase).getAttackTarget());
     }
 
     public MinimapEntityInfo writeToBuffer(ByteBuf buf) {

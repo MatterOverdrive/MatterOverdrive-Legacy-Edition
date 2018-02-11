@@ -18,7 +18,6 @@
 
 package matteroverdrive.machines;
 
-import com.astro.clib.network.CEvents;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.IMOTileEntity;
@@ -65,9 +64,14 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
@@ -88,6 +92,8 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
 
     protected final List<IMachineWatcher> watchers;
     protected final Inventory inventory;
+    protected final IItemHandler inventoryHandler;
+    protected final IItemHandler[] sidedWrappers = new IItemHandler[EnumFacing.VALUES.length];
     protected final List<IMachineComponent> components;
     private final int[] upgrade_slots;
     @SideOnly(Side.CLIENT)
@@ -107,6 +113,9 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
         components = new ArrayList<>();
         upgrade_slots = new int[upgradeCount];
         inventory = new TileEntityInventory(this, "");
+        for (EnumFacing facing : EnumFacing.VALUES)
+            sidedWrappers[facing.ordinal()] = new SidedInvWrapper(this, facing);
+        inventoryHandler = new InvWrapper(this);
         registerComponents();
         RegisterSlots(inventory);
         watchers = new ArrayList<>();
@@ -637,7 +646,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
                 multiply = getUpgradeHandler().affectUpgrade(type, multiply);
             }
         }
-        if(multiply==0)
+        if (multiply == 0)
             return 1;
 
         return multiply;
@@ -801,4 +810,21 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
         return watchers;
     }
     //endregion
+
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+    @Nullable
+    @Override
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (facing == null)
+                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventoryHandler);
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(sidedWrappers[facing.ordinal()]);
+        }
+        return super.getCapability(capability, facing);
+    }
 }
