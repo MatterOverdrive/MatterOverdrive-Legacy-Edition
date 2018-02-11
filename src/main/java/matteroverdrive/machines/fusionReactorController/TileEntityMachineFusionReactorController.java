@@ -92,7 +92,7 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
         structureCheckTimer = new TimeTracker();
         energyStorage.setCapacity(ENERGY_STORAGE);
         energyStorage.setMaxExtract(ENERGY_STORAGE);
-        energyStorage.setMaxReceive(0);
+        energyStorage.setMaxReceive(ENERGY_STORAGE);
 
         matterStorage.setCapacity(MATTER_STORAGE);
         matterStorage.setMaxExtract(0);

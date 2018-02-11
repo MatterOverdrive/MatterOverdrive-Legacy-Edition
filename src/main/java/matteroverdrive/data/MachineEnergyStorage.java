@@ -60,7 +60,7 @@ public class MachineEnergyStorage<T extends MOTileEntityMachineEnergy> extends E
         if (amount > 0) {
             return receiveEnergy(amount, false);
         } else if (amount < 0) {
-            return extractEnergy(-amount, false);
+            return receiveEnergy(-amount, false);
         } else {
             return 0;
         }

@@ -57,17 +57,11 @@ public class MatterDust extends MOItemOre implements IRecyclable, IMatterItem {
 
     @Override
     public boolean canRecycle(ItemStack stack) {
-        if (stack.getItem() instanceof MatterDust) {
-            return !((MatterDust) stack.getItem()).isRefined;
-        }
-        return false;
+        return stack.getItem() instanceof MatterDust && !((MatterDust) stack.getItem()).isRefined;
     }
 
     @Override
     public int getMatter(ItemStack itemStack) {
-        if (itemStack.getItem() instanceof MatterDust && ((MatterDust) itemStack.getItem()).isRefined) {
-            return itemStack.getItemDamage();
-        }
-        return 0;
+        return itemStack.getItem() instanceof MatterDust && ((MatterDust) itemStack.getItem()).isRefined ? itemStack.getItemDamage() : 0;
     }
 }
