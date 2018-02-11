@@ -53,6 +53,11 @@ public class TileEntityFusionReactorPart extends MOTileEntityMachineMatter imple
     }
 
     @Override
+    public boolean isInvalid() {
+        return tileEntityInvalid;
+    }
+
+    @Override
     public SoundEvent getSound() {
         return null;
     }

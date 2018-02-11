@@ -86,7 +86,6 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
     private float matterDrain;
     private ComponentComputers componentComputers;
 
-
     public TileEntityMachineFusionReactorController() {
         super(4);
 
@@ -333,7 +332,7 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
 
     @Override
     public boolean isCharging() {
-        return this.inventory.getStackInSlot(energySlotID) != null && MOEnergyHelper.isEnergyContainerItem(this.inventory.getStackInSlot(energySlotID));
+        return !this.inventory.getStackInSlot(energySlotID).isEmpty() && MOEnergyHelper.isEnergyContainerItem(this.inventory.getStackInSlot(energySlotID));
     }
 
     @Override
