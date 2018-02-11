@@ -19,6 +19,7 @@
 package matteroverdrive.tile;
 
 import matteroverdrive.api.inventory.UpgradeTypes;
+import matteroverdrive.blocks.BlockFusionReactorIO;
 import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.machines.events.MachineEvent;
 import matteroverdrive.machines.fusionReactorController.TileEntityMachineFusionReactorController;
@@ -114,17 +115,19 @@ public class TileEntityFusionReactorPart extends MOTileEntityMachineMatter imple
     @Override
     public void update() {
         super.update();
-        //TODO: fix this mess and figure out why the fusion reactor doesnt seem to actually generate power
-        if (structure != null && fusionReactorController != null) {
-            for (EnumFacing side : EnumFacing.VALUES) {
-                TileEntity tile = world.getTileEntity(getPos().offset(side));
-                if (tile == null || (tile instanceof IMultiBlockTile && structure.containsMultiBlockTile((IMultiBlockTile) tile)))
-                    continue;
-                if (tile.hasCapability(CapabilityEnergy.ENERGY, side.getOpposite())) {
-                    IEnergyStorage storage = tile.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
-                    if (storage == null)
+        if(getBlockType() instanceof BlockFusionReactorIO) {
+            //TODO: fix this mess and figure out why the fusion reactor doesnt seem to actually generate power
+            if (structure != null && fusionReactorController != null) {
+                for (EnumFacing side : EnumFacing.VALUES) {
+                    TileEntity tile = world.getTileEntity(getPos().offset(side));
+                    if (tile == null || (tile instanceof IMultiBlockTile && structure.containsMultiBlockTile((IMultiBlockTile) tile)))
                         continue;
-                    storage.receiveEnergy(fusionReactorController.energyStorage.extractEnergy(storage.receiveEnergy(512, true), false), false);
+                    if (tile.hasCapability(CapabilityEnergy.ENERGY, side.getOpposite())) {
+                        IEnergyStorage storage = tile.getCapability(CapabilityEnergy.ENERGY, side.getOpposite());
+                        if (storage == null)
+                            continue;
+                        storage.receiveEnergy(fusionReactorController.energyStorage.extractEnergy(storage.receiveEnergy(512, true), false), false);
+                    }
                 }
             }
         }
