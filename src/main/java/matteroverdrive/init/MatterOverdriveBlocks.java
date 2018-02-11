@@ -98,7 +98,6 @@ public class MatterOverdriveBlocks {
     public BlockAndroidStation androidStation;
     public BlockChargingStation chargingStation;
     //	Decorative
-    public ForceGlass forceGlass;
     public BlockDecorative decorative_stripes;
     public BlockDecorative decorative_coils;
     public BlockDecorative decorative_clean;
