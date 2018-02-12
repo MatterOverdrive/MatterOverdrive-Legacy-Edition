@@ -1,13 +1,42 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
         maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'com.selesse:gradle-git-changelog:0.2.+'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'com.selesse.git.changelog'
+
+changelog {
+    title = "${project.name} - Changelog"
+
+    outputDirectory = file("$projectDir")
+
+    since = 'last_tag'
+
+    commitFormat = '%s (%an)'
+
+    markdown {
+        commitFormat = '* %s (%an)'
+    }
+
+    includeLines = {
+        !it.contains("Merge")
+    }
+
+    processLines = {
+        String input = it as String
+        if (input.contains('[ci skip] ')) {
+            input = input.minus('[ci skip] ')
+        }
+        input
+    }
+}
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
