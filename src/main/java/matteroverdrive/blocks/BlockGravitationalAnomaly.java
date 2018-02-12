@@ -18,6 +18,7 @@
 
 package matteroverdrive.blocks;
 
+import com.astro.clib.util.TileUtils;
 import matteroverdrive.api.IScannable;
 import matteroverdrive.blocks.includes.MOBlockContainer;
 import matteroverdrive.handler.ConfigurationHandler;
@@ -48,8 +49,7 @@ import java.util.List;
 public class BlockGravitationalAnomaly extends MOBlockContainer<TileEntityGravitationalAnomaly> implements IScannable, IConfigSubscriber {
     public BlockGravitationalAnomaly(Material material, String name) {
         super(material, name);
-        // TODO: 3/25/2016 Find how to set block bounds
-        //setBlockBounds(0.3f,0.3f,0.3f,0.6f,0.6f,0.6f);
+        setBoundingBox(new AxisAlignedBB(0.3f,0.3f,0.3f,0.6f,0.6f,0.6f));
         setBlockUnbreakable();
         setResistance(6000000.0F);
         disableStats();
@@ -65,7 +65,6 @@ public class BlockGravitationalAnomaly extends MOBlockContainer<TileEntityGravit
     @Deprecated
     @SuppressWarnings("deprecation")
     public RayTraceResult collisionRayTrace(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
-        //this.setBlockBoundsBasedOnState(worldIn,pos);
         return super.collisionRayTrace(state, world, pos, start, end);
     }
 
@@ -87,6 +86,21 @@ public class BlockGravitationalAnomaly extends MOBlockContainer<TileEntityGravit
             setBlockBounds(rangeMin, rangeMin, rangeMin, rangeMax, rangeMax, rangeMax);
         }
     }*/
+
+    @Nonnull
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        TileEntityGravitationalAnomaly tileEntity = TileUtils.getNullableTileEntity(source, pos, TileEntityGravitationalAnomaly.class);
+        if (tileEntity != null) {
+            double range = tileEntity.getEventHorizon();
+            range = Math.max(range, 0.4);
+            float rangeMin = (float) (0.5 - (range / 2));
+            float rangeMax = (float) (0.5 + (range / 2));
+            return new AxisAlignedBB(rangeMin, rangeMin, rangeMin, rangeMax, rangeMax, rangeMax);
+        }
+        return super.getBoundingBox(state, source, pos);
+    }
+
 
     @Nullable
     @Override

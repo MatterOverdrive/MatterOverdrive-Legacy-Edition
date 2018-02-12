@@ -62,7 +62,6 @@ public class TileEntityRendererGravitationalAnomaly extends TileEntitySpecialRen
 
         GlStateManager.translate(x + 0.5, y + 0.5, z + 0.5);
         GlStateManager.scale(radius, radius, radius);
-        //TODO: SHAAAADERS
 
         GlStateManager.disableCull();
         GlStateManager.disableTexture2D();
