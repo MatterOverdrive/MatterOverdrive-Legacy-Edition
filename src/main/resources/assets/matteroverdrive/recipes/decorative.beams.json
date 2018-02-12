@@ -8,7 +8,7 @@
     "#T#",
     "#T#"
   ],
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
       "item": "matteroverdrive:decorative.tritanium_plate"

@@ -6,7 +6,7 @@
     "PP",
     "CP"
   ],
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "key": {
     "P": {
       "item": "#PAPER"

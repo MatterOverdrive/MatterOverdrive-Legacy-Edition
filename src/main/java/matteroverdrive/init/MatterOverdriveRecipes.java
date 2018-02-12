@@ -43,9 +43,6 @@ public class MatterOverdriveRecipes {
 
     public static void registerItemRecipes(FMLInitializationEvent event) {
 
-        //TODO: move to json
-        //addRecipe(new ShapelessOreRecipe(new ItemStack(MatterOverdrive.items.item_upgrade, 1, 6), "gemDilithium", Items.NETHER_STAR, new ItemStack(MatterOverdrive.items.item_upgrade, 1, 1)));
-
     }
 
     public static void registerInscriberRecipes(FMLInitializationEvent event) {

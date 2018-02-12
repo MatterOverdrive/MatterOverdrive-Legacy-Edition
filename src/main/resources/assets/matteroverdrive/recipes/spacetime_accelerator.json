@@ -7,7 +7,7 @@
     "DDD",
     "THT"
   ],
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "key": {
     "T": {
       "item": "matteroverdrive:tritanium_plate"

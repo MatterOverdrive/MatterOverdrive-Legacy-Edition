@@ -7,7 +7,7 @@
     "TCT",
     "2M1"
   ],
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "key": {
     "1": {
       "item": "matteroverdrive:isolinear_circuit",

@@ -8,7 +8,7 @@
     "SAS",
     "ETE"
   ],
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "key": {
     "A": {
       "item": "minecraft:golden_apple",

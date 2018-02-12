@@ -5,7 +5,7 @@
   "pattern": [
     "TT"
   ],
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "key": {
     "T": {
       "item": "#INGOTTRITANIUM"

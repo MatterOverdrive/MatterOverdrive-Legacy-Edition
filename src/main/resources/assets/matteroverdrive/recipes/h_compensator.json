@@ -7,7 +7,7 @@
     "CPC",
     "DED"
   ],
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "key": {
     "P": {
       "item": "matteroverdrive:isolinear_circuit",
