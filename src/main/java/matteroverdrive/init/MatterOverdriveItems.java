@@ -87,6 +87,7 @@ public class MatterOverdriveItems {
     public MOBaseItem weaponHandle;
     public MOBaseItem weaponReceiver;
     public MOBaseItem plasmaCore;
+    public MatterItem matterItem;
 
     //	Weapons
     public Phaser phaser;
@@ -188,6 +189,7 @@ public class MatterOverdriveItems {
         machine_casing = register(new MOBaseItem("machine_casing"));
         s_magnet = register(new MOBaseItem("s_magnet"));
         isolinear_circuit = register(new IsolinearCircuit("isolinear_circuit"));
+        matterItem = register(new MatterItem("matter"));
         forceFieldEmitter = register(new MOBaseItem("forcefield_emitter"));
         weaponHandle = register(new MOBaseItem("weapon_handle"));
         weaponReceiver = register(new MOBaseItem("weapon_receiver"));

@@ -29,6 +29,7 @@ import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
 import matteroverdrive.fx.GravitationalAnomalyParticle;
 import matteroverdrive.init.MatterOverdriveSounds;
 import matteroverdrive.init.OverdriveBioticStats;
+import matteroverdrive.items.MatterItem;
 import matteroverdrive.items.SpacetimeEqualizer;
 import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.util.MOLog;
@@ -45,7 +46,6 @@ import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -134,8 +134,6 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
             float tmpSuppression = calculateSuppression();
             if (tmpSuppression != suppression) {
                 suppression = tmpSuppression;
-                //// TODO: 3/25/2016 Find mark block for update
-                //world.markBlockForUpdate(getPos());
             }
 
             manageEntityGravitation(world, 0);
@@ -440,8 +438,6 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
 
             if (consumedFlag) {
                 onEntityConsume(entity, false);
-                /// TODO: 3/25/2016 Find how to mark block for update
-                //world.markBlockForUpdate(pos);
             }
         }
     }
@@ -459,8 +455,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
             entityItem.setDead();
             world.removeEntity(entityItem);
 
-            //Todo made the gravitational anomaly collapse on Antimatter
-            if (entityItem.getItem().getItem().equals(Items.NETHER_STAR)) {
+            if (entityItem.getItem().getItem() instanceof MatterItem && MatterItem.getType(entityItem.getItem()) == MatterItem.MatterType.ANTIMATTER) {
                 collapse();
             }
             return true;
@@ -558,8 +553,6 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
                 }
 
                 world.setBlockToAir(pos);
-                // TODO: 3/25/2016 Find how to mark block for update
-                //world.markBlockForUpdate(pos);
                 return true;
             }
         }
@@ -609,6 +602,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
     }
     //endregion
 
+    //TODO: Rewrite explosion to be more.. explosion
     public void collapse() {
         world.setBlockToAir(getPos());
         world.createExplosion(null, getPos().getX(), getPos().getY(), getPos().getZ(), (float) getRealMassUnsuppressed(), true);
