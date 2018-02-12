@@ -39,7 +39,7 @@ import java.util.List;
 /**
  * Created by Simeon on 4/15/2015.
  */
-public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdvancedModelProvider {
+public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule, IAdvancedModelProvider {
     public static final int DAMAGE_BARREL_ID = 0;
     public static final int FIRE_BARREL_ID = 1;
     public static final int EXPLOSION_BARREL_ID = 2;
@@ -47,17 +47,17 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdv
     public static final int DOOMSDAY_BARREL_ID = 4;
     public static final String[] names = {"damage", "fire", "explosion", "heal", "doomsday"};
 
-    @Override
-    public String[] getSubNames() {
-        return names;
-    }
-
     public WeaponModuleBarrel(String name) {
         super(name);
         setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_MODULES);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setMaxStackSize(1);
+    }
+
+    @Override
+    public String[] getSubNames() {
+        return names;
     }
 
     @Override
@@ -172,7 +172,7 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdv
                 break;
             case DOOMSDAY_BARREL_ID:
                 if (statID == Reference.WS_EXPLOSION_DAMAGE) {
-                    return originalStat+3.0f;
+                    return originalStat + 3.0f;
                 } else if (statID == Reference.WS_AMMO) {
                     return originalStat * 0.2f;
                 } else if (statID == Reference.WS_EFFECT) {
@@ -188,10 +188,10 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule,IAdv
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
-        if(isInCreativeTab(creativeTabs))
-        for (int i = 0; i < names.length; i++) {
-            list.add(new ItemStack(this, 1, i));
-        }
+        if (isInCreativeTab(creativeTabs))
+            for (int i = 0; i < names.length; i++) {
+                list.add(new ItemStack(this, 1, i));
+            }
     }
 
     /*@Override

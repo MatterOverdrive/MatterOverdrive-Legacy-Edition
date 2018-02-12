@@ -57,7 +57,7 @@ public class DecorativeBlockItem extends ItemBlock {
     }
 
     @SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack stack, int renderPass) {
+    public int getColorFromItemStack(ItemStack stack, int renderPass) {
         if (block instanceof BlockDecorativeColored) {
             return Minecraft.getMinecraft().getBlockColors().colorMultiplier(block.getStateFromMeta(stack.getMetadata()), null, null, renderPass);
         }

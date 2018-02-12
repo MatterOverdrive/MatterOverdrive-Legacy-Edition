@@ -164,9 +164,9 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
 
         double distanceSq = entityPos.squareDistanceTo(blockPos);
         if (distanceSq < rangeSq) {
-			if ((!Minecraft.getMinecraft().player.inventory.armorItemInSlot(2).isEmpty() && Minecraft.getMinecraft().player.inventory.armorItemInSlot(2).getItem() instanceof SpacetimeEqualizer)
-					|| Minecraft.getMinecraft().player.capabilities.isCreativeMode
-                    || MOPlayerCapabilityProvider.GetAndroidCapability(Minecraft.getMinecraft().player).isUnlocked(OverdriveBioticStats.equalizer,0))
+            if ((!Minecraft.getMinecraft().player.inventory.armorItemInSlot(2).isEmpty() && Minecraft.getMinecraft().player.inventory.armorItemInSlot(2).getItem() instanceof SpacetimeEqualizer)
+                    || Minecraft.getMinecraft().player.capabilities.isCreativeMode
+                    || MOPlayerCapabilityProvider.GetAndroidCapability(Minecraft.getMinecraft().player).isUnlocked(OverdriveBioticStats.equalizer, 0))
                 return;
 
             double acceleration = getAcceleration(distanceSq);
@@ -206,7 +206,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
                     consume(entity);
                 }
 
-                if(entityObject instanceof EntityPlayer) //Players handle this clientside, no need to run on the server for no reason
+                if (entityObject instanceof EntityPlayer) //Players handle this clientside, no need to run on the server for no reason
                     continue;
 
                 if (entityObject instanceof EntityLivingBase) {
@@ -352,7 +352,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
             MinecraftForge.EVENT_BUS.post(new MOEventGravitationalAnomalyConsume.Pre(entity, getPos()));
         } else {
             MinecraftForge.EVENT_BUS.post(new MOEventGravitationalAnomalyConsume.Post(entity, getPos()));
-            CEvents.markForUpdate(getPos(),this);
+            CEvents.markForUpdate(getPos(), this);
         }
 
         return true;
@@ -501,7 +501,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
 
     public boolean breakBlock(World world, BlockPos pos, float strength, double eventHorizon, int range) {
         IBlockState blockState = world.getBlockState(pos);
-        if (blockState.getBlock().isAir(blockState,world,pos)) {
+        if (blockState.getBlock().isAir(blockState, world, pos)) {
             return true;
         }
 

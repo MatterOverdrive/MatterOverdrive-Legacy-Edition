@@ -30,12 +30,12 @@ import javax.annotation.Nullable;
 
 public class CreativeBattery extends Battery {
     public CreativeBattery(String name) {
-        super(name,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE);
+        super(name, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
 
     @Override
     public ICapabilitySerializable<NBTTagCompound> createProvider(ItemStack stack) {
-        return new InfiniteProvider(getCapacity(), getInput(),getOutput());
+        return new InfiniteProvider(getCapacity(), getInput(), getOutput());
     }
 
     @Override
@@ -47,7 +47,7 @@ public class CreativeBattery extends Battery {
 
         private EnergyContainer container;
 
-        public InfiniteProvider(int capacity, int input,int output) {
+        public InfiniteProvider(int capacity, int input, int output) {
             container = new EnergyContainer(capacity, input, output, 0) {
                 @Override
                 public int receiveEnergy(int maxReceive, boolean simulate) {

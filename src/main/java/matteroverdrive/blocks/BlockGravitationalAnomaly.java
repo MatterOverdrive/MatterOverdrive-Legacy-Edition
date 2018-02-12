@@ -49,7 +49,7 @@ import java.util.List;
 public class BlockGravitationalAnomaly extends MOBlockContainer<TileEntityGravitationalAnomaly> implements IScannable, IConfigSubscriber {
     public BlockGravitationalAnomaly(Material material, String name) {
         super(material, name);
-        setBoundingBox(new AxisAlignedBB(0.3f,0.3f,0.3f,0.6f,0.6f,0.6f));
+        setBoundingBox(new AxisAlignedBB(0.3f, 0.3f, 0.3f, 0.6f, 0.6f, 0.6f));
         setBlockUnbreakable();
         setResistance(6000000.0F);
         disableStats();

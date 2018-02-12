@@ -1,5 +1,6 @@
 package matteroverdrive.blocks.alien;
 
+import matteroverdrive.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
@@ -19,7 +20,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import matteroverdrive.Reference;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -37,7 +37,7 @@ public class BlockTallGrassAlien extends BlockBush implements net.minecraftforge
         setUnlocalizedName(name);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
         float f = 0.4F;
-       //this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
+        //this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
     }
 
     @SideOnly(Side.CLIENT)

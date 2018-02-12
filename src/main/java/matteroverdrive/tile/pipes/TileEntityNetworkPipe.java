@@ -103,7 +103,7 @@ public class TileEntityNetworkPipe extends TileEntityPipe implements IMatterNetw
                 if (tileEntityNeignbor instanceof IMatterNetworkConnection) {
                     if (connectionCount < 2 && ((IMatterNetworkConnection) tileEntityNeignbor).establishConnectionFromSide(neighborState, enumFacing.getOpposite())) {
                         this.setConnection(enumFacing, true);
-                        world.markBlockRangeForRenderUpdate(pos,pos);
+                        world.markBlockRangeForRenderUpdate(pos, pos);
                         connectionCount++;
                     }
                 }
@@ -199,7 +199,7 @@ public class TileEntityNetworkPipe extends TileEntityPipe implements IMatterNetw
         if (connCount < 2) {
             if (!MOMathHelper.getBoolean(getConnectionsMask(), side.ordinal())) {
                 setConnection(side, true);
-                world.markBlockRangeForRenderUpdate(pos,pos);
+                world.markBlockRangeForRenderUpdate(pos, pos);
                 return true;
             }
         }
@@ -209,7 +209,7 @@ public class TileEntityNetworkPipe extends TileEntityPipe implements IMatterNetw
     @Override
     public void breakConnection(IBlockState blockState, EnumFacing side) {
         setConnection(side, false);
-        world.markBlockRangeForRenderUpdate(pos,pos);
+        world.markBlockRangeForRenderUpdate(pos, pos);
     }
 
     @Override

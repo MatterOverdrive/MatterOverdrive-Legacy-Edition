@@ -258,7 +258,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
                     stack.shrink(1);
                     EnergyContainer container = getStorage(weapon);
 
-                    container.setEnergy(container.getEnergyStored()+((IEnergyPack) stack.getItem()).getEnergyAmount(stack));
+                    container.setEnergy(container.getEnergyStored() + ((IEnergyPack) stack.getItem()).getEnergyAmount(stack));
                     //player.inventory.inventoryChanged = true;
                     player.world.playSound(null, player.getPosition(), MatterOverdriveSounds.weaponsReload, SoundCategory.PLAYERS, 0.7f + itemRand.nextFloat() * 0.2f, 0.9f + itemRand.nextFloat() * 0.2f);
                     if (stack.getCount() <= 0) {
@@ -581,7 +581,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
     @Override
     public ICapabilitySerializable<NBTTagCompound> createProvider(ItemStack stack) {
-        return new EnergyProvider(stack,getCapacity(),getInput(),getOutput());
+        return new EnergyProvider(stack, getCapacity(), getInput(), getOutput());
     }
 
     public static class EnergyProvider implements ICapabilitySerializable<NBTTagCompound> {
@@ -603,9 +603,9 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         @SuppressWarnings("unchecked")
         public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
             if (capability == CapabilityEnergy.ENERGY) {
-                if(!stack.isEmpty()) {
-                    ItemStack battery = WeaponHelper.getModuleAtSlot(Reference.MODULE_BATTERY,stack);
-                    if(battery.hasCapability(capability,facing))
+                if (!stack.isEmpty()) {
+                    ItemStack battery = WeaponHelper.getModuleAtSlot(Reference.MODULE_BATTERY, stack);
+                    if (battery.hasCapability(capability, facing))
                         return battery.getCapability(capability, facing);
                 }
                 return CapabilityEnergy.ENERGY.cast(container);

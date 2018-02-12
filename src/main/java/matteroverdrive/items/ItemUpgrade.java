@@ -40,13 +40,8 @@ import java.util.Map;
 /**
  * Created by Simeon on 4/10/2015.
  */
-public class ItemUpgrade extends MOBaseItem implements IUpgrade,IAdvancedModelProvider {
+public class ItemUpgrade extends MOBaseItem implements IUpgrade, IAdvancedModelProvider {
     public static final String[] subItemNames = {"base", "speed", "power", "failsafe", "range", "power_storage", "hyper_speed", "matter_storage"};
-
-    @Override
-    public String[] getSubNames() {
-        return subItemNames;
-    }
 
     public ItemUpgrade(String name) {
         super(name);
@@ -54,6 +49,11 @@ public class ItemUpgrade extends MOBaseItem implements IUpgrade,IAdvancedModelPr
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_UPGRADES);
+    }
+
+    @Override
+    public String[] getSubNames() {
+        return subItemNames;
     }
 
     @Override
@@ -78,10 +78,10 @@ public class ItemUpgrade extends MOBaseItem implements IUpgrade,IAdvancedModelPr
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
-        if(isInCreativeTab(creativeTabs))
-        for (int i = 0; i < subItemNames.length; i++) {
-            list.add(new ItemStack(this, 1, i));
-        }
+        if (isInCreativeTab(creativeTabs))
+            for (int i = 0; i < subItemNames.length; i++) {
+                list.add(new ItemStack(this, 1, i));
+            }
     }
 
     /*@Override

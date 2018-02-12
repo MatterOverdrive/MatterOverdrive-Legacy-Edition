@@ -34,7 +34,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
-@ProxyClass(modid = Reference.MOD_ID,side= Side.SERVER)
+@ProxyClass(modid = Reference.MOD_ID, side = Side.SERVER)
 public class CommonProxy {
     private final CommonWeaponHandler commonWeaponHandler;
     protected GoogleAnalyticsCommon googleAnalyticsCommon;

@@ -1,12 +1,11 @@
 package matteroverdrive.items.tools;
 
+import com.astro.clib.api.render.ItemModelProvider;
 import com.astro.clib.client.ClientUtil;
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.init.MatterOverdriveItems;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.util.ResourceLocation;
-import com.astro.clib.api.render.ItemModelProvider;
 
 /**
  * @author shadowfacts

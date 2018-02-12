@@ -69,16 +69,16 @@ public class MachineEnergyStorage<T extends MOTileEntityMachineEnergy> extends E
     @Override
     public int receiveEnergy(int amount, boolean simulate) {
         int ex = super.receiveEnergy(amount, simulate);
-        if(ex!=0)
-        machine.UpdateClientPower();
+        if (ex != 0)
+            machine.UpdateClientPower();
         return ex;
     }
 
     @Override
     public int extractEnergy(int amount, boolean simulate) {
         int ex = super.extractEnergy(amount, simulate);
-        if(ex!=0)
-        machine.UpdateClientPower();
+        if (ex != 0)
+            machine.UpdateClientPower();
         return ex;
     }
 
@@ -92,7 +92,7 @@ public class MachineEnergyStorage<T extends MOTileEntityMachineEnergy> extends E
 
     @Override
     public int getMaxEnergyStored() {
-        return (int)(super.getMaxEnergyStored()*machine.getUpgradeMultiply(UpgradeTypes.PowerStorage));
+        return (int) (super.getMaxEnergyStored() * machine.getUpgradeMultiply(UpgradeTypes.PowerStorage));
     }
 
     public int getMaxEnergyStoredUnaltered() {

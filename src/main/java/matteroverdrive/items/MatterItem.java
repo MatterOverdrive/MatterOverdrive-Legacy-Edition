@@ -32,6 +32,10 @@ public class MatterItem extends MOBaseItem implements IAdvancedModelProvider {
         this.setHasSubtypes(true);
     }
 
+    public static MatterType getType(ItemStack stack) {
+        return MatterType.values()[MathHelper.clamp(stack.getMetadata(), 0, subItemNames.length)];
+    }
+
     @Override
     public String[] getSubNames() {
         return subItemNames;
@@ -49,10 +53,6 @@ public class MatterItem extends MOBaseItem implements IAdvancedModelProvider {
                 list.add(new ItemStack(this, 1, i));
             }
         }
-    }
-
-    public static MatterType getType(ItemStack stack) {
-        return MatterType.values()[MathHelper.clamp(stack.getMetadata(), 0, subItemNames.length)];
     }
 
     public String getUnlocalizedName(ItemStack stack) {

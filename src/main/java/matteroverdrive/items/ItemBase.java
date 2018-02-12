@@ -20,11 +20,11 @@ public class ItemBase extends Item implements ItemModelProvider {
 
     @Override
     public void initItemModel() {
-        if(this instanceof IAdvancedModelProvider) {
+        if (this instanceof IAdvancedModelProvider) {
             String[] subNames = ((IAdvancedModelProvider) this).getSubNames();
             for (int i = 0; i < subNames.length; i++) {
                 String sub = subNames[i];
-                ModelLoader.setCustomModelResourceLocation(this,i, new ModelResourceLocation(getRegistryName()+"_"+sub, "inventory"));
+                ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation(getRegistryName() + "_" + sub, "inventory"));
             }
             return;
         }

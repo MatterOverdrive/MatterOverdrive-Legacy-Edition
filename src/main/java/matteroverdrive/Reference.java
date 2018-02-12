@@ -28,8 +28,8 @@ public class Reference {
     public static final String GUI_FACTORY_CLASS = "matteroverdrive.gui.GuiConfigFactory";
     public static final String DEPEDNENCIES = "required-after:clib;after:waila;after:theoneprobe;";
     public static final String CHANNEL_NAME = "mo_channel";
-    public static final String CHANNEL_WEAPONS_NAME = CHANNEL_NAME+":weapons";
-    public static final String CHANNEL_GUI_NAME = CHANNEL_NAME+":gui";
+    public static final String CHANNEL_WEAPONS_NAME = CHANNEL_NAME + ":weapons";
+    public static final String CHANNEL_GUI_NAME = CHANNEL_NAME + ":gui";
     public static final String VERSIONS_CHECK_URL = "http://mo.simeonradivoev.com/wp-json/posts?type[]=mo_download&filter[posts_per_page]=1";
     public static final String DOWNLOAD_URL = "http://mo.simeonradivoev.com/download_category/downloads/";
 

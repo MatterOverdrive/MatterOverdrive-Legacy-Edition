@@ -2,8 +2,8 @@ package matteroverdrive.handler;
 
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
-import matteroverdrive.entity.player.OverdriveExtendedProperties;
 import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
+import matteroverdrive.entity.player.OverdriveExtendedProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

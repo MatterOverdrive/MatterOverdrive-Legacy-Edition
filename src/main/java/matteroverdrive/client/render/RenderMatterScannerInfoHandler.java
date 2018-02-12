@@ -162,7 +162,7 @@ public class RenderMatterScannerInfoHandler implements IWorldLastRenderer {
         GlStateManager.translate(-0.5, -0.5, -offset);
         drawInfoPlane(0);
 
-        ItemStack blockItemStack = block.getBlock().getPickBlock(block,position,player.world,position.getBlockPos(),player);
+        ItemStack blockItemStack = block.getBlock().getPickBlock(block, position, player.world, position.getBlockPos(), player);
 
         int matter = MatterHelper.getMatterAmountFromItem(blockItemStack);
         if (matter > 0) {

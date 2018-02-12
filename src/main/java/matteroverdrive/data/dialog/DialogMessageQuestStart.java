@@ -20,8 +20,8 @@ package matteroverdrive.data.dialog;
 
 import matteroverdrive.api.dialog.IDialogNpc;
 import matteroverdrive.api.quest.QuestStack;
-import matteroverdrive.entity.player.OverdriveExtendedProperties;
 import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
+import matteroverdrive.entity.player.OverdriveExtendedProperties;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**

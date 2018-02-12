@@ -35,8 +35,8 @@ import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
 import matteroverdrive.gui.GuiAndroidHud;
 import matteroverdrive.handler.ConfigurationHandler;
 import matteroverdrive.handler.KeyHandler;
-import matteroverdrive.init.OverdriveBioticStats;
 import matteroverdrive.init.MatterOverdriveSounds;
+import matteroverdrive.init.OverdriveBioticStats;
 import matteroverdrive.network.packet.client.PacketAndroidTransformation;
 import matteroverdrive.network.packet.client.PacketSendAndroidEffects;
 import matteroverdrive.network.packet.client.PacketSendMinimapInfo;
@@ -832,7 +832,6 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
             getPlayer().addPotionEffect(new PotionEffect(MobEffects.HUNGER, AndroidPlayer.TRANSFORM_TIME));
             getPlayer().addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, AndroidPlayer.TRANSFORM_TIME));
             getPlayer().addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, AndroidPlayer.TRANSFORM_TIME));
-
 
 
             if (turnningTime % 40 == 0) {

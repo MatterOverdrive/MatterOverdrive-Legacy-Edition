@@ -120,7 +120,7 @@ public class TileEntityFusionReactorPart extends MOTileEntityMachineMatter imple
     @Override
     public void update() {
         super.update();
-        if(getBlockType() instanceof BlockFusionReactorIO) {
+        if (getBlockType() instanceof BlockFusionReactorIO) {
             if (structure != null && fusionReactorController != null) {
                 for (EnumFacing side : EnumFacing.VALUES) {
                     TileEntity tile = world.getTileEntity(getPos().offset(side));

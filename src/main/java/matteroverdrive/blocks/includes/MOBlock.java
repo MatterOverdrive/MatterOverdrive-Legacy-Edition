@@ -58,10 +58,6 @@ public class MOBlock extends Block implements ItemModelProvider {
     private boolean hasRotation;
     private int rotationType;
 
-    public void setBoundingBox(AxisAlignedBB boundingBox) {
-        this.boundingBox = boundingBox;
-    }
-
     public MOBlock(Material material, String name) {
         super(material);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
@@ -72,6 +68,10 @@ public class MOBlock extends Block implements ItemModelProvider {
         this.setUnlocalizedName(name);
         setCreativeTab(MatterOverdrive.TAB_OVERDRIVE);
         rotationType = RotationType.FOUR_WAY;
+    }
+
+    public void setBoundingBox(AxisAlignedBB boundingBox) {
+        this.boundingBox = boundingBox;
     }
 
     @Override

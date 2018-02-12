@@ -105,7 +105,7 @@ public class Planet extends SpaceBody implements IInventory {
     }
 
     private void init() {
-        inventory = NonNullList.withSize(SLOT_COUNT,ItemStack.EMPTY);
+        inventory = NonNullList.withSize(SLOT_COUNT, ItemStack.EMPTY);
         buildings = new ArrayList<>();
         fleet = new ArrayList<>();
     }
@@ -586,14 +586,14 @@ public class Planet extends SpaceBody implements IInventory {
 
             if (inventory.get(slot).getCount() <= size) {
                 itemstack = inventory.get(slot);
-                inventory.set(slot,ItemStack.EMPTY);
+                inventory.set(slot, ItemStack.EMPTY);
 
                 return itemstack;
             } else {
                 itemstack = inventory.get(slot).splitStack(size);
 
                 if (inventory.get(slot).getCount() == 0) {
-                    inventory.set(slot,ItemStack.EMPTY);
+                    inventory.set(slot, ItemStack.EMPTY);
                 }
 
                 return itemstack;
@@ -608,7 +608,7 @@ public class Planet extends SpaceBody implements IInventory {
     public ItemStack removeStackFromSlot(int index) {
         if (!inventory.get(index).isEmpty()) {
             ItemStack stack = inventory.get(index);
-            inventory.set(index,ItemStack.EMPTY);
+            inventory.set(index, ItemStack.EMPTY);
             return stack;
         }
 
@@ -626,7 +626,7 @@ public class Planet extends SpaceBody implements IInventory {
     @Override
     public void setInventorySlotContents(int slot, @Nonnull ItemStack stack) {
         if (slot < inventory.size()) {
-            inventory.set(slot,stack);
+            inventory.set(slot, stack);
 
             if (!stack.isEmpty() && stack.getCount() > this.getInventoryStackLimit()) {
                 stack.setCount(this.getInventoryStackLimit());

@@ -118,7 +118,7 @@ public class TileEntityMachineDimensionalPylon extends MOTileEntityMachineMatter
         if (isActive()) {
             Color color = RenderUtils.lerp(Reference.COLOR_MATTER.multiplyWithoutAlpha(0.5f), Reference.COLOR_HOLO_RED, (float) charge / (float) MAX_CHARGE);
             if (getWorld().getWorldTime() % 2 == 0) {
-                float dimValue = getDimensionalValue()*10;
+                float dimValue = getDimensionalValue() * 10;
                 if (random.nextInt(10) < dimValue) {
                     double y = getPos().getY() + 0.5 + random.nextDouble() * 2;
                     double dirX = MathHelper.clamp(random.nextGaussian(), -1, 1) * 0.1;

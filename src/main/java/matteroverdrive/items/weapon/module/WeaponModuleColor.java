@@ -19,17 +19,17 @@
 package matteroverdrive.items.weapon.module;
 
 import matteroverdrive.MatterOverdrive;
+import matteroverdrive.Reference;
+import matteroverdrive.api.weapon.IWeaponColor;
+import matteroverdrive.client.data.Color;
+import matteroverdrive.items.includes.MOBaseItem;
+import matteroverdrive.util.MOStringHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import matteroverdrive.Reference;
-import matteroverdrive.api.weapon.IWeaponColor;
-import matteroverdrive.client.data.Color;
-import matteroverdrive.items.includes.MOBaseItem;
-import matteroverdrive.util.MOStringHelper;
 
 /**
  * Created by Simeon on 4/14/2015.
@@ -107,10 +107,10 @@ public class WeaponModuleColor extends MOBaseItem implements IWeaponColor {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
-        if(isInCreativeTab(creativeTabs))
-        for (int i = 0; i < colors.length; i++) {
-            list.add(new ItemStack(this, 1, i));
-        }
+        if (isInCreativeTab(creativeTabs))
+            for (int i = 0; i < colors.length; i++) {
+                list.add(new ItemStack(this, 1, i));
+            }
     }
 
     @Override

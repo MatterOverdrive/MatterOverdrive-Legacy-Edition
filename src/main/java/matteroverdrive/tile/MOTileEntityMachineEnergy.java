@@ -18,21 +18,17 @@
 
 package matteroverdrive.tile;
 
-import com.astro.clib.network.CEvents;
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.data.Inventory;
 import matteroverdrive.data.MachineEnergyStorage;
 import matteroverdrive.data.inventory.EnergySlot;
 import matteroverdrive.machines.MOTileEntityMachine;
 import matteroverdrive.machines.MachineNBTCategory;
-import matteroverdrive.network.packet.client.PacketPowerUpdate;
 import matteroverdrive.util.MOEnergyHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

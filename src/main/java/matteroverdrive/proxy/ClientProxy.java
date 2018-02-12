@@ -18,7 +18,6 @@
 
 package matteroverdrive.proxy;
 
-import com.astro.clib.proxy.impl.ProxyClass;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.client.RenderHandler;

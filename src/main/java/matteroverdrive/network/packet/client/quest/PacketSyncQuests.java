@@ -20,8 +20,8 @@ package matteroverdrive.network.packet.client.quest;
 
 import io.netty.buffer.ByteBuf;
 import matteroverdrive.data.quest.PlayerQuestData;
-import matteroverdrive.entity.player.OverdriveExtendedProperties;
 import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
+import matteroverdrive.entity.player.OverdriveExtendedProperties;
 import matteroverdrive.gui.GuiDataPad;
 import matteroverdrive.network.packet.PacketAbstract;
 import matteroverdrive.network.packet.client.AbstractClientPacketHandler;

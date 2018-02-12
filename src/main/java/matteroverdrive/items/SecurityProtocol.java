@@ -42,18 +42,18 @@ import java.util.UUID;
 /**
  * Created by Simeon on 5/10/2015.
  */
-public class SecurityProtocol extends MOBaseItem implements IAdvancedModelProvider{
+public class SecurityProtocol extends MOBaseItem implements IAdvancedModelProvider {
 
     public static final String[] types = new String[]{"empty", "claim", "access", "remove"};
-
-    @Override
-    public String[] getSubNames() {
-        return types;
-    }
 
     public SecurityProtocol(String name) {
         super(name);
         setMaxStackSize(16);
+    }
+
+    @Override
+    public String[] getSubNames() {
+        return types;
     }
 
     @Override

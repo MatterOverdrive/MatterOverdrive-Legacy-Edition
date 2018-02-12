@@ -84,7 +84,7 @@ public class MOEnergyHelper {
 
     public static int insertEnergyIntoAdjacentEnergyReceiver(TileEntity tileEntity, EnumFacing side, int amount, boolean simulate) {
         TileEntity tile2 = tileEntity.getWorld().getTileEntity(tileEntity.getPos().offset(side));
-        if(tile2==null)
+        if (tile2 == null)
             return 0;
 
         return tile2.hasCapability(CapabilityEnergy.ENERGY, side.getOpposite()) ? tile2.getCapability(CapabilityEnergy.ENERGY, side.getOpposite()).receiveEnergy(amount, simulate) : 0;

@@ -76,6 +76,7 @@ public class IonSniper extends EnergyWeapon {
     protected int getOutput() {
         return 128;
     }
+
     @Override
     @SideOnly(Side.CLIENT)
     protected void addCustomDetails(ItemStack weapon, EntityPlayer player, List infos) {

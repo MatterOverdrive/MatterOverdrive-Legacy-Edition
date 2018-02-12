@@ -109,12 +109,12 @@ public class TileEntityBoundingBox extends TileEntity implements IMOTileEntity, 
         return ownerBlock;
     }
 
-    public TileEntity getOwnerTile() {
-        return world.getTileEntity(getOwnerPos());
-    }
-
     public void setOwnerBlock(Block ownerBlock) {
         this.ownerBlock = ownerBlock;
+    }
+
+    public TileEntity getOwnerTile() {
+        return world.getTileEntity(getOwnerPos());
     }
 
     @Override

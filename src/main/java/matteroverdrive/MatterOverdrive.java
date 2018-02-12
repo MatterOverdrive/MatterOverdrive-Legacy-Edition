@@ -73,12 +73,8 @@ public class MatterOverdrive {
     @Mod.Instance(Reference.MOD_ID)
     public static MatterOverdrive INSTANCE;
 
-    @SidedProxy(clientSide = "matteroverdrive.proxy.ClientProxy",serverSide = "matteroverdrive.proxy.CommonProxy")
+    @SidedProxy(clientSide = "matteroverdrive.proxy.ClientProxy", serverSide = "matteroverdrive.proxy.CommonProxy")
     public static CommonProxy PROXY;
-
-    public MatterOverdrive() {
-    }
-
     public static TickHandler tickHandler;
     public static PlayerEventHandler playerEventHandler;
     public static ConfigurationHandler configHandler;
@@ -104,6 +100,9 @@ public class MatterOverdrive {
     static {
         FluidRegistry.enableUniversalBucket();
         CLibTech.enable();
+    }
+
+    public MatterOverdrive() {
     }
 
     @EventHandler

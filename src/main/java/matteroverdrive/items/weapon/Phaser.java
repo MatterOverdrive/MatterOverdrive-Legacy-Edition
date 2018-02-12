@@ -70,6 +70,13 @@ public class Phaser extends EnergyWeapon implements IWeapon {
         soundMap = new HashMap<>();
     }
 
+    public static boolean isKillMode(ItemStack item) {
+        if (!item.hasTagCompound()) {
+            item.setTagCompound(new NBTTagCompound());
+        }
+        return item.getTagCompound().getByte("power") >= KILL_MODE_LEVEL;
+    }
+
     @Override
     protected int getCapacity() {
         return 32000;
@@ -83,13 +90,6 @@ public class Phaser extends EnergyWeapon implements IWeapon {
     @Override
     protected int getOutput() {
         return 128;
-    }
-
-    public static boolean isKillMode(ItemStack item) {
-        if (!item.hasTagCompound()) {
-            item.setTagCompound(new NBTTagCompound());
-        }
-        return item.getTagCompound().getByte("power") >= KILL_MODE_LEVEL;
     }
 
     @Override

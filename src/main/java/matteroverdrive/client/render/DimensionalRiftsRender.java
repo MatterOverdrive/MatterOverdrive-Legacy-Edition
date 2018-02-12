@@ -4,7 +4,6 @@ import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.inventory.IBlockScanner;
 import matteroverdrive.client.RenderHandler;
-import matteroverdrive.machines.dimensional_pylon.TileEntityMachineDimensionalPylon;
 import matteroverdrive.util.math.MOMathHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;

@@ -109,8 +109,8 @@ public class OmniTool extends EnergyWeapon {
             }
         }
         if (needsRecharge(stack)) {
-            if(world.isRemote)
-            chargeFromEnergyPack(stack, player);
+            if (world.isRemote)
+                chargeFromEnergyPack(stack, player);
         }
         return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
     }

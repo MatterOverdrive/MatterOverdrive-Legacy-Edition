@@ -57,15 +57,27 @@ import java.util.*;
  */
 @SideOnly(Side.CLIENT)
 public abstract class WeaponItemRenderer implements IBakedModel {
-    private Matrix4f identity;
     protected ResourceLocation weaponModelLocation;
     protected OBJModel weaponModel;
     protected WeaponMetadataSection weaponMetadata;
     protected OBJModel.OBJBakedModel bakedModel;
     protected Map<ItemCameraTransforms.TransformType, Matrix4f> transforms = new HashMap<>();
+    private Matrix4f identity;
 
     public WeaponItemRenderer(ResourceLocation weaponModelLocation) {
         this.weaponModelLocation = weaponModelLocation;
+    }
+
+    protected static Matrix4f getCombinedRotation(float x, float y, float z) {
+        Matrix4f xMat = new Matrix4f();
+        xMat.rotX((float) Math.toRadians(x));
+        Matrix4f yMat = new Matrix4f();
+        yMat.rotY((float) Math.toRadians(y));
+        Matrix4f zMat = new Matrix4f();
+        zMat.rotZ((float) Math.toRadians(z));
+        xMat.mul(yMat);
+        xMat.mul(zMat);
+        return xMat;
     }
 
     public void init() {
@@ -95,18 +107,6 @@ public abstract class WeaponItemRenderer implements IBakedModel {
         mat.setTranslation(new Vector3f(0.6f, 0.5f, 0.3f));
         mat.setScale(1.2f);
         transforms.put(ItemCameraTransforms.TransformType.GROUND, mat);
-    }
-
-    protected static Matrix4f getCombinedRotation(float x, float y, float z) {
-        Matrix4f xMat = new Matrix4f();
-        xMat.rotX((float) Math.toRadians(x));
-        Matrix4f yMat = new Matrix4f();
-        yMat.rotY((float) Math.toRadians(y));
-        Matrix4f zMat = new Matrix4f();
-        zMat.rotZ((float) Math.toRadians(z));
-        xMat.mul(yMat);
-        xMat.mul(zMat);
-        return xMat;
     }
 
     protected void loadWeaponMetadata() {
@@ -149,7 +149,7 @@ public abstract class WeaponItemRenderer implements IBakedModel {
     @Override
     public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType type) {
         Matrix4f mat = transforms.get(type);
-        if(type == ItemCameraTransforms.TransformType.GUI) {
+        if (type == ItemCameraTransforms.TransformType.GUI) {
             mat = new Matrix4f();
             mat.setIdentity();
             mat.mul(getCombinedRotation(20f, 45f, 0f));
@@ -185,7 +185,7 @@ public abstract class WeaponItemRenderer implements IBakedModel {
     @Nonnull
     @Override
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-        if(bakedModel==null)
+        if (bakedModel == null)
             return Collections.emptyList();
         return bakedModel.getQuads(state, side, rand);
     }

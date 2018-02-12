@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * Created by Simeon on 5/19/2015.
  */
-public class SpacetimeEqualizer extends ItemArmor implements ItemModelProvider{
+public class SpacetimeEqualizer extends ItemArmor implements ItemModelProvider {
     public SpacetimeEqualizer(String name) {
         super(ItemArmor.ArmorMaterial.IRON, 0, EntityEquipmentSlot.CHEST);
         setUnlocalizedName(name);

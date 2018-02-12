@@ -20,14 +20,9 @@ package matteroverdrive.items;
 
 import matteroverdrive.items.includes.MOBaseItem;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
 
 /**
  * Created by Simeon on 3/15/2015.

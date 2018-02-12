@@ -50,6 +50,6 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
     }
 
     public void setMaxEnergy(int max) {
-        this.capacity=max;
+        this.capacity = max;
     }
 }

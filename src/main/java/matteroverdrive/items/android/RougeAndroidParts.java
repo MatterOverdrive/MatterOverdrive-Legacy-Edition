@@ -48,18 +48,18 @@ import java.util.UUID;
 /**
  * Created by Simeon on 5/28/2015.
  */
-public class RougeAndroidParts extends BionicPart implements IBionicPart,IAdvancedModelProvider{
+public class RougeAndroidParts extends BionicPart implements IBionicPart, IAdvancedModelProvider {
     public static final String[] names = new String[]{"head", "arms", "legs", "chest"};
     final String[] healtModifiersIDs = new String[]{"1bb8df41-63d1-4f58-92c4-43adea7528b2", "73983b14-e605-40be-8567-36a9dec51d4f", "29419afc-63ad-4b74-87e2-38219e867119", "e4b38c80-7407-48fd-b837-8f36ae516c4d"};
-
-    @Override
-    public String[] getSubNames() {
-        return names;
-    }
 
     public RougeAndroidParts(String name) {
         super(name);
         setHasSubtypes(true);
+    }
+
+    @Override
+    public String[] getSubNames() {
+        return names;
     }
 
     @Override
@@ -100,15 +100,15 @@ public class RougeAndroidParts extends BionicPart implements IBionicPart,IAdvanc
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
-        if(isInCreativeTab(creativeTabs))
-        for (byte t = 0; t < 2; t++) {
-            for (int i = 0; i < names.length; i++) {
-                ItemStack stack = new ItemStack(this, 1, i);
-                stack.setTagCompound(new NBTTagCompound());
-                stack.getTagCompound().setByte("Type", t);
-                list.add(stack);
+        if (isInCreativeTab(creativeTabs))
+            for (byte t = 0; t < 2; t++) {
+                for (int i = 0; i < names.length; i++) {
+                    ItemStack stack = new ItemStack(this, 1, i);
+                    stack.setTagCompound(new NBTTagCompound());
+                    stack.getTagCompound().setByte("Type", t);
+                    list.add(stack);
+                }
             }
-        }
     }
 
     /*@SideOnly(Side.CLIENT)

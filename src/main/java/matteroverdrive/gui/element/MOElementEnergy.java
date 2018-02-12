@@ -59,7 +59,7 @@ public class MOElementEnergy extends MOElementBase {
     @Override
     public void addTooltip(List<String> list, int mouseX, int mouseY) {
         if (this.storage.getMaxEnergyStored() < 0) {
-            list.add("Infinite "+MOEnergyHelper.ENERGY_UNIT);
+            list.add("Infinite " + MOEnergyHelper.ENERGY_UNIT);
         } else {
             list.add(this.storage.getEnergyStored() + " / " + this.storage.getMaxEnergyStored() + MOEnergyHelper.ENERGY_UNIT);
         }

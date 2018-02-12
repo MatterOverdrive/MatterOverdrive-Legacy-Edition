@@ -22,7 +22,6 @@ import com.google.gson.Gson;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.events.MOEventRegisterMatterEntry;
-import matteroverdrive.api.exceptions.MORuntimeException;
 import matteroverdrive.api.matter.IMatterEntry;
 import matteroverdrive.api.matter.IMatterRegistry;
 import matteroverdrive.data.matter.*;

@@ -44,6 +44,12 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
         setMaxStackSize(1);
     }
 
+    public static EnergyContainer getStorage(ItemStack stack) {
+        if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
+            return (EnergyContainer) stack.getCapability(CapabilityEnergy.ENERGY, null);
+        return EmptyEnergyStorage.INSTANCE;
+    }
+
     @Override
     public int getMaxDamage(ItemStack stack) {
         return getStorage(stack).getMaxEnergyStored();
@@ -74,12 +80,6 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
     @Override
     public boolean hasDetails(ItemStack itemStack) {
         return true;
-    }
-
-    public static EnergyContainer getStorage(ItemStack stack) {
-        if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
-            return (EnergyContainer)stack.getCapability(CapabilityEnergy.ENERGY, null);
-        return EmptyEnergyStorage.INSTANCE;
     }
 
     public ICapabilitySerializable<NBTTagCompound> createProvider(ItemStack stack) {

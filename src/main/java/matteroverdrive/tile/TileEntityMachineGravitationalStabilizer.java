@@ -27,7 +27,6 @@ import matteroverdrive.fx.GravitationalStabilizerBeamParticle;
 import matteroverdrive.init.MatterOverdriveSounds;
 import matteroverdrive.machines.events.MachineEvent;
 import matteroverdrive.proxy.ClientProxy;
-import matteroverdrive.util.math.MOMathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
@@ -42,7 +41,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.util.vector.Vector3f;
 
 import javax.annotation.Nonnull;
-
 import java.awt.*;
 
 import static matteroverdrive.util.MOBlockHelper.getAboveSide;

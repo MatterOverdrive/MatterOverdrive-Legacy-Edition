@@ -31,6 +31,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Created by Simeon on 7/20/2015.
  */
 public interface MatterOverdriveAPI {
+    static MatterOverdriveAPI getInstance() {
+        return MOApi.instance();
+    }
+
     IMatterRegistry getMatterRegistry();
 
     IAndroidStatRegistry getAndroidStatRegistry();
@@ -45,8 +49,4 @@ public interface MatterOverdriveAPI {
 
     @SideOnly(Side.CLIENT)
     IStarmapRenderRegistry getStarmapRenderRegistry();
-
-    static MatterOverdriveAPI getInstance() {
-        return MOApi.instance();
-    }
 }

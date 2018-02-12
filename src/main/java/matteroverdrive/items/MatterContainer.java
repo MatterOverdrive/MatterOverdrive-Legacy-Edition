@@ -18,6 +18,8 @@
 
 package matteroverdrive.items;
 
+import matteroverdrive.init.OverdriveFluids;
+import matteroverdrive.items.includes.MOBaseItem;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
@@ -40,8 +42,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import matteroverdrive.init.OverdriveFluids;
-import matteroverdrive.items.includes.MOBaseItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -103,7 +103,7 @@ public class MatterContainer extends MOBaseItem {
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
-        if(isInCreativeTab(tab)) {
+        if (isInCreativeTab(tab)) {
             subItems.add(new ItemStack(this));
             subItems.add(getFullStack());
         }

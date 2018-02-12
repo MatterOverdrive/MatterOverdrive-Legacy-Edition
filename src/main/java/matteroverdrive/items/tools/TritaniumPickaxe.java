@@ -18,13 +18,12 @@
 
 package matteroverdrive.items.tools;
 
+import com.astro.clib.api.render.ItemModelProvider;
 import com.astro.clib.client.ClientUtil;
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.init.MatterOverdriveItems;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.util.ResourceLocation;
-import com.astro.clib.api.render.ItemModelProvider;
 
 /**
  * Created by Simeon on 11/1/2015.

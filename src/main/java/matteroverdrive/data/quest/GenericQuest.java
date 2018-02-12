@@ -20,8 +20,8 @@ package matteroverdrive.data.quest;
 
 import com.google.gson.JsonObject;
 import matteroverdrive.api.quest.*;
-import matteroverdrive.entity.player.OverdriveExtendedProperties;
 import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
+import matteroverdrive.entity.player.OverdriveExtendedProperties;
 import matteroverdrive.util.MOStringHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.Event;

@@ -14,17 +14,13 @@ import java.util.List;
  */
 public class InscriberRecipe extends Recipe<TileEntityInscriber> {
 
-    public InscriberRecipe() {
-    }
-
     private ItemStack main;
-
     private ItemStack sec;
-
     private ItemStack output;
-
     private int energy;
     private int time;
+    public InscriberRecipe() {
+    }
 
     public ItemStack getMain() {
         return main;
