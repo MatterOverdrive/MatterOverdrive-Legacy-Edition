@@ -28,33 +28,6 @@ public class BlockStarMap extends MOBlockMachine<TileEntityMachineStarMap> {
         setHasGui(true);
     }
 
-    /*@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister)
-    {
-        super.registerBlockIcons(iconRegister);
-        topIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + "weapon_station_top");
-        bottomIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + "weapon_station_bottom");
-        blockIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + "starmap_side");
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta)
-    {
-        if (side == 1)
-        {
-            return topIcon;
-        }
-        else if (side == 0)
-        {
-            return bottomIcon;
-        }
-        else
-        {
-            return blockIcon;
-        }
-    }*/
-
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (playerIn.isSneaking()) {

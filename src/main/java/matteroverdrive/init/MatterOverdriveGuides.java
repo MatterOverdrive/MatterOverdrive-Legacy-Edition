@@ -77,7 +77,7 @@ public class MatterOverdriveGuides {
         //Power
         addEntry(generalCategory, new MOGuideEntry("fusion_reactor").setStackIcons(new ItemStack(MatterOverdrive.BLOCKS.fusion_reactor_controller),
                 new ItemStack(MatterOverdrive.BLOCKS.fusion_reactor_coil),
-                new ItemStack(MatterOverdrive.BLOCKS.forceGlass),
+                //new ItemStack(MatterOverdrive.BLOCKS.forceGlass),
                 new ItemStack(MatterOverdrive.BLOCKS.fusionReactorIO)).setGroup("power"), 3, 3);
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.gravitational_anomaly).setGroup("power"), 4, 3);
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.pylon).setGroup("power"), 3, 4);

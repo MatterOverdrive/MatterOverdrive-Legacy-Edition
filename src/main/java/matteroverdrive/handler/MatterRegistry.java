@@ -258,23 +258,19 @@ public class MatterRegistry implements IMatterRegistry {
 
     @Override
     public IMatterEntry register(final @Nonnull Item item, final IMatterEntryHandler handler) {
-        if (item != null) {
-            IMatterEntry existingEntry = itemEntires.get(item);
-            if (existingEntry != null) {
-                existingEntry.addHandler(handler);
-                return existingEntry;
-            } else {
-                MatterEntryItem entry = new MatterEntryItem(item);
-                entry.addHandler(handler);
-
-                if (!MinecraftForge.EVENT_BUS.post(new MOEventRegisterMatterEntry(entry))) {
-                    //debug("Registered: %1$s - %2$s kM", entry.getSpaceBodyName(), entry.getMatter());
-                    itemEntires.put(entry.getKey(), entry);
-                }
-                return entry;
-            }
+        IMatterEntry existingEntry = itemEntires.get(item);
+        if (existingEntry != null) {
+            existingEntry.addHandler(handler);
+            return existingEntry;
         } else {
-            throw new MORuntimeException("Matter Registry Item Key cannot be NULL");
+            MatterEntryItem entry = new MatterEntryItem(item);
+            entry.addHandler(handler);
+
+            if (!MinecraftForge.EVENT_BUS.post(new MOEventRegisterMatterEntry(entry))) {
+                //debug("Registered: %1$s - %2$s kM", entry.getSpaceBodyName(), entry.getMatter());
+                itemEntires.put(entry.getKey(), entry);
+            }
+            return entry;
         }
     }
 
@@ -328,7 +324,7 @@ public class MatterRegistry implements IMatterRegistry {
         for (IRecipe recipe : recipes) {
             ItemStack recipeOutput = recipe.getRecipeOutput();
 
-            if (recipeOutput != null && recipeOutput.isItemEqual(item)) {
+            if (!recipeOutput.isEmpty() && recipeOutput.isItemEqual(item)) {
                 int m = getMatterFromList(recipeOutput, recipe.getIngredients());
 
                 matter += m;

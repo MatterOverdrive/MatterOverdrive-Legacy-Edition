@@ -201,7 +201,7 @@ public class MatterOverdriveBlocks {
         chargingStation = register(new BlockChargingStation(TRITANIUM, "charging_station"));
 
 //		Decorative
-        forceGlass = register(new ForceGlass(Material.GLASS, "force_glass"));
+        //forceGlass = register(new ForceGlass(Material.GLASS, "force_glass"));
         decorative_stripes = register(new BlockDecorative(TRITANIUM, "decorative.stripes", 5, 1, 8, 0xd4b108));
         decorative_coils = register(new BlockDecorative(TRITANIUM, "decorative.coils", 5, 1, 8, 0xb6621e));
         decorative_clean = register(new BlockDecorative(TRITANIUM, "decorative.clean", 5, 1, 8, 0x3b484b));

@@ -52,7 +52,7 @@ public class MOWorldGenUnderwaterBase extends MOWorldGenBuilding {
         }
         addMapping(0xdc979c, Blocks.TALLGRASS);
         addMapping(0x77d1b6, Blocks.RED_FLOWER);
-        addMapping(0xd2fb50, MatterOverdrive.BLOCKS.forceGlass);
+        //addMapping(0xd2fb50, MatterOverdrive.BLOCKS.forceGlass);
         addMapping(0xc1e4e, Blocks.FARMLAND);
         addMapping(0xa7ac65, MatterOverdrive.BLOCKS.tritaniumCrate); //orange crate
         addMapping(0xd6a714, Blocks.STAINED_GLASS);

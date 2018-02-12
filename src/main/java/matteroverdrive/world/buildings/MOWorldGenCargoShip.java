@@ -47,7 +47,7 @@ public class MOWorldGenCargoShip extends MOWorldGenBuilding<MOWorldGenCargoShip.
         }
         addMapping(0xdb9c3a, MatterOverdrive.BLOCKS.holoSign);
         addMapping(0x5fffbe, MatterOverdrive.BLOCKS.transporter);
-        addMapping(0xd2fb50, MatterOverdrive.BLOCKS.forceGlass);
+        //addMapping(0xd2fb50, MatterOverdrive.BLOCKS.forceGlass);
         addMapping(0xdc01d8, Blocks.WOODEN_PRESSURE_PLATE);
         addMapping(0xfc6b34, new BlockMapping(true, Blocks.GOLD_ORE, Blocks.IRON_ORE, Blocks.COAL_ORE, MatterOverdrive.BLOCKS.tritaniumOre));
         addMapping(0xd1626, MatterOverdrive.BLOCKS.fusionReactorIO);

@@ -45,7 +45,7 @@ public class MOAndroidHouseBuilding extends MOWorldGenBuilding {
         addMapping(0xf1f1f1, Blocks.AIR);
         addMapping(0xe400ff, MatterOverdrive.BLOCKS.starMap);
         addMapping(0x1850ad, MatterOverdrive.BLOCKS.decorative_clean);
-        addMapping(0x9553c3, MatterOverdrive.BLOCKS.forceGlass);
+        //addMapping(0x9553c3, MatterOverdrive.BLOCKS.forceGlass);
         addMapping(0x35d6e0, MatterOverdrive.BLOCKS.replicator);
         addMapping(0x35e091, MatterOverdrive.BLOCKS.network_switch);
         addMapping(0xc8d43d, MatterOverdrive.BLOCKS.tritaniumCrate);
