@@ -27,7 +27,7 @@ import net.minecraft.util.NonNullList;
  * Created by Simeon on 8/2/2015.
  */
 public class EnergyPackRecipe extends ShapelessRecipes {
-    //TODO
+    //TODO: this could probably be turned into a json recipe with custom logic
     public EnergyPackRecipe(String group, ItemStack output, NonNullList<Ingredient> ingredients) {
         super(group, output, ingredients);
     }

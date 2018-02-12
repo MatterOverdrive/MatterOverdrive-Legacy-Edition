@@ -88,9 +88,6 @@ public class PacketSendMachineNBT extends TileEntityUpdatePacket {
                 if (message.forceUpdate) {
                     if (tileEntity instanceof MOTileEntityMachine) {
                         ((MOTileEntityMachine) tileEntity).forceSync();
-                    } else {
-                        // TODO: 3/26/2016 Find how to mark block for update
-                        //player.world.markBlockForUpdate(tileEntity.getPos());
                     }
                 }
             }

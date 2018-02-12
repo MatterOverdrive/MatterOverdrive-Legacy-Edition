@@ -28,6 +28,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.scoreboard.ScorePlayerTeam;
@@ -254,7 +255,11 @@ public class EntityRougeAndroidMob extends EntityMob implements IEntityAdditiona
                 ++i;
             }
 
-            //// TODO: 3/25/2016 Find how to add armor to mobs
+            //TODO: Do the random armor thing
+            replaceItemInInventory(100, ItemStack.EMPTY); //FEET
+            replaceItemInInventory(101, ItemStack.EMPTY); //LEGS
+            replaceItemInInventory(102, ItemStack.EMPTY); //CHEST
+            replaceItemInInventory(103, ItemStack.EMPTY); //HEAD
         }
     }
 

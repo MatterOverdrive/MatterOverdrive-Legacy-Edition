@@ -22,11 +22,14 @@ import matteroverdrive.blocks.BlockDecorativeColored;
 import matteroverdrive.blocks.BlockDecorativeRotated;
 import matteroverdrive.util.MOStringHelper;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by Simeon on 11/27/2015.
@@ -53,16 +56,13 @@ public class DecorativeBlockItem extends ItemBlock {
         return 0;
     }
 
-    // TODO: 3/26/2016 Find how to get color for stack
-	/*@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack stack, int renderPass)
-    {
-        if (block instanceof BlockDecorativeColored)
-        {
-            return block.getRenderColor(block.getStateFromMeta(stack.getMetadata()));
+    @SideOnly(Side.CLIENT)
+	public int getColorFromItemStack(ItemStack stack, int renderPass) {
+        if (block instanceof BlockDecorativeColored) {
+            return Minecraft.getMinecraft().getBlockColors().colorMultiplier(block.getStateFromMeta(stack.getMetadata()), null, null, renderPass);
         }
-        return super.getColorFromItemStack(stack,renderPass);
-    }*/
+        return Minecraft.getMinecraft().getItemColors().colorMultiplier(stack, renderPass);
+    }
 
     @Override
     public String getItemStackDisplayName(ItemStack itemStack) {

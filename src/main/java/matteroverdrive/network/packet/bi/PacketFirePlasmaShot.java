@@ -88,7 +88,7 @@ public class PacketFirePlasmaShot extends PacketAbstract {
                 Entity entity = player.world.getEntityByID(message.sender);
                 if (entity != null && entity instanceof EntityLivingBase) {
                     EntityLivingBase livingBase = (EntityLivingBase) entity;
-                    if (livingBase.getHeldItem(EnumHand.MAIN_HAND) != null && livingBase.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof EnergyWeapon) {
+                    if (!livingBase.getHeldItem(EnumHand.MAIN_HAND).isEmpty() && livingBase.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof EnergyWeapon) {
                         ((EnergyWeapon) livingBase.getHeldItem(EnumHand.MAIN_HAND).getItem()).onClientShot(livingBase.getHeldItem(EnumHand.MAIN_HAND), livingBase, message.position, message.direction, message.shot);
                     }
                 }

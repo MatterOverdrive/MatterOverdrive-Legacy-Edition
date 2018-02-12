@@ -78,10 +78,29 @@ public class RenderMatterScannerInfoHandler implements IWorldLastRenderer {
     }
 
     public void onRenderWorldLast(RenderHandler renderHandler, RenderWorldLastEvent event) {
-        // TODO: 3/26/2016 Add support for Offhand
-        ItemStack heldItem = Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND);
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        boolean holdingPad = false;
+        EnumHand hand = EnumHand.MAIN_HAND;
+        ItemStack heldItem = ItemStack.EMPTY;
+        if (!player.getHeldItem(EnumHand.MAIN_HAND).isEmpty()) {
+            hand = EnumHand.MAIN_HAND;
+            heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
+            if (heldItem.getItem() instanceof IBlockScanner) {
+                holdingPad = true;
+            } else {
+                heldItem = ItemStack.EMPTY;
+            }
+        } else if (!player.getHeldItem(EnumHand.OFF_HAND).isEmpty()) {
+            hand = EnumHand.OFF_HAND;
+            heldItem = player.getHeldItem(EnumHand.OFF_HAND);
+            if (heldItem.getItem() instanceof IBlockScanner) {
+                holdingPad = true;
+            } else {
+                heldItem = ItemStack.EMPTY;
+            }
+        }
 
-        if (heldItem != null && heldItem.getItem() instanceof IBlockScanner && Minecraft.getMinecraft().player.getActiveHand() == EnumHand.MAIN_HAND) {
+        if (holdingPad && !heldItem.isEmpty() && player.getActiveHand() == hand) {
             GlStateManager.pushMatrix();
             renderInfo(Minecraft.getMinecraft().player, heldItem, event.getPartialTicks());
             GlStateManager.popMatrix();

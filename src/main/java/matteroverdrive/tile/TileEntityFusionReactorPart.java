@@ -121,7 +121,6 @@ public class TileEntityFusionReactorPart extends MOTileEntityMachineMatter imple
     public void update() {
         super.update();
         if(getBlockType() instanceof BlockFusionReactorIO) {
-            //TODO: fix this mess and figure out why the fusion reactor doesnt seem to actually generate power
             if (structure != null && fusionReactorController != null) {
                 for (EnumFacing side : EnumFacing.VALUES) {
                     TileEntity tile = world.getTileEntity(getPos().offset(side));

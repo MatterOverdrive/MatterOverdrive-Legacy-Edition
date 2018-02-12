@@ -7,7 +7,6 @@ import matteroverdrive.client.render.weapons.modules.IModuleRender;
 import matteroverdrive.client.resources.data.WeaponMetadataSection;
 import matteroverdrive.handler.weapon.ClientWeaponHandler;
 import matteroverdrive.items.weapon.EnergyWeapon;
-import matteroverdrive.machines.dimensional_pylon.TileEntityMachineDimensionalPylon;
 import matteroverdrive.util.MOInventoryHelper;
 import matteroverdrive.util.RenderUtils;
 import matteroverdrive.util.WeaponHelper;
@@ -22,6 +21,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -61,7 +61,7 @@ public class WeaponRenderHandler {
     public void onHandRender(RenderSpecificHandEvent event) {
         ItemStack weapon = event.getItemStack();
 
-        if (event.getHand()== EnumHand.MAIN_HAND&&!weapon.isEmpty() && weapon.getItem() instanceof EnergyWeapon) {
+        if (event.getHand() == EnumHand.MAIN_HAND && !weapon.isEmpty() && weapon.getItem() instanceof EnergyWeapon) {
             event.setCanceled(true);
 
             GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
@@ -211,7 +211,7 @@ public class WeaponRenderHandler {
     }
 
     public void renderModel(IBakedModel model, ItemStack weapon) {
-        if(model==null)
+        if (model == null)
             return;
         RenderUtils.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         Tessellator tessellator = Tessellator.getInstance();
@@ -238,18 +238,15 @@ public class WeaponRenderHandler {
             BakedQuad bakedquad = quads.get(i);
             int k = color;
 
-            // TODO: 3/25/2016 Find how get get stack color
-			/*if (flag && bakedquad.hasTintIndex())
-			{
-                k = stack.getItem().getColorFromItemStack(stack, bakedquad.getTintIndex());
+            if (flag && bakedquad.hasTintIndex()) {
+                k = Minecraft.getMinecraft().getItemColors().colorMultiplier(stack, bakedquad.getTintIndex());
 
-                if (EntityRenderer.anaglyphEnable)
-                {
+                if (EntityRenderer.anaglyphEnable) {
                     k = TextureUtil.anaglyphColor(k);
                 }
 
                 k = k | -16777216;
-            }*/
+            }
 
             net.minecraftforge.client.model.pipeline.LightUtil.renderQuadColorSlow(renderer, bakedquad, k);
         }
