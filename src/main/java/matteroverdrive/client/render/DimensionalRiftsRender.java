@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
@@ -31,90 +32,104 @@ public class DimensionalRiftsRender implements IWorldLastRenderer {
 
     @Override
     public void onRenderWorldLast(RenderHandler handler, RenderWorldLastEvent event) {
-        //// TODO: 3/24/2016 Add support for offhand
-        if (!Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND).isEmpty()) {
-            ItemStack heldItem = Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND);
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        boolean holdingPad = false;
+        ItemStack heldItem = ItemStack.EMPTY;
+        if (!player.getHeldItem(EnumHand.MAIN_HAND).isEmpty()) {
+            heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
             if (heldItem.getItem() instanceof IBlockScanner && ((IBlockScanner) heldItem.getItem()).showsGravitationalWaves(heldItem)) {
-                GlStateManager.pushMatrix();
-                GlStateManager.enableBlend();
-                GlStateManager.disableTexture2D();
-                GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
-                GlStateManager.depthMask(true);
-                GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
-                GL11.glPointSize(6);
-                GL11.glLineWidth(1);
-                Entity renderViewEntity = Minecraft.getMinecraft().getRenderViewEntity();
-                Vec3d viewEntityPos = renderViewEntity.getPositionEyes(event.getPartialTicks()).subtract(0, renderViewEntity.getEyeHeight(), 0);
-                if (lastY == 0) {
-                    lastY = 64;
-                }
-                if (renderViewEntity.onGround) {
-                    lastY = MOMathHelper.Lerp(lastY, viewEntityPos.y, 0.05);
-                }
-                Vec3d viewEntityPosRound = new Vec3d(Math.floor(viewEntityPos.x), lastY, Math.floor(viewEntityPos.z));
-
-                GlStateManager.translate(-viewEntityPos.x, -viewEntityPos.y, -viewEntityPos.z);
-                BufferBuilder worldRenderer = Tessellator.getInstance().getBuffer();
-
-                int vewDistance = 128;
-                double height = 5;
-
-                random.setSeed(Minecraft.getMinecraft().world.getSeed());
-
-                for (int x = 0; x < vewDistance; x++) {
-                    for (int z = 0; z < vewDistance; z++) {
-
-                        float yPos = MatterOverdrive.moWorld.getDimensionalRifts().getValueAt(new Vec3d(viewEntityPosRound.x + x - vewDistance / 2, 0, viewEntityPosRound.z + z - vewDistance / 2));
-                        yPos *= Math.sin((x / (double) vewDistance) * Math.PI) * Math.sin((z / (double) vewDistance) * Math.PI);
-                        points[x][z] = yPos;
-                    }
-                }
-
-                GlStateManager.translate(0, viewEntityPosRound.y, 0);
-
-                worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-                for (int z = 0; z < vewDistance; z++) {
-                    for (int x = 0; x < vewDistance; x++) {
-                        if (points[x][z] > 0.01) {
-                            double xPos = viewEntityPosRound.x + x - vewDistance / 2;
-                            double zPos = viewEntityPosRound.z + z - vewDistance / 2;
-
-                            float r = Reference.COLOR_HOLO.getFloatR() * points[x][z];
-                            float g = Reference.COLOR_HOLO.getFloatG() * points[x][z];
-                            float b = Reference.COLOR_HOLO.getFloatB() * points[x][z];
-                            worldRenderer.pos(xPos, getPointSafe(x, z) * height, zPos).color(r, g, b, 1).endVertex();
-                            worldRenderer.pos(xPos, getPointSafe(x, z + 1) * height, zPos + 1).color(r, g, b, 1).endVertex();
-                            worldRenderer.pos(xPos + 1, getPointSafe(x + 1, z + 1) * height, zPos + 1).color(r, g, b, 1).endVertex();
-                            worldRenderer.pos(xPos + 1, getPointSafe(x + 1, z) * height, zPos).color(r, g, b, 1).endVertex();
-                        }
-                    }
-                }
-                Tessellator.getInstance().draw();
-
-                worldRenderer.begin(GL11.GL_POINTS, DefaultVertexFormats.POSITION_COLOR);
-                for (int z = 0; z < vewDistance; z++) {
-                    for (int x = 0; x < vewDistance; x++) {
-                        if (points[x][z] > 0.01) {
-                            double xPos = viewEntityPosRound.x + x - vewDistance / 2;
-                            double zPos = viewEntityPosRound.z + z - vewDistance / 2;
-
-                            float r = Reference.COLOR_HOLO.getFloatR() * points[x][z];
-                            float g = Reference.COLOR_HOLO.getFloatG() * points[x][z];
-                            float b = Reference.COLOR_HOLO.getFloatB() * points[x][z];
-                            worldRenderer.pos(xPos, getPointSafe(x, z) * height, zPos).color(r, g, b, 1).endVertex();
-                            worldRenderer.pos(xPos, getPointSafe(x, z + 1) * height, zPos + 1).color(r, g, b, 1).endVertex();
-                            worldRenderer.pos(xPos + 1, getPointSafe(x + 1, z + 1) * height, zPos + 1).color(r, g, b, 1).endVertex();
-                            worldRenderer.pos(xPos + 1, getPointSafe(x + 1, z) * height, zPos).color(r, g, b, 1).endVertex();
-                        }
-                    }
-                }
-                Tessellator.getInstance().draw();
-
-                GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
-                GlStateManager.enableTexture2D();
-                GlStateManager.disableBlend();
-                GlStateManager.popMatrix();
+                holdingPad = true;
+            } else {
+                heldItem = ItemStack.EMPTY;
             }
+        } else if (!player.getHeldItem(EnumHand.OFF_HAND).isEmpty()) {
+            heldItem = player.getHeldItem(EnumHand.OFF_HAND);
+            if (heldItem.getItem() instanceof IBlockScanner && ((IBlockScanner) heldItem.getItem()).showsGravitationalWaves(heldItem)) {
+                holdingPad = true;
+            } else {
+                heldItem = ItemStack.EMPTY;
+            }
+        }
+        if (holdingPad && !heldItem.isEmpty()) {
+            GlStateManager.pushMatrix();
+            GlStateManager.enableBlend();
+            GlStateManager.disableTexture2D();
+            GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
+            GlStateManager.depthMask(true);
+            GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
+            GL11.glPointSize(6);
+            GL11.glLineWidth(1);
+            Entity renderViewEntity = Minecraft.getMinecraft().getRenderViewEntity();
+            Vec3d viewEntityPos = renderViewEntity.getPositionEyes(event.getPartialTicks()).subtract(0, renderViewEntity.getEyeHeight(), 0);
+            if (lastY == 0) {
+                lastY = 64;
+            }
+            if (renderViewEntity.onGround) {
+                lastY = MOMathHelper.Lerp(lastY, viewEntityPos.y, 0.05);
+            }
+            Vec3d viewEntityPosRound = new Vec3d(Math.floor(viewEntityPos.x), lastY, Math.floor(viewEntityPos.z));
+
+            GlStateManager.translate(-viewEntityPos.x, -viewEntityPos.y, -viewEntityPos.z);
+            BufferBuilder worldRenderer = Tessellator.getInstance().getBuffer();
+
+            int vewDistance = 128;
+            double height = 5;
+
+            random.setSeed(Minecraft.getMinecraft().world.getSeed());
+
+            for (int x = 0; x < vewDistance; x++) {
+                for (int z = 0; z < vewDistance; z++) {
+
+                    float yPos = MatterOverdrive.moWorld.getDimensionalRifts().getValueAt(new Vec3d(viewEntityPosRound.x + x - vewDistance / 2, 0, viewEntityPosRound.z + z - vewDistance / 2));
+                    yPos *= Math.sin((x / (double) vewDistance) * Math.PI) * Math.sin((z / (double) vewDistance) * Math.PI);
+                    points[x][z] = yPos;
+                }
+            }
+
+            GlStateManager.translate(0, viewEntityPosRound.y, 0);
+
+            worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+            for (int z = 0; z < vewDistance; z++) {
+                for (int x = 0; x < vewDistance; x++) {
+                    if (points[x][z] > 0.01) {
+                        double xPos = viewEntityPosRound.x + x - vewDistance / 2;
+                        double zPos = viewEntityPosRound.z + z - vewDistance / 2;
+
+                        float r = Reference.COLOR_HOLO.getFloatR() * points[x][z];
+                        float g = Reference.COLOR_HOLO.getFloatG() * points[x][z];
+                        float b = Reference.COLOR_HOLO.getFloatB() * points[x][z];
+                        worldRenderer.pos(xPos, getPointSafe(x, z) * height, zPos).color(r, g, b, 1).endVertex();
+                        worldRenderer.pos(xPos, getPointSafe(x, z + 1) * height, zPos + 1).color(r, g, b, 1).endVertex();
+                        worldRenderer.pos(xPos + 1, getPointSafe(x + 1, z + 1) * height, zPos + 1).color(r, g, b, 1).endVertex();
+                        worldRenderer.pos(xPos + 1, getPointSafe(x + 1, z) * height, zPos).color(r, g, b, 1).endVertex();
+                    }
+                }
+            }
+            Tessellator.getInstance().draw();
+
+            worldRenderer.begin(GL11.GL_POINTS, DefaultVertexFormats.POSITION_COLOR);
+            for (int z = 0; z < vewDistance; z++) {
+                for (int x = 0; x < vewDistance; x++) {
+                    if (points[x][z] > 0.01) {
+                        double xPos = viewEntityPosRound.x + x - vewDistance / 2;
+                        double zPos = viewEntityPosRound.z + z - vewDistance / 2;
+
+                        float r = Reference.COLOR_HOLO.getFloatR() * points[x][z];
+                        float g = Reference.COLOR_HOLO.getFloatG() * points[x][z];
+                        float b = Reference.COLOR_HOLO.getFloatB() * points[x][z];
+                        worldRenderer.pos(xPos, getPointSafe(x, z) * height, zPos).color(r, g, b, 1).endVertex();
+                        worldRenderer.pos(xPos, getPointSafe(x, z + 1) * height, zPos + 1).color(r, g, b, 1).endVertex();
+                        worldRenderer.pos(xPos + 1, getPointSafe(x + 1, z + 1) * height, zPos + 1).color(r, g, b, 1).endVertex();
+                        worldRenderer.pos(xPos + 1, getPointSafe(x + 1, z) * height, zPos).color(r, g, b, 1).endVertex();
+                    }
+                }
+            }
+            Tessellator.getInstance().draw();
+
+            GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
+            GlStateManager.enableTexture2D();
+            GlStateManager.disableBlend();
+            GlStateManager.popMatrix();
         }
     }
 
