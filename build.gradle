@@ -12,8 +12,17 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'com.selesse.git.changelog'
 
+
+def BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "0"
+def mod_version = "0.6.0.$BUILD_NUMBER"
+
+version = "1.12.2-$mod_version"
+
+group= "matteroverdrive"
+archivesBaseName = "MatterOverdrive"
+
 changelog {
-    title = "${project.name} - Changelog"
+    title = "${archivesBaseName} - Changelog"
 
     outputDirectory = file("$projectDir")
 
@@ -42,15 +51,6 @@ sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
-
-def BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "0"
-def mod_version = "0.6.0.$BUILD_NUMBER"
-
-version = "1.12.2-$mod_version"
-
-group= "matteroverdrive"
-archivesBaseName = "MatterOverdrive"
-
 
 minecraft {
     version = "1.12.2-14.23.1.2607"
@@ -109,6 +109,10 @@ jar {
     }
 }
 
+task("uploadCurse") {
+    description = "upload build to curse"
+
+}
 task("uploadJars") {
     description = "uploads JARs"
     if (System.getenv("local_maven") != null) {
