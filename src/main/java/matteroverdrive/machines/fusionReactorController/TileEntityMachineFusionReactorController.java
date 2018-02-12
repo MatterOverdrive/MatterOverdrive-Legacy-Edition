@@ -34,10 +34,12 @@ import matteroverdrive.tile.TileEntityGravitationalAnomaly;
 import matteroverdrive.util.MOEnergyHelper;
 import matteroverdrive.util.TimeTracker;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -50,7 +52,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.text.DecimalFormat;
 import java.util.EnumSet;
 
 import static java.lang.Math.round;
@@ -78,7 +79,7 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
     private final TimeTracker structureCheckTimer;
     private final MultiBlockTileStructureMachine multiBlock;
     private boolean validStructure = false;
-    private String monitorInfo = "INVALID STRUCTURE";
+    private MonitorInfo monitorInfo = MonitorInfo.INVALID_STRUCTURE;
     private float energyEfficiency;
     private int energyPerTick;
     private BlockPos anomalyPosition;
@@ -111,7 +112,7 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
         super.writeCustomNBT(nbt, categories, toDisk);
         if (categories.contains(MachineNBTCategory.DATA)) {
             nbt.setBoolean("ValidStructure", validStructure);
-            nbt.setString("MonitorInfo", monitorInfo);
+            nbt.setInteger("MonitorInfo", monitorInfo.getMeta());
             nbt.setFloat("EnergyEfficiency", energyEfficiency);
             nbt.setFloat("MatterPerTick", matterPerTick);
             nbt.setInteger("EnergyPerTick", energyPerTick);
@@ -123,7 +124,7 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
         super.readCustomNBT(nbt, categories);
         if (categories.contains(MachineNBTCategory.DATA)) {
             validStructure = nbt.getBoolean("ValidStructure");
-            monitorInfo = nbt.getString("MonitorInfo");
+            monitorInfo = MonitorInfo.fromMeta(nbt.getInteger("MonitorInfo"));
             energyEfficiency = nbt.getFloat("EnergyEfficiency");
             matterPerTick = nbt.getFloat("MatterPerTick");
             energyPerTick = nbt.getInteger("EnergyPerTick");
@@ -197,9 +198,9 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
         if (structureCheckTimer.hasDelayPassed(world, STRUCTURE_CHECK_DELAY)) {
             multiBlock.update();
             EnumFacing side = world.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION);
-            int anomalyDistance = MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1;
+            int anomalyDistance;
             boolean validStructure = true;
-            String info = this.monitorInfo;
+            MonitorInfo info = this.monitorInfo;
             float energyEfficiency = this.energyEfficiency;
             float matterPerTick = this.matterPerTick;
 
@@ -214,50 +215,50 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
                         anomalyDistance = (int) Math.sqrt((anomalyOffset.getX() * anomalyOffset.getY()) + (anomalyOffset.getY() * anomalyOffset.getY()) + (anomalyOffset.getZ() * anomalyOffset.getZ()));
                         if (anomalyDistance > MAX_GRAVITATIONAL_ANOMALY_DISTANCE) {
                             validStructure = false;
-                            info = "GRAVITATIONAL\nANOMALY\nTOO\nFAR";
+                            info = MonitorInfo.ANOMALY_TOO_FAR;
                             break;
                         }
                         anomalyPosition = anomalyOffset.add(offset.x, offset.y, offset.z);
                     } else {
                         validStructure = false;
-                        info = "NO\nGRAVITATIONAL\nANOMALY";
+                        info = MonitorInfo.NO_ANOMALY;
                         anomalyPosition = null;
                         break;
                     }
 
                     energyEfficiency = 1f - ((float) anomalyDistance / (float) (MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1));
                     energyPerTick = (int) Math.round(ENERGY_PER_TICK * getEnergyEfficiency() * getGravitationalAnomalyEnergyMultiply());
-                    double energyMultipy = getGravitationalAnomalyEnergyMultiply();
-                    matterPerTick = (float) (MATTER_DRAIN_PER_TICK * energyMultipy);
+                    double energyMultiply = getGravitationalAnomalyEnergyMultiply();
+                    matterPerTick = (float) (MATTER_DRAIN_PER_TICK * energyMultiply);
                 } else {
                     Block block = world.getBlockState(position).getBlock();
                     TileEntity tileEntity = world.getTileEntity(position);
 
                     if (block == Blocks.AIR) {
                         validStructure = false;
-                        info = "INVALID\nSTRUCTURE";
+                        info = MonitorInfo.INVALID_STRUCTURE;
                         break;
                     } else if (block == MatterOverdrive.BLOCKS.machine_hull) {
                         if (blocks[i] == 1) {
                             validStructure = false;
-                            info = "NEED\nMORE\nCOILS";
+                            info = MonitorInfo.NEED_COILS;
                             break;
                         }
                     } else if (block == MatterOverdrive.BLOCKS.fusion_reactor_coil || tileEntity instanceof IMultiBlockTile) {
                         if (blocks[i] == 0) {
                             validStructure = false;
-                            info = "INVALID\nMATERIALS";
+                            info = MonitorInfo.INVALID_MATERIALS;
                             break;
                         }
                     } else if (block == MatterOverdrive.BLOCKS.decomposer) {
                         if (blocks[i] != 2) {
                             validStructure = false;
-                            info = "INVALID\nMATERIALS";
+                            info = MonitorInfo.INVALID_MATERIALS;
                             break;
                         }
                     } else {
                         validStructure = false;
-                        info = "INVALID\nMATERIALS";
+                        info = MonitorInfo.INVALID_MATERIALS;
                         break;
                     }
 
@@ -268,9 +269,10 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
             }
 
             if (validStructure) {
-                info = "POWER " + Math.round((1f - ((float) anomalyDistance / (float) (MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1))) * 100) + "%";
+                info = MonitorInfo.OK;
+                /*info = "POWER " + Math.round((1f - ((float) anomalyDistance / (float) (MAX_GRAVITATIONAL_ANOMALY_DISTANCE + 1))) * 100) + "%";
                 info += "\nCHARGE " + DecimalFormat.getPercentInstance().format((double) getEnergyStorage().getEnergyStored() / (double) getEnergyStorage().getMaxEnergyStored());
-                info += "\nMATTER " + DecimalFormat.getPercentInstance().format((double) matterStorage.getMatterStored() / (double) matterStorage.getCapacity());
+                info += "\nMATTER " + DecimalFormat.getPercentInstance().format((double) matterStorage.getMatterStored() / (double) matterStorage.getCapacity());*/
             } else {
                 energyEfficiency = 0;
             }
@@ -400,7 +402,7 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
         return validStructure;
     }
 
-    public String getMonitorInfo() {
+    public MonitorInfo getMonitorInfo() {
         return monitorInfo;
     }
 
@@ -491,4 +493,33 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
 	}
     //endregion*/
     //endregion
+
+    public static enum MonitorInfo implements IStringSerializable {
+        INVALID_STRUCTURE,
+        NEED_COILS,
+        INVALID_MATERIALS,
+        NO_ANOMALY,
+        ANOMALY_TOO_FAR,
+        OK;
+
+        public static MonitorInfo[] VALUES = values();
+
+        public static MonitorInfo fromMeta(int meta) {
+            return VALUES[MathHelper.clamp(meta, 0, VALUES.length)];
+        }
+
+        public int getMeta() {
+            return ordinal();
+        }
+
+        @SideOnly(Side.CLIENT)
+        public String localize() {
+            return I18n.format("fusion_reactor.info." + getName() + ".name");
+        }
+
+        @Override
+        public String getName() {
+            return name().toLowerCase();
+        }
+    }
 }

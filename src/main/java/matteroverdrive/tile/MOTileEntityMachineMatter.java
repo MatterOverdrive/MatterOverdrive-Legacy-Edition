@@ -94,6 +94,10 @@ public abstract class MOTileEntityMachineMatter extends MOTileEntityMachineEnerg
         }
     }
 
+    public MachineMatterStorage getMatterStorage() {
+        return matterStorage;
+    }
+
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
         if (capability == MatterOverdriveCapabilities.MATTER_HANDLER ||

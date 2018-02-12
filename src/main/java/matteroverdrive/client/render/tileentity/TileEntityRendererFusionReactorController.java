@@ -30,6 +30,8 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.Vec3d;
 
+import java.text.DecimalFormat;
+
 import static org.lwjgl.opengl.GL11.GL_ONE;
 
 /**
@@ -76,7 +78,17 @@ public class TileEntityRendererFusionReactorController extends TileEntitySpecial
 
         RenderUtils.beginDrawinngBlockScreen(x, y, z, side, color, controller);
 
-        String[] info = controller.getMonitorInfo().split("\n");
+        TileEntityMachineFusionReactorController.MonitorInfo monitorInfo = controller.getMonitorInfo();
+        String[] info;
+        if (monitorInfo == TileEntityMachineFusionReactorController.MonitorInfo.OK) {
+            info = controller.getMonitorInfo().localize()
+                    .replaceAll("\\$\\{power}", "100") //TODO
+                    .replaceAll("\\$\\{charge}", DecimalFormat.getPercentInstance().format((double) controller.getEnergyStorage().getEnergyStored() / (double) controller.getEnergyStorage().getMaxEnergyStored()))
+                    .replaceAll("\\$\\{matter}", DecimalFormat.getPercentInstance().format((double) controller.getMatterStorage().getMatterStored() / (double) controller.getMatterStorage().getCapacity()))
+                    .split("\n");
+        } else {
+            info = controller.getMonitorInfo().localize().split("\n");
+        }
 
         RenderUtils.drawScreenInfoWithGlobalAutoSize(info, color, side, 10, 10, 4);
 
