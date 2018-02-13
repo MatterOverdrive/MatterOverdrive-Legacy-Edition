@@ -34,16 +34,7 @@ import java.util.List;
  * Created by Simeon on 8/29/2015.
  */
 public class MatterOverdriveRecipes {
-    public static final List<IRecipe> recipes = new ArrayList<>();
-
     public static final InscriberRecipeManager INSCRIBER = new InscriberRecipeManager();
-
-    public static void registerBlockRecipes(FMLInitializationEvent event) {
-    }
-
-    public static void registerItemRecipes(FMLInitializationEvent event) {
-
-    }
 
     public static void registerInscriberRecipes(FMLInitializationEvent event) {
         File file = new File(MatterOverdrive.configHandler.configDir, "MatterOverdrive/recipes/inscriber.xml");
@@ -56,7 +47,6 @@ public class MatterOverdriveRecipes {
                 throw new RuntimeException(e);
             }
         }
-        //TO: Recipes
         INSCRIBER.load(file);
     }
 }
