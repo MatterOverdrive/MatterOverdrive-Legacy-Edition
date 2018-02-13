@@ -261,9 +261,6 @@ public class MatterOverdriveItems {
         MatterOverdrive.matterRegistry.register(tritanium_ingot, new ItemHandler(0, true));
         MatterOverdrive.matterRegistry.register(tritanium_dust, new ItemHandler(0, true));
         MatterOverdrive.matterRegistry.register(tritanium_plate, new ItemHandler(0, true));
-
-        GameRegistry.addSmelting(new ItemStack(tritanium_dust), new ItemStack(tritanium_ingot), 5);
-        GameRegistry.addSmelting(new ItemStack(MatterOverdrive.BLOCKS.tritaniumOre), new ItemStack(tritanium_ingot), 10);
     }
 
     protected <T extends Item> T register(T item) {
