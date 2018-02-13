@@ -22,6 +22,7 @@ import java.util.Random;
 /**
  * Created by Simeon on 6/13/2015.
  */
+//TODO: move the galaxy generator to a clib galaxy plugin
 public class GalaxyGenerator implements IConfigSubscriber {
     //region Private Vars
     private final Random random;
