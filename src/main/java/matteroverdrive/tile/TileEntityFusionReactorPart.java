@@ -53,7 +53,7 @@ public class TileEntityFusionReactorPart extends MOTileEntityMachineMatter imple
     }
 
     @Override
-    public boolean isInvalid() {
+    public boolean isTileInvalid() {
         return tileEntityInvalid;
     }
 
