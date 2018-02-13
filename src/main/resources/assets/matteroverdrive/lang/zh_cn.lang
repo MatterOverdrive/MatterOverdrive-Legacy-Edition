@@ -1,143 +1,145 @@
 ##########################################################################################################
 # Items
 
-item.matter_scanner.name=物质扫描仪
-item.emergency_ration.name=应急营养单元
-item.phaser.name=超能相位枪
-item.battery.name=能量单元
-item.creative_battery.name=创造能量单元
-item.me_conversion_matrix.name=物质能转换矩阵
-item.isolinear_circuit.mk1.name=等线性电路Mk1
-item.isolinear_circuit.mk2.name=等线性电路Mk2
-item.isolinear_circuit.mk3.name=等线性电路Mk3
-item.isolinear_circuit.mk4.name=等线性电路Mk4
-item.upgrade.base.name=基础升级板
-item.h_compensator.name=海森堡补偿器
-item.integration_matrix.name=集成矩阵
-item.s_magnet.name=超导磁体
-item.matter_dust_refined.name=精炼物质粉尘
-item.matter_dust.name=物质粉尘
-item.matter_dust.details=放入循环仓中精炼
-item.machine_casing.name=机械铸件
-item.dilithium_crystal.name=双锂晶体
-item.tritanium_ingot.name=钛金锭
-item.tritanium_plate.name=钛金板
-item.tritanium_dust.name=钛金粉
-item.pattern_drive.name=模式存储单元
-item.pattern_drive.details=可存储2个物品模式
-item.earl_gray_tea.name=格雷伯爵茶
-item.romulan_ale.name=罗慕兰麦酒
-item.romulan_ale.details=原产自罗慕兰醇香醉人的酒饮料
-item.security_protocol.empty.name=安全协定
-item.security_protocol.claim.name=安全协定[设置]
-item.security_protocol.claim.description=设置机器
-item.security_protocol.access.name=安全协定[访问]
-item.security_protocol.access.description=允许访问已设置安全协定的机器
-item.security_protocol.remove.name=安全协定[清除]
-item.security_protocol.remove.description=移除机器安全设置
-item.security_protocol.invalid=安全协定无效
-item.tritanium_wrench.name=钛金扳手
-item.tritanium_wrench.details=安全装卸和旋转机器
-item.spacetime_equalizer.name=时空均衡器
-item.spacetime_equalizer.details=能够作为护胸装备并抵消重力异常
-item.rogue_android_part.head.name=机器人头部
-item.rogue_android_part.arms.name=机器人手部
-item.rogue_android_part.legs.name=机器人腿部
-item.rogue_android_part.chest.name=机器人躯干
-item.rogue_android_part.melee=近战机器人
-item.rogue_android_part.range=远程机器人
-item.forcefield_emitter.name=力场发生器
-item.hc_battery.name=高能电池
-item.ship_factory.name=舰船工厂
-item.ship_factory.details=允许舰船的建造
-item.scout_ship.name=侦察飞船
-item.scout_ship.details=快速飞船, 用于侦察
-item.ship_colonizer.name=殖民飞船
-item.ship_colonizer.details=用于在抵达后建造基地以占领星球
-item.building_base.name=基地
-item.building_base.details=主建筑, 所有东西的前置需求
+item.matteroverdrive.matter_scanner.name=物质扫描仪
+item.matteroverdrive.emergency_ration.name=应急营养单元
+item.matteroverdrive.phaser.name=超能相位枪
+item.matteroverdrive.battery.name=能量单元
+item.matteroverdrive.creative_battery.name=创造能量单元
+item.matteroverdrive.me_conversion_matrix.name=物质能转换矩阵
+item.matteroverdrive.isolinear_circuit.mk1.name=等线性电路Mk1
+item.matteroverdrive.isolinear_circuit.mk2.name=等线性电路Mk2
+item.matteroverdrive.isolinear_circuit.mk3.name=等线性电路Mk3
+item.matteroverdrive.isolinear_circuit.mk4.name=等线性电路Mk4
+item.matteroverdrive.upgrade.base.name=基础升级板
+item.matteroverdrive.h_compensator.name=海森堡补偿器
+item.matteroverdrive.integration_matrix.name=集成矩阵
+item.matteroverdrive.s_magnet.name=超导磁体
+item.matteroverdrive.matter_dust_refined.name=精炼物质粉尘
+item.matteroverdrive.matter_dust.name=物质粉尘
+item.matteroverdrive.matter_dust.details=放入循环仓中精炼
+item.matteroverdrive.machine_casing.name=机械铸件
+item.matteroverdrive.dilithium_crystal.name=双锂晶体
+item.matteroverdrive.tritanium_ingot.name=钛金锭
+item.matteroverdrive.tritanium_plate.name=钛金板
+item.matteroverdrive.tritanium_dust.name=钛金粉
+item.matteroverdrive.pattern_drive.name=模式存储单元
+item.matteroverdrive.pattern_drive.details=可存储2个物品模式
+item.matteroverdrive.earl_gray_tea.name=格雷伯爵茶
+item.matteroverdrive.romulan_ale.name=罗慕兰麦酒
+item.matteroverdrive.romulan_ale.details=原产自罗慕兰醇香醉人的酒饮料
+item.matteroverdrive.security_protocol.empty.name=安全协定
+item.matteroverdrive.security_protocol.claim.name=安全协定（设置）
+item.matteroverdrive.security_protocol.claim.details=设置机器
+item.matteroverdrive.security_protocol.access.name=安全协定（访问）
+item.matteroverdrive.security_protocol.access.details=允许访问已设置安全协定的机器
+item.matteroverdrive.security_protocol.remove.name=安全协定（清除）
+item.matteroverdrive.security_protocol.remove.details=移除机器安全设置
+item.matteroverdrive.security_protocol.invalid=安全协定无效
+item.matteroverdrive.tritanium_wrench.name=钛金扳手
+item.matteroverdrive.tritanium_wrench.details=安全装卸和旋转机器
+item.matteroverdrive.spacetime_equalizer.name=时空均衡器
+item.matteroverdrive.spacetime_equalizer.details=能够作为胸甲装备并抵消重力异常
+item.matteroverdrive.rogue_android_part.head.name=机器人头部
+item.matteroverdrive.rogue_android_part.arms.name=机器人手部
+item.matteroverdrive.rogue_android_part.legs.name=机器人腿部
+item.matteroverdrive.rogue_android_part.chest.name=机器人躯干
+item.matteroverdrive.rogue_android_part.melee=近战机器人
+item.matteroverdrive.rogue_android_part.range=远程机器人
+item.matteroverdrive.forcefield_emitter.name=力场发生器
+item.matteroverdrive.hc_battery.name=高能电池
+item.matteroverdrive.ship_factory.name=舰船工厂
+item.matteroverdrive.ship_factory.details=允许舰船的建造
+item.matteroverdrive.scout_ship.name=侦察飞船
+item.matteroverdrive.scout_ship.details=一种用于侦察的快速飞船
+item.matteroverdrive.ship_colonizer.name=殖民飞船
+item.matteroverdrive.ship_colonizer.details=用于在抵达后建造基地以占领星球
+item.matteroverdrive.building_base.name=基地
+item.matteroverdrive.building_base.details=主建筑，所有东西的前置需求
 item.matteroverdrive.android_pill_red.name=红色药丸
 item.matteroverdrive.android_pill_red.details=吃下红色药丸后你将无所畏惧
 item.matteroverdrive.android_pill_blue.name=蓝色药丸
 item.matteroverdrive.android_pill_blue.details=吃下蓝色药丸后你会一无所知的在床上醒来
-item.creative_pattern_drive.name=创造模式储存单元
-item.creative_pattern_drive.details=包含绝大多数可重组物品\n潜行右键重新加载
-item.network_flash_drive.name=网络闪存驱动器
-item.network_flash_drive.details=物质网络设备中的过滤器
-item.energy_pack.name=能量包
-item.energy_pack.details=用于快速充电\n让能量武器'重装弹药'
-item.phaser_rifle.name=相位来复枪
-item.transport_flash_drive.name=传送闪存驱动器
-item.transport_flash_drive.details=记录地点以便快速使用传送器
-item.matter_container.name=空物质仓
-item.matter_container_full.name=满物质仓
-item.tritanium_nugget.name=钛金粒
-item.tritainum_spine.name=钛金脊椎
-item.data_pad.name=便携数据仪
-item.data_pad.details=存储着有关超能物质的所有信息
-item.omni_tool.name=多功能采集枪
+item.matteroverdrive.creative_pattern_drive.name=创造模式储存单元
+item.matteroverdrive.creative_pattern_drive.details=包含绝大多数可重组物品/n潜行右键重新加载
+item.matteroverdrive.network_flash_drive.name=网络闪存驱动器
+item.matteroverdrive.network_flash_drive.details=物质网络设备中的过滤器
+item.matteroverdrive.energy_pack.name=能量包
+item.matteroverdrive.energy_pack.details=用于快速充电\n让能量武器'重装弹药'
+item.matteroverdrive.phaser_rifle.name=相位来复枪
+item.matteroverdrive.transport_flash_drive.name=传送闪存驱动器
+item.matteroverdrive.transport_flash_drive.details=记录地点以便快速使用传送器
+item.matteroverdrive.matter_container_empty.name=空物质仓
+item.matteroverdrive.matter_container_full.name=满物质仓
+item.matteroverdrive.tritanium_nugget.name=钛金粒
+item.matteroverdrive.tritainum_spine.name=钛金脊椎
+item.matteroverdrive.data_pad.name=便携数据仪
+item.matteroverdrive.data_pad.details=存储着有关MatterOverdrive（超能物质）的所有信息
+item.matteroverdrive.omni_tool.name=多功能采集枪
 item.matteroverdrive.android_pill_yellow.name=黄色药丸
 item.matteroverdrive.android_pill_yellow.details=用于重置所有解锁技能
-item.tritanium_helmet.name=钛金头盔
-item.tritanium_chestplate.name=钛金胸甲
-item.tritanium_leggings.name=钛金护腿
-item.tritanium_boots.name=钛金靴子
-item.tritanium_hoe.name=钛金锄
-item.tritanium_sword.name=钛金剑
-item.tritanium_pickaxe.name=钛金镐
-item.tritanium_axe.name=钛金斧
-item.tritanium_shovel.name=钛金铲
-item.contract.name=合同
-item.ion_sniper.name=离子狙击枪
-item.plasma_shotgun.name=相位散弹枪
-item.weapon_receiver.name=弹药接收器
-item.weapon_handle.name=武器把手
-item.plasma_core.name=相位核心
-item.portable_decomposer.name=携带式物质分解仪
-item.portable_decomposer.details=将拾取物品分解为等离子物质
+item.matteroverdrive.tritanium_helmet.name=钛金头盔
+item.matteroverdrive.tritanium_chestplate.name=钛金胸甲
+item.matteroverdrive.tritanium_leggings.name=钛金护腿
+item.matteroverdrive.tritanium_boots.name=钛金靴子
+item.matteroverdrive.tritanium_hoe.name=钛金锄
+item.matteroverdrive.tritanium_sword.name=钛金剑
+item.matteroverdrive.tritanium_pickaxe.name=钛金镐
+item.matteroverdrive.tritanium_axe.name=钛金斧
+item.matteroverdrive.tritanium_shovel.name=钛金铲
+item.matteroverdrive.contract.name=合同
+item.matteroverdrive.ion_sniper.name=离子狙击枪
+item.matteroverdrive.plasma_shotgun.name=相位散弹枪
+item.matteroverdrive.weapon_receiver.name=弹药接收器
+item.matteroverdrive.weapon_handle.name=武器把手
+item.matteroverdrive.plasma_core.name=相位核心
+item.matteroverdrive.portable_decomposer.name=携带式物质分解仪
+item.matteroverdrive.portable_decomposer.details=将拾取物品分解为等离子物质
+item.matteroverdrive.record.mo.transformation.desc=BoxCat Games - Trace Route
 
-//////////// Upgrades ////////////
-item.upgrade.speed.name=速度升级
-item.upgrade.power.name=能耗升级
-item.upgrade.failsafe.name=故障保护升级
-item.upgrade.range.name=范围升级
-item.upgrade.power_storage.name=储能升级
-item.upgrade.hyper_speed.name=高级速度升级
-item.upgrade.matter_storage.name=物质存储升级
+#/#//////////// Upgrades ////////////
+item.matteroverdrive.upgrade.speed.name=速度升级
+item.matteroverdrive.upgrade.power.name=能耗升级
+item.matteroverdrive.upgrade.failsafe.name=故障保护升级
+item.matteroverdrive.upgrade.range.name=范围升级
+item.matteroverdrive.upgrade.power_storage.name=储能升级
+item.matteroverdrive.hyper_speed.name=超速升级
+item.matteroverdrive.upgrade.matter_storage.name=物质存储升级
 
-//////////// Weapon Modules ////////////
-item.weapon_module_color.name=颜色模块
-item.weapon_module_barrel.damage.name=双锂聚焦矩阵
-item.weapon_module_barrel.fire.name=高能燃烧弹
-item.weapon_module_barrel.explosion.name=爆裂电磁炮
-item.weapon_module_barrel.heal.name=再生转换器
-item.weapon_module_ricochet.name=射击弹射模块
-item.sniper_scope.name=狙击瞄准镜
+#/#//////////// Weapon Modules ///////
+item.matteroverdrive.weapon_module_color.name=颜色模块
+item.matteroverdrive.weapon_module_barrel.damage.name=双锂聚焦矩阵
+item.matteroverdrive.weapon_module_barrel.fire.name=高能燃烧弹
+item.matteroverdrive.weapon_module_barrel.explosion.name=爆裂电磁炮
+item.matteroverdrive.weapon_module_barrel.heal.name=再生转换器
+item.matteroverdrive.weapon_module_barrel.doomsday.name=衰变型爆裂聚焦矩阵（毁灭性）
+item.matteroverdrive.weapon_module_ricochet.name=射击弹射模块
+item.matteroverdrive.sniper_scope.name=狙击瞄准镜
 
-///////////// Buildings ///////////
-item.building_matter_extractor.name=物质提取仓
-item.building_residential.name=居住房屋
-item.building_ship_hangar.name=飞船机库
-item.building_power_generator.name=发电站
+#/#//////////// Buildings ///////////
+item.matteroverdrive.building_matter_extractor.name=物质提取仓
+item.matteroverdrive.building_residential.name=居住房屋
+item.matteroverdrive.building_ship_hangar.name=飞船机库
+item.matteroverdrive.building_power_generator.name=发电站
 
-item.info.configured=已配置
+item.overdrivef.info.configured=已配置
 
 ##########################################################################################################
 # Tile Entities
 
-//////////// Replicator ////////////
+#/#//////////// Replicator ////////////
 tile.replicator.name=物质重组仓
 tile.replicator.config.volume.replicate=Replication Volume
 tile.replicator.config.particles.vent=Vent Particles
 tile.replicator.config.storage.matter=物质储存
 tile.replicator.config.storage.energy=能量储存
-tile.replicator.config.cost.replication.energy=Energy Cost per Matter
-tile.replicator.config.speed.replication=Speed per Matter
-tile.replicator.config.fail=失败几率
+tile.replicator.config.cost.replication.energy=物质重组所需能量
+tile.replicator.config.speed.replication=物质重组速度
+tile.replicator.config.fail=失败概率
 tile.replicator.details=将等离子态物质重组为物品和方块
 tile.replicator_active.name=物质复制仪
 
-//////////// Decomposer ////////////
+#/#//////////// Decomposer ////////////
 tile.decomposer.name=物质分解仓
 tile.decomposer.details=将物品分解为等离子态物质
 tile.decomposer.config.storage.matter=物质储存
@@ -173,7 +175,7 @@ tile.spacetime_accelerator.name=时空加速仪
 tile.spacetime_accelerator.details=加速方块和机器
 tile.pylon.name=空间桥
 
-//////////// Pattern Storage ////////////
+#/#//////////// Pattern Storage ////////////
 tile.pattern_storage.name=模式存储仓
 tile.pattern_storage.details=存储物品模式，用于复制
 tile.pattern_storage.config.particles.vent=Vent Particles
@@ -182,7 +184,7 @@ tile.pattern_storage.config.transfer.energy=能量传输速度
 
 tile.machine_hull.name=机械外壳
 tile.solar_panel.name=太阳能板
-tile.solar_panel.details=通过太阳能产生FE
+tile.solar_panel.details=通过太阳产生能量
 tile.weapon_station.name=武器装配台
 tile.weapon_station.details=用于武器升级和充能
 tile.microwave.name=微波炉
@@ -192,27 +194,34 @@ tile.gravitational_anomaly.name=重力异常点
 tile.gravitational_stabilizer.name=重力稳定器
 tile.gravitational_stabilizer.details=用于减弱重力异常点的影响
 tile.matter_recycler.name=物质循环仓
-tile.matter_recycler.details=用于物品循环, 为分解做准备
+tile.matter_recycler.details=用于物品循环，为分解做准备
 tile.android_spawner.name=残暴机器人刷怪笼
 
-//////////// Fluids ////////////
+#/#//////////// Fluids ////////////
 tile.matter_plasma.name=等离子物质
 tile.molten_tritanium.name=熔融钛金
 
 
-//////////// Fusion Reactor ////////////
+#/#//////////// Fusion Reactor ////////////
 tile.fusion_reactor_controller.name=聚变反应堆控制器
 tile.fusion_reactor_controller.config.storage.energy=能量储存
 tile.fusion_reactor_controller.config.storage.matter=物质储存
 tile.fusion_reactor_controller.config.output.energy=能量输出
 tile.fusion_reactor_controller.config.drain.matter=物质消耗
-tile.fusion_reactor_controller.config.distance.anomaly=Max Anomaly Distance
+tile.fusion_reactor_controller.config.distance.anomaly=最大重力异常点距离
 tile.fusion_reactor_controller.config.check.delay=Structure Check Delay
 tile.fusion_reactor_controller.details=聚变反应堆的主要控制装置
 tile.fusion_reactor_coil.name=反应堆外围线圈
 tile.fusion_reactor_coil.details=用于限定聚变反应堆内的粒子范围
 
-//////////// Android Station ////////////
+fusion_reactor.info.invalid_structure=这不是有效的\n多方块结构
+fusion_reactor.info.ok=POWER ${power}\n消耗 ${charge}\n物质 ${matter}
+fusion_reactor.info.invalid_materials=这不是有效的\n材料
+fusion_reactor.info.need_coils=需要\n更多\n线圈
+fusion_reactor.info.no_anomaly=没有\n重力\n异常点
+fusion_reactor.info.anomaly_too_far=重力\n异常点\n距离\n太远
+
+#/#//////////// Android Station ////////////
 tile.android_station.name=机器人装配台
 tile.android_station.details=机器人升级管理
 tile.star_map.name=星图
@@ -223,22 +232,22 @@ container.replicator.name=重组仓
 machine.tooltip.matter=物质
 machine.tooltip.energy=充能
 
-//////////// Tritanium Crate ////////////
+#/#//////////// Tritanium Crate ////////////
 tile.tritanium_crate.name=钛金箱
 tile.tritanium_crate_yellow.name=黄色钛金箱
 
-///////////// Entities /////////////////
+#/#//////////// Entities /////////////////
 entity.matteroverdrive.rogue_android.name=近战残暴机器人
 entity.matteroverdrive.failed_pig.name=实验失败的猪
 entity.matteroverdrive.failed_chicken.name=实验失败的鸡
 entity.matteroverdrive.failed_cow.name=实验失败的牛
 entity.matteroverdrive.failed_sheep.name=实验失败的羊
 entity.matteroverdrive.mad_scientist.name=疯狂科学家
-entity.matteroverdrive.mad_scientist.junkie.name=疯狂科学家[瘾君子]
+entity.matteroverdrive.mad_scientist.junkie.name=疯狂科学家（瘾君子）
 entity.matteroverdrive.ranged_rogue_android.name=远程残暴机器人
 entity.matteroverdrive.mutant_scientist.name=变异科学家
 
-///////////// Decorative ////////////////////
+#/#//////////// Decorative ////////////////////
 tile.decorative.stripes.name=黄色条纹板材
 tile.decorative.coils.name=线圈
 tile.decorative.clean.name=平滑钛金板材
@@ -263,57 +272,57 @@ tile.decorative.tritanium_plate_colored.name=染色钛金板材
 ##########################################################################################################
 # Dialogs
 
-dialog.generic.quit.0.question=下次再见.
-dialog.generic.quit.1.question=我必须要走了.
-dialog.generic.quit.2.question=我有急事要办.
-dialog.generic.quit.3.question=再见.
-dialog.generic.quit.4.question=告辞.
-dialog.generic.quit.5.question=拜拜.
-dialog.generic.back.0.question=别在意.
-dialog.generic.back.1.question=让我们聊些其他的吧.
-dialog.generic.back.2.question=关我什么事.
-dialog.generic.trade.0.question=我想做个交易.
-dialog.generic.trade.1.question=让我们做个交易吧.
-dialog.generic.trade.2.question=让我看看你的货物.
-dialog.generic.trade.3.question=你都卖些什么?
+dialog.generic.quit.0.question=下次再见。
+dialog.generic.quit.1.question=我必须要走了。
+dialog.generic.quit.2.question=我有急事要办。
+dialog.generic.quit.3.question=再见。
+dialog.generic.quit.4.question=告辞。
+dialog.generic.quit.5.question=拜拜。
+dialog.generic.back.0.question=别在意。
+dialog.generic.back.1.question=让我们聊些其他的吧。
+dialog.generic.back.2.question=关我什么事。
+dialog.generic.trade.0.question=我想做个交易。
+dialog.generic.trade.1.question=让我们做个交易吧。
+dialog.generic.trade.2.question=让我看看你的货物。
+dialog.generic.trade.3.question=你都卖些什么？
 
-//////////// Mad Scientist ///////////////
-dialog.mad_scientist.convert.question=我有所有的机器人部件!
-dialog.mad_scientist.requirements.line=终于!<br>摆脱那具脆弱的肉体是一个明智的选择.<br>在开始之前, 唯一的问题就是我需要你给我带来一套机器人组件.
-dialog.mad_scientist.requirements.question=我想要成为一名机甲战士.
-dialog.mad_scientist.main.line.0.human=我不和人类打交道.
-dialog.mad_scientist.main.line.1.human=天哪! 简直无法直视. 你太脆弱了!
-dialog.mad_scientist.main.line.2.human=你还好么? 你看起来糟透了! 你是怎么在这具肉身坚持下来的?
-dialog.mad_scientist.main.line.0.android=啊 %1$s, 很高兴见到你! 来这有什么事么?
-dialog.mad_scientist.main.line.1.android=嘿. 你今天看起来棒极了!
-dialog.mad_scientist.main.line.2.android=看起来你的左眼好像有些错位了. 我很乐意帮你修复它.
-dialog.mad_scientist.undo.line=你为什么想要这么做? 唯一的办法就是吃掉一颗蓝色药丸. 你可以在地牢中找到它, 不过最好的办法是从别人手中买到. 我想我的车间里可能有一些. 我需要去查看一下.
-dialog.mad_scientist.undo.question=我如何逆转这一过程!
-dialog.mad_scientist.whatDidYouDo.line=你现在已经是机器人了! 你将不需要食物, 睡眠以及氧气. 你可以在机器人装配台为你自己升级一些实用的能力, 而且你将会看到并做到一些你无法想象的事情.
-dialog.mad_scientist.whatDidYouDo.question=你对我做了些什么?
-dialog.mad_scientist.junkie.main.0.line=嘿小兄弟[§6嗝§r].
-dialog.mad_scientist.junkie.main.1.line=朋友最近过得如何.
-dialog.mad_scientist.junkie.cocktail_quest.question=你刚才说什么鸡尾酒?
-dialog.mad_scientist.junkie.cocktail_quest.question.accept=§a我马上就去!
-dialog.mad_scientist.junkie.cocktail_quest.question.decline=§c我才不去呢!
-dialog.mad_scientist.junkie.cocktail_quest.0.line=你-你-你一定要帮助我, 兄弟, 你看.
-dialog.mad_scientist.junkie.cocktail_quest.1.line=我有-有一个[§6嗝§r]超赞的配方, 兄弟, 就是一些神奇的东西混在一起, 兄弟.
-dialog.mad_scientist.junkie.cocktail_quest.2.line=它-它要比... 不, 它无可比拟, 兄弟, 它是一个辉煌的奇迹, 兄弟[§6嗝§r].
-dialog.mad_scientist.junkie.cocktail_quest.3.line=但你看我还需要这些材料, 兄弟! 我-我需要些苦力怕火药, 兄弟, 和-和[§6嗝§r]一些下界的蘑菇!
+#/#//////////// Mad Scientist ///////////////
+dialog.mad_scientist.convert.question=我有所有的机器人部件！
+dialog.mad_scientist.requirements.line=终于！<br>摆脱那具脆弱的肉体是一个明智的选择。<br>在开始之前，唯一的问题就是我需要你给我带来一套机器人组件。
+dialog.mad_scientist.requirements.question=我想要成为一名机甲战士。
+dialog.mad_scientist.main.line.0.human=我不和人类打交道。
+dialog.mad_scientist.main.line.1.human=天哪！简直无法直视。你太脆弱了！
+dialog.mad_scientist.main.line.2.human=你还好么？你看起来糟透了！你是怎么在这具肉身坚持下来的？
+dialog.mad_scientist.main.line.0.android=啊 %1$s，很高兴见到你！来这有什么事么？
+dialog.mad_scientist.main.line.1.android=嘿，你今天看起来棒极了！
+dialog.mad_scientist.main.line.2.android=看起来你的左眼好像有些错位了，我很乐意帮你修复它。
+dialog.mad_scientist.undo.line=你为什么想要这么做？唯一的办法就是吃掉一颗蓝色药丸。你可以在地牢中找到它，不过最好的办法是从别人手中买到。我想我的车间里可能有一些。我需要去查看一下。
+dialog.mad_scientist.undo.question=我如何逆转这一过程！
+dialog.mad_scientist.whatDidYouDo.line=你现在已经是机器人了！你将不需要食物，睡眠以及氧气。你可以在机器人装配台为你自己升级一些实用的能力，而且你将会看到并做到一些你无法想象的事情。
+dialog.mad_scientist.whatDidYouDo.question=你对我做了些什么？
+dialog.mad_scientist.junkie.main.0.line=嘿小兄弟[§6嗝§r]。
+dialog.mad_scientist.junkie.main.1.line=朋友最近过得如何？
+dialog.mad_scientist.junkie.cocktail_quest.question=你刚才说什么鸡尾酒？
+dialog.mad_scientist.junkie.cocktail_quest.question.accept=§a我马上就去！
+dialog.mad_scientist.junkie.cocktail_quest.question.decline=§c我才不去呢！
+dialog.mad_scientist.junkie.cocktail_quest.0.line=你-你-你一定要帮助我，兄弟，你看。
+dialog.mad_scientist.junkie.cocktail_quest.1.line=我有-有一个[§6嗝§r]超赞的配方，兄弟，就是一些神奇的东西混在一起，兄弟。
+dialog.mad_scientist.junkie.cocktail_quest.2.line=它-它要比...不，它无可比拟，兄弟，它是一个辉煌的奇迹，兄弟[§6嗝§r]。
+dialog.mad_scientist.junkie.cocktail_quest.3.line=但你看我还需要这些材料，兄弟！我-我需要些苦力怕火药，兄弟，和-和[§6嗝§r]一些下界的蘑菇！
 dialog.mad_scientist.junkie.cocktail_quest.4.question=[你开始挠屁股]
-dialog.mad_scientist.junkie.cocktail_quest.4.line=但是你要知道, 兄弟! 嘿, 别挠你屁股了, 兄弟, 这非-非-非常重要!
-dialog.mad_scientist.junkie.cocktail_quest.5.question=抱歉.
-dialog.mad_scientist.junkie.cocktail_quest.5.line=这种火药只有在苦力怕被铲子杀死的时候才会保留效果, 兄弟.
-dialog.mad_scientist.junkie.cocktail_quest.6.question=一把铲子?
-dialog.mad_scientist.junkie.cocktail_quest.6.line=对, 一把TMD铲子, 兄弟, 你-你要铲碎它的脑子, 重复这样的钝伤, 兄弟, 你才能获取好东西!
-dialog.mad_scientist.junkie.cocktail_quest.7.line=现在,快去, 兄弟, 赶紧的, 兄弟, 快!
-dialog.mad_scientist.junkie.cocktail_quest.complete.question=我找到了你所说鸡尾酒的所有材料.
-dialog.mad_scientist.junkie.cocktail_quest.line=啊是的, 现在把材料给我吧兄弟, 放下你扛着的材料, 让我混合一下然后.... [§6瘾君子将材料混到一起然后猛吸一口....§r]
-dialog.mad_scientist.junkie.cocktail_quest.are_you_ok.question=你还好么?
-dialog.mad_scientist.trade_route_quest.0.question=你知道有关贸易路线协议的信息么?
-dialog.mad_scientist.trade_route_quest.0.line=不可能!我还以为他死的时候把它弄丢了.真的是太感谢了.请收下这个..
-dialog.mad_scientist.trade_route_quest.1.question=我注意到上面有关价格的东西,你在卖些什么?
-dialog.mad_scientist.trade_route_quest.1.line=我不知道你在说什么?没有什么,就是一些自动密封的阀杆螺栓.
+dialog.mad_scientist.junkie.cocktail_quest.4.line=但是你要知道，兄弟！嘿，别挠你屁股了，兄弟，这非-非-非常重要！
+dialog.mad_scientist.junkie.cocktail_quest.5.question=抱歉。
+dialog.mad_scientist.junkie.cocktail_quest.5.line=这种火药只有在苦力怕被铲子杀死的时候才会保留效果，兄弟。
+dialog.mad_scientist.junkie.cocktail_quest.6.question=一把铲子？
+dialog.mad_scientist.junkie.cocktail_quest.6.line=对，一把TMD铲子，兄弟，你-你要铲碎它的脑子，重复这样的钝伤，兄弟，你才能获取好东西！
+dialog.mad_scientist.junkie.cocktail_quest.7.line=现在，快去，兄弟，赶紧的，兄弟，快！
+dialog.mad_scientist.junkie.cocktail_quest.complete.question=我找到了你所说鸡尾酒的所有材料。
+dialog.mad_scientist.junkie.cocktail_quest.line=啊是的，现在把材料给我吧兄弟，放下你扛着的材料，让我混合一下然后....[§6瘾君子将材料混到一起然后猛吸一口....§r]
+dialog.mad_scientist.junkie.cocktail_quest.are_you_ok.question=你还好么？
+dialog.mad_scientist.trade_route_quest.0.question=你知道有关贸易路线协议的信息么？
+dialog.mad_scientist.trade_route_quest.0.line=不可能!我还以为他死的时候把它弄丢了。真的是太感谢了。请收下这个..
+dialog.mad_scientist.trade_route_quest.1.question=我注意到上面有关价格的东西，你在卖些什么？
+dialog.mad_scientist.trade_route_quest.1.line=我不知道你在说什么？没有什么，就是一些自动密封的阀杆螺栓。
 
 ##########################################################################################################
 # Creative Panels
@@ -362,7 +371,7 @@ planet_stat.fleet_size.name=舰队规模
 ##########################################################################################################
 # GUI
 
-//////////// tooltips ///////////////
+#/#//////////// tooltips ///////////////
 gui.tooltip.starmap.no_ship_space=没有足够的舰船空间
 gui.tooltip.starmap.no_building_space=没有足够的建造空间
 gui.tooltip.starmap.no_ship_factory=无舰船工厂
@@ -410,7 +419,7 @@ gui.tooltip.quest.complete=已完成任务
 gui.tooltip.locks=Locks
 gui.tooltip.parent=Parent
 
-////////// Labels //////////////
+#//////////// Labels //////////////
 gui.label.button.save=保存
 gui.label.button.remove=删除
 gui.label.button.add=添加
@@ -422,7 +431,7 @@ gui.label.button.import.too_far=目的地太远
 gui.label.auto_line_size=Auto Line Size
 gui.label.accept=接受
 
-/////////// Machines /////////////
+#//////////// Machines /////////////
 gui.replicator.name=物质重组仓
 gui.decomposer.name=物质分解仓
 gui.matter_analyzer.name=物质分析仪
@@ -438,9 +447,9 @@ gui.weapon_station.name=武器装配台
 gui.inscriber.name=分子记录仪
 gui.contract_market.name=合同
 
-////////// Other ///////////////
-gui.redstone_mode.high=高
-gui.redstone_mode.low=低
+#//////////// Other ///////////////
+gui.redstone_mode.high=高频
+gui.redstone_mode.low=低频
 gui.redstone_mode.disabled=禁用
 gui.config.redstone=红石
 gui.config.owner=拥有者
@@ -454,7 +463,7 @@ gui.android_hud.transforming.line.4=校准机械臂
 gui.android_hud.transforming.line.5=清除生物污染
 gui.android_hud.transforming.line.final=转化进行中
 gui.hologram.access_denied=拒绝访问
-gui.time_until_next_quest=下次请求时间: %1$s
+gui.time_until_next_quest=下次请求时间：%1$s
 
 ##########################################################################################################
 # Modules
@@ -548,27 +557,27 @@ death.attack.plasmaBolt.item=%1$s被 %2$s 用 %3$s 打成了筛子
 # Tasks
 
 task.state.INVALID.name=无效
-task.state.INVALID.description=该任务出现错误.
+task.state.INVALID.description=该任务出现错误。
 task.state.UNKNOWN.name=未知
 task.state.UNKNOWN.description=未知
 task.state.WAITING.name=等待中
-task.state.WAITING.description=等待寻找接收器.
+task.state.WAITING.description=等待寻找接收器。
 task.state.QUEUED.name=队列中
-task.state.QUEUED.description=接收器已定位.\n等待过程中.
+task.state.QUEUED.description=接收器已定位。\n等待过程中。
 task.state.PROCESSING.name=处理中
-task.state.PROCESSING.description=等待加工结束.
+task.state.PROCESSING.description=等待加工结束。
 task.state.FINISHED.name=完成
-task.state.FINISHED.description=任务已完成.
+task.state.FINISHED.description=任务已完成。
 
-task.store_pattern.state.WAITING.description=搜索模式存储空间.
-task.store_pattern.state.QUEUED.description=队列中.\n等待过程中.
-task.store_pattern.state.PROCESSING.description=正在存储物品模式.
-task.store_pattern.state.FINISHED.description=成功存储物品模式.
+task.store_pattern.state.WAITING.description=搜索模式存储空间。
+task.store_pattern.state.QUEUED.description=队列中。\n等待过程中。
+task.store_pattern.state.PROCESSING.description=正在存储物品模式。
+task.store_pattern.state.FINISHED.description=成功存储物品模式。
 
-task.replicate_pattern.state.WAITING.description=搜索可用重组仓.
+task.replicate_pattern.state.WAITING.description=搜索可用重组仓。
 
 info.matteroverdrive.updater.download=下载
-info.matteroverdrive.updater.hover=点击下载最新版本.
+info.matteroverdrive.updater.hover=点击下载最新版本。
 
 ##########################################################################################################
 # Config
@@ -602,12 +611,12 @@ config.compatibility.name=Compatibility
 
 alert.no_rights=无权访问 $0
 alert.no_access_default=访问被拒绝 $0
-alert.not_android=检测到生物实体! 拒绝访问!
+alert.not_android=检测到生物实体！拒绝访问！
 alert.no_rights.break=只有拥有者可以破坏 $0
 alert.no_rights.dismantle=只有拥有者可以拆除 $0
-alert.new_update=有新版本可用!
-alert.starmap.ship_arrive=§3%1$s &r 已经到达 §3%1$s!
-alert.starmap.on_build=§3%1$s §r 已在 §3%2$s§r 建立!
+alert.new_update=有新版本可用！
+alert.starmap.ship_arrive=§3%1$s &r 已经到达 §3%1$s！
+alert.starmap.on_build=§3%1$s §r 已在 §3%2$s§r 建立！
 
 #############################################################################################################
 # Enchantments
@@ -654,7 +663,7 @@ guide.entry.tritanium_armor.name=钛金护甲
 guide.entry.tritanium_tools.name=钛金工具
 
 ###############################################################################################################
-# modifiers
+# attributes
 
 modifier.bionic.max_health=生命上限
 attribute.name.android.glitchTime=故障时间
@@ -663,7 +672,7 @@ attribute.name.android.batteryUse=电池使用
 
 ###############################################################################################################
 # others
-///// colors /////
+#//////////// colors ////////////
 color.black=黑色
 color.red=红色
 color.green=绿色
@@ -687,6 +696,7 @@ rarity.legendary=传奇
 
 mo.jei.time=%d 秒
 mo.jei.inscriber=Inscriber
+
 
 ###############################################################################################################
 # quests
