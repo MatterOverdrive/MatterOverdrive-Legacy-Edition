@@ -200,7 +200,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     }
 
     private void startGenerateBuildings(World world, Random random, int chunkX, int chunkZ, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        if (generateBuildings && random.nextDouble() < 0.5) {
+        if (generateBuildings && random.nextDouble() < BUILDING_SPAWN_CHANCE) {
             BlockPos pos = world.getHeight(new BlockPos(chunkX * 16 + random.nextInt(16), 0, chunkZ * 16 + random.nextInt(16)));
 
             WeightedRandomMOWorldGenBuilding building = getRandomBuilding(world, pos.add(0, -2, 0), random);
