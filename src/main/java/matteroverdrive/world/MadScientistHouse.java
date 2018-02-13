@@ -20,6 +20,7 @@ package matteroverdrive.world;
 
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.entity.EntityVillagerMadScientist;
+import matteroverdrive.init.MatterOverdriveEntities;
 import matteroverdrive.tile.TileEntityTritaniumCrate;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockStairs;
@@ -36,6 +37,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -57,9 +59,9 @@ public class MadScientistHouse extends StructureVillagePieces.Village {
         this.boundingBox = p_i45571_4_;
     }
 
-    public static StructureVillagePieces.House1 func_175850_a(StructureVillagePieces.Start start, List<StructureComponent> p_175850_1_, Random rand, int p_175850_3_, int p_175850_4_, int p_175850_5_, EnumFacing facing, int p_175850_7_) {
+    public static MadScientistHouse func_175850_a(StructureVillagePieces.Start start, List<StructureComponent> p_175850_1_, Random rand, int p_175850_3_, int p_175850_4_, int p_175850_5_, EnumFacing facing, int p_175850_7_) {
         StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p_175850_3_, p_175850_4_, p_175850_5_, 0, 0, 0, 9, 9, 6, facing);
-        return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175850_1_, structureboundingbox) == null ? new StructureVillagePieces.House1(start, p_175850_7_, rand, structureboundingbox, facing) : null;
+        return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175850_1_, structureboundingbox) == null ? new MadScientistHouse(start, p_175850_7_, rand, structureboundingbox, facing) : null;
     }
 
     @Override
@@ -194,10 +196,10 @@ public class MadScientistHouse extends StructureVillagePieces.Village {
     /**
      * Returns the villager type to spawn in this component, based on the number of villagers already spawned.
      */
-//	TODO: switch to Forge profession
+
     @Override
-    protected int chooseProfession(int p_180779_1_, int p_180779_2_) {
-        return 666;
+    protected VillagerRegistry.VillagerProfession chooseForgeProfession(int count, VillagerRegistry.VillagerProfession prof) {
+        return MatterOverdriveEntities.MAD_SCIENTIST_PROFESSION;
     }
 
     @Override
