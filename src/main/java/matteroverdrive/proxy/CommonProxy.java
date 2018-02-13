@@ -18,9 +18,7 @@
 
 package matteroverdrive.proxy;
 
-import com.astro.clib.proxy.impl.ProxyClass;
 import matteroverdrive.MatterOverdrive;
-import matteroverdrive.Reference;
 import matteroverdrive.compat.MatterOverdriveCompat;
 import matteroverdrive.handler.GoogleAnalyticsCommon;
 import matteroverdrive.handler.weapon.CommonWeaponHandler;
@@ -32,9 +30,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
 
-@ProxyClass(modid = Reference.MOD_ID, side = Side.SERVER)
 public class CommonProxy {
     private final CommonWeaponHandler commonWeaponHandler;
     protected GoogleAnalyticsCommon googleAnalyticsCommon;
