@@ -104,9 +104,20 @@ processResources {
 
 
 jar {
+    classifier = "universal"
     manifest {
         attributes 'FMLAT': 'mo_at.cfg'
     }
+}
+
+task deobfJar(type: Jar) {
+    from(sourceSets.main.output) {
+        classifier = "deobf"
+    }
+}
+
+artifacts {
+    archives deobfJar
 }
 
 task("uploadCurse") {
