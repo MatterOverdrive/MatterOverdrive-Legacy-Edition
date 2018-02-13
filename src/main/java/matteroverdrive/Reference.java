@@ -26,7 +26,7 @@ public class Reference {
     public static final String VERSION = "@VERSION@";
     public static final String VERSION_DATE = "@DATE@";
     public static final String GUI_FACTORY_CLASS = "matteroverdrive.gui.GuiConfigFactory";
-    public static final String DEPEDNENCIES = "required-after:clib;after:waila;after:theoneprobe;";
+    public static final String DEPEDNENCIES = "required-after:clib@[1.0.2.31,);after:waila;after:theoneprobe;";
     public static final String CHANNEL_NAME = "mo_channel";
     public static final String CHANNEL_WEAPONS_NAME = CHANNEL_NAME + ":weapons";
     public static final String CHANNEL_GUI_NAME = CHANNEL_NAME + ":gui";
