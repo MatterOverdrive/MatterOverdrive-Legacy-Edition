@@ -514,7 +514,7 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
 
         @SideOnly(Side.CLIENT)
         public String localize() {
-            return I18n.format("fusion_reactor.info." + getName() + ".name");
+            return I18n.format("fusion_reactor.info." + getName());
         }
 
         @Override
