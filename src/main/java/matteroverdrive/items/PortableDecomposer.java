@@ -17,6 +17,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -134,7 +135,7 @@ public class PortableDecomposer extends MOItemEnergyContainer {
 
     public void decomposeItem(ItemStack decomposer, ItemStack itemStack) {
         if (MatterHelper.containsMatter(itemStack) && isStackListed(decomposer, itemStack)) {
-            EnergyContainer storage = getStorage(itemStack);
+            IEnergyStorage storage = getStorage(itemStack);
             float matterFromItem = MatterHelper.getMatterAmountFromItem(itemStack) * defaultMatterRatio;
             int energyForItem = MathHelper.ceil(matterFromItem / defaultMatterRatio);
             float freeMatter = getMaxMatter(decomposer) - getMatter(decomposer);
@@ -142,7 +143,8 @@ public class PortableDecomposer extends MOItemEnergyContainer {
                 int canTakeCount = (int) (freeMatter / matterFromItem);
                 int itemsTaken = Math.min(canTakeCount, itemStack.getCount());
                 itemsTaken = Math.min(itemsTaken, storage.getEnergyStored() / energyForItem);
-                storage.setEnergy(storage.getEnergyStored() - (itemsTaken * energyForItem));
+                if (storage instanceof EnergyContainer)
+                    ((EnergyContainer) storage).setEnergy(storage.getEnergyStored() - (itemsTaken * energyForItem));
                 setMatter(decomposer, getMatter(decomposer) + itemsTaken * matterFromItem);
                 itemStack.setCount(Math.max(0, itemStack.getCount() - itemsTaken));
             }

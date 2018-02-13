@@ -44,9 +44,9 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
         setMaxStackSize(1);
     }
 
-    public static EnergyContainer getStorage(ItemStack stack) {
+    public static IEnergyStorage getStorage(ItemStack stack) {
         if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
-            return (EnergyContainer) stack.getCapability(CapabilityEnergy.ENERGY, null);
+            return stack.getCapability(CapabilityEnergy.ENERGY, null);
         return EmptyEnergyStorage.INSTANCE;
     }
 
@@ -102,8 +102,9 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
             items.add(new ItemStack(this));
             if (addPoweredItem()) {
                 ItemStack powered = new ItemStack(this);
-                EnergyContainer storage = getStorage(powered);
-                storage.setFull();
+                IEnergyStorage storage = getStorage(powered);
+                if (storage instanceof EnergyContainer)
+                    ((EnergyContainer) storage).setFull();
                 items.add(powered);
             }
         }

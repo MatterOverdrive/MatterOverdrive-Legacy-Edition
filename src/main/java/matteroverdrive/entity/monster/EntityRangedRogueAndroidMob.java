@@ -26,6 +26,7 @@ import matteroverdrive.entity.ai.EntityAIMoveAlongPath;
 import matteroverdrive.entity.ai.EntityAIPhaserBoltAttack;
 import matteroverdrive.entity.ai.EntityAIRangedRunFromMelee;
 import matteroverdrive.items.android.RougeAndroidParts;
+import matteroverdrive.items.includes.EnergyContainer;
 import matteroverdrive.items.weapon.EnergyWeapon;
 import matteroverdrive.network.packet.bi.PacketFirePlasmaShot;
 import matteroverdrive.util.AndroidPartsFactory;
@@ -175,7 +176,7 @@ public class EntityRangedRogueAndroidMob extends EntityRougeAndroidMob implement
                 energyWeapon.onServerFire(weapon, this, shot, pos, dir, 0);
                 energyWeapon.setHeat(weapon, 0);
                 if (UNLIMITED_WEAPON_ENERGY) {
-                    EnergyWeapon.getStorage(weapon).setFull();
+                    ((EnergyContainer)EnergyWeapon.getStorage(weapon)).setFull();
                 }
                 MatterOverdrive.packetPipeline.sendToAllAround(new PacketFirePlasmaShot(this.getEntityId(), pos, dir, shot), world.provider.getDimension(), posX, posY, posZ, 64);
 

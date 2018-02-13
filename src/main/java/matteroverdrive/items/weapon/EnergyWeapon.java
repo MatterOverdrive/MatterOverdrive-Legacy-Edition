@@ -62,6 +62,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -256,9 +257,9 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
                 ItemStack stack = player.inventory.mainInventory.get(i);
                 if (!stack.isEmpty() && stack.getItem() instanceof IEnergyPack && stack.getCount() > 0) {
                     stack.shrink(1);
-                    EnergyContainer container = getStorage(weapon);
-
-                    container.setEnergy(container.getEnergyStored() + ((IEnergyPack) stack.getItem()).getEnergyAmount(stack));
+                    IEnergyStorage container = getStorage(weapon);
+                    if (container instanceof EnergyContainer)
+                        ((EnergyContainer) container).setEnergy(container.getEnergyStored() + ((IEnergyPack) stack.getItem()).getEnergyAmount(stack));
                     //player.inventory.inventoryChanged = true;
                     player.world.playSound(null, player.getPosition(), MatterOverdriveSounds.weaponsReload, SoundCategory.PLAYERS, 0.7f + itemRand.nextFloat() * 0.2f, 0.9f + itemRand.nextFloat() * 0.2f);
                     if (stack.getCount() <= 0) {
@@ -540,7 +541,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
     }
 
     protected boolean DrainEnergy(ItemStack item, float ticks, boolean simulate) {
-        EnergyContainer container = getStorage(item);
+        IEnergyStorage container = getStorage(item);
         int amount = MathHelper.ceil(getEnergyUse(item) * ticks);
         int hasEnergy = container.getEnergyStored();
         if (hasEnergy >= amount) {
@@ -571,10 +572,6 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
             }
         }
         return getBaseZoom(weapon, entityPlayer);
-    }
-
-    public void batteryChange(ItemStack weapon, ItemStack battery) {
-        EnergyContainer container = getStorage(weapon);
     }
     //endregion
 

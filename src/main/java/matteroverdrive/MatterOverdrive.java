@@ -148,7 +148,6 @@ public class MatterOverdrive {
         tickHandler = new TickHandler(configHandler, playerEventHandler);
         MinecraftForge.EVENT_BUS.register(tickHandler);
         MinecraftForge.EVENT_BUS.register(playerEventHandler);
-        MinecraftForge.EVENT_BUS.register(playerEventHandler);
         MinecraftForge.EVENT_BUS.register(blockHandler);
         moWorld = new MatterOverdriveWorld(configHandler);
         MatterOverdriveEntities.init(event, configHandler);
