@@ -200,7 +200,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     }
 
     private void startGenerateBuildings(World world, Random random, int chunkX, int chunkZ, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        if (generateBuildings && random.nextDouble() < BUILDING_SPAWN_CHANCE) {
+        if (generateBuildings && random.nextDouble() < 0.5) {
             BlockPos pos = world.getHeight(new BlockPos(chunkX * 16 + random.nextInt(16), 0, chunkZ * 16 + random.nextInt(16)));
 
             WeightedRandomMOWorldGenBuilding building = getRandomBuilding(world, pos.add(0, -2, 0), random);
@@ -211,6 +211,9 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     }
 
     public MOImageGen.ImageGenWorker startBuildingGeneration(MOWorldGenBuilding building, BlockPos pos, Random random, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, boolean forceGeneration) {
+        if(building==null)
+            return null;
+        pos=pos.add(8,0,8);
         if (building != null && (forceGeneration || (building.shouldGenerate(random, world, pos) && building.isLocationValid(world, pos)))) {
             MOImageGen.ImageGenWorker worker = building.createWorker(random, pos, world, chunkGenerator, chunkProvider);
             worldGenBuildingQueue.add(worker);
