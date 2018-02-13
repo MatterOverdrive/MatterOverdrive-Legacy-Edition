@@ -85,9 +85,9 @@ public class TileEntityRendererFusionReactorController extends TileEntitySpecial
                     .replaceAll("\\$\\{power}", "100") //TODO
                     .replaceAll("\\$\\{charge}", DecimalFormat.getPercentInstance().format((double) controller.getEnergyStorage().getEnergyStored() / (double) controller.getEnergyStorage().getMaxEnergyStored()))
                     .replaceAll("\\$\\{matter}", DecimalFormat.getPercentInstance().format((double) controller.getMatterStorage().getMatterStored() / (double) controller.getMatterStorage().getCapacity()))
-                    .split("\n");
+                    .split("\\$\\{newline}");
         } else {
-            info = controller.getMonitorInfo().localize().split("\n");
+            info = controller.getMonitorInfo().localize().split("\\$\\{newline}");
         }
 
         RenderUtils.drawScreenInfoWithGlobalAutoSize(info, color, side, 10, 10, 4);

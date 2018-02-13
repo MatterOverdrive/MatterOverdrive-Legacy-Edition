@@ -214,12 +214,12 @@ tile.fusion_reactor_controller.details=Main Controller for Fusion Reactors
 tile.fusion_reactor_coil.name=Fusion Reactor Coil
 tile.fusion_reactor_coil.details=Used to confine the Plasma in Fusion Reactors
 
-fusion_reactor.info.invalid_structure=INVALID\nSTRUCTURE
-fusion_reactor.info.ok=POWER ${power}\nCHARGE ${charge}\nMATTER ${matter}
-fusion_reactor.info.invalid_materials=INVALID\nMATERIALS
-fusion_reactor.info.need_coils=NEED\nMORE\nCOILS
-fusion_reactor.info.no_anomaly=NO\nGRAVITATIONAL\nANOMALY
-fusion_reactor.info.anomaly_too_far=GRAVITATIONAL\nANOMALY\nTOO\nFAR
+fusion_reactor.info.invalid_structure=INVALID${newline}STRUCTURE
+fusion_reactor.info.ok=POWER ${power}${newline}CHARGE ${charge}${newline}MATTER ${matter}
+fusion_reactor.info.invalid_materials=INVALID${newline}MATERIALS
+fusion_reactor.info.need_coils=NEED${newline}MORE${newline}COILS
+fusion_reactor.info.no_anomaly=NO${newline}GRAVITATIONAL${newline}ANOMALY
+fusion_reactor.info.anomaly_too_far=GRAVITATIONAL${newline}ANOMALY${newline}TOO${newline}FAR
 
 #/#//////////// Android Station ////////////
 tile.android_station.name=Android Station
