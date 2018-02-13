@@ -18,6 +18,7 @@
 
 package matteroverdrive;
 
+import com.astro.clib.api.OreDictItem;
 import com.astro.clib.tech.CLibTech;
 import matteroverdrive.commands.AndoidCommands;
 import matteroverdrive.commands.MatterRegistryCommands;
@@ -176,8 +177,8 @@ public class MatterOverdrive {
 
         PROXY.init(event);
 
-        MatterOverdriveRecipes.registerBlockRecipes(event);
-        MatterOverdriveRecipes.registerItemRecipes(event);
+        MatterOverdriveItems.items.stream().filter(item -> item instanceof OreDictItem).forEach(item -> ((OreDictItem)item).registerOreDict());
+        MatterOverdriveBlocks.blocks.stream().filter(block -> block instanceof OreDictItem).forEach(block -> ((OreDictItem)block).registerOreDict());
         MatterOverdriveRecipes.registerInscriberRecipes(event);
 
         weaponFactory.initModules();
