@@ -3,6 +3,7 @@ package matteroverdrive.items.food;
 import com.astro.clib.api.render.ItemModelProvider;
 import com.astro.clib.client.ClientUtil;
 import matteroverdrive.MatterOverdrive;
+import matteroverdrive.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemFood;
@@ -21,7 +22,7 @@ public class MOItemFood extends ItemFood implements ItemModelProvider {
         super(amount, saturation, isWolfFood);
         this.name = name;
 
-        setUnlocalizedName(name);
+        setUnlocalizedName(Reference.MOD_ID+"."+name);
         setRegistryName(name);
 
         setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_FOOD);

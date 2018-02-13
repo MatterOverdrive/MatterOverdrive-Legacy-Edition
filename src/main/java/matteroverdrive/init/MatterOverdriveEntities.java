@@ -79,8 +79,8 @@ public class MatterOverdriveEntities {
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<VillagerRegistry.VillagerProfession> event) {
-        MAD_SCIENTIST_PROFESSION = new VillagerRegistry.VillagerProfession("mo.mad_scientist", Reference.PATH_ENTITIES + "mad_scientist.png", Reference.PATH_ENTITIES + "hulking_scinetist.png");
-        MAD_SCIENTIST_CAREER = new VillagerRegistry.VillagerCareer(MAD_SCIENTIST_PROFESSION, "mo.mad_scientist");
+        MAD_SCIENTIST_PROFESSION = new VillagerRegistry.VillagerProfession("matteroverdrive.mad_scientist", Reference.PATH_ENTITIES + "mad_scientist.png", Reference.PATH_ENTITIES + "hulking_scinetist.png");
+        MAD_SCIENTIST_CAREER = new VillagerRegistry.VillagerCareer(MAD_SCIENTIST_PROFESSION, "matteroverdrive.mad_scientist");
         event.getRegistry().register(MAD_SCIENTIST_PROFESSION);
     }
 
