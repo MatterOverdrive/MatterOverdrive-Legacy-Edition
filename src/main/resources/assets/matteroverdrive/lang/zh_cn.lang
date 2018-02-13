@@ -237,15 +237,15 @@ tile.tritanium_crate.name=钛金箱
 tile.tritanium_crate_yellow.name=黄色钛金箱
 
 #/#//////////// Entities /////////////////
-entity.mo.rogue_android.name=近战残暴机器人
-entity.mo.failed_pig.name=实验失败的猪
-entity.mo.failed_chicken.name=实验失败的鸡
-entity.mo.failed_cow.name=实验失败的牛
-entity.mo.failed_sheep.name=实验失败的羊
-entity.mo.mad_scientist.name=疯狂科学家
-entity.mo.mad_scientist.junkie.name=疯狂科学家（瘾君子）
-entity.mo.ranged_rogue_android.name=远程残暴机器人
-entity.mo.mutant_scientist.name=变异科学家
+entity.matteroverdrive.rogue_android.name=近战残暴机器人
+entity.matteroverdrive.failed_pig.name=实验失败的猪
+entity.matteroverdrive.failed_chicken.name=实验失败的鸡
+entity.matteroverdrive.failed_cow.name=实验失败的牛
+entity.matteroverdrive.failed_sheep.name=实验失败的羊
+entity.matteroverdrive.mad_scientist.name=疯狂科学家
+entity.matteroverdrive.mad_scientist.junkie.name=疯狂科学家（瘾君子）
+entity.matteroverdrive.ranged_rogue_android.name=远程残暴机器人
+entity.matteroverdrive.mutant_scientist.name=变异科学家
 
 #/#//////////// Decorative ////////////////////
 tile.decorative.stripes.name=黄色条纹板材
@@ -576,8 +576,8 @@ task.store_pattern.state.FINISHED.description=成功存储物品模式。
 
 task.replicate_pattern.state.WAITING.description=搜索可用重组仓。
 
-info.mo.updater.download=下载
-info.mo.updater.hover=点击下载最新版本。
+info.matteroverdrive.updater.download=下载
+info.matteroverdrive.updater.hover=点击下载最新版本。
 
 ##########################################################################################################
 # Config
