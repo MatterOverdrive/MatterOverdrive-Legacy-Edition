@@ -95,7 +95,7 @@ item.matteroverdrive.weapon_handle.name=Weapon Handle
 item.matteroverdrive.plasma_core.name=Plasma Core
 item.matteroverdrive.portable_decomposer.name=Portable Decomposer
 item.matteroverdrive.portable_decomposer.details=Decomposes picked up items into Matter Plasma
-item.matteroverdrive.record.mo.transformation.desc=BoxCat Games - Trace Route
+item.matteroverdrive.record.matteroverdrive.transformation.desc=BoxCat Games - Trace Route
 
 #/#//////////// Upgrades ////////////
 item.matteroverdrive.upgrade.speed.name=Speed Upgrade
@@ -237,15 +237,16 @@ tile.tritanium_crate.name=Tritanium Crate
 tile.tritanium_crate_yellow.name=Yellow Tritanium Crate
 
 #/#//////////// Entities /////////////////
-entity.mo.rogue_android.name=Melee Rogue Android
-entity.mo.failed_pig.name=Failed Pig
-entity.mo.failed_chicken.name=Failed Chicken
-entity.mo.failed_cow.name=Failed Cow
-entity.mo.failed_sheep.name=Failed Sheep
-entity.mo.mad_scientist.name=Mad Scientist
-entity.mo.mad_scientist.junkie.name=Mad Scientist Junkie
-entity.mo.ranged_rogue_android.name=Ranged Rogue Android
-entity.mo.mutant_scientist.name=Mutant Scientist
+entity.matteroverdrive.rogue_android.name=Melee Rogue Android
+entity.matteroverdrive.failed_pig.name=Failed Pig
+entity.matteroverdrive.failed_chicken.name=Failed Chicken
+entity.matteroverdrive.failed_cow.name=Failed Cow
+entity.matteroverdrive.failed_sheep.name=Failed Sheep
+entity.matteroverdrive.mad_scientist.name=Mad Scientist
+entity.mad_scientist.name=Mad Scientist
+entity.matteroverdrive.mad_scientist.junkie.name=Mad Scientist Junkie
+entity.matteroverdrive.ranged_rogue_android.name=Ranged Rogue Android
+entity.matteroverdrive.mutant_scientist.name=Mutant Scientist
 
 #/#//////////// Decorative ////////////////////
 tile.decorative.stripes.name=Yellow Stripes
@@ -576,8 +577,8 @@ task.store_pattern.state.FINISHED.description=Item Pattern Successfully Stored.
 
 task.replicate_pattern.state.WAITING.description=Searching for Available Replicators.
 
-info.mo.updater.download=download
-info.mo.updater.hover=Click to download the latest version.
+info.matteroverdrive.updater.download=download
+info.matteroverdrive.updater.hover=Click to download the latest version.
 
 ##########################################################################################################
 # Config

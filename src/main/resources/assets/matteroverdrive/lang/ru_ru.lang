@@ -228,15 +228,15 @@ tile.tritanium_crate.name=Тритановый ящик
 tile.tritanium_crate_yellow.name=Жёлтый тритановый ящик
 
 ## Существа/Entities ##
-entity.mo.rogue_android.name=Рукопашный Андроид-разбойник
-entity.mo.failed_pig.name=Неудачная свинья
-entity.mo.failed_chicken.name=Неудачная курица
-entity.mo.failed_cow.name=Неудачная корова
-entity.mo.failed_sheep.name=Неудачная овца
-entity.mo.mad_scientist.name=Безумный учёный
-entity.mo.mad_scientist.junkie.name=Безумный учёный-наркоман
-entity.mo.ranged_rogue_android.name=Дальнобойный Андроид-разбойник
-entity.mo.mutant_scientist.name=Учёный-мутант
+entity.matteroverdrive.rogue_android.name=Рукопашный Андроид-разбойник
+entity.matteroverdrive.failed_pig.name=Неудачная свинья
+entity.matteroverdrive.failed_chicken.name=Неудачная курица
+entity.matteroverdrive.failed_cow.name=Неудачная корова
+entity.matteroverdrive.failed_sheep.name=Неудачная овца
+entity.matteroverdrive.mad_scientist.name=Безумный учёный
+entity.matteroverdrive.mad_scientist.junkie.name=Безумный учёный-наркоман
+entity.matteroverdrive.ranged_rogue_android.name=Дальнобойный Андроид-разбойник
+entity.matteroverdrive.mutant_scientist.name=Учёный-мутант
 
 ## Декорации/Decorative ##
 tile.decorative.stripes.name=Жёлтые полосы
@@ -567,8 +567,8 @@ task.store_pattern.state.FINISHED.description=Шаблон предмета ус
 
 task.replicate_pattern.state.WAITING.description=Поиск доступных репликаторов.
 
-info.mo.updater.download=скачать
-info.mo.updater.hover=Нажмите, чтобы загрузить последнюю версию.
+info.matteroverdrive.updater.download=скачать
+info.matteroverdrive.updater.hover=Нажмите, чтобы загрузить последнюю версию.
 
 ##########################################################################################################
 # Конфигурация/Config #

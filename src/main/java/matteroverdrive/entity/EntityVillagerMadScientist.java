@@ -268,7 +268,7 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
     public void setJunkie(boolean junkie) {
         this.dataManager.set(VARIANT, junkie);
         if (junkie) {
-            this.setCustomNameTag(MOStringHelper.translateToLocal("entity.mo.mad_scientist.junkie.name"));
+            this.setCustomNameTag(MOStringHelper.translateToLocal("entity.matteroverdrive.mad_scientist.junkie.name"));
         }
     }
     //endregion

@@ -458,8 +458,8 @@ task.store_pattern.state.FINISHED.description=Modèle d'objet stocké avec succ�
 
 task.replicate_pattern.state.WAITING.description=En recherche de réplicateurs disponible.
 
-info.mo.updater.download=téléchargement
-info.mo.updater.hover=Cliquez pour télécharger la dernière version.
+info.matteroverdrive.updater.download=téléchargement
+info.matteroverdrive.updater.hover=Cliquez pour télécharger la dernière version.
 
 ##########################################################################################################
 # Config
