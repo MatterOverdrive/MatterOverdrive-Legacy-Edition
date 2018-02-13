@@ -1,7 +1,7 @@
 package matteroverdrive.items;
 
-import matteroverdrive.api.machines.IDismantleable;
-import matteroverdrive.blocks.includes.IMultiBlock;
+import com.astro.clib.api.wrench.IDismantleable;
+import com.astro.clib.api.wrench.IWrenchable;
 import matteroverdrive.items.includes.MOBaseItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,8 +42,8 @@ public class Wrench extends MOBaseItem {
                 }
                 result = true;
             }
-            if (state.getBlock() instanceof IMultiBlock && !world.isRemote) {
-                result = ((IMultiBlock) state.getBlock()).onWrenchHit(stack, player, world, pos, side, hitX, hitY, hitZ);
+            if (state.getBlock() instanceof IWrenchable && !world.isRemote) {
+                result = ((IWrenchable) state.getBlock()).onWrenchHit(stack, player, world, pos, side, hitX, hitY, hitZ);
             } else if (!player.isSneaking() && state.getBlock().rotateBlock(world, pos, side)) {
                 result = true;
             }

@@ -19,7 +19,7 @@
 package matteroverdrive.blocks.includes;
 
 import matteroverdrive.api.IMOTileEntity;
-import matteroverdrive.api.machines.IDismantleable;
+import com.astro.clib.api.wrench.IDismantleable;
 import matteroverdrive.data.Inventory;
 import matteroverdrive.data.inventory.Slot;
 import matteroverdrive.handler.ConfigurationHandler;

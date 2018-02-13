@@ -1,7 +1,7 @@
 package matteroverdrive.blocks;
 
 import matteroverdrive.MatterOverdrive;
-import matteroverdrive.blocks.includes.IMultiBlock;
+import com.astro.clib.api.wrench.IWrenchable;
 import matteroverdrive.blocks.includes.MOBlockContainer;
 import matteroverdrive.machines.dimensional_pylon.TileEntityMachineDimensionalPylon;
 import net.minecraft.block.material.Material;
@@ -24,7 +24,7 @@ import javax.annotation.Nonnull;
 /**
  * Created by Simeon on 2/4/2016.
  */
-public class BlockPylon extends MOBlockContainer<TileEntityMachineDimensionalPylon> implements IMultiBlock {
+public class BlockPylon extends MOBlockContainer<TileEntityMachineDimensionalPylon> implements IWrenchable {
     public static final PropertyEnum<MultiblockType> TYPE = PropertyEnum.create("type", MultiblockType.class);
 
     public BlockPylon(Material material, String name) {

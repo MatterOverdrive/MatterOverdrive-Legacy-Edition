@@ -19,7 +19,7 @@
 package matteroverdrive.blocks;
 
 import matteroverdrive.MatterOverdrive;
-import matteroverdrive.api.machines.IDismantleable;
+import com.astro.clib.api.wrench.IDismantleable;
 import matteroverdrive.blocks.includes.MOBlockContainer;
 import matteroverdrive.tile.IMultiBlockTileEntity;
 import matteroverdrive.tile.TileEntityBoundingBox;

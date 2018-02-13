@@ -295,6 +295,7 @@ public class RenderHandler {
                     if (renderer != null) {
                         try {
                             GlStateManager.pushMatrix();
+                            GlStateManager.enableBlend();
                             renderer.renderPart(part, androidPlayer, event.getRenderer(), event.getPartialRenderTick());
                             GlStateManager.popMatrix();
                         } catch (Exception e) {
