@@ -19,6 +19,7 @@
 package matteroverdrive.network.packet.bi;
 
 import io.netty.buffer.ByteBuf;
+import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.matter.IMatterDatabase;
 import matteroverdrive.data.matter_network.ItemPattern;
 import matteroverdrive.gui.GuiMatterScanner;
@@ -82,8 +83,8 @@ public class PacketMatterScannerGetDatabase extends TileEntityUpdatePacket {
         public void handleServerMessage(EntityPlayerMP player, PacketMatterScannerGetDatabase message, MessageContext ctx) {
             TileEntity tileEntity = message.getTileEntity(player.world);
             if (tileEntity instanceof IMatterDatabase) {
-                //IMatterDatabase database = (IMatterDatabase) tileEntity;
-                //MatterOverdrive.packetPipeline.sendTo(new PacketMatterScannerGetDatabase(database.getPatterns()),player);
+                IMatterDatabase database = (IMatterDatabase) tileEntity;
+                //MatterOverdrive.packetPipeline.sendTo(new PacketMatterScannerGetDatabase(database.getPattern()),player);
             }
         }
 
@@ -91,8 +92,8 @@ public class PacketMatterScannerGetDatabase extends TileEntityUpdatePacket {
         @Override
         public void handleClientMessage(EntityPlayerSP player, PacketMatterScannerGetDatabase message, MessageContext ctx) {
             if (Minecraft.getMinecraft().currentScreen instanceof GuiMatterScanner) {
-                //GuiMatterScanner guiMatterScanner = (GuiMatterScanner)Minecraft.getMinecraft().currentScreen;
-                //guiMatterScanner.UpdatePatternList(message.list);
+                GuiMatterScanner guiMatterScanner = (GuiMatterScanner)Minecraft.getMinecraft().currentScreen;
+                guiMatterScanner.UpdatePatternList(message.list);
             }
         }
     }

@@ -31,7 +31,7 @@ import net.minecraft.util.ResourceLocation;
 public class TritaniumPickaxe extends ItemPickaxe implements ItemModelProvider {
     public TritaniumPickaxe(String name) {
         super(MatterOverdriveItems.TOOL_MATERIAL_TRITANIUM);
-        setUnlocalizedName(name);
+        setUnlocalizedName(Reference.MOD_ID+"."+name);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
     }
 

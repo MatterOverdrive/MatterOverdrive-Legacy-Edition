@@ -17,7 +17,7 @@ public class ItemRecordTransformation extends ItemRecord implements ItemModelPro
     private static final ResourceLocation SOUND = new ResourceLocation(Reference.MOD_ID, "transformation_music");
 
     public ItemRecordTransformation() {
-        super("mo.transformation", MatterOverdriveSounds.musicTransformation);
+        super("matteroverdrive.transformation", MatterOverdriveSounds.musicTransformation);
         setUnlocalizedName("record");
         setRegistryName("record_transformation");
         setCreativeTab(MatterOverdrive.TAB_OVERDRIVE);

@@ -103,7 +103,7 @@ item.matteroverdrive.upgrade.power.name=Power Upgrade
 item.matteroverdrive.upgrade.failsafe.name=Fail-Safe Upgrade
 item.matteroverdrive.upgrade.range.name=Range Upgrade
 item.matteroverdrive.upgrade.power_storage.name=Power Storage Upgrade
-item.matteroverdrive.hyper_speed.name=Hyper Speed Upgrade
+item.matteroverdrive.upgrade.hyper_speed.name=Hyper Speed Upgrade
 item.matteroverdrive.upgrade.matter_storage.name=Matter Storage Upgrade
 
 #/#//////////// Weapon Modules ///////
