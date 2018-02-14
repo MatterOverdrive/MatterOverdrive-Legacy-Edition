@@ -1,0 +1,17 @@
+{
+  "pools": [
+    "name": "main",
+    "rolls": 1,
+    "entries": [
+    {
+            "type":"item",
+            "name": "matteroverdrive:pill_red",
+            "weight": 40
+    },
+    {
+            "type":"empty",
+            "weight":60
+    }
+    ]
+  ]
+}
