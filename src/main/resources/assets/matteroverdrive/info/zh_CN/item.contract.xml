@@ -1,0 +1,9 @@
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">合同</title>
+        <text class="matter-text text-block">合同泛指任务，玩家可以在接收它们之前预览其中的内容。
+            合成的获取方式有很多，玩家可以使用[item name=contract_market]来获取合同，也可以通过自然生成的NPC与它们交谈获取。</text>
+        <text class="matter-text text-block">一旦接受任务，玩家便可使用[item name=data_pad]来查看以及追踪任务完成情况。当你完成一项任务时你就会获得特定的奖励和经验。
+            另外，每当完成一个任务后新任务便会刷新。</text>
+    </page>
+</entry>
