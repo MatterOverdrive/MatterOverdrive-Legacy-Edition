@@ -1,0 +1,36 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">$itemName</title>
+        <preview size="8" style="text-align:center;margin-bottom:-14px;margin-top:-8px"></preview>
+        <text class="matter-text text-block">$itemName是一把强大的近程能量武器，一次可发射多个螺旋波等离子体。这种武器还有另一种模式，它可以一次性发射全部螺旋波等离子体。</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">$itemName</title>
+        <text class="matter-text text-block">玩家可以通过按住鼠标右击蓄力来发射多个螺旋波等离子体。如果蓄力的时间够长，$itemName能够发射一个行径距离为原来两倍的螺旋波等离子体。</text>
+        <text class="matter-text text-block">残暴机械人可以使用这种近程能量武器，这将是非常致命的。请与它们保持距离。</text>
+        <text class="matter-text text-block">$itemName可以使用除视野模块外的所有升级。</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title" style="margin-bottom:6px">Stats</title>
+        <tooltip></tooltip>
+        <text class="matter-text text-block">$itemName可以通过击杀残暴机械人掉落，传奇版本的机械人也会掉落相应的传奇能量武器。传奇的能量武器允许安装更多武器模块升级并且有着更好的基础属性，就好比更高的精准度。</text>
+    </page>
+</entry>
