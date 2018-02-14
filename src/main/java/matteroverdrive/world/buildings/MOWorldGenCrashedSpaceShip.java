@@ -37,6 +37,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootTableList;
 
 import java.util.Random;
 
@@ -87,7 +88,7 @@ public class MOWorldGenCrashedSpaceShip extends MOWorldGenBuilding {
             TileEntity tileEntity = world.getTileEntity(pos);
             if (tileEntity instanceof IInventory) {
                 // TODO: 3/26/2016 Find how to access Chest Gen Hooks
-                //WeightedRandomChestContent.generateDispenserContents(random, ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).getItems(random), (IInventory) tileEntity, random.nextInt(10) + 10);
+                LootTableList.register(new ResourceLocation("matteroverdrive", "crashed_space_ship"));
                 QuestStack questStack = MatterOverdrive.questFactory.generateQuestStack(random, MatterOverdrive.quests.getQuestByName("crash_landing"));
                 questStack.getTagCompound().setLong("pos", pos.toLong());
                 MOInventoryHelper.insertItemStackIntoInventory((IInventory) tileEntity, questStack.getContract(), EnumFacing.DOWN);

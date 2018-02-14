@@ -56,7 +56,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     public static WorldGenGravitationalAnomaly anomalyGen;
     public static BiomeGeneratorSpace biomeSpace;
     public static BiomeGeneratorAlien biomeAlien;
-    public static float BUILDING_SPAWN_CHANCE = 0.01f;
+    public static float BUILDING_SPAWN_CHANCE = 10000000.0f;
     final Random oreRandom;
     final Random anomaliesRandom;
     final Random buildingsRandom;
@@ -69,7 +69,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     boolean generateTritanium;
     boolean generateDilithium;
     boolean generateAnomalies;
-    boolean generateBuildings;
+    boolean generateBuildings = true;
 
     public MOWorldGen(ConfigurationHandler configurationHandler) {
         oreRandom = new Random();
@@ -91,10 +91,10 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
 
         tritaniumGen = new WorldGenMinable(MatterOverdrive.BLOCKS.tritaniumOre.getDefaultState(), TRITANIUM_VEIN_SIZE);
         dilithiumGen = new WorldGenMinable(MatterOverdrive.BLOCKS.dilithium_ore.getDefaultState(), DILITHIUM_VEIN_SIZE);
-        buildings.add(new WeightedRandomMOWorldGenBuilding(new MOAndroidHouseBuilding("android_house"), 20));
+        buildings.add(new WeightedRandomMOWorldGenBuilding(new MOAndroidHouseBuilding("android_house"), 40));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOSandPit("sand_pit_house", 3), 100));
-        buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenCrashedSpaceShip("crashed_ship"), 60));
-        buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenUnderwaterBase("underwater_base"), 20));
+        buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenCrashedSpaceShip("crashed_ship"), 75));
+        buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenUnderwaterBase("underwater_base"), 30));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenCargoShip("cargo_ship"), 5));
         anomalyGen = new WorldGenGravitationalAnomaly("gravitational_anomaly", 0.005f, 2048, 2048 + 8192);
         oreDimentionsBlacklist = new HashSet<>();
@@ -203,7 +203,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     }
 
     private void startGenerateBuildings(World world, Random random, int chunkX, int chunkZ, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        if (generateBuildings && random.nextDouble() < BUILDING_SPAWN_CHANCE) {
+        if (generateBuildings && random.nextDouble() <= BUILDING_SPAWN_CHANCE) {
             BlockPos pos = world.getHeight(new BlockPos(chunkX * 16 + random.nextInt(16), 0, chunkZ * 16 + random.nextInt(16)));
 
             WeightedRandomMOWorldGenBuilding building = getRandomBuilding(world, pos.add(0, -2, 0), random);
