@@ -19,9 +19,16 @@
 <entry stylesheet="matteroverdrive:info/styles/guide.css">
     <page style="margin-left:8px;margin-right:8px;margin-top:6px">
         <title size="2" style="margin-bottom:6px" class="matter-text small-title">$itemName</title>
-        <text class="matter-text text-block">$itemName 是一种能量武器, 能够眩晕甚至杀掉生物. $itemName 拥有两种主要设定, 每种都有着对应的等级.</text>
+        <text class="matter-text text-block">$itemName是一种能量武器，能够眩晕甚至杀掉生物。$itemName拥有两种主要设定，每种都有着对应的等级。</text>
         <preview size="6" style="text-align:center;margin-bottom:-10px;margin-top:-10px"></preview>
-        <text class="matter-text text-block">$itemName 同样需要能量来运行, 它本身能够存储64K FE. 它也可以使用一些FE能量存储单元, 例如电池.
-            $itemName 可以在[block name=weapon_station]中通过使用武器模块进行升级</text>
+        <text class="matter-text text-block">$itemName同样需要能量来运行，它本身能够存储64K FE能量。它也可以使用一些FE能量存储单元，例如电池。
+            $itemName可以在[block name=weapon_station]中通过使用武器模块进行升级</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title" style="margin-bottom:6px">自定义</title>
+        <text class="matter-text text-block">像大多数能量武器一样，$itemName能够通过[item name=energy_pack]来快速充能，
+            如果想要持续不停的射击，则可以在[block name=weapon_station]上使用武器模块来进行升级。</text>
+        <text class="matter-text text-block">$itemName可以使用除视野模块外的所有升级。</text>
+        <image width="128" height="64" src="guide/phaser_modules.png" style="text-align:center;"></image>
     </page>
 </entry>
