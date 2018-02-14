@@ -1,0 +1,49 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">$itemName</title>
+        <image width="128" height="64" src="guide/fusion_reactor.png" style="margin-right:8px;margin-bottom:8px"></image>
+        <text class="matter-text text-block">重力异常点会随机在世界生成，它们会吞噬实体和破坏方块。
+            每一个重力异常点都有各自的质量，可以靠吞噬其事件视界附近的实体来维持。
+            它们通过吞噬实体并获取它们自身的物质来增加异常点的质量。一旦它们足够强大的时候，它们便会开始吞噬周围的地形。</text>
+        <text class="matter-text text-block">同时，重力异常点也是[guide name=fusion_reactor]的重要组成部分。</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">$itemName</title>
+        <text class="matter-text text-block">异常点吞噬的半径可以从用来稳定它们的[block name=gravitational_stabilizer guide=fusion_reactor]看到。
+            方块的硬度越高，被破坏的可能性就越小。
+            泥土和红石几乎会被立刻破坏，但黑曜石会随着异常点逐渐增大的消磨殆尽。</text>
+        <preview size="3" style="text-align:center;margin-bottom:10px;"></preview>
+        <text class="matter-text">重力异常点会在(4,64)生成。</text>
+        <text class="matter-text text-block">如果你向重力异常点投掷一个[item mod=minecraft name=nether_star]时，请小心。$itemName很有可能会产生爆炸。</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">如何稳定</title>
+        <image width="220" height="110" src="guide/gravitational_anomaly_stabilizers.png" style="text-align:center;margin-bottom:8px"/>
+        <text class="matter-text text-block">当重力异常点足够大时，它便可能对你的世界而言是致命的。
+            [block name=gravitational_stabilizer]能否抑制重力异常点的能量。
+            通过在重力异常点的周围（任意水平方位）分别放置重力稳定器，来抑制重力异常点的能量。</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">注意事项</title>
+        <text class="matter-text text-block">重力稳定器在稳定异常点时与点距离的一段不能有方块遮掩，任何的阻碍都会让稳定器失去功能。
+            另一方面，透明方块不会阻挡稳定器工作。稳定器最多可以在重力异常点64个方块外的地方运行。</text>
+    </page>
+</entry>
