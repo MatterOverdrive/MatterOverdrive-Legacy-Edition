@@ -94,13 +94,13 @@ public class TileEntityInscriber extends MOTileEntityMachineEnergy {
 
     public boolean canPutInOutput() {
         ItemStack outputStack = inventory.getStackInSlot(OUTPUT_SLOT_ID);
-        return outputStack == null;
+        return outputStack.isEmpty();
     }
 
     public void inscribeItem() {
         if (cachedRecipe != null && canPutInOutput()) {
             ItemStack outputSlot = inventory.getStackInSlot(OUTPUT_SLOT_ID);
-            if (outputSlot != null) {
+            if (!outputSlot.isEmpty()) {
                 outputSlot.grow(1);
             } else {
                 inventory.setInventorySlotContents(OUTPUT_SLOT_ID, cachedRecipe.getOutput(this));
@@ -237,9 +237,9 @@ public class TileEntityInscriber extends MOTileEntityMachineEnergy {
     public void calculateRecipe() {
         ItemStack mainStack = inventory.getStackInSlot(MAIN_INPUT_SLOT_ID);
         ItemStack secStack = inventory.getStackInSlot(SEC_INPUT_SLOT_ID);
-        if (mainStack != null && secStack != null) {
+        if (!mainStack.isEmpty() && !secStack.isEmpty()) {
             Optional<InscriberRecipe> recipe = MatterOverdriveRecipes.INSCRIBER.get(this);
-            cachedRecipe = recipe.isPresent() ? recipe.get() : null;
+            cachedRecipe = recipe.orElse(null);
             return;
         }
         cachedRecipe = null;
