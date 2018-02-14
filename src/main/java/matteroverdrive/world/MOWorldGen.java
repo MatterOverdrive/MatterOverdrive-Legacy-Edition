@@ -18,6 +18,7 @@
 
 package matteroverdrive.world;
 
+import com.astro.clib.util.Platform;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.data.world.GenPositionWorldData;
@@ -136,7 +137,8 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         buildingsRandom.setSeed(chunkSeed);
         generateGravitationalAnomalies(world, anomaliesRandom, chunkX * 16, chunkZ * 16, world.provider.getDimension());
         generateOres(world, oreRandom, chunkX * 16, chunkZ * 16, world.provider.getDimension());
-        startGenerateBuildings(world, buildingsRandom, chunkX, chunkZ, chunkGenerator, chunkProvider);
+        if (Platform.isDevEnv())
+            startGenerateBuildings(world, buildingsRandom, chunkX, chunkZ, chunkGenerator, chunkProvider);
     }
 
     public void generateOverworld(World world, Random random, int chunkX, int chunkZ) {
@@ -183,12 +185,13 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         }
     }
 
-    private void generateGravitationalAnomalies(World world, Random random, int chunkX, int chunkZ, int dimention) {
+    private void generateGravitationalAnomalies(World world, Random random, int chunkX, int chunkZ, int dimension) {
         if (generateAnomalies) {
             BlockPos pos = new BlockPos(chunkX + random.nextInt(16), chunkZ + random.nextInt(16), random.nextInt(60) + 4);
 
             if (anomalyGen.generate(world, random, pos)) {
-
+                if (Platform.isDevEnv())
+                    System.out.println("Generated Anomaly at " + pos);
             }
         }
     }
