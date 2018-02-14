@@ -243,6 +243,7 @@ entity.matteroverdrive.failed_chicken.name=实验失败的鸡
 entity.matteroverdrive.failed_cow.name=实验失败的牛
 entity.matteroverdrive.failed_sheep.name=实验失败的羊
 entity.matteroverdrive.mad_scientist.name=疯狂科学家
+entity.mad_scientist.name=疯狂科学家
 entity.matteroverdrive.mad_scientist.junkie.name=疯狂科学家（瘾君子）
 entity.matteroverdrive.ranged_rogue_android.name=远程残暴机器人
 entity.matteroverdrive.mutant_scientist.name=变异科学家
