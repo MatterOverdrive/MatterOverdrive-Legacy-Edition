@@ -1,0 +1,31 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">安全协定</title>
+        <image width="64" height="64" src="guide/security_protocol_machine_warning.png" style="float:left;margin-right:8px;margin-bottom:4px"></image>
+        <text class="matter-text text-block" style="width:180px">$itemName用于保护MatterOverdrive（超能物质）中的机械。
+            它几乎可以保护所有机械。
+            一旦它被保护起来，只有拥有者和持有安全协定（访问）的玩家才能破坏以及使用它。</text>
+        <text class="matter-text">要想实现上文所述功能，你必须制作一张空白安全协定右击机械来变换安全协定类型并决定机械受保护的权限。</text>
+        <text class="matter-text">$itemName（设置） - 用于设置机械。</text>
+        <text class="matter-text">$itemName（访问） - 允许访问已设置安全协定的机器。</text>
+        <text class="matter-text">$itemName（清除） - 移除机器安全设置，并且机械必须有拥有者进行协定操作。</text>
+    </page>
+</entry>
