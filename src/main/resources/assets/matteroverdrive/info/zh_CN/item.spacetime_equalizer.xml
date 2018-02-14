@@ -1,0 +1,27 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">时空均衡器</title>
+        <text class="matter-text text-block">当你在处理[block name=gravitational_anomaly]时，只有一件物品能帮助你抵抗这种烦人的引力。
+            穿戴时空均衡器的实体将免疫[block name=gravitational_anomaly]的影响。
+            时空均衡器可以作为胸甲装备，并提供与铁胸甲旗鼓相当的护甲值。</text>
+        <text class="matter-text text-block">虽然时空均衡器对处理重力异常点很有帮助，但它却减缓了实体移动速度。</text>
+    </page>
+</entry>
