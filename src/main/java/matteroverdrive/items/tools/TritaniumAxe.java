@@ -31,7 +31,7 @@ import net.minecraft.util.ResourceLocation;
 public class TritaniumAxe extends ItemAxe implements ItemModelProvider {
     public TritaniumAxe(String name) {
         super(MatterOverdriveItems.TOOL_MATERIAL_TRITANIUM, MatterOverdriveItems.TOOL_MATERIAL_TRITANIUM.getAttackDamage(), -3.1f);
-        setUnlocalizedName(name);
+        setUnlocalizedName(Reference.MOD_ID+"."+name);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
     }
 

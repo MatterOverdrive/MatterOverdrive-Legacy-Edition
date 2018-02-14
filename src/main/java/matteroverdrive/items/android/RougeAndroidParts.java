@@ -71,12 +71,12 @@ public class RougeAndroidParts extends BionicPart implements IBionicPart, IAdvan
     public void addDetails(ItemStack itemstack, EntityPlayer player, @Nullable World worldIn, List<String> infos) {
         if (itemstack.getTagCompound() != null) {
             if (itemstack.getTagCompound().getByte("Type") == 1) {
-                infos.add(TextFormatting.AQUA + MOStringHelper.translateToLocal("item.rogue_android_part.range"));
+                infos.add(TextFormatting.AQUA + MOStringHelper.translateToLocal("item.matteroverdrive.rogue_android_part.range"));
             } else {
-                infos.add(TextFormatting.GOLD + MOStringHelper.translateToLocal("item.rogue_android_part.melee"));
+                infos.add(TextFormatting.GOLD + MOStringHelper.translateToLocal("item.matteroverdrive.rogue_android_part.melee"));
             }
         } else {
-            infos.add(TextFormatting.GOLD + MOStringHelper.translateToLocal("item.rogue_android_part.melee"));
+            infos.add(TextFormatting.GOLD + MOStringHelper.translateToLocal("item.matteroverdrive.rogue_android_part.melee"));
         }
         super.addDetails(itemstack, player, worldIn, infos);
     }

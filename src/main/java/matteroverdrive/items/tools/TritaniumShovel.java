@@ -14,7 +14,7 @@ public class TritaniumShovel extends ItemSpade implements ItemModelProvider {
 
     public TritaniumShovel(String name) {
         super(MatterOverdriveItems.TOOL_MATERIAL_TRITANIUM);
-        setUnlocalizedName(name);
+        setUnlocalizedName(Reference.MOD_ID+"."+name);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
     }
 
