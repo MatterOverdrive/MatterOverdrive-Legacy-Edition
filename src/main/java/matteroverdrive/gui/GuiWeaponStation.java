@@ -32,6 +32,7 @@ import matteroverdrive.tile.TileEntityWeaponStation;
 import matteroverdrive.util.MOInventoryHelper;
 import matteroverdrive.util.WeaponHelper;
 import matteroverdrive.util.math.MOMathHelper;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -129,6 +130,7 @@ public class GuiWeaponStation extends MOGuiMachine<TileEntityWeaponStation> {
 
         ItemStack item = machine.getStackInSlot(machine.INPUT_SLOT);
         if (WeaponHelper.isWeapon(item) && pages.get(0).isVisible()) {
+            ScaledResolution res = new ScaledResolution(mc);
             GlStateManager.enableDepth();
             GlStateManager.depthMask(true);
             GlStateManager.disableCull();
@@ -137,7 +139,7 @@ public class GuiWeaponStation extends MOGuiMachine<TileEntityWeaponStation> {
             List<ItemStack> modules = MOInventoryHelper.getStacks(item);
             WeaponItemRenderer weaponItemRenderer = weaponRenderHandler.getWeaponModel(item);
             GlStateManager.pushMatrix();
-            GlStateManager.translate(240, 130, 200);
+            GlStateManager.translate(guiLeft+150, guiTop+90, 200);
             GlStateManager.scale(180, 180, 180);
             GlStateManager.rotate(-190, 1, 0, 0);
             GlStateManager.rotate(-140, 0, 1, 0);

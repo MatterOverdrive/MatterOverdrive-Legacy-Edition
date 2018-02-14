@@ -54,6 +54,7 @@ public class GuiAndroidStation extends MOGuiMachine<TileEntityAndroidStation> {
     private EntityMeleeRougeAndroidMob mob;
     private MOElementButtonScaled hudConfigs;
     private ElementGroup2DScroll abilitiesGroup;
+    private ElementDoubleHelix doubleHelix;
 
     public GuiAndroidStation(InventoryPlayer inventoryPlayer, TileEntityAndroidStation machine) {
         super(new ContainerAndroidStation(inventoryPlayer, machine), machine, 364, 280);
@@ -85,11 +86,11 @@ public class GuiAndroidStation extends MOGuiMachine<TileEntityAndroidStation> {
         background.setTexture(Reference.PATH_ELEMENTS + "grid_bg.png", 32, 32);
         background.setPosZ(-10);
         background.setColor(Reference.COLOR_HOLO.multiply(1, 1, 1, 0.1f));
-        ElementDoubleHelix doubleHelix = new ElementDoubleHelix(this, 0, 0, 320, 240, 2f);
+        doubleHelix = new ElementDoubleHelix(this, 0, 0, 320, 240, 2f);
         doubleHelix.setPointColor(Reference.COLOR_HOLO.multiply(1, 1, 1, 0.3f));
         doubleHelix.setLineColor(Reference.COLOR_HOLO.multiply(1, 1, 1, 0.15f));
         doubleHelix.setFillColor(Reference.COLOR_HOLO.multiply(0.3f, 0.3f, 0.3f, 0.2f));
-        abilitiesGroup.addElement(doubleHelix);
+        //abilitiesGroup.addElement(doubleHelix);
         abilitiesGroup.addElement(background);
 
         /*addStat(androidPlayer, OverdriveBioticStats.teleport, -1, 1, null);
@@ -159,6 +160,11 @@ public class GuiAndroidStation extends MOGuiMachine<TileEntityAndroidStation> {
         AddHotbarPlayerSlots(inventorySlots, this);
     }
 
+
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTick, int x, int y) {
+        super.drawGuiContainerBackgroundLayer(partialTick, x, y);
+    }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {

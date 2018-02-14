@@ -93,7 +93,7 @@ public class ElementBioStat extends MOElementButton {
 
     @Override
     public void addTooltip(List<String> list, int mouseX, int mouseY) {
-        stat.onTooltip(player, MathHelper.clamp(level + 1, 0, stat.maxLevel()), list, mouseX, mouseY);
+        stat.onTooltip(player, MathHelper.clamp(level, 0, stat.maxLevel()), list, mouseX, mouseY);
     }
 
     @Override
