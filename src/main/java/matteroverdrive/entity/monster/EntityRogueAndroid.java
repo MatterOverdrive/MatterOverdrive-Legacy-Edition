@@ -72,9 +72,9 @@ public class EntityRogueAndroid implements IConfigSubscriber {
     private static boolean isBiomeValid(Biome biome) {
         if (biome != null) {
             if (biomesWhitelist.size() > 0) {
-                return biomesWhitelist.contains(biome.getBiomeName().toLowerCase());
+                return biomesWhitelist.contains(biome.getRegistryName().toString());
             } else {
-                return !biomesBlacklist.contains(biome.getBiomeName().toLowerCase());
+                return !biomesBlacklist.contains(biome.getRegistryName().toString());
             }
         }
         return false;
