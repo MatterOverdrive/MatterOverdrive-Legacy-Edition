@@ -94,7 +94,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
         if (!canReceive())
             return 0;
 
-        int energyReceived = Math.min(capacity - energy, Math.min(getMaxReceive(), amount));
+        int energyReceived = Math.min(getMaxEnergyStored() - getEnergyStored(), Math.min(getMaxReceive(), amount));
 
         if (!simulate) {
             if (stack != null && energyReceived != 0) {
