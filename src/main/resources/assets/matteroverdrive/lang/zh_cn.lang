@@ -129,7 +129,7 @@ item.overdrivef.info.configured=已配置
 
 #/#//////////// Replicator ////////////
 tile.replicator.name=物质重组仓
-tile.replicator.config.volume.replicate=Replication Volume
+tile.replicator.config.volume.replicate=复制数量
 tile.replicator.config.particles.vent=Vent Particles
 tile.replicator.config.storage.matter=物质储存
 tile.replicator.config.storage.energy=能量储存
@@ -604,8 +604,8 @@ config.android_hud.minimap.position=小地图位置
 config.android_hud.color=HUD颜色
 config.android_hud.opacity=HUD透明度
 config.android_hud.hide_vanilla=隐藏原版HUD
-config.android_hud.opacity_background=HUD Elements Background Opacity
-config.compatibility.name=Compatibility
+config.android_hud.opacity_background=HUD不透明度
+config.compatibility.name=兼容性
 
 ##########################################################################################################
 # Chat Alerts
@@ -696,7 +696,7 @@ container.tritanium_crate=钛金箱
 rarity.legendary=传奇
 
 mo.jei.time=%d 秒
-mo.jei.inscriber=Inscriber
+mo.jei.inscriber=分子记录仪
 
 
 ###############################################################################################################
