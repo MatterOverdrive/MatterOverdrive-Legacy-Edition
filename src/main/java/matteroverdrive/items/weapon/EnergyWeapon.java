@@ -59,6 +59,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -544,6 +545,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         IEnergyStorage container = getStorage(item);
         int amount = MathHelper.ceil(getEnergyUse(item) * ticks);
         int hasEnergy = container.getEnergyStored();
+
         if (hasEnergy >= amount) {
             while (amount > 0) {
                 if (container.extractEnergy(amount, true) > 0) {
@@ -555,6 +557,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         } else {
             return false;
         }
+
         return true;
     }
 
@@ -577,18 +580,17 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
 
     @Override
-    public ICapabilitySerializable<NBTTagCompound> createProvider(ItemStack stack) {
+    public ICapabilityProvider createProvider(ItemStack stack) {
         return new EnergyProvider(stack, getCapacity(), getInput(), getOutput());
     }
 
-    public static class EnergyProvider implements ICapabilitySerializable<NBTTagCompound> {
-
+    public static class EnergyProvider implements ICapabilityProvider {
         private EnergyContainer container;
         private ItemStack stack;
 
         public EnergyProvider(ItemStack stack, int capacity, int in, int out) {
             this.stack = stack;
-            this.container = new EnergyContainer(capacity, in, out);
+            this.container = new EnergyContainer(capacity, in, out).setItemStack(stack);
         }
 
         @Override
@@ -599,25 +601,19 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         @Override
         @SuppressWarnings("unchecked")
         public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-            if (capability == CapabilityEnergy.ENERGY) {
-                if (!stack.isEmpty()) {
-                    ItemStack battery = WeaponHelper.getModuleAtSlot(Reference.MODULE_BATTERY, stack);
-                    if (battery.hasCapability(capability, facing))
-                        return battery.getCapability(capability, facing);
-                }
-                return CapabilityEnergy.ENERGY.cast(container);
+            if (capability != CapabilityEnergy.ENERGY) {
+                return null;
             }
-            return null;
-        }
 
-        @Override
-        public NBTTagCompound serializeNBT() {
-            return container.serializeNBT();
-        }
+            if (!stack.isEmpty()) {
+                ItemStack battery = WeaponHelper.getModuleAtSlot(Reference.MODULE_BATTERY, stack);
 
-        @Override
-        public void deserializeNBT(NBTTagCompound tag) {
-            container.deserializeNBT(tag);
+                if (battery.hasCapability(capability, null)) {
+                    return battery.getCapability(capability, null);
+                }
+            }
+
+            return CapabilityEnergy.ENERGY.cast(container);
         }
     }
 }
