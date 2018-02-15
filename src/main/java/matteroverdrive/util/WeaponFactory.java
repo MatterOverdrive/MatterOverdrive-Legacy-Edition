@@ -23,6 +23,7 @@ import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.IWeapon;
 import matteroverdrive.api.weapon.IWeaponModule;
 import matteroverdrive.data.WeightedRandomItemStack;
+import matteroverdrive.items.ItemLinkedEnergyHandler;
 import matteroverdrive.items.includes.EnergyContainer;
 import matteroverdrive.items.weapon.EnergyWeapon;
 import matteroverdrive.items.weapon.module.WeaponModuleBarrel;
@@ -117,7 +118,7 @@ public class WeaponFactory {
         context.setWeaponStack(weapon);
         decorateWeapon(weapon, context);
         if (context.fullCharge) {
-            ((EnergyContainer) EnergyWeapon.getStorage(weapon)).setFull();
+            ((ItemLinkedEnergyHandler) EnergyWeapon.getStorage(weapon)).setFull();
         }
         return weapon;
     }
@@ -126,7 +127,7 @@ public class WeaponFactory {
         ItemStack weapon;
         weapon = WeightedRandom.getRandomItem(random, weapons).getStack();
         if (context.fullCharge) {
-            ((EnergyContainer) EnergyWeapon.getStorage(weapon)).setFull();
+            ((ItemLinkedEnergyHandler) EnergyWeapon.getStorage(weapon)).setFull();
         }
         return weapon;
     }

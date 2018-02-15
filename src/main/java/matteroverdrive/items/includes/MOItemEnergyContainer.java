@@ -19,6 +19,7 @@
 package matteroverdrive.items.includes;
 
 import matteroverdrive.api.EmptyEnergyStorage;
+import matteroverdrive.items.ItemLinkedEnergyHandler;
 import matteroverdrive.util.MOEnergyHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +32,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
@@ -82,8 +84,8 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
         return true;
     }
 
-    public ICapabilitySerializable<NBTTagCompound> createProvider(ItemStack stack) {
-        return new EnergyProvider(getCapacity(), getInput(), getOutput());
+    public ICapabilityProvider createProvider(ItemStack stack) {
+        return new EnergyProvider(stack, getCapacity(), getInput(), getOutput());
     }
 
     protected abstract int getCapacity();
@@ -103,8 +105,8 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
             if (addPoweredItem()) {
                 ItemStack powered = new ItemStack(this);
                 IEnergyStorage storage = getStorage(powered);
-                if (storage instanceof EnergyContainer)
-                    ((EnergyContainer) storage).setFull();
+                if (storage instanceof ItemLinkedEnergyHandler)
+                    ((ItemLinkedEnergyHandler) storage).setFull();
                 items.add(powered);
             }
         }
@@ -116,16 +118,12 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
         return createProvider(stack);
     }
 
-    public static class EnergyProvider implements ICapabilitySerializable<NBTTagCompound> {
+    public static class EnergyProvider implements ICapabilityProvider {
 
-        private EnergyContainer container;
+        private ItemLinkedEnergyHandler container;
 
-        public EnergyProvider(int capacity, int input, int output) {
-            container = new EnergyContainer(capacity, input, output);
-        }
-
-        public EnergyProvider(int capacity, int through) {
-            this(capacity, through, through);
+        public EnergyProvider(ItemStack stack, int capacity, int input, int output) {
+            container = new ItemLinkedEnergyHandler(stack, capacity, input, output);
         }
 
         @Override
@@ -140,16 +138,6 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
                 return CapabilityEnergy.ENERGY.cast(container);
             }
             return null;
-        }
-
-        @Override
-        public NBTTagCompound serializeNBT() {
-            return container.serializeNBT();
-        }
-
-        @Override
-        public void deserializeNBT(NBTTagCompound tag) {
-            container.deserializeNBT(tag);
         }
     }
 }

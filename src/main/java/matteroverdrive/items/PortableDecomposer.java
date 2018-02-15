@@ -143,8 +143,8 @@ public class PortableDecomposer extends MOItemEnergyContainer {
                 int canTakeCount = (int) (freeMatter / matterFromItem);
                 int itemsTaken = Math.min(canTakeCount, itemStack.getCount());
                 itemsTaken = Math.min(itemsTaken, storage.getEnergyStored() / energyForItem);
-                if (storage instanceof EnergyContainer)
-                    ((EnergyContainer) storage).setEnergy(storage.getEnergyStored() - (itemsTaken * energyForItem));
+                if (storage instanceof ItemLinkedEnergyHandler)
+                    ((ItemLinkedEnergyHandler) storage).setEnergy(storage.getEnergyStored() - (itemsTaken * energyForItem));
                 setMatter(decomposer, getMatter(decomposer) + itemsTaken * matterFromItem);
                 itemStack.setCount(Math.max(0, itemStack.getCount() - itemsTaken));
             }
