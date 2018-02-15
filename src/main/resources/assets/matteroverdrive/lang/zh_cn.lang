@@ -701,21 +701,21 @@ mo.jei.inscriber=分子刻录仪
 
 ###############################################################################################################
 # quests
-quest.kill_androids.title=They will kill us all!
-quest.kill_androids.info=The are taking over the world! I don't know how exactly they got here, but there numbers are growing by the day. It's seems like there's no end to them. We must fight for if we don't, we will all perish. The fight starts with you $player! We need you to help us kill as many of them as possible, before they get us all.
-quest.kill_androids.objective.0=Kill $killCount/$maxKillCount Rogue Androids.
-quest.cocktail_of_ascension.title=Cocktail of Ascension
+quest.kill_androids.title=它们会杀了我们！
+quest.kill_androids.info=机械人正在接管我们的世界！我不知道它们究竟来自何处，但最近的统计数据表明，它们的数量还在源源不断的增长。我们必须为我们自己而战，如果不这样做，我们都将灭亡。战斗始于你，$player！我们需要你的帮助，以最大限度为这次战争争取时间。
+quest.kill_androids.objective.0=杀死 $killCount/$maxKillCount 残暴机械人
+quest.cocktail_of_ascension.title=鸡尾酒的精炼
 quest.cocktail_of_ascension.info=A Crazy scientist has asked you to bring him %2$s gunpowder from a shoveled creeper and %3$s red mushrooms from the darkest depths of the Nether, for his Cocktail Of Ascension.
-quest.cocktail_of_ascension.objective.0=Kill %2$s/%3$s creepers with a shovel
+quest.cocktail_of_ascension.objective.0=杀死 %2$s/%3$s creepers with a shovel
 quest.cocktail_of_ascension.objective.1=Pickup %2$s/%3$s gunpowder
 quest.cocktail_of_ascension.objective.2=Pickup %2$s/%3$s red mushrooms from the Nether
 quest.cocktail_of_ascension.objective.3=Talk to the crazy scientist junkie
-quest.sacrifice.title=Sacrifice
-quest.sacrifice.info=We are the Dark Vail. We have begun restoring an ancient artifact, the effects of which will remain a secret. All we need from you $player is to sacrifice $maxKillCount animal newborns in the name of the dark lord, whose name strikes fear in the hearts of the innocent. Barry the dark lord. You will be compensated handsomely for your efforts.
-quest.sacrifice.objective.0=Kill $killCount/$maxKillCount Babies
-quest.department_of_agriculture.title=Department of Agriculture
+quest.sacrifice.title=献祭
+quest.sacrifice.info=我们是Dark Vail。我们已经通过古老的技艺重新制作了一个古老神器，但是这其中的效果还不能公开。我们需要你，$player以黑暗领主的名义杀死$maxKillCount只新生的动物，以便使他人提起我们时闻风丧胆。Barry the dark lord，你的努力将会得到很好的回报。
+quest.sacrifice.objective.0=杀死 $killCount/$maxKillCount Babies
+quest.department_of_agriculture.title=农业部
 quest.department_of_agriculture.info=To all willing hands. This is a job offer from the department of agriculture. We operate in the desolate world of Barus V and you can image the obstacles we face when it comes to growing %3$s. As our plans for hydroponic farms come to turn, our people starve to death. We are searching for capable parties to aid us in the supplying of %3$s shipments to our citizens in need.
-quest.department_of_agriculture.objective.0=Gather %2$s/%3$s %4$s
+quest.department_of_agriculture.objective.0=收获 %2$s/%3$s %4$s
 quest.one_true_love.title=One true love
 quest.one_true_love.info=I'm so happy! You can't even imagine what a joyous moment this is! Merry has finally agreed to merry me. You don't even know how many times I've tried to win her heart. At long last her father gave us his blessing. I know our love is more than enough to keeps us going, but I wanted to give her something special. I was hoping you can find me a diamond so I can put a marvelous ring onto her precious finger. I will forever be in dept and I will be more than happy to compensate for you troubles.
 quest.one_true_love.objective.0=Mine $mineAmount/$maxMineAmount Diamonds
