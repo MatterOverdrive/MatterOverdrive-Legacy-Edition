@@ -20,9 +20,9 @@ item.matteroverdrive.matter_dust.name=物质粉尘
 item.matteroverdrive.matter_dust.details=放入循环仓中精炼
 item.matteroverdrive.machine_casing.name=机械铸件
 item.matteroverdrive.dilithium_crystal.name=双锂晶体
-item.matteroverdrive.tritanium_ingot.name=钛金锭
-item.matteroverdrive.tritanium_plate.name=钛金板
-item.matteroverdrive.tritanium_dust.name=钛金粉
+item.matteroverdrive.tritanium_ingot.name=三钛合金锭
+item.matteroverdrive.tritanium_plate.name=三钛合金板
+item.matteroverdrive.tritanium_dust.name=三钛合金粉
 item.matteroverdrive.pattern_drive.name=模式存储单元
 item.matteroverdrive.pattern_drive.details=可存储2个物品模式
 item.matteroverdrive.earl_gray_tea.name=格雷伯爵茶
@@ -36,7 +36,7 @@ item.matteroverdrive.security_protocol.access.details=允许访问已设置安�
 item.matteroverdrive.security_protocol.remove.name=安全协定（清除）
 item.matteroverdrive.security_protocol.remove.details=移除机器安全设置
 item.matteroverdrive.security_protocol.invalid=安全协定无效
-item.matteroverdrive.tritanium_wrench.name=钛金扳手
+item.matteroverdrive.tritanium_wrench.name=三钛合金扳手
 item.matteroverdrive.tritanium_wrench.details=安全装卸和旋转机器
 item.matteroverdrive.spacetime_equalizer.name=时空均衡器
 item.matteroverdrive.spacetime_equalizer.details=能够作为胸甲装备并抵消重力异常
@@ -71,22 +71,22 @@ item.matteroverdrive.transport_flash_drive.name=传送闪存驱动器
 item.matteroverdrive.transport_flash_drive.details=记录地点以便快速使用传送器
 item.matteroverdrive.matter_container_empty.name=空物质仓
 item.matteroverdrive.matter_container_full.name=满物质仓
-item.matteroverdrive.tritanium_nugget.name=钛金粒
-item.matteroverdrive.tritainum_spine.name=钛金脊椎
+item.matteroverdrive.tritanium_nugget.name=三钛合金粒
+item.matteroverdrive.tritainum_spine.name=三钛合金脊椎
 item.matteroverdrive.data_pad.name=便携数据仪
 item.matteroverdrive.data_pad.details=存储着有关MatterOverdrive（超能物质）的所有信息
 item.matteroverdrive.omni_tool.name=多功能采集枪
 item.matteroverdrive.android_pill_yellow.name=黄色药丸
 item.matteroverdrive.android_pill_yellow.details=用于重置所有解锁技能
-item.matteroverdrive.tritanium_helmet.name=钛金头盔
-item.matteroverdrive.tritanium_chestplate.name=钛金胸甲
-item.matteroverdrive.tritanium_leggings.name=钛金护腿
-item.matteroverdrive.tritanium_boots.name=钛金靴子
-item.matteroverdrive.tritanium_hoe.name=钛金锄
-item.matteroverdrive.tritanium_sword.name=钛金剑
-item.matteroverdrive.tritanium_pickaxe.name=钛金镐
-item.matteroverdrive.tritanium_axe.name=钛金斧
-item.matteroverdrive.tritanium_shovel.name=钛金铲
+item.matteroverdrive.tritanium_helmet.name=三钛合金头盔
+item.matteroverdrive.tritanium_chestplate.name=三钛合金胸甲
+item.matteroverdrive.tritanium_leggings.name=三钛合金护腿
+item.matteroverdrive.tritanium_boots.name=三钛合金靴子
+item.matteroverdrive.tritanium_hoe.name=三钛合金锄
+item.matteroverdrive.tritanium_sword.name=三钛合金剑
+item.matteroverdrive.tritanium_pickaxe.name=三钛合金镐
+item.matteroverdrive.tritanium_axe.name=三钛合金斧
+item.matteroverdrive.tritanium_shovel.name=三钛合金铲
 item.matteroverdrive.contract.name=合同
 item.matteroverdrive.ion_sniper.name=离子狙击枪
 item.matteroverdrive.plasma_shotgun.name=相位散弹枪
@@ -161,14 +161,14 @@ tile.transporter.details=传送生物
 tile.matter_analyzer.name=物质分析仪
 tile.matter_analyzer.details=分析物品模式
 tile.dilithium_ore.name=双锂矿石
-tile.tritanium_ore.name=钛金矿石
-tile.tritanium_block.name=钛金块
+tile.tritanium_ore.name=三钛合金矿石
+tile.tritanium_block.name=三钛合金块
 tile.heavy_matter_pipe.name=重型物质运输管道
 tile.heavy_matter_pipe.details=运输等离子态物质
 tile.holo_sign.name=全息显示板
-tile.force_glass.name=钛金玻璃
+tile.force_glass.name=三钛合金玻璃
 tile.bounding_box.name=绑定方块
-tile.inscriber.name=分子记录仪
+tile.inscriber.name=分子刻录仪
 tile.fusion_reactor_io.name=聚变反应堆接口
 tile.contract_market.name=合同市场
 tile.spacetime_accelerator.name=时空加速仪
@@ -199,7 +199,7 @@ tile.android_spawner.name=残暴机器人刷怪笼
 
 #/#//////////// Fluids ////////////
 tile.matter_plasma.name=等离子物质
-tile.molten_tritanium.name=熔融钛金
+tile.molten_tritanium.name=熔融三钛合金
 
 
 #/#//////////// Fusion Reactor ////////////
@@ -233,8 +233,8 @@ machine.tooltip.matter=物质
 machine.tooltip.energy=充能
 
 #/#//////////// Tritanium Crate ////////////
-tile.tritanium_crate.name=钛金箱
-tile.tritanium_crate_yellow.name=黄色钛金箱
+tile.tritanium_crate.name=三钛合金箱
+tile.tritanium_crate_yellow.name=黄色三钛合金箱
 
 #/#//////////// Entities /////////////////
 entity.matteroverdrive.rogue_android.name=近战残暴机器人
@@ -251,24 +251,24 @@ entity.matteroverdrive.mutant_scientist.name=变异科学家
 #/#//////////// Decorative ////////////////////
 tile.decorative.stripes.name=黄色条纹板材
 tile.decorative.coils.name=线圈
-tile.decorative.clean.name=平滑钛金板材
+tile.decorative.clean.name=平滑三钛合金板材
 tile.decorative.vent.dark.name=深色通风口
 tile.decorative.vent.bright.name=通风口
 tile.decorative.holo_matrix.name=全息矩阵
-tile.decorative.tritanium_plate.name=钛金板材
+tile.decorative.tritanium_plate.name=三钛合金板材
 tile.decorative.carbon_fiber_plate.name=碳纤维板材
 tile.decorative.matter_tube.name=物质管道
-tile.decorative.beams.name=钛金格栅
+tile.decorative.beams.name=三钛合金格栅
 tile.decorative.floor_tiles.name=地板瓷砖
 tile.decorative.floor_tiles_green.name=绿色地板瓷砖
 tile.decorative.floor_noise.name=油地毡地面
-tile.decorative.tritanium_plate_stripe.name=导向钛金板材
+tile.decorative.tritanium_plate_stripe.name=导向三钛合金板材
 tile.decorative.floor_tile_white.name=白色瓷砖
 tile.decorative.white_plate.name=软壁隔板
-tile.decorative.separator.name=钛金轨道
+tile.decorative.separator.name=三钛合金轨道
 tile.decorative.engine_exhaust_plasma.name=等离子废气
-tile.decorative.tritanium_lamp.name=钛金灯
-tile.decorative.tritanium_plate_colored.name=染色钛金板材
+tile.decorative.tritanium_lamp.name=三钛合金灯
+tile.decorative.tritanium_plate_colored.name=染色三钛合金板材
 
 ##########################################################################################################
 # Dialogs
@@ -445,7 +445,7 @@ gui.recycler.name=物质循环仓
 gui.fusion_reactor.name=聚变反应堆
 gui.charging_station.name=充能台
 gui.weapon_station.name=武器装配台
-gui.inscriber.name=分子记录仪
+gui.inscriber.name=分子刻录仪
 gui.contract_market.name=合同
 
 #//////////// Other ///////////////
@@ -627,7 +627,7 @@ enchantment.matteroverdrive.weapon.damage=超频
 ###############################################################################################################
 # Fluids
 fluid.matter_plasma.name=等离子物质
-fluid.molten_tritanium=熔融钛金
+fluid.molten_tritanium=熔融三钛合金
 
 ##########################################################################################################
 # Guides
@@ -660,8 +660,8 @@ guide.entry.batteries.name=能量单元
 guide.entry.food.name=食物
 guide.entry.drinks.name=饮品
 guide.entry.upgrades.name=升级
-guide.entry.tritanium_armor.name=钛金护甲
-guide.entry.tritanium_tools.name=钛金工具
+guide.entry.tritanium_armor.name=三钛合金护甲
+guide.entry.tritanium_tools.name=三钛合金工具
 
 ###############################################################################################################
 # attributes
@@ -691,12 +691,12 @@ color.magenta=品红色
 color.orange=橙色
 color.white=白色
 
-material.tritanium=钛金
-container.tritanium_crate=钛金箱
+material.tritanium=三钛合金
+container.tritanium_crate=三钛合金箱
 rarity.legendary=传奇
 
 mo.jei.time=%d 秒
-mo.jei.inscriber=分子记录仪
+mo.jei.inscriber=分子刻录仪
 
 
 ###############################################################################################################
