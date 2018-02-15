@@ -19,6 +19,7 @@ public class InscriberRecipe extends Recipe<TileEntityInscriber> {
     private ItemStack output;
     private int energy;
     private int time;
+
     public InscriberRecipe() {
     }
 

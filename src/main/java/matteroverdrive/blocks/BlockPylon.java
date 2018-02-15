@@ -1,7 +1,7 @@
 package matteroverdrive.blocks;
 
-import matteroverdrive.MatterOverdrive;
 import com.astro.clib.api.wrench.IWrenchable;
+import matteroverdrive.MatterOverdrive;
 import matteroverdrive.blocks.includes.MOBlockContainer;
 import matteroverdrive.machines.dimensional_pylon.TileEntityMachineDimensionalPylon;
 import net.minecraft.block.material.Material;

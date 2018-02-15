@@ -176,8 +176,8 @@ public class MatterOverdrive {
 
         PROXY.init(event);
 
-        MatterOverdriveItems.items.stream().filter(item -> item instanceof OreDictItem).forEach(item -> ((OreDictItem)item).registerOreDict());
-        MatterOverdriveBlocks.blocks.stream().filter(block -> block instanceof OreDictItem).forEach(block -> ((OreDictItem)block).registerOreDict());
+        MatterOverdriveItems.items.stream().filter(item -> item instanceof OreDictItem).forEach(item -> ((OreDictItem) item).registerOreDict());
+        MatterOverdriveBlocks.blocks.stream().filter(block -> block instanceof OreDictItem).forEach(block -> ((OreDictItem) block).registerOreDict());
         MatterOverdriveRecipes.registerMachineRecipes(event);
 
         weaponFactory.initModules();

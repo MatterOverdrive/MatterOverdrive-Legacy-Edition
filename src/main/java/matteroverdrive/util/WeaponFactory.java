@@ -117,7 +117,7 @@ public class WeaponFactory {
         context.setWeaponStack(weapon);
         decorateWeapon(weapon, context);
         if (context.fullCharge) {
-            ((EnergyContainer)EnergyWeapon.getStorage(weapon)).setFull();
+            ((EnergyContainer) EnergyWeapon.getStorage(weapon)).setFull();
         }
         return weapon;
     }
@@ -126,7 +126,7 @@ public class WeaponFactory {
         ItemStack weapon;
         weapon = WeightedRandom.getRandomItem(random, weapons).getStack();
         if (context.fullCharge) {
-            ((EnergyContainer)EnergyWeapon.getStorage(weapon)).setFull();
+            ((EnergyContainer) EnergyWeapon.getStorage(weapon)).setFull();
         }
         return weapon;
     }

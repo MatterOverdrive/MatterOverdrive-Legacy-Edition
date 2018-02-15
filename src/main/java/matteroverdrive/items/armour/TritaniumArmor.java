@@ -42,7 +42,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TritaniumArmor extends ItemArmor implements ItemModelProvider {
     public TritaniumArmor(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot slot) {
         super(armorMaterial, renderIndex, slot);
-        setUnlocalizedName(Reference.MOD_ID+"."+name);
+        setUnlocalizedName(Reference.MOD_ID + "." + name);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
     }
 
