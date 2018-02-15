@@ -29,7 +29,6 @@ import matteroverdrive.entity.weapon.PlasmaBolt;
 import matteroverdrive.handler.weapon.ClientWeaponHandler;
 import matteroverdrive.init.MatterOverdriveEnchantments;
 import matteroverdrive.init.MatterOverdriveSounds;
-import matteroverdrive.items.ItemLinkedEnergyHandler;
 import matteroverdrive.items.includes.EnergyContainer;
 import matteroverdrive.items.includes.MOItemEnergyContainer;
 import matteroverdrive.network.packet.bi.PacketFirePlasmaShot;
@@ -60,7 +59,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -260,8 +258,8 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
                 if (!stack.isEmpty() && stack.getItem() instanceof IEnergyPack && stack.getCount() > 0) {
                     stack.shrink(1);
                     IEnergyStorage container = getStorage(weapon);
-                    if (container instanceof ItemLinkedEnergyHandler)
-                        ((ItemLinkedEnergyHandler) container).setEnergy(container.getEnergyStored() + ((IEnergyPack) stack.getItem()).getEnergyAmount(stack));
+                    if (container instanceof EnergyContainer)
+                        ((EnergyContainer) container).setEnergy(container.getEnergyStored() + ((IEnergyPack) stack.getItem()).getEnergyAmount(stack));
                     //player.inventory.inventoryChanged = true;
                     player.world.playSound(null, player.getPosition(), MatterOverdriveSounds.weaponsReload, SoundCategory.PLAYERS, 0.7f + itemRand.nextFloat() * 0.2f, 0.9f + itemRand.nextFloat() * 0.2f);
                     if (stack.getCount() <= 0) {
@@ -569,7 +567,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
     public float getZoomMultiply(EntityPlayer entityPlayer, ItemStack weapon) {
         if (WeaponHelper.hasModule(Reference.MODULE_SIGHTS, weapon)) {
             ItemStack sights = WeaponHelper.getModuleAtSlot(Reference.MODULE_SIGHTS, weapon);
-            if (!sights.isEmpty() && sights.getItem() instanceof IWeaponScope) {
+            if (sights != null && sights.getItem() instanceof IWeaponScope) {
                 return ((IWeaponScope) sights.getItem()).getZoomAmount(sights, weapon);
             }
         }
@@ -579,18 +577,18 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
 
     @Override
-    public ICapabilityProvider createProvider(ItemStack stack) {
+    public ICapabilitySerializable<NBTTagCompound> createProvider(ItemStack stack) {
         return new EnergyProvider(stack, getCapacity(), getInput(), getOutput());
     }
 
-    public static class EnergyProvider implements ICapabilityProvider {
+    public static class EnergyProvider implements ICapabilitySerializable<NBTTagCompound> {
 
-        private ItemLinkedEnergyHandler container;
+        private EnergyContainer container;
         private ItemStack stack;
 
         public EnergyProvider(ItemStack stack, int capacity, int in, int out) {
             this.stack = stack;
-            this.container = new ItemLinkedEnergyHandler(stack,capacity, in, out);
+            this.container = new EnergyContainer(capacity, in, out);
         }
 
         @Override
@@ -610,6 +608,16 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
                 return CapabilityEnergy.ENERGY.cast(container);
             }
             return null;
+        }
+
+        @Override
+        public NBTTagCompound serializeNBT() {
+            return container.serializeNBT();
+        }
+
+        @Override
+        public void deserializeNBT(NBTTagCompound tag) {
+            container.deserializeNBT(tag);
         }
     }
 }
