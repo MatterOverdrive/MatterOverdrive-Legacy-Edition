@@ -158,7 +158,7 @@ public abstract class AbstractBioticStat implements IBioticStat {
             name += TextFormatting.RESET + String.format(" [%s/%s]", level, maxLevel());
         }
         list.add(TextFormatting.WHITE + name);
-        String details = getDetails(level);
+        String details = getDetails(level+1);
         String[] detailsSplit = details.split("/n/");
         for (String detail : detailsSplit) {
             list.add(TextFormatting.GRAY + detail);
