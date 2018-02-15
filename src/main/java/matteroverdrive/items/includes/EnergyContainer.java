@@ -42,7 +42,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
     @Override
     public int getEnergyStored() {
         if (stack != null) {
-            return stack.getTagCompound().getInteger("mo_energystored");
+            return stack.getTagCompound().getInteger("energy");
         }
 
         return energy;
@@ -51,7 +51,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
     @Override
     public int getMaxEnergyStored() {
         if (stack != null) {
-            return stack.getTagCompound().getInteger("mo_capacity");
+            return stack.getTagCompound().getInteger("capacity");
         }
 
         return capacity;
@@ -59,7 +59,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
     public int getMaxExtract() {
         if (stack != null) {
-            return stack.getTagCompound().getInteger("mo_maxextract");
+            return stack.getTagCompound().getInteger("maxExtract");
         }
 
         return maxExtract;
@@ -67,7 +67,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
     public int getMaxReceive() {
         if (stack != null) {
-            return stack.getTagCompound().getInteger("mo_maxreceive");
+            return stack.getTagCompound().getInteger("maxReceive");
         }
 
         return maxReceive;
@@ -98,7 +98,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
         if (!simulate) {
             if (stack != null && energyReceived != 0) {
-                stack.getTagCompound().setInteger("mo_energystored", getEnergyStored() + energyReceived);
+                stack.getTagCompound().setInteger("energy", getEnergyStored() + energyReceived);
             } else {
                 energy += energyReceived;
             }
@@ -116,7 +116,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
         if (!simulate) {
             if (stack != null && energyExtracted != 0) {
-                stack.getTagCompound().setInteger("mo_energystored", getEnergyStored() - energyExtracted);
+                stack.getTagCompound().setInteger("energy", getEnergyStored() - energyExtracted);
             } else {
                 energy -= energyExtracted;
             }
@@ -127,18 +127,18 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
     public NBTTagCompound serializeNBT() {
         NBTTagCompound tag = new NBTTagCompound();
-        tag.setInteger("mo_energystored", energy);
-        tag.setInteger("mo_capacity", capacity);
-        tag.setInteger("mo_maxreceive", maxReceive);
-        tag.setInteger("mo_maxextract", maxExtract);
+        tag.setInteger("energy", energy);
+        tag.setInteger("capacity", capacity);
+        tag.setInteger("maxReceive", maxReceive);
+        tag.setInteger("energy", maxExtract);
         return tag;
     }
 
     public void deserializeNBT(NBTTagCompound tag) {
-        energy = tag.getInteger("mo_energystored");
-        capacity = tag.getInteger("mo_capacity");
-        maxReceive = tag.getInteger("mo_maxreceive");
-        maxExtract = tag.getInteger("mo_maxextract");
+        energy = tag.getInteger("energy");
+        capacity = tag.getInteger("capacity");
+        maxReceive = tag.getInteger("maxReceive");
+        maxExtract = tag.getInteger("maxExtract");
     }
 
     public void setMaxEnergy(int max) {
