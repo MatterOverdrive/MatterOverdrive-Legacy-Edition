@@ -2,12 +2,13 @@ package matteroverdrive.items.includes;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.energy.EnergyStorage;
 
+import javax.annotation.Nullable;
+
 public class EnergyContainer extends EnergyStorage implements INBTSerializable<NBTTagCompound> {
-    ItemStack stack;
+    private ItemStack stack;
 
     public EnergyContainer(int capacity) {
         super(capacity);
@@ -29,6 +30,11 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
         setEnergy(this.capacity);
     }
 
+    @Nullable
+    public ItemStack getItemStack() {
+        return this.stack;
+    }
+
     public EnergyContainer setItemStack(ItemStack stack) {
         boolean hasTags = stack.hasTagCompound();
         if (!hasTags || !stack.getTagCompound().hasKey("energy")) {
@@ -46,14 +52,14 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
         return this;
     }
 
-    private NBTTagCompound stackTag() {
-        return (NBTTagCompound) stack.getTagCompound().getTag("energy");
+    private NBTTagCompound getStackEnergyTag() {
+        return stack.getTagCompound().getCompoundTag("energy");
     }
 
     @Override
     public int getEnergyStored() {
         if (stack != null) {
-            return stackTag().getInteger("energy");
+            return getStackEnergyTag().getInteger("energy");
         }
 
         return energy;
@@ -62,7 +68,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
     @Override
     public int getMaxEnergyStored() {
         if (stack != null) {
-            return stackTag().getInteger("capacity");
+            return getStackEnergyTag().getInteger("capacity");
         }
 
         return capacity;
@@ -70,7 +76,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
     public int getMaxExtract() {
         if (stack != null) {
-            return stackTag().getInteger("maxExtract");
+            return getStackEnergyTag().getInteger("maxExtract");
         }
 
         return maxExtract;
@@ -78,7 +84,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
     public int getMaxReceive() {
         if (stack != null) {
-            return stackTag().getInteger("maxReceive");
+            return getStackEnergyTag().getInteger("maxReceive");
         }
 
         return maxReceive;
@@ -86,7 +92,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
     public void setEnergy(int energy) {
         if (stack != null) {
-            stackTag().setInteger("energy", energy);
+            getStackEnergyTag().setInteger("energy", energy);
 
             if (getEnergyStored() > getMaxEnergyStored()) {
                 setFull();
@@ -119,7 +125,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
         if (!simulate) {
             if (stack != null && energyReceived != 0) {
-                stackTag().setInteger("energy", getEnergyStored() + energyReceived);
+                getStackEnergyTag().setInteger("energy", getEnergyStored() + energyReceived);
             } else {
                 energy += energyReceived;
             }
@@ -137,7 +143,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
         if (!simulate) {
             if (stack != null && energyExtracted != 0) {
-                stackTag().setInteger("energy", getEnergyStored() - energyExtracted);
+                getStackEnergyTag().setInteger("energy", getEnergyStored() - energyExtracted);
             } else {
                 energy -= energyExtracted;
             }
@@ -164,7 +170,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
 
     public void setMaxEnergy(int max) {
         if (stack != null) {
-            stackTag().setInteger("capacity", max);
+            getStackEnergyTag().setInteger("capacity", max);
             return;
         }
 

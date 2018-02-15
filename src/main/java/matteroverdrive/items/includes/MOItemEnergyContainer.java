@@ -47,7 +47,9 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
     }
 
     public static IEnergyStorage getStorage(ItemStack stack) {
-        return stack.getCapability(CapabilityEnergy.ENERGY, null);
+        if (stack.hasCapability(CapabilityEnergy.ENERGY, null))
+            return stack.getCapability(CapabilityEnergy.ENERGY, null);
+        return EmptyEnergyStorage.INSTANCE;
     }
 
     @Override
