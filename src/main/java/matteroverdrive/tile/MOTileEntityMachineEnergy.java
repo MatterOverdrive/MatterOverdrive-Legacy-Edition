@@ -42,7 +42,7 @@ import java.util.EnumSet;
  */
 public abstract class MOTileEntityMachineEnergy extends MOTileEntityMachine {
     public static final int ENERGY_CLIENT_SYNC_RANGE = 16;
-    protected MachineEnergyStorage  energyStorage;
+    protected MachineEnergyStorage energyStorage;
     protected int energySlotID;
 
     public MOTileEntityMachineEnergy(int upgradeCount) {

@@ -22,7 +22,7 @@ public class MOItemFood extends ItemFood implements ItemModelProvider {
         super(amount, saturation, isWolfFood);
         this.name = name;
 
-        setUnlocalizedName(Reference.MOD_ID+"."+name);
+        setUnlocalizedName(Reference.MOD_ID + "." + name);
         setRegistryName(name);
 
         setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_FOOD);

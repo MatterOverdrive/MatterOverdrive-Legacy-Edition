@@ -176,7 +176,7 @@ public class EntityRangedRogueAndroidMob extends EntityRougeAndroidMob implement
                 energyWeapon.onServerFire(weapon, this, shot, pos, dir, 0);
                 energyWeapon.setHeat(weapon, 0);
                 if (UNLIMITED_WEAPON_ENERGY) {
-                    ((EnergyContainer)EnergyWeapon.getStorage(weapon)).setFull();
+                    ((EnergyContainer) EnergyWeapon.getStorage(weapon)).setFull();
                 }
                 MatterOverdrive.packetPipeline.sendToAllAround(new PacketFirePlasmaShot(this.getEntityId(), pos, dir, shot), world.provider.getDimension(), posX, posY, posZ, 64);
 

@@ -19,7 +19,6 @@
 package matteroverdrive.network.packet.bi;
 
 import io.netty.buffer.ByteBuf;
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.matter.IMatterDatabase;
 import matteroverdrive.data.matter_network.ItemPattern;
 import matteroverdrive.gui.GuiMatterScanner;
@@ -92,7 +91,7 @@ public class PacketMatterScannerGetDatabase extends TileEntityUpdatePacket {
         @Override
         public void handleClientMessage(EntityPlayerSP player, PacketMatterScannerGetDatabase message, MessageContext ctx) {
             if (Minecraft.getMinecraft().currentScreen instanceof GuiMatterScanner) {
-                GuiMatterScanner guiMatterScanner = (GuiMatterScanner)Minecraft.getMinecraft().currentScreen;
+                GuiMatterScanner guiMatterScanner = (GuiMatterScanner) Minecraft.getMinecraft().currentScreen;
                 guiMatterScanner.UpdatePatternList(message.list);
             }
         }

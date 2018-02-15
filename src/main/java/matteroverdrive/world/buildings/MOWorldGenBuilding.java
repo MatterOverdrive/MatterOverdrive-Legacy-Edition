@@ -76,7 +76,7 @@ public abstract class MOWorldGenBuilding<T extends MOWorldGenBuilding.WorldGenBu
         IBlockState blockBelow = world.getBlockState(pos.add(0, -1, 0));
 
         for (Block x : getValidSpawnBlocks()) {
-            if (!blockAbove.getBlock().isAir(blockAbove,world,pos.add(0,1,0))) {
+            if (!blockAbove.getBlock().isAir(blockAbove, world, pos.add(0, 1, 0))) {
                 return false;
             }
             if (block.getBlock() == x) {

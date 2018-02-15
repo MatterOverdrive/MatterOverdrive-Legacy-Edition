@@ -33,7 +33,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 
-import java.sql.Ref;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ import java.util.List;
 public class SpacetimeEqualizer extends ItemArmor implements ItemModelProvider {
     public SpacetimeEqualizer(String name) {
         super(ItemArmor.ArmorMaterial.IRON, 0, EntityEquipmentSlot.CHEST);
-        setUnlocalizedName(Reference.MOD_ID+"."+name);
+        setUnlocalizedName(Reference.MOD_ID + "." + name);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
         this.setCreativeTab(MatterOverdrive.TAB_OVERDRIVE);
     }

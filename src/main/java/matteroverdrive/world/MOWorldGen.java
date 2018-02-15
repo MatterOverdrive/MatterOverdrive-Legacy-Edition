@@ -213,9 +213,9 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     }
 
     public MOImageGen.ImageGenWorker startBuildingGeneration(MOWorldGenBuilding building, BlockPos pos, Random random, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, boolean forceGeneration) {
-        if(building==null)
+        if (building == null)
             return null;
-        pos=pos.add(8,0,8);
+        pos = pos.add(8, 0, 8);
         if (building != null && (forceGeneration || (building.shouldGenerate(random, world, pos) && building.isLocationValid(world, pos)))) {
             MOImageGen.ImageGenWorker worker = building.createWorker(random, pos, world, chunkGenerator, chunkProvider);
             worldGenBuildingQueue.add(worker);
