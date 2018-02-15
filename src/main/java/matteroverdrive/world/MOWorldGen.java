@@ -96,7 +96,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenCrashedSpaceShip("crashed_ship"), 75));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenUnderwaterBase("underwater_base"), 30));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenCargoShip("cargo_ship"), 5));
-        anomalyGen = new WorldGenGravitationalAnomaly("gravitational_anomaly", 0.005f, 2048, 2048 + 8192);
+        anomalyGen = new WorldGenGravitationalAnomaly("gravitational_anomaly", 5f, 2048, 2048 + 8192);
         oreDimentionsBlacklist = new HashSet<>();
 
         configurationHandler.subscribe(anomalyGen);
@@ -137,8 +137,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         buildingsRandom.setSeed(chunkSeed);
         generateGravitationalAnomalies(world, anomaliesRandom, chunkX * 16, chunkZ * 16, world.provider.getDimension());
         generateOres(world, oreRandom, chunkX * 16, chunkZ * 16, world.provider.getDimension());
-        if (Platform.isDevEnv())
-            startGenerateBuildings(world, buildingsRandom, chunkX, chunkZ, chunkGenerator, chunkProvider);
+        //startGenerateBuildings(world, buildingsRandom, chunkX, chunkZ, chunkGenerator, chunkProvider);
     }
 
     public void generateOverworld(World world, Random random, int chunkX, int chunkZ) {

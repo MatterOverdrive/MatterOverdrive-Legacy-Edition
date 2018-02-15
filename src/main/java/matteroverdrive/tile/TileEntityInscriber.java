@@ -94,7 +94,7 @@ public class TileEntityInscriber extends MOTileEntityMachineEnergy {
 
     public boolean canPutInOutput() {
         ItemStack outputStack = inventory.getStackInSlot(OUTPUT_SLOT_ID);
-        return outputStack.isEmpty();
+        return outputStack.isEmpty() || (cachedRecipe!=null&&outputStack.isItemEqual(cachedRecipe.getOutput(this)));
     }
 
     public void inscribeItem() {

@@ -18,17 +18,20 @@
 
 package matteroverdrive.tile;
 
+import matteroverdrive.MatterOverdrive;
 import matteroverdrive.data.Inventory;
 import matteroverdrive.data.MachineEnergyStorage;
 import matteroverdrive.data.inventory.EnergySlot;
 import matteroverdrive.machines.MOTileEntityMachine;
 import matteroverdrive.machines.MachineNBTCategory;
+import matteroverdrive.network.packet.client.PacketPowerUpdate;
 import matteroverdrive.util.MOEnergyHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -39,7 +42,7 @@ import java.util.EnumSet;
  */
 public abstract class MOTileEntityMachineEnergy extends MOTileEntityMachine {
     public static final int ENERGY_CLIENT_SYNC_RANGE = 16;
-    protected MachineEnergyStorage energyStorage;
+    protected MachineEnergyStorage  energyStorage;
     protected int energySlotID;
 
     public MOTileEntityMachineEnergy(int upgradeCount) {
@@ -107,7 +110,7 @@ public abstract class MOTileEntityMachineEnergy extends MOTileEntityMachine {
     }
 
     public void UpdateClientPower() {
-        //MatterOverdrive.packetPipeline.sendToAllAround(new PacketPowerUpdate(this), new NetworkRegistry.TargetPoint(world.provider.getDimension(), getPos().getX(), getPos().getY(), getPos().getZ(), ENERGY_CLIENT_SYNC_RANGE));
+        MatterOverdrive.packetPipeline.sendToAllAround(new PacketPowerUpdate(this), new NetworkRegistry.TargetPoint(world.provider.getDimension(), getPos().getX(), getPos().getY(), getPos().getZ(), ENERGY_CLIENT_SYNC_RANGE));
     }
 
     @Override
