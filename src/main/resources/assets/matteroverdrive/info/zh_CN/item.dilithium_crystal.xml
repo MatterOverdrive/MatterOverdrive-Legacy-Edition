@@ -18,8 +18,10 @@
 
 <entry stylesheet="matteroverdrive:info/styles/guide.css">
     <page class="padded-page">
-        <text class="matter-text text-block">$itemName是获取[item name=tritanium_ingot]的唯一方法。</text>
-        <depth min="0" max="64"></depth>
-        <text class="matter-text text-block">它在Y坐标64以下生成。</text>
+        <title size="2" class="matter-text small-title">双锂晶体</title>
+        <image width="64" height="64" src="guide/dilithium_crystal.png" style="float:left;margin-right:8px;margin-bottom:4px"></image>
+        <text class="matter-text text-block" style="width:180px">双锂是一种通过漫长地质变化而形成的坚固结晶矿物。
+            将其置于高频电磁场中时，它的结构会随着电磁场的诱导而发生改变，晶体将失去电子。</text>
+        <text class="matter-text text-block">绝大多数MatterOverdrive（超能物质）的机械制造都离不开双锂。而[block name=dilithium_ore]的开采必要要挖掘等级等于铁或者以上的工具才能挖掘。附带时运附魔的工具挖掘[block name=dilithium_ore]将显著增加双锂晶体的掉落数量。</text>
     </page>
 </entry>

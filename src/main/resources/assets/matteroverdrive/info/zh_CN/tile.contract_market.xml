@@ -1,0 +1,10 @@
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">$itemName</title>
+        <text class="matter-text text-block">$itemName是刷新自定义支线[item name=contract]的设备，每次刷新任务都有所谓‘信息延迟’。
+            这种延迟取决于合同的类型。
+            $itemName不会刷新任何以完成的任务。
+        </text>
+        <text class="matter-text text-block">有许多不同的支线，如杀怪、收集物品、放置方块以及前往对应坐标等等。</text>
+    </page>
+</entry>

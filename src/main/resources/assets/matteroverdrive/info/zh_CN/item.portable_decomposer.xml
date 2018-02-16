@@ -18,8 +18,13 @@
 
 <entry stylesheet="matteroverdrive:info/styles/guide.css">
     <page class="padded-page">
-        <text class="matter-text text-block">$itemName是获取[item name=tritanium_ingot]的唯一方法。</text>
-        <depth min="0" max="64"></depth>
-        <text class="matter-text text-block">它在Y坐标64以下生成。</text>
+        <title size="2" class="matter-text small-title">$itemName</title>
+        <text class="matter-text text-block">$itemName的作用类似[item name=decomposer]，它可以放置在快捷栏中将拾取物品分解为等离子物质。
+        一切能够被分解的物质都能够被它所分解。</text>
+        <text class="matter-text text-block">如果要分解特定物品，仅需将$itemName与相应物品在[item mod=minecraft name=anvil]敲击即可。一旦绑定就无法删除特定物品标记。</text>
+        <text class="matter-text text-block">$itemName相对于[item name=decomposer]而言，效率是相当低的。
+            一旦被分解，分解所得物质将被存储于其内部。
+            要想导出$itemName其中物质，仅需手持其右击[quide name=matter]以进行存储。
+        </text>
     </page>
 </entry>

@@ -18,8 +18,8 @@
 
 <entry stylesheet="matteroverdrive:info/styles/guide.css">
     <page class="padded-page">
-        <text class="matter-text text-block">$itemName是获取[item name=tritanium_ingot]的唯一方法。</text>
-        <depth min="0" max="64"></depth>
-        <text class="matter-text text-block">它在Y坐标64以下生成。</text>
+        <title size="2" class="matter-text small-title" >能量包</title>
+        <preview index="0" size="2" style="float:left;margin-right:7px"></preview>
+        <text class="matter-text text-block" style="width:190px">$itemNames用于快速补充工具能量。当工具能量为0时，会自动使用$itemName对自身进行充能。务必让它们时刻在你的物品栏中才可进行工作。</text>
     </page>
 </entry>
