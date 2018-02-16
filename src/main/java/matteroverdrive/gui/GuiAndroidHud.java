@@ -341,7 +341,7 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
                     RenderUtils.drawPlane(0, 0, -100, event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());
                 }
 
-                if (hudMovement) {
+                if (hudMovement && !this.mc.player.isPlayerSleeping()) {
                     hudRotationYawSmooth = mc.player.prevRenderArmYaw + (mc.player.renderArmYaw - mc.player.prevRenderArmYaw) * event.getPartialTicks();
                     hudRotationPitchSmooth = mc.player.prevRenderArmPitch + (mc.player.renderArmPitch - mc.player.prevRenderArmPitch) * event.getPartialTicks();
                     GlStateManager.translate((hudRotationYawSmooth - mc.player.rotationYaw) * 0.2f, (hudRotationPitchSmooth - mc.player.rotationPitch) * 0.2f, 0);
