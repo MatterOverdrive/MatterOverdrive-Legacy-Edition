@@ -130,6 +130,10 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void onRenderExperienceBar(RenderGameOverlayEvent event) {
+        if (this.mc.player.isSpectator()) {
+            return;
+        }
+
         AndroidPlayer android = MOPlayerCapabilityProvider.GetAndroidCapability(mc.player);
 
         if ((mc.currentScreen instanceof GuiDialog || mc.currentScreen instanceof GuiStarMap) && !event.getType().equals(RenderGameOverlayEvent.ElementType.ALL) && event.isCancelable()) {
@@ -206,6 +210,10 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
     }
 
     public void renderRadialMenu(RenderGameOverlayEvent event) {
+        if (this.mc.player.isSpectator()) {
+            return;
+        }
+
         GlStateManager.pushMatrix();
         GlStateManager.translate(event.getResolution().getScaledWidth() / 2, event.getResolution().getScaledHeight() / 2, 0);
         double scale = MOMathHelper.easeIn(GuiAndroidHud.radialAnimationTime, 0, 1, 1);
@@ -314,6 +322,10 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
     }
 
     public void renderHud(RenderGameOverlayEvent event) {
+        if (this.mc.player.isSpectator()) {
+            return;
+        }
+
         AndroidPlayer android = MOPlayerCapabilityProvider.GetAndroidCapability(mc.player);
 
         if (android != null) {
