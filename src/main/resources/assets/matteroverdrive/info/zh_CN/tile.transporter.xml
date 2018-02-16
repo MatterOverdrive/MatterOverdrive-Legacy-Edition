@@ -1,0 +1,40 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">传送器</title>
+        <text class="matter-text text-block">这台设备运行玩家在两地之间自由往返。</text>
+        <image width="71" height="116" src="guide/transporter_in_action.png" style="float:left;margin-right:8px"></image>
+        <text class="matter-text text-block" style="width:180px">为了达到这个目的，$itemName会根据不同的距离吸收不同的FE能量。它会将每个坐标点存储为量子信息并使用原子来实现远程交互。每个站在$itemName上方的实体都将受到此影响，这将意味着一次传送可传送多个实体。另外，$itemName在使用时必须先设置传送点。</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">如何开始</title>
+        <text class="matter-text text-block">传送点由X、Y、Z三个值组成。随着传送点距离的变化取而代之的是FE能量的变化，并且原先设置好的传送点可以进行编辑以及重命名。</text>
+        <image width="128" height="64" src="guide/transporter_configurations.png" style="float:left;margin-right:8px"></image>
+        <image width="64" height="64" src="guide/transporter_flash_drive.png" style="margin-bottom:8px"></image>
+        <text class="matter-text text-block">你还可以使用[item name=transport_flash_drive]快速导入传送点。</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">升级</title>
+        <text class="matter-text text-block">在通常情况下，$itemName能传送的距离很小， [item name=upgrade meta=4 guide=upgrades page=4]可用于升级$itemName传送距离（范围）。每个范围升级的距离都会叠加。</text>
+        <image width="64" height="64" src="guide/transporter_range_upgrades.png" style="float:left;margin-right:8px;margin-bottom:8px"></image>
+        <text class="matter-text text-block" style="width:180px">值得注意的是，范围升级也大大增加了$itemName的能耗。</text>
+        <text class="matter-text text-block">你也可以使用[item name=upgrade meta=1 guide=upgrades page=1]和[item name=upgrade meta=2 guide=upgrades page=2]以及[item name=upgrade guide=upgrades page=5 meta=5]。</text>
+    </page>
+</entry>
