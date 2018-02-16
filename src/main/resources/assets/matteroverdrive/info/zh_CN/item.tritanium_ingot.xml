@@ -1,0 +1,27 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">三钛合金</title>
+        <preview index="0" size="2" style="margin-bottom:7px"></preview>
+        <text class="matter-text text-block">$itemName是一种人类已知的金属，它的硬度是[item mod=minecraft name=diamond]的两倍。
+            它绝大多数用于制作MatterOverdrive（超能物质）机械的主要材料，但也可用于制作[guide name=tritanium_tools]和[guide name=tritanium_armor]。</text>
+        <text class="matter-text text-block">三钛合金锭可以被分解为9个[item name=tritanium_nugget]，如果将2个三钛合金锭压缩则可以变成[item name=tritanium_plate]。</text>
+    </page>
+</entry>
