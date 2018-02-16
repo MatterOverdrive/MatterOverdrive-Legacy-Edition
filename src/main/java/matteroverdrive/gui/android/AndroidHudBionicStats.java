@@ -52,7 +52,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     public void drawElement(AndroidPlayer android, ScaledResolution resolution, float ticks) {
         int count = 0;
         for (int i = 0; i < android.getSizeInventory(); i++) {
-            if (android.getStackInSlot(i) != null) {
+            if (!android.getStackInSlot(i).isEmpty()) {
                 drawAndroidPart(android.getStackInSlot(i), baseColor, getX(count, resolution, android), getY(count, resolution, android));
                 count++;
             }
@@ -123,6 +123,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     }
 
     private void drawBioticStat(IBioticStat stat, AndroidPlayer androidPlayer, int level, Color color, int x, int y) {
+        GlStateManager.enableBlend();
         if (stat.isActive(androidPlayer, level) && stat.isEnabled(androidPlayer, level)) {
             drawActiveBG(color, x, y);
         } else {
@@ -134,6 +135,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
             int delayWidth = ClientProxy.moFontRender.getStringWidth(delay);
             ClientProxy.moFontRender.drawString(delay, x + 22 - delayWidth, y + 22 - ClientProxy.moFontRender.FONT_HEIGHT - 1, Reference.COLOR_HOLO.getColor());
         }
+        GlStateManager.disableBlend();
     }
 
     private void drawNormalBG(Color color, int x, int y) {
