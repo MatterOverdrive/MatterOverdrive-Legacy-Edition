@@ -1,0 +1,27 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">饮品</title>
+        <preview index="0" size="2" style="float:left;margin-right:7px"></preview>
+        <text class="matter-text text-block" style="width:210px;margin-top:4px">罗慕兰麦酒是一种源自罗慕兰的高浓度酒精饮料，这种麦酒的酒酿有着独特的天蓝色。</text>
+        <preview index="1" size="2" style="float:left;margin-right:7px"></preview>
+        <text class="matter-text text-block" style="width:210px;margin-top:4px">通过以红茶作为底基，用芳香柑橘类水果意大利香柠檬外皮中提取的油加以调味而成的茶，具有特殊香气和口味。源于格雷伯爵二世惊人的外交天赋而得名。</text>
+    </page>
+</entry>
