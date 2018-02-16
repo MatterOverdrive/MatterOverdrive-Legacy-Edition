@@ -61,20 +61,20 @@ public class KeyHandler {
 
         AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(FMLClientHandler.instance().getClientPlayerEntity());
         if (androidPlayer.isAndroid() && ClientProxy.keyHandler.getBinding(KeyHandler.ABILITY_USE_KEY).isPressed()) {
-            for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+            for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
                 int level = androidPlayer.getUnlockedLevel(stat);
                 if (level > 0 && stat.isEnabled(androidPlayer, level)) {
                     stat.onActionKeyPress(androidPlayer, androidPlayer.getUnlockedLevel(stat), false);
                 }
             }
-            MatterOverdrive.packetPipeline.sendToServer(new PacketBioticActionKey());
+            MatterOverdrive.NETWORK.sendToServer(new PacketBioticActionKey());
         }
     }
 
     public void manageBiostats(int keyCode, boolean state) {
         AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(FMLClientHandler.instance().getClientPlayerEntity());
         if (androidPlayer.isAndroid()) {
-            for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+            for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
                 int level = androidPlayer.getUnlockedLevel(stat);
                 if (level > 0 && stat.isEnabled(androidPlayer, level)) {
                     stat.onKeyPress(androidPlayer, androidPlayer.getUnlockedLevel(stat), keyCode, state);

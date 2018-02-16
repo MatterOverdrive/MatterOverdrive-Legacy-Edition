@@ -48,7 +48,7 @@ public abstract class Quest implements IQuest {
     }
 
     public static IQuest getQuestFromName(String name) {
-        return MatterOverdrive.quests.getQuestByName(name);
+        return MatterOverdrive.QUESTS.getQuestByName(name);
     }
 
     @Override

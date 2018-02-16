@@ -210,7 +210,7 @@ public class GuiStarMap extends MOGuiMachine<TileEntityMachineStarMap> {
         planetPage.init();
         pagePlanetStats.init();
         if (newPage != machine.getZoomLevel()) {
-            MatterOverdrive.packetPipeline.sendToServer(new PacketStarMapClientCommands(machine, newPage, machine.getGalaxyPosition(), machine.getDestination()));
+            MatterOverdrive.NETWORK.sendToServer(new PacketStarMapClientCommands(machine, newPage, machine.getGalaxyPosition(), machine.getDestination()));
         }
     }
 

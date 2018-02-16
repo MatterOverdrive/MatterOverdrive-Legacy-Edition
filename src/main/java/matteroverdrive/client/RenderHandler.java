@@ -242,7 +242,7 @@ public class RenderHandler {
         for (IWorldLastRenderer renderer : customRenderers) {
             renderer.onRenderWorldLast(this, event);
         }
-        for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+        for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
             Collection<IBioticStatRenderer> statRendererCollection = statRenderRegistry.getRendererCollection(stat.getClass());
             if (statRendererCollection != null) {
                 for (IBioticStatRenderer renderer : statRendererCollection) {

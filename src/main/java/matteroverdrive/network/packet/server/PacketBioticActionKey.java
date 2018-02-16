@@ -34,7 +34,7 @@ public class PacketBioticActionKey extends PacketAbstract {
         public void handleServerMessage(EntityPlayerMP player, PacketBioticActionKey message, MessageContext ctx) {
             AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(player);
             if (androidPlayer.isAndroid()) {
-                for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+                for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
                     int unlockedLevel = androidPlayer.getUnlockedLevel(stat);
                     if (unlockedLevel > 0 && stat.isEnabled(androidPlayer, unlockedLevel)) {
                         stat.onActionKeyPress(androidPlayer, unlockedLevel, true);

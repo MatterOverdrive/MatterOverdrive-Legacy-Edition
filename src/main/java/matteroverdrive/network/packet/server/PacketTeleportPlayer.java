@@ -83,7 +83,7 @@ public class PacketTeleportPlayer extends PacketAbstract {
                 int unlockedLevel = androidPlayer.getUnlockedLevel(OverdriveBioticStats.teleport);
                 if (!MinecraftForge.EVENT_BUS.post(new MOEventBionicStat(OverdriveBioticStats.teleport, unlockedLevel, androidPlayer))) {
                     if (OverdriveBioticStats.teleport.isEnabled(androidPlayer, unlockedLevel)) {
-                        MatterOverdrive.packetPipeline.sendToAllAround(new PacketSpawnParticle("teleport", player.posX, player.posY + 1, player.posZ, 1, RenderParticlesHandler.Blending.Additive), player, 64);
+                        MatterOverdrive.NETWORK.sendToAllAround(new PacketSpawnParticle("teleport", player.posX, player.posY + 1, player.posZ, 1, RenderParticlesHandler.Blending.Additive), player, 64);
                         player.world.playSound(player, player.posX, player.posY, player.posZ, MatterOverdriveSounds.androidTeleport, SoundCategory.BLOCKS, 0.2f, 0.8f + 0.4f * player.world.rand.nextFloat());
                         player.setPositionAndUpdate(message.x, message.y, message.z);
                         player.world.playSound(null, message.x, message.y, message.z, MatterOverdriveSounds.androidTeleport, SoundCategory.BLOCKS, 0.2f, 0.8f + 0.4f * player.world.rand.nextFloat());

@@ -56,7 +56,7 @@ public class GuiMatterScanner extends MOGuiBase {
         this.databaseSlot = slot;
         lastPage = MatterScanner.getLastPage(scanner);
 
-        MatterOverdrive.packetPipeline.sendToServer(new PacketMatterScannerGetDatabase(MatterScanner.getLinkPosition(scanner)));
+        MatterOverdrive.NETWORK.sendToServer(new PacketMatterScannerGetDatabase(MatterScanner.getLinkPosition(scanner)));
     }
 
     @Override
@@ -146,7 +146,7 @@ public class GuiMatterScanner extends MOGuiBase {
     public void onGuiClosed() {
         super.onGuiClosed();
         if (MatterScanner.getSelectedAsPattern(scanner).equals(lastSelected)) {
-            MatterOverdrive.packetPipeline.sendToServer(new PacketMatterScannerUpdate(scanner, (short) databaseSlot));
+            MatterOverdrive.NETWORK.sendToServer(new PacketMatterScannerUpdate(scanner, (short) databaseSlot));
         }
     }
 

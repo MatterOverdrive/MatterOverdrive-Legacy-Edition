@@ -40,7 +40,7 @@ public class PacketConversationInteract extends PacketAbstract {
 
     public PacketConversationInteract(IDialogNpc npc, IDialogMessage dialogMessage, int optionId) {
         this.npcID = npc.getEntity().getEntityId();
-        this.dialogMessageID = MatterOverdrive.dialogRegistry.getMessageId(dialogMessage);
+        this.dialogMessageID = MatterOverdrive.DIALOG_REGISTRY.getMessageId(dialogMessage);
         this.optionId = optionId;
     }
 
@@ -65,7 +65,7 @@ public class PacketConversationInteract extends PacketAbstract {
             if (npcEntity instanceof IDialogNpc) {
                 IDialogMessage m;
                 if (message.dialogMessageID >= 0) {
-                    m = MatterOverdrive.dialogRegistry.getMessage(message.dialogMessageID);
+                    m = MatterOverdrive.DIALOG_REGISTRY.getMessage(message.dialogMessageID);
                 } else {
                     m = ((IDialogNpc) npcEntity).getStartDialogMessage(player);
                 }

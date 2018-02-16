@@ -152,7 +152,7 @@ public class PlasmaBolt extends Entity implements IProjectile, IGravityEntity, I
     @Override
     public void onUpdate() {
         if (!world.isRemote && shootingEntity instanceof EntityPlayerMP) {
-            MatterOverdrive.packetPipeline.sendTo(new PacketUpdatePlasmaBolt(getEntityId(), posX, posY, posZ), (EntityPlayerMP) shootingEntity);
+            MatterOverdrive.NETWORK.sendTo(new PacketUpdatePlasmaBolt(getEntityId(), posX, posY, posZ), (EntityPlayerMP) shootingEntity);
         }
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {

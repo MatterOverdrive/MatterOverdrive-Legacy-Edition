@@ -1,5 +1,7 @@
 package matteroverdrive.sounds;
 
+import net.minecraftforge.client.model.IModel;
+
 public final class MOSounds {
 
     public static final class Story {
@@ -9,6 +11,7 @@ public final class MOSounds {
     }
 
     public enum ShipMisc {
+
 
     }
     public enum ShipAi {

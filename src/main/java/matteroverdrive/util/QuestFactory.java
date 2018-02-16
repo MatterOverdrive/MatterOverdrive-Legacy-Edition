@@ -84,10 +84,10 @@ public class QuestFactory {
     }
 
     public QuestStack generateQuestStack(String questName) {
-        IQuest quest = MatterOverdrive.quests.getQuestByName(questName);
+        IQuest quest = MatterOverdrive.QUESTS.getQuestByName(questName);
         if (quest != null) {
             QuestStack questStack = new QuestStack(quest);
-            quest.initQuestStack(MatterOverdrive.quests.random, questStack);
+            quest.initQuestStack(MatterOverdrive.QUESTS.random, questStack);
             return questStack;
         }
         return null;

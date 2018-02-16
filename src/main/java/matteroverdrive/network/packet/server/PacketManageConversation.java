@@ -83,11 +83,11 @@ public class PacketManageConversation extends PacketAbstract {
                 if (message.start) {
                     if (((IDialogNpc) npcEntity).getDialogPlayer() == null && ((IDialogNpc) npcEntity).canTalkTo(player)) {
                         ((IDialogNpc) npcEntity).setDialogPlayer(player);
-                        MatterOverdrive.packetPipeline.sendTo(message, player);
+                        MatterOverdrive.NETWORK.sendTo(message, player);
                     }
                 } else {
                     ((IDialogNpc) npcEntity).setDialogPlayer(null);
-                    MatterOverdrive.packetPipeline.sendTo(message, player);
+                    MatterOverdrive.NETWORK.sendTo(message, player);
                 }
             }
         }

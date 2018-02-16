@@ -75,7 +75,7 @@ public class ComponentTaskProcessingReplicator extends TaskQueueComponent<Matter
                         if (this.replicateTime >= time) {
                             this.replicateTime = 0;
                             this.replicateItem(replicatePattern.getPattern(), patternStack);
-                            MatterOverdrive.packetPipeline.sendToDimention(new PacketReplicationComplete(machine), getWorld());
+                            MatterOverdrive.NETWORK.sendToDimention(new PacketReplicationComplete(machine), getWorld());
                             SoundHandler.PlaySoundAt(getWorld(), MatterOverdriveSounds.replicateSuccess, SoundCategory.BLOCKS, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 0.25F * machine.getBlockType(BlockReplicator.class).replication_volume, 1.0F, 0.2F, 0.8F);
                         }
                         if (radiationTimeTracker.hasDelayPassed(getWorld(), TileEntityMachineReplicator.RADIATION_DAMAGE_DELAY)) {

@@ -99,15 +99,15 @@ public class AndoidCommands extends CommandBase {
                             commandInfo = sender.getName() + " stats are now Reset";
                         }
                     } else if (parameters[0].equalsIgnoreCase("unlock")) {
-                        if (MatterOverdrive.statRegistry.hasStat(parameters[1])) {
-                            IBioticStat stat = MatterOverdrive.statRegistry.getStat(parameters[1]);
+                        if (MatterOverdrive.STAT_REGISTRY.hasStat(parameters[1])) {
+                            IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(parameters[1]);
                             androidPlayer.unlock(stat, stat.maxLevel());
                             validCommand = true;
                             commandInfo = sender.getName() + " now has the ability " + TextFormatting.GREEN + "[" + stat.getDisplayName(androidPlayer, stat.maxLevel()) + "]";
                         }
                     } else if (parameters[0].equalsIgnoreCase("forget")) {
-                        if (MatterOverdrive.statRegistry.hasStat(parameters[1])) {
-                            IBioticStat stat = MatterOverdrive.statRegistry.getStat(parameters[1]);
+                        if (MatterOverdrive.STAT_REGISTRY.hasStat(parameters[1])) {
+                            IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(parameters[1]);
                             androidPlayer.reset(stat);
                             validCommand = true;
                             commandInfo = TextFormatting.GREEN + "[" + stat.getDisplayName(androidPlayer, stat.maxLevel()) + "]" + TextFormatting.RESET + " removed from " + sender.getName();
@@ -137,9 +137,9 @@ public class AndoidCommands extends CommandBase {
             } else if (parameters[0].equalsIgnoreCase("stats")) {
                 commands.add("reset");
             } else if (parameters[0].equalsIgnoreCase("unlock")) {
-                commands.addAll(MatterOverdrive.statRegistry.getStats().stream().map(IBioticStat::getUnlocalizedName).collect(Collectors.toList()));
+                commands.addAll(MatterOverdrive.STAT_REGISTRY.getStats().stream().map(IBioticStat::getUnlocalizedName).collect(Collectors.toList()));
             } else if (parameters[0].equalsIgnoreCase("forget")) {
-                commands.addAll(MatterOverdrive.statRegistry.getStats().stream().map(IBioticStat::getUnlocalizedName).collect(Collectors.toList()));
+                commands.addAll(MatterOverdrive.STAT_REGISTRY.getStats().stream().map(IBioticStat::getUnlocalizedName).collect(Collectors.toList()));
             }
         } else {
             commands.add("set");

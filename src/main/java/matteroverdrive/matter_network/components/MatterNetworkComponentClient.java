@@ -209,7 +209,7 @@ public abstract class MatterNetworkComponentClient<T extends MOTileEntityMachine
     protected void manageNetwork() {
         if (matterNetwork == null) {
             if (!tryConnectToNeighborNetworks(getNodeWorld())) {
-                MatterNetwork network = MatterOverdrive.matterNetworkHandler.getNetwork(rootClient);
+                MatterNetwork network = MatterOverdrive.MATTER_NETWORK_HANDLER.getNetwork(rootClient);
                 network.addNode(rootClient);
             }
         }

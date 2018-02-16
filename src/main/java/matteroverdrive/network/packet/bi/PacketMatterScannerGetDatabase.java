@@ -83,7 +83,7 @@ public class PacketMatterScannerGetDatabase extends TileEntityUpdatePacket {
             TileEntity tileEntity = message.getTileEntity(player.world);
             if (tileEntity instanceof IMatterDatabase) {
                 IMatterDatabase database = (IMatterDatabase) tileEntity;
-                //MatterOverdrive.packetPipeline.sendTo(new PacketMatterScannerGetDatabase(database.getPattern()),player);
+                //MatterOverdrive.NETWORK.sendTo(new PacketMatterScannerGetDatabase(database.getPattern()),player);
             }
         }
 

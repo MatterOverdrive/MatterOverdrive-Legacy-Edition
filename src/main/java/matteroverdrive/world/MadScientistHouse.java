@@ -166,7 +166,7 @@ public class MadScientistHouse extends StructureVillagePieces.Village {
             if (boundingBox.isVecInside(pos)) {
                 worldIn.setBlockState(pos, MatterOverdrive.BLOCKS.tritaniumCrate.getDefaultState(), 2);
                 TileEntityTritaniumCrate tileentitycrate = (TileEntityTritaniumCrate) worldIn.getTileEntity(pos);
-                tileentitycrate.getInventory().addItem(MatterOverdrive.questFactory.generateQuestStack(randomIn, MatterOverdrive.quests.getQuestByName("gmo")).getContract());
+                tileentitycrate.getInventory().addItem(MatterOverdrive.QUEST_FACTORY.generateQuestStack(randomIn, MatterOverdrive.QUESTS.getQuestByName("gmo")).getContract());
                 ItemStack scanner = new ItemStack(MatterOverdrive.ITEMS.dataPad);
                 scanner.setStackDisplayName("Mad Scientist's Data Pad");
                 MatterOverdrive.ITEMS.dataPad.addToScanWhitelist(scanner, Blocks.CARROTS);

@@ -222,7 +222,7 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
         AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(Minecraft.getMinecraft().player);
 
         stats.clear();
-        for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+        for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
             if (stat.showOnWheel(androidPlayer, androidPlayer.getUnlockedLevel(stat)) && androidPlayer.isUnlocked(stat, 0)) {
                 stats.add(stat);
             }

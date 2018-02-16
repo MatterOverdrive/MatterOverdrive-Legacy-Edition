@@ -114,7 +114,7 @@ public class PageActiveQuests extends ElementBaseGroup implements IListHandler {
         ((DataPad) dataPadStack.getItem()).setSelectedActiveQuest(dataPadStack, selected);
         questInfoGroup.setScroll(0);
         loadSelectedQuestInfo();
-        MatterOverdrive.packetPipeline.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
+        MatterOverdrive.NETWORK.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
     }
 
     private void loadSelectedQuestInfo() {
@@ -132,7 +132,7 @@ public class PageActiveQuests extends ElementBaseGroup implements IListHandler {
                 questInfo.addLine("");
             }
             for (int i = 0; i < selectedQuest.getObjectivesCount(Minecraft.getMinecraft().player); i++) {
-                List<String> objectiveLines = MatterOverdrive.questFactory.getFormattedQuestObjective(Minecraft.getMinecraft().player, selectedQuest, i, sizeX + 60);
+                List<String> objectiveLines = MatterOverdrive.QUEST_FACTORY.getFormattedQuestObjective(Minecraft.getMinecraft().player, selectedQuest, i, sizeX + 60);
                 questInfo.addLines(objectiveLines);
             }
             questInfo.addLine("");
@@ -180,16 +180,16 @@ public class PageActiveQuests extends ElementBaseGroup implements IListHandler {
         if (dataPadStack.hasTagCompound()) {
             dataPadStack.getTagCompound().setShort("QuestInfoScroll", (short) questInfoGroup.getScroll());
         }
-        MatterOverdrive.packetPipeline.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
+        MatterOverdrive.NETWORK.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
     }
 
     @Override
     public void handleElementButtonClick(MOElementBase element, String elementName, int mouseButton) {
         super.handleElementButtonClick(element, elementName, mouseButton);
         if (elementName.equalsIgnoreCase("complete_quest")) {
-            MatterOverdrive.packetPipeline.sendToServer(new PacketQuestActions(PacketQuestActions.QUEST_ACTION_COMPLETE, quests.getSelectedIndex(), Minecraft.getMinecraft().player));
+            MatterOverdrive.NETWORK.sendToServer(new PacketQuestActions(PacketQuestActions.QUEST_ACTION_COMPLETE, quests.getSelectedIndex(), Minecraft.getMinecraft().player));
         } else if (elementName.equalsIgnoreCase("abandon_quest")) {
-            MatterOverdrive.packetPipeline.sendToServer(new PacketQuestActions(PacketQuestActions.QUEST_ACTION_ABONDON, quests.getSelectedIndex(), Minecraft.getMinecraft().player));
+            MatterOverdrive.NETWORK.sendToServer(new PacketQuestActions(PacketQuestActions.QUEST_ACTION_ABONDON, quests.getSelectedIndex(), Minecraft.getMinecraft().player));
         }
     }
 }

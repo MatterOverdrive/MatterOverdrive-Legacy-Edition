@@ -50,7 +50,7 @@ public abstract class AbstractQuestLogic implements IQuestLogic {
     public void loadFromJson(JsonObject jsonObject) {
         this.autoComplete = MOJsonHelper.getBool(jsonObject, "auto_complete", false);
         if (jsonObject.has("rewards")) {
-            rewards.addAll(MatterOverdrive.questAssembler.parseRewards(jsonObject.getAsJsonArray("rewards")));
+            rewards.addAll(MatterOverdrive.QUEST_ASSEMBLER.parseRewards(jsonObject.getAsJsonArray("rewards")));
         }
     }
 

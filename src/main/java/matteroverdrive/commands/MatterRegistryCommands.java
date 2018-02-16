@@ -62,9 +62,9 @@ public class MatterRegistryCommands extends CommandBase {
     public void execute(MinecraftServer server, ICommandSender commandSender, String[] args) throws CommandException {
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("recalculate")) {
-                MatterOverdrive.matterRegistry.getItemEntires().clear();
-                MatterOverdriveMatter.registerBasic(MatterOverdrive.configHandler);
-                MatterOverdrive.matterRegistrationHandler.runCalculationThread(commandSender.getEntityWorld());
+                MatterOverdrive.MATTER_REGISTRY.getItemEntires().clear();
+                MatterOverdriveMatter.registerBasic(MatterOverdrive.CONFIG_HANDLER);
+                MatterOverdrive.MATTER_REGISTRATION_HANDLER.runCalculationThread(commandSender.getEntityWorld());
             }
         } else if (args.length == 2) {
             if (args[0].equalsIgnoreCase("blacklist")) {
@@ -79,15 +79,15 @@ public class MatterRegistryCommands extends CommandBase {
                 if (!stack.isEmpty()) {
                     if (args[1].equalsIgnoreCase("itemstack")) {
                         key = stack.getItem().getRegistryName() + "/" + stack.getItemDamage();
-                        MatterOverdrive.matterRegistry.register(stack.getItem(), new DamageAwareStackHandler(stack.getItemDamage(), 0, true));
+                        MatterOverdrive.MATTER_REGISTRY.register(stack.getItem(), new DamageAwareStackHandler(stack.getItemDamage(), 0, true));
                     } else if (args[1].equalsIgnoreCase("item")) {
                         key = stack.getItem().getRegistryName().toString();
-                        MatterOverdrive.matterRegistry.register(stack.getItem(), new ItemHandler(0, true));
+                        MatterOverdrive.MATTER_REGISTRY.register(stack.getItem(), new ItemHandler(0, true));
                     } else if (args[1].equalsIgnoreCase("ore")) {
                         int[] orenames = OreDictionary.getOreIDs(stack);
                         if (orenames != null && orenames.length > 0) {
                             key = OreDictionary.getOreName(orenames[0]);
-                            MatterOverdrive.matterRegistry.registerOre(key, new OreHandler(0, true));
+                            MatterOverdrive.MATTER_REGISTRY.registerOre(key, new OreHandler(0, true));
                         } else {
                             throw new CommandException("Could not find an ore dictionary entry", args[1]);
                         }
@@ -95,11 +95,11 @@ public class MatterRegistryCommands extends CommandBase {
                         throw new CommandException("Invalid type of item. Use either item, itemstack or ore.");
                     }
 
-                    String[] oldBlacklist = MatterOverdrive.configHandler.getStringList(ConfigurationHandler.CATEGORY_MATTER, ConfigurationHandler.KEY_MBLACKLIST);
+                    String[] oldBlacklist = MatterOverdrive.CONFIG_HANDLER.getStringList(ConfigurationHandler.CATEGORY_MATTER, ConfigurationHandler.KEY_MBLACKLIST);
                     String[] newBlacklist = new String[oldBlacklist != null ? oldBlacklist.length + 1 : 1];
                     newBlacklist[oldBlacklist.length] = key;
-                    MatterOverdrive.configHandler.config.get(ConfigurationHandler.CATEGORY_MATTER, ConfigurationHandler.KEY_MBLACKLIST, new String[]{}, "").set(newBlacklist);
-                    MatterOverdrive.configHandler.save();
+                    MatterOverdrive.CONFIG_HANDLER.config.get(ConfigurationHandler.CATEGORY_MATTER, ConfigurationHandler.KEY_MBLACKLIST, new String[]{}, "").set(newBlacklist);
+                    MatterOverdrive.CONFIG_HANDLER.save();
                     commandSender.sendMessage(new TextComponentString(TextFormatting.GOLD + "[" + key + "]" + TextFormatting.RESET + " Added $s to matter blacklist and config.\nYou must recalculate the registry for changes to take effect.\nUse /matter_registry recalculate."));
                 } else {
                     throw new CommandException("Player not holding any item", args[1]);
@@ -119,11 +119,11 @@ public class MatterRegistryCommands extends CommandBase {
                     String key;
                     if (args[1].equalsIgnoreCase("itemstack")) {
                         key = stack.getItem().getRegistryName() + "/" + stack.getItemDamage();
-                        MatterOverdrive.matterRegistry.register(stack.getItem(), new DamageAwareStackHandler(stack.getItemDamage(), matter));
+                        MatterOverdrive.MATTER_REGISTRY.register(stack.getItem(), new DamageAwareStackHandler(stack.getItemDamage(), matter));
 
                     } else if (args[1].equalsIgnoreCase("item")) {
                         key = stack.getItem().getRegistryName().toString();
-                        MatterOverdrive.matterRegistry.register(stack.getItem(), new ItemHandler(matter));
+                        MatterOverdrive.MATTER_REGISTRY.register(stack.getItem(), new ItemHandler(matter));
                     } else if (args[1].equalsIgnoreCase("ore")) {
                         int[] oreNames = OreDictionary.getOreIDs(stack);
                         if (oreNames != null && oreNames.length > 0) {
@@ -135,8 +135,8 @@ public class MatterRegistryCommands extends CommandBase {
                         throw new CommandException("Invalid type of item. Use either item,itemstack or ore.");
                     }
 
-                    MatterOverdrive.configHandler.setInt(key, ConfigurationHandler.CATEGORY_NEW_ITEMS, matter);
-                    MatterOverdrive.configHandler.save();
+                    MatterOverdrive.CONFIG_HANDLER.setInt(key, ConfigurationHandler.CATEGORY_NEW_ITEMS, matter);
+                    MatterOverdrive.CONFIG_HANDLER.save();
                     commandSender.sendMessage(new TextComponentString(TextFormatting.GOLD + "[" + key + "]" + TextFormatting.RESET + " Added $s to matter registry and config.\nYou can now recalculated the registry.\nUse /matter_registry recalculate."));
                 } else {
                     throw new CommandException("player not holding any item", args[1]);

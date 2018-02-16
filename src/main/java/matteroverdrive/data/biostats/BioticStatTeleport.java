@@ -87,7 +87,7 @@ public class BioticStatTeleport extends AbstractBioticStat implements IConfigSub
         } else if (hasPressedKey) {
             Vec3d pos = getPos(androidPlayer);
             if (pos != null && !MinecraftForge.EVENT_BUS.post(new MOEventBionicStat(this, androidPlayer.getUnlockedLevel(this), androidPlayer))) {
-                MatterOverdrive.packetPipeline.sendToServer(new PacketTeleportPlayer(pos.x, pos.y, pos.z));
+                MatterOverdrive.NETWORK.sendToServer(new PacketTeleportPlayer(pos.x, pos.y, pos.z));
                 hasPressedKey = false;
             }
             hasPressedKey = false;

@@ -152,9 +152,9 @@ public class PlayerQuestData {
                 if (activeQuests.get(i).getQuest() != null) {
                     QuestState questState = activeQuests.get(i).getQuest().onEvent(activeQuests.get(i), event, extendedProperties.getPlayer());
                     if (questState != null) {
-                        //MatterOverdrive.packetPipeline.sendTo(new PacketSyncQuests(this,EnumSet.of(DataType.ACTIVE_QUESTS)),(EntityPlayerMP) extendedProperties.getPlayer());
+                        //MatterOverdrive.NETWORK.sendTo(new PacketSyncQuests(this,EnumSet.of(DataType.ACTIVE_QUESTS)),(EntityPlayerMP) extendedProperties.getPlayer());
                         if (extendedProperties.getPlayer() instanceof EntityPlayerMP) {
-                            MatterOverdrive.packetPipeline.sendTo(new PacketUpdateQuest(i, questState, this, PacketUpdateQuest.UPDATE_QUEST), (EntityPlayerMP) extendedProperties.getPlayer());
+                            MatterOverdrive.NETWORK.sendTo(new PacketUpdateQuest(i, questState, this, PacketUpdateQuest.UPDATE_QUEST), (EntityPlayerMP) extendedProperties.getPlayer());
                         }
                     }
                 }

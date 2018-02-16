@@ -115,7 +115,7 @@ public class GuiDataPad extends MOGuiBase {
     public void onPageChange(int newPage) {
         if (newPage != MatterOverdrive.ITEMS.dataPad.getPage(dataPad)) {
             MatterOverdrive.ITEMS.dataPad.setOpenPage(dataPad, newPage);
-            MatterOverdrive.packetPipeline.sendToServer(new PacketDataPadCommands(hand, dataPad));
+            MatterOverdrive.NETWORK.sendToServer(new PacketDataPadCommands(hand, dataPad));
         }
     }
 

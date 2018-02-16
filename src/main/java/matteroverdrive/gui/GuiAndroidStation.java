@@ -114,7 +114,7 @@ public class GuiAndroidStation extends MOGuiMachine<TileEntityAndroidStation> {
 
         //addStats(AndroidPlayer.get(Minecraft.getMinecraft().player));
 
-        for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+        for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
             int unlockedLevel = androidPlayer.getUnlockedLevel(stat);
             BionicStatGuiInfo guiInfo = stat.getGuiInfo(androidPlayer, unlockedLevel);
             if (guiInfo != null) {

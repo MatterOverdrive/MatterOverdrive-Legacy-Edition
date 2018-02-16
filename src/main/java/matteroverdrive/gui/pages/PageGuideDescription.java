@@ -186,7 +186,7 @@ public class PageGuideDescription extends ElementBaseGroup {
 
             loadGuideInfo(id);
             MatterOverdrive.ITEMS.dataPad.setOpenGuide(dataPadStack, id);
-            MatterOverdrive.packetPipeline.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
+            MatterOverdrive.NETWORK.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
             scroll = page;
             tabID = 0;
         }

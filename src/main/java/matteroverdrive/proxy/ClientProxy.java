@@ -130,7 +130,7 @@ public class ClientProxy extends CommonProxy {
         //region Render Handler Functions
         //region Create
         //renderHandler.createBlockRenderers();
-        renderHandler.createTileEntityRenderers(MatterOverdrive.configHandler);
+        renderHandler.createTileEntityRenderers(MatterOverdrive.CONFIG_HANDLER);
         renderHandler.createBioticStatRenderers();
         renderHandler.createStarmapRenderers();
         renderHandler.createModels();
@@ -147,7 +147,7 @@ public class ClientProxy extends CommonProxy {
         //endregion
         //endregion
 
-        MatterOverdrive.configHandler.subscribe(androidHud);
+        MatterOverdrive.CONFIG_HANDLER.subscribe(androidHud);
 
         weaponHandler.registerWeapon(MatterOverdrive.ITEMS.phaserRifle);
         weaponHandler.registerWeapon(MatterOverdrive.ITEMS.phaser);

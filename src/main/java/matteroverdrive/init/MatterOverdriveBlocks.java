@@ -264,7 +264,7 @@ public class MatterOverdriveBlocks {
 
     protected <T extends Block> T register(T block, ItemBlock itemBlock) {
         if (block instanceof IConfigSubscriber) {
-            MatterOverdrive.configHandler.subscribe((IConfigSubscriber) block);
+            MatterOverdrive.CONFIG_HANDLER.subscribe((IConfigSubscriber) block);
         }
         registeredCount++;
         blocks.add(block);

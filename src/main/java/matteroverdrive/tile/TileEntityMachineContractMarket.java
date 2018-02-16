@@ -78,7 +78,7 @@ public class TileEntityMachineContractMarket extends MOTileEntityMachine {
 
     private void generateContract() {
         Quest quest = ((WeightedRandomQuest) WeightedRandom.getRandomItem(random, MatterOverdriveQuests.contractGeneration)).getQuest();
-        QuestStack questStack = MatterOverdrive.questFactory.generateQuestStack(random, quest);
+        QuestStack questStack = MatterOverdrive.QUEST_FACTORY.generateQuestStack(random, quest);
         for (int i = 0; i < inventory.getSizeInventory(); i++) {
             if (inventory.getSlot(i).getItem() != null) {
                 ItemStack itemStack = inventory.getSlot(i).getItem();

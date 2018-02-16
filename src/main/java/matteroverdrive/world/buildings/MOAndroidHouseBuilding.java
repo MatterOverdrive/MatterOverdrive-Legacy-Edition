@@ -81,7 +81,7 @@ public class MOAndroidHouseBuilding extends MOWorldGenBuilding {
                 WeightedRandomChestContent.generateDispenserContents(random,ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).getItems(random), (IInventory) inventory,random.nextInt(10) + 10);
                 if (random.nextInt(200) < 10)
                 {
-                    MOInventoryHelper.insertItemStackIntoInventory((IInventory)inventory, MatterOverdrive.weaponFactory.getRandomDecoratedEnergyWeapon(new WeaponFactory.WeaponGenerationContext(3,null,true)), EnumFacing.DOWN);
+                    MOInventoryHelper.insertItemStackIntoInventory((IInventory)inventory, MatterOverdrive.WEAPON_FACTORY.getRandomDecoratedEnergyWeapon(new WeaponFactory.WeaponGenerationContext(3,null,true)), EnumFacing.DOWN);
                 }
             }
         }*/

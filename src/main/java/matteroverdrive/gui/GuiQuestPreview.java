@@ -111,7 +111,7 @@ public class GuiQuestPreview extends MOGuiBase {
         }
         questInfo.addLine("");
         for (int i = 0; i < questStack.getObjectivesCount(Minecraft.getMinecraft().player); i++) {
-            List<String> objectiveLines = MatterOverdrive.questFactory.getFormattedQuestObjective(Minecraft.getMinecraft().player, questStack, i, width, TextFormatting.BLUE.toString(), TextFormatting.BLUE.toString());
+            List<String> objectiveLines = MatterOverdrive.QUEST_FACTORY.getFormattedQuestObjective(Minecraft.getMinecraft().player, questStack, i, width, TextFormatting.BLUE.toString(), TextFormatting.BLUE.toString());
             questInfo.addLines(objectiveLines);
         }
         questInfo.addLine("");
@@ -147,7 +147,7 @@ public class GuiQuestPreview extends MOGuiBase {
     public void handleElementButtonClick(MOElementBase element, String elementName, int mouseButton) {
         super.handleElementButtonClick(element, elementName, mouseButton);
         if (element == acceptButton) {
-            MatterOverdrive.packetPipeline.sendToServer(new PacketQuestActions(PacketQuestActions.QUEST_ACTION_ADD, mc.player.inventory.currentItem, mc.player));
+            MatterOverdrive.NETWORK.sendToServer(new PacketQuestActions(PacketQuestActions.QUEST_ACTION_ADD, mc.player.inventory.currentItem, mc.player));
             mc.player.closeScreen();
         }
     }

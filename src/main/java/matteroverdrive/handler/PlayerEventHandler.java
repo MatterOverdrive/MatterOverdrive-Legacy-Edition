@@ -18,6 +18,7 @@
 
 package matteroverdrive.handler;
 
+import com.astro.clib.util.Platform;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.events.MOEventDialogConstruct;
 import matteroverdrive.api.events.MOEventDialogInteract;
@@ -66,10 +67,10 @@ public class PlayerEventHandler {
     @SubscribeEvent
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.player instanceof EntityPlayerMP) {
-            if (MatterOverdrive.matterRegistry.hasComplitedRegistration) {
+            if (MatterOverdrive.MATTER_REGISTRY.hasComplitedRegistration) {
                 if (!event.player.getServer().isSinglePlayer()) {
 
-                    MatterOverdrive.packetPipeline.sendTo(new PacketUpdateMatterRegistry(MatterOverdrive.matterRegistry), (EntityPlayerMP) event.player);
+                    MatterOverdrive.NETWORK.sendTo(new PacketUpdateMatterRegistry(MatterOverdrive.MATTER_REGISTRY), (EntityPlayerMP) event.player);
 
                 }
             } else {
@@ -85,14 +86,15 @@ public class PlayerEventHandler {
         //Minecraft stops he using of items each time they change their NBT. This makes is so the weapons refresh and jitter.
         if (event.phase == TickEvent.Phase.START && event.player.isHandActive() && event.side == Side.CLIENT && event.player.getActiveHand() == EnumHand.MAIN_HAND) {
             ItemStack itemstack = event.player.inventory.getCurrentItem();
-            if (itemstack != null && itemstack.getItem() instanceof IWeapon && event.player.getItemInUseCount() > 0) {
+            if (!itemstack.isEmpty() && itemstack.getItem() instanceof IWeapon && event.player.getItemInUseCount() > 0) {
                 event.player.resetActiveHand();
                 event.player.setActiveHand(EnumHand.MAIN_HAND);
             }
         }
 
         if (event.side == Side.CLIENT) {
-            versionCheckerHandler.onPlayerTick(event);
+            if (Platform.isDevEnv())
+                versionCheckerHandler.onPlayerTick(event);
         }
 
         AndroidPlayer player = MOPlayerCapabilityProvider.GetAndroidCapability(event.player);
@@ -154,12 +156,12 @@ public class PlayerEventHandler {
     }
 
     public void onServerTick(TickEvent.ServerTickEvent event) {
-        if (MatterOverdrive.matterRegistry.hasComplitedRegistration) {
-            for (int i = 0; i < MatterOverdrive.playerEventHandler.players.size(); i++) {
-                MatterOverdrive.packetPipeline.sendTo(new PacketUpdateMatterRegistry(MatterOverdrive.matterRegistry), MatterOverdrive.playerEventHandler.players.get(i));
+        if (MatterOverdrive.MATTER_REGISTRY.hasComplitedRegistration) {
+            for (int i = 0; i < MatterOverdrive.PLAYER_EVENT_HANDLER.players.size(); i++) {
+                MatterOverdrive.NETWORK.sendTo(new PacketUpdateMatterRegistry(MatterOverdrive.MATTER_REGISTRY), MatterOverdrive.PLAYER_EVENT_HANDLER.players.get(i));
             }
 
-            MatterOverdrive.playerEventHandler.players.clear();
+            MatterOverdrive.PLAYER_EVENT_HANDLER.players.clear();
         }
     }
 
@@ -167,7 +169,7 @@ public class PlayerEventHandler {
     public void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
         if (event.player != null) {
             if (event.player.world.isRemote) {
-                if (event.crafting != null && event.crafting.getItem() instanceof MOBaseItem) {
+                if (!event.crafting.isEmpty() && event.crafting.getItem() instanceof MOBaseItem) {
                     MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_ITEMS, GoogleAnalyticsCommon.EVENT_ACTION_CRAFT_ITEMS, event.crafting.getUnlocalizedName(), event.crafting.getCount(), event.player);
                 }
             } else {
@@ -214,7 +216,7 @@ public class PlayerEventHandler {
 
     @SubscribeEvent
     public void onAnvilRepair(AnvilUpdateEvent event) {
-        if (event.getLeft() != null && event.getRight() != null && event.getLeft().getItem() == MatterOverdrive.ITEMS.portableDecomposer) {
+        if (!event.getLeft().isEmpty() && !event.getRight().isEmpty() && event.getLeft().getItem() == MatterOverdrive.ITEMS.portableDecomposer) {
             event.setOutput(event.getLeft().copy());
             event.setMaterialCost(1);
             event.setCost(3);

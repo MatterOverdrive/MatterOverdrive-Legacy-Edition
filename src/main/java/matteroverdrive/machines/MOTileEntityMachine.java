@@ -385,7 +385,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
     protected void manageClientSync() {
         if (forceClientUpdate) {
             forceClientUpdate = false;
-            MatterOverdrive.packetPipeline.sendToAllAround(new PacketSendMachineNBT(MachineNBTCategory.ALL_OPTS, this, false, false), this, 64);
+            MatterOverdrive.NETWORK.sendToAllAround(new PacketSendMachineNBT(MachineNBTCategory.ALL_OPTS, this, false, false), this, 64);
             markDirty();
         }
     }

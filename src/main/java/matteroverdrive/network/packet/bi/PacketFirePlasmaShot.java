@@ -99,7 +99,7 @@ public class PacketFirePlasmaShot extends PacketAbstract {
         @Override
         public void handleServerMessage(EntityPlayerMP player, PacketFirePlasmaShot message, MessageContext ctx) {
             handleServerShot(player, message, 0);
-            MatterOverdrive.packetPipeline.sendToAllAround(message, player, message.shot.getRange() + 64);
+            MatterOverdrive.NETWORK.sendToAllAround(message, player, message.shot.getRange() + 64);
         }
 
         public void handleServerShot(EntityPlayer player, PacketFirePlasmaShot shot, int delay) {

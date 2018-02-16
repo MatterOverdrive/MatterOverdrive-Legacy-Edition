@@ -1,6 +1,7 @@
 package matteroverdrive.client.render;
 
 import com.google.common.collect.ImmutableSet;
+import matteroverdrive.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.resources.IResourceManager;
@@ -53,7 +54,7 @@ public class ShaderManager {
             EntityRenderer er = Minecraft.getMinecraft().entityRenderer;
 
             if (!er.isShaderActive()) {
-                er.loadShader(new ResourceLocation("mo", "shaders/blackhole.json"));
+                er.loadShader(new ResourceLocation(Reference.MOD_ID, "shaders/blackhole.json"));
             } else {
                 er.stopUseShader();
             }
@@ -65,7 +66,7 @@ public class ShaderManager {
         private final Map<ResourceLocation, String> loadedData = new HashMap<>();
 
         protected boolean validPath(ResourceLocation location) {
-            return location.getResourceDomain().equals("mo") && location.getResourcePath().startsWith("shaders/");
+            return location.getResourceDomain().equals(Reference.MOD_ID) && location.getResourcePath().startsWith("shaders/");
         }
 
         @Override
@@ -99,7 +100,7 @@ public class ShaderManager {
 
         @Override
         public Set<String> getResourceDomains() {
-            return ImmutableSet.of("mo");
+            return ImmutableSet.of(Reference.MOD_ID);
         }
 
         @Nullable

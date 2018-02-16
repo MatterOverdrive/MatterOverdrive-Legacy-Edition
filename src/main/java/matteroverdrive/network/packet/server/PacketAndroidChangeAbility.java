@@ -58,7 +58,7 @@ public class PacketAndroidChangeAbility extends PacketAbstract {
 
         @Override
         public void handleServerMessage(EntityPlayerMP player, PacketAndroidChangeAbility message, MessageContext ctx) {
-            IBioticStat stat = MatterOverdrive.statRegistry.getStat(message.ability);
+            IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(message.ability);
             if (stat != null) {
                 AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(player);
                 if (androidPlayer.isUnlocked(stat, 0) && stat.showOnWheel(androidPlayer, androidPlayer.getUnlockedLevel(stat))) {

@@ -133,13 +133,13 @@ public class OmniTool extends EnergyWeapon {
                         if (isSameBlock(hit.getBlockPos())) {
                             if (BLOCK_DAMAGE >= 1.0F) {
                                 //this.isHittingBlock = false;
-                                MatterOverdrive.packetPipeline.sendToServer(new PacketDigBlock(hit.getBlockPos(), PacketDigBlock.Type.HARVEST, hit.sideHit));
+                                MatterOverdrive.NETWORK.sendToServer(new PacketDigBlock(hit.getBlockPos(), PacketDigBlock.Type.HARVEST, hit.sideHit));
                                 Minecraft.getMinecraft().playerController.onPlayerDestroyBlock(hit.getBlockPos());
                                 BLOCK_DAMAGE = 0.0F;
                                 STEP_SOUND_COUNTER = 0.0F;
                                 //this.blockHitDelay = 5;
                             } else if (BLOCK_DAMAGE == 0) {
-                                MatterOverdrive.packetPipeline.sendToServer(new PacketDigBlock(hit.getBlockPos(), PacketDigBlock.Type.CLICK, hit.sideHit));
+                                MatterOverdrive.NETWORK.sendToServer(new PacketDigBlock(hit.getBlockPos(), PacketDigBlock.Type.CLICK, hit.sideHit));
                             }
 
                             BLOCK_DAMAGE = MathHelper.clamp(modifyStatFromModules(Reference.WS_DAMAGE, stack, BLOCK_DAMAGE + state.getPlayerRelativeBlockHardness((EntityPlayer) player, player.world, hit.getBlockPos())), 0, 1);
@@ -184,7 +184,7 @@ public class OmniTool extends EnergyWeapon {
         if (CURRENT_BLOCK != null) {
             BLOCK_DAMAGE = 0;
             STEP_SOUND_COUNTER = 0.0F;
-            MatterOverdrive.packetPipeline.sendToServer(new PacketDigBlock(CURRENT_BLOCK, PacketDigBlock.Type.CANCEL, LAST_SIDE));
+            MatterOverdrive.NETWORK.sendToServer(new PacketDigBlock(CURRENT_BLOCK, PacketDigBlock.Type.CANCEL, LAST_SIDE));
             world.sendBlockBreakProgress(player.getEntityId(), CURRENT_BLOCK, -1);
         }
     }

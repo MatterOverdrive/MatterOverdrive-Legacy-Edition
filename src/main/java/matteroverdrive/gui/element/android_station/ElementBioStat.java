@@ -101,7 +101,7 @@ public class ElementBioStat extends MOElementButton {
         if (super.intersectsWith(mouseX, mouseY)) {
             if (stat.canBeUnlocked(player, level + 1) && level < stat.maxLevel()) {
                 MOGuiBase.playSound(MatterOverdriveSounds.guiBioticStatUnlock, 1, 1);
-                MatterOverdrive.packetPipeline.sendToServer(new PacketUnlockBioticStat(stat.getUnlocalizedName(), ++level));
+                MatterOverdrive.NETWORK.sendToServer(new PacketUnlockBioticStat(stat.getUnlocalizedName(), ++level));
                 MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_BIOTIC_STATS, GoogleAnalyticsCommon.EVENT_ACTION_BIOTIC_STAT_UNLOCK, stat.getUnlocalizedName(), null);
             }
         }

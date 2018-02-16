@@ -54,7 +54,7 @@ public class MatterOverdriveEntities {
     }
 
     public static void register(FMLPostInitializationEvent event) {
-        MatterOverdrive.configHandler.config.load();
+        MatterOverdrive.CONFIG_HANDLER.config.load();
         int id = 0;
         addEntity(EntityFailedPig.class, "failed_pig", 15771042, 0x33CC33, id++);
         addEntity(EntityFailedCow.class, "failed_cow", 4470310, 0x33CC33, id++);
@@ -74,7 +74,7 @@ public class MatterOverdriveEntities {
 
         //int phaserFireID = loadIDFromConfig(PlasmaBolt.class,"phaser_fire",170);
         //EntityRegistry.registerGlobalEntityID(PlasmaBolt.class, "phaser_fire", phaserFireID);
-        MatterOverdrive.configHandler.save();
+        MatterOverdrive.CONFIG_HANDLER.save();
     }
 
     @SubscribeEvent
@@ -93,7 +93,7 @@ public class MatterOverdriveEntities {
     }
 
     public static int loadIDFromConfig(Class<? extends Entity> entityClass, String name, int id) {
-        return MatterOverdrive.configHandler.getInt(getEntityConfigKey(name), ConfigurationHandler.CATEGORY_ENTITIES, id);
+        return MatterOverdrive.CONFIG_HANDLER.getInt(getEntityConfigKey(name), ConfigurationHandler.CATEGORY_ENTITIES, id);
     }
 
     private static String getEntityConfigKey(String name) {

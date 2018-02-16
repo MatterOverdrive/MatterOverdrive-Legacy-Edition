@@ -55,7 +55,7 @@ public class MatterHelper {
             if (item.getItem() instanceof IMatterItem) {
                 return ((IMatterItem) item.getItem()).getMatter(item);
             } else {
-                return MatterOverdrive.matterRegistry.getMatter(item);
+                return MatterOverdrive.MATTER_REGISTRY.getMatter(item);
             }
         }
         return 0;

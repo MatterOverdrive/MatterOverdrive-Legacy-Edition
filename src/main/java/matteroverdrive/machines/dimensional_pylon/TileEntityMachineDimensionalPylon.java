@@ -100,9 +100,9 @@ public class TileEntityMachineDimensionalPylon extends MOTileEntityMachineMatter
 
     public float getDimensionalValue() {
         if (mainBlock != null) {
-            return MatterOverdrive.moWorld.getDimensionalRifts().getValueAt(mainBlock);
+            return MatterOverdrive.MO_WORLD.getDimensionalRifts().getValueAt(mainBlock);
         }
-        return MatterOverdrive.moWorld.getDimensionalRifts().getValueAt(getPos());
+        return MatterOverdrive.MO_WORLD.getDimensionalRifts().getValueAt(getPos());
     }
 
     @Override

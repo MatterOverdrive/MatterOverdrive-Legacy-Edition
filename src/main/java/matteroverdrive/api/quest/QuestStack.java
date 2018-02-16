@@ -79,7 +79,7 @@ public class QuestStack {
             tagCompound.setLong("giveIdLow", giverUniqueID.getLeastSignificantBits());
             tagCompound.setLong("giveIdHigh", giverUniqueID.getMostSignificantBits());
         }
-        tagCompound.setShort("Quest", (short) MatterOverdrive.quests.getQuestID(quest));
+        tagCompound.setShort("Quest", (short) MatterOverdrive.QUESTS.getQuestID(quest));
         tagCompound.setBoolean("Completed", completed);
     }
 
@@ -91,7 +91,7 @@ public class QuestStack {
             giverUniqueID = new UUID(tagCompound.getLong("giveIdLow"), tagCompound.getLong("giveIdHigh"));
         }
         if (tagCompound.hasKey("Quest", Constants.NBT.TAG_SHORT)) {
-            quest = MatterOverdrive.quests.getQuestWithID(tagCompound.getShort("Quest"));
+            quest = MatterOverdrive.QUESTS.getQuestWithID(tagCompound.getShort("Quest"));
         }
         completed = tagCompound.getBoolean("Completed");
     }

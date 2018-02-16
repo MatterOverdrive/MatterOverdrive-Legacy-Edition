@@ -116,7 +116,7 @@ public class EntityRangedRogueAndroidMob extends EntityRougeAndroidMob implement
 
             float lootingModifier = (Math.min(lootingLevel, 10) / 10f);
             if (rand.nextFloat() < (0.15f + lootingModifier) || getIsLegendary()) {
-                ItemStack part = MatterOverdrive.androidPartsFactory.generateRandomDecoratedPart(new AndroidPartsFactory.AndroidPartFactoryContext(getAndroidLevel(), this, getIsLegendary()));
+                ItemStack part = MatterOverdrive.ANDROID_PARTS_FACTORY.generateRandomDecoratedPart(new AndroidPartsFactory.AndroidPartFactoryContext(getAndroidLevel(), this, getIsLegendary()));
                 if (part.getItem() instanceof RougeAndroidParts) {
                     part.setTagCompound(new NBTTagCompound());
                     part.getTagCompound().setByte("Type", (byte) 1);
@@ -130,7 +130,7 @@ public class EntityRangedRogueAndroidMob extends EntityRougeAndroidMob implement
     public void addRandomArmor() {
         super.addRandomArmor();
         int androidLevel = getAndroidLevel();
-        ItemStack gun = MatterOverdrive.weaponFactory.getRandomDecoratedEnergyWeapon(new WeaponFactory.WeaponGenerationContext(androidLevel, this, getIsLegendary()));
+        ItemStack gun = MatterOverdrive.WEAPON_FACTORY.getRandomDecoratedEnergyWeapon(new WeaponFactory.WeaponGenerationContext(androidLevel, this, getIsLegendary()));
         setItemStackToSlot(EntityEquipmentSlot.MAINHAND, gun);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(((EnergyWeapon) gun.getItem()).getRange(gun) - 2);
     }
@@ -178,7 +178,7 @@ public class EntityRangedRogueAndroidMob extends EntityRougeAndroidMob implement
                 if (UNLIMITED_WEAPON_ENERGY) {
                     ((EnergyContainer) EnergyWeapon.getStorage(weapon)).setFull();
                 }
-                MatterOverdrive.packetPipeline.sendToAllAround(new PacketFirePlasmaShot(this.getEntityId(), pos, dir, shot), world.provider.getDimension(), posX, posY, posZ, 64);
+                MatterOverdrive.NETWORK.sendToAllAround(new PacketFirePlasmaShot(this.getEntityId(), pos, dir, shot), world.provider.getDimension(), posX, posY, posZ, 64);
 
                 difficulty = 1 + (3 - world.getDifficulty().getDifficultyId()) * 0.5f;
                 this.aiBoltAttack.setMaxRangedAttackDelay((int) (((EnergyWeapon) weapon.getItem()).getShootCooldown(weapon) * difficulty));

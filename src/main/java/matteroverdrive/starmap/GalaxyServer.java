@@ -235,10 +235,10 @@ public class GalaxyServer extends GalaxyCommon implements IConfigSubscriber {
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.player.world.isRemote) {
             if (theGalaxy != null) {
-                MatterOverdrive.packetPipeline.sendTo(new PacketUpdateGalaxy(theGalaxy), (EntityPlayerMP) event.player);
+                MatterOverdrive.NETWORK.sendTo(new PacketUpdateGalaxy(theGalaxy), (EntityPlayerMP) event.player);
                 if (tryAndClaimPlanet(event.player)) {
                     Planet planet = getHomeworld(event.player);
-                    MatterOverdrive.packetPipeline.sendToDimention(new PacketUpdatePlanet(planet), event.player.world);
+                    MatterOverdrive.NETWORK.sendToDimention(new PacketUpdatePlanet(planet), event.player.world);
                 }
             } else {
                 MOLog.warn("Galaxy is missing.");

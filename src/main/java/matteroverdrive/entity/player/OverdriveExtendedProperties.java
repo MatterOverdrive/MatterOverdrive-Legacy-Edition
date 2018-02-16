@@ -93,7 +93,7 @@ public class OverdriveExtendedProperties {
 
     public void sync(EnumSet<PlayerQuestData.DataType> dataTypes) {
         if (player != null && !player.world.isRemote && player instanceof EntityPlayerMP) {
-            MatterOverdrive.packetPipeline.sendTo(new PacketSyncQuests(questData, dataTypes), (EntityPlayerMP) player);
+            MatterOverdrive.NETWORK.sendTo(new PacketSyncQuests(questData, dataTypes), (EntityPlayerMP) player);
         }
     }
 
@@ -112,7 +112,7 @@ public class OverdriveExtendedProperties {
                 QuestStack addedQuest = questData.addQuest(questStack);
                 if (addedQuest != null) {
                     addedQuest.getQuest().initQuestStack(player.getRNG(), addedQuest, player);
-                    MatterOverdrive.packetPipeline.sendTo(new PacketUpdateQuest(addedQuest, PacketUpdateQuest.ADD_QUEST), (EntityPlayerMP) player);
+                    MatterOverdrive.NETWORK.sendTo(new PacketUpdateQuest(addedQuest, PacketUpdateQuest.ADD_QUEST), (EntityPlayerMP) player);
                 }
             } else {
                 QuestStack addedQuest = questData.addQuest(questStack);
@@ -155,7 +155,7 @@ public class OverdriveExtendedProperties {
 
                 player.sendMessage(new TextComponentString(String.format("[Matter Overdrive] %1$s completed %2$s", player.getDisplayName().getFormattedText(), questStack.getTitle(player))));
             }
-            MatterOverdrive.packetPipeline.sendTo(new PacketUpdateQuest(index, null, questStack, PacketUpdateQuest.COMPLETE_QUEST), (EntityPlayerMP) player);
+            MatterOverdrive.NETWORK.sendTo(new PacketUpdateQuest(index, null, questStack, PacketUpdateQuest.COMPLETE_QUEST), (EntityPlayerMP) player);
         } else {
             ClientProxy.questHud.addCompletedQuest(questStack);
             getQuestData().getCompletedQuests().add(questStack);

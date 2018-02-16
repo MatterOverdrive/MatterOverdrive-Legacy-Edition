@@ -59,7 +59,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
         }
 
         for (Object object : android.getUnlockedNBT().getKeySet()) {
-            IBioticStat stat = MatterOverdrive.statRegistry.getStat(object.toString());
+            IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(object.toString());
             if (stat != null) {
                 int level = android.getUnlockedLevel(stat);
                 if (stat.showOnHud(android, level)) {
@@ -104,7 +104,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
         }
 
         for (Object object : android.getUnlockedNBT().getKeySet()) {
-            IBioticStat stat = MatterOverdrive.statRegistry.getStat(object.toString());
+            IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(object.toString());
             if (stat != null) {
                 int level = android.getUnlockedLevel(stat);
                 if (stat.showOnHud(android, level)) {

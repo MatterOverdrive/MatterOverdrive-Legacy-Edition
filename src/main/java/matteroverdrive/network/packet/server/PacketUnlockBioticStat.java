@@ -59,7 +59,7 @@ public class PacketUnlockBioticStat extends PacketAbstract {
     public static class ServerHandler extends AbstractServerPacketHandler<PacketUnlockBioticStat> {
         @Override
         public void handleServerMessage(EntityPlayerMP player, PacketUnlockBioticStat message, MessageContext ctx) {
-            IBioticStat stat = MatterOverdrive.statRegistry.getStat(message.name);
+            IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(message.name);
             AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(player);
             if (stat != null && androidPlayer != null && androidPlayer.isAndroid()) {
                 androidPlayer.tryUnlock(stat, message.level);

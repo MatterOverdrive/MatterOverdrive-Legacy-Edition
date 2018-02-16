@@ -22,12 +22,16 @@ import matteroverdrive.api.starmap.IBuildable;
 import matteroverdrive.items.includes.MOBaseItem;
 import matteroverdrive.starmap.data.Galaxy;
 import matteroverdrive.starmap.data.Planet;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -47,6 +51,12 @@ public abstract class ItemBuildableAbstract extends MOBaseItem implements IBuild
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(TextFormatting.RED.toString()+TextFormatting.ITALIC + "Deprecated, To be removed in 0.7.0");
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
     @Override

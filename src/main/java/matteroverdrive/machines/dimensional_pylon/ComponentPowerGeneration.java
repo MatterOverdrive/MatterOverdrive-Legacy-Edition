@@ -180,7 +180,7 @@ public class ComponentPowerGeneration extends MachineComponentAbstract<TileEntit
     private void spawnSpark(Color color, Vec3d from, Vec3d to) {
         Lightning lightning = new Lightning(getWorld(), from, to, 1, 1f);
         lightning.setColorRGBA(color);
-        MatterOverdrive.packetPipeline.sendToAllAround(new PacketSpawnParticle("lightning", new double[]{from.x, from.y, from.z, to.x, to.y, to.z}, 1, RenderParticlesHandler.Blending.LinesAdditive, 0), machine, 64);
+        MatterOverdrive.NETWORK.sendToAllAround(new PacketSpawnParticle("lightning", new double[]{from.x, from.y, from.z, to.x, to.y, to.z}, 1, RenderParticlesHandler.Blending.LinesAdditive, 0), machine, 64);
         getWorld().playSound(null, to.x, to.y, to.z, MatterOverdriveSounds.fxElectricArc, SoundCategory.BLOCKS, 0.8f + random.nextFloat() * 0.2f, 0.8f + random.nextFloat() * 0.4f);
     }
 

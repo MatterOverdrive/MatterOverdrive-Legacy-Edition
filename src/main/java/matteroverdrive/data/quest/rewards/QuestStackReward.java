@@ -84,7 +84,7 @@ public class QuestStackReward implements IQuestReward {
 
     public QuestStack getQuestStack() {
         if (questStack == null) {
-            IQuest quest = MatterOverdrive.quests.getQuestByName(questName);
+            IQuest quest = MatterOverdrive.QUESTS.getQuestByName(questName);
             if (quest != null) {
                 QuestStack questStack = new QuestStack(quest);
                 if (questNbt != null) {

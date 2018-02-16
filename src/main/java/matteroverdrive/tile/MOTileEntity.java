@@ -95,7 +95,7 @@ public abstract class MOTileEntity extends TileEntity implements IMOTileEntity {
     @SideOnly(Side.CLIENT)
     public void sendNBTToServer(EnumSet<MachineNBTCategory> categories, boolean forceUpdate, boolean sendDisk) {
         if (world.isRemote) {
-            MatterOverdrive.packetPipeline.sendToServer(new PacketSendMachineNBT(categories, this, forceUpdate, sendDisk));
+            MatterOverdrive.NETWORK.sendToServer(new PacketSendMachineNBT(categories, this, forceUpdate, sendDisk));
         }
     }
 

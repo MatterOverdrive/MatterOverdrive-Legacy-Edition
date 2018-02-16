@@ -89,7 +89,7 @@ public class MOWorldGenCrashedSpaceShip extends MOWorldGenBuilding {
             if (tileEntity instanceof IInventory) {
                 // TODO: 3/26/2016 Find how to access Chest Gen Hooks
                 LootTableList.register(new ResourceLocation("matteroverdrive", "crashed_ship"));
-                QuestStack questStack = MatterOverdrive.questFactory.generateQuestStack(random, MatterOverdrive.quests.getQuestByName("crash_landing"));
+                QuestStack questStack = MatterOverdrive.QUEST_FACTORY.generateQuestStack(random, MatterOverdrive.QUESTS.getQuestByName("crash_landing"));
                 questStack.getTagCompound().setLong("pos", pos.toLong());
                 MOInventoryHelper.insertItemStackIntoInventory((IInventory) tileEntity, questStack.getContract(), EnumFacing.DOWN);
             }
@@ -98,7 +98,7 @@ public class MOWorldGenCrashedSpaceShip extends MOWorldGenBuilding {
             TileEntity tileEntity = world.getTileEntity(pos);
             if (tileEntity instanceof TileEntityWeaponStation) {
                 if (random.nextInt(200) < 10) {
-                    ((TileEntityWeaponStation) tileEntity).setInventorySlotContents(((TileEntityWeaponStation) tileEntity).INPUT_SLOT, MatterOverdrive.weaponFactory.getRandomDecoratedEnergyWeapon(new WeaponFactory.WeaponGenerationContext(3, null, true)));
+                    ((TileEntityWeaponStation) tileEntity).setInventorySlotContents(((TileEntityWeaponStation) tileEntity).INPUT_SLOT, MatterOverdrive.WEAPON_FACTORY.getRandomDecoratedEnergyWeapon(new WeaponFactory.WeaponGenerationContext(3, null, true)));
                 }
             }
         }

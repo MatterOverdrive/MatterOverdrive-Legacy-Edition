@@ -45,9 +45,9 @@ public class WorldGenCommands extends CommandBase {
         if (parameters.length >= 1) {
             if (parameters[0].equalsIgnoreCase("generate")) {
                 if (parameters.length >= 2 && entityPlayer != null) {
-                    for (WeightedRandomMOWorldGenBuilding entry : MatterOverdrive.moWorld.worldGen.buildings) {
+                    for (WeightedRandomMOWorldGenBuilding entry : MatterOverdrive.MO_WORLD.worldGen.buildings) {
                         if (entry.worldGenBuilding.getName().equalsIgnoreCase(parameters[1])) {
-                            MOImageGen.ImageGenWorker worker = MatterOverdrive.moWorld.worldGen.startBuildingGeneration(entry.worldGenBuilding, entityPlayer.getPosition(), entityPlayer.getRNG(), commandSender.getEntityWorld(), null, null, forceGeneration);
+                            MOImageGen.ImageGenWorker worker = MatterOverdrive.MO_WORLD.worldGen.startBuildingGeneration(entry.worldGenBuilding, entityPlayer.getPosition(), entityPlayer.getRNG(), commandSender.getEntityWorld(), null, null, forceGeneration);
                             if (worker != null) {
                                 worker.setPlaceNotify(2);
                             }
@@ -65,7 +65,7 @@ public class WorldGenCommands extends CommandBase {
         if (args.length == 1) {
             commands.add("generate");
         } else if (args.length == 2) {
-            for (WeightedRandomMOWorldGenBuilding entry : MatterOverdrive.moWorld.worldGen.buildings) {
+            for (WeightedRandomMOWorldGenBuilding entry : MatterOverdrive.MO_WORLD.worldGen.buildings) {
                 commands.add(entry.worldGenBuilding.getName());
             }
         } else if (args.length == 4) {

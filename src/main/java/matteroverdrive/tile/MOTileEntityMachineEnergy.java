@@ -110,7 +110,7 @@ public abstract class MOTileEntityMachineEnergy extends MOTileEntityMachine {
     }
 
     public void UpdateClientPower() {
-        MatterOverdrive.packetPipeline.sendToAllAround(new PacketPowerUpdate(this), new NetworkRegistry.TargetPoint(world.provider.getDimension(), getPos().getX(), getPos().getY(), getPos().getZ(), ENERGY_CLIENT_SYNC_RANGE));
+        MatterOverdrive.NETWORK.sendToAllAround(new PacketPowerUpdate(this), new NetworkRegistry.TargetPoint(world.provider.getDimension(), getPos().getX(), getPos().getY(), getPos().getZ(), ENERGY_CLIENT_SYNC_RANGE));
     }
 
     @Override

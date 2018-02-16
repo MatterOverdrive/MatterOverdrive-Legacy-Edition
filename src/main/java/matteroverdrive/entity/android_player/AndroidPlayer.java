@@ -290,7 +290,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
             }
             if (dataTypes.contains(DataType.ACTIVE_ABILITY)) {
                 if (prop.hasKey(NBT_ACTIVE_ABILITY)) {
-                    activeStat = MatterOverdrive.statRegistry.getStat(prop.getString(NBT_ACTIVE_ABILITY));
+                    activeStat = MatterOverdrive.STAT_REGISTRY.getStat(prop.getString(NBT_ACTIVE_ABILITY));
                 }
             }
             if (dataTypes.contains(DataType.INVENTORY)) {
@@ -454,9 +454,9 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
     public void sync(EntityPlayer player, EnumSet<DataType> syncPart, boolean toOthers) {
         if (player instanceof EntityPlayerMP) {
             if (toOthers) {
-                MatterOverdrive.packetPipeline.sendToAllAround(new PacketSyncAndroid(this, syncPart), player, 64);
+                MatterOverdrive.NETWORK.sendToAllAround(new PacketSyncAndroid(this, syncPart), player, 64);
             } else {
-                MatterOverdrive.packetPipeline.sendTo(new PacketSyncAndroid(this, syncPart), (EntityPlayerMP) player);
+                MatterOverdrive.NETWORK.sendTo(new PacketSyncAndroid(this, syncPart), (EntityPlayerMP) player);
             }
         }
     }
@@ -483,7 +483,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
     public int getResetXPRequired() {
         int calculatedXP = 0;
         for (Object key : this.unlocked.getKeySet()) {
-            IBioticStat stat = MatterOverdrive.statRegistry.getStat(key.toString());
+            IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(key.toString());
             int unlocked = this.unlocked.getInteger(key.toString());
             calculatedXP += stat.getXP(this, unlocked);
         }
@@ -537,7 +537,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
         if (isAndroid()) {
             manageGlitch();
 
-            for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+            for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
                 int unlockedLevel = getUnlockedLevel(stat);
                 if (unlockedLevel > 0) {
                     if (stat.isEnabled(this, unlockedLevel)) {
@@ -554,7 +554,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
     private void manageEffects() {
         if (androidEffects.haveEffectsChanged()) {
             List<AndroidEffects.Effect> changedEffects = androidEffects.getChanged();
-            MatterOverdrive.packetPipeline.sendTo(new PacketSendAndroidEffects(player.getEntityId(), changedEffects), (EntityPlayerMP) player);
+            MatterOverdrive.NETWORK.sendTo(new PacketSendAndroidEffects(player.getEntityId(), changedEffects), (EntityPlayerMP) player);
 
             List<AndroidEffects.Effect> othersEffects = new ArrayList<>();
             for (AndroidEffects.Effect effect : changedEffects) {
@@ -565,7 +565,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
             Set<? extends EntityPlayer> trackers = ((EntityPlayerMP) player).getServerWorld().getEntityTracker().getTrackingPlayers(player);
             for (EntityPlayer entityPlayer : trackers) {
                 if (entityPlayer instanceof EntityPlayerMP && entityPlayer != player) {
-                    MatterOverdrive.packetPipeline.sendTo(new PacketSendAndroidEffects(player.getEntityId(), othersEffects), (EntityPlayerMP) entityPlayer);
+                    MatterOverdrive.NETWORK.sendTo(new PacketSendAndroidEffects(player.getEntityId(), othersEffects), (EntityPlayerMP) entityPlayer);
                 }
             }
         }
@@ -639,7 +639,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
     }
 
     private void clearAllStatAttributeModifiers() {
-        for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+        for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
             int unlockedLevel = getUnlockedLevel(stat);
             Multimap<String, AttributeModifier> multimap = stat.attributes(this, unlockedLevel);
             if (multimap != null) {
@@ -649,7 +649,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
     }
 
     private void manageStatAttributeModifiers() {
-        MatterOverdrive.statRegistry.getStats().forEach(this::updateStatModifyers);
+        MatterOverdrive.STAT_REGISTRY.getStats().forEach(this::updateStatModifyers);
     }
 
     private void manageMinimapInfo() {
@@ -664,7 +664,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
             }
 
             if (entityList.size() > 0) {
-                MatterOverdrive.packetPipeline.sendTo(new PacketSendMinimapInfo(entityList), (EntityPlayerMP) getPlayer());
+                MatterOverdrive.NETWORK.sendTo(new PacketSendMinimapInfo(entityList), (EntityPlayerMP) getPlayer());
             }
         }
     }
@@ -725,7 +725,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
             }
 
             wheelStats.clear();
-            wheelStats.addAll(MatterOverdrive.statRegistry.getStats().stream()
+            wheelStats.addAll(MatterOverdrive.STAT_REGISTRY.getStats().stream()
                     .filter(stat -> stat.showOnWheel(this, getUnlockedLevel(stat)) && isUnlocked(stat, 0))
                     .collect(Collectors.toList()));
 
@@ -744,7 +744,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
                 if (mag > magAcceptance && (i == 0 && (radialAngle < (leeway / 2) && radialAngle >= 0F || radialAngle > (360F) - (leeway / 2)) || i != 0 && radialAngle < (leeway * i) + (leeway / 2) && radialAngle > (leeway * i) - (leeway / 2))) {
                     if (activeStat != stat) {
                         activeStat = stat;
-                        MatterOverdrive.packetPipeline.sendToServer(new PacketAndroidChangeAbility(activeStat.getUnlocalizedName()));
+                        MatterOverdrive.NETWORK.sendToServer(new PacketAndroidChangeAbility(activeStat.getUnlocalizedName()));
                     }
                     break;
                 }
@@ -763,7 +763,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
                     AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(player);
                     androidPlayer.startTurningToAndroid();
                     if (player instanceof EntityPlayerMP) {
-                        MatterOverdrive.packetPipeline.sendTo(new PacketAndroidTransformation(), (EntityPlayerMP) player);
+                        MatterOverdrive.NETWORK.sendTo(new PacketAndroidTransformation(), (EntityPlayerMP) player);
                     }
                 }
             }
@@ -872,7 +872,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
             AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(event.getEntityLiving());
 
             if (androidPlayer.isAndroid()) {
-                for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+                for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
                     int unlockedLevel = androidPlayer.getUnlockedLevel(stat);
                     if (unlockedLevel > 0 && stat.isEnabled(androidPlayer, unlockedLevel)) {
                         stat.onLivingEvent(androidPlayer, unlockedLevel, event);

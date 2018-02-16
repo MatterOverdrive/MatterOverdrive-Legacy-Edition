@@ -111,7 +111,7 @@ public class BioticStatShockwave extends AbstractBioticStat {
                             entityPlayer.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, entityPlayer.posX + (double) (entityPlayer.getRNG().nextFloat() * entityPlayer.width * 2.0F) - (double) entityPlayer.width - d0 * d3, entityPlayer.posY + (double) (entityPlayer.getRNG().nextFloat() * entityPlayer.height) - d1 * d3, entityPlayer.posZ + (double) (entityPlayer.getRNG().nextFloat() * entityPlayer.width * 2.0F) - (double) entityPlayer.width - d2 * d3, d0, d1, d2);
                         }
                         androidPlayer.extractEnergyScaled((int) (range * ENERGY));
-                        MatterOverdrive.packetPipeline.sendToAllAround(new PacketSpawnParticle("shockwave", androidPlayer.getPlayer().posX, androidPlayer.getPlayer().posY + androidPlayer.getPlayer().getEyeHeight() / 2, androidPlayer.getPlayer().posZ, 1, RenderParticlesHandler.Blending.Additive, 10), androidPlayer.getPlayer(), 64);
+                        MatterOverdrive.NETWORK.sendToAllAround(new PacketSpawnParticle("shockwave", androidPlayer.getPlayer().posX, androidPlayer.getPlayer().posY + androidPlayer.getPlayer().getEyeHeight() / 2, androidPlayer.getPlayer().posZ, 1, RenderParticlesHandler.Blending.Additive, 10), androidPlayer.getPlayer(), 64);
                     } else {
 
                     }

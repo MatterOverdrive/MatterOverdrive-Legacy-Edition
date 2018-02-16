@@ -56,9 +56,9 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(GalaxyServer.getInstance());
         MinecraftForge.EVENT_BUS.register(getWeaponHandler());
         MinecraftForge.EVENT_BUS.register(GalaxyServer.getInstance());
-        MatterOverdrive.configHandler.subscribe(GalaxyServer.getInstance());
-        MatterOverdrive.configHandler.subscribe(GalaxyServer.getInstance().getGalaxyGenerator());
-        MatterOverdrive.configHandler.subscribe(googleAnalyticsCommon);
+        MatterOverdrive.CONFIG_HANDLER.subscribe(GalaxyServer.getInstance());
+        MatterOverdrive.CONFIG_HANDLER.subscribe(GalaxyServer.getInstance().getGalaxyGenerator());
+        MatterOverdrive.CONFIG_HANDLER.subscribe(googleAnalyticsCommon);
     }
 
     public void postInit(FMLPostInitializationEvent event) {

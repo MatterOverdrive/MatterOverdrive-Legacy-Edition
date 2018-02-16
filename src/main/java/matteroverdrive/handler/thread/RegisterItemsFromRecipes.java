@@ -51,15 +51,15 @@ public class RegisterItemsFromRecipes implements Runnable {
     public void run() {
 
         long startTime = System.nanoTime();
-        int startEntriesCount = MatterOverdrive.matterRegistry.getItemEntires().size();
+        int startEntriesCount = MatterOverdrive.MATTER_REGISTRY.getItemEntires().size();
 
-        if (MatterOverdrive.matterRegistry.CALCULATE_RECIPES) {
+        if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_RECIPES) {
             int passesCount = 8;
             MOLog.info("Starting Matter Recipe Calculation !");
 
             for (int pass = 0; pass < passesCount; pass++) {
                 long passStartTime = System.nanoTime();
-                int passStartRecipeCount = MatterOverdrive.matterRegistry.getItemEntires().size();
+                int passStartRecipeCount = MatterOverdrive.MATTER_REGISTRY.getItemEntires().size();
 
                 List<IRecipe> recipes = new CopyOnWriteArrayList<>(ForgeRegistries.RECIPES.getValues());
 
@@ -75,14 +75,14 @@ public class RegisterItemsFromRecipes implements Runnable {
 
                     try {
                         ItemStack itemStack = recipe.getRecipeOutput();
-                        if (!itemStack.isEmpty() && !MatterOverdrive.matterRegistry.blacklistedFromMod(itemStack)) {
+                        if (!itemStack.isEmpty() && !MatterOverdrive.MATTER_REGISTRY.blacklistedFromMod(itemStack)) {
                             debug("Calculating Recipe for: %s", recipe.getRecipeOutput());
-                            int matter = MatterOverdrive.matterRegistry.getMatter(itemStack);
+                            int matter = MatterOverdrive.MATTER_REGISTRY.getMatter(itemStack);
                             if (matter <= 0) {
-                                matter = MatterOverdrive.matterRegistry.getMatterFromRecipe(itemStack);
+                                matter = MatterOverdrive.MATTER_REGISTRY.getMatterFromRecipe(itemStack);
 
                                 if (matter > 0) {
-                                    MatterOverdrive.matterRegistry.register(itemStack.getItem(), new ItemStackHandlerCachable(matter, itemStack.getItemDamage()));
+                                    MatterOverdrive.MATTER_REGISTRY.register(itemStack.getItem(), new ItemStackHandlerCachable(matter, itemStack.getItemDamage()));
                                 } else {
                                     debug("Could not calculate recipe for: %s. Matter from recipe is 0.", recipe.getRecipeOutput());
                                 }
@@ -99,31 +99,31 @@ public class RegisterItemsFromRecipes implements Runnable {
                     }
                 }
 
-                MOLog.info("Matter Recipe Calculation for pass %s complete. Took %s milliseconds. Registered %s recipes", pass + 1, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - passStartTime), MatterOverdrive.matterRegistry.getItemEntires().size() - passStartRecipeCount);
-                if (MatterOverdrive.matterRegistry.getItemEntires().size() - passStartRecipeCount <= 0) {
+                MOLog.info("Matter Recipe Calculation for pass %s complete. Took %s milliseconds. Registered %s recipes", pass + 1, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - passStartTime), MatterOverdrive.MATTER_REGISTRY.getItemEntires().size() - passStartRecipeCount);
+                if (MatterOverdrive.MATTER_REGISTRY.getItemEntires().size() - passStartRecipeCount <= 0) {
                     break;
                 }
             }
 
-            MOLog.info("Matter Recipe Calculation, Complete ! Took %s Milliseconds. Registered total of %s items", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime), MatterOverdrive.matterRegistry.getItemEntires().size() - startEntriesCount);
+            MOLog.info("Matter Recipe Calculation, Complete ! Took %s Milliseconds. Registered total of %s items", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime), MatterOverdrive.MATTER_REGISTRY.getItemEntires().size() - startEntriesCount);
             MatterOverdrive.PROXY.getGoogleAnalytics().sendTimingHit(GoogleAnalyticsCommon.TIMING_CATEGORY_MATTER_REGISTRY, GoogleAnalyticsCommon.TIMING_VAR_MATTER_REGISTRY_CALCULATION, (int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime), null);
         }
 
-        if (MatterOverdrive.matterRegistry.CALCULATE_FURNACE) {
+        if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_FURNACE) {
             startTime = System.nanoTime();
-            startEntriesCount = MatterOverdrive.matterRegistry.getItemEntires().size();
+            startEntriesCount = MatterOverdrive.MATTER_REGISTRY.getItemEntires().size();
 
             MOLog.info("Matter Furnace Calculation Started");
             registerFromFurnace();
-            MOLog.info("Matter Furnace Calculation Complete. Took %s Milliseconds. Registered %s entries", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime), MatterOverdrive.matterRegistry.getItemEntires().size() - startEntriesCount);
+            MOLog.info("Matter Furnace Calculation Complete. Took %s Milliseconds. Registered %s entries", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime), MatterOverdrive.MATTER_REGISTRY.getItemEntires().size() - startEntriesCount);
         }
 
-        if (MatterOverdrive.matterRegistry.CALCULATE_FURNACE || MatterOverdrive.matterRegistry.CALCULATE_RECIPES) {
+        if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_FURNACE || MatterOverdrive.MATTER_REGISTRY.CALCULATE_RECIPES) {
             startTime = System.nanoTime();
 
             MOLog.info("Saving Registry to Disk");
             try {
-                MatterOverdrive.matterRegistry.saveToFile(file);
+                MatterOverdrive.MATTER_REGISTRY.saveToFile(file);
                 MOLog.info("Registry saved at: %s. Took %s Milliseconds.", file.getPath(), TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime));
                 MatterOverdrive.PROXY.getGoogleAnalytics().sendTimingHit(GoogleAnalyticsCommon.TIMING_CATEGORY_MATTER_REGISTRY, GoogleAnalyticsCommon.TIMING_VAR_MATTER_REGISTRY_SAVING_TO_DISK, (int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime), null);
             } catch (Exception e) {
@@ -131,8 +131,8 @@ public class RegisterItemsFromRecipes implements Runnable {
                 MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Could not save Registry file");
             }
         }
-        MatterOverdrive.matterRegistry.hasComplitedRegistration = true;
-        MatterOverdrive.matterRegistrationHandler.onRegistrationComplete();
+        MatterOverdrive.MATTER_REGISTRY.hasComplitedRegistration = true;
+        MatterOverdrive.MATTER_REGISTRATION_HANDLER.onRegistrationComplete();
     }
 
     private void registerFromFurnace() {
@@ -142,14 +142,14 @@ public class RegisterItemsFromRecipes implements Runnable {
                 int keyMatter = (MatterHelper.getMatterAmountFromItem(entry.getKey()) * entry.getKey().getCount()) / entry.getValue().getCount();
                 int valueMatter = MatterHelper.getMatterAmountFromItem(entry.getValue());
                 if (keyMatter > 0 && valueMatter <= 0) {
-                    MatterOverdrive.matterRegistry.register(entry.getValue().getItem(), new ItemStackHandlerCachable(keyMatter, entry.getValue().getItemDamage()));
+                    MatterOverdrive.MATTER_REGISTRY.register(entry.getValue().getItem(), new ItemStackHandlerCachable(keyMatter, entry.getValue().getItemDamage()));
                 }
             }
         }
     }
 
     private void debug(String debug, Exception ex, Object... params) {
-        if (MatterOverdrive.matterRegistry.CALCULATION_DEBUG) {
+        if (MatterOverdrive.MATTER_REGISTRY.CALCULATION_DEBUG) {
             for (int i = 0; i < params.length; i++) {
                 if (params[i] instanceof ItemStack) {
                     try {
@@ -164,7 +164,7 @@ public class RegisterItemsFromRecipes implements Runnable {
     }
 
     private void debug(String debug, Object... params) {
-        if (MatterOverdrive.matterRegistry.CALCULATION_DEBUG) {
+        if (MatterOverdrive.MATTER_REGISTRY.CALCULATION_DEBUG) {
             for (int i = 0; i < params.length; i++) {
                 if (params[i] instanceof ItemStack) {
                     try {

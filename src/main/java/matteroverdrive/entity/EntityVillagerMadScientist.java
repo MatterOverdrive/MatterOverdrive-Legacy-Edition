@@ -108,7 +108,7 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
         registry.registerMessage(acceptCocktail);
         DialogMessage declineCocktail = new DialogMessageBackToMain(null, "dialog.mad_scientist.junkie.cocktail_quest.question.decline").setUnlocalized(true);
         registry.registerMessage(declineCocktail);
-        DialogMessage[] cocktailQuest = MatterOverdrive.dialogFactory.constructMultipleLineDialog(DialogMessageQuestStart.class, "dialog.mad_scientist.junkie.cocktail_quest", 8, ". . . . . .");
+        DialogMessage[] cocktailQuest = MatterOverdrive.DIALOG_FACTORY.constructMultipleLineDialog(DialogMessageQuestStart.class, "dialog.mad_scientist.junkie.cocktail_quest", 8, ". . . . . .");
         ((DialogMessageQuestStart) cocktailQuest[0]).setQuest(new QuestStack(MatterOverdriveQuests.cocktailOfAscension));
         cocktailOfAscension = cocktailQuest[0];
         DialogMessage lastLine = cocktailQuest[cocktailQuest.length - 1];
@@ -125,7 +125,7 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
             undo.setShots(DialogShot.closeUp);
             whatDidYouDo.setShots(DialogShot.fromBehindLeftClose);
             for (DialogMessage aCocktailQuest : cocktailQuest) {
-                MatterOverdrive.dialogFactory.addRandomShots(aCocktailQuest);
+                MatterOverdrive.DIALOG_FACTORY.addRandomShots(aCocktailQuest);
             }
         }
     }
@@ -156,7 +156,7 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         if (world.isRemote) {
-            MatterOverdrive.packetPipeline.sendToServer(new PacketManageConversation(this, true));
+            MatterOverdrive.NETWORK.sendToServer(new PacketManageConversation(this, true));
             return true;
         }
 
@@ -178,7 +178,7 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
     private IDialogMessage assembleStartingMessage(EntityPlayer player) {
         if (getJunkie()) {
             DialogMessage mainJunkieMessage = new DialogMessage(MOStringHelper.formatVariations("dialog.mad_scientist.junkie.main", "line", 2), null).setUnlocalized(true);
-            MatterOverdrive.dialogFactory.addOnlyVisibleOptions(player, this, mainJunkieMessage, canYouConvert, MatterOverdriveDialogs.trade, cocktailOfAscension, cocktailOfAscensionComplete, MatterOverdriveDialogs.quitMessage);
+            MatterOverdrive.DIALOG_FACTORY.addOnlyVisibleOptions(player, this, mainJunkieMessage, canYouConvert, MatterOverdriveDialogs.trade, cocktailOfAscension, cocktailOfAscensionComplete, MatterOverdriveDialogs.quitMessage);
             return mainJunkieMessage;
         } else {
             if (MOPlayerCapabilityProvider.GetAndroidCapability(player).isAndroid()) {

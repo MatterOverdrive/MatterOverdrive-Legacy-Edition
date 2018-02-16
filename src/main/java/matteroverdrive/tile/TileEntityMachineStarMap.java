@@ -248,7 +248,7 @@ public class TileEntityMachineStarMap extends MOTileEntityMachineEnergy {
     }
 
     public void Attack(GalacticPosition from, GalacticPosition to, int shipID) {
-        MatterOverdrive.packetPipeline.sendToServer(new PacketStarMapAttack(from, to, shipID));
+        MatterOverdrive.NETWORK.sendToServer(new PacketStarMapAttack(from, to, shipID));
     }
 
     public boolean isItemValidForSlot(int slot, ItemStack item, EntityPlayer player) {

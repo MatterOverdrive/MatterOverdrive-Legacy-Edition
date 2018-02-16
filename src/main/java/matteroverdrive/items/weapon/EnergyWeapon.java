@@ -47,7 +47,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagFloat;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
@@ -60,7 +59,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -273,7 +271,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
             for (ItemStack stack : player.inventory.mainInventory) {
                 if (!stack.isEmpty() && stack.getItem() instanceof IEnergyPack && stack.getCount() > 0) {
                     ClientProxy.instance().getClientWeaponHandler().addReloadDelay(this, 40);
-                    MatterOverdrive.packetPipeline.sendToServer(new PacketReloadEnergyWeapon());
+                    MatterOverdrive.NETWORK.sendToServer(new PacketReloadEnergyWeapon());
                     return;
                 }
             }

@@ -76,7 +76,7 @@ public class TileEntityMatterPipe extends TileEntityPipe implements IFluidPipe {
     public void manageNetwork() {
         if (fluidPipeNetwork == null) {
             if (!tryConnectToNeighborNetworks(world)) {
-                FluidPipeNetwork network = MatterOverdrive.fluidNetworkHandler.getNetwork(this);
+                FluidPipeNetwork network = MatterOverdrive.FLUID_NETWORK_HANDLER.getNetwork(this);
                 network.addNode(this);
             }
         }
@@ -90,7 +90,7 @@ public class TileEntityMatterPipe extends TileEntityPipe implements IFluidPipe {
                     if (handler != null && handler.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, direction.getOpposite()) && !(handler instanceof IFluidPipe)) {
                         int amount = storage.extractMatter(handler.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, direction.getOpposite()).fill(new FluidStack(OverdriveFluids.matterPlasma, storage.getMatterStored()), true), false);
                         if (amount != 0) {
-                            MatterOverdrive.packetPipeline.sendToAllAround(new PacketMatterUpdate(handler), handler, 64);
+                            MatterOverdrive.NETWORK.sendToAllAround(new PacketMatterUpdate(handler), handler, 64);
                         }
                         if (storage.getMatterStored() <= 0) {
                             return;
