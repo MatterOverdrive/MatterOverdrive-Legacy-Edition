@@ -95,7 +95,7 @@ item.matteroverdrive.weapon_handle.name=武器把手
 item.matteroverdrive.plasma_core.name=相位核心
 item.matteroverdrive.portable_decomposer.name=携带式物质分解仪
 item.matteroverdrive.portable_decomposer.details=将拾取物品分解为等离子物质
-item.matteroverdrive.record.mo.transformation.desc=BoxCat Games - Trace Route
+item.matteroverdrive.record.matteroverdrive.transformation.desc=BoxCat Games - Trace Route
 
 #/#//////////// Upgrades ////////////
 item.matteroverdrive.upgrade.speed.name=速度升级
