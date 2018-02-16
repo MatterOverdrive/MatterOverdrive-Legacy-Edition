@@ -19,14 +19,14 @@
 <entry stylesheet="matteroverdrive:info/styles/guide.css">
     <page class="padded-page">
         <title size="2" class="matter-text small-title">$itemName</title>
-        <text class="matter-text text-block">$itemName 同原版告示牌功能相似. 当(水平)放置在另一个$itemName 旁边时, 它们会连接起来, 让你能够没有中断的显示一段长文本.</text>
+        <text class="matter-text text-block">$itemName同原版告示牌功能相似。当（水平）放置在另一个$itemName旁边时，它们会连接起来，让你能够没有中断的显示一段长文本。</text>
         <image style="float:left;margin-right:4px" width="90" height="90" src="guide/sign_small.png"></image>
         <image width="158" height="90" src="guide/sign_wide.png"></image>
     </page>
     <page class="padded-page">
         <title size="2" class="matter-text small-title">如何使用</title>
-        <text class="matter-text text-block">$itemName 是一种多行告示牌.
-            在配置栏你可以选择每行字体大小是否自动匹配文本长度, 或者每行有着最大长度而其他行有着同样的规格.</text>
+        <text class="matter-text text-block">$itemName是一种多行告示牌。
+            在配置栏你可以选择每行字体大小是否自动匹配文本长度，或者每行有着最大长度而其他行有着同样的规格。</text>
         <image style="margin-right:4px;float:left" width="64" height="64" src="guide/sign_configs.png"></image>
         <image style="margin-right:4px;float:left" width="64" height="64" src="guide/sign_small.png"></image>
         <image style="margin-right:4px" width="64" height="64" src="guide/sign_small_none_autosize.png"></image>
