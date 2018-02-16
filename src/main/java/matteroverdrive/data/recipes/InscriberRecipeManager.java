@@ -15,13 +15,13 @@ public class InscriberRecipeManager extends RecipeManager<TileEntityInscriber, I
     public boolean isPrimaryInput(ItemStack stack) {
         return recipes.stream()
                 .map(InscriberRecipe::getMain)
-                .anyMatch(s -> ItemStack.areItemsEqual(s, stack));
+                .anyMatch(s -> s.apply(stack));
     }
 
     public boolean isSecondaryInput(ItemStack stack) {
         return recipes.stream()
                 .map(InscriberRecipe::getSec)
-                .anyMatch(s -> ItemStack.areItemsEqual(s, stack));
+                .anyMatch(s -> s.apply(stack));
     }
 
 }

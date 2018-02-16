@@ -18,6 +18,7 @@
 
 package matteroverdrive.util;
 
+import com.astro.clib.recipe.XMLCraftingShaped;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.IWeapon;
@@ -275,7 +276,7 @@ public class WeaponFactory {
         public boolean fits(WeaponGenerationContext context) {
             boolean weaponSupportModule = false;
             if (context.weaponStack != null && context.weaponStack.getItem() instanceof IWeapon) {
-                weaponSupportModule = context.weaponStack.getItem() instanceof IWeapon && ((IWeapon) context.weaponStack.getItem()).supportsModule(context.weaponStack, weaponModule);
+                weaponSupportModule = context.weaponStack.getItem() instanceof IWeapon && ((IWeapon) context.weaponStack.getItem()).supportsModule(context.weaponStack, getWeaponModule());
             }
 
             if (legendary && !context.legendary) {

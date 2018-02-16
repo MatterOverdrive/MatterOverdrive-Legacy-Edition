@@ -1,0 +1,19 @@
+<recipe type="minecraft:crafting_shaped">
+    <result>matteroverdrive:android_station</result>
+    <pattern>
+        <row>THA</row>
+        <row>2F3</row>
+        <row>GMR</row>
+    </pattern>
+    <ingredients>
+        <ingredient key="A" type="item" meta="1">matteroverdrive:rogue_android_part</ingredient>
+        <ingredient key="2" type="item" meta="1">matteroverdrive:isolinear_circuit</ingredient>
+        <ingredient key="R" type="ore">dustRedstone</ingredient>
+        <ingredient key="3" type="item" meta="2">matteroverdrive:isolinear_circuit</ingredient>
+        <ingredient key="T" type="item" meta="3">matteroverdrive:rogue_android_part</ingredient>
+        <ingredient key="F" type="item">matteroverdrive:forcefield_emitter</ingredient>
+        <ingredient key="G" type="ore">dustGlowstone</ingredient>
+        <ingredient key="H" type="item">matteroverdrive:rogue_android_part</ingredient>
+        <ingredient key="M" type="item">matteroverdrive:machine_casing</ingredient>
+    </ingredients>
+</recipe>

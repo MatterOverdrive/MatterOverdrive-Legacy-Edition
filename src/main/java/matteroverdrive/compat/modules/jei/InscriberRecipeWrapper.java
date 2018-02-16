@@ -1,6 +1,7 @@
 package matteroverdrive.compat.modules.jei;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import matteroverdrive.Reference;
 import matteroverdrive.data.recipes.InscriberRecipe;
 import matteroverdrive.util.MOEnergyHelper;
@@ -11,18 +12,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author shadowfacts
- */
 public class InscriberRecipeWrapper implements IRecipeWrapper {
 
     private static final ResourceLocation ARROW = new ResourceLocation(Reference.TEXTURE_ARROW_PROGRESS);
 
-    private final List<ItemStack> inputs;
+    private final List<Ingredient> inputs;
     private final List<ItemStack> outputs;
     private final int energy;
     private final int time;
@@ -36,14 +36,21 @@ public class InscriberRecipeWrapper implements IRecipeWrapper {
 
     @Override
     public void getIngredients(IIngredients ingredients) {
-        ingredients.setInputs(ItemStack.class, inputs);
+        List<List<ItemStack>> stacks = new ArrayList<>();
+        this.inputs.forEach(s -> stacks.add(Lists.newArrayList(s.getMatchingStacks())));
+        ingredients.setInputLists(ItemStack.class, stacks);
         ingredients.setOutputs(ItemStack.class, outputs);
     }
 
     @Override
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         minecraft.getTextureManager().bindTexture(ARROW);
-        int width = (int) (((float) (minecraft.world.getTotalWorldTime() % time) / (float) time) * 24);
+        int width;
+        int wt = (int)(minecraft.world.getTotalWorldTime() % time);
+        if(wt==0)
+            width=0;
+        else
+            width = (int) (((float) (minecraft.world.getTotalWorldTime() % time) / (float) time) * 24);
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
         RenderUtils.drawPlaneWithUV(35, 15, 0, width, 16, 0.5, 0, width / 48f, 1);

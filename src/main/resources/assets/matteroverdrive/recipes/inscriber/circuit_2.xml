@@ -1,0 +1,9 @@
+<recipe type="matteroverdrive:inscriber">
+    <energy>88000</energy>
+    <time>600</time>
+    <result meta="2">matteroverdrive:isolinear_circuit</result>
+    <ingredients>
+        <ingredient key="primary" type="item" meta="1">matteroverdrive:isolinear_circuit</ingredient>
+        <ingredient key="secondary" type="ore">gemDiamond</ingredient>
+    </ingredients>
+</recipe>

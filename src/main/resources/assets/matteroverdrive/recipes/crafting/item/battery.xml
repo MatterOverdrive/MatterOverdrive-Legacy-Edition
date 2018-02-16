@@ -1,0 +1,14 @@
+<recipe type="minecraft:crafting_shaped">
+    <result>matteroverdrive:battery</result>
+    <pattern>
+        <row>.R.</row>
+        <row>TGT</row>
+        <row>TDT</row>
+    </pattern>
+    <ingredients>
+        <ingredient key="T" type="ore">ingotTritanium</ingredient>
+        <ingredient key="G" type="ore">ingotGold</ingredient>
+        <ingredient key="D" type="ore">gemDilithium</ingredient>
+        <ingredient key="R" type="ore">dustRedstone</ingredient>
+    </ingredients>
+</recipe>

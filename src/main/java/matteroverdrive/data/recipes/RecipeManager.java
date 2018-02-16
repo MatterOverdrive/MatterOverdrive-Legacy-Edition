@@ -26,29 +26,6 @@ public class RecipeManager<M, R extends Recipe<M>> {
         this.recipeClass = recipeClass;
     }
 
-    public void load(File file) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(file);
-            document.getDocumentElement().normalize();
-
-            NodeList nodes = document.getElementsByTagName("recipe");
-            for (int i = 0; i < nodes.getLength(); i++) {
-                Node node = nodes.item(i);
-                if (node instanceof Element) {
-                    Element e = (Element) node;
-                    R recipe = recipeClass.newInstance();
-                    recipe.fromXML(e);
-                    register(recipe);
-                }
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void register(R recipe) {
         recipes.add(recipe);
     }
@@ -62,7 +39,7 @@ public class RecipeManager<M, R extends Recipe<M>> {
     public boolean isInput(ItemStack stack) {
         return recipes.stream()
                 .flatMap(r -> r.getInputs().stream())
-                .anyMatch(s -> s.getItem() == stack.getItem() && s.getItemDamage() == stack.getItemDamage());
+                .anyMatch(s -> s.apply(stack));
     }
 
     public List<R> getRecipes() {

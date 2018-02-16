@@ -19,12 +19,16 @@
 package matteroverdrive;
 
 import com.astro.clib.api.OreDictItem;
+import com.astro.clib.recipe.RecipeLoader;
+import com.astro.clib.recipe.RecipeRegistrar;
+import com.astro.clib.tech.CLibGalactic;
 import com.astro.clib.tech.CLibTech;
 import matteroverdrive.commands.AndoidCommands;
 import matteroverdrive.commands.MatterRegistryCommands;
 import matteroverdrive.commands.QuestCommands;
 import matteroverdrive.commands.WorldGenCommands;
 import matteroverdrive.compat.MatterOverdriveCompat;
+import matteroverdrive.data.recipes.InscriberRecipe;
 import matteroverdrive.entity.EntityVillagerMadScientist;
 import matteroverdrive.entity.android_player.AndroidPlayer;
 import matteroverdrive.entity.player.OverdriveExtendedProperties;
@@ -104,6 +108,7 @@ public class MatterOverdrive {
     static {
         FluidRegistry.enableUniversalBucket();
         CLibTech.enable();
+        CLibGalactic.enable();
     }
 
     public MatterOverdrive() {
@@ -111,6 +116,7 @@ public class MatterOverdrive {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        RecipeLoader.registerXMLRecipe(InscriberRecipe.TYPE, InscriberRecipe.class, MatterOverdriveRecipes.INSCRIBER::register);
         MinecraftForge.EVENT_BUS.register(this);
         AndroidPlayer.register();
         OverdriveExtendedProperties.register();
