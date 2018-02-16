@@ -167,7 +167,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
     private void AddModuleDetails(ItemStack weapon, List infos) {
         ItemStack module = WeaponHelper.getModuleAtSlot(Reference.MODULE_BARREL, weapon);
-        if (module != null) {
+        if (!module.isEmpty()) {
 			/*infos.add(EnumChatFormatting.GRAY + "Barrel:");
 
             Object statsObject = ((IWeaponModule)module.getItem()).getValue(module);
@@ -501,7 +501,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         accuracy = modifyStatFromModules(Reference.WS_ACCURACY, weapon, accuracy);
         if (WeaponHelper.hasModule(Reference.MODULE_SIGHTS, weapon)) {
             ItemStack sights = WeaponHelper.getModuleAtSlot(Reference.MODULE_SIGHTS, weapon);
-            if (sights != null && sights.getItem() instanceof IWeaponScope) {
+            if (!sights.isEmpty() && sights.getItem() instanceof IWeaponScope) {
                 accuracy = ((IWeaponScope) sights.getItem()).getAccuracyModify(sights, weapon, zoomed, accuracy);
             }
         }
@@ -568,7 +568,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
     public float getZoomMultiply(EntityPlayer entityPlayer, ItemStack weapon) {
         if (WeaponHelper.hasModule(Reference.MODULE_SIGHTS, weapon)) {
             ItemStack sights = WeaponHelper.getModuleAtSlot(Reference.MODULE_SIGHTS, weapon);
-            if (sights != null && sights.getItem() instanceof IWeaponScope) {
+            if (!sights.isEmpty() && sights.getItem() instanceof IWeaponScope) {
                 return ((IWeaponScope) sights.getItem()).getZoomAmount(sights, weapon);
             }
         }

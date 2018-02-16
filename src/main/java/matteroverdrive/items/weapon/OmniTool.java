@@ -125,7 +125,7 @@ public class OmniTool extends EnergyWeapon {
                     IBlockState state = player.world.getBlockState(hit.getBlockPos());
                     boolean canMine = state.getBlock().canHarvestBlock(player.world, hit.getBlockPos(), (EntityPlayer) player) && ((EntityPlayer) player).capabilities.allowEdit;
 
-                    if (state.getBlock() != null && state.getMaterial() != Material.AIR && canMine) {
+                    if (!state.getBlock().isAir(state,player.world,hit.getBlockPos()) && canMine) {
 
                         ++STEP_SOUND_COUNTER;
                         LAST_SIDE = hit.sideHit;
@@ -298,10 +298,7 @@ public class OmniTool extends EnergyWeapon {
 
     @Override
     public boolean supportsModule(ItemStack weapon, ItemStack module) {
-        if (module != null) {
-            return module.getItem() == MatterOverdrive.ITEMS.weapon_module_color || (module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel && module.getItemDamage() != WeaponModuleBarrel.HEAL_BARREL_ID);
-        }
-        return false;
+        return !module.isEmpty() && (module.getItem() == MatterOverdrive.ITEMS.weapon_module_color || (module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel && module.getItemDamage() != WeaponModuleBarrel.HEAL_BARREL_ID));
     }
 
     @Override

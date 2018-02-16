@@ -348,7 +348,7 @@ public class Phaser extends EnergyWeapon implements IWeapon {
                 }
             }
 
-        } else if (b != null && b != Blocks.AIR) {
+        } else if (!b.getBlock().isAir(b,world,hit.getBlockPos())) {
             if (WeaponHelper.hasStat(Reference.WS_FIRE_DAMAGE, weapon) && isKillMode(weapon)) {
                 world.spawnParticle(EnumParticleTypes.FLAME, hit.hitVec.x, hit.hitVec.y, hit.hitVec.z, 0, 0, 0);
             }
@@ -364,10 +364,7 @@ public class Phaser extends EnergyWeapon implements IWeapon {
 
     @Override
     public boolean supportsModule(ItemStack weapon, ItemStack module) {
-        if (module != null) {
-            return module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel || module.getItem() == MatterOverdrive.ITEMS.weapon_module_color;
-        }
-        return false;
+        return !module.isEmpty() && (module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel || module.getItem() == MatterOverdrive.ITEMS.weapon_module_color);
     }
 
     @Override

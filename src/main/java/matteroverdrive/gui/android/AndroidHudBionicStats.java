@@ -98,7 +98,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     private int getTotalElementCount(AndroidPlayer android) {
         int count = 0;
         for (int i = 0; i < android.getSizeInventory(); i++) {
-            if (android.getStackInSlot(i) != null) {
+            if (!android.getStackInSlot(i).isEmpty()) {
                 count++;
             }
         }

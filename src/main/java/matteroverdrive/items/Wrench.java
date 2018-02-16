@@ -31,7 +31,7 @@ public class Wrench extends MOBaseItem {
         IBlockState state = world.getBlockState(pos);
         boolean result = false;
 
-        if (state != null) {
+        if (!state.getBlock().isAir(state,world,pos)) {
             PlayerInteractEvent e = new PlayerInteractEvent.RightClickBlock(player, hand, pos, side, new Vec3d(hitX, hitY, hitZ));
             if (MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Event.Result.DENY) {
                 return EnumActionResult.FAIL;
