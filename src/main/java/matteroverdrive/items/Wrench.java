@@ -31,21 +31,27 @@ public class Wrench extends MOBaseItem {
         IBlockState state = world.getBlockState(pos);
         boolean result = false;
 
-        if (!state.getBlock().isAir(state,world,pos)) {
+        if (!state.getBlock().isAir(state, world, pos)) {
             PlayerInteractEvent e = new PlayerInteractEvent.RightClickBlock(player, hand, pos, side, new Vec3d(hitX, hitY, hitZ));
+
             if (MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Event.Result.DENY) {
                 return EnumActionResult.FAIL;
             }
+
             if (player.isSneaking() && state.getBlock() instanceof IDismantleable && ((IDismantleable) state.getBlock()).canDismantle(player, world, pos)) {
                 if (!world.isRemote) {
                     ((IDismantleable) state.getBlock()).dismantleBlock(player, world, pos, false);
                 }
+
                 result = true;
             }
-            if (state.getBlock() instanceof IWrenchable && !world.isRemote) {
-                result = ((IWrenchable) state.getBlock()).onWrenchHit(stack, player, world, pos, side, hitX, hitY, hitZ);
-            } else if (!player.isSneaking() && state.getBlock().rotateBlock(world, pos, side)) {
-                result = true;
+
+            if (!result) {
+                if (state.getBlock() instanceof IWrenchable && !world.isRemote) {
+                    result = ((IWrenchable) state.getBlock()).onWrenchHit(stack, player, world, pos, side, hitX, hitY, hitZ);
+                } else if (!player.isSneaking() && state.getBlock().rotateBlock(world, pos, side)) {
+                    result = true;
+                }
             }
         }
 
