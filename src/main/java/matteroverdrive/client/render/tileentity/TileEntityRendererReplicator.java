@@ -20,11 +20,15 @@ public class TileEntityRendererReplicator extends TileEntitySpecialRenderer<Tile
         GlStateManager.popMatrix();
     }
 
-    private void renderItem(TileEntityMachineReplicator replicator, double x, double y, double z) {
-        ItemStack stack = replicator.getStackInSlot(replicator.OUTPUT_SLOT_ID);
+    private void renderItem(TileEntityMachineReplicator tileEntity, double x, double y, double z) {
+        if (tileEntity.getWorld().isAirBlock(tileEntity.getPos())) {
+            return;
+        }
+
+        ItemStack stack = tileEntity.getStackInSlot(tileEntity.OUTPUT_SLOT_ID);
         if (!stack.isEmpty()) {
             if (itemEntity == null) {
-                itemEntity = new EntityItem(replicator.getWorld(), x, y, z, stack);
+                itemEntity = new EntityItem(tileEntity.getWorld(), x, y, z, stack);
             } else if (!ItemStack.areItemStacksEqual(itemEntity.getItem(), stack)) {
                 itemEntity.setItem(stack);
             }

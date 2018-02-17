@@ -60,7 +60,23 @@ public abstract class TileEntityRendererStation<T extends MOTileEntityMachine> e
         fliker = new Random();
     }
 
-    private void drawHoloLights(TileEntity entity, World world, double x, double y, double z, double t) {
+    private void drawHoloLights(TileEntity tileEntity, World world, double x, double y, double z, double t) {
+        if (tileEntity.getWorld().isAirBlock(tileEntity.getPos())) {
+            return;
+        }
+
+        BufferBuilder wr = Tessellator.getInstance().getBuffer();
+
+        // There is no way to get .isDrawing, so let's just catch draw error
+        // This happens on complex models or something
+        // This is known to be an issue, even other mods are affected by this
+        try {
+            wr.begin(GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        } catch (IllegalStateException e) {
+            wr.finishDrawing();
+            return;
+        }
+
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL_ONE, GL_ONE);
         GlStateManager.disableLighting();
@@ -76,9 +92,8 @@ public abstract class TileEntityRendererStation<T extends MOTileEntityMachine> e
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y + height, z);
-        BufferBuilder wr = Tessellator.getInstance().getBuffer();
-        wr.begin(GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        RenderUtils.applyColor(getHoloColor(entity));
+
+        RenderUtils.applyColor(getHoloColor(tileEntity));
 
         wr.pos(0, 0, 0).tex(1, 1).endVertex();
         wr.pos(-topSize, hologramHeight, -topSize).tex(1, 0).endVertex();
@@ -102,7 +117,6 @@ public abstract class TileEntityRendererStation<T extends MOTileEntityMachine> e
 
         Tessellator.getInstance().draw();
         GlStateManager.popMatrix();
-
         GlStateManager.disableBlend();
         GlStateManager.enableLighting();
         GlStateManager.enableCull();
@@ -160,28 +174,30 @@ public abstract class TileEntityRendererStation<T extends MOTileEntityMachine> e
     }
 
     protected void renderHologram(T station, double x, double y, double z, float partialTicks, double noise) {
-        if (!isUsable(station)) {
+        if (isUsable(station)) {
+            return;
+        }
+
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x + 0.5, y + 0.8, z + 0.5);
+        rotate(station, noise);
+
+        GlStateManager.disableCull();
+        GlStateManager.disableLighting();
+        GlStateManager.scale(0.02, 0.02, 0.02);
+        GlStateManager.rotate(180, 1, 0, 0);
+
+        Color color = Reference.COLOR_HOLO_RED.multiplyWithoutAlpha(0.33f);
+        String info[] = MOStringHelper.translateToLocal("gui.hologram.access_denied").split(" ");
+        for (int i = 0; i < info.length; i++) {
+            int width = Minecraft.getMinecraft().fontRenderer.getStringWidth(info[i]);
             GlStateManager.pushMatrix();
-            GlStateManager.translate(x + 0.5, y + 0.8, z + 0.5);
-            rotate(station, noise);
-
-            GlStateManager.disableCull();
-            GlStateManager.disableLighting();
-            GlStateManager.scale(0.02, 0.02, 0.02);
-            GlStateManager.rotate(180, 1, 0, 0);
-
-            Color color = Reference.COLOR_HOLO_RED.multiplyWithoutAlpha(0.33f);
-            String info[] = MOStringHelper.translateToLocal("gui.hologram.access_denied").split(" ");
-            for (int i = 0; i < info.length; i++) {
-                int width = Minecraft.getMinecraft().fontRenderer.getStringWidth(info[i]);
-                GlStateManager.pushMatrix();
-                GlStateManager.translate(-width / 2, -32, 0);
-                Minecraft.getMinecraft().fontRenderer.drawString(info[i], 0, i * 10, color.getColor());
-                GlStateManager.popMatrix();
-            }
-
+            GlStateManager.translate(-width / 2, -32, 0);
+            Minecraft.getMinecraft().fontRenderer.drawString(info[i], 0, i * 10, color.getColor());
             GlStateManager.popMatrix();
         }
+
+        GlStateManager.popMatrix();
     }
 
     @Override

@@ -55,7 +55,11 @@ public class TileEntityRendererStarMap extends TileEntityRendererStation<TileEnt
         renderHologramBase(starMap, x, y, z, partialTicks);
     }
 
-    protected void renderHologramBase(TileEntityMachineStarMap starMap, double x, double y, double z, float partialTicks) {
+    protected void renderHologramBase(TileEntityMachineStarMap tileEntity, double x, double y, double z, float partialTicks) {
+        if (tileEntity.getWorld().isAirBlock(tileEntity.getPos())) {
+            return;
+        }
+
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         GlStateManager.translate(0.5, 0.5, 0.5);
@@ -65,29 +69,29 @@ public class TileEntityRendererStarMap extends TileEntityRendererStation<TileEnt
         GlStateManager.blendFunc(GL_ONE, GL_ONE);
         float distance = (float) new Vec3d(x, y, z).lengthVector();
 
-        if (starMap.getActiveSpaceBody() != null) {
-            Collection<ISpaceBodyHoloRenderer> renderers = ClientProxy.renderHandler.getStarmapRenderRegistry().getStarmapRendererCollection(starMap.getActiveSpaceBody().getClass());
+        if (tileEntity.getActiveSpaceBody() != null) {
+            Collection<ISpaceBodyHoloRenderer> renderers = ClientProxy.renderHandler.getStarmapRenderRegistry().getStarmapRendererCollection(tileEntity.getActiveSpaceBody().getClass());
             if (renderers != null) {
                 for (ISpaceBodyHoloRenderer renderer : renderers) {
-                    if (renderer.displayOnZoom(starMap.getZoomLevel(), starMap.getActiveSpaceBody())) {
-                        SpaceBody spaceBody = starMap.getActiveSpaceBody();
+                    if (renderer.displayOnZoom(tileEntity.getZoomLevel(), tileEntity.getActiveSpaceBody())) {
+                        SpaceBody spaceBody = tileEntity.getActiveSpaceBody();
                         if (spaceBody != null) {
                             GlStateManager.translate(0, renderer.getHologramHeight(spaceBody), 0);
                             GlStateManager.pushMatrix();
-                            renderer.renderBody(GalaxyClient.getInstance().getTheGalaxy(), spaceBody, starMap, partialTicks, distance);
+                            renderer.renderBody(GalaxyClient.getInstance().getTheGalaxy(), spaceBody, tileEntity, partialTicks, distance);
                             GlStateManager.popMatrix();
 
                             if (drawHoloLights()) {
                                 GlStateManager.pushMatrix();
                                 Vec3d playerPosition = Minecraft.getMinecraft().getRenderViewEntity().getPositionEyes(partialTicks);
                                 playerPosition = new Vec3d(playerPosition.x, 0, playerPosition.z);
-                                Vec3d mapPosition = new Vec3d(starMap.getPos().getX() + 0.5, 0, starMap.getPos().getZ() + 0.5);
+                                Vec3d mapPosition = new Vec3d(tileEntity.getPos().getX() + 0.5, 0, tileEntity.getPos().getZ() + 0.5);
                                 Vec3d dir = mapPosition.subtract(playerPosition).normalize();
                                 double angle = Math.acos(dir.dotProduct(new Vec3d(1, 0, 0)));
                                 if (new Vec3d(0, 1, 0).dotProduct(dir.crossProduct(new Vec3d(1, 0, 0))) < 0) {
                                     angle = Math.PI * 2 - angle;
                                 }
-                                drawHoloGuiInfo(renderer, spaceBody, starMap, (Math.PI / 2 - angle) * (180 / Math.PI), partialTicks);
+                                drawHoloGuiInfo(renderer, spaceBody, tileEntity, (Math.PI / 2 - angle) * (180 / Math.PI), partialTicks);
                                 GlStateManager.popMatrix();
                             }
                         }

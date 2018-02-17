@@ -38,6 +38,10 @@ public abstract class TileEntityRendererMonitor<T extends MOTileEntityMachine> e
 
     @Override
     public void render(MOTileEntityMachine tileEntity, double x, double y, double z, float ticks, int destroyStage, float a) {
+        if (tileEntity.getWorld().isAirBlock(tileEntity.getPos())) {
+            return;
+        }
+
         GlStateManager.pushMatrix();
 
         IBlockState blockState = getWorld().getBlockState(tileEntity.getPos());

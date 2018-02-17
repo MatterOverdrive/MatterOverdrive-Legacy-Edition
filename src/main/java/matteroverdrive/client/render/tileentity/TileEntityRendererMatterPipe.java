@@ -16,12 +16,12 @@ public class TileEntityRendererMatterPipe extends TileEntityRendererPipe {
     }
 
     @Override
-    protected Vector2f getCoreUV(TileEntity entity) {
+    protected Vector2f getCoreUV(TileEntity tileEntity) {
         return new Vector2f(0, 0);
     }
 
     @Override
-    protected Vector2f getSidesUV(TileEntity entity, EnumFacing dir) {
+    protected Vector2f getSidesUV(TileEntity tileEntity, EnumFacing dir) {
         return new Vector2f(1, 0);
     }
 }

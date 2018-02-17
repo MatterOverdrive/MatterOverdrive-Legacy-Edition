@@ -31,7 +31,11 @@ public class TileEntityRendererPipe extends TileEntitySpecialRenderer<TileEntity
     }
 
     @Override
-    public void render(TileEntityPipe pipe, double x, double y, double z, float f, int destroyStage, float a) {
+    public void render(TileEntityPipe tileEntity, double x, double y, double z, float f, int destroyStage, float a) {
+        if (tileEntity.getWorld().isAirBlock(tileEntity.getPos())) {
+            return;
+        }
+
         GlStateManager.pushMatrix();
 
         GlStateManager.translate(x, y, z);
@@ -39,7 +43,7 @@ public class TileEntityRendererPipe extends TileEntitySpecialRenderer<TileEntity
             this.bindTexture(texture);
         }
 
-        drawCore(pipe, x, y, z, f, drawSides(pipe, x, y, z, f));
+        drawCore(tileEntity, x, y, z, f, drawSides(tileEntity, x, y, z, f));
 
         GlStateManager.popMatrix();
     }

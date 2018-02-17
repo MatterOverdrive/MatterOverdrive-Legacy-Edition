@@ -37,6 +37,10 @@ public class TileEntityRendererPatternMonitor extends TileEntityRendererMonitor 
 
     @Override
     public void drawScreen(TileEntity tileEntity, float ticks) {
+        if (tileEntity.getWorld().isAirBlock(tileEntity.getPos())) {
+            return;
+        }
+
         Minecraft.getMinecraft().renderEngine.bindTexture(screenTexture);
         glColor3f(Reference.COLOR_HOLO.getFloatR() * 0.7f, Reference.COLOR_HOLO.getFloatG() * 0.7f, Reference.COLOR_HOLO.getFloatB() * 0.7f);
 

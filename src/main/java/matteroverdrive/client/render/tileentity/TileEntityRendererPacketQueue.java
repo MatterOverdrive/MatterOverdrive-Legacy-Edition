@@ -34,6 +34,10 @@ public class TileEntityRendererPacketQueue extends TileEntitySpecialRenderer {
 
     @Override
     public void render(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        if (tileEntity.getWorld().isAirBlock(tileEntity.getPos())) {
+            return;
+        }
+
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         if (tileEntity instanceof TileEntityMachinePacketQueue) {
