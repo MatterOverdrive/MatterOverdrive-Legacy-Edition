@@ -21,18 +21,20 @@ package matteroverdrive.data;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 
+import javax.annotation.Nonnull;
+
 /**
  * Created by Simeon on 12/23/2015.
  */
 public class WeightedRandomItemStack extends WeightedRandom.Item {
     private final ItemStack stack;
 
-    public WeightedRandomItemStack(ItemStack stack) {
+    public WeightedRandomItemStack(@Nonnull ItemStack stack) {
 
         this(stack, 100);
     }
 
-    public WeightedRandomItemStack(ItemStack stack, int weight) {
+    public WeightedRandomItemStack(@Nonnull ItemStack stack, int weight) {
 
         super(weight);
         this.stack = stack;
