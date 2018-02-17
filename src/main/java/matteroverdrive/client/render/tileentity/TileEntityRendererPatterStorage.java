@@ -28,7 +28,7 @@ public class TileEntityRendererPatterStorage extends TileEntitySpecialRenderer<T
     }
 
     @Override
-    public void render(TileEntityMachinePatternStorage patternStorage, double x, double y, double z, float ticks, int destroyStage, float a) {
+    public void render(TileEntityMachinePatternStorage tileEntity, double x, double y, double z, float ticks, int destroyStage, float a) {
 		/*GL11.glPushMatrix();
 		GlStateManager.translate(x + 0.5f, y + 0.5f, z + 0.5f);
         RenderUtils.rotateFromBlock(patternStorage.getWorld(), patternStorage.getPos());

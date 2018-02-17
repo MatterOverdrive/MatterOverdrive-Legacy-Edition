@@ -38,6 +38,10 @@ public class TileEntityRendererAndroidStation extends TileEntityRendererStation<
 
     @Override
     protected void renderHologram(TileEntityAndroidStation station, double x, double y, double z, float partialTicks, double noise) {
+        if (station.getWorld().isAirBlock(station.getPos())) {
+            return;
+        }
+
         if ((station).isUsableByPlayer(Minecraft.getMinecraft().player)) {
             if (mob == null) {
                 mob = new EntityMeleeRougeAndroidMob(Minecraft.getMinecraft().world);

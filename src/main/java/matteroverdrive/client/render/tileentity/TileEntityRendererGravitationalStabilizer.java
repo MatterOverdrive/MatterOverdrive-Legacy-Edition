@@ -45,18 +45,22 @@ public class TileEntityRendererGravitationalStabilizer extends TileEntitySpecial
     public static final ResourceLocation beam = new ResourceLocation(Reference.PATH_FX + "physbeam.png");
 
     @Override
-    public void render(TileEntityMachineGravitationalStabilizer stabilizer, double x, double y, double z, float ticks, int destroyStage, float a) {
-        if (stabilizer.getHit() != null) {
-            RayTraceResult hit = stabilizer.getHit();
-            TileEntity tileEntityHit = stabilizer.getWorld().getTileEntity(hit.getBlockPos());
+    public void render(TileEntityMachineGravitationalStabilizer tileEntity, double x, double y, double z, float ticks, int destroyStage, float a) {
+        if (tileEntity.getWorld().isAirBlock(tileEntity.getPos())) {
+            return;
+        }
+        
+        if (tileEntity.getHit() != null) {
+            RayTraceResult hit = tileEntity.getHit();
+            TileEntity tileEntityHit = tileEntity.getWorld().getTileEntity(hit.getBlockPos());
 
 
             GlStateManager.pushMatrix();
             GlStateManager.translate(x + 0.5, y + 0.5, z + 0.5);
 
-            long time = stabilizer.getWorld().getWorldTime();
+            long time = tileEntity.getWorld().getWorldTime();
             double pulseSize = Math.sin(time * 0.2) * 0.001;
-            Vector3f source = new Vector3f(stabilizer.getPos().getX(), stabilizer.getPos().getY(), stabilizer.getPos().getZ());
+            Vector3f source = new Vector3f(tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ());
             Vector3f destination = new Vector3f((float) hit.hitVec.x, (float) hit.hitVec.y, (float) hit.hitVec.z);
             Vector3f dir = Vector3f.sub(destination, source, null);
             Vector3f dirC = Vector3f.cross(dir, new Vector3f(1, 0, 1), null);
@@ -73,7 +77,7 @@ public class TileEntityRendererGravitationalStabilizer extends TileEntitySpecial
             RenderUtils.disableLightmap();
 
             GlStateManager.blendFunc(GL_ONE, GL_ONE);
-            GlStateManager.color((float) stabilizer.getBeamColorR(), (float) stabilizer.getBeamColorG(), (float) stabilizer.getBeamColorB());
+            GlStateManager.color((float) tileEntity.getBeamColorR(), (float) tileEntity.getBeamColorG(), (float) tileEntity.getBeamColorB());
             bindTexture(beam);
 
             GlStateManager.pushMatrix();
@@ -103,7 +107,7 @@ public class TileEntityRendererGravitationalStabilizer extends TileEntitySpecial
             GlStateManager.popMatrix();
 
             if (tileEntityHit != null && tileEntityHit instanceof TileEntityGravitationalAnomaly) {
-                renderScreen(x, y, z, stabilizer, (TileEntityGravitationalAnomaly) tileEntityHit);
+                renderScreen(x, y, z, tileEntity, (TileEntityGravitationalAnomaly) tileEntityHit);
             }
         }
     }

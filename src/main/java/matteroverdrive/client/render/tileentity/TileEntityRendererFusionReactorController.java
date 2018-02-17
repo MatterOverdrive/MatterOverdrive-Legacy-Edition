@@ -43,13 +43,13 @@ public class TileEntityRendererFusionReactorController extends TileEntitySpecial
     }
 
     @Override
-    public void render(TileEntityMachineFusionReactorController controller, double x, double y, double z, float ticks, int destoryStage, float a) {
-        if (!controller.isValidStructure()) {
+    public void render(TileEntityMachineFusionReactorController tileEntity, double x, double y, double z, float ticks, int destoryStage, float a) {
+        if (!tileEntity.isValidStructure()) {
             GlStateManager.pushMatrix();
             GlStateManager.translate(x, y, z);
 
             for (int i = 0; i < TileEntityMachineFusionReactorController.positionsCount; i++) {
-                Vec3d pos = controller.getPosition(i, getWorld().getBlockState(controller.getPos()).getValue(MOBlock.PROPERTY_DIRECTION));
+                Vec3d pos = tileEntity.getPosition(i, getWorld().getBlockState(tileEntity.getPos()).getValue(MOBlock.PROPERTY_DIRECTION));
 
                 GlStateManager.pushMatrix();
                 GlStateManager.translate(pos.x, pos.y, pos.z);
@@ -65,7 +65,7 @@ public class TileEntityRendererFusionReactorController extends TileEntitySpecial
             GlStateManager.popMatrix();
         }
 
-        renderInfo(x, y, z, controller);
+        renderInfo(x, y, z, tileEntity);
     }
 
     private void renderInfo(double x, double y, double z, TileEntityMachineFusionReactorController controller) {
