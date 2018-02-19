@@ -42,6 +42,16 @@ public class MatterOverdriveRecipes {
         GameRegistry.addSmelting(new ItemStack(MatterOverdrive.BLOCKS.tritaniumOre), new ItemStack(MatterOverdrive.ITEMS.tritanium_ingot), 10);
 
         //Inscriber
-        //INSCRIBER.load(file);
+        File file = new File(MatterOverdrive.CONFIG_HANDLER.configDir, "MatterOverdrive/recipes/inscriber.xml");
+        if (!file.exists()) {
+            try {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+                IOUtils.copy(MatterOverdriveRecipes.class.getResourceAsStream("/assets/matteroverdrive/recipes/inscriber.xml"), new FileOutputStream(file));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        INSCRIBER.load(file);
     }
 }
