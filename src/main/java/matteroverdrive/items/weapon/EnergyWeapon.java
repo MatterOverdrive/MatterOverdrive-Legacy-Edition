@@ -280,7 +280,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return !ItemStack.areItemStacksEqual(oldStack, newStack) || slotChanged;
+        return !ItemStack.areItemsEqual(oldStack, newStack) || slotChanged;
     }
 
     protected void manageOverheat(ItemStack itemStack, World world, EntityLivingBase shooter) {
