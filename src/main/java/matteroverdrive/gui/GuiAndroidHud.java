@@ -41,6 +41,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.shader.ShaderGroup;
@@ -228,10 +229,10 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
             }
         }
 
-        GlStateManager.color(1, 1, 1);
+        GlStateManager.color(1, 1, 1, 1);
         GlStateManager.depthMask(false);
         //glDisable(GL_DEPTH_TEST);
-        //GlStateManager.enableBlend();
+        GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL_ONE, GL_ONE);
         GlStateManager.pushMatrix();
         GlStateManager.rotate((float) radialAngle, 0, 0, -1);
@@ -318,6 +319,8 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
 
             i++;
         }
+        GlStateManager.disableAlpha();
+        GlStateManager.enableDepth();
         GlStateManager.popMatrix();
     }
 

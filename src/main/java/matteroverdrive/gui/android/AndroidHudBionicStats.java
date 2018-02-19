@@ -116,6 +116,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     }
 
     private void drawAndroidPart(ItemStack stack, Color color, int x, int y) {
+        GlStateManager.enableBlend();
         drawNormalBG(color, x, y);
         GlStateManager.color(1, 1, 1, 0.5f);
         GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE);
