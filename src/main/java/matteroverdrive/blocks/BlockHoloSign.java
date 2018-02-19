@@ -151,6 +151,12 @@ public class BlockHoloSign extends BlockMonitor<TileEntityHoloSign> implements I
 
         ArrayList<ItemStack> list = new ArrayList<>();
         list.add(blockItem);
+
+        if (!world.isRemote) {
+            world.removeTileEntity(pos);
+            world.setBlockToAir(pos);
+        }
+
         return list;
     }
 
