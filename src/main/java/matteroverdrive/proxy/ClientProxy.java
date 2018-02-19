@@ -119,7 +119,7 @@ public class ClientProxy extends CommonProxy {
         renderHandler.createEntityRenderers(Minecraft.getMinecraft().getRenderManager());
 
         androidHud = new GuiAndroidHud(Minecraft.getMinecraft());
-        keyHandler = new KeyHandler();
+        keyHandler = new KeyHandler(Minecraft.getMinecraft());
         mouseHandler = new MouseHandler();
         holoIcons = new HoloIcons();
         weaponHandler = new ClientWeaponHandler();
