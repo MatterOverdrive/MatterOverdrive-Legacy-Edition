@@ -29,7 +29,6 @@ public class PacketBioticActionKey extends PacketAbstract {
     }
 
     public static class ServerHandler extends AbstractServerPacketHandler<PacketBioticActionKey> {
-        @SideOnly(Side.CLIENT)
         @Override
         public void handleServerMessage(EntityPlayerMP player, PacketBioticActionKey message, MessageContext ctx) {
             AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(player);
