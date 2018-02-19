@@ -143,6 +143,13 @@ public class BlockHoloSign extends BlockMonitor<TileEntityHoloSign> implements I
         IBlockState blockState = world.getBlockState(pos);
         ItemStack blockItem = new ItemStack(getItemDropped(blockState, world.rand, 1));
 
+        boolean flag = blockState.getBlock().removedByPlayer(blockState, world, pos, player, true);
+        super.breakBlock(world, pos, blockState);
+
+        if (flag) {
+            blockState.getBlock().onBlockDestroyedByPlayer(world, pos, blockState);
+        }
+
         if (!returnDrops) {
             dropBlockAsItem(world, pos, blockState, 0);
         } else {

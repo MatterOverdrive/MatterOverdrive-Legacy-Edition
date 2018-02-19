@@ -43,14 +43,13 @@ public class BlockChargingStation extends MOBlockMachine<TileEntityMachineChargi
         setHardness(20.0F);
         this.setResistance(9.0f);
         this.setHarvestLevel("pickaxe", 2);
-        lightValue = 10;
+        setLightLevel(10f);
         setHasGui(true);
         setHasRotation();
     }
 
     @Override
     public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, BlockPos pos, boolean returnDrops) {
-        getTileEntity(world, pos).getBoundingBlocks().forEach(world::setBlockToAir);
         return super.dismantleBlock(player, world, pos, returnDrops);
     }
 
@@ -73,8 +72,7 @@ public class BlockChargingStation extends MOBlockMachine<TileEntityMachineChargi
     public void breakBlock(World world, BlockPos pos, IBlockState blockState) {
         TileEntity te = world.getTileEntity(pos);
         if (te instanceof TileEntityMachineChargingStation) {
-            TileEntityMachineChargingStation chargingStation = (TileEntityMachineChargingStation) te;
-            chargingStation.getBoundingBlocks().forEach(world::setBlockToAir);
+            ((TileEntityMachineChargingStation) te).getBoundingBlocks().forEach(world::setBlockToAir);
         }
 
         super.breakBlock(world, pos, blockState);
