@@ -7,7 +7,7 @@
       "item": "minecraft:book"
     },
     {
-      "item": "minecraft:air"
+      "item": "matteroverdrive:isolinear_circuit"
     }
   ],
   "type": "minecraft:crafting_shapeless"
