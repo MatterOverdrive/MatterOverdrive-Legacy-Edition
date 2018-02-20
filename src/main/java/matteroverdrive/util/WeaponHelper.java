@@ -52,7 +52,7 @@ public class WeaponHelper {
 
     public static int getColor(ItemStack weapon) {
         ItemStack module = getModuleAtSlot(Reference.MODULE_COLOR, weapon);
-        if (module != null && isWeaponModule(module)) {
+        if (!module.isEmpty() && isWeaponModule(module)) {
             return ((IWeaponColor) module.getItem()).getColor(module, weapon);
         }
         return WeaponModuleColor.defaultColor.getColor();
@@ -85,10 +85,10 @@ public class WeaponHelper {
     }
 
     public static boolean isWeaponModule(ItemStack itemStack) {
-        return itemStack != null && !itemStack.isEmpty() && itemStack.getItem() instanceof IWeaponModule;
+        return !itemStack.isEmpty() && itemStack.getItem() instanceof IWeaponModule;
     }
 
     public static boolean isWeapon(ItemStack itemStack) {
-        return itemStack != null && !itemStack.isEmpty() && itemStack.getItem() instanceof IWeapon;
+        return!itemStack.isEmpty() && itemStack.getItem() instanceof IWeapon;
     }
 }

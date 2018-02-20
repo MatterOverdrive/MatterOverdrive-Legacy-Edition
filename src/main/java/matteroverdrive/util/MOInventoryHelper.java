@@ -29,6 +29,7 @@ import net.minecraft.util.EnumFacing;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -79,7 +80,7 @@ public class MOInventoryHelper {
 
     public static List<ItemStack> getStacks(ItemStack container) {
         if (!container.hasTagCompound()) {
-            return null;
+            return Collections.emptyList();
         }
 
         List<ItemStack> itemStacks = new ArrayList<>();
