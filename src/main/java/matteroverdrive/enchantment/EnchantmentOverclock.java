@@ -34,13 +34,14 @@ public class EnchantmentOverclock extends Enchantment {
         setName("matteroverdrive.weapon.damage");
     }
 
+    @Override
     public boolean canApply(ItemStack itemStack) {
         return itemStack.getItem() instanceof IWeapon;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return stack.getItem() instanceof EnergyWeapon;
+        return stack.getItem() instanceof IWeapon;
     }
 
     @Override
