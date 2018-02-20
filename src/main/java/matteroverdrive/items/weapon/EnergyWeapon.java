@@ -293,6 +293,16 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         }
     }
 
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        return enchantment==MatterOverdriveEnchantments.overclock;
+    }
+
     protected void manageCooling(ItemStack itemStack) {
         float heat = getHeat(itemStack);
         if (heat > 0) {
