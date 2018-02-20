@@ -15,6 +15,8 @@ public class TileEntityRendererReplicator extends TileEntitySpecialRenderer<Tile
 
     @Override
     public void render(TileEntityMachineReplicator replicator, double x, double y, double z, float ticks, int destoryStage, float a) {
+        if (!replicator.shouldRender())
+            return;
         GlStateManager.pushMatrix();
         renderItem(replicator, x, y, z);
         GlStateManager.popMatrix();

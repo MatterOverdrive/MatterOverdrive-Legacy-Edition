@@ -126,6 +126,8 @@ public abstract class TileEntityRendererStation<T extends MOTileEntityMachine> e
 
     @Override
     public void render(T machine, double x, double y, double z, float ticks, int destroyStage, float a) {
+        if (!machine.shouldRender())
+            return;
         double t = MOMathHelper.noise(machine.getPos().getX() * 0.3, machine.getPos().getY() * 0.3, machine.getPos().getZ() * 0.3);
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();

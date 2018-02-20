@@ -35,7 +35,7 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 /**
  * Created by Simeon on 5/12/2015.
  */
-public class TileEntityRendererGravitationalAnomaly extends TileEntitySpecialRenderer {
+public class TileEntityRendererGravitationalAnomaly extends TileEntitySpecialRenderer<TileEntityGravitationalAnomaly> {
     public static final ResourceLocation core = new ResourceLocation(Reference.PATH_BLOCKS + "gravitational_anomaly_core.png");
     public static final ResourceLocation anti = new ResourceLocation(Reference.PATH_BLOCKS + "anti_gravitational_anomaly_core.png");
     public static final ResourceLocation glow = new ResourceLocation(Reference.PATH_BLOCKS + "gravitational_anomaly_glow.png");
@@ -48,12 +48,14 @@ public class TileEntityRendererGravitationalAnomaly extends TileEntitySpecialRen
     }
 
     @Override
-    public void render(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+    public void render(TileEntityGravitationalAnomaly tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        if (!tileEntity.shouldRender())
+            return;
         EntityPlayer player = Minecraft.getMinecraft().player;
         long time = Minecraft.getMinecraft().world.getWorldTime();
         float speed = 1;
         double resonateSpeed = 0.1;
-        double radius = ((TileEntityGravitationalAnomaly) tileEntity).getEventHorizon();
+        double radius = tileEntity.getEventHorizon();
 
         radius = radius * Math.sin(time * resonateSpeed) * 0.1 + radius * 0.9;
 
@@ -80,8 +82,6 @@ public class TileEntityRendererGravitationalAnomaly extends TileEntitySpecialRen
         GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         bindTexture(core);
         RenderUtils.drawPlane(1);
-        /*bindTexture(glow);
-        RenderUtils.drawPlane(1);*/
 
         GlStateManager.disableBlend();
         GlStateManager.enableLighting();
