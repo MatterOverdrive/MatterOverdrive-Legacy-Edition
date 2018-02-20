@@ -28,40 +28,40 @@ item.matteroverdrive.pattern_drive.details=可存储2个物品模式
 item.matteroverdrive.earl_gray_tea.name=格雷伯爵茶
 item.matteroverdrive.romulan_ale.name=罗慕兰麦酒
 item.matteroverdrive.romulan_ale.details=原产自罗慕兰醇香醉人的酒饮料
-item.matteroverdrive.security_protocol.empty.name=安全协定
-item.matteroverdrive.security_protocol.claim.name=安全协定（设置）
-item.matteroverdrive.security_protocol.claim.details=设置机器
-item.matteroverdrive.security_protocol.access.name=安全协定（访问）
+item.matteroverdrive.security_protocol.empty.name=安全协议
+item.matteroverdrive.security_protocol.claim.name=安全协议[私有]
+item.matteroverdrive.security_protocol.claim.details=锁定机器权限为私有
+item.matteroverdrive.security_protocol.access.name=安全协议[访问]
 item.matteroverdrive.security_protocol.access.details=允许访问已设置安全协定的机器
-item.matteroverdrive.security_protocol.remove.name=安全协定（清除）
+item.matteroverdrive.security_protocol.remove.name=安全协议[清除]
 item.matteroverdrive.security_protocol.remove.details=移除机器安全设置
-item.matteroverdrive.security_protocol.invalid=安全协定无效
+item.matteroverdrive.security_protocol.invalid=安全协议无效
 item.matteroverdrive.tritanium_wrench.name=三钛合金扳手
 item.matteroverdrive.tritanium_wrench.details=安全旋转方块及拆除机器
 item.matteroverdrive.spacetime_equalizer.name=时空均衡器
 item.matteroverdrive.spacetime_equalizer.details=作为胸甲装备可抵消引力异常
-item.matteroverdrive.rogue_android_part.head.name=机器人头部
-item.matteroverdrive.rogue_android_part.arms.name=机器人手部
-item.matteroverdrive.rogue_android_part.legs.name=机器人腿部
-item.matteroverdrive.rogue_android_part.chest.name=机器人躯干
-item.matteroverdrive.rogue_android_part.melee=近战机器人
-item.matteroverdrive.rogue_android_part.range=远程机器人
+item.matteroverdrive.rogue_android_part.head.name=机械头颅
+item.matteroverdrive.rogue_android_part.arms.name=机械手臂
+item.matteroverdrive.rogue_android_part.legs.name=机械腿
+item.matteroverdrive.rogue_android_part.chest.name=机械躯干
+item.matteroverdrive.rogue_android_part.melee=混战博格
+item.matteroverdrive.rogue_android_part.range=枪战博格
 item.matteroverdrive.forcefield_emitter.name=力场发生器
 item.matteroverdrive.hc_battery.name=高能电池
-item.matteroverdrive.ship_factory.name=舰船工厂
-item.matteroverdrive.ship_factory.details=可建造舰船
-item.matteroverdrive.scout_ship.name=侦察飞船
-item.matteroverdrive.scout_ship.details=用于侦察的快速飞船
-item.matteroverdrive.ship_colonizer.name=殖民飞船
-item.matteroverdrive.ship_colonizer.details=用于在抵达后建造基地以占领星球
+item.matteroverdrive.ship_factory.name=星舰工厂
+item.matteroverdrive.ship_factory.details=建造星舰
+item.matteroverdrive.scout_ship.name=侦察快艇
+item.matteroverdrive.scout_ship.details=用于侦察的高速星舰
+item.matteroverdrive.ship_colonizer.name=殖民星舰
+item.matteroverdrive.ship_colonizer.details=占领所抵达的星球并建造基地
 item.matteroverdrive.building_base.name=基地
-item.matteroverdrive.building_base.details=主建筑，所有东西的前置需求
+item.matteroverdrive.building_base.details=最基本的核心建筑
 item.matteroverdrive.android_pill_red.name=红色药丸
 item.matteroverdrive.android_pill_red.details=吃下红色药丸后你将无所畏惧
 item.matteroverdrive.android_pill_blue.name=蓝色药丸
-item.matteroverdrive.android_pill_blue.details=吃下蓝色药丸后你会一无所知的在床上醒来
+item.matteroverdrive.android_pill_blue.details=吃下蓝色药丸后你将在床上一无所知地醒来
 item.matteroverdrive.creative_pattern_drive.name=创造模式储存单元
-item.matteroverdrive.creative_pattern_drive.details=包含绝大多数可重组物品/n潜行右键重新加载
+item.matteroverdrive.creative_pattern_drive.details=包含绝大多数可重组物品/n潜行右键重置模式
 item.matteroverdrive.network_flash_drive.name=网络闪存驱动器
 item.matteroverdrive.network_flash_drive.details=物质网络设备中的过滤器
 item.matteroverdrive.energy_pack.name=能量包
@@ -73,7 +73,7 @@ item.matteroverdrive.matter_container_empty.name=空物质仓
 item.matteroverdrive.matter_container_full.name=满物质仓
 item.matteroverdrive.tritanium_nugget.name=三钛合金粒
 item.matteroverdrive.tritainum_spine.name=三钛脊骨
-item.matteroverdrive.data_pad.name=便携数据仪
+item.matteroverdrive.data_pad.name=数据仪
 item.matteroverdrive.data_pad.details=存储着有关MatterOverdrive超能物质模组的信息
 item.matteroverdrive.omni_tool.name=全效离子工具
 item.matteroverdrive.android_pill_yellow.name=黄色药丸
@@ -88,13 +88,13 @@ item.matteroverdrive.tritanium_pickaxe.name=三钛合金镐
 item.matteroverdrive.tritanium_axe.name=三钛合金斧
 item.matteroverdrive.tritanium_shovel.name=三钛合金铲
 item.matteroverdrive.contract.name=任务卡
-item.matteroverdrive.ion_sniper.name=离子狙击枪
-item.matteroverdrive.plasma_shotgun.name=相位散弹枪
-item.matteroverdrive.weapon_receiver.name=弹药接收器
-item.matteroverdrive.weapon_handle.name=武器把手
-item.matteroverdrive.plasma_core.name=相位核心
-item.matteroverdrive.portable_decomposer.name=携带式物质分解仪
-item.matteroverdrive.portable_decomposer.details=将拾取物品分解为等离子物质
+item.matteroverdrive.ion_sniper.name=等离子束流狙
+item.matteroverdrive.plasma_shotgun.name=相位散弹炮
+item.matteroverdrive.weapon_receiver.name=武装导能器
+item.matteroverdrive.weapon_handle.name=武器手柄
+item.matteroverdrive.plasma_core.name=相位能量整流核心
+item.matteroverdrive.portable_decomposer.name=便携式物质分解仪
+item.matteroverdrive.portable_decomposer.details=分解所拾取的物品
 item.matteroverdrive.record.matteroverdrive.transformation.desc=BoxCat Games - Trace Route
 
 #/#//////////// Upgrades ////////////
@@ -108,19 +108,19 @@ item.matteroverdrive.upgrade.matter_storage.name=物质存储升级
 
 #/#//////////// Weapon Modules ///////
 item.matteroverdrive.weapon_module_color.name=颜色模块
-item.matteroverdrive.weapon_module_barrel.damage.name=双锂聚焦矩阵
+item.matteroverdrive.weapon_module_barrel.damage.name=二锂聚焦矩阵
 item.matteroverdrive.weapon_module_barrel.fire.name=高能燃烧弹
 item.matteroverdrive.weapon_module_barrel.explosion.name=爆裂电磁炮
 item.matteroverdrive.weapon_module_barrel.heal.name=再生转换器
-item.matteroverdrive.weapon_module_barrel.doomsday.name=衰变型爆裂聚焦矩阵（毁灭性）
+item.matteroverdrive.weapon_module_barrel.doomsday.name=衰变聚爆矩阵(末日型)
 item.matteroverdrive.weapon_module_ricochet.name=射击弹射模块
-item.matteroverdrive.sniper_scope.name=狙击瞄准镜
+item.matteroverdrive.sniper_scope.name=狙击镜
 
 #/#//////////// Buildings ///////////
-item.matteroverdrive.building_matter_extractor.name=物质提取仓
-item.matteroverdrive.building_residential.name=居住房屋
-item.matteroverdrive.building_ship_hangar.name=飞船机库
-item.matteroverdrive.building_power_generator.name=发电站
+item.matteroverdrive.building_matter_extractor.name=物质提炼厂
+item.matteroverdrive.building_residential.name=住宅大楼
+item.matteroverdrive.building_ship_hangar.name=星港
+item.matteroverdrive.building_power_generator.name=发电厂
 
 item.overdrivef.info.configured=已配置
 
@@ -128,24 +128,24 @@ item.overdrivef.info.configured=已配置
 # Tile Entities
 
 #/#//////////// Replicator ////////////
-tile.replicator.name=物质重组仓
-tile.replicator.config.volume.replicate=复制数量
+tile.replicator.name=物质重组机
+tile.replicator.config.volume.replicate=复制数目
 tile.replicator.config.particles.vent=Vent Particles
-tile.replicator.config.storage.matter=物质储存
-tile.replicator.config.storage.energy=能量储存
+tile.replicator.config.storage.matter=物质储量
+tile.replicator.config.storage.energy=能量储量
 tile.replicator.config.cost.replication.energy=物质重组所需能量
 tile.replicator.config.speed.replication=物质重组速度
 tile.replicator.config.fail=失败概率
 tile.replicator.details=将等离子态物质重组为物品和方块
-tile.replicator_active.name=物质复制仪
+tile.replicator_active.name=物质重组机
 
 #/#//////////// Decomposer ////////////
-tile.decomposer.name=物质分解仓
-tile.decomposer.details=将物品分解为等离子态物质
-tile.decomposer.config.storage.matter=物质储存
-tile.decomposer.config.storage.energy=能量储存
+tile.decomposer.name=物质分解机
+tile.decomposer.details=将普通物质分解为等离子态物质
+tile.decomposer.config.storage.matter=物质储量
+tile.decomposer.config.storage.energy=能量储量
 tile.decomposer.config.speed.decompose=分解速度
-tile.decomposer.config.cost.decompose=分解消耗
+tile.decomposer.config.cost.decompose=分解耗能
 
 
 tile.matter_pipe.name=物质运输管道
