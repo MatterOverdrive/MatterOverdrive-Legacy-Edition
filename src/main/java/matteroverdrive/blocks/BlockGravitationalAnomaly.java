@@ -69,6 +69,11 @@ public class BlockGravitationalAnomaly extends MOBlockContainer<TileEntityGravit
     }
 
     @Override
+    public boolean isCollidable() {
+        return false;
+    }
+
+    @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return true;
     }
