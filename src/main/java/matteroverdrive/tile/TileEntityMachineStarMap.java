@@ -71,9 +71,6 @@ public class TileEntityMachineStarMap extends MOTileEntityMachineEnergy {
 
     @Override
     protected void RegisterSlots(Inventory inventory) {
-        for (int i = 0; i < Planet.SLOT_COUNT; i++) {
-            inventory.AddSlot(new Slot(false));
-        }
         super.RegisterSlots(inventory);
     }
 
