@@ -77,7 +77,7 @@ item.matteroverdrive.data_pad.name=数据仪
 item.matteroverdrive.data_pad.details=存储着有关MatterOverdrive（超能物质）模组的信息
 item.matteroverdrive.omni_tool.name=全效离子工具
 item.matteroverdrive.android_pill_yellow.name=黄色药丸
-item.matteroverdrive.android_pill_yellow.details=重置机器人技能
+item.matteroverdrive.android_pill_yellow.details=重置机械人技能
 item.matteroverdrive.tritanium_helmet.name=三钛头盔
 item.matteroverdrive.tritanium_chestplate.name=三钛胸甲
 item.matteroverdrive.tritanium_leggings.name=三钛护腿
@@ -88,8 +88,8 @@ item.matteroverdrive.tritanium_pickaxe.name=三钛合金镐
 item.matteroverdrive.tritanium_axe.name=三钛合金斧
 item.matteroverdrive.tritanium_shovel.name=三钛合金铲
 item.matteroverdrive.contract.name=任务卡
-item.matteroverdrive.ion_sniper.name=等离子束流狙
-item.matteroverdrive.plasma_shotgun.name=相位散弹炮
+item.matteroverdrive.ion_sniper.name=离子狙击枪
+item.matteroverdrive.plasma_shotgun.name=相位散弹枪
 item.matteroverdrive.weapon_receiver.name=武装导能器
 item.matteroverdrive.weapon_handle.name=武器手柄
 item.matteroverdrive.plasma_core.name=相位能量整流核心
@@ -113,7 +113,7 @@ item.matteroverdrive.weapon_module_barrel.fire.name=高能燃烧弹
 item.matteroverdrive.weapon_module_barrel.explosion.name=爆裂电磁炮
 item.matteroverdrive.weapon_module_barrel.heal.name=再生转换器
 item.matteroverdrive.weapon_module_barrel.doomsday.name=衰变聚爆矩阵（末日型）
-item.matteroverdrive.weapon_module_ricochet.name=射击弹射模块
+item.matteroverdrive.weapon_module_ricochet.name=束流反射装置
 item.matteroverdrive.sniper_scope.name=狙击镜
 
 #/#//////////// Buildings ///////////
@@ -195,7 +195,7 @@ tile.gravitational_stabilizer.name=引力稳定器
 tile.gravitational_stabilizer.details=用于减弱引力异常点的影响
 tile.matter_recycler.name=物质循环仓
 tile.matter_recycler.details=用于物品循环，为分解做准备
-tile.android_spawner.name=残暴机器人刷怪笼
+tile.android_spawner.name=机械人刷怪笼
 
 #/#//////////// Fluids ////////////
 tile.matter_plasma.name=等离子物质
@@ -227,7 +227,7 @@ tile.android_station.details=机器人升级管理
 tile.star_map.name=星图
 tile.star_map.details=用于星系管理
 tile.charging_station.name=充能台
-tile.charging_station.details=用于充能机器人
+tile.charging_station.details=为机械人充能
 container.replicator.name=重组仓
 machine.tooltip.matter=物质
 machine.tooltip.energy=充能
@@ -237,7 +237,7 @@ tile.tritanium_crate.name=三钛货箱
 tile.tritanium_crate_yellow.name=黄色三钛货箱
 
 #/#//////////// Entities /////////////////
-entity.matteroverdrive.rogue_android.name=近战残暴机器人
+entity.matteroverdrive.rogue_android.name=混战机械人
 entity.matteroverdrive.failed_pig.name=实验失败的猪
 entity.matteroverdrive.failed_chicken.name=实验失败的鸡
 entity.matteroverdrive.failed_cow.name=实验失败的牛
@@ -245,7 +245,7 @@ entity.matteroverdrive.failed_sheep.name=实验失败的羊
 entity.matteroverdrive.mad_scientist.name=疯狂科学家
 entity.mad_scientist.name=疯狂科学家
 entity.matteroverdrive.mad_scientist.junkie.name=疯狂科学家（瘾君子）
-entity.matteroverdrive.ranged_rogue_android.name=远程残暴机器人
+entity.matteroverdrive.ranged_rogue_android.name=枪战机械人
 entity.matteroverdrive.mutant_scientist.name=变异科学家
 
 #/#//////////// Decorative ////////////////////
@@ -289,8 +289,8 @@ dialog.generic.trade.3.question=你都卖些什么？
 
 #/#//////////// Mad Scientist ///////////////
 dialog.mad_scientist.convert.question=我有所有的机器人部件！
-dialog.mad_scientist.requirements.line=终于！<br>摆脱那具脆弱的肉体是一个明智的选择。<br>在开始之前，唯一的问题就是我需要你给我带来一套机器人组件。
-dialog.mad_scientist.requirements.question=我想要成为一名机甲战士。
+dialog.mad_scientist.requirements.line=终于！<br>摆脱那具脆弱的肉体是一个明智的选择。<br>在开始之前，唯一的问题就是我需要你给我带来一套机械人组件。
+dialog.mad_scientist.requirements.question=我想要成为一名机械战士。
 dialog.mad_scientist.main.line.0.human=我不和人类打交道。
 dialog.mad_scientist.main.line.1.human=天哪！简直无法直视。你太脆弱了！
 dialog.mad_scientist.main.line.2.human=你还好么？你看起来糟透了！你是怎么在这具肉身坚持下来的？
@@ -299,7 +299,7 @@ dialog.mad_scientist.main.line.1.android=嘿，你今天看起来棒极了！
 dialog.mad_scientist.main.line.2.android=看起来你的左眼好像有些错位了，我很乐意帮你修复它。
 dialog.mad_scientist.undo.line=你为什么想要这么做？唯一的办法就是吃掉一颗蓝色药丸。你可以在地牢中找到它，不过最好的办法是从别人手中买到。我想我的车间里可能有一些。我需要去查看一下。
 dialog.mad_scientist.undo.question=我如何逆转这一过程！
-dialog.mad_scientist.whatDidYouDo.line=你现在已经是机器人了！你将不需要食物，睡眠以及氧气。你可以在机器人装配台为你自己升级一些实用的能力，而且你将会看到并做到一些你无法想象的事情。
+dialog.mad_scientist.whatDidYouDo.line=你现在已经是机械人了！你将不需要食物，睡眠以及氧气。你可以在机械人装配台为你自己升级一些实用的能力，而且你将会看到并做到一些你无法想象的事情。
 dialog.mad_scientist.whatDidYouDo.question=你对我做了些什么？
 dialog.mad_scientist.junkie.main.0.line=嘿小兄弟[§6嗝§r]。
 dialog.mad_scientist.junkie.main.1.line=朋友最近过得如何？
@@ -335,7 +335,7 @@ itemGroup.tabMO_food=超能物质|食物
 itemGroup.tabMO_ships=超能物质|舰船
 itemGroup.tabMO_buildings=超能物质|建筑
 itemGroup.tabMO_decorative=超能物质|装饰
-itemGroup.tabMO_androidParts=超能物质|机器人
+itemGroup.tabMO_androidParts=超能物质|机械人
 
 ##########################################################################################################
 # Upgrade Types
@@ -512,7 +512,7 @@ biotic_stat.speed.details=移动速度提升 %1$s
 biotic_stat.high_jump.name=蓄力弹跳
 biotic_stat.high_jump.details=潜行时跳的更高 /n/每次弹跳消耗 %1$s /n/需要一个输出超过 %1$s 的电池
 biotic_stat.equalizer.name=时空均衡器
-biotic_stat.equalizer.details=内置时空均衡器 /n/用于抵消来自于 /n/重力异常点的影响
+biotic_stat.equalizer.details=内置时空均衡器 /n/用于抵消来自于 /n/引力异常点的影响
 biotic_stat.shield.name=粒子护盾
 biotic_stat.shield.details=减免弹射物伤害
 biotic_stat.attack.name=伤害增强
@@ -520,7 +520,7 @@ biotic_stat.attack.details=攻击伤害提升 %1$s
 biotic_stat.cloak.name=隐形斗篷
 biotic_stat.cloak.details=允许玩家隐形. /n/激活时, 消耗 %1$s 每tick /n/需要一个输出超过 %1$s 的电池
 biotic_stat.nightvision.name=夜视
-biotic_stat.nightvision.details=允许玩家看穿黑暗. /n/激活时, 消耗 %1$s 每tick /n/需要一个输出超过 %1$s 的电池
+biotic_stat.nightvision.details=让玩家看穿黑暗. /n/激活时, 消耗 %1$s 每tick /n/需要一个输出超过 %1$s 的电池
 biotic_stat.minimap.name=小地图
 biotic_stat.minimap.details=在HUD上添加小地图
 biotic_stat.flash_cooling.name=瞬间冷却
@@ -549,7 +549,7 @@ biotic_stat.oxygen.details=移除机体对氧气的需求
 
 death.attack.phaser=%1$s 被 %2$s 分解掉了
 death.attack.phaser.item=%1$s 被 %2$s 使用 %3$s 分解掉了
-death.attack.blackHole=%1$s 被巨大的重力扭曲碾碎了
+death.attack.blackHole=%1$s 被巨大的引力扭曲碾碎了
 death.attack.android_transformation=%1$s 结束了他作为生命体的存在
 death.attack.plasmaBolt=%1$s 被 %2$s 爆头
 death.attack.plasmaBolt.item=%1$s被 %2$s 用 %3$s 打成了筛子
@@ -575,7 +575,7 @@ task.store_pattern.state.QUEUED.description=队列中。\n等待过程中。
 task.store_pattern.state.PROCESSING.description=正在存储物品模式。
 task.store_pattern.state.FINISHED.description=成功存储物品模式。
 
-task.replicate_pattern.state.WAITING.description=搜索可用重组仓。
+task.replicate_pattern.state.WAITING.description=搜索可用重组机。
 
 info.matteroverdrive.updater.download=下载
 info.matteroverdrive.updater.hover=点击下载最新版本。
@@ -594,10 +594,10 @@ config.client.name=客户端选项
 config.server.name=服务器选项
 config.starmap.name=星图选项
 config.ore_gen_blacklist.name=矿物黑名单
-config.abilities.name=机器人能力
+config.abilities.name=机械人能力
 config.entities.name=生物
 config.debug.name=Debug
-config.android_hud.name=机器人HUD
+config.android_hud.name=机械人HUD
 config.android_hud.stats.position=状态位置
 config.android_hud.bionicStats.position=仿生能力位置
 config.android_hud.minimap.position=小地图位置
@@ -633,7 +633,7 @@ fluid.molten_tritanium=熔融三钛合金
 # Guides
 guide.category.general.name=基础
 guide.category.weapons.name=武器
-guide.category.android.name=机器人
+guide.category.android.name=机械人
 
 guide.group.machines.name=机器
 guide.group.resources.name=资源
@@ -654,7 +654,7 @@ guide.entry.matter_transport.name=物质传输
 guide.entry.weapon.modules.barrels.name=武器枪管
 guide.entry.weapon.modules.colors.name=武器颜色
 guide.entry.android.pills.name=药片
-guide.entry.android.parts.name=残暴机器人部件
+guide.entry.android.parts.name=残暴机械部件
 guide.entry.fusion_reactor.name=湮灭反应堆
 guide.entry.batteries.name=能量单元
 guide.entry.food.name=食物
