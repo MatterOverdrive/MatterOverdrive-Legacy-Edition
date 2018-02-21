@@ -18,7 +18,6 @@
 
 package matteroverdrive.handler;
 
-import com.astro.clib.util.Platform;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -27,7 +26,6 @@ import matteroverdrive.Reference;
 import matteroverdrive.handler.thread.VersionCheckThread;
 import matteroverdrive.util.IConfigSubscriber;
 import matteroverdrive.util.MOLog;
-import matteroverdrive.util.MOStringHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.*;
 import net.minecraft.util.text.event.ClickEvent;
@@ -38,10 +36,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Level;
 
-import java.sql.Ref;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.regex.Matcher;
@@ -112,7 +106,7 @@ public class VersionCheckerHandler implements IConfigSubscriber {
             }
         }
     }
-    final String regex = "([0-9])\\.([0-9])\\.([0-9])\\.*([0-9])*";
+    final String regex = "([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)";
     final Pattern pattern = Pattern.compile(regex);
 
     private boolean constructVersionAndCheck(String jsonText, EntityPlayer player) {
@@ -124,9 +118,20 @@ public class VersionCheckerHandler implements IConfigSubscriber {
 
         JsonArray versionData = versions.get(Loader.MC_VERSION).getAsJsonArray();
 
+        int data = 0;
         JsonObject latest = versionData.get(0).getAsJsonObject();
-
         String type = latest.get("type").getAsString();
+        if(type.equals("alpha")) {
+            while (type.equals("alpha")) {
+                if (versionData.size() > data)
+                    latest = versionData.get(data++).getAsJsonObject();
+                else break; //Shouldn't ever happen within reason
+            }
+        }
+
+        if(type.equals("alpha"))
+            return false;
+
         String fileName = latest.get("name").getAsString();
 
         Matcher matcher = pattern.matcher(fileName);
@@ -136,13 +141,13 @@ public class VersionCheckerHandler implements IConfigSubscriber {
         String fullVersion = matcher.group(0);
 
         boolean hasNew = false;
-        if (!Platform.isDevEnv() && !Reference.VERSION.equals(fullVersion)) {
-            Matcher currentMatcher = pattern.matcher(Reference.VERSION);
-            if (Integer.parseInt(currentMatcher.group(1)) >= Integer.parseInt(matcher.group(1))) {
-                if (Integer.parseInt(currentMatcher.group(2)) >= Integer.parseInt(matcher.group(2))) {
-                    if (Integer.parseInt(currentMatcher.group(3)) >= Integer.parseInt(matcher.group(3))) {
-                        if (matcher.groupCount() == 5 && currentMatcher.groupCount() == 5) {
-                            if (Integer.parseInt(currentMatcher.group(4)) >= Integer.parseInt(matcher.group(4))) {
+        if (!Reference.VERSION.equals(fullVersion)) {
+            String[] arr = Reference.VERSION.split("\\.");
+            if (Integer.parseInt(arr[0]) >= Integer.parseInt(matcher.group(1))) {
+                if (Integer.parseInt(arr[1]) >= Integer.parseInt(matcher.group(2))) {
+                    if (Integer.parseInt(arr[2]) >= Integer.parseInt(matcher.group(3))) {
+                        if (matcher.groupCount() == 5 && arr.length==4) {
+                            if (Integer.parseInt(arr[3]) >= Integer.parseInt(matcher.group(4))) {
                                 hasNew = true;
                             }
                         } else {
@@ -160,7 +165,7 @@ public class VersionCheckerHandler implements IConfigSubscriber {
             player.sendMessage(chat);
 
             chat = new TextComponentString("");
-            ITextComponent versionName = new TextComponentString(root.get("title").getAsString() + " ").setStyle(new Style().setColor(TextFormatting.AQUA));
+            ITextComponent versionName = new TextComponentString(root.get("title").getAsString() + " "+fullVersion+" ").setStyle(new Style().setColor(TextFormatting.AQUA));
             chat.appendSibling(versionName);
             chat.appendText(TextFormatting.WHITE + "[");
             style.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Reference.DOWNLOAD_URL));
@@ -171,9 +176,9 @@ public class VersionCheckerHandler implements IConfigSubscriber {
             player.sendMessage(chat);
             return true;
         } else {
-            MOLog.info("Matter Overdrive Version %1$s is up to date. Currently '%2$s'", fullVersion, Reference.VERSION);
+            MOLog.info("Matter Overdrive Version %1$s is up to date.", Reference.VERSION);
+            return false;
         }
-        return false;
     }
 
     @Override
