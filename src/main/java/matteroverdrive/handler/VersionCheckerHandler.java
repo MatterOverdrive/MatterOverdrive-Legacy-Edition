@@ -18,6 +18,8 @@
 
 package matteroverdrive.handler;
 
+import com.astro.clib.util.Platform;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import matteroverdrive.MatterOverdrive;
@@ -31,15 +33,19 @@ import net.minecraft.util.text.*;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Level;
 
+import java.sql.Ref;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Simeon on 5/7/2015.
@@ -60,10 +66,8 @@ public class VersionCheckerHandler implements IConfigSubscriber {
         }
 
         if (FMLCommonHandler.instance().getSide() == Side.SERVER && FMLCommonHandler.instance().getMinecraftServerInstance().isServerRunning()) {
-            // TODO: 3/25/2016 Find how to acccess the configuration manager
-			/*if (!event.player.getServer().getConfigurationManager().canSendCommands(event.player.getGameProfile())) {
-				return;
-            }*/
+            if(!event.player.canUseCommand(2,""))
+                return;
         }
 
         if (lastPoll > 0) {
@@ -108,57 +112,66 @@ public class VersionCheckerHandler implements IConfigSubscriber {
             }
         }
     }
+    final String regex = "([0-9])\\.([0-9])\\.([0-9])\\.*([0-9])*";
+    final Pattern pattern = Pattern.compile(regex);
 
     private boolean constructVersionAndCheck(String jsonText, EntityPlayer player) {
         JsonParser parser = new JsonParser();
 
-        JsonObject root = parser.parse(jsonText).getAsJsonArray().get(0).getAsJsonObject();
-        SimpleDateFormat websiteDatePraser = new SimpleDateFormat("y-M-d");
-        SimpleDateFormat modDateFormat = new SimpleDateFormat("d.M.y");
-        String websiteDateString = root.get("date").getAsString();
-        websiteDateString = websiteDateString.substring(0, websiteDateString.indexOf('T'));
-        Date websiteDate = null;
+        JsonObject root = parser.parse(jsonText).getAsJsonObject();
 
-        Date modDate = null;
-        try {
-            websiteDate = websiteDatePraser.parse(websiteDateString);
-        } catch (ParseException e) {
-            MOLog.warn("Website date was incorrect", e);
-        }
-        try {
-            modDate = modDateFormat.parse(Reference.VERSION_DATE);
-        } catch (ParseException e) {
-            MOLog.warn("Mod version date was incorrect", e);
-        }
+        JsonObject versions = root.get("versions").getAsJsonObject();
 
-        if (modDate != null && websiteDate != null) {
+        JsonArray versionData = versions.get(Loader.MC_VERSION).getAsJsonArray();
 
-            if (modDate.before(websiteDate)) {
-                TextComponentString chat = new TextComponentString(TextFormatting.GOLD + "[Matter Overdrive] " + TextFormatting.WHITE + MOStringHelper.translateToLocal("alert.new_update"));
-                Style style = new Style();
-                player.sendMessage(chat);
+        JsonObject latest = versionData.get(0).getAsJsonObject();
 
-                chat = new TextComponentString("");
-                ITextComponent versionName = new TextComponentString(root.get("title").getAsString() + " ").setStyle(new Style().setColor(TextFormatting.AQUA));
-                chat.appendSibling(versionName);
-                chat.appendText(TextFormatting.WHITE + "[");
-                style.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Reference.DOWNLOAD_URL));
-                style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("info." + Reference.MOD_ID + ".updater.hover").setStyle(new Style().setColor(TextFormatting.YELLOW))));
-                style.setColor(TextFormatting.GREEN);
-                chat.appendSibling(new TextComponentTranslation("info." + Reference.MOD_ID + ".updater.download")).setStyle(style);
-                chat.appendText(TextFormatting.WHITE + "]");
-                player.sendMessage(chat);
+        String type = latest.get("type").getAsString();
+        String fileName = latest.get("name").getAsString();
 
-                chat = new TextComponentString(root.get("excerpt").getAsString().replaceAll("<.*?>", ""));
-                style = new Style();
-                style.setColor(TextFormatting.GRAY);
-                chat.setStyle(style);
-                player.sendMessage(chat);
-                return true;
+        Matcher matcher = pattern.matcher(fileName);
+        if (!matcher.find())
+            return false;
 
-            } else {
-                MOLog.info("Matter Overdrive Version %1$s is up to date. From '%2$s'", root.get("title").getAsString(), mirrors[currentMirror - 1]);
+        String fullVersion = matcher.group(0);
+
+        boolean hasNew = false;
+        if (!Platform.isDevEnv() && !Reference.VERSION.equals(fullVersion)) {
+            Matcher currentMatcher = pattern.matcher(Reference.VERSION);
+            if (Integer.parseInt(currentMatcher.group(1)) >= Integer.parseInt(matcher.group(1))) {
+                if (Integer.parseInt(currentMatcher.group(2)) >= Integer.parseInt(matcher.group(2))) {
+                    if (Integer.parseInt(currentMatcher.group(3)) >= Integer.parseInt(matcher.group(3))) {
+                        if (matcher.groupCount() == 5 && currentMatcher.groupCount() == 5) {
+                            if (Integer.parseInt(currentMatcher.group(4)) >= Integer.parseInt(matcher.group(4))) {
+                                hasNew = true;
+                            }
+                        } else {
+                            hasNew = true;
+                        }
+                    }
+                }
             }
+        }
+
+        if (hasNew) {
+            TextComponentString chat = new TextComponentString(TextFormatting.GOLD + "[Matter Overdrive] ");
+            Style style = new Style();
+            chat.appendSibling(new TextComponentTranslation("alert.new_update")).setStyle(style.setColor(TextFormatting.WHITE));
+            player.sendMessage(chat);
+
+            chat = new TextComponentString("");
+            ITextComponent versionName = new TextComponentString(root.get("title").getAsString() + " ").setStyle(new Style().setColor(TextFormatting.AQUA));
+            chat.appendSibling(versionName);
+            chat.appendText(TextFormatting.WHITE + "[");
+            style.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Reference.DOWNLOAD_URL));
+            style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("info." + Reference.MOD_ID + ".updater.hover").setStyle(new Style().setColor(TextFormatting.YELLOW))));
+            style.setColor(TextFormatting.GREEN);
+            chat.appendSibling(new TextComponentTranslation("info." + Reference.MOD_ID + ".updater.download")).setStyle(style);
+            chat.appendText(TextFormatting.WHITE + "]");
+            player.sendMessage(chat);
+            return true;
+        } else {
+            MOLog.info("Matter Overdrive Version %1$s is up to date. Currently '%2$s'", fullVersion, Reference.VERSION);
         }
         return false;
     }
