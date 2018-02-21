@@ -74,7 +74,7 @@ item.matteroverdrive.matter_container_full.name=满物质仓
 item.matteroverdrive.tritanium_nugget.name=三钛合金粒
 item.matteroverdrive.tritainum_spine.name=三钛脊骨
 item.matteroverdrive.data_pad.name=数据仪
-item.matteroverdrive.data_pad.details=存储着有关MatterOverdrive超能物质模组的信息
+item.matteroverdrive.data_pad.details=存储着有关MatterOverdrive（超能物质）模组的信息
 item.matteroverdrive.omni_tool.name=全效离子工具
 item.matteroverdrive.android_pill_yellow.name=黄色药丸
 item.matteroverdrive.android_pill_yellow.details=重置机器人技能
@@ -112,7 +112,7 @@ item.matteroverdrive.weapon_module_barrel.damage.name=二锂聚焦矩阵
 item.matteroverdrive.weapon_module_barrel.fire.name=高能燃烧弹
 item.matteroverdrive.weapon_module_barrel.explosion.name=爆裂电磁炮
 item.matteroverdrive.weapon_module_barrel.heal.name=再生转换器
-item.matteroverdrive.weapon_module_barrel.doomsday.name=衰变聚爆矩阵(末日型)
+item.matteroverdrive.weapon_module_barrel.doomsday.name=衰变聚爆矩阵（末日型）
 item.matteroverdrive.weapon_module_ricochet.name=射击弹射模块
 item.matteroverdrive.sniper_scope.name=狙击镜
 
