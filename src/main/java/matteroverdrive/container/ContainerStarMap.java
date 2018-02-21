@@ -1,6 +1,5 @@
 package matteroverdrive.container;
 
-import matteroverdrive.container.slot.SlotStarMap;
 import matteroverdrive.tile.TileEntityMachineStarMap;
 import matteroverdrive.util.MOContainerHelper;
 import net.minecraft.entity.player.InventoryPlayer;

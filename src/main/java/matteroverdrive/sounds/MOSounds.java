@@ -1,19 +1,12 @@
 package matteroverdrive.sounds;
 
-import net.minecraftforge.client.model.IModel;
-
 public final class MOSounds {
-
-    public static final class Story {
-        public enum Misc {
-            INTRO,
-        }
-    }
 
     public enum ShipMisc {
 
 
     }
+
     public enum ShipAi {
         LIFESUPPORT_ACTIVATE,
         LIFESUPPORT_DEACTIVATE,
@@ -39,5 +32,11 @@ public final class MOSounds {
         PERFORM_GRAVITY_TURN,
         ENGAGE_BOOST,
         ENGAGE_WARP,
+    }
+
+    public static final class Story {
+        public enum Misc {
+            INTRO,
+        }
     }
 }

@@ -348,7 +348,7 @@ public class Phaser extends EnergyWeapon implements IWeapon {
                 }
             }
 
-        } else if (!b.getBlock().isAir(b,world,hit.getBlockPos())) {
+        } else if (!b.getBlock().isAir(b, world, hit.getBlockPos())) {
             if (WeaponHelper.hasStat(Reference.WS_FIRE_DAMAGE, weapon) && isKillMode(weapon)) {
                 world.spawnParticle(EnumParticleTypes.FLAME, hit.hitVec.x, hit.hitVec.y, hit.hitVec.z, 0, 0, 0);
             }

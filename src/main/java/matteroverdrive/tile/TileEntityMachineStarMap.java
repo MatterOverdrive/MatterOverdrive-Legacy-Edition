@@ -23,7 +23,6 @@ import matteroverdrive.api.inventory.UpgradeTypes;
 import matteroverdrive.api.starmap.GalacticPosition;
 import matteroverdrive.api.starmap.IBuildable;
 import matteroverdrive.data.Inventory;
-import matteroverdrive.data.inventory.Slot;
 import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.machines.events.MachineEvent;
 import matteroverdrive.network.packet.server.starmap.PacketStarMapAttack;

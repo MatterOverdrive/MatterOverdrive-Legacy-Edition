@@ -30,7 +30,6 @@ import matteroverdrive.init.MatterOverdriveSounds;
 import matteroverdrive.items.weapon.module.WeaponModuleBarrel;
 import matteroverdrive.network.packet.server.PacketDigBlock;
 import matteroverdrive.proxy.ClientProxy;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
@@ -125,7 +124,7 @@ public class OmniTool extends EnergyWeapon {
                     IBlockState state = player.world.getBlockState(hit.getBlockPos());
                     boolean canMine = state.getBlock().canHarvestBlock(player.world, hit.getBlockPos(), (EntityPlayer) player) && ((EntityPlayer) player).capabilities.allowEdit;
 
-                    if (!state.getBlock().isAir(state,player.world,hit.getBlockPos()) && canMine) {
+                    if (!state.getBlock().isAir(state, player.world, hit.getBlockPos()) && canMine) {
 
                         ++STEP_SOUND_COUNTER;
                         LAST_SIDE = hit.sideHit;

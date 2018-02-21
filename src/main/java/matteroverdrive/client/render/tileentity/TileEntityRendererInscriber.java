@@ -54,19 +54,19 @@ public class TileEntityRendererInscriber extends TileEntitySpecialRenderer<TileE
             item.setItem(new ItemStack(MatterOverdrive.ITEMS.isolinear_circuit, 1, 2));
         }
 
-        GlStateManager.color(0,0, 1,0.5f);
+        GlStateManager.color(0, 0, 1, 0.5f);
         GlStateManager.pushMatrix();
-        GlStateManager.translate(x,y,z);
-        RenderUtils.rotateFromBlock(tileEntity.getWorld(),tileEntity.getPos());
+        GlStateManager.translate(x, y, z);
+        RenderUtils.rotateFromBlock(tileEntity.getWorld(), tileEntity.getPos());
         IBlockState blockState = tileEntity.getWorld().getBlockState(tileEntity.getPos());
         EnumFacing rotation = blockState.getValue(MOBlock.PROPERTY_DIRECTION);
-        if(rotation==EnumFacing.EAST) {
+        if (rotation == EnumFacing.EAST) {
             GlStateManager.translate(-0.75, 0, 0.5);
-        } else if(rotation==EnumFacing.WEST) {
+        } else if (rotation == EnumFacing.WEST) {
             GlStateManager.translate(0.25, 0, -0.5);
-        } else if(rotation==EnumFacing.NORTH) {
+        } else if (rotation == EnumFacing.NORTH) {
             GlStateManager.translate(-0.75, 0, -0.5);
-        }else {
+        } else {
             GlStateManager.translate(0.25, 0, 0.5);
         }
 

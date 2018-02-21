@@ -33,7 +33,6 @@ import matteroverdrive.starmap.data.Planet;
 import matteroverdrive.starmap.data.Star;
 import matteroverdrive.starmap.data.TravelEvent;
 import matteroverdrive.tile.TileEntityMachineStarMap;
-import matteroverdrive.util.MOStringHelper;
 import matteroverdrive.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;

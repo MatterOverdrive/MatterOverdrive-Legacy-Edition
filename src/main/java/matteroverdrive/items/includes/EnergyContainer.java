@@ -43,7 +43,7 @@ public class EnergyContainer extends EnergyStorage implements INBTSerializable<N
             }
 
             NBTTagCompound tag = stack.getTagCompound();
-            tag.setTag("energy",  serializeNBT());
+            tag.setTag("energy", serializeNBT());
         } else {
             deserializeNBT(stack.getTagCompound().getCompoundTag("energy"));
         }

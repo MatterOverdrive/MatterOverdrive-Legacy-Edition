@@ -18,7 +18,6 @@
 
 package matteroverdrive.container;
 
-import matteroverdrive.container.slot.MOSlot;
 import matteroverdrive.container.slot.SlotInventory;
 import matteroverdrive.tile.TileEntityWeaponStation;
 import matteroverdrive.util.MOContainerHelper;

@@ -19,7 +19,6 @@
 package matteroverdrive.enchantment;
 
 import matteroverdrive.api.weapon.IWeapon;
-import matteroverdrive.items.weapon.EnergyWeapon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;

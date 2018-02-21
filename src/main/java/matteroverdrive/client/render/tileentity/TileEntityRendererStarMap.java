@@ -52,7 +52,7 @@ public class TileEntityRendererStarMap extends TileEntityRendererStation<TileEnt
     }
 
     public void render(TileEntityMachineStarMap starMap, double x, double y, double z, float partialTicks) {
-        if(!starMap.shouldRender())
+        if (!starMap.shouldRender())
             return;
         renderHologramBase(starMap, x, y, z, partialTicks);
     }

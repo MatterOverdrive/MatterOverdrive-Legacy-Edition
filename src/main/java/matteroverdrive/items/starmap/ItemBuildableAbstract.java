@@ -55,7 +55,7 @@ public abstract class ItemBuildableAbstract extends MOBaseItem implements IBuild
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(TextFormatting.RED.toString()+TextFormatting.ITALIC + "Deprecated, To be removed in 0.7.0");
+        tooltip.add(TextFormatting.RED.toString() + TextFormatting.ITALIC + "Deprecated, To be removed in 0.7.0");
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 

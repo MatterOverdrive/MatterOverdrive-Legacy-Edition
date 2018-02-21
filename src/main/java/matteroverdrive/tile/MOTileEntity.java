@@ -55,7 +55,7 @@ public abstract class MOTileEntity extends TileEntity implements IMOTileEntity {
     }
 
     public boolean shouldRender() {
-        return world.getBlockState(getPos()).getBlock()==getBlockType();
+        return world.getBlockState(getPos()).getBlock() == getBlockType();
     }
 
     @Override
