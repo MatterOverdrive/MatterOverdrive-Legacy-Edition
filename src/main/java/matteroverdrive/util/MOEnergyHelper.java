@@ -18,8 +18,6 @@
 
 package matteroverdrive.util;
 
-import matteroverdrive.MatterOverdrive;
-import matteroverdrive.handler.ConfigurationHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -28,12 +26,7 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
 public class MOEnergyHelper {
-    public static String ENERGY_UNIT;
-
-    static {
-        ENERGY_UNIT = " " + MatterOverdrive.CONFIG_HANDLER.config.getString("energyUnit", ConfigurationHandler.CATEGORY_CLIENT, "FE", "The unit to display energy in.", new String[]{"FE", "T"});
-        MatterOverdrive.CONFIG_HANDLER.subscribe(config -> ENERGY_UNIT = " " + config.config.getString("energyUnit", ConfigurationHandler.CATEGORY_CLIENT, "FE", "The unit to display energy in.", new String[]{"FE", "T"}));
-    }
+    public static String ENERGY_UNIT = "FE";
 
     public static String formatEnergy(long energy, long capacity) {
         return MOStringHelper.formatNumber(energy) + " / " + MOStringHelper.formatNumber(capacity) + ENERGY_UNIT;
