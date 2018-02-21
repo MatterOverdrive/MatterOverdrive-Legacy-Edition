@@ -5,6 +5,8 @@ import matteroverdrive.entity.android_player.AndroidPlayer;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
 import java.util.EnumSet;
@@ -28,19 +30,18 @@ public class BioticStatWirelessCharger extends AbstractBioticStat {
         if (!android.getPlayer().getEntityWorld().isRemote && isActive(android, level)) {
             for (int i = 0; i < 9; i++) {
                 ItemStack itemStack = android.getPlayer().inventory.getStackInSlot(i);
-                //TODO
-				/*
-				if (android.getPlayer().inventory.currentItem != i && itemStack != null && itemStack.getItem() instanceof IEnergyContainerItem)
-				{
+                if (!itemStack.isEmpty()) {
+                    IEnergyStorage storage = itemStack.getCapability(CapabilityEnergy.ENERGY, null);
 
-					int requestedEnergy = ((IEnergyContainerItem)itemStack.getItem()).receiveEnergy(itemStack, CHARGE_SPEED, true);
-					if (android.extractEnergy(requestedEnergy, true) == requestedEnergy)
-					{
-						((IEnergyContainerItem)itemStack.getItem()).receiveEnergy(itemStack, requestedEnergy, false);
-						android.extractEnergy(requestedEnergy, false);
-					}
+                    if (storage != null && android.getPlayer().getHeldItemMainhand() != itemStack && android.getPlayer().getHeldItemOffhand() != itemStack) {
+                        int requestedEnergy = storage.receiveEnergy(CHARGE_SPEED, true);
 
-				}*/
+                        if (android.extractEnergy(requestedEnergy, true) == requestedEnergy) {
+                            storage.receiveEnergy(requestedEnergy, false);
+                            android.extractEnergy(requestedEnergy, false);
+                        }
+                    }
+                }
             }
         }
     }
