@@ -20,6 +20,6 @@
     <page class="padded-page">
         <title size="2" class="matter-text small-title">食物</title>
         <preview index="0" size="2" style="float:left;margin-right:7px"></preview>
-        <text class="matter-text text-block" style="width:210px;margin-top:1px">应急营养单元又名战斗口粮、军用快餐，作为标准化的食物单元，用于战场上等无法获取传统食物或合成食物的紧急情况。它只能通过地牢宝箱或者物质重组仓复制获取且恢复的饱食度与牛排旗鼓相当。</text>
+        <text class="matter-text text-block" style="width:210px;margin-top:1px">应急营养单元又名战斗口粮、军用快餐，作为标准化的食物单元，用于战场上等无法获取传统食物或合成食物的紧急情况。它只能在地牢宝箱中发现或使用物质重组机复制，能为玩家补充和牛排相等的饥饿度。</text>
     </page>
 </entry>
