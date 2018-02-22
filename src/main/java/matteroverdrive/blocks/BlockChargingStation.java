@@ -56,13 +56,14 @@ public class BlockChargingStation extends MOBlockMachine<TileEntityMachineChargi
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, PROPERTY_DIRECTION,CTM);
+        return new BlockStateContainer(this, PROPERTY_DIRECTION, CTM);
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         return super.getActualState(state, worldIn, pos).withProperty(CTM, Loader.isModLoaded("ctm"));
     }
+
     @Override
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;

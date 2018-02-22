@@ -47,6 +47,8 @@ import java.util.regex.Pattern;
  */
 public class VersionCheckerHandler implements IConfigSubscriber {
     public static final String[] mirrors = new String[]{Reference.VERSIONS_CHECK_URL};
+    final String regex = "([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)";
+    final Pattern pattern = Pattern.compile(regex);
     public Future<String> download;
     int lastPoll = 400;
     private boolean updateInfoDisplayed = false;
@@ -107,9 +109,6 @@ public class VersionCheckerHandler implements IConfigSubscriber {
             }
         }
     }
-
-    final String regex = "([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)";
-    final Pattern pattern = Pattern.compile(regex);
 
     private boolean constructVersionAndCheck(String jsonText, EntityPlayer player) {
         JsonParser parser = new JsonParser();

@@ -131,7 +131,7 @@ public class MatterOverdrive {
         DIALOG_ASSEMBLER = new DialogAssembler();
         MATTER_NETWORK_HANDLER = new MatterNetworkHandler();
         FLUID_NETWORK_HANDLER = new FluidNetworkHandler();
-        LOOT_TABLE_MANAGER=new MOLootTableManager();
+        LOOT_TABLE_MANAGER = new MOLootTableManager();
 
 
         ITEMS.init();

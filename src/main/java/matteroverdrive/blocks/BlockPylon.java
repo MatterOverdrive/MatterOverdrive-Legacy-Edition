@@ -17,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
-import team.chisel.ctm.CTM;
 
 import javax.annotation.Nonnull;
 
@@ -39,7 +38,7 @@ public class BlockPylon extends MOBlockContainer<TileEntityMachineDimensionalPyl
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return super.getActualState(state, worldIn, pos).withProperty(CTM, Loader.isModLoaded("ctm")&&state.getValue(TYPE)==MultiblockType.MAIN);
+        return super.getActualState(state, worldIn, pos).withProperty(CTM, Loader.isModLoaded("ctm") && state.getValue(TYPE) == MultiblockType.MAIN);
     }
 
     @Override
@@ -50,7 +49,7 @@ public class BlockPylon extends MOBlockContainer<TileEntityMachineDimensionalPyl
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, TYPE,CTM);
+        return new BlockStateContainer(this, TYPE, CTM);
     }
 
     @Nonnull

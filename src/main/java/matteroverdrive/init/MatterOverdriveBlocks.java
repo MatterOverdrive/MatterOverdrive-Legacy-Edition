@@ -225,7 +225,7 @@ public class MatterOverdriveBlocks {
         decorative_tritanium_plate_colored = register(new BlockDecorativeColored(TRITANIUM, "decorative.tritanium_plate_colored", 10, 1, 10, 0x505050));
         decorative_engine_exhaust_plasma = register(new BlockDecorative(Material.CACTUS, "decorative.engine_exhaust_plasma", 1, 1, 1, 0x387c9e));
         decorative_engine_exhaust_plasma.setLightLevel(1);
-        industrialGlass= register(new BlockIndustrialGlass(Material.GLASS,"industrial_glass"));
+        industrialGlass = register(new BlockIndustrialGlass(Material.GLASS, "industrial_glass"));
 
 //		Alien world
         alienTallGrass = register(new BlockTallGrassAlien("alien_tall_grass"));
