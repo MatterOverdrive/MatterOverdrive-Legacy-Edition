@@ -21,18 +21,18 @@
         <title size="2" class="matter-text small-title">$itemName</title>
         <preview size="6" style="text-align:center;margin-bottom:-10px;margin-top:-4px"></preview>
         <text class="matter-text text-block">$itemName是一把强大的远程挖掘工具。
-            它可以向目标发射螺旋波等离子体，但是它的射程与[item name=phaser_rifle]相比相对较小。虽然射程比[item name=phaser_rifle]小很多，但$itemName却可以通过按住鼠标右击挖掘方块。</text>
+            它可以向目标发射螺旋波等离子体，但是它的射程与[item name=phaser_rifle]相比相对较小。虽然射程比[item name=phaser_rifle]小很多，但$itemName却可以按住鼠标右键挖掘方块。</text>
     </page>
     <page class="padded-page">
         <title size="2" class="matter-text small-title" style="margin-bottom:6px">Customization</title>
         <text class="matter-text text-block">像大多数能量武器一样，$itemName能够通过[item name=energy_pack]来快速充能，
-            如果想要持续不停的射击，则可以在[block name=weapon_station]上使用武器模块来进行升级。</text>
+            如果想要连续的射击，则需在[block name=weapon_station]上使用武器模块来进行升级。</text>
         <text class="matter-text text-block">$itemName可以使用除视野模块外的所有升级。</text>
         <image width="128" height="64" src="guide/omni_tool_modules.png" style="text-align:center;"></image>
     </page>
     <page class="padded-page">
         <title size="2" class="matter-text small-title" style="margin-bottom:6px">Stats</title>
         <tooltip></tooltip>
-        <text class="matter-text text-block">$itemName可以通过击杀残暴机械人掉落，传奇版本的机械人也会掉落相应的传奇能量武器。传奇的能量武器允许安装更多武器模块升级并且有着更好的基础属性，就好比更高的精准度。</text>
+        <text class="matter-text text-block">$itemName可以通过击杀机械人掉落，传奇版本的机械人也会掉落相应的传奇能量武器。传奇的能量武器允许安装更多武器模块升级并且有着更好的基础属性，例如更高的精准度。</text>
     </page>
 </entry>
