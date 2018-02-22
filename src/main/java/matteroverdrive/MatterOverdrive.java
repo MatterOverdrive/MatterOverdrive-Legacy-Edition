@@ -151,7 +151,7 @@ public class MatterOverdrive {
         MinecraftForge.EVENT_BUS.register(TICK_HANDLER);
         MinecraftForge.EVENT_BUS.register(PLAYER_EVENT_HANDLER);
         MinecraftForge.EVENT_BUS.register(BLOCK_HANDLER);
-        MinecraftForge.EVENT_BUS.register(LOOT_TABLE_MANAGER);
+
         MO_WORLD = new MatterOverdriveWorld(CONFIG_HANDLER);
         MatterOverdriveEntities.init(event, CONFIG_HANDLER);
         MatterOverdriveEnchantments.init(event, CONFIG_HANDLER);

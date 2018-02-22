@@ -106,7 +106,7 @@ public class MOBlock extends Block implements ItemModelProvider {
         if (hasRotation) {
             return getDefaultState().withProperty(PROPERTY_DIRECTION, EnumFacing.getHorizontal(meta));
         } else {
-            return super.getStateFromMeta(meta);
+            return getDefaultState();
         }
     }
 
@@ -116,7 +116,7 @@ public class MOBlock extends Block implements ItemModelProvider {
             EnumFacing facing = state.getValue(PROPERTY_DIRECTION);
             return facing.getHorizontalIndex();
         } else {
-            return super.getMetaFromState(state);
+            return 0;
         }
     }
 

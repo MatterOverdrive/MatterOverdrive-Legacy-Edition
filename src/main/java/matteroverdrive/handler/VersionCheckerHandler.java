@@ -18,6 +18,7 @@
 
 package matteroverdrive.handler;
 
+import com.astro.clib.util.Platform;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -55,12 +56,12 @@ public class VersionCheckerHandler implements IConfigSubscriber {
     //Called when a player ticks.
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
 
-        if (event.phase != TickEvent.Phase.START || !checkForUpdates) {
+        if (Platform.isDevEnv() || event.phase != TickEvent.Phase.START || !checkForUpdates) {
             return;
         }
 
         if (FMLCommonHandler.instance().getSide() == Side.SERVER && FMLCommonHandler.instance().getMinecraftServerInstance().isServerRunning()) {
-            if(!event.player.canUseCommand(2,""))
+            if (!event.player.canUseCommand(2, ""))
                 return;
         }
 
@@ -106,6 +107,7 @@ public class VersionCheckerHandler implements IConfigSubscriber {
             }
         }
     }
+
     final String regex = "([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)";
     final Pattern pattern = Pattern.compile(regex);
 
@@ -121,7 +123,7 @@ public class VersionCheckerHandler implements IConfigSubscriber {
         int data = 0;
         JsonObject latest = versionData.get(0).getAsJsonObject();
         String type = latest.get("type").getAsString();
-        if(type.equals("alpha")) {
+        if (type.equals("alpha")) {
             while (type.equals("alpha")) {
                 if (versionData.size() > data)
                     latest = versionData.get(data++).getAsJsonObject();
@@ -129,7 +131,7 @@ public class VersionCheckerHandler implements IConfigSubscriber {
             }
         }
 
-        if(type.equals("alpha"))
+        if (type.equals("alpha"))
             return false;
 
         String fileName = latest.get("name").getAsString();
@@ -146,7 +148,7 @@ public class VersionCheckerHandler implements IConfigSubscriber {
             if (Integer.parseInt(arr[0]) >= Integer.parseInt(matcher.group(1))) {
                 if (Integer.parseInt(arr[1]) >= Integer.parseInt(matcher.group(2))) {
                     if (Integer.parseInt(arr[2]) >= Integer.parseInt(matcher.group(3))) {
-                        if (matcher.groupCount() == 5 && arr.length==4) {
+                        if (matcher.groupCount() == 5 && arr.length == 4) {
                             if (Integer.parseInt(arr[3]) >= Integer.parseInt(matcher.group(4))) {
                                 hasNew = true;
                             }
@@ -165,7 +167,7 @@ public class VersionCheckerHandler implements IConfigSubscriber {
             player.sendMessage(chat);
 
             chat = new TextComponentString("");
-            ITextComponent versionName = new TextComponentString(root.get("title").getAsString() + " "+fullVersion+" ").setStyle(new Style().setColor(TextFormatting.AQUA));
+            ITextComponent versionName = new TextComponentString(root.get("title").getAsString() + " " + fullVersion + " ").setStyle(new Style().setColor(TextFormatting.AQUA));
             chat.appendSibling(versionName);
             chat.appendText(TextFormatting.WHITE + "[");
             style.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Reference.DOWNLOAD_URL));
