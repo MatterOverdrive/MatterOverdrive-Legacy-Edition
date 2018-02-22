@@ -34,7 +34,6 @@ import matteroverdrive.handler.TooltipHandler;
 import matteroverdrive.handler.weapon.ClientWeaponHandler;
 import matteroverdrive.handler.weapon.CommonWeaponHandler;
 import matteroverdrive.init.MatterOverdriveGuides;
-import matteroverdrive.init.MatterOverdriveIcons;
 import matteroverdrive.starmap.GalaxyClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -79,7 +78,6 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(keyHandler);
         MinecraftForge.EVENT_BUS.register(mouseHandler);
         MinecraftForge.EVENT_BUS.register(GalaxyClient.getInstance());
-        MinecraftForge.EVENT_BUS.register(new MatterOverdriveIcons());
         MinecraftForge.EVENT_BUS.register(new TooltipHandler());
         MinecraftForge.EVENT_BUS.register(androidHud);
         MinecraftForge.EVENT_BUS.register(questHud);
