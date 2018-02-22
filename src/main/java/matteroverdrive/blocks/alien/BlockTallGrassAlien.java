@@ -74,20 +74,6 @@ public class BlockTallGrassAlien extends BlockBush implements net.minecraftforge
         super.harvestBlock(worldIn, player, pos, state, te, itemStack);
     }
 
-    // TODO: 3/26/2016 Find how to set block color
-	/*@SideOnly(Side.CLIENT)
-	public int getRenderColor(IBlockState state)
-    {
-        if (state.getBlock() != this)
-        {
-            return super.getRenderColor(state);
-        }
-        else
-        {
-            return ColorizerGrass.getGrassColor(0.5D, 1.0D);
-        }
-    }*/
-
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass) {
         return worldIn.getBiome(pos).getGrassColorAtPos(pos);

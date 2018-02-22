@@ -45,6 +45,7 @@ import matteroverdrive.util.DialogFactory;
 import matteroverdrive.util.QuestFactory;
 import matteroverdrive.util.WeaponFactory;
 import matteroverdrive.world.MOLootTableManager;
+import matteroverdrive.world.dimensions.MODimensionHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -98,6 +99,7 @@ public class MatterOverdrive {
     public static MatterNetworkHandler MATTER_NETWORK_HANDLER;
     public static FluidNetworkHandler FLUID_NETWORK_HANDLER;
     public static MOLootTableManager LOOT_TABLE_MANAGER;
+    public static MODimensionHandler DIMENSION_HANDLER;
 
     static {
         FluidRegistry.enableUniversalBucket();
@@ -132,6 +134,8 @@ public class MatterOverdrive {
         MATTER_NETWORK_HANDLER = new MatterNetworkHandler();
         FLUID_NETWORK_HANDLER = new FluidNetworkHandler();
         LOOT_TABLE_MANAGER = new MOLootTableManager();
+        DIMENSION_HANDLER=new MODimensionHandler();
+        MinecraftForge.EVENT_BUS.register(DIMENSION_HANDLER);
 
 
         ITEMS.init();
@@ -162,6 +166,7 @@ public class MatterOverdrive {
         MATTER_REGISTRY.preInit(event, CONFIG_HANDLER);
         MinecraftForge.EVENT_BUS.register(MATTER_NETWORK_HANDLER);
         MinecraftForge.EVENT_BUS.register(FLUID_NETWORK_HANDLER);
+        DIMENSION_HANDLER.init();
 
         PROXY.preInit(event);
 

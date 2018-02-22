@@ -49,19 +49,13 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     public static final int TRITANIUM_VEIN_SIZE = 6;
     public static final int DILITHIUM_VEINS_PER_CHUNK = 6;
     public static final int DILITHIUM_VEIN_SIZE = 5;
-    public static int SPACE_DIM_ID = 3;
-    public static int ALIEN_DIM_ID = 4;
     public static WorldGenMinable dilithiumGen;
     public static WorldGenMinable tritaniumGen;
     public static WorldGenGravitationalAnomaly anomalyGen;
-    public static BiomeGeneratorSpace biomeSpace;
-    public static BiomeGeneratorAlien biomeAlien;
     public static float BUILDING_SPAWN_CHANCE = 10000000.0f;
     final Random oreRandom;
     final Random anomaliesRandom;
     final Random buildingsRandom;
-    public DimensionType SpaceDimension;
-    public DimensionType AlienDimension;
     public List<WeightedRandomMOWorldGenBuilding> buildings;
     public Queue<MOImageGen.ImageGenWorker> worldGenBuildingQueue;
     HashSet<Integer> oreDimentionsBlacklist;
@@ -77,17 +71,6 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         buildingsRandom = new Random();
         buildings = new ArrayList<>();
         worldGenBuildingQueue = new ArrayDeque<>();
-
-        //biomeSpace = new BiomeGeneratorSpace(new BiomeGenBase.BiomeProperties("Space").setRainDisabled().setTemperature(-273.15f));
-        //BiomeGenBase.registerBiome(100,"Space",biomeSpace);
-        //biomeAlien = new BiomeGeneratorAlien(new BiomeGenBase.BiomeProperties("Alien").setWaterColor(new Color(250,90,90).getColor()));
-        //BiomeGenBase.registerBiome(101,"Alien",biomeAlien);
-
-        //SpaceDimension = DimensionType.register("Space","_space",SPACE_DIM_ID,WorldProviderSpace.class,true);
-        //AlienDimension = DimensionType.register("Aline","_alien",ALIEN_DIM_ID,WorldProviderAlien.class,true);
-
-        //DimensionManager.registerDimension(SPACE_DIM_ID,SpaceDimension);
-        //DimensionManager.registerDimension(ALIEN_DIM_ID,AlienDimension);
 
         tritaniumGen = new WorldGenMinable(MatterOverdrive.BLOCKS.tritaniumOre.getDefaultState(), TRITANIUM_VEIN_SIZE);
         dilithiumGen = new WorldGenMinable(MatterOverdrive.BLOCKS.dilithium_ore.getDefaultState(), DILITHIUM_VEIN_SIZE);
