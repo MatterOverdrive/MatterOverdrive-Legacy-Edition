@@ -37,31 +37,6 @@ public class BlockTransporter extends MOMatterEnergyStorageBlock<TileEntityMachi
         this.setHasGui(true);
     }
 
-	/*@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister)
-	{
-		this.blockIcon = iconRegister.registerIcon(Reference.MOD_ID + ":transporter_side");
-		this.iconTop = iconRegister.registerIcon(Reference.MOD_ID + ":transporter_top");
-		this.iconFront = iconRegister.registerIcon(Reference.MOD_ID + ":transporter_front");
-	}*/
-
-    /**
-     * Gets the block's texture. Args: side, meta
-     */
-	/*@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int metadata)
-    {
-    	if(side == 0 || side == 1)
-    	{
-    		return this.iconTop;
-    	}
-    	else if(side == metadata)
-    	{
-    		return this.iconFront;
-    	}
-
-    	return this.blockIcon;
-    }*/
     @Override
     public Class<TileEntityMachineTransporter> getTileEntityClass() {
         return TileEntityMachineTransporter.class;
@@ -72,5 +47,4 @@ public class BlockTransporter extends MOMatterEnergyStorageBlock<TileEntityMachi
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return new TileEntityMachineTransporter();
     }
-
 }
