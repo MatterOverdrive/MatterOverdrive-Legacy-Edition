@@ -25,13 +25,13 @@
     <page class="padded-page">
         <title size="2" class="matter-text small-title" style="margin-bottom:6px">Customization</title>
         <text class="matter-text text-block">像大多数能量武器一样，$itemName能够通过[item name=energy_pack]来快速充能，
-            如果想要持续不停的射击，则可以在[block name=weapon_station]上使用武器模块来进行升级。</text>
+            如果想要连续射击，则需在[block name=weapon_station]上使用武器模块来进行升级。</text>
         <text class="matter-text text-block">$itemName可以使用所有升级包括狙击瞄准镜。</text>
         <image width="128" height="64" src="guide/phaser_rifle_modules.png" style="text-align:center;"></image>
     </page>
     <page class="padded-page">
     <title size="2" class="matter-text small-title" style="margin-bottom:6px">Stats</title>
         <tooltip></tooltip>
-        <text class="matter-text text-block">$itemName可以通过击杀残暴机械人掉落，传奇版本的机械人也会掉落相应的传奇能量武器。传奇的能量武器允许安装更多武器模块升级并且有着更好的基础属性，就好比更高的精准度。</text>
+        <text class="matter-text text-block">$itemName可以通过击杀机械人掉落，传奇机械人也会掉落相应的传奇能量武器。传奇的能量武器允许安装更多武器模块升级并且有着更好的基础属性，比如更高的精准度。</text>
     </page>
 </entry>
