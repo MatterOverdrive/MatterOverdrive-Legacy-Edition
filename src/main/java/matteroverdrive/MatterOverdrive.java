@@ -44,6 +44,7 @@ import matteroverdrive.util.AndroidPartsFactory;
 import matteroverdrive.util.DialogFactory;
 import matteroverdrive.util.QuestFactory;
 import matteroverdrive.util.WeaponFactory;
+import matteroverdrive.world.MOLootTableManager;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -96,6 +97,7 @@ public class MatterOverdrive {
     public static DialogAssembler DIALOG_ASSEMBLER;
     public static MatterNetworkHandler MATTER_NETWORK_HANDLER;
     public static FluidNetworkHandler FLUID_NETWORK_HANDLER;
+    public static MOLootTableManager LOOT_TABLE_MANAGER;
 
     static {
         FluidRegistry.enableUniversalBucket();
@@ -129,6 +131,7 @@ public class MatterOverdrive {
         DIALOG_ASSEMBLER = new DialogAssembler();
         MATTER_NETWORK_HANDLER = new MatterNetworkHandler();
         FLUID_NETWORK_HANDLER = new FluidNetworkHandler();
+        LOOT_TABLE_MANAGER=new MOLootTableManager();
 
 
         ITEMS.init();
@@ -148,6 +151,7 @@ public class MatterOverdrive {
         MinecraftForge.EVENT_BUS.register(TICK_HANDLER);
         MinecraftForge.EVENT_BUS.register(PLAYER_EVENT_HANDLER);
         MinecraftForge.EVENT_BUS.register(BLOCK_HANDLER);
+        MinecraftForge.EVENT_BUS.register(LOOT_TABLE_MANAGER);
         MO_WORLD = new MatterOverdriveWorld(CONFIG_HANDLER);
         MatterOverdriveEntities.init(event, CONFIG_HANDLER);
         MatterOverdriveEnchantments.init(event, CONFIG_HANDLER);

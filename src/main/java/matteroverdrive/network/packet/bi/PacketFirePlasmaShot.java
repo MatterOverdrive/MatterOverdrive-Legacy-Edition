@@ -83,7 +83,6 @@ public class PacketFirePlasmaShot extends PacketAbstract {
         @SideOnly(Side.CLIENT)
         @Override
         public void handleClientMessage(EntityPlayerSP player, PacketFirePlasmaShot message, MessageContext ctx) {
-            // TODO: 3/26/2016 Add support of Off hand
             if (player.getEntityId() != message.sender) {
                 Entity entity = player.world.getEntityByID(message.sender);
                 if (entity != null && entity instanceof EntityLivingBase) {

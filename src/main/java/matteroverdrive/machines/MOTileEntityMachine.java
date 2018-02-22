@@ -86,7 +86,7 @@ import java.util.*;
  * @since 3/11/2015
  */
 public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTileEntity, ISidedInventory, IUpgradeable, ITickable {
-    //TODO: do something with this hell inventory
+    //TODO: do something with this hell inventory v1.0.0
     protected static final Random random = new Random();
     protected static final UpgradeHandlerGeneric basicUpgradeHandler = new UpgradeHandlerGeneric(0.05, Double.MAX_VALUE).addUpgradeMinimum(UpgradeTypes.Speed, 0.1);
 

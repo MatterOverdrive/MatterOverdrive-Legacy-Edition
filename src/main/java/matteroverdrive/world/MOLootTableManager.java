@@ -12,8 +12,6 @@ public class MOLootTableManager {
     @SubscribeEvent
     public void dungeonLootLoad(LootTableLoadEvent event) {
         if (event.getName().toString().equals("minecraft:chests/simple_dungeon")) {
-            LootTable dungeonLootTable = event.getTable();
-
             LootTableList.register(new ResourceLocation("matteroverdrive:inject/simple_dungeon"));
             LootEntry entry = new LootEntryTable(new ResourceLocation("matteroverdrive:inject/simple_dungeon"), 100, 1, new LootCondition[]{}, "Blue_Pill");
 
@@ -25,11 +23,10 @@ public class MOLootTableManager {
 
     @SubscribeEvent
     public void generateCrashedShipLoot(LootTableLoadEvent event) {
-        //TODO 2/14/2018: Find out what goes between the quotes
-        if (event.getName().toString().equals("")) {
+        if (event.getName().toString().equals("matteroverdrive:crashed_ship")) {
             LootTable crashedShipLootTable = event.getTable();
 
-            LootEntry entry = new LootEntryTable(new ResourceLocation("matteroverdrive:crashedShip"), 100, 1, new LootCondition[]{}, Reference.CHEST_GEN_ANDROID_HOUSE);
+            LootEntry entry = new LootEntryTable(new ResourceLocation("matteroverdrive:crashed_ship"), 100, 1, new LootCondition[]{}, Reference.CHEST_GEN_ANDROID_HOUSE);
 
 
         }

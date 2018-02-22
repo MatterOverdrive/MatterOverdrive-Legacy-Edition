@@ -197,12 +197,7 @@ public class MatterRegistry implements IMatterRegistry {
     }
 
     public boolean blacklistedFromMod(final ItemStack stack) {
-        Item item = stack.getItem();
-        if (item != null) {
-            //todo find how to get mod for specific item
-            return modBlacklist.contains(item.getRegistryName().getResourceDomain());
-        }
-        return false;
+        return modBlacklist.contains(stack.getItem().getCreatorModId(stack));
     }
 
     public IMatterEntry<?, ?> getEntry(final ItemStack item) {
@@ -215,9 +210,7 @@ public class MatterRegistry implements IMatterRegistry {
             }
             return e;
         } catch (Exception e) {
-            if (e == null) {
-                debug("There was a problem getting a Matter Entry for %s.", item);
-            }
+            debug("There was a problem getting a Matter Entry for %s.", item);
             return null;
         }
     }

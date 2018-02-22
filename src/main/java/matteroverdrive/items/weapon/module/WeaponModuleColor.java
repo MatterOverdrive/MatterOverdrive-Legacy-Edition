@@ -64,7 +64,7 @@ public class WeaponModuleColor extends MOBaseItem implements IWeaponColor {
 
     public void addToDunguns() {
         for (int i = 0; i < colors.length; i++) {
-            // TODO: 3/25/2016 Find how to add to dungons
+            // TODO: Add to dungeon loot
 			/*ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(this,1,i),1,1,1));
 			ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(this,1,i),1,1,1));
             ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(this,1,i),1,1,1));

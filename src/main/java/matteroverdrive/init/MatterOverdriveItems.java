@@ -270,7 +270,6 @@ public class MatterOverdriveItems {
 
     public void addToDungons() {
         weapon_module_color.addToDunguns();
-        androidPill.addToDunguns();
 //		addToDungons(emergency_ration, 1, 8, 6);
 //		addToDungons(earl_gray_tea, 1, 2, 2);
 //		addToDungons(romulan_ale, 1, 2, 2);
@@ -280,7 +279,7 @@ public class MatterOverdriveItems {
     }
 
     public void addToMODungons() {
-        // TODO: 3/25/2016 Find how to add to dungon chests
+        // TODO: Add to dungeon loot
 		/*ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(emergency_ration),8,20,100));
 		ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(earl_gray_tea),4,10,50));
         ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(romulan_ale),4,10,50));
