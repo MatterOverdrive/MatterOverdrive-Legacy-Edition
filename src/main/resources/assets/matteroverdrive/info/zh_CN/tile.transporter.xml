@@ -18,8 +18,8 @@
 
 <entry stylesheet="matteroverdrive:info/styles/guide.css">
     <page class="padded-page">
-        <title size="2" class="matter-text small-title">传送器</title>
-        <text class="matter-text text-block">这台设备运行玩家在两地之间自由往返。</text>
+        <title size="2" class="matter-text small-title">传送仪</title>
+        <text class="matter-text text-block">此设备让玩家能在两点之间自由往返。</text>
         <image width="71" height="116" src="guide/transporter_in_action.png" style="float:left;margin-right:8px"></image>
         <text class="matter-text text-block" style="width:180px">为了达到这个目的，$itemName会根据不同的距离吸收不同的FE能量。它会将每个坐标点存储为量子信息并使用原子来实现远程交互。每个站在$itemName上方的实体都将受到此影响，这将意味着一次传送可传送多个实体。另外，$itemName在使用时必须先设置传送点。</text>
     </page>
