@@ -222,8 +222,8 @@ fusion_reactor.info.no_anomaly=没有\n引力\n异常点
 fusion_reactor.info.anomaly_too_far=引力\n异常点\n距离\n太远
 
 #/#//////////// Android Station ////////////
-tile.android_station.name=机器人装配台
-tile.android_station.details=机器人升级管理
+tile.android_station.name=机械人装配台
+tile.android_station.details=机械人升级管理
 tile.star_map.name=星图
 tile.star_map.details=用于星系管理
 tile.charging_station.name=充能台
@@ -550,7 +550,7 @@ biotic_stat.oxygen.details=移除机体对氧气的需求
 death.attack.phaser=%1$s 被 %2$s 分解掉了
 death.attack.phaser.item=%1$s 被 %2$s 使用 %3$s 分解掉了
 death.attack.blackHole=%1$s 被巨大的引力扭曲碾碎了
-death.attack.android_transformation=%1$s 结束了他作为生命体的存在
+death.attack.android_transformation=%1$s 结束了作为生命体的存在
 death.attack.plasmaBolt=%1$s 被 %2$s 爆头
 death.attack.plasmaBolt.item=%1$s被 %2$s 用 %3$s 打成了筛子
 
@@ -654,7 +654,7 @@ guide.entry.matter_transport.name=物质传输
 guide.entry.weapon.modules.barrels.name=武器枪管
 guide.entry.weapon.modules.colors.name=武器颜色
 guide.entry.android.pills.name=药片
-guide.entry.android.parts.name=残暴机械部件
+guide.entry.android.parts.name=机械人部件
 guide.entry.fusion_reactor.name=湮灭反应堆
 guide.entry.batteries.name=能量单元
 guide.entry.food.name=食物
@@ -744,7 +744,7 @@ quest.we_must_know.info=感谢你与我们取得联系。/n/不过，我现在�
 quest.we_must_know.objective.0=Place the $block near the ship at $distance away.
 quest.gmo.title=G.M.O.
 quest.gmo.info=复制蔬菜？真是荒谬！/n/你永远无法想到它们的味道是多么糟糕，就像塑料一样。/n/不对，或许我们需要换一种思路。我刚刚得到了新的量产方案，我迫不及待的想要检测是否实用。不过在此之前我需要先掌握作物的原子排序组合，但是那些辛勤劳作的村民们可不会让我这么做。你能否帮我扫描一些吗？作为回报，我会给予你一些你需要的东西。
-quest.gmo.objective.0=扫描 $scanAmount/$maxScanAmount $block （需要使用便携数据仪）
+quest.gmo.objective.0=扫描 $scanAmount/$maxScanAmount $block （需使用数据仪）
 quest.gmo.objective.1=扫描 $scanAmount/$maxScanAmount $block.
 quest.trade_route.title=贸易线
 quest.trade_route.info=I know the Orion sector is not the safest place to go through, but where is, these days. I can't even wrap my head around how the Edux managed to miss such a potential flaw. I mean what were they thinking? Were they that selfish?/n/Anyhow, I know I've lost a lot of friends traveling through the Orion sector, but the pay is just too damn good./n/The crew will be dropping the cargo in the nearest village, I might even join them, but first, I have to take care of something I promised to a friend.
