@@ -16,8 +16,7 @@ public class MOLootTableManager {
             LootEntry entry = new LootEntryTable(new ResourceLocation("matteroverdrive:inject/simple_dungeon"), 100, 1, new LootCondition[]{}, "Blue_Pill");
 
             LootPool pool = new LootPool(new LootEntry[]{entry}, new LootCondition[]{}, new RandomValueRange(0, 10), new RandomValueRange(0, 10), "Blue_Pill");
-            event.getTable().addPool(pool);
-
+            //event.getTable().addPool(pool);
         }
     }
 
@@ -27,8 +26,6 @@ public class MOLootTableManager {
             LootTable crashedShipLootTable = event.getTable();
 
             LootEntry entry = new LootEntryTable(new ResourceLocation("matteroverdrive:crashed_ship"), 100, 1, new LootCondition[]{}, Reference.CHEST_GEN_ANDROID_HOUSE);
-
-
         }
     }
 
