@@ -69,28 +69,9 @@ public class BlockGravitationalAnomaly extends MOBlockContainer<TileEntityGravit
     }
 
     @Override
-    public boolean isCollidable() {
-        return false;
-    }
-
-    @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return true;
     }
-
-    /*@Override
-	public void setBlockBoundsBasedOnState(IBlockStateIBlockAccess world, BlockPos pos)
-    {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if (tileEntity != null && tileEntity instanceof TileEntityGravitationalAnomaly)
-        {
-            double range = ((TileEntityGravitationalAnomaly) tileEntity).getEventHorizon();
-            range = Math.max(range,0.4);
-            float rangeMin = (float)(0.5 - (range/2));
-            float rangeMax = (float)(0.5 + (range/2));
-            setBlockBounds(rangeMin, rangeMin, rangeMin, rangeMax, rangeMax, rangeMax);
-        }
-    }*/
 
     @Nonnull
     @Override
