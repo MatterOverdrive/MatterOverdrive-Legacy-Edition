@@ -22,6 +22,6 @@
         <creates to="[item name=dilithium_crystal]"></creates>
         <text class="matter-text text-block">普通掉落为1个晶体，时运最多可以获取3个晶体。</text>
         <depth min="0" max="32"></depth>
-        <text class="matter-text text-block">该矿石能够在Y坐标32以下生成。</text>
+        <text class="matter-text text-block">该矿石在Y坐标32以下生成。</text>
     </page>
 </entry>
