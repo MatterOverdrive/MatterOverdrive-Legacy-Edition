@@ -31,6 +31,6 @@
     <page class="padded-page">
         <title size="2" class="matter-text small-title" style="margin-bottom:6px">Stats</title>
         <tooltip></tooltip>
-        <text class="matter-text text-block">$itemName可以通过击杀残暴机械人掉落，传奇版本的机械人也会掉落相应的传奇能量武器。传奇的能量武器允许安装更多武器模块升级并且有着更好的基础属性，就好比更高的伤害、射速以及精准度。</text>
+        <text class="matter-text text-block">$itemName可以通过击杀残暴机械人掉落，传奇版本的机械人也会掉落相应的传奇能量武器。传奇的能量武器允许安装更多武器模块升级并且有着更好的基础属性，例如更高的伤害、射速以及精准度。</text>
     </page>
 </entry>
