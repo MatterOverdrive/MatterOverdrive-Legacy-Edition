@@ -20,7 +20,6 @@ package matteroverdrive.client.render.biostat;
 
 import matteroverdrive.Reference;
 import matteroverdrive.api.renderer.IBioticStatRenderer;
-import matteroverdrive.client.render.tileentity.TileEntityRendererGravitationalAnomaly;
 import matteroverdrive.data.biostats.BioticStatTeleport;
 import matteroverdrive.entity.android_player.AndroidPlayer;
 import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
@@ -30,6 +29,7 @@ import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 
@@ -39,6 +39,7 @@ import static org.lwjgl.opengl.GL11.GL_ONE;
  * Created by Simeon on 6/13/2015.
  */
 public class BioticStatRendererTeleporter implements IBioticStatRenderer<BioticStatTeleport> {
+    public static final ResourceLocation glow = new ResourceLocation(Reference.PATH_FX + "teleport_glow.png");
     @Override
     public void onWorldRender(BioticStatTeleport stat, int level, RenderWorldLastEvent event) {
         AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(Minecraft.getMinecraft().player);
@@ -56,7 +57,7 @@ public class BioticStatRendererTeleporter implements IBioticStatRenderer<BioticS
 
                 Vec3d pos = OverdriveBioticStats.teleport.getPos(androidPlayer);
                 if (pos != null) {
-                    Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityRendererGravitationalAnomaly.glow);
+                    Minecraft.getMinecraft().renderEngine.bindTexture(glow);
                     GlStateManager.translate(pos.x, pos.y, pos.z);
                     GlStateManager.rotate(androidPlayer.getPlayer().rotationYaw, 0, -1, 0);
                     GlStateManager.rotate(androidPlayer.getPlayer().rotationPitch, 1, 0, 0);
