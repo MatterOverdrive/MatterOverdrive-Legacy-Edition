@@ -75,6 +75,7 @@ repositories {
 }
 
 dependencies {
+    provided "team.chisel.ctm:CTM:MC1.12-0.2.3.12"
     deobfProvided "mezz.jei:jei_1.12.2:4.8.5.138:api"
     runtime "mezz.jei:jei_1.12.2:4.8.5.138"
 
