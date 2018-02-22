@@ -27,7 +27,7 @@
     <page class="padded-page">
         <title size="2" class="matter-text small-title" style="margin-bottom:6px">自定义</title>
         <text class="matter-text text-block">像大多数能量武器一样，$itemName能够通过[item name=energy_pack]来快速充能，
-            如果想要持续不停的射击，则可以在[block name=weapon_station]上使用武器模块来进行升级。</text>
+            如果想要连续射击，则需在[block name=weapon_station]上使用武器模块来进行升级。</text>
         <text class="matter-text text-block">$itemName可以使用除视野模块外的所有升级。</text>
         <image width="128" height="64" src="guide/phaser_modules.png" style="text-align:center;"></image>
     </page>
