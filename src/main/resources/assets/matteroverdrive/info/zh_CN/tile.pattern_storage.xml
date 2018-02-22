@@ -20,8 +20,8 @@
     <page class="padded-page">
         <title size="2" class="matter-text small-title">$itemName</title>
         <text class="matter-text text-block">$itemName用于存放[item name=pattern_drive]。每个存储仓能够存放6个[item name=pattern_drive]。
-            这是存放物品模板并让其他接入网络的机器可以使用模板的唯一方法。
-            以[block name=replicator]为例，它就需要$itemName中的模板来进行物质重组。</text>
+            这是物品模式并让其他接入网络的机器可以调用模式的唯一方法。
+            以[block name=replicator]为例，它就需要$itemName中的模式来进行物质重组。</text>
         <image width="64" height="64" src="guide/pattern_storage_small.png" style="float:left;margin-right:4px"></image>
         <image width="156" height="64" src="guide/pattern_storage_wide.png"></image>
     </page>
