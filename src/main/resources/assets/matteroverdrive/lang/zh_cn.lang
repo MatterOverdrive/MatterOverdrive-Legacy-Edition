@@ -166,7 +166,7 @@ tile.tritanium_block.name=三钛合金块
 tile.heavy_matter_pipe.name=重型物质运输管道
 tile.heavy_matter_pipe.details=运输等离子态物质
 tile.holo_sign.name=全息显示屏
-tile.force_glass.name=三钛玻璃
+tile.force_glass.name=工业玻璃
 tile.bounding_box.name=绑定方块
 tile.inscriber.name=分子刻录仪
 tile.fusion_reactor_io.name=湮灭反应堆接口
@@ -214,7 +214,7 @@ tile.fusion_reactor_controller.details=湮灭反应堆的主要控制装置
 tile.fusion_reactor_coil.name=反应堆外层线圈
 tile.fusion_reactor_coil.details=用于限制湮灭反应堆内的粒子范围
 
-fusion_reactor.info.invalid_structure=这不是有效的\n多方块结构
+fusion_reactor.info.invalid_structure=此\n多方块结构无效
 fusion_reactor.info.ok=POWER ${power}\n消耗 ${charge}\n物质 ${matter}
 fusion_reactor.info.invalid_materials=这不是有效的\n材料
 fusion_reactor.info.need_coils=需要\n更多\n线圈
