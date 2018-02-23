@@ -26,7 +26,7 @@
         <title size="2" class="matter-text small-title">$itemName</title>
         <text class="matter-text text-block">玩家可以通过按住鼠标右击蓄力来发射多个螺旋波等离子体。如果蓄力的时间够长，$itemName能够发射一个行径距离为原来两倍的螺旋波等离子体。</text>
         <text class="matter-text text-block">残暴机械人可以使用这种近程能量武器，这将是非常致命的。请与它们保持距离。</text>
-        <text class="matter-text text-block">$itemName可以使用除视野模块外的所有升级。</text>
+        <text class="matter-text text-block">$itemName可安装所有非视野类模块。</text>
     </page>
     <page class="padded-page">
         <title size="2" class="matter-text small-title" style="margin-bottom:6px">Stats</title>
