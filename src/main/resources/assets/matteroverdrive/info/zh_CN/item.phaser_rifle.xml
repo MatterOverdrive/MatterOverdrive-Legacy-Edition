@@ -26,7 +26,7 @@
         <title size="2" class="matter-text small-title" style="margin-bottom:6px">Customization</title>
         <text class="matter-text text-block">像大多数能量武器一样，$itemName能够通过[item name=energy_pack]来快速充能，
             如果想要连续射击，则需在[block name=weapon_station]上使用武器模块来进行升级。</text>
-        <text class="matter-text text-block">$itemName可以使用所有升级包括狙击瞄准镜。</text>
+        <text class="matter-text text-block">$itemName可安装包括瞄准镜在内的所有模块。</text>
         <image width="128" height="64" src="guide/phaser_rifle_modules.png" style="text-align:center;"></image>
     </page>
     <page class="padded-page">
