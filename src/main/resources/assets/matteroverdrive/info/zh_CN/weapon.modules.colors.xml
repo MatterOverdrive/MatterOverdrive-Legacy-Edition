@@ -18,7 +18,7 @@
 
 <entry stylesheet="matteroverdrive:info/styles/guide.css">
     <page class="padded-page">
-        <title size="2" class="matter-text small-title">Weapon Color Modules</title>
+        <title size="2" class="matter-text small-title">武器颜色模块</title>
         <text class="matter-text text-block">所有能量武器包括[item name=phaser]，[item name=phaser_rifle]以及[item name=omni_tool]均可通过武器模块来进行自定义。其中一种武器模块类型为颜色模块。</text>
         <text class="matter-text text-block">颜色模块可以改变能量武器的外观颜色，还可以改变[item name=phaser]和[item name=omni_tool]的光束颜色，以及[item name=phaser_rifle]和[item name=omni_tool]螺旋波等离子体颜色。</text>
         <text class="matter-text text-block">颜色模块只能在地牢中找到，不能复制或制作。</text>
