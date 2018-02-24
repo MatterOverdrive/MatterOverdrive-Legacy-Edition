@@ -103,7 +103,7 @@ item.matteroverdrive.upgrade.power.name=能耗升级
 item.matteroverdrive.upgrade.failsafe.name=故障保护升级
 item.matteroverdrive.upgrade.range.name=范围升级
 item.matteroverdrive.upgrade.power_storage.name=储能升级
-item.matteroverdrive.hyper_speed.name=超速升级
+item.matteroverdrive.upgrade.hyper_speed.name=超速升级
 item.matteroverdrive.upgrade.matter_storage.name=物质存储升级
 
 #/#//////////// Weapon Modules ///////
