@@ -18,6 +18,7 @@
 
 package matteroverdrive.init;
 
+import com.astro.clib.api.registration.IItemBlockFactory;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.blocks.*;
@@ -33,14 +34,19 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemColored;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickItem;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
@@ -83,7 +89,7 @@ public class MatterOverdriveBlocks {
     public BlockFluidClassic blockMoltenTritanium;
     //	Storage
     public BlockTritaniumCrate tritaniumCrate;
-    public BlockTritaniumCrate tritaniumCrateYellow;
+    public BlockTritaniumCrate[] tritaniumCrateColored;
     //	Machines
     public BlockInscriber inscriber;
     public BlockContractMarket contractMarket;
@@ -184,7 +190,10 @@ public class MatterOverdriveBlocks {
 
 //		Storage
         tritaniumCrate = register(new BlockTritaniumCrate(TRITANIUM, "tritanium_crate"));
-        tritaniumCrateYellow = register(new BlockTritaniumCrate(TRITANIUM, "tritanium_crate_yellow"));
+        EnumDyeColor[] colors = EnumDyeColor.values();
+        tritaniumCrateColored = new BlockTritaniumCrate[colors.length];
+        for (EnumDyeColor color : colors)
+            tritaniumCrateColored[color.getMetadata()] = register(new BlockTritaniumCrate(TRITANIUM, "tritanium_crate_" + color.getName()));
 
 //		Machines
         inscriber = register(new BlockInscriber(TRITANIUM, "inscriber"));
@@ -251,8 +260,9 @@ public class MatterOverdriveBlocks {
 
     protected <T extends Block> T register(T block) {
         ItemBlock itemBlock;
-
-        if (block instanceof MOBlockMachine) {
+        if (block instanceof IItemBlockFactory) {
+            itemBlock = ((IItemBlockFactory) block).createItemBlock();
+        } else if (block instanceof MOBlockMachine) {
             itemBlock = new MOMachineBlockItem(block);
         } else if (block instanceof BlockDecorativeColored) {
             itemBlock = new ItemColored(block, false);
