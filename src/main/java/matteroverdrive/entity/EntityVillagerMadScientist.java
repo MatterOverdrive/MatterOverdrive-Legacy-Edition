@@ -72,6 +72,7 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
 
     public EntityVillagerMadScientist(World world) {
         super(world, VillagerRegistry.getId(MatterOverdriveEntities.MAD_SCIENTIST_PROFESSION));
+        setProfession(MatterOverdriveEntities.MAD_SCIENTIST_PROFESSION);
         this.tasks.addTask(1, new EntityAITalkToPlayer(this));
         this.tasks.addTask(1, new EntityAIWatchDialogPlayer(this));
     }
