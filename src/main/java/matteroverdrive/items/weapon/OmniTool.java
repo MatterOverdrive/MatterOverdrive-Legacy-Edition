@@ -122,7 +122,7 @@ public class OmniTool extends EnergyWeapon {
 
                 if (hit != null && hit.typeOfHit == RayTraceResult.Type.BLOCK) {
                     IBlockState state = player.world.getBlockState(hit.getBlockPos());
-                    boolean canMine = state.getBlock().canHarvestBlock(player.world, hit.getBlockPos(), (EntityPlayer) player) && ((EntityPlayer) player).capabilities.allowEdit;
+                    boolean canMine = ((EntityPlayer) player).capabilities.allowEdit;
 
                     if (!state.getBlock().isAir(state, player.world, hit.getBlockPos()) && canMine) {
 
