@@ -33,11 +33,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class CommonProxy {
     private final CommonWeaponHandler commonWeaponHandler;
-    protected GoogleAnalyticsCommon googleAnalyticsCommon;
+    protected GoogleAnalyticsCommon googleAnalytics;
 
     public CommonProxy() {
         commonWeaponHandler = new CommonWeaponHandler();
-        googleAnalyticsCommon = new GoogleAnalyticsCommon();
+        googleAnalytics = new GoogleAnalyticsCommon();
     }
 
     public void registerCompatModules() {
@@ -58,7 +58,7 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(GalaxyServer.getInstance());
         MatterOverdrive.CONFIG_HANDLER.subscribe(GalaxyServer.getInstance());
         MatterOverdrive.CONFIG_HANDLER.subscribe(GalaxyServer.getInstance().getGalaxyGenerator());
-        MatterOverdrive.CONFIG_HANDLER.subscribe(googleAnalyticsCommon);
+        MatterOverdrive.CONFIG_HANDLER.subscribe(googleAnalytics);
     }
 
     public void postInit(FMLPostInitializationEvent event) {
@@ -69,7 +69,7 @@ public class CommonProxy {
     }
 
     public GoogleAnalyticsCommon getGoogleAnalytics() {
-        return googleAnalyticsCommon;
+        return googleAnalytics;
     }
 
     public boolean hasTranslation(String key) {

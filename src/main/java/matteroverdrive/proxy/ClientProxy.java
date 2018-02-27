@@ -21,6 +21,7 @@ package matteroverdrive.proxy;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.client.RenderHandler;
+import matteroverdrive.client.model.MOModelLoader;
 import matteroverdrive.client.render.HoloIcons;
 import matteroverdrive.client.resources.data.WeaponMetadataSection;
 import matteroverdrive.client.resources.data.WeaponMetadataSectionSerializer;
@@ -41,6 +42,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -59,19 +61,20 @@ public class ClientProxy extends CommonProxy {
     public static HoloIcons holoIcons;
     public static GuiQuestHud questHud;
     public static FontRenderer moFontRender;
-    private static ClientProxy clientProxy;
     private ClientWeaponHandler weaponHandler;
+    private MOModelLoader modelLoader;
 
     public ClientProxy() {
         weaponHandler = new ClientWeaponHandler();
-        googleAnalyticsCommon = new GoogleAnalyticsClient();
+        googleAnalytics = new GoogleAnalyticsClient();
     }
 
     public static ClientProxy instance() {
-        if (clientProxy == null) {
-            clientProxy = (ClientProxy) MatterOverdrive.PROXY;
-        }
-        return clientProxy;
+        if (MatterOverdrive.PROXY instanceof ClientProxy)
+            return (ClientProxy) MatterOverdrive.PROXY;
+        else if (MatterOverdrive.PROXY == null)
+            throw new UnsupportedOperationException("Attempted to access ClientProxy without it being initialized");
+        throw new UnsupportedOperationException("Attempted to access ClientProxy on server side");
     }
 
     private void registerSubscribtions() {
@@ -100,6 +103,8 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         OBJLoader.INSTANCE.addDomain(Reference.MOD_ID);
+        modelLoader = new MOModelLoader();
+        ModelLoaderRegistry.registerLoader(modelLoader);
 
         Minecraft.getMinecraft().getResourcePackRepository().rprMetadataSerializer.registerMetadataSectionType(new WeaponMetadataSectionSerializer(), WeaponMetadataSection.class);
 
