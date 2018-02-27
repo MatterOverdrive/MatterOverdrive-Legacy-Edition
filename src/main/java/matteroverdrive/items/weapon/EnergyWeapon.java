@@ -149,6 +149,10 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         AddModuleDetails(weapon, infos);
     }
 
+    public boolean isEntitySpectator(EntityLivingBase entity) {
+        return entity instanceof EntityPlayer && ((EntityPlayer) entity).isSpectator();
+    }
+
     private String addStatWithMultiplyInfo(String statName, Object value, double multiply, String units) {
         String info = String.format("%s: %s%s", statName, TextFormatting.DARK_AQUA, value);
         if (!units.isEmpty()) {

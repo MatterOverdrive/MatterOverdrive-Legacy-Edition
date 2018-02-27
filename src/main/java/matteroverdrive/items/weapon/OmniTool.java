@@ -249,7 +249,7 @@ public class OmniTool extends EnergyWeapon {
 
     @Override
     public boolean canFire(ItemStack itemStack, World world, EntityLivingBase shooter) {
-        return !isOverheated(itemStack) && DrainEnergy(itemStack, getShootCooldown(itemStack), true);
+        return !isOverheated(itemStack) && DrainEnergy(itemStack, getShootCooldown(itemStack), true) && !isEntitySpectator(shooter);
     }
 
     @Override

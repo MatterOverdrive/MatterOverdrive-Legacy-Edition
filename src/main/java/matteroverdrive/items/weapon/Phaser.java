@@ -271,7 +271,7 @@ public class Phaser extends EnergyWeapon implements IWeapon {
 
     @Override
     public boolean canFire(ItemStack itemStack, World world, EntityLivingBase shooter) {
-        return !isOverheated(itemStack) && DrainEnergy(itemStack, 1, true);
+        return !isOverheated(itemStack) && DrainEnergy(itemStack, 1, true) && !isEntitySpectator(shooter);
     }
 
     @Override
