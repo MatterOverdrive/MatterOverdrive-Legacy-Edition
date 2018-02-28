@@ -24,8 +24,10 @@ import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.tile.IMOTickable;
 import matteroverdrive.util.MOLog;
 import net.minecraft.client.Minecraft;
+import net.minecraft.profiler.Profiler;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -92,7 +94,7 @@ public class TickHandler {
         }
 
         if (event.side.isServer()) {
-
+            FMLCommonHandler.instance().getMinecraftServerInstance().profiler.startSection("MO WorldTick Tiles");
             matterNetworkTickHandler.onWorldTickPre(event.phase, event.world);
             int tileEntityListSize = event.world.loadedTileEntityList.size();
 
@@ -112,6 +114,7 @@ public class TickHandler {
                     return;
                 }
             }
+            FMLCommonHandler.instance().getMinecraftServerInstance().profiler.endSection();
 
             matterNetworkTickHandler.onWorldTickPost(event.phase, event.world);
         }

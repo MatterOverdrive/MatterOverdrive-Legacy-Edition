@@ -62,9 +62,10 @@ import java.util.concurrent.Executors;
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = Reference.DEPENDENCIES)
 public class MatterOverdrive {
     public static final ExecutorService THREAD_POOL = Executors.newFixedThreadPool(2);
-    //	Content
+
     public static final MatterOverdriveItems ITEMS = new MatterOverdriveItems();
     public static final MatterOverdriveBlocks BLOCKS = new MatterOverdriveBlocks();
+
     public static final OverdriveTab TAB_OVERDRIVE = new OverdriveTab("tabMO", () -> new ItemStack(ITEMS.matter_scanner));
     public static final OverdriveTab TAB_OVERDRIVE_MODULES = new OverdriveTab("tabMO_modules", () -> new ItemStack(ITEMS.weapon_module_color));
     public static final OverdriveTab TAB_OVERDRIVE_UPGRADES = new OverdriveTab("tabMO_upgrades", () -> new ItemStack(ITEMS.item_upgrade));
@@ -73,10 +74,12 @@ public class MatterOverdrive {
     public static final OverdriveTab TAB_OVERDRIVE_BUILDINGS = new OverdriveTab("tabMO_buildings", () -> new ItemStack(ITEMS.buildingBase));
     public static final OverdriveTab TAB_OVERDRIVE_DECORATIVE = new OverdriveTab("tabMO_decorative", () -> new ItemStack(BLOCKS.decorative_stripes));
     public static final OverdriveTab TAB_OVERDRIVE_ANDROID_PARTS = new OverdriveTab("tabMO_androidParts", () -> new ItemStack(ITEMS.androidParts));
+
     @Instance(Reference.MOD_ID)
     public static MatterOverdrive INSTANCE;
     @SidedProxy(clientSide = "matteroverdrive.proxy.ClientProxy", serverSide = "matteroverdrive.proxy.CommonProxy")
     public static CommonProxy PROXY;
+
     public static TickHandler TICK_HANDLER;
     public static PlayerEventHandler PLAYER_EVENT_HANDLER;
     public static ConfigurationHandler CONFIG_HANDLER;

@@ -34,7 +34,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -42,11 +41,8 @@ import net.minecraft.item.ItemColored;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickItem;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
@@ -68,7 +64,7 @@ public class MatterOverdriveBlocks {
     public BlockDecomposer decomposer;
     public BlockMatterRecycler recycler;
     public BlockReplicator replicator;
-    public BlockMatterPipe matter_pipe;
+    public matteroverdrive.blocks.pipe.BlockMatterPipe matter_pipe;
     public BlockMatterPipe heavy_matter_pipe;
     public BlockNetworkPipe network_pipe;
     public BlockNetworkRouter network_router;
@@ -165,7 +161,7 @@ public class MatterOverdriveBlocks {
         decomposer = register(new BlockDecomposer(TRITANIUM, "decomposer"));
         recycler = register(new BlockMatterRecycler(TRITANIUM, "matter_recycler"));
         replicator = register(new BlockReplicator(TRITANIUM, "replicator"));
-        matter_pipe = register(new BlockMatterPipe(TRITANIUM, "matter_pipe"));
+        matter_pipe = register(new matteroverdrive.blocks.pipe.BlockMatterPipe(TRITANIUM, "matter_pipe"));
         heavy_matter_pipe = register(new BlockHeavyMatterPipe(TRITANIUM, "heavy_matter_pipe"));
         network_pipe = register(new BlockNetworkPipe(TRITANIUM, "network_pipe"));
         network_router = register(new BlockNetworkRouter(TRITANIUM, "network_router"));
