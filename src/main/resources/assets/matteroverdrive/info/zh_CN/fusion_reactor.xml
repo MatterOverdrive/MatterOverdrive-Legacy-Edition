@@ -18,21 +18,21 @@
 
 <entry stylesheet="matteroverdrive:info/styles/guide.css">
     <page class="padded-page">
-        <title size="2" class="matter-text small-title">聚变反应堆</title>
+        <title size="2" class="matter-text small-title">湮灭反应堆</title>
         <image width="220" height="110" src="guide/fusion_reactor_sphere.png" style="text-align:center;margin-right:8px;margin-bottom:8px"></image>
-        <text class="matter-text text-block">聚变反应堆是一个复杂的多方块结构，它由引力场催化[guide name=matter_plasma]发热产生能量。</text>
+        <text class="matter-text text-block">湮灭反应堆是一个复杂的多方块结构，它由引力场催化[guide name=matter_plasma]发热产生能量。</text>
     </page>
     <page class="padded-page">
         <title size="2" class="matter-text small-title">如何开始</title>
         <text class="matter-text text-block">要开始产能，首先你需要找到[block name=gravitational_anomaly]。然后你必须在其周围建立一个[block name=fusion_reactor_controller]。
         控制器将精确的检测异常情况以及正常工作的需求。</text>
         <preview index="0" size="3" style="text-align:center;margin-bottom:10px;margin-top:-4px"></preview>
-        <text class="matter-text text-block">控制器还会以重力异常点为中心，运用镜像投影出完整聚变反应堆多方块结构。</text>
+        <text class="matter-text text-block">控制器还会以引力异常点为中心，运用镜像投影出湮灭反应堆的完整结构。</text>
     </page>
     <page class="padded-page">
         <title size="2" class="matter-text small-title">第一步</title>
         <image width="220" height="110" src="guide/fusion_reactor_building_1.png" style="text-align:center;margin-right:8px;margin-bottom:8px"></image>
-        <text class="matter-text text-block">将11个[block name=fusion_reactor_coil]如上图所示有序摆放以限定聚变反应堆内的粒子范围。然后你可以通过摆放[block name=fusion_reactor_io]来控制输入/输出。</text>
+        <text class="matter-text text-block">如上图所示，有序摆放11个[block name=fusion_reactor_coil]以限定引力反应堆内的粒子范围。然后你可以通过摆放[block name=fusion_reactor_io]来控制输入/输出。</text>
     </page>
     <page class="padded-page">
         <title size="2" class="matter-text small-title">第二步</title>
@@ -40,10 +40,10 @@
         <text class="matter-text text-block">使用[block name=machine_hull]填补反应堆空缺部分。你还可以将2个[block name=decomposer]放置在控制器旁边，注意不是[block name=fusion_reactor_coil]。</text>
     </page>
     <page class="padded-page">
-        <title size="2" class="matter-text small-title">聚变产能</title>
-        <text class="matter-text text-block">在你搭建完成聚变反应堆多方块结够后，[item name=fusion_reactor_controller]将显示反应堆运行时详细信息。</text>
+        <title size="2" class="matter-text small-title">湮灭产能</title>
+        <text class="matter-text text-block">在你搭建完成湮灭反应堆多方块结够后，[item name=fusion_reactor_controller]将显示反应堆运行时详细信息。</text>
         <text class="matter-text text-block">然后你可以使用流体管道或者[guide name=matter_plasma]将[block name=matter_pipe guide=matter_transport]导入反应堆中。</text>
         <text class="matter-text text-block">不幸的是在运行反应堆之前你还需要手动生产[guide name=matter_plasma]，这意味着你需要消耗电量供给[block name=decomposer]使其运作。当反应堆有足够的等离子物质之后，它才将开始发电并供给物质分解仓工作。</text>
-        <text class="matter-text text-block">如果你想从反应堆中抽取等离子物质或者能量，但不想使用控制器完成。你可以将[block name=fusion_reactor_coil]替换成[block name=fusion_reactor_io]并用其进行输入/输出。同时，多个反应堆接口是允许的。</text>
+        <text class="matter-text text-block">如果你想从反应堆中抽取等离子物质或者能量，但不想使用控制器完成。你可以将[block name=fusion_reactor_coil]替换成[block name=fusion_reactor_io]并用其进行输入/输出。当然，也可以同时使用多个反应堆接口。</text>
     </page>
 </entry>

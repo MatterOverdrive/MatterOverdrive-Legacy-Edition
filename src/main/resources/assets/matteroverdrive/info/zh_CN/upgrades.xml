@@ -32,15 +32,15 @@
     </page>
     <page class="padded-page">
         <title size="2" class="matter-text small-title">能耗升级</title>
-        <text class="matter-text text-block">能耗升级能够有效的减少超能物质机器的能量消耗.</text>
+        <text class="matter-text text-block">能耗升级能够有效地减少超能物质机器的能量消耗.</text>
         <recipe item="[item name=upgrade meta=2]" style="float:left"></recipe>
         <details item="[item name=upgrade meta=2]" style="margin-left:16px;margin-top:8px"></details>
     </page>
     <page class="padded-page">
         <title size="2" class="matter-text small-title">故障保护升级</title>
         <text class="matter-text text-block">故障保护升级会降低发生故障的概率.
-            它可以被用于[block name=replicator]和[block name=decomposer],
-            来降低发生故障产出[item name=matter_dust]而非对应物品或[guide name=matter_plasma]的概率.</text>
+            它可以安装在[block name=replicator]和[block name=decomposer]上,
+            以降低发生故障产出[item name=matter_dust]而非对应物品或[guide name=matter_plasma]的概率.</text>
         <recipe item="[item name=upgrade meta=3]" style="float:left"></recipe>
         <details item="[item name=upgrade meta=3]" style="margin-left:16px;margin-top:8px"></details>
     </page>
