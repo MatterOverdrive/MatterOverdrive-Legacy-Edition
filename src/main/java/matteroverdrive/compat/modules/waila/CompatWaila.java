@@ -35,7 +35,7 @@ public class CompatWaila {
 
     @Compat.Init
     public static void init(FMLInitializationEvent event) {
-        FMLInterModComms.sendMessage("waila", "register", "overdrive_.compat.modules.waila.CompatWaila.registerCallback");
+        FMLInterModComms.sendMessage("waila", "register", "matteroverdrive.compat.modules.waila.CompatWaila.registerCallback");
     }
 
     public static void registerCallback(IWailaRegistrar registrar) {

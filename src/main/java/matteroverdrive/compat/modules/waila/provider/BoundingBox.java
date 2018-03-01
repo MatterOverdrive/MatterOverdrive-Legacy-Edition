@@ -24,27 +24,27 @@ public class BoundingBox implements IWailaDataProvider {
             TileEntityBoundingBox boundingBox = (TileEntityBoundingBox) accessor.getTileEntity();
             return new ItemStack(boundingBox.getOwnerBlock());
         }
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
     public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        return null;
+        return currenttip;
     }
 
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        return null;
+        return currenttip;
     }
 
     @Override
     public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        return null;
+        return currenttip;
     }
 
     @Override
     public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, BlockPos pos) {
-        return null;
+        return tag;
     }
 
 }
