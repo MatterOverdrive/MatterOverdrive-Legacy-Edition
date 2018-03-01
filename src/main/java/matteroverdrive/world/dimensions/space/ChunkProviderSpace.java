@@ -5,6 +5,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 
 import javax.annotation.Nullable;
@@ -37,21 +38,10 @@ public class ChunkProviderSpace implements IChunkGenerator {
 
     @Override
     public Chunk generateChunk(int x, int z) {
-        // TODO: 3/26/2016 Find how to get Chunk Manager
-		/*this.spaceRandom.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
-		ChunkPrimer chunkprimer = new ChunkPrimer();
-        this.biomesForGeneration = this.spaceWorld.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-        Chunk chunk = new Chunk(this.spaceWorld, chunkprimer, x, z);
-        byte[] abyte = chunk.getBiomeArray();
-
-        for (int i = 0; i < abyte.length; ++i)
-        {
-            abyte[i] = (byte)this.biomesForGeneration[i].biomeID;
-        }
-
+        ChunkPrimer primer = new ChunkPrimer();
+        Chunk chunk = new Chunk(this.spaceWorld, primer, x, z);
         chunk.generateSkylightMap();
-        return chunk;*/
-        return null;
+        return chunk;
     }
 
     @Override

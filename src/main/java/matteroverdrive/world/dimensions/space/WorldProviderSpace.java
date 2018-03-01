@@ -1,5 +1,6 @@
 package matteroverdrive.world.dimensions.space;
 
+import matteroverdrive.MatterOverdrive;
 import matteroverdrive.world.MOWorldGen;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -19,14 +20,13 @@ public class WorldProviderSpace extends WorldProvider {
 
     @Override
     protected void init() {
-        //this.biomeProvider = new BiomeProviderSingle(MOWorldGen.biomeSpace);
+        this.biomeProvider = new BiomeProviderSingle(MatterOverdrive.DIMENSION_HANDLER.SPACE_BIOME);
         this.hasSkyLight = true;
     }
 
     @Override
     public DimensionType getDimensionType() {
-        // TODO: 3/26/2016 Find how to register dimension type
-        return null;
+        return MatterOverdrive.DIMENSION_HANDLER.SPACE_TYPE;
     }
 
     @SideOnly(Side.CLIENT)
@@ -71,11 +71,6 @@ public class WorldProviderSpace extends WorldProvider {
     @SideOnly(Side.CLIENT)
     public float getCloudHeight() {
         return -10000;
-    }
-
-    @Override
-    public boolean isSurfaceWorld() {
-        return world.isRemote;
     }
 
     @Override

@@ -20,10 +20,6 @@ public class BiomeGeneratorSpace extends Biome {
         this.fillerBlock = Blocks.AIR.getDefaultState();
     }
 
-    public BiomeDecorator createBiomeDecorator() {
-        return getModdedBiomeDecorator(new BiomeDecoratorSpace());
-    }
-
     @SideOnly(Side.CLIENT)
     public int getSkyColorByTemp(float p_76731_1_) {
         return 0;

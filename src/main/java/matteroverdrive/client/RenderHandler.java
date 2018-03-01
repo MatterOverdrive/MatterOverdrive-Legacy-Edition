@@ -67,6 +67,7 @@ import matteroverdrive.starmap.data.Quadrant;
 import matteroverdrive.starmap.data.Star;
 import matteroverdrive.tile.*;
 import matteroverdrive.util.MOLog;
+import matteroverdrive.util.RenderUtils;
 import matteroverdrive.world.dimensions.alien.AlienColorsReloadListener;
 import matteroverdrive.world.dimensions.alien.BiomeAlienColorHelper;
 import matteroverdrive.world.dimensions.alien.ColorizerAlien;
@@ -80,8 +81,11 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
@@ -103,12 +107,15 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.apache.logging.log4j.Level;
+import org.lwjgl.util.glu.Sphere;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created by Simeon on 4/17/2015.
@@ -254,6 +261,23 @@ public class RenderHandler {
                     renderer.onWorldRender(stat, MOPlayerCapabilityProvider.GetAndroidCapability(Minecraft.getMinecraft().player).getUnlockedLevel(stat), event);
                 }
             }
+        }
+
+        Minecraft mc = Minecraft.getMinecraft();
+        EntityPlayer player = mc.player;
+        if (player.dimension == MatterOverdrive.DIMENSION_HANDLER.SPACE_TYPE.getId()) {
+            GlStateManager.pushMatrix();
+            Sphere sphere = new Sphere();
+            RenderUtils.applyColor(Reference.COLOR_HOLO_RED);
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            GlStateManager.disableTexture2D();
+            GlStateManager.translate(-TileEntityRendererDispatcher.staticPlayerX, -TileEntityRendererDispatcher.staticPlayerY + -600, -TileEntityRendererDispatcher.staticPlayerZ);
+            sphere.draw(600f, 64, 32);
+            GlStateManager.scale(3, 3, 3);
+            mc.getRenderItem().renderItemIntoGUI(new ItemStack(Items.APPLE), 0, 0);
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            GlStateManager.enableTexture2D();
+            GlStateManager.popMatrix();
         }
     }
 
