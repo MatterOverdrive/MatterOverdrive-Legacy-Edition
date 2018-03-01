@@ -38,17 +38,17 @@ public class MOAPIInternal implements MatterOverdriveAPI {
 
     @Override
     public IMatterRegistry getMatterRegistry() {
-        return MatterOverdrive.matterRegistry;
+        return MatterOverdrive.MATTER_REGISTRY;
     }
 
     @Override
     public IAndroidStatRegistry getAndroidStatRegistry() {
-        return MatterOverdrive.statRegistry;
+        return MatterOverdrive.STAT_REGISTRY;
     }
 
     @Override
     public IDialogRegistry getDialogRegistry() {
-        return MatterOverdrive.dialogRegistry;
+        return MatterOverdrive.DIALOG_REGISTRY;
     }
 
     @Override

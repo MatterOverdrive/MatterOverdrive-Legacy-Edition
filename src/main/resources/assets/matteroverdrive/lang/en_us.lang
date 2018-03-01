@@ -97,7 +97,7 @@ item.matteroverdrive.portable_decomposer.name=Portable Decomposer
 item.matteroverdrive.portable_decomposer.details=Decomposes picked up items into Matter Plasma
 item.matteroverdrive.record.matteroverdrive.transformation.desc=BoxCat Games - Trace Route
 
-#/#//////////// Upgrades ////////////
+#///////////// Upgrades ////////////
 item.matteroverdrive.upgrade.speed.name=Speed Upgrade
 item.matteroverdrive.upgrade.power.name=Power Upgrade
 item.matteroverdrive.upgrade.failsafe.name=Fail-Safe Upgrade
@@ -106,7 +106,7 @@ item.matteroverdrive.upgrade.power_storage.name=Power Storage Upgrade
 item.matteroverdrive.upgrade.hyper_speed.name=Hyper Speed Upgrade
 item.matteroverdrive.upgrade.matter_storage.name=Matter Storage Upgrade
 
-#/#//////////// Weapon Modules ///////
+#///////////// Weapon Modules ///////
 item.matteroverdrive.weapon_module_color.name=Color Module
 item.matteroverdrive.weapon_module_barrel.damage.name=Dilithium Focusing Matrix
 item.matteroverdrive.weapon_module_barrel.fire.name=Incendiary Filter
@@ -116,7 +116,7 @@ item.matteroverdrive.weapon_module_barrel.doomsday.name=Degenerative Explosive F
 item.matteroverdrive.weapon_module_ricochet.name=Shot Rebound Module
 item.matteroverdrive.sniper_scope.name=Sniper Scope
 
-#/#//////////// Buildings ///////////
+#///////////// Buildings ///////////
 item.matteroverdrive.building_matter_extractor.name=Matter Extractor
 item.matteroverdrive.building_residential.name=Residential Buildings
 item.matteroverdrive.building_ship_hangar.name=Ship Hangar
@@ -127,7 +127,7 @@ item.overdrivef.info.configured=Configured
 ##########################################################################################################
 # Tile Entities
 
-#/#//////////// Replicator ////////////
+#///////////// Replicator ////////////
 tile.replicator.name=Matter Replicator
 tile.replicator.config.volume.replicate=Replication Volume
 tile.replicator.config.particles.vent=Vent Particles
@@ -139,7 +139,7 @@ tile.replicator.config.fail=Fail Chance
 tile.replicator.details=Replicates Items and Blocks from Matter Plasma
 tile.replicator_active.name=Matter Replicator
 
-#/#//////////// Decomposer ////////////
+#///////////// Decomposer ////////////
 tile.decomposer.name=Matter Decomposer
 tile.decomposer.details=Decomposes Items into Matter Plasma
 tile.decomposer.config.storage.matter=Matter Storage
@@ -166,7 +166,7 @@ tile.tritanium_block.name=Tritanium Block
 tile.heavy_matter_pipe.name=Heavy Duty Matter Transport Pipe
 tile.heavy_matter_pipe.details=Transports Matter Plasma
 tile.holo_sign.name=Holographic Sign
-tile.force_glass.name=Tritanium Glass
+tile.industrial_glass.name=Industrial Glass
 tile.bounding_box.name=Bounding Block
 tile.inscriber.name=Molecular Inscriber
 tile.fusion_reactor_io.name=Fusion Reactor IO
@@ -175,7 +175,7 @@ tile.spacetime_accelerator.name=Space-Time Accelerator
 tile.spacetime_accelerator.details=Speeds up blocks and machines
 tile.pylon.name=Dimensional Pylon
 
-#/#//////////// Pattern Storage ////////////
+#///////////// Pattern Storage ////////////
 tile.pattern_storage.name=Pattern Storage
 tile.pattern_storage.details=Stores item patterns, for replication
 tile.pattern_storage.config.particles.vent=Vent Particles
@@ -197,12 +197,12 @@ tile.matter_recycler.name=Matter Recycler
 tile.matter_recycler.details=Used to recycle items, ready for decomposing
 tile.android_spawner.name=Rogue Android Spawner
 
-#/#//////////// Fluids ////////////
+#///////////// Fluids ////////////
 tile.matter_plasma.name=Matter Plasma
 tile.molten_tritanium.name=Molten Tritanium
 
 
-#/#//////////// Fusion Reactor ////////////
+#///////////// Fusion Reactor ////////////
 tile.fusion_reactor_controller.name=Fusion Reactor Controller
 tile.fusion_reactor_controller.config.storage.energy=Energy Storage
 tile.fusion_reactor_controller.config.storage.matter=Matter Storage
@@ -221,7 +221,7 @@ fusion_reactor.info.need_coils=NEED${newline}MORE${newline}COILS
 fusion_reactor.info.no_anomaly=NO${newline}GRAVITATIONAL${newline}ANOMALY
 fusion_reactor.info.anomaly_too_far=GRAVITATIONAL${newline}ANOMALY${newline}TOO${newline}FAR
 
-#/#//////////// Android Station ////////////
+#///////////// Android Station ////////////
 tile.android_station.name=Android Station
 tile.android_station.details=Android Upgrade Management
 tile.star_map.name=Star Map
@@ -232,11 +232,11 @@ container.replicator.name=Replicator
 machine.tooltip.matter=Matter
 machine.tooltip.energy=Charged
 
-#/#//////////// Tritanium Crate ////////////
+#///////////// Tritanium Crate ////////////
 tile.tritanium_crate.name=Tritanium Crate
 tile.tritanium_crate_yellow.name=Yellow Tritanium Crate
 
-#/#//////////// Entities /////////////////
+#///////////// Entities /////////////////
 entity.matteroverdrive.rogue_android.name=Melee Rogue Android
 entity.matteroverdrive.failed_pig.name=Failed Pig
 entity.matteroverdrive.failed_chicken.name=Failed Chicken
@@ -248,7 +248,7 @@ entity.matteroverdrive.mad_scientist.junkie.name=Mad Scientist Junkie
 entity.matteroverdrive.ranged_rogue_android.name=Ranged Rogue Android
 entity.matteroverdrive.mutant_scientist.name=Mutant Scientist
 
-#/#//////////// Decorative ////////////////////
+#///////////// Decorative ////////////////////
 tile.decorative.stripes.name=Yellow Stripes
 tile.decorative.coils.name=Coils
 tile.decorative.clean.name=Tritanium Smooth Plate
@@ -287,7 +287,7 @@ dialog.generic.trade.1.question=Let's trade.
 dialog.generic.trade.2.question=Let me see your goods.
 dialog.generic.trade.3.question=What do you have for sale?
 
-#/#//////////// Mad Scientist ///////////////
+#///////////// Mad Scientist ///////////////
 dialog.mad_scientist.convert.question=I have all the parts!
 dialog.mad_scientist.requirements.line=Finally!<br>Getting rid of that fragile body is the best choice.<br>The only problem is that I need you to bring me a set of Android parts before we begin.
 dialog.mad_scientist.requirements.question=I want to become an android.
@@ -372,7 +372,7 @@ planet_stat.fleet_size.name=Matter Production
 ##########################################################################################################
 # GUI
 
-#/#//////////// tooltips ///////////////
+#///////////// tooltips ///////////////
 gui.tooltip.starmap.no_ship_space=Not enough ship spaces
 gui.tooltip.starmap.no_building_space=Not enough building spaces
 gui.tooltip.starmap.no_ship_factory=No ship factory

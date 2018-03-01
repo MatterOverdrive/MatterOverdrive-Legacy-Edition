@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 
 import javax.vecmath.*;
 
+//TODO: remove this hell
 public class TileEntityRendererPipe extends TileEntitySpecialRenderer<TileEntityPipe> {
 
     protected static final double size = 5 * (1d / 15d);
@@ -32,6 +33,8 @@ public class TileEntityRendererPipe extends TileEntitySpecialRenderer<TileEntity
 
     @Override
     public void render(TileEntityPipe pipe, double x, double y, double z, float f, int destroyStage, float a) {
+        if (!pipe.shouldRender())
+            return;
         GlStateManager.pushMatrix();
 
         GlStateManager.translate(x, y, z);

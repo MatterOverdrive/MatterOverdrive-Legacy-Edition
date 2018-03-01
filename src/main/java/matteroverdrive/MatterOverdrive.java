@@ -44,11 +44,14 @@ import matteroverdrive.util.AndroidPartsFactory;
 import matteroverdrive.util.DialogFactory;
 import matteroverdrive.util.QuestFactory;
 import matteroverdrive.util.WeaponFactory;
+import matteroverdrive.world.MOLootTableManager;
+import matteroverdrive.world.dimensions.MODimensionHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -56,47 +59,50 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = Reference.DEPEDNENCIES)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = Reference.DEPENDENCIES)
 public class MatterOverdrive {
-    public static final OverdriveTab TAB_OVERDRIVE = new OverdriveTab("tabMO");
-    public static final OverdriveTab TAB_OVERDRIVE_MODULES = new OverdriveTab("tabMO_modules");
-    public static final OverdriveTab TAB_OVERDRIVE_UPGRADES = new OverdriveTab("tabMO_upgrades");
-    public static final OverdriveTab TAB_OVERDRIVE_FOOD = new OverdriveTab("tabMO_food");
-    public static final OverdriveTab TAB_OVERDRIVE_SHIPS = new OverdriveTab("tabMO_ships");
-    public static final OverdriveTab TAB_OVERDRIVE_BUILDINGS = new OverdriveTab("tabMO_buildings");
-    public static final OverdriveTab TAB_OVERDRIVE_DECORATIVE = new OverdriveTab("tabMO_decorative");
-    public static final OverdriveTab TAB_OVERDRIVE_ANDROID_PARTS = new OverdriveTab("tabMO_androidParts");
     public static final ExecutorService THREAD_POOL = Executors.newFixedThreadPool(2);
-    //	Content
+
     public static final MatterOverdriveItems ITEMS = new MatterOverdriveItems();
     public static final MatterOverdriveBlocks BLOCKS = new MatterOverdriveBlocks();
 
-    @Mod.Instance(Reference.MOD_ID)
-    public static MatterOverdrive INSTANCE;
+    public static final OverdriveTab TAB_OVERDRIVE = new OverdriveTab("tabMO", () -> new ItemStack(ITEMS.matter_scanner));
+    public static final OverdriveTab TAB_OVERDRIVE_MODULES = new OverdriveTab("tabMO_modules", () -> new ItemStack(ITEMS.weapon_module_color));
+    public static final OverdriveTab TAB_OVERDRIVE_UPGRADES = new OverdriveTab("tabMO_upgrades", () -> new ItemStack(ITEMS.item_upgrade));
+    public static final OverdriveTab TAB_OVERDRIVE_FOOD = new OverdriveTab("tabMO_food", () -> new ItemStack(ITEMS.earl_gray_tea));
+    public static final OverdriveTab TAB_OVERDRIVE_SHIPS = new OverdriveTab("tabMO_ships", () -> new ItemStack(ITEMS.colonizerShip));
+    public static final OverdriveTab TAB_OVERDRIVE_BUILDINGS = new OverdriveTab("tabMO_buildings", () -> new ItemStack(ITEMS.buildingBase));
+    public static final OverdriveTab TAB_OVERDRIVE_DECORATIVE = new OverdriveTab("tabMO_decorative", () -> new ItemStack(BLOCKS.decorative_stripes));
+    public static final OverdriveTab TAB_OVERDRIVE_ANDROID_PARTS = new OverdriveTab("tabMO_androidParts", () -> new ItemStack(ITEMS.androidParts));
 
+    @Instance(Reference.MOD_ID)
+    public static MatterOverdrive INSTANCE;
     @SidedProxy(clientSide = "matteroverdrive.proxy.ClientProxy", serverSide = "matteroverdrive.proxy.CommonProxy")
     public static CommonProxy PROXY;
-    public static TickHandler tickHandler;
-    public static PlayerEventHandler playerEventHandler;
-    public static ConfigurationHandler configHandler;
-    public static GuiHandler guiHandler;
-    public static PacketPipeline packetPipeline;
-    public static MatterOverdriveWorld moWorld;
-    public static EntityHandler entityHandler;
-    public static MatterRegistry matterRegistry;
-    public static AndroidStatRegistry statRegistry;
-    public static DialogRegistry dialogRegistry;
-    public static MatterRegistrationHandler matterRegistrationHandler;
-    public static WeaponFactory weaponFactory;
-    public static AndroidPartsFactory androidPartsFactory;
-    public static Quests quests;
-    public static QuestFactory questFactory;
-    public static DialogFactory dialogFactory;
-    public static BlockHandler blockHandler;
-    public static QuestAssembler questAssembler;
-    public static DialogAssembler dialogAssembler;
-    public static MatterNetworkHandler matterNetworkHandler;
-    public static FluidNetworkHandler fluidNetworkHandler;
+
+    public static TickHandler TICK_HANDLER;
+    public static PlayerEventHandler PLAYER_EVENT_HANDLER;
+    public static ConfigurationHandler CONFIG_HANDLER;
+    public static GuiHandler GUI_HANDLER;
+    public static PacketPipeline NETWORK;
+    public static MatterOverdriveWorld MO_WORLD;
+    public static EntityHandler ENTITY_HANDLER;
+    public static MatterRegistry MATTER_REGISTRY;
+    public static AndroidStatRegistry STAT_REGISTRY;
+    public static DialogRegistry DIALOG_REGISTRY;
+    public static MatterRegistrationHandler MATTER_REGISTRATION_HANDLER;
+    public static WeaponFactory WEAPON_FACTORY;
+    public static AndroidPartsFactory ANDROID_PARTS_FACTORY;
+    public static Quests QUESTS;
+    public static QuestFactory QUEST_FACTORY;
+    public static DialogFactory DIALOG_FACTORY;
+    public static BlockHandler BLOCK_HANDLER;
+    public static QuestAssembler QUEST_ASSEMBLER;
+    public static DialogAssembler DIALOG_ASSEMBLER;
+    public static MatterNetworkHandler MATTER_NETWORK_HANDLER;
+    public static FluidNetworkHandler FLUID_NETWORK_HANDLER;
+    public static MOLootTableManager LOOT_TABLE_MANAGER;
+    public static MODimensionHandler DIMENSION_HANDLER;
 
     static {
         FluidRegistry.enableUniversalBucket();
@@ -111,55 +117,59 @@ public class MatterOverdrive {
         MinecraftForge.EVENT_BUS.register(this);
         AndroidPlayer.register();
         OverdriveExtendedProperties.register();
-        matterRegistry = new MatterRegistry();
-        statRegistry = new AndroidStatRegistry();
-        dialogRegistry = new DialogRegistry();
-        guiHandler = new GuiHandler();
-        packetPipeline = new PacketPipeline();
-        entityHandler = new EntityHandler();
-        configHandler = new ConfigurationHandler(event.getModConfigurationDirectory());
-        playerEventHandler = new PlayerEventHandler(configHandler);
-        matterRegistrationHandler = new MatterRegistrationHandler();
-        weaponFactory = new WeaponFactory();
-        androidPartsFactory = new AndroidPartsFactory();
-        quests = new Quests();
-        questFactory = new QuestFactory();
-        dialogFactory = new DialogFactory(dialogRegistry);
-        blockHandler = new BlockHandler();
-        questAssembler = new QuestAssembler();
-        dialogAssembler = new DialogAssembler();
-        matterNetworkHandler = new MatterNetworkHandler();
-        fluidNetworkHandler = new FluidNetworkHandler();
+        MATTER_REGISTRY = new MatterRegistry();
+        STAT_REGISTRY = new AndroidStatRegistry();
+        DIALOG_REGISTRY = new DialogRegistry();
+        GUI_HANDLER = new GuiHandler();
+        NETWORK = new PacketPipeline();
+        ENTITY_HANDLER = new EntityHandler();
+        CONFIG_HANDLER = new ConfigurationHandler(event.getModConfigurationDirectory());
+        PLAYER_EVENT_HANDLER = new PlayerEventHandler(CONFIG_HANDLER);
+        MATTER_REGISTRATION_HANDLER = new MatterRegistrationHandler();
+        WEAPON_FACTORY = new WeaponFactory();
+        ANDROID_PARTS_FACTORY = new AndroidPartsFactory();
+        QUESTS = new Quests();
+        QUEST_FACTORY = new QuestFactory();
+        DIALOG_FACTORY = new DialogFactory(DIALOG_REGISTRY);
+        BLOCK_HANDLER = new BlockHandler();
+        QUEST_ASSEMBLER = new QuestAssembler();
+        DIALOG_ASSEMBLER = new DialogAssembler();
+        MATTER_NETWORK_HANDLER = new MatterNetworkHandler();
+        FLUID_NETWORK_HANDLER = new FluidNetworkHandler();
+        LOOT_TABLE_MANAGER = new MOLootTableManager();
+        DIMENSION_HANDLER=new MODimensionHandler();
+        MinecraftForge.EVENT_BUS.register(DIMENSION_HANDLER);
 
 
         ITEMS.init();
         OverdriveFluids.init(event);
         BLOCKS.init();
         OverdriveBioticStats.init();
-        MatterOverdriveDialogs.init(configHandler, dialogRegistry);
+        MatterOverdriveDialogs.init(CONFIG_HANDLER, DIALOG_REGISTRY);
         MatterOverdriveQuests.init();
-        MatterOverdriveQuests.register(quests);
+        MatterOverdriveQuests.register(QUESTS);
         MatterOverdriveSounds.register();
-        EntityVillagerMadScientist.registerDialogMessages(dialogRegistry, event.getSide());
+        EntityVillagerMadScientist.registerDialogMessages(DIALOG_REGISTRY, event.getSide());
         MatterOverdriveCapabilities.init();
 
-        MinecraftForge.EVENT_BUS.register(matterRegistrationHandler);
-        MinecraftForge.EVENT_BUS.register(configHandler);
-        tickHandler = new TickHandler(configHandler, playerEventHandler);
-        MinecraftForge.EVENT_BUS.register(tickHandler);
-        MinecraftForge.EVENT_BUS.register(playerEventHandler);
-        MinecraftForge.EVENT_BUS.register(blockHandler);
-        moWorld = new MatterOverdriveWorld(configHandler);
-        MatterOverdriveEntities.init(event, configHandler);
-        MatterOverdriveEnchantments.init(event, configHandler);
-        moWorld.register();
+        MinecraftForge.EVENT_BUS.register(MATTER_REGISTRATION_HANDLER);
+        MinecraftForge.EVENT_BUS.register(CONFIG_HANDLER);
+        TICK_HANDLER = new TickHandler(CONFIG_HANDLER, PLAYER_EVENT_HANDLER);
+        MinecraftForge.EVENT_BUS.register(TICK_HANDLER);
+        MinecraftForge.EVENT_BUS.register(PLAYER_EVENT_HANDLER);
+        MinecraftForge.EVENT_BUS.register(BLOCK_HANDLER);
+
+        MO_WORLD = new MatterOverdriveWorld(CONFIG_HANDLER);
+        MatterOverdriveEntities.init(event, CONFIG_HANDLER);
+        MatterOverdriveEnchantments.init(event, CONFIG_HANDLER);
+        MO_WORLD.register();
         MatterNetworkRegistry.register();
-        packetPipeline.registerPackets();
-        OverdriveBioticStats.registerAll(configHandler, statRegistry);
-        matterRegistry.preInit(event, configHandler);
-        MinecraftForge.EVENT_BUS.register(matterNetworkHandler);
-        MinecraftForge.EVENT_BUS.register(fluidNetworkHandler);
-        updateTabs();
+        NETWORK.registerPackets();
+        OverdriveBioticStats.registerAll(CONFIG_HANDLER, STAT_REGISTRY);
+        MATTER_REGISTRY.preInit(event, CONFIG_HANDLER);
+        MinecraftForge.EVENT_BUS.register(MATTER_NETWORK_HANDLER);
+        MinecraftForge.EVENT_BUS.register(FLUID_NETWORK_HANDLER);
+        DIMENSION_HANDLER.init();
 
         PROXY.preInit(event);
 
@@ -168,23 +178,23 @@ public class MatterOverdrive {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        guiHandler.register(event.getSide());
-        NetworkRegistry.INSTANCE.registerGuiHandler(this, guiHandler);
-        MinecraftForge.EVENT_BUS.register(entityHandler);
-        configHandler.init();
+        GUI_HANDLER.register(event.getSide());
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, GUI_HANDLER);
+        MinecraftForge.EVENT_BUS.register(ENTITY_HANDLER);
+        CONFIG_HANDLER.init();
         MatterOverdriveCompat.init(event);
 
         PROXY.init(event);
 
-        MatterOverdriveItems.items.stream().filter(item -> item instanceof OreDictItem).forEach(item -> ((OreDictItem)item).registerOreDict());
-        MatterOverdriveBlocks.blocks.stream().filter(block -> block instanceof OreDictItem).forEach(block -> ((OreDictItem)block).registerOreDict());
+        MatterOverdriveItems.items.stream().filter(item -> item instanceof OreDictItem).forEach(item -> ((OreDictItem) item).registerOreDict());
+        MatterOverdriveBlocks.blocks.stream().filter(block -> block instanceof OreDictItem).forEach(block -> ((OreDictItem) block).registerOreDict());
         MatterOverdriveRecipes.registerMachineRecipes(event);
 
-        weaponFactory.initModules();
-        weaponFactory.initWeapons();
-        androidPartsFactory.initParts();
+        WEAPON_FACTORY.initModules();
+        WEAPON_FACTORY.initWeapons();
+        ANDROID_PARTS_FACTORY.initParts();
 
-        AndroidPlayer.loadConfigs(configHandler);
+        AndroidPlayer.loadConfigs(CONFIG_HANDLER);
     }
 
     @EventHandler
@@ -194,15 +204,15 @@ public class MatterOverdrive {
         MatterOverdriveEntities.register(event);
         ITEMS.addToDungons();
 
-        questAssembler.loadQuests(quests);
-        questAssembler.loadCustomQuests(quests);
-        dialogAssembler.loadDialogs(dialogRegistry);
-        dialogAssembler.loadCustomDialogs(dialogRegistry);
+        QUEST_ASSEMBLER.loadQuests(QUESTS);
+        QUEST_ASSEMBLER.loadCustomQuests(QUESTS);
+        DIALOG_ASSEMBLER.loadDialogs(DIALOG_REGISTRY);
+        DIALOG_ASSEMBLER.loadCustomDialogs(DIALOG_REGISTRY);
 
-        MatterOverdriveMatter.registerBlacklistFromConfig(configHandler);
-        MatterOverdriveMatter.registerBasic(configHandler);
+        MatterOverdriveMatter.registerBlacklistFromConfig(CONFIG_HANDLER);
+        MatterOverdriveMatter.registerBasic(CONFIG_HANDLER);
 
-        configHandler.postInit();
+        CONFIG_HANDLER.postInit();
     }
 
 
@@ -224,23 +234,12 @@ public class MatterOverdrive {
 
     @EventHandler
     public void serverStart(FMLServerStartedEvent event) {
-        //matterRegistrationHandler.serverStart(event);
-        tickHandler.onServerStart(event);
+        //MATTER_REGISTRATION_HANDLER.serverStart(event);
+        TICK_HANDLER.onServerStart(event);
     }
 
     @EventHandler
     public void imcCallback(FMLInterModComms.IMCEvent event) {
         MOIMCHandler.imcCallback(event);
-    }
-
-    private void updateTabs() {
-        TAB_OVERDRIVE.itemstack = new ItemStack(ITEMS.matter_scanner);
-        TAB_OVERDRIVE_MODULES.itemstack = new ItemStack(ITEMS.weapon_module_color);
-        TAB_OVERDRIVE_UPGRADES.itemstack = new ItemStack(ITEMS.item_upgrade);
-        TAB_OVERDRIVE_FOOD.itemstack = new ItemStack(ITEMS.earl_gray_tea);
-        TAB_OVERDRIVE_SHIPS.itemstack = new ItemStack(ITEMS.colonizerShip);
-        TAB_OVERDRIVE_BUILDINGS.itemstack = new ItemStack(ITEMS.buildingBase);
-        TAB_OVERDRIVE_DECORATIVE.itemstack = new ItemStack(BLOCKS.decorative_stripes);
-        TAB_OVERDRIVE_ANDROID_PARTS.itemstack = new ItemStack(ITEMS.androidParts);
     }
 }

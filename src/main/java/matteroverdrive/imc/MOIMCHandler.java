@@ -55,7 +55,7 @@ public class MOIMCHandler {
                 handleItemBlacklistRegistration(msg);
                 break;
             case IMC.MATTER_REGISTRY_BLACKLIST_MOD:
-                MatterOverdrive.matterRegistry.addModToBlacklist(msg.getStringValue());
+                MatterOverdrive.MATTER_REGISTRY.addModToBlacklist(msg.getStringValue());
                 break;
             case IMC.INSCRIBER_RECIPE:
                 handleInscriberRecipeRegistration(msg);
@@ -80,13 +80,13 @@ public class MOIMCHandler {
                     ItemStack itemStack = new ItemStack(data.getCompoundTag("Item"));
 
                     if (data.getBoolean("MetaAware")) {
-                        MatterOverdrive.matterRegistry.register(itemStack.getItem(), new DamageAwareStackHandler(itemStack.getItemDamage(), matter, isFinalHandler));
+                        MatterOverdrive.MATTER_REGISTRY.register(itemStack.getItem(), new DamageAwareStackHandler(itemStack.getItemDamage(), matter, isFinalHandler));
                     } else {
-                        MatterOverdrive.matterRegistry.register(itemStack.getItem(), new ItemHandler(matter, isFinalHandler));
+                        MatterOverdrive.MATTER_REGISTRY.register(itemStack.getItem(), new ItemHandler(matter, isFinalHandler));
                     }
                 } else if (data.hasKey("Ore", Constants.NBT.TAG_STRING)) {
                     String oreName = data.getString("Ore");
-                    MatterOverdrive.matterRegistry.registerOre(oreName, new OreHandler(matter, isFinalHandler));
+                    MatterOverdrive.MATTER_REGISTRY.registerOre(oreName, new OreHandler(matter, isFinalHandler));
                 }
             }
         } catch (Exception e) {
@@ -101,20 +101,20 @@ public class MOIMCHandler {
             if (msg.isItemStackMessage()) {
                 ItemStack itemStack = msg.getItemStackValue();
                 if (itemStack != null) {
-                    MatterOverdrive.matterRegistry.register(itemStack.getItem(), new DamageAwareStackHandler(itemStack.getItemDamage(), 0, true));
+                    MatterOverdrive.MATTER_REGISTRY.register(itemStack.getItem(), new DamageAwareStackHandler(itemStack.getItemDamage(), 0, true));
                 }
             } else if (msg.isNBTMessage()) {
                 NBTTagCompound data = msg.getNBTValue();
                 ItemStack itemStack = new ItemStack(data.getCompoundTag("Item"));
                 if (data.hasKey("Item", Constants.NBT.TAG_COMPOUND)) {
                     if (data.getBoolean("MetaAware")) {
-                        MatterOverdrive.matterRegistry.register(itemStack.getItem(), new DamageAwareStackHandler(itemStack.getItemDamage(), 0, true));
+                        MatterOverdrive.MATTER_REGISTRY.register(itemStack.getItem(), new DamageAwareStackHandler(itemStack.getItemDamage(), 0, true));
                     } else {
-                        MatterOverdrive.matterRegistry.register(itemStack.getItem(), new ItemHandler(0, true));
+                        MatterOverdrive.MATTER_REGISTRY.register(itemStack.getItem(), new ItemHandler(0, true));
                     }
                 } else if (data.hasKey("Ore", Constants.NBT.TAG_STRING)) {
                     String oreName = data.getString("Ore");
-                    MatterOverdrive.matterRegistry.registerOre(oreName, new OreHandler(0, true));
+                    MatterOverdrive.MATTER_REGISTRY.registerOre(oreName, new OreHandler(0, true));
                 }
             } else {
                 MOLog.warn("Invalid message type for Matter Blacklisting. Message needs to be of type NBT or ItemStack");

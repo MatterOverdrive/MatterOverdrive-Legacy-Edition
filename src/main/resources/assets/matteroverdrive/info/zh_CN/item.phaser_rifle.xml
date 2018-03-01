@@ -17,10 +17,21 @@
   -->
 
 <entry stylesheet="matteroverdrive:info/styles/guide.css">
-    <page style="margin-left:8px;margin-right:8px;margin-top:6px">
+    <page class="padded-page">
         <title size="2" class="matter-text small-title" style="margin-bottom:6px">$itemName</title>
         <preview size="8" style="text-align:center;margin-bottom:-14px;margin-top:-8px"></preview>
-        <text class="matter-text text-block">$itemName 是一种速射能量武器, 能够发射能量弹. 它可以使用[item name=energy_pack]对自身进行充能.</text>
-        <text class="matter-text text-block">来复枪在长时间开火且没有冷却时间的情况下会发生过热现象.</text>
+        <text class="matter-text text-block">$itemName是一种速射能量武器，能够发射相位螺旋。而且它还允许玩家放大视野以提高精度。</text>
+    </page>
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title" style="margin-bottom:6px">Customization</title>
+        <text class="matter-text text-block">像大多数能量武器一样，$itemName能够通过[item name=energy_pack]来快速充能，
+            如果想要持续不停的射击，则可以在[block name=weapon_station]上使用武器模块来进行升级。</text>
+        <text class="matter-text text-block">$itemName可以使用所有升级包括狙击瞄准镜。</text>
+        <image width="128" height="64" src="guide/phaser_rifle_modules.png" style="text-align:center;"></image>
+    </page>
+    <page class="padded-page">
+    <title size="2" class="matter-text small-title" style="margin-bottom:6px">Stats</title>
+        <tooltip></tooltip>
+        <text class="matter-text text-block">$itemName可以通过击杀残暴机械人掉落，传奇版本的机械人也会掉落相应的传奇能量武器。传奇的能量武器允许安装更多武器模块升级并且有着更好的基础属性，就好比更高的精准度。</text>
     </page>
 </entry>

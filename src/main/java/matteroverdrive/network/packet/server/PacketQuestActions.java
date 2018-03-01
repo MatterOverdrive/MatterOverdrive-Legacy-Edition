@@ -98,7 +98,7 @@ public class PacketQuestActions extends PacketAbstract {
                                 extendedProperties.onQuestAbandoned(abandonedQuest);
                             }
 
-                            MatterOverdrive.packetPipeline.sendTo(new PacketSyncQuests(extendedProperties.getQuestData(), EnumSet.of(PlayerQuestData.DataType.ACTIVE_QUESTS)), player);
+                            MatterOverdrive.NETWORK.sendTo(new PacketSyncQuests(extendedProperties.getQuestData(), EnumSet.of(PlayerQuestData.DataType.ACTIVE_QUESTS)), player);
                             return;
                         } else if (message.command == QUEST_ACTION_COMPLETE_OBJECTIVE) {
                             QuestStack questStack = extendedProperties.getQuestData().getActiveQuests().get(message.questID);

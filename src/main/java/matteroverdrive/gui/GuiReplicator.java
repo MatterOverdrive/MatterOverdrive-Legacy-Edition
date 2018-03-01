@@ -152,7 +152,7 @@ public class GuiReplicator extends MOGuiNetworkMachine<TileEntityMachineReplicat
         if (buttonName.equals("DropTask")) {
             NBTTagCompound tagCompound = new NBTTagCompound();
             tagCompound.setInteger("TaskID", mouseButton);
-            MatterOverdrive.packetPipeline.sendToServer(new PacketRemoveTask(machine, mouseButton, (byte) 0, MatterNetworkTaskState.INVALID));
+            MatterOverdrive.NETWORK.sendToServer(new PacketRemoveTask(machine, mouseButton, (byte) 0, MatterNetworkTaskState.INVALID));
         }
     }
 

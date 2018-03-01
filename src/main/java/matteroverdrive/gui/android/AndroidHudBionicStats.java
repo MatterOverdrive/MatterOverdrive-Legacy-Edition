@@ -52,14 +52,14 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     public void drawElement(AndroidPlayer android, ScaledResolution resolution, float ticks) {
         int count = 0;
         for (int i = 0; i < android.getSizeInventory(); i++) {
-            if (android.getStackInSlot(i) != null) {
+            if (!android.getStackInSlot(i).isEmpty()) {
                 drawAndroidPart(android.getStackInSlot(i), baseColor, getX(count, resolution, android), getY(count, resolution, android));
                 count++;
             }
         }
 
         for (Object object : android.getUnlockedNBT().getKeySet()) {
-            IBioticStat stat = MatterOverdrive.statRegistry.getStat(object.toString());
+            IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(object.toString());
             if (stat != null) {
                 int level = android.getUnlockedLevel(stat);
                 if (stat.showOnHud(android, level)) {
@@ -98,13 +98,13 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     private int getTotalElementCount(AndroidPlayer android) {
         int count = 0;
         for (int i = 0; i < android.getSizeInventory(); i++) {
-            if (android.getStackInSlot(i) != null) {
+            if (!android.getStackInSlot(i).isEmpty()) {
                 count++;
             }
         }
 
         for (Object object : android.getUnlockedNBT().getKeySet()) {
-            IBioticStat stat = MatterOverdrive.statRegistry.getStat(object.toString());
+            IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(object.toString());
             if (stat != null) {
                 int level = android.getUnlockedLevel(stat);
                 if (stat.showOnHud(android, level)) {
@@ -116,6 +116,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     }
 
     private void drawAndroidPart(ItemStack stack, Color color, int x, int y) {
+        GlStateManager.enableBlend();
         drawNormalBG(color, x, y);
         GlStateManager.color(1, 1, 1, 0.5f);
         GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE);
@@ -123,6 +124,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     }
 
     private void drawBioticStat(IBioticStat stat, AndroidPlayer androidPlayer, int level, Color color, int x, int y) {
+        GlStateManager.enableBlend();
         if (stat.isActive(androidPlayer, level) && stat.isEnabled(androidPlayer, level)) {
             drawActiveBG(color, x, y);
         } else {
@@ -134,6 +136,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
             int delayWidth = ClientProxy.moFontRender.getStringWidth(delay);
             ClientProxy.moFontRender.drawString(delay, x + 22 - delayWidth, y + 22 - ClientProxy.moFontRender.FONT_HEIGHT - 1, Reference.COLOR_HOLO.getColor());
         }
+        GlStateManager.disableBlend();
     }
 
     private void drawNormalBG(Color color, int x, int y) {

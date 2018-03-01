@@ -316,7 +316,7 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     @Override
     @Optional.Method(modid = "ComputerCraft")
     public boolean equals(IPeripheral other) {
-        return false; // TODO: Implement
+        return false;
     }
     //endregion
 

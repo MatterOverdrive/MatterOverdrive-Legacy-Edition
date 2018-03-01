@@ -79,7 +79,7 @@ public class ContainerPatternMonitor extends ContainerTaskQueueMachine<TileEntit
                 if (storageStack != null) {
                     IMatterPatternStorage storage = (IMatterPatternStorage) storageStack.getItem();
                     for (int i = 0; i < storage.getCapacity(storageStack); i++) {
-                        MatterOverdrive.packetPipeline.sendTo(new PacketSendItemPattern(windowId, new ItemPatternMapping(storage.getPatternAt(storageStack, i), database.getPos(), d, i)), (EntityPlayerMP) getPlayer());
+                        MatterOverdrive.NETWORK.sendTo(new PacketSendItemPattern(windowId, new ItemPatternMapping(storage.getPatternAt(storageStack, i), database.getPos(), d, i)), (EntityPlayerMP) getPlayer());
                     }
                 }
             }
@@ -94,7 +94,7 @@ public class ContainerPatternMonitor extends ContainerTaskQueueMachine<TileEntit
 
     @Override
     public void onDisconnectFromNetwork(IMatterDatabaseMonitor monitor) {
-        MatterOverdrive.packetPipeline.sendTo(new PacketClearPatterns(windowId), (EntityPlayerMP) getPlayer());
+        MatterOverdrive.NETWORK.sendTo(new PacketClearPatterns(windowId), (EntityPlayerMP) getPlayer());
     }
 
     @Override
@@ -115,22 +115,22 @@ public class ContainerPatternMonitor extends ContainerTaskQueueMachine<TileEntit
             ItemStack storageStack = database.getPatternStorage(d);
             IMatterPatternStorage storage = (IMatterPatternStorage) storageStack.getItem();
             for (int i = 0; i < storage.getCapacity(storageStack); i++) {
-                MatterOverdrive.packetPipeline.sendTo(new PacketSendItemPattern(windowId, new ItemPatternMapping(storage.getPatternAt(storageStack, i), database.getPos(), d, i)), (EntityPlayerMP) getPlayer());
+                MatterOverdrive.NETWORK.sendTo(new PacketSendItemPattern(windowId, new ItemPatternMapping(storage.getPatternAt(storageStack, i), database.getPos(), d, i)), (EntityPlayerMP) getPlayer());
             }
         }
     }
 
     private void onDatabaseRemoved(IMatterDatabase database) {
-        MatterOverdrive.packetPipeline.sendTo(new PacketClearPatterns(windowId, database.getPos()), (EntityPlayerMP) getPlayer());
+        MatterOverdrive.NETWORK.sendTo(new PacketClearPatterns(windowId, database.getPos()), (EntityPlayerMP) getPlayer());
     }
 
     private void onPatternStorageChange(IMatterDatabase database, int patternStorage) {
-        MatterOverdrive.packetPipeline.sendTo(new PacketClearPatterns(windowId, database.getPos(), patternStorage), (EntityPlayerMP) getPlayer());
+        MatterOverdrive.NETWORK.sendTo(new PacketClearPatterns(windowId, database.getPos(), patternStorage), (EntityPlayerMP) getPlayer());
         ItemStack storageStack = database.getPatternStorage(patternStorage);
         if (storageStack != null) {
             IMatterPatternStorage storage = (IMatterPatternStorage) storageStack.getItem();
             for (int i = 0; i < storage.getCapacity(storageStack); i++) {
-                MatterOverdrive.packetPipeline.sendTo(new PacketSendItemPattern(windowId, new ItemPatternMapping(storage.getPatternAt(storageStack, i), database.getPos(), patternStorage, i)), (EntityPlayerMP) getPlayer());
+                MatterOverdrive.NETWORK.sendTo(new PacketSendItemPattern(windowId, new ItemPatternMapping(storage.getPatternAt(storageStack, i), database.getPos(), patternStorage, i)), (EntityPlayerMP) getPlayer());
             }
         }
     }
@@ -139,7 +139,7 @@ public class ContainerPatternMonitor extends ContainerTaskQueueMachine<TileEntit
         ItemStack patternStorageStack = database.getPatternStorage(patternStorage);
         if (patternStorageStack != null && patternStorageStack.getItem() instanceof IMatterPatternStorage) {
             ItemPattern itemPattern = ((IMatterPatternStorage) patternStorageStack.getItem()).getPatternAt(patternStorageStack, patternId);
-            MatterOverdrive.packetPipeline.sendTo(new PacketSendItemPattern(windowId, new ItemPatternMapping(itemPattern, database.getPos(), patternStorage, patternId)), (EntityPlayerMP) getPlayer());
+            MatterOverdrive.NETWORK.sendTo(new PacketSendItemPattern(windowId, new ItemPatternMapping(itemPattern, database.getPos(), patternStorage, patternId)), (EntityPlayerMP) getPlayer());
         }
     }
 

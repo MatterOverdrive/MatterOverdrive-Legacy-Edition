@@ -82,7 +82,7 @@ public class WorldGenGravitationalAnomaly extends WorldGenerator implements ICon
 
     private void loadWhitelist(ConfigurationHandler configurationHandler) {
         whitelist.clear();
-        Property whitelistProp = configurationHandler.config.get(ConfigurationHandler.CATEGORY_WORLD_GEN + "." + "gravitational_anomaly", "whitelist", new int[]{-1, 0, 2});
+        Property whitelistProp = configurationHandler.config.get(ConfigurationHandler.CATEGORY_WORLD_GEN + "." + "gravitational_anomaly", "whitelist", new int[]{-1, 0});
         whitelistProp.setComment("Gravitational Anomaly Dimension ID whitelist");
         int[] dimentions = whitelistProp.getIntList();
         for (int dimention : dimentions) {

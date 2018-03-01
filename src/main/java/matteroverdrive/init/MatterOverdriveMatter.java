@@ -40,7 +40,7 @@ public class MatterOverdriveMatter {
     }
 
     public static void registerBlacklistFromConfig(ConfigurationHandler c) {
-        MatterOverdrive.matterRegistry.loadModBlacklistFromConfig(c);
+        MatterOverdrive.MATTER_REGISTRY.loadModBlacklistFromConfig(c);
     }
 
     public static void registerBasicBlocks(ConfigurationHandler c) {
@@ -278,20 +278,20 @@ public class MatterOverdriveMatter {
     }
 
     private static void reg(ConfigurationHandler c, String name, int matter) {
-        MatterOverdrive.matterRegistry.registerOre(name, new OreHandler(matter));
+        MatterOverdrive.MATTER_REGISTRY.registerOre(name, new OreHandler(matter));
     }
 
     private static void regOre(ConfigurationHandler c, String name, int multiply, String ingot) {
-        int matter = MatterOverdrive.matterRegistry.getMatterOre(ingot);
+        int matter = MatterOverdrive.MATTER_REGISTRY.getMatterOre(ingot);
         if (matter > 0) {
-            MatterOverdrive.matterRegistry.registerOre(name, new OreHandler(matter * multiply));
+            MatterOverdrive.MATTER_REGISTRY.registerOre(name, new OreHandler(matter * multiply));
         }
     }
 
     private static void regOre(ConfigurationHandler c, String name, int multiply, Item ingot) {
-        int matter = MatterOverdrive.matterRegistry.getMatter(new ItemStack(ingot));
+        int matter = MatterOverdrive.MATTER_REGISTRY.getMatter(new ItemStack(ingot));
         if (matter > 0) {
-            MatterOverdrive.matterRegistry.registerOre(name, new OreHandler(matter * multiply));
+            MatterOverdrive.MATTER_REGISTRY.registerOre(name, new OreHandler(matter * multiply));
         }
     }
 
@@ -300,13 +300,13 @@ public class MatterOverdriveMatter {
             MatterEntryItem entry = null;
 
             if (item instanceof String) {
-                matter += MatterOverdrive.matterRegistry.getMatterOre((String) item);
+                matter += MatterOverdrive.MATTER_REGISTRY.getMatterOre((String) item);
             } else if (item instanceof Item) {
-                matter += MatterOverdrive.matterRegistry.getMatter(new ItemStack((Item) item));
+                matter += MatterOverdrive.MATTER_REGISTRY.getMatter(new ItemStack((Item) item));
             } else if (item instanceof Block) {
-                matter += MatterOverdrive.matterRegistry.getMatter(new ItemStack(Item.getItemFromBlock((Block) item)));
+                matter += MatterOverdrive.MATTER_REGISTRY.getMatter(new ItemStack(Item.getItemFromBlock((Block) item)));
             } else if (item instanceof ItemStack) {
-                matter += MatterOverdrive.matterRegistry.getMatter((ItemStack) item);
+                matter += MatterOverdrive.MATTER_REGISTRY.getMatter((ItemStack) item);
             }
         }
 
@@ -316,8 +316,8 @@ public class MatterOverdriveMatter {
     }
 
     private static void reg(ConfigurationHandler c, ItemStack itemStack, int matter) {
-        MatterOverdrive.matterRegistry.register(itemStack.getItem(), new DamageAwareStackHandler(itemStack.getItemDamage(), matter));
-        MatterOverdrive.matterRegistry.basicEntries++;
+        MatterOverdrive.MATTER_REGISTRY.register(itemStack.getItem(), new DamageAwareStackHandler(itemStack.getItemDamage(), matter));
+        MatterOverdrive.MATTER_REGISTRY.basicEntries++;
     }
 
     private static void reg(ConfigurationHandler c, Block block, int matter) {
@@ -326,8 +326,8 @@ public class MatterOverdriveMatter {
 
     private static void reg(ConfigurationHandler c, Block block, int matter, int subItems) {
         for (int i = 0; i < subItems; i++) {
-            MatterOverdrive.matterRegistry.register(Item.getItemFromBlock(block), new DamageAwareStackHandler(i, matter));
-            MatterOverdrive.matterRegistry.basicEntries++;
+            MatterOverdrive.MATTER_REGISTRY.register(Item.getItemFromBlock(block), new DamageAwareStackHandler(i, matter));
+            MatterOverdrive.MATTER_REGISTRY.basicEntries++;
         }
     }
 
@@ -337,8 +337,8 @@ public class MatterOverdriveMatter {
 
     private static void reg(ConfigurationHandler c, Item item, int matter, int subItems) {
         for (int i = 0; i < subItems; i++) {
-            MatterOverdrive.matterRegistry.register(item, new DamageAwareStackHandler(i, matter));
-            MatterOverdrive.matterRegistry.basicEntries++;
+            MatterOverdrive.MATTER_REGISTRY.register(item, new DamageAwareStackHandler(i, matter));
+            MatterOverdrive.MATTER_REGISTRY.basicEntries++;
         }
     }
 }

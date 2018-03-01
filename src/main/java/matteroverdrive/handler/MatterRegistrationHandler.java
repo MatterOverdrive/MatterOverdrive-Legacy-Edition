@@ -45,13 +45,13 @@ public class MatterRegistrationHandler {
             File customHandlersFile = getCustomHandlersFile(load.getWorld());
 
             try {
-                MatterOverdrive.matterRegistry.loadCustomHandlers(customHandlersFile);
+                MatterOverdrive.MATTER_REGISTRY.loadCustomHandlers(customHandlersFile);
             } catch (Exception e) {
                 MOLog.log(Level.ERROR, e, "There was a problem while loading custom matter handlers");
             }
 
             try {
-                if (MatterOverdrive.matterRegistry.needsCalculation(matterRegistryFile) && MatterOverdrive.matterRegistry.AUTOMATIC_CALCULATION) {
+                if (MatterOverdrive.MATTER_REGISTRY.needsCalculation(matterRegistryFile) && MatterOverdrive.MATTER_REGISTRY.AUTOMATIC_CALCULATION) {
                     try {
                         runCalculationThread(load.getWorld());
                     } catch (Exception e) {
@@ -59,10 +59,10 @@ public class MatterRegistrationHandler {
                     }
                 } else {
                     try {
-                        MatterOverdrive.matterRegistry.loadFromFile(matterRegistryFile);
+                        MatterOverdrive.MATTER_REGISTRY.loadFromFile(matterRegistryFile);
                     } catch (Exception e) {
                         MOLog.log(Level.ERROR, e, "There was a problem loading the Matter Registry file.");
-                        if (MatterOverdrive.matterRegistry.AUTOMATIC_CALCULATION) {
+                        if (MatterOverdrive.MATTER_REGISTRY.AUTOMATIC_CALCULATION) {
                             MOLog.log(Level.INFO, e, "Starting automatic matter calculation thread.");
                             runCalculationThread(load.getWorld());
                         } else {
@@ -79,7 +79,7 @@ public class MatterRegistrationHandler {
     @SubscribeEvent
     public void onWorldUnload(WorldEvent.Unload unload) {
         if (!unload.getWorld().isRemote && unload.getWorld().provider.getDimension() == 0) {
-            MatterOverdrive.matterRegistry.unload();
+            MatterOverdrive.MATTER_REGISTRY.unload();
         }
     }
 
@@ -94,9 +94,9 @@ public class MatterRegistrationHandler {
     }
 
     public void onRegistrationComplete() {
-        PacketUpdateMatterRegistry updateMatterRegistry = new PacketUpdateMatterRegistry(MatterOverdrive.matterRegistry);
+        PacketUpdateMatterRegistry updateMatterRegistry = new PacketUpdateMatterRegistry(MatterOverdrive.MATTER_REGISTRY);
 
-        FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld().playerEntities.stream().filter(playerMP -> playerMP instanceof EntityPlayerMP).forEach(playerMP -> MatterOverdrive.packetPipeline.sendTo(updateMatterRegistry, (EntityPlayerMP) playerMP));
+        FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld().playerEntities.stream().filter(playerMP -> playerMP instanceof EntityPlayerMP).forEach(playerMP -> MatterOverdrive.NETWORK.sendTo(updateMatterRegistry, (EntityPlayerMP) playerMP));
     }
 
     private File getMatterRegistryFile(World world) {

@@ -60,7 +60,7 @@ public class MachineEnergyStorage<T extends MOTileEntityMachineEnergy> extends E
         if (amount > 0) {
             return receiveEnergy(amount, false);
         } else if (amount < 0) {
-            return receiveEnergy(-amount, false);
+            return extractEnergy(amount, false);
         } else {
             return 0;
         }
@@ -69,7 +69,7 @@ public class MachineEnergyStorage<T extends MOTileEntityMachineEnergy> extends E
     @Override
     public int receiveEnergy(int amount, boolean simulate) {
         int ex = super.receiveEnergy(amount, simulate);
-        if (ex != 0)
+        if (ex != 0 && !simulate)
             machine.UpdateClientPower();
         return ex;
     }
@@ -77,7 +77,7 @@ public class MachineEnergyStorage<T extends MOTileEntityMachineEnergy> extends E
     @Override
     public int extractEnergy(int amount, boolean simulate) {
         int ex = super.extractEnergy(amount, simulate);
-        if (ex != 0)
+        if (ex != 0 && !simulate)
             machine.UpdateClientPower();
         return ex;
     }

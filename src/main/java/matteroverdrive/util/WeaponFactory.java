@@ -117,7 +117,7 @@ public class WeaponFactory {
         context.setWeaponStack(weapon);
         decorateWeapon(weapon, context);
         if (context.fullCharge) {
-            ((EnergyContainer)EnergyWeapon.getStorage(weapon)).setFull();
+            ((EnergyContainer) EnergyWeapon.getStorage(weapon)).setFull();
         }
         return weapon;
     }
@@ -126,7 +126,7 @@ public class WeaponFactory {
         ItemStack weapon;
         weapon = WeightedRandom.getRandomItem(random, weapons).getStack();
         if (context.fullCharge) {
-            ((EnergyContainer)EnergyWeapon.getStorage(weapon)).setFull();
+            ((EnergyContainer) EnergyWeapon.getStorage(weapon)).setFull();
         }
         return weapon;
     }
@@ -273,16 +273,21 @@ public class WeaponFactory {
         }
 
         public boolean fits(WeaponGenerationContext context) {
+            if (weaponModule == null || weaponModule.isEmpty()) {
+                return false;
+            }
+
             boolean weaponSupportModule = false;
-            if (context.weaponStack != null && context.weaponStack.getItem() instanceof IWeapon) {
+
+            if (context.weaponStack != null && !context.weaponStack.isEmpty() && context.weaponStack.getItem() instanceof IWeapon) {
                 weaponSupportModule = context.weaponStack.getItem() instanceof IWeapon && ((IWeapon) context.weaponStack.getItem()).supportsModule(context.weaponStack, weaponModule);
             }
 
             if (legendary && !context.legendary) {
                 return weaponSupportModule;
             }
-            return context.level >= minLevel && context.level <= maxLevel && weaponSupportModule;
 
+            return context.level >= minLevel && context.level <= maxLevel && weaponSupportModule;
         }
     }
     //endregion

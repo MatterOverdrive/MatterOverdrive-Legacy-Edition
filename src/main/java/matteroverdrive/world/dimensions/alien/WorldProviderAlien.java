@@ -1,5 +1,6 @@
 package matteroverdrive.world.dimensions.alien;
 
+import matteroverdrive.MatterOverdrive;
 import matteroverdrive.client.data.Color;
 import matteroverdrive.world.MOWorldGen;
 import net.minecraft.client.Minecraft;
@@ -20,15 +21,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class WorldProviderAlien extends WorldProvider {
     @Override
     public DimensionType getDimensionType() {
-        // TODO: 3/25/2016 Find how and where to create Dimension Type
-        return null;
+        return MatterOverdrive.DIMENSION_HANDLER.ALIEN_TYPE;
     }
 
     @Override
     protected void init() {
         super.init();
-        this.biomeProvider = new BiomeProviderSingle(MOWorldGen.biomeAlien);
-        this.hasSkyLight = false;
+        this.biomeProvider = new BiomeProviderSingle(MatterOverdrive.DIMENSION_HANDLER.ALIEN_BIOME);
     }
 
     @SideOnly(Side.CLIENT)

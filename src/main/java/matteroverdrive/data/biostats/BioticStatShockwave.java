@@ -14,6 +14,7 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
@@ -90,6 +91,8 @@ public class BioticStatShockwave extends AbstractBioticStat {
                         List<EntityLivingBase> entities = entityPlayer.world.getEntitiesWithinAABB(EntityLivingBase.class, area);
                         for (EntityLivingBase entityLivingBase : entities) {
                             if (entityLivingBase != entityPlayer) {
+                                if (entityLivingBase instanceof EntityPlayer && entityPlayer.world.getMinecraftServer() != null && !entityPlayer.world.getMinecraftServer().isPVPEnabled())
+                                    continue;
                                 Vec3d dir = entityLivingBase.getPositionVector().subtract(entityPlayer.getPositionVector());
                                 double localDistance = dir.lengthVector();
                                 double distanceMultiply = range / Math.max(1, localDistance);
@@ -111,7 +114,7 @@ public class BioticStatShockwave extends AbstractBioticStat {
                             entityPlayer.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, entityPlayer.posX + (double) (entityPlayer.getRNG().nextFloat() * entityPlayer.width * 2.0F) - (double) entityPlayer.width - d0 * d3, entityPlayer.posY + (double) (entityPlayer.getRNG().nextFloat() * entityPlayer.height) - d1 * d3, entityPlayer.posZ + (double) (entityPlayer.getRNG().nextFloat() * entityPlayer.width * 2.0F) - (double) entityPlayer.width - d2 * d3, d0, d1, d2);
                         }
                         androidPlayer.extractEnergyScaled((int) (range * ENERGY));
-                        MatterOverdrive.packetPipeline.sendToAllAround(new PacketSpawnParticle("shockwave", androidPlayer.getPlayer().posX, androidPlayer.getPlayer().posY + androidPlayer.getPlayer().getEyeHeight() / 2, androidPlayer.getPlayer().posZ, 1, RenderParticlesHandler.Blending.Additive, 10), androidPlayer.getPlayer(), 64);
+                        MatterOverdrive.NETWORK.sendToAllAround(new PacketSpawnParticle("shockwave", androidPlayer.getPlayer().posX, androidPlayer.getPlayer().posY + androidPlayer.getPlayer().getEyeHeight() / 2, androidPlayer.getPlayer().posZ, 1, RenderParticlesHandler.Blending.Additive, 10), androidPlayer.getPlayer(), 64);
                     } else {
 
                     }

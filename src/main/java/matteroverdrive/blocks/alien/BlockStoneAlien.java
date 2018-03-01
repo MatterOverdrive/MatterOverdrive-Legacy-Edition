@@ -21,16 +21,4 @@ public class BlockStoneAlien extends Block {
         setUnlocalizedName(name);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
     }
-
-    // TODO: 3/26/2016 Find how to set block color
-
-    @SideOnly(Side.CLIENT)
-    public int getRenderColor(IBlockState state) {
-        return ColorizerAlien.getStoneBasicColor();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass) {
-        return BiomeAlienColorHelper.getStoneColorAtPos(worldIn, pos);
-    }
 }

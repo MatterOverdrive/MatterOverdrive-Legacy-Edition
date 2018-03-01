@@ -37,6 +37,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
+import java.util.Random;
+
 /**
  * Created by Simeon on 5/26/2015.
  */
@@ -54,7 +56,7 @@ public class MatterOverdriveEntities {
     }
 
     public static void register(FMLPostInitializationEvent event) {
-        MatterOverdrive.configHandler.config.load();
+        MatterOverdrive.CONFIG_HANDLER.config.load();
         int id = 0;
         addEntity(EntityFailedPig.class, "failed_pig", 15771042, 0x33CC33, id++);
         addEntity(EntityFailedCow.class, "failed_cow", 4470310, 0x33CC33, id++);
@@ -74,26 +76,23 @@ public class MatterOverdriveEntities {
 
         //int phaserFireID = loadIDFromConfig(PlasmaBolt.class,"phaser_fire",170);
         //EntityRegistry.registerGlobalEntityID(PlasmaBolt.class, "phaser_fire", phaserFireID);
-        MatterOverdrive.configHandler.save();
+        MatterOverdrive.CONFIG_HANDLER.save();
     }
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<VillagerRegistry.VillagerProfession> event) {
-        MAD_SCIENTIST_PROFESSION = new VillagerRegistry.VillagerProfession("matteroverdrive.mad_scientist", Reference.PATH_ENTITIES + "mad_scientist.png", Reference.PATH_ENTITIES + "hulking_scinetist.png");
+        MAD_SCIENTIST_PROFESSION = new VillagerRegistry.VillagerProfession("matteroverdrive:mad_scientist", Reference.PATH_ENTITIES + "mad_scientist.png", Reference.PATH_ENTITIES + "hulking_scinetist.png"){
+            @Override
+            public VillagerRegistry.VillagerCareer getCareer(int id) {
+                return MAD_SCIENTIST_CAREER;
+            }
+        };
         MAD_SCIENTIST_CAREER = new VillagerRegistry.VillagerCareer(MAD_SCIENTIST_PROFESSION, "matteroverdrive.mad_scientist");
         event.getRegistry().register(MAD_SCIENTIST_PROFESSION);
     }
 
-    public static int addEntity(Class<? extends Entity> enityClass, String name, int mainColor, int spotsColor, int id) {
-        //id = loadIDFromConfig(enityClass,name,id);
-        //EntityRegistry.registerGlobalEntityID(enityClass,name,id);
-        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, name), enityClass, name, id, MatterOverdrive.INSTANCE, 64, 1, true);
-        EntityRegistry.registerEgg(new ResourceLocation(Reference.MOD_ID, name), mainColor, spotsColor);
-        return id;
-    }
-
-    public static int loadIDFromConfig(Class<? extends Entity> entityClass, String name, int id) {
-        return MatterOverdrive.configHandler.getInt(getEntityConfigKey(name), ConfigurationHandler.CATEGORY_ENTITIES, id);
+    public static void addEntity(Class<? extends Entity> enityClass, String name, int mainColor, int spotsColor, int id) {
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, name), enityClass, name, id, MatterOverdrive.INSTANCE, 64, 1, true,mainColor,spotsColor);
     }
 
     private static String getEntityConfigKey(String name) {

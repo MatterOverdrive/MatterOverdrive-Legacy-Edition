@@ -14,7 +14,7 @@ public class TritaniumHoe extends ItemHoe implements ItemModelProvider {
 
     public TritaniumHoe(String name) {
         super(MatterOverdriveItems.TOOL_MATERIAL_TRITANIUM);
-        setUnlocalizedName(Reference.MOD_ID+"."+name);
+        setUnlocalizedName(Reference.MOD_ID + "." + name);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
     }
 

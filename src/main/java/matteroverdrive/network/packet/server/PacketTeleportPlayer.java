@@ -30,6 +30,8 @@ import matteroverdrive.init.OverdriveBioticStats;
 import matteroverdrive.network.packet.PacketAbstract;
 import matteroverdrive.network.packet.client.PacketSpawnParticle;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.CooldownTracker;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.MinecraftForge;
@@ -83,7 +85,7 @@ public class PacketTeleportPlayer extends PacketAbstract {
                 int unlockedLevel = androidPlayer.getUnlockedLevel(OverdriveBioticStats.teleport);
                 if (!MinecraftForge.EVENT_BUS.post(new MOEventBionicStat(OverdriveBioticStats.teleport, unlockedLevel, androidPlayer))) {
                     if (OverdriveBioticStats.teleport.isEnabled(androidPlayer, unlockedLevel)) {
-                        MatterOverdrive.packetPipeline.sendToAllAround(new PacketSpawnParticle("teleport", player.posX, player.posY + 1, player.posZ, 1, RenderParticlesHandler.Blending.Additive), player, 64);
+                        MatterOverdrive.NETWORK.sendToAllAround(new PacketSpawnParticle("teleport", player.posX, player.posY + 1, player.posZ, 1, RenderParticlesHandler.Blending.Additive), player, 64);
                         player.world.playSound(player, player.posX, player.posY, player.posZ, MatterOverdriveSounds.androidTeleport, SoundCategory.BLOCKS, 0.2f, 0.8f + 0.4f * player.world.rand.nextFloat());
                         player.setPositionAndUpdate(message.x, message.y, message.z);
                         player.world.playSound(null, message.x, message.y, message.z, MatterOverdriveSounds.androidTeleport, SoundCategory.BLOCKS, 0.2f, 0.8f + 0.4f * player.world.rand.nextFloat());
@@ -92,6 +94,12 @@ public class PacketTeleportPlayer extends PacketAbstract {
                         androidPlayer.extractEnergyScaled(BioticStatTeleport.ENERGY_PER_TELEPORT);
                         androidPlayer.sync(EnumSet.of(AndroidPlayer.DataType.EFFECTS));
                         androidPlayer.getPlayer().fallDistance = 0;
+                        for (int i = 0; i < 9; i++) {
+                            ItemStack stack = androidPlayer.getPlayer().inventory.getStackInSlot(i);
+                            CooldownTracker tracker = androidPlayer.getPlayer().getCooldownTracker();
+                            if (!tracker.hasCooldown(stack.getItem()) || tracker.getCooldown(stack.getItem(), 0) < 40)
+                                tracker.setCooldown(stack.getItem(), 40);
+                        }
                     }
                 }
             }

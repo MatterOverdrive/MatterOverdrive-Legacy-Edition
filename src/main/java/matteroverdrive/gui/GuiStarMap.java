@@ -33,10 +33,10 @@ import matteroverdrive.starmap.data.Planet;
 import matteroverdrive.starmap.data.Star;
 import matteroverdrive.starmap.data.TravelEvent;
 import matteroverdrive.tile.TileEntityMachineStarMap;
-import matteroverdrive.util.MOStringHelper;
 import matteroverdrive.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
@@ -83,20 +83,19 @@ public class GuiStarMap extends MOGuiMachine<TileEntityMachineStarMap> {
     public void registerPages(MOBaseContainer container, TileEntityMachineStarMap starMap) {
         pageGalaxy = new PageGalaxy(this, 0, 0, width, height, starMap);
         pageGalaxy.setName("Galaxy");
-        AddPage(pageGalaxy, ClientProxy.holoIcons.getIcon("page_icon_galaxy"), MOStringHelper.translateToLocal("gui.tooltip.page.galaxy")).setIconColor(Reference.COLOR_MATTER);
+        AddPage(pageGalaxy, ClientProxy.holoIcons.getIcon("page_icon_galaxy"), I18n.format("gui.tooltip.page.galaxy")).setIconColor(Reference.COLOR_MATTER);
         pageQuadrant = new PageQuadrant(this, 0, 0, width, height, starMap);
         pageQuadrant.setName("Quadrant");
-        AddPage(pageQuadrant, ClientProxy.holoIcons.getIcon("page_icon_quadrant"), MOStringHelper.translateToLocal("gui.tooltip.page.quadrant")).setIconColor(Reference.COLOR_MATTER);
+        AddPage(pageQuadrant, ClientProxy.holoIcons.getIcon("page_icon_quadrant"), I18n.format("gui.tooltip.page.quadrant")).setIconColor(Reference.COLOR_MATTER);
         pageStar = new PageStar(this, 0, 0, width, height, starMap);
         pageStar.setName("Star");
-        AddPage(pageStar, ClientProxy.holoIcons.getIcon("page_icon_star"), MOStringHelper.translateToLocal("gui.tooltip.page.star")).setIconColor(Reference.COLOR_MATTER);
+        AddPage(pageStar, ClientProxy.holoIcons.getIcon("page_icon_star"), I18n.format("gui.tooltip.page.star")).setIconColor(Reference.COLOR_MATTER);
         planetPage = new PagePlanetMenu(this, 0, 0, width, height, (ContainerStarMap) container, starMap);
         planetPage.setName("Planet");
-        AddPage(planetPage, ClientProxy.holoIcons.getIcon("page_icon_planet"), MOStringHelper.translateToLocal("gui.tooltip.page.planet")).setIconColor(Reference.COLOR_MATTER);
+        AddPage(planetPage, ClientProxy.holoIcons.getIcon("page_icon_planet"), I18n.format("gui.tooltip.page.planet")).setIconColor(Reference.COLOR_MATTER);
         pagePlanetStats = new PagePlanetStats(this, 0, 0, width, height, starMap);
         pagePlanetStats.setName("Planet Stats");
-        AddPage(pagePlanetStats, ClientProxy.holoIcons.getIcon("icon_stats"), MOStringHelper.translateToLocal("gui.tooltip.page.planet_stats")).setIconColor(Reference.COLOR_MATTER);
-
+        AddPage(pagePlanetStats, ClientProxy.holoIcons.getIcon("icon_stats"), I18n.format("gui.tooltip.page.planet_stats")).setIconColor(Reference.COLOR_MATTER);
         setPage(machine.getZoomLevel());
     }
 
@@ -210,7 +209,7 @@ public class GuiStarMap extends MOGuiMachine<TileEntityMachineStarMap> {
         planetPage.init();
         pagePlanetStats.init();
         if (newPage != machine.getZoomLevel()) {
-            MatterOverdrive.packetPipeline.sendToServer(new PacketStarMapClientCommands(machine, newPage, machine.getGalaxyPosition(), machine.getDestination()));
+            MatterOverdrive.NETWORK.sendToServer(new PacketStarMapClientCommands(machine, newPage, machine.getGalaxyPosition(), machine.getDestination()));
         }
     }
 

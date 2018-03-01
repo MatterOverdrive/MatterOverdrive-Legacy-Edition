@@ -24,22 +24,21 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created by Simeon on 8/22/2015.
  */
-public class TileEntityRendererPacketQueue extends TileEntitySpecialRenderer {
+public class TileEntityRendererPacketQueue extends TileEntitySpecialRenderer<TileEntityMachinePacketQueue> {
     final Block fakeBlock = new BlockNetworkSwitch(Material.IRON, "fake_block");
 
     @Override
-    public void render(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+    public void render(TileEntityMachinePacketQueue tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        if (!tileEntity.shouldRender())
+            return;
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
-        if (tileEntity instanceof TileEntityMachinePacketQueue) {
-            if (((TileEntityMachinePacketQueue) tileEntity).flashTime > 0) {
-                renderBlock(fakeBlock);
-            }
+        if (tileEntity.flashTime > 0) {
+            renderBlock(fakeBlock);
         }
 
         GlStateManager.popMatrix();

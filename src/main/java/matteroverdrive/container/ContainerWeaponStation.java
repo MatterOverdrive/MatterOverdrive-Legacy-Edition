@@ -18,7 +18,6 @@
 
 package matteroverdrive.container;
 
-import matteroverdrive.container.slot.MOSlot;
 import matteroverdrive.container.slot.SlotInventory;
 import matteroverdrive.tile.TileEntityWeaponStation;
 import matteroverdrive.util.MOContainerHelper;
@@ -35,7 +34,7 @@ public class ContainerWeaponStation extends ContainerMachine<TileEntityWeaponSta
 
     @Override
     protected void init(InventoryPlayer inventory) {
-        addSlotToContainer(new MOSlot(machine, machine.INPUT_SLOT, 8, 55));
+        addSlotToContainer(new SlotInventory(machine, machine.getInventoryContainer().getSlot(machine.INPUT_SLOT), 8, 55));
         for (int i = 0; i < 6; i++) {
             addSlotToContainer(new SlotInventory(machine, machine.getInventoryContainer().getSlot(i), 0, 0));
         }

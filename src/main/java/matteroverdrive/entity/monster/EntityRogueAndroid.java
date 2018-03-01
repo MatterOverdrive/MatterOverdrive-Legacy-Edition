@@ -52,8 +52,8 @@ public class EntityRogueAndroid implements IConfigSubscriber {
     }
 
     private static void addInBiome(Iterator<Biome> biomes) {
-        loadBiomeBlacklist(MatterOverdrive.configHandler);
-        loadBiomesWhitelist(MatterOverdrive.configHandler);
+        loadBiomeBlacklist(MatterOverdrive.CONFIG_HANDLER);
+        loadBiomesWhitelist(MatterOverdrive.CONFIG_HANDLER);
 
         while (biomes.hasNext()) {
             Biome biome = biomes.next();

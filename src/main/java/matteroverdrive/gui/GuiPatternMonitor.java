@@ -92,7 +92,7 @@ public class GuiPatternMonitor extends MOGuiNetworkMachine<TileEntityMachinePatt
 
                     if (itemPattern.getAmount() > 0) {
                         ItemPattern pattern = itemPattern.getPatternMapping().getItemPattern().copy();
-                        MatterOverdrive.packetPipeline.sendToServer(new PacketPatternMonitorAddRequest(machine, pattern, itemPattern.getAmount()));
+                        MatterOverdrive.NETWORK.sendToServer(new PacketPatternMonitorAddRequest(machine, pattern, itemPattern.getAmount()));
                         itemPattern.setAmount(0);
                     } else {
                         itemPattern.setExpanded(false);
@@ -102,7 +102,7 @@ public class GuiPatternMonitor extends MOGuiNetworkMachine<TileEntityMachinePatt
         } else if (element instanceof ElementTaskList) {
             NBTTagCompound tagCompound = new NBTTagCompound();
             tagCompound.setInteger("TaskID", mouseButton);
-            MatterOverdrive.packetPipeline.sendToServer(new PacketRemoveTask(machine, mouseButton, (byte) 0, MatterNetworkTaskState.INVALID));
+            MatterOverdrive.NETWORK.sendToServer(new PacketRemoveTask(machine, mouseButton, (byte) 0, MatterNetworkTaskState.INVALID));
         }
     }
 

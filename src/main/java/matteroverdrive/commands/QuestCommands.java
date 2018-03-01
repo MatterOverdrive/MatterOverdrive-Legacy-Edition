@@ -72,7 +72,7 @@ public class QuestCommands extends CommandBase {
 
                     if (entityPlayer != null) {
                         OverdriveExtendedProperties extendedProperties = MOPlayerCapabilityProvider.GetExtendedCapability(entityPlayer);
-                        QuestStack questStack = MatterOverdrive.questFactory.generateQuestStack(parameters[1]);
+                        QuestStack questStack = MatterOverdrive.QUEST_FACTORY.generateQuestStack(parameters[1]);
                         if (questStack != null) {
                             extendedProperties.addQuest(questStack);
                         } else {
@@ -116,7 +116,7 @@ public class QuestCommands extends CommandBase {
                 }
             } else if (parameters[0].equalsIgnoreCase("contract")) {
                 if (parameters.length > 1) {
-                    IQuest quest = MatterOverdrive.quests.getQuestByName(parameters[1]);
+                    IQuest quest = MatterOverdrive.QUESTS.getQuestByName(parameters[1]);
                     if (quest != null) {
                         EntityPlayer entityPlayer;
                         if (parameters.length > 2) {
@@ -125,7 +125,7 @@ public class QuestCommands extends CommandBase {
                             entityPlayer = commandSender.getEntityWorld().getPlayerEntityByName(commandSender.getName());
                         }
 
-                        QuestStack questStack = MatterOverdrive.questFactory.generateQuestStack(random, quest);
+                        QuestStack questStack = MatterOverdrive.QUEST_FACTORY.generateQuestStack(random, quest);
                         entityPlayer.inventory.addItemStackToInventory(questStack.getContract());
                     } else {
                         throw new CommandException("No such quest.");
@@ -145,7 +145,7 @@ public class QuestCommands extends CommandBase {
 
         if (args.length == 2) {
             if (args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("contract")) {
-                for (String questName : MatterOverdrive.quests.getAllQuestName()) {
+                for (String questName : MatterOverdrive.QUESTS.getAllQuestName()) {
                     commands.add(questName);
                 }
             } else if (args[0].equalsIgnoreCase("remove")) {

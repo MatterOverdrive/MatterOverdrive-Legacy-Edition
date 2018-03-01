@@ -59,7 +59,7 @@ public class TileEntityNetworkPipe extends TileEntityPipe implements IMatterNetw
     public void manageNetwork() {
         if (matterNetwork == null) {
             if (!tryConnectToNeighborNetworks(world)) {
-                MatterNetwork network = MatterOverdrive.matterNetworkHandler.getNetwork(this);
+                MatterNetwork network = MatterOverdrive.MATTER_NETWORK_HANDLER.getNetwork(this);
                 network.addNode(this);
             }
         }

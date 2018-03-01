@@ -57,7 +57,7 @@ public class PacketUpdateMatterRegistry extends PacketAbstract {
         @SideOnly(Side.CLIENT)
         @Override
         public void handleClientMessage(EntityPlayerSP player, PacketUpdateMatterRegistry message, MessageContext ctx) {
-            //MatterOverdrive.matterRegistry.hasComplitedRegistration = true;
+            //MatterOverdrive.MATTER_REGISTRY.hasComplitedRegistration = true;
         }
     }
 }

@@ -29,9 +29,8 @@ public class Wrench extends MOBaseItem {
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
         ItemStack stack = player.getHeldItem(hand);
         IBlockState state = world.getBlockState(pos);
-        boolean result = false;
-
-        if (state != null) {
+        EnumActionResult result = EnumActionResult.PASS;
+        if (!state.getBlock().isAir(state, world, pos)) {
             PlayerInteractEvent e = new PlayerInteractEvent.RightClickBlock(player, hand, pos, side, new Vec3d(hitX, hitY, hitZ));
             if (MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Event.Result.DENY) {
                 return EnumActionResult.FAIL;
@@ -40,20 +39,17 @@ public class Wrench extends MOBaseItem {
                 if (!world.isRemote) {
                     ((IDismantleable) state.getBlock()).dismantleBlock(player, world, pos, false);
                 }
-                result = true;
+                result = EnumActionResult.SUCCESS;
             }
             if (state.getBlock() instanceof IWrenchable && !world.isRemote) {
-                result = ((IWrenchable) state.getBlock()).onWrenchHit(stack, player, world, pos, side, hitX, hitY, hitZ);
+                result = ((IWrenchable) state.getBlock()).onWrenchHit(stack, player, world, pos, side, hitX, hitY, hitZ) ? EnumActionResult.SUCCESS : EnumActionResult.PASS;
             } else if (!player.isSneaking() && state.getBlock().rotateBlock(world, pos, side)) {
-                result = true;
+                result = EnumActionResult.SUCCESS;
             }
         }
-
-        if (result) {
+        if (result == EnumActionResult.SUCCESS)
             player.swingArm(hand);
-        }
-
-        return result && !world.isRemote ? EnumActionResult.SUCCESS : EnumActionResult.PASS;
+        return result;
     }
 
     @Override

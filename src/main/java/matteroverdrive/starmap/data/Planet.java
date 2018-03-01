@@ -116,7 +116,7 @@ public class Planet extends SpaceBody implements IInventory {
         if (!world.isRemote) {
             if (needsClientUpdate) {
                 needsClientUpdate = false;
-                MatterOverdrive.packetPipeline.sendToDimention(new PacketUpdatePlanet(this), world);
+                MatterOverdrive.NETWORK.sendToDimention(new PacketUpdatePlanet(this), world);
             }
 
             for (int i = 0; i < SLOT_COUNT; i++) {

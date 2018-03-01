@@ -125,7 +125,7 @@ public class ContainerMachine<T extends MOTileEntityMachine> extends MOBaseConta
     @Override
     @Nonnull
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
-        ItemStack itemstack = ItemStack.EMPTY;
+        /*ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(slotID);
 
         if (slot != null && slot.getHasStack()) {
@@ -151,7 +151,8 @@ public class ContainerMachine<T extends MOTileEntityMachine> extends MOBaseConta
             slot.onTake(player, itemstack1);
         }
 
-        return itemstack;
+        return itemstack;*/
+        return ItemStack.EMPTY; //TODO: Rewrite to not be broken
     }
 
     protected boolean putInPlayerInventory(ItemStack itemStack) {

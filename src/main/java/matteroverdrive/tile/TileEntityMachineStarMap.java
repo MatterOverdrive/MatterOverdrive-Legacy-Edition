@@ -23,7 +23,6 @@ import matteroverdrive.api.inventory.UpgradeTypes;
 import matteroverdrive.api.starmap.GalacticPosition;
 import matteroverdrive.api.starmap.IBuildable;
 import matteroverdrive.data.Inventory;
-import matteroverdrive.data.inventory.Slot;
 import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.machines.events.MachineEvent;
 import matteroverdrive.network.packet.server.starmap.PacketStarMapAttack;
@@ -71,9 +70,6 @@ public class TileEntityMachineStarMap extends MOTileEntityMachineEnergy {
 
     @Override
     protected void RegisterSlots(Inventory inventory) {
-        for (int i = 0; i < Planet.SLOT_COUNT; i++) {
-            inventory.AddSlot(new Slot(false));
-        }
         super.RegisterSlots(inventory);
     }
 
@@ -248,7 +244,7 @@ public class TileEntityMachineStarMap extends MOTileEntityMachineEnergy {
     }
 
     public void Attack(GalacticPosition from, GalacticPosition to, int shipID) {
-        MatterOverdrive.packetPipeline.sendToServer(new PacketStarMapAttack(from, to, shipID));
+        MatterOverdrive.NETWORK.sendToServer(new PacketStarMapAttack(from, to, shipID));
     }
 
     public boolean isItemValidForSlot(int slot, ItemStack item, EntityPlayer player) {

@@ -211,13 +211,13 @@ public class GuiDialog extends GuiScreen {
         if (lastInteractionTime <= 0) {
             lastInteractionTime = INTERACTION_DELAY;
             message.onOptionsInteract(npc, player, option);
-            MatterOverdrive.packetPipeline.sendToServer(new PacketConversationInteract(npc, message, option));
+            MatterOverdrive.NETWORK.sendToServer(new PacketConversationInteract(npc, message, option));
         }
     }
 
     public void onGuiClosed() {
         npc.setDialogPlayer(null);
-        MatterOverdrive.packetPipeline.sendToServer(new PacketManageConversation(npc, false));
+        MatterOverdrive.NETWORK.sendToServer(new PacketManageConversation(npc, false));
     }
 
     public IDialogNpc getNpc() {

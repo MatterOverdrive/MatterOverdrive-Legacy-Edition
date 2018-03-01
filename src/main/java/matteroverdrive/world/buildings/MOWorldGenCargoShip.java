@@ -137,7 +137,7 @@ public class MOWorldGenCargoShip extends MOWorldGenBuilding<MOWorldGenCargoShip.
         private boolean questAdded;
 
         public Worker() {
-            contractQuest = new QuestStack(MatterOverdrive.quests.getQuestByName("trade_route"));
+            contractQuest = new QuestStack(MatterOverdrive.QUESTS.getQuestByName("trade_route"));
         }
 
         private void setQuestPos(BlockPos pos) {

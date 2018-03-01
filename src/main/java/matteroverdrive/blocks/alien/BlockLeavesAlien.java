@@ -21,18 +21,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by Simeon on 2/24/2016.
  */
 public class BlockLeavesAlien extends BlockLeaves {
-    public static final PropertyEnum<BlockLeavesAlien.EnumType> VARIANT = PropertyEnum.<BlockLeavesAlien.EnumType>create("variant", BlockLeavesAlien.EnumType.class);
+    public static final PropertyEnum<BlockLeavesAlien.EnumType> VARIANT = PropertyEnum.create("variant", BlockLeavesAlien.EnumType.class);
 
     public BlockLeavesAlien(String name) {
         setUnlocalizedName(name);
@@ -51,20 +51,6 @@ public class BlockLeavesAlien extends BlockLeaves {
             return 15;
         }
         return this.lightValue;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass) {
-        IBlockState blockState = worldIn.getBlockState(pos);
-        if (blockState.getBlock() == this) {
-            EnumType type = blockState.getValue(VARIANT);
-            if (type.equals(EnumType.GLOWING)) {
-                return 0xffffff;
-            } else if (type.equals(EnumType.BUSH)) {
-                return 0xe379f5;
-            }
-        }
-        return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
     }
 
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
@@ -103,11 +89,11 @@ public class BlockLeavesAlien extends BlockLeaves {
         int i = 0;
         i = i | state.getValue(VARIANT).getMetadata();
 
-        if (!((Boolean) state.getValue(DECAYABLE)).booleanValue()) {
+        if (!state.getValue(DECAYABLE)) {
             i |= 4;
         }
 
-        if (((Boolean) state.getValue(CHECK_DECAY)).booleanValue()) {
+        if (state.getValue(CHECK_DECAY)) {
             i |= 8;
         }
 
@@ -126,15 +112,13 @@ public class BlockLeavesAlien extends BlockLeaves {
 
     @Override
     public void harvestBlock(@Nonnull World world, EntityPlayer player, @Nonnull BlockPos pos, @Nonnull IBlockState state, TileEntity te, ItemStack itemStack) {
-        {
-            super.harvestBlock(world, player, pos, state, te, itemStack);
-        }
+        super.harvestBlock(world, player, pos, state, te, itemStack);
     }
 
     @Override
     public List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
         IBlockState state = world.getBlockState(pos);
-        return new java.util.ArrayList(java.util.Arrays.asList(new ItemStack(this, 1, state.getValue(VARIANT).getMetadata())));
+        return Collections.singletonList(new ItemStack(this, 1, state.getValue(VARIANT).getMetadata()));
     }
 
     @Override

@@ -18,8 +18,8 @@
 
 package matteroverdrive.blocks;
 
-import matteroverdrive.MatterOverdrive;
 import com.astro.clib.api.wrench.IDismantleable;
+import matteroverdrive.MatterOverdrive;
 import matteroverdrive.blocks.includes.MOBlockContainer;
 import matteroverdrive.tile.IMultiBlockTileEntity;
 import matteroverdrive.tile.TileEntityBoundingBox;
@@ -34,6 +34,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -69,6 +70,12 @@ public class BlockBoundingBox extends MOBlockContainer<TileEntityBoundingBox> im
             return te.getOwnerBlock().onBlockActivated(world, te.getOwnerPos(), ownerState, player, hand, facing, hitX, hitY, hitZ);
         }
         return false;
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        TileEntityBoundingBox te = getTileEntity(world, pos);
+        return te.getOwnerBlock().getPickBlock(world.getBlockState(te.getOwnerPos()), target, world, te.getOwnerPos(), player);
     }
 
     @Override

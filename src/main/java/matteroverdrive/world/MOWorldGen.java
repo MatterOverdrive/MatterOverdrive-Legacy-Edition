@@ -49,19 +49,13 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     public static final int TRITANIUM_VEIN_SIZE = 6;
     public static final int DILITHIUM_VEINS_PER_CHUNK = 6;
     public static final int DILITHIUM_VEIN_SIZE = 5;
-    public static int SPACE_DIM_ID = 3;
-    public static int ALIEN_DIM_ID = 4;
     public static WorldGenMinable dilithiumGen;
     public static WorldGenMinable tritaniumGen;
     public static WorldGenGravitationalAnomaly anomalyGen;
-    public static BiomeGeneratorSpace biomeSpace;
-    public static BiomeGeneratorAlien biomeAlien;
     public static float BUILDING_SPAWN_CHANCE = 10000000.0f;
     final Random oreRandom;
     final Random anomaliesRandom;
     final Random buildingsRandom;
-    public DimensionType SpaceDimension;
-    public DimensionType AlienDimension;
     public List<WeightedRandomMOWorldGenBuilding> buildings;
     public Queue<MOImageGen.ImageGenWorker> worldGenBuildingQueue;
     HashSet<Integer> oreDimentionsBlacklist;
@@ -78,17 +72,6 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         buildings = new ArrayList<>();
         worldGenBuildingQueue = new ArrayDeque<>();
 
-        //biomeSpace = new BiomeGeneratorSpace(new BiomeGenBase.BiomeProperties("Space").setRainDisabled().setTemperature(-273.15f));
-        //BiomeGenBase.registerBiome(100,"Space",biomeSpace);
-        //biomeAlien = new BiomeGeneratorAlien(new BiomeGenBase.BiomeProperties("Alien").setWaterColor(new Color(250,90,90).getColor()));
-        //BiomeGenBase.registerBiome(101,"Alien",biomeAlien);
-
-        //SpaceDimension = DimensionType.register("Space","_space",SPACE_DIM_ID,WorldProviderSpace.class,true);
-        //AlienDimension = DimensionType.register("Aline","_alien",ALIEN_DIM_ID,WorldProviderAlien.class,true);
-
-        //DimensionManager.registerDimension(SPACE_DIM_ID,SpaceDimension);
-        //DimensionManager.registerDimension(ALIEN_DIM_ID,AlienDimension);
-
         tritaniumGen = new WorldGenMinable(MatterOverdrive.BLOCKS.tritaniumOre.getDefaultState(), TRITANIUM_VEIN_SIZE);
         dilithiumGen = new WorldGenMinable(MatterOverdrive.BLOCKS.dilithium_ore.getDefaultState(), DILITHIUM_VEIN_SIZE);
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOAndroidHouseBuilding("android_house"), 40));
@@ -96,7 +79,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenCrashedSpaceShip("crashed_ship"), 75));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenUnderwaterBase("underwater_base"), 30));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenCargoShip("cargo_ship"), 5));
-        anomalyGen = new WorldGenGravitationalAnomaly("gravitational_anomaly", 0.005f, 2048, 2048 + 8192);
+        anomalyGen = new WorldGenGravitationalAnomaly("gravitational_anomaly", 0.05f, 2048, 2048 + 8192);
         oreDimentionsBlacklist = new HashSet<>();
 
         configurationHandler.subscribe(anomalyGen);
@@ -137,8 +120,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         buildingsRandom.setSeed(chunkSeed);
         generateGravitationalAnomalies(world, anomaliesRandom, chunkX * 16, chunkZ * 16, world.provider.getDimension());
         generateOres(world, oreRandom, chunkX * 16, chunkZ * 16, world.provider.getDimension());
-        if (Platform.isDevEnv())
-            startGenerateBuildings(world, buildingsRandom, chunkX, chunkZ, chunkGenerator, chunkProvider);
+        //startGenerateBuildings(world, buildingsRandom, chunkX, chunkZ, chunkGenerator, chunkProvider);
     }
 
     public void generateOverworld(World world, Random random, int chunkX, int chunkZ) {
@@ -214,9 +196,9 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     }
 
     public MOImageGen.ImageGenWorker startBuildingGeneration(MOWorldGenBuilding building, BlockPos pos, Random random, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, boolean forceGeneration) {
-        if(building==null)
+        if (building == null)
             return null;
-        pos=pos.add(8,0,8);
+        pos = pos.add(8, 0, 8);
         if (building != null && (forceGeneration || (building.shouldGenerate(random, world, pos) && building.isLocationValid(world, pos)))) {
             MOImageGen.ImageGenWorker worker = building.createWorker(random, pos, world, chunkGenerator, chunkProvider);
             worldGenBuildingQueue.add(worker);

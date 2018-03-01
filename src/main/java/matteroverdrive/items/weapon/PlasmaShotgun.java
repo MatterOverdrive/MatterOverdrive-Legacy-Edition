@@ -107,7 +107,7 @@ public class PlasmaShotgun extends EnergyWeapon {
 
     @Override
     public boolean canFire(ItemStack itemStack, World world, EntityLivingBase shooter) {
-        return DrainEnergy(itemStack, getShootCooldown(itemStack), true) && !isOverheated(itemStack);
+        return DrainEnergy(itemStack, getShootCooldown(itemStack), true) && !isOverheated(itemStack) && !isEntitySpectator(shooter);
     }
 
     @Override
@@ -212,10 +212,7 @@ public class PlasmaShotgun extends EnergyWeapon {
 
     @Override
     public boolean supportsModule(ItemStack weapon, ItemStack module) {
-        if (module != null) {
-            return module.getItem() == MatterOverdrive.ITEMS.weapon_module_color || (module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel && module.getItemDamage() != WeaponModuleBarrel.HEAL_BARREL_ID);
-        }
-        return false;
+        return !module.isEmpty() && (module.getItem() == MatterOverdrive.ITEMS.weapon_module_color || (module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel && module.getItemDamage() != WeaponModuleBarrel.HEAL_BARREL_ID));
     }
 
     @Override
@@ -259,7 +256,7 @@ public class PlasmaShotgun extends EnergyWeapon {
             shot.setAccuracy(shot.getAccuracy() * shotPercent);
             shot.setRange(shot.getRange() + (int) (shot.getRange() * (1 - shotPercent)));
             onClientShot(stack, entityLiving, pos, dir, shot);
-            MatterOverdrive.packetPipeline.sendToServer(new PacketFirePlasmaShot(entityLiving.getEntityId(), pos, dir, shot));
+            MatterOverdrive.NETWORK.sendToServer(new PacketFirePlasmaShot(entityLiving.getEntityId(), pos, dir, shot));
             addShootDelay(stack);
             ClientProxy.instance().getClientWeaponHandler().setRecoil(15 + (maxCount - count) * 2 + getAccuracy(stack, entityLiving, isWeaponZoomed(entityLiving, stack)) * 2, 1f + (maxCount - count) * 0.03f, 0.3f);
             stopChargingSound();

@@ -3,7 +3,7 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "matteroverdrive:blocks/force_glass"
+      "all": "matteroverdrive:blocks/glass"
     }
   },
   "variants": {

@@ -55,7 +55,7 @@ public class PacketRemoveTask extends TileEntityUpdatePacket {
             if (entity instanceof IMatterNetworkDispatcher) {
                 IMatterNetworkDispatcher dispatcher = (IMatterNetworkDispatcher) entity;
                 dispatcher.getTaskQueue(message.queueID).dropAt(message.taskIndex).setState(message.task_state);
-                MatterOverdrive.packetPipeline.sendTo(new PacketSyncTaskQueue(dispatcher, message.queueID), player);
+                MatterOverdrive.NETWORK.sendTo(new PacketSyncTaskQueue(dispatcher, message.queueID), player);
             }
         }
     }

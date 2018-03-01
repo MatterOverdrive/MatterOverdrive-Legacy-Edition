@@ -115,7 +115,7 @@ public class Galaxy extends SpaceBody {
                             from.markDirty();
                             to.markDirty();
                             to.onTravelEvent(travelEvent.getShip(), travelEvent.getFrom(), world);
-                            MatterOverdrive.packetPipeline.sendToDimention(new PacketUpdateTravelEvents(this), world);
+                            MatterOverdrive.NETWORK.sendToDimention(new PacketUpdateTravelEvents(this), world);
                         }
                     }
                     travelEventIterator.remove();

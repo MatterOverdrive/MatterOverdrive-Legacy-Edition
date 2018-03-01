@@ -19,6 +19,7 @@
 package matteroverdrive.handler.village;
 
 import matteroverdrive.MatterOverdrive;
+import matteroverdrive.init.MatterOverdriveEntities;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -34,7 +35,7 @@ public class TradeHandlerMadScientist //implements VillagerRegistry.VillagerProf
 {
     //@Override
     public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) {
-        if (villager.getProfession() == 666) {
+        if (villager.getProfessionForge() == MatterOverdriveEntities.MAD_SCIENTIST_PROFESSION) {
             addSellPart(recipeList, random, 0, 0.5f, 16 * 2, 8 * 2);
             addSellPart(recipeList, random, 1, 0.4f, 18 * 2, 10 * 2);
             addSellPart(recipeList, random, 2, 0.3f, 20 * 2, 12 * 2);

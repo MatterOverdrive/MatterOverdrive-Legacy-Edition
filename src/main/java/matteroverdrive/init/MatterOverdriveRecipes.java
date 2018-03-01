@@ -21,7 +21,6 @@ package matteroverdrive.init;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.data.recipes.InscriberRecipeManager;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.commons.io.IOUtils;
@@ -29,8 +28,6 @@ import org.apache.commons.io.IOUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Simeon on 8/29/2015.
@@ -45,7 +42,7 @@ public class MatterOverdriveRecipes {
         GameRegistry.addSmelting(new ItemStack(MatterOverdrive.BLOCKS.tritaniumOre), new ItemStack(MatterOverdrive.ITEMS.tritanium_ingot), 10);
 
         //Inscriber
-        File file = new File(MatterOverdrive.configHandler.configDir, "MatterOverdrive/recipes/inscriber.xml");
+        File file = new File(MatterOverdrive.CONFIG_HANDLER.configDir, "MatterOverdrive/recipes/inscriber.xml");
         if (!file.exists()) {
             try {
                 file.getParentFile().mkdirs();

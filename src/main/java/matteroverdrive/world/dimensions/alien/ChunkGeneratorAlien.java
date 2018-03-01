@@ -81,6 +81,8 @@ public class ChunkGeneratorAlien implements IChunkGenerator {
             this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(settingsString).build();
             this.oceanBlock = this.settings.useLavaOceans ? Blocks.LAVA : Blocks.WATER;
             worldIn.setSeaLevel(this.settings.seaLevel);
+        } else {
+            this.settings=ChunkGeneratorSettings.Factory.jsonToFactory("").build();
         }
 
         InitNoiseGensEvent.ContextOverworld context = new InitNoiseGensEvent.ContextOverworld(noiseGen1, noiseGen2, noiseGen3, noiseGen4, noiseGen5, noiseGen6, mobSpawnerNoise);

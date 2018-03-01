@@ -67,7 +67,7 @@ public class Contract extends MOBaseItem {
         QuestStack questStack = QuestStack.loadFromNBT(itemstack.getTagCompound());
         if (questStack != null) {
             for (int i = 0; i < questStack.getObjectivesCount(player); i++) {
-                infos.add(MatterOverdrive.questFactory.getFormattedQuestObjective(player, questStack, i));
+                infos.add(MatterOverdrive.QUEST_FACTORY.getFormattedQuestObjective(player, questStack, i));
             }
         }
     }
@@ -91,7 +91,7 @@ public class Contract extends MOBaseItem {
             QuestStack questStack = getQuest(itemStackIn);
             if (questStack == null) {
                 Quest quest = ((WeightedRandomQuest) WeightedRandom.getRandomItem(itemRand, MatterOverdriveQuests.contractGeneration)).getQuest();
-                questStack = MatterOverdrive.questFactory.generateQuestStack(itemRand, quest);
+                questStack = MatterOverdrive.QUEST_FACTORY.generateQuestStack(itemRand, quest);
                 NBTTagCompound questTag = new NBTTagCompound();
                 questStack.writeToNBT(questTag);
                 itemStackIn.setTagCompound(questTag);

@@ -139,7 +139,7 @@ public class GuiWeaponStation extends MOGuiMachine<TileEntityWeaponStation> {
             List<ItemStack> modules = MOInventoryHelper.getStacks(item);
             WeaponItemRenderer weaponItemRenderer = weaponRenderHandler.getWeaponModel(item);
             GlStateManager.pushMatrix();
-            GlStateManager.translate(guiLeft+150, guiTop+90, 200);
+            GlStateManager.translate(guiLeft + 150, guiTop + 90, 200);
             GlStateManager.scale(180, 180, 180);
             GlStateManager.rotate(-190, 1, 0, 0);
             GlStateManager.rotate(-140, 0, 1, 0);

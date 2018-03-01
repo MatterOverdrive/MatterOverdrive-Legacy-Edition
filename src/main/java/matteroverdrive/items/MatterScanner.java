@@ -72,7 +72,7 @@ public class MatterScanner extends MOBaseItem implements IBlockScanner {
     }
 
     public static IMatterDatabase getLink(World world, ItemStack scanner) {
-        if (scanner != null && scanner.getItem() instanceof MatterScanner) {
+        if (!scanner.isEmpty() && scanner.getItem() instanceof MatterScanner) {
             if (scanner.hasTagCompound()) {
                 if (scanner.getTagCompound().getBoolean("isLinked")) {
                     BlockPos pos = BlockPos.fromLong(scanner.getTagCompound().getLong("link"));
@@ -87,7 +87,7 @@ public class MatterScanner extends MOBaseItem implements IBlockScanner {
     }
 
     public static BlockPos getLinkPosition(ItemStack scanner) {
-        if (scanner != null && scanner.getItem() instanceof MatterScanner) {
+        if (!scanner.isEmpty() && scanner.getItem() instanceof MatterScanner) {
             if (scanner.hasTagCompound()) {
                 return new BlockPos(scanner.getTagCompound().getInteger("link_x"), scanner.getTagCompound().getInteger("link_y"), scanner.getTagCompound().getInteger("link_z"));
             }
@@ -96,7 +96,7 @@ public class MatterScanner extends MOBaseItem implements IBlockScanner {
     }
 
     public static boolean isLinked(ItemStack scanner) {
-        if (scanner != null && scanner.getItem() instanceof MatterScanner) {
+        if (!scanner.isEmpty() && scanner.getItem() instanceof MatterScanner) {
             if (scanner.hasTagCompound()) {
                 return scanner.getTagCompound().getBoolean("isLinked");
             }

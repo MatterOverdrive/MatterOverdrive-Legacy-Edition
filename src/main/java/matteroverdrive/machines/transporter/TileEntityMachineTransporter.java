@@ -187,15 +187,15 @@ public class TileEntityMachineTransporter extends MOTileEntityMachineMatter impl
                         energyStorage.modifyEnergyStored(-getEnergyDrain());
 
                         transportTimer = 0;
-                        MatterOverdrive.packetPipeline.sendToDimention(new PacketSyncTransportProgress(this), world);
+                        MatterOverdrive.NETWORK.sendToDimention(new PacketSyncTransportProgress(this), world);
                     } else {
-                        MatterOverdrive.packetPipeline.sendToAllAround(new PacketSyncTransportProgress(this), this, TRANSPORT_RANGE);
+                        MatterOverdrive.NETWORK.sendToAllAround(new PacketSyncTransportProgress(this), this, TRANSPORT_RANGE);
                     }
                 }
             } else {
                 if (transportTimer != 0) {
                     transportTimer = 0;
-                    MatterOverdrive.packetPipeline.sendToDimention(new PacketSyncTransportProgress(this), world);
+                    MatterOverdrive.NETWORK.sendToDimention(new PacketSyncTransportProgress(this), world);
                 }
             }
 

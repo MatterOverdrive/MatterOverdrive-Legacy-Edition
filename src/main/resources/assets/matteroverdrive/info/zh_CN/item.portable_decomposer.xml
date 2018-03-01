@@ -1,0 +1,30 @@
+<!--
+  ~ This file is part of Matter Overdrive
+  ~ Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+  ~
+  ~ Matter Overdrive is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Matter Overdrive is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+  -->
+
+<entry stylesheet="matteroverdrive:info/styles/guide.css">
+    <page class="padded-page">
+        <title size="2" class="matter-text small-title">$itemName</title>
+        <text class="matter-text text-block">$itemName的作用类似[item name=decomposer]，它可以放置在快捷栏中将拾取物品分解为等离子物质。
+        一切能够被分解的物质都能够被它所分解。</text>
+        <text class="matter-text text-block">如果要分解特定物品，仅需将$itemName与相应物品在[item mod=minecraft name=anvil]敲击即可。一旦绑定就无法删除特定物品标记。</text>
+        <text class="matter-text text-block">$itemName相对于[item name=decomposer]而言，效率是相当低的。
+            一旦被分解，分解所得物质将被存储于其内部。
+            要想导出$itemName其中物质，仅需手持其右击[quide name=matter]以进行存储。
+        </text>
+    </page>
+</entry>

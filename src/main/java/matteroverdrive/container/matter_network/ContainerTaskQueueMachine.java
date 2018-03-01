@@ -31,7 +31,7 @@ public class ContainerTaskQueueMachine<T extends MOTileEntityMachine & IMatterNe
     }
 
     private void sendTaskQueue(IMatterNetworkDispatcher dispatcher, int queueId) {
-        MatterOverdrive.packetPipeline.sendTo(new PacketSyncTaskQueue(dispatcher, queueId), (EntityPlayerMP) getPlayer());
+        MatterOverdrive.NETWORK.sendTo(new PacketSyncTaskQueue(dispatcher, queueId), (EntityPlayerMP) getPlayer());
     }
 
     @Override

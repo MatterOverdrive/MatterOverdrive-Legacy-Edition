@@ -79,30 +79,11 @@ public class AndroidPill extends MOItemFood {
         }
     }
 
-    public void addToDunguns() {
-        // TODO: 3/24/2016 Find new way of adding dungon loot
-        //ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(this,1),1,1,1));
-    }
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
         return getUnlocalizedName() + "_" + names[MathHelper.clamp(itemStack.getItemDamage(), 0, names.length - 1)];
     }
-
-    /*@Override
-	@SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + "pill_bottom");
-        this.overlay = iconRegister.registerIcon(Reference.MOD_ID + ":" + "pill_top");
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean requiresMultipleRenderPasses()
-    {
-        return true;
-    }*/
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
@@ -112,26 +93,6 @@ public class AndroidPill extends MOItemFood {
             list.add(new ItemStack(this, 1, 2));
         }
     }
-
-
-    /*@Override
-	public int getRenderPasses(int metadata)
-    {
-        return 2;
-    }*/
-
-    /*@Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamageForRenderPass(int damage, int pass)
-    {
-        if (pass == 1)
-        {
-            return overlay;
-        }else
-        {
-            return itemIcon;
-        }
-    }*/
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {

@@ -93,7 +93,7 @@ public class MatterRegistry implements IMatterRegistry {
         }
     }
 
-    public void loadFromFile(final File file) throws IOException, ClassNotFoundException {
+    public void loadFromFile(final File file) throws IOException {
         if (file.exists()) {
             FileInputStream fileInputStream = new FileInputStream(file);
             NBTTagCompound tagCompound = CompressedStreamTools.readCompressed(fileInputStream);
@@ -137,19 +137,15 @@ public class MatterRegistry implements IMatterRegistry {
 
                 if (item != null) {
                     if (customHandlerJSON.getValue().hasMeta) {
-                        if (item != null) {
-                            for (int i = 0; i < customHandlerJSON.getValue().meta.length; i++) {
-                                ItemStackHandlerCachable cachable = new ItemStackHandlerCachable(customHandlerJSON.getValue().matter, customHandlerJSON.getValue().meta[i]);
-                                cachable.markCustom();
-                                register(item, cachable);
-                            }
+                        for (int i = 0; i < customHandlerJSON.getValue().meta.length; i++) {
+                            ItemStackHandlerCachable cachable = new ItemStackHandlerCachable(customHandlerJSON.getValue().matter, customHandlerJSON.getValue().meta[i]);
+                            cachable.markCustom();
+                            register(item, cachable);
                         }
                     } else {
                         ItemStackHandlerCachable cachable = new ItemStackHandlerCachable(customHandlerJSON.getValue().matter);
                         cachable.markCustom();
-                        if (item != null) {
-                            register(item, cachable);
-                        }
+                        register(item, cachable);
                     }
                 } else {
                     MOLog.error("Trying to load a Matter Registry Custom Handler with invalid item ID: %s", customHandlerJSON.getKey());
@@ -197,12 +193,7 @@ public class MatterRegistry implements IMatterRegistry {
     }
 
     public boolean blacklistedFromMod(final ItemStack stack) {
-        Item item = stack.getItem();
-        if (item != null) {
-            //todo find how to get mod for specific item
-            return modBlacklist.contains(item.getRegistryName().getResourceDomain());
-        }
-        return false;
+        return modBlacklist.contains(stack.getItem().getCreatorModId(stack));
     }
 
     public IMatterEntry<?, ?> getEntry(final ItemStack item) {
@@ -215,9 +206,7 @@ public class MatterRegistry implements IMatterRegistry {
             }
             return e;
         } catch (Exception e) {
-            if (e == null) {
-                debug("There was a problem getting a Matter Entry for %s.", item);
-            }
+            debug("There was a problem getting a Matter Entry for %s.", item);
             return null;
         }
     }

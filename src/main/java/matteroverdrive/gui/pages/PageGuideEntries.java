@@ -314,11 +314,11 @@ public class PageGuideEntries extends ElementBaseGroup implements ITextHandler {
         if (element instanceof ElementGuideEntry) {
             MatterOverdrive.PROXY.getGoogleAnalytics().setPageHit(((ElementGuideEntry) element).getEntry().getName(), GoogleAnalyticsCommon.PAGE_PATH_GUIDE_ENTIRES + "/" + ((ElementGuideEntry) element).getEntry().getGroup(), null);
             pageGuideDescription.OpenGuide(((ElementGuideEntry) element).getEntry().getId(), false);
-            MatterOverdrive.packetPipeline.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
+            MatterOverdrive.NETWORK.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
             gui.setPage(1);
         } else if (element.equals(orderButtonElement)) {
             MatterOverdrive.ITEMS.dataPad.setOrdering(dataPadStack, orderButtonElement.getSelectedState());
-            MatterOverdrive.packetPipeline.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
+            MatterOverdrive.NETWORK.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
         } else if (element instanceof ElementGuideCategory) {
             setActiveCategory(((ElementGuideCategory) element).getCategory().getName());
         }
@@ -345,7 +345,7 @@ public class PageGuideEntries extends ElementBaseGroup implements ITextHandler {
 
     public void setActiveCategory(String category) {
         MatterOverdrive.ITEMS.dataPad.setCategory(dataPadStack, category);
-        MatterOverdrive.packetPipeline.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
+        MatterOverdrive.NETWORK.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
         gui.setPage(0);
         groups.clear();
     }

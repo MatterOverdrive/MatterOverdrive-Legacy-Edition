@@ -25,6 +25,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Created by Simeon on 8/7/2015.
@@ -37,6 +38,7 @@ public class MatterOverdriveEnchantments implements IConfigSubscriber {
         overclock = new EnchantmentOverclock(Enchantment.Rarity.COMMON).setRegistryName("overclock");
     }
 
+    @SubscribeEvent
     public static void register(RegistryEvent.Register<Enchantment> event) {
         event.getRegistry().register(overclock);
     }

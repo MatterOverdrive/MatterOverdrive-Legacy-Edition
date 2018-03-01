@@ -136,12 +136,12 @@ public class ElementPlanetEntry extends ElementAbstractStarMapEntry<Planet> {
     @Override
     protected void onTravelPress() {
         TileEntityMachineStarMap starMap = ((GuiStarMap) gui).getMachine();
-        MatterOverdrive.packetPipeline.sendToServer(new PacketStarMapClientCommands(starMap, starMap.getZoomLevel(), new GalacticPosition(spaceBody), starMap.getDestination()));
+        MatterOverdrive.NETWORK.sendToServer(new PacketStarMapClientCommands(starMap, starMap.getZoomLevel(), new GalacticPosition(spaceBody), starMap.getDestination()));
     }
 
     @Override
     protected void onSelectPress() {
         TileEntityMachineStarMap starMap = ((GuiStarMap) gui).getMachine();
-        MatterOverdrive.packetPipeline.sendToServer(new PacketStarMapClientCommands(starMap, starMap.getZoomLevel(), starMap.getGalaxyPosition(), new GalacticPosition(spaceBody)));
+        MatterOverdrive.NETWORK.sendToServer(new PacketStarMapClientCommands(starMap, starMap.getZoomLevel(), starMap.getGalaxyPosition(), new GalacticPosition(spaceBody)));
     }
 }

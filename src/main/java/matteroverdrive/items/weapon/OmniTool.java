@@ -30,7 +30,6 @@ import matteroverdrive.init.MatterOverdriveSounds;
 import matteroverdrive.items.weapon.module.WeaponModuleBarrel;
 import matteroverdrive.network.packet.server.PacketDigBlock;
 import matteroverdrive.proxy.ClientProxy;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
@@ -123,9 +122,9 @@ public class OmniTool extends EnergyWeapon {
 
                 if (hit != null && hit.typeOfHit == RayTraceResult.Type.BLOCK) {
                     IBlockState state = player.world.getBlockState(hit.getBlockPos());
-                    boolean canMine = state.getBlock().canHarvestBlock(player.world, hit.getBlockPos(), (EntityPlayer) player) && ((EntityPlayer) player).capabilities.allowEdit;
+                    boolean canMine = ((EntityPlayer) player).capabilities.allowEdit;
 
-                    if (state.getBlock() != null && state.getMaterial() != Material.AIR && canMine) {
+                    if (!state.getBlock().isAir(state, player.world, hit.getBlockPos()) && canMine) {
 
                         ++STEP_SOUND_COUNTER;
                         LAST_SIDE = hit.sideHit;
@@ -133,13 +132,13 @@ public class OmniTool extends EnergyWeapon {
                         if (isSameBlock(hit.getBlockPos())) {
                             if (BLOCK_DAMAGE >= 1.0F) {
                                 //this.isHittingBlock = false;
-                                MatterOverdrive.packetPipeline.sendToServer(new PacketDigBlock(hit.getBlockPos(), PacketDigBlock.Type.HARVEST, hit.sideHit));
+                                MatterOverdrive.NETWORK.sendToServer(new PacketDigBlock(hit.getBlockPos(), PacketDigBlock.Type.HARVEST, hit.sideHit));
                                 Minecraft.getMinecraft().playerController.onPlayerDestroyBlock(hit.getBlockPos());
                                 BLOCK_DAMAGE = 0.0F;
                                 STEP_SOUND_COUNTER = 0.0F;
                                 //this.blockHitDelay = 5;
                             } else if (BLOCK_DAMAGE == 0) {
-                                MatterOverdrive.packetPipeline.sendToServer(new PacketDigBlock(hit.getBlockPos(), PacketDigBlock.Type.CLICK, hit.sideHit));
+                                MatterOverdrive.NETWORK.sendToServer(new PacketDigBlock(hit.getBlockPos(), PacketDigBlock.Type.CLICK, hit.sideHit));
                             }
 
                             BLOCK_DAMAGE = MathHelper.clamp(modifyStatFromModules(Reference.WS_DAMAGE, stack, BLOCK_DAMAGE + state.getPlayerRelativeBlockHardness((EntityPlayer) player, player.world, hit.getBlockPos())), 0, 1);
@@ -184,7 +183,7 @@ public class OmniTool extends EnergyWeapon {
         if (CURRENT_BLOCK != null) {
             BLOCK_DAMAGE = 0;
             STEP_SOUND_COUNTER = 0.0F;
-            MatterOverdrive.packetPipeline.sendToServer(new PacketDigBlock(CURRENT_BLOCK, PacketDigBlock.Type.CANCEL, LAST_SIDE));
+            MatterOverdrive.NETWORK.sendToServer(new PacketDigBlock(CURRENT_BLOCK, PacketDigBlock.Type.CANCEL, LAST_SIDE));
             world.sendBlockBreakProgress(player.getEntityId(), CURRENT_BLOCK, -1);
         }
     }
@@ -250,7 +249,7 @@ public class OmniTool extends EnergyWeapon {
 
     @Override
     public boolean canFire(ItemStack itemStack, World world, EntityLivingBase shooter) {
-        return !isOverheated(itemStack) && DrainEnergy(itemStack, getShootCooldown(itemStack), true);
+        return !isOverheated(itemStack) && DrainEnergy(itemStack, getShootCooldown(itemStack), true) && !isEntitySpectator(shooter);
     }
 
     @Override
@@ -298,10 +297,7 @@ public class OmniTool extends EnergyWeapon {
 
     @Override
     public boolean supportsModule(ItemStack weapon, ItemStack module) {
-        if (module != null) {
-            return module.getItem() == MatterOverdrive.ITEMS.weapon_module_color || (module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel && module.getItemDamage() != WeaponModuleBarrel.HEAL_BARREL_ID);
-        }
-        return false;
+        return !module.isEmpty() && (module.getItem() == MatterOverdrive.ITEMS.weapon_module_color || (module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel && module.getItemDamage() != WeaponModuleBarrel.HEAL_BARREL_ID));
     }
 
     @Override

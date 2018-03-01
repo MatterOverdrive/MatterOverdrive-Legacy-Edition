@@ -130,7 +130,7 @@ public class PacketSyncAndroid extends PacketAbstract {
                             break;
                         case SYNC_ACTIVE_ABILITY:
                             if (message.data.hasKey("Ability")) {
-                                IBioticStat stat = MatterOverdrive.statRegistry.getStat(message.data.getString("Ability"));
+                                IBioticStat stat = MatterOverdrive.STAT_REGISTRY.getStat(message.data.getString("Ability"));
                                 ex.setActiveStat(stat);
                             } else {
                                 ex.setActiveStat(null);

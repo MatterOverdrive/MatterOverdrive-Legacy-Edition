@@ -50,11 +50,11 @@ public class QuestLogicConversation extends AbstractQuestLogic {
             JsonArray givenArray = jsonObject.getAsJsonArray("given");
             given = new IDialogOption[givenArray.size()];
             for (int i = 0; i < givenArray.size(); i++) {
-                given[i] = MatterOverdrive.dialogAssembler.parseOption(givenArray.get(i), MatterOverdrive.dialogRegistry);
+                given[i] = MatterOverdrive.DIALOG_ASSEMBLER.parseOption(givenArray.get(i), MatterOverdrive.DIALOG_REGISTRY);
             }
         }
         if (jsonObject.has("target")) {
-            targetOption = MatterOverdrive.dialogAssembler.parseOption(jsonObject.get("target"), MatterOverdrive.dialogRegistry);
+            targetOption = MatterOverdrive.DIALOG_ASSEMBLER.parseOption(jsonObject.get("target"), MatterOverdrive.DIALOG_REGISTRY);
             if (targetOption == null) {
                 throw new MORuntimeException("Conversation Quest Logic mush have a target dialog option");
             }

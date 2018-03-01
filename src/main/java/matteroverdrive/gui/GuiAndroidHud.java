@@ -130,6 +130,10 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void onRenderExperienceBar(RenderGameOverlayEvent event) {
+        if (this.mc.player.isSpectator()) {
+            return;
+        }
+
         AndroidPlayer android = MOPlayerCapabilityProvider.GetAndroidCapability(mc.player);
 
         if ((mc.currentScreen instanceof GuiDialog || mc.currentScreen instanceof GuiStarMap) && !event.getType().equals(RenderGameOverlayEvent.ElementType.ALL) && event.isCancelable()) {
@@ -206,6 +210,10 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
     }
 
     public void renderRadialMenu(RenderGameOverlayEvent event) {
+        if (this.mc.player.isSpectator()) {
+            return;
+        }
+
         GlStateManager.pushMatrix();
         GlStateManager.translate(event.getResolution().getScaledWidth() / 2, event.getResolution().getScaledHeight() / 2, 0);
         double scale = MOMathHelper.easeIn(GuiAndroidHud.radialAnimationTime, 0, 1, 1);
@@ -214,16 +222,16 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
         AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(Minecraft.getMinecraft().player);
 
         stats.clear();
-        for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+        for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
             if (stat.showOnWheel(androidPlayer, androidPlayer.getUnlockedLevel(stat)) && androidPlayer.isUnlocked(stat, 0)) {
                 stats.add(stat);
             }
         }
 
-        GlStateManager.color(1, 1, 1);
+        GlStateManager.color(1, 1, 1, 1);
         GlStateManager.depthMask(false);
         //glDisable(GL_DEPTH_TEST);
-        //GlStateManager.enableBlend();
+        GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL_ONE, GL_ONE);
         GlStateManager.pushMatrix();
         GlStateManager.rotate((float) radialAngle, 0, 0, -1);
@@ -310,10 +318,16 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
 
             i++;
         }
+        GlStateManager.disableAlpha();
+        GlStateManager.enableDepth();
         GlStateManager.popMatrix();
     }
 
     public void renderHud(RenderGameOverlayEvent event) {
+        if (this.mc.player.isSpectator()) {
+            return;
+        }
+
         AndroidPlayer android = MOPlayerCapabilityProvider.GetAndroidCapability(mc.player);
 
         if (android != null) {
@@ -329,7 +343,7 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
                     RenderUtils.drawPlane(0, 0, -100, event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());
                 }
 
-                if (hudMovement) {
+                if (hudMovement && !this.mc.player.isPlayerSleeping()) {
                     hudRotationYawSmooth = mc.player.prevRenderArmYaw + (mc.player.renderArmYaw - mc.player.prevRenderArmYaw) * event.getPartialTicks();
                     hudRotationPitchSmooth = mc.player.prevRenderArmPitch + (mc.player.renderArmPitch - mc.player.prevRenderArmPitch) * event.getPartialTicks();
                     GlStateManager.translate((hudRotationYawSmooth - mc.player.rotationYaw) * 0.2f, (hudRotationPitchSmooth - mc.player.rotationPitch) * 0.2f, 0);

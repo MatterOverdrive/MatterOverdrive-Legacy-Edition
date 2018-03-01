@@ -19,7 +19,7 @@ public class WorldProviderSpace extends WorldProvider {
 
     @Override
     protected void init() {
-        this.biomeProvider = new BiomeProviderSingle(MOWorldGen.biomeSpace);
+        //this.biomeProvider = new BiomeProviderSingle(MOWorldGen.biomeSpace);
         this.hasSkyLight = true;
     }
 

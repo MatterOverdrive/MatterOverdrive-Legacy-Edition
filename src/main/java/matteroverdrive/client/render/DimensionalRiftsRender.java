@@ -79,7 +79,7 @@ public class DimensionalRiftsRender implements IWorldLastRenderer {
             for (int x = 0; x < vewDistance; x++) {
                 for (int z = 0; z < vewDistance; z++) {
 
-                    float yPos = MatterOverdrive.moWorld.getDimensionalRifts().getValueAt(new Vec3d(viewEntityPosRound.x + x - vewDistance / 2, 0, viewEntityPosRound.z + z - vewDistance / 2));
+                    float yPos = MatterOverdrive.MO_WORLD.getDimensionalRifts().getValueAt(new Vec3d(viewEntityPosRound.x + x - vewDistance / 2, 0, viewEntityPosRound.z + z - vewDistance / 2));
                     yPos *= Math.sin((x / (double) vewDistance) * Math.PI) * Math.sin((z / (double) vewDistance) * Math.PI);
                     points[x][z] = yPos;
                 }

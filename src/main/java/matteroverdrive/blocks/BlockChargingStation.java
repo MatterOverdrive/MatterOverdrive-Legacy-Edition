@@ -22,13 +22,18 @@ import matteroverdrive.blocks.includes.MOBlockMachine;
 import matteroverdrive.handler.ConfigurationHandler;
 import matteroverdrive.tile.TileEntityMachineChargingStation;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -37,20 +42,35 @@ import java.util.ArrayList;
  * Created by Simeon on 7/8/2015.
  */
 public class BlockChargingStation extends MOBlockMachine<TileEntityMachineChargingStation> {
+    public static final PropertyBool CTM = PropertyBool.create("ctm");
 
     public BlockChargingStation(Material material, String name) {
         super(material, name);
         setHardness(20.0F);
         this.setResistance(9.0f);
         this.setHarvestLevel("pickaxe", 2);
-        lightValue = 10;
         setHasGui(true);
         setHasRotation();
     }
 
+    @Nonnull
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, PROPERTY_DIRECTION, CTM);
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return super.getActualState(state, worldIn, pos).withProperty(CTM, Loader.isModLoaded("ctm"));
+    }
+
+    @Override
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
     @Override
     public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, BlockPos pos, boolean returnDrops) {
-        getTileEntity(world, pos).getBoundingBlocks().forEach(world::setBlockToAir);
         return super.dismantleBlock(player, world, pos, returnDrops);
     }
 
@@ -73,8 +93,7 @@ public class BlockChargingStation extends MOBlockMachine<TileEntityMachineChargi
     public void breakBlock(World world, BlockPos pos, IBlockState blockState) {
         TileEntity te = world.getTileEntity(pos);
         if (te instanceof TileEntityMachineChargingStation) {
-            TileEntityMachineChargingStation chargingStation = (TileEntityMachineChargingStation) te;
-            chargingStation.getBoundingBlocks().forEach(world::setBlockToAir);
+            ((TileEntityMachineChargingStation) te).getBoundingBlocks().forEach(world::setBlockToAir);
         }
 
         super.breakBlock(world, pos, blockState);

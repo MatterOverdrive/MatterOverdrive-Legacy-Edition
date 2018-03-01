@@ -58,7 +58,7 @@ public class CommonWeaponHandler {
     public void handlePlasmaShotFire(EntityPlayer entityPlayer, PacketFirePlasmaShot plasmaShot, long timeStamp) {
         int delay = (int) (timeStamp - getTimestamp(entityPlayer));
         firePlasmaShotHandler.handleServerShot(entityPlayer, plasmaShot, delay);
-        MatterOverdrive.packetPipeline.sendToAllAround(plasmaShot, entityPlayer, plasmaShot.getShot().getRange() + 64);
+        MatterOverdrive.NETWORK.sendToAllAround(plasmaShot, entityPlayer, plasmaShot.getShot().getRange() + 64);
     }
 
     @SubscribeEvent

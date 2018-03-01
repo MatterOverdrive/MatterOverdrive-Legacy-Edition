@@ -154,7 +154,7 @@ public class ClientWeaponHandler extends CommonWeaponHandler {
 
     @SideOnly(Side.CLIENT)
     public void sendWeaponTickToServer(World world, PacketFirePlasmaShot firePlasmaShot) {
-        MatterOverdrive.packetPipeline.sendToServer(new PacketWeaponTick(world.getWorldTime(), firePlasmaShot));
+        MatterOverdrive.NETWORK.sendToServer(new PacketWeaponTick(world.getWorldTime(), firePlasmaShot));
     }
 
     public boolean shootDelayPassed(IWeapon item) {

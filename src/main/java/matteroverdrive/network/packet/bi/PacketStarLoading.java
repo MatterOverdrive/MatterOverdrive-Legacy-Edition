@@ -91,7 +91,7 @@ public class PacketStarLoading extends PacketAbstract {
             if (quadrant != null) {
                 Star star = quadrant.getStarMap().get(message.starID);
                 if (star != null) {
-                    MatterOverdrive.packetPipeline.sendTo(new PacketStarLoading(message.quadrantID, star), player);
+                    MatterOverdrive.NETWORK.sendTo(new PacketStarLoading(message.quadrantID, star), player);
                 }
             }
         }

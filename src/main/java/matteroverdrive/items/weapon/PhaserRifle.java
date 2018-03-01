@@ -286,7 +286,7 @@ public class PhaserRifle extends EnergyWeapon {
 
     @Override
     public boolean canFire(ItemStack weapon, World world, EntityLivingBase shooter) {
-        return DrainEnergy(weapon, getShootCooldown(weapon), true) && !isOverheated(weapon);
+        return DrainEnergy(weapon, getShootCooldown(weapon), true) && !isOverheated(weapon) && !isEntitySpectator(shooter);
     }
 
     @Override

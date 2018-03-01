@@ -47,7 +47,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagFloat;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
@@ -59,7 +58,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -150,6 +149,10 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         AddModuleDetails(weapon, infos);
     }
 
+    public boolean isEntitySpectator(EntityLivingBase entity) {
+        return entity instanceof EntityPlayer && ((EntityPlayer) entity).isSpectator();
+    }
+
     private String addStatWithMultiplyInfo(String statName, Object value, double multiply, String units) {
         String info = String.format("%s: %s%s", statName, TextFormatting.DARK_AQUA, value);
         if (!units.isEmpty()) {
@@ -168,7 +171,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
     private void AddModuleDetails(ItemStack weapon, List infos) {
         ItemStack module = WeaponHelper.getModuleAtSlot(Reference.MODULE_BARREL, weapon);
-        if (module != null) {
+        if (!module.isEmpty()) {
 			/*infos.add(EnumChatFormatting.GRAY + "Barrel:");
 
             Object statsObject = ((IWeaponModule)module.getItem()).getValue(module);
@@ -272,7 +275,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
             for (ItemStack stack : player.inventory.mainInventory) {
                 if (!stack.isEmpty() && stack.getItem() instanceof IEnergyPack && stack.getCount() > 0) {
                     ClientProxy.instance().getClientWeaponHandler().addReloadDelay(this, 40);
-                    MatterOverdrive.packetPipeline.sendToServer(new PacketReloadEnergyWeapon());
+                    MatterOverdrive.NETWORK.sendToServer(new PacketReloadEnergyWeapon());
                     return;
                 }
             }
@@ -281,7 +284,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return !ItemStack.areItemStacksEqual(oldStack, newStack) || slotChanged;
+        return !ItemStack.areItemsEqual(oldStack, newStack) || slotChanged;
     }
 
     protected void manageOverheat(ItemStack itemStack, World world, EntityLivingBase shooter) {
@@ -292,6 +295,16 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
                 world.playSound(null, shooter.posX, shooter.posY, shooter.posZ, MatterOverdriveSounds.weaponsOverheatAlarm, SoundCategory.PLAYERS, 1, 1);
             }
         }
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        return enchantment == MatterOverdriveEnchantments.overclock;
     }
 
     protected void manageCooling(ItemStack itemStack) {
@@ -502,7 +515,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         accuracy = modifyStatFromModules(Reference.WS_ACCURACY, weapon, accuracy);
         if (WeaponHelper.hasModule(Reference.MODULE_SIGHTS, weapon)) {
             ItemStack sights = WeaponHelper.getModuleAtSlot(Reference.MODULE_SIGHTS, weapon);
-            if (sights != null && sights.getItem() instanceof IWeaponScope) {
+            if (!sights.isEmpty() && sights.getItem() instanceof IWeaponScope) {
                 accuracy = ((IWeaponScope) sights.getItem()).getAccuracyModify(sights, weapon, zoomed, accuracy);
             }
         }
@@ -544,6 +557,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         IEnergyStorage container = getStorage(item);
         int amount = MathHelper.ceil(getEnergyUse(item) * ticks);
         int hasEnergy = container.getEnergyStored();
+
         if (hasEnergy >= amount) {
             while (amount > 0) {
                 if (container.extractEnergy(amount, true) > 0) {
@@ -555,6 +569,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         } else {
             return false;
         }
+
         return true;
     }
 
@@ -567,7 +582,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
     public float getZoomMultiply(EntityPlayer entityPlayer, ItemStack weapon) {
         if (WeaponHelper.hasModule(Reference.MODULE_SIGHTS, weapon)) {
             ItemStack sights = WeaponHelper.getModuleAtSlot(Reference.MODULE_SIGHTS, weapon);
-            if (sights != null && sights.getItem() instanceof IWeaponScope) {
+            if (!sights.isEmpty() && sights.getItem() instanceof IWeaponScope) {
                 return ((IWeaponScope) sights.getItem()).getZoomAmount(sights, weapon);
             }
         }
@@ -577,18 +592,17 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
 
     @Override
-    public ICapabilitySerializable<NBTTagCompound> createProvider(ItemStack stack) {
+    public ICapabilityProvider createProvider(ItemStack stack) {
         return new EnergyProvider(stack, getCapacity(), getInput(), getOutput());
     }
 
-    public static class EnergyProvider implements ICapabilitySerializable<NBTTagCompound> {
-
+    public static class EnergyProvider implements ICapabilityProvider {
         private EnergyContainer container;
         private ItemStack stack;
 
         public EnergyProvider(ItemStack stack, int capacity, int in, int out) {
             this.stack = stack;
-            this.container = new EnergyContainer(capacity, in, out);
+            this.container = new EnergyContainer(capacity, in, out).setItemStack(stack);
         }
 
         @Override
@@ -599,25 +613,19 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         @Override
         @SuppressWarnings("unchecked")
         public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-            if (capability == CapabilityEnergy.ENERGY) {
-                if (!stack.isEmpty()) {
-                    ItemStack battery = WeaponHelper.getModuleAtSlot(Reference.MODULE_BATTERY, stack);
-                    if (battery.hasCapability(capability, facing))
-                        return battery.getCapability(capability, facing);
-                }
-                return CapabilityEnergy.ENERGY.cast(container);
+            if (capability != CapabilityEnergy.ENERGY) {
+                return null;
             }
-            return null;
-        }
 
-        @Override
-        public NBTTagCompound serializeNBT() {
-            return container.serializeNBT();
-        }
+            if (!stack.isEmpty()) {
+                ItemStack battery = WeaponHelper.getModuleAtSlot(Reference.MODULE_BATTERY, stack);
 
-        @Override
-        public void deserializeNBT(NBTTagCompound tag) {
-            container.deserializeNBT(tag);
+                if (battery.hasCapability(capability, null)) {
+                    return battery.getCapability(capability, null);
+                }
+            }
+
+            return CapabilityEnergy.ENERGY.cast(container);
         }
     }
 }

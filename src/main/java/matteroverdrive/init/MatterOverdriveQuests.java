@@ -65,7 +65,7 @@ public class MatterOverdriveQuests {
         //beast_belly = (GenericQuest)new GenericQuest(new QuestLogicSingleEvent(MOEventGravitationalAnomalyConsume.class),"beast_belly",210).addQuestRewards(new ItemStackReward(MatterOverdrive.blocks.gravitational_stabilizer,2));
         //weMustKnow = (GenericQuest)new GenericQuest(new QuestLogicPlaceBlock(4,new QuestItem(new ItemStack(MatterOverdrive.blocks.decorative_coils).setStackDisplayName("Communication Relay")),1,1).setAutoComplete(true),"we_must_know",120).addQuestRewards(new ItemStackReward(Items.emerald,8));
         //crashLanding = (GenericQuest)new GenericQuest(new QuestLogicCraft(new ItemStack(MatterOverdrive.items.security_protocol),0,0,0).setAutoComplete(true),"crash_landing",60).addQuestRewards(new ItemStackReward(new ItemStack(MatterOverdrive.blocks.decorative_coils).setStackDisplayName("Communication Relay")),new QuestStackReward(new QuestStack(weMustKnow)).setCopyNBT("Pos"));
-        //gmo = (GenericMultiQuest)new GenericMultiQuest(new IQuestLogic[]{new QuestLogicScanBlock(new QuestBlock(Blocks.carrots.getDefaultState()),12,24,10).setOnlyDestroyable(true),new QuestLogicScanBlock(new QuestBlock(Blocks.potatoes.getDefaultState()),12,24,10).setOnlyDestroyable(true)},"gmo",0).setAutoComplete(true).setSequential(true).addQuestRewards(new ItemStackReward(MatterOverdrive.androidPartsFactory.addAttributeToPart(MatterOverdrive.androidPartsFactory.addAttributeToPart(new ItemStack(MatterOverdrive.items.tritaniumSpine),new AttributeModifier(SharedMonsterAttributes.maxHealth.getName(), 5, 0)),new AttributeModifier(AndroidAttributes.attributeGlitchTime.getName(), -1, 2)).setStackDisplayName("Hardened Tritanium Spine")));
+        //gmo = (GenericMultiQuest)new GenericMultiQuest(new IQuestLogic[]{new QuestLogicScanBlock(new QuestBlock(Blocks.carrots.getDefaultState()),12,24,10).setOnlyDestroyable(true),new QuestLogicScanBlock(new QuestBlock(Blocks.potatoes.getDefaultState()),12,24,10).setOnlyDestroyable(true)},"gmo",0).setAutoComplete(true).setSequential(true).addQuestRewards(new ItemStackReward(MatterOverdrive.ANDROID_PARTS_FACTORY.addAttributeToPart(MatterOverdrive.ANDROID_PARTS_FACTORY.addAttributeToPart(new ItemStack(MatterOverdrive.items.tritaniumSpine),new AttributeModifier(SharedMonsterAttributes.maxHealth.getName(), 5, 0)),new AttributeModifier(AndroidAttributes.attributeGlitchTime.getName(), -1, 2)).setStackDisplayName("Hardened Tritanium Spine")));
         //trade_route = new GenericMultiQuest(new IQuestLogic[]{new QuestLogicBlockInteract(null,true,false),new QuestLogicItemInteract(new QuestItem(new ItemStack(MatterOverdrive.items.isolinear_circuit).setStackDisplayName("Trade Route Agreement")),true),new QuestLogicConversation("mo.mad_scientist",MatterOverdriveDialogs.tradeRouteQuest,MatterOverdriveDialogs.tradeRouteQuest)},"trade_route",180).setAutoComplete(true).setSequential(true);
     }
 
@@ -84,14 +84,14 @@ public class MatterOverdriveQuests {
 
     private static void registerMatterOverdriveQuests(Quests quests) {
         quests.registerQuest("cocktail_of_ascension", cocktailOfAscension);
-        //quests.registerQuest("one_true_love",oneTrueLove);
+        //QUESTS.registerQuest("one_true_love",oneTrueLove);
         quests.registerQuest("puny_humans", punyHumans);
-        //quests.registerQuest("is_it_really_me",is_it_really_me);
-        //quests.registerQuest("beast_belly",beast_belly);
-        //quests.registerQuest("crash_landing",crashLanding);
-        //quests.registerQuest("weMustKnow",weMustKnow);
-        //quests.registerQuest("gmo",gmo);
-        //quests.registerQuest("trade_route",trade_route);
+        //QUESTS.registerQuest("is_it_really_me",is_it_really_me);
+        //QUESTS.registerQuest("beast_belly",beast_belly);
+        //QUESTS.registerQuest("crash_landing",crashLanding);
+        //QUESTS.registerQuest("weMustKnow",weMustKnow);
+        //QUESTS.registerQuest("gmo",gmo);
+        //QUESTS.registerQuest("trade_route",trade_route);
 
         //contractGeneration.add(new WeightedRandomQuest(oneTrueLove,100));
         //contractGeneration.add(new WeightedRandomQuest(is_it_really_me,80));

@@ -31,6 +31,7 @@ import matteroverdrive.api.renderer.IBionicPartRenderer;
 import matteroverdrive.api.renderer.IBioticStatRenderer;
 import matteroverdrive.api.starmap.IStarmapRenderRegistry;
 import matteroverdrive.blocks.BlockDecorativeColored;
+import matteroverdrive.blocks.alien.BlockLeavesAlien;
 import matteroverdrive.client.model.ModelTritaniumArmor;
 import matteroverdrive.client.render.*;
 import matteroverdrive.client.render.biostat.BioticStatRendererShield;
@@ -67,6 +68,8 @@ import matteroverdrive.starmap.data.Star;
 import matteroverdrive.tile.*;
 import matteroverdrive.util.MOLog;
 import matteroverdrive.world.dimensions.alien.AlienColorsReloadListener;
+import matteroverdrive.world.dimensions.alien.BiomeAlienColorHelper;
+import matteroverdrive.world.dimensions.alien.ColorizerAlien;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
@@ -85,7 +88,9 @@ import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.model.IModel;
@@ -242,7 +247,7 @@ public class RenderHandler {
         for (IWorldLastRenderer renderer : customRenderers) {
             renderer.onRenderWorldLast(this, event);
         }
-        for (IBioticStat stat : MatterOverdrive.statRegistry.getStats()) {
+        for (IBioticStat stat : MatterOverdrive.STAT_REGISTRY.getStats()) {
             Collection<IBioticStatRenderer> statRendererCollection = statRenderRegistry.getRendererCollection(stat.getClass());
             if (statRendererCollection != null) {
                 for (IBioticStatRenderer renderer : statRendererCollection) {
@@ -353,10 +358,31 @@ public class RenderHandler {
     }
 
     public void registerBlockColors() {
-        FMLClientHandler.instance().getClient().getBlockColors().registerBlockColorHandler((state, p_186720_2_, pos, tintIndex) -> {
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, p_186720_2_, pos, tintIndex) -> {
             EnumDyeColor color = state.getValue(BlockDecorativeColored.COLOR);
             return ItemDye.DYE_COLORS[MathHelper.clamp(color.getMetadata(), 0, ItemDye.DYE_COLORS.length - 1)];
         }, MatterOverdrive.BLOCKS.decorative_tritanium_plate_colored);
+
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((iBlockState, iBlockAccess, blockPos, i) -> {
+            if (iBlockAccess == null || blockPos == null)
+                return ColorizerAlien.getStoneBasicColor();
+            return BiomeAlienColorHelper.getStoneColorAtPos(iBlockAccess, blockPos);
+        }, MatterOverdrive.BLOCKS.alienStone);
+
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, i) -> {
+            BlockLeavesAlien.EnumType type = state.getValue(BlockLeavesAlien.VARIANT);
+            if (type.equals(BlockLeavesAlien.EnumType.GLOWING)) {
+                return 0xffffff;
+            } else if (type.equals(BlockLeavesAlien.EnumType.BUSH)) {
+                return 0xe379f5;
+            } else
+                return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
+        }, MatterOverdrive.BLOCKS.alienLeaves);
+
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(
+                (state, worldIn, pos, i) -> ColorizerGrass.getGrassColor(0.5D, 1.0D),
+                MatterOverdrive.BLOCKS.alienTallGrass
+        );
     }
 
     public void createItemRenderers() {

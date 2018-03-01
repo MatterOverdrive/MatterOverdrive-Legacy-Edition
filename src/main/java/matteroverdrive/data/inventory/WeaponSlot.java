@@ -29,6 +29,7 @@ public class WeaponSlot extends Slot {
         super(isMainSlot);
     }
 
+    @Override
     public boolean isValidForSlot(ItemStack item) {
         return WeaponHelper.isWeapon(item);
     }

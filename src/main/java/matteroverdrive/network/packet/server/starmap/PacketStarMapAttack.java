@@ -47,7 +47,7 @@ public class PacketStarMapAttack extends PacketAbstract {
         public void handleServerMessage(EntityPlayerMP player, PacketStarMapAttack message, MessageContext ctx) {
             TravelEvent travelEvent = GalaxyServer.getInstance().createTravelEvent(message.from, message.to, message.shipID);
             if (travelEvent != null) {
-                MatterOverdrive.packetPipeline.sendToDimention(new PacketUpdateTravelEvents(GalaxyServer.getInstance().getTheGalaxy()), player.world);
+                MatterOverdrive.NETWORK.sendToDimention(new PacketUpdateTravelEvents(GalaxyServer.getInstance().getTheGalaxy()), player.world);
             }
         }
     }

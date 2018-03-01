@@ -52,7 +52,7 @@ public class MatterNetworkComponentQueue extends MatterNetworkComponentClient<Ti
             {
                 packet.addToPath(rootClient);
                 packet.tickAlive(getworld(),true);
-                MatterOverdrive.packetPipeline.sendToAllAround(new PacketSendQueueFlash(rootClient), rootClient, 32);
+                MatterOverdrive.NETWORK.sendToAllAround(new PacketSendQueueFlash(rootClient), rootClient, 32);
             }
         }
     }
