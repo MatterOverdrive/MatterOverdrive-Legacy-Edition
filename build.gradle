@@ -26,7 +26,7 @@ changelog {
 
     outputDirectory = file("$projectDir")
 
-    since = 'last_tag'
+    since = 'beginning'
 
     commitFormat = '%s (%an)'
 
