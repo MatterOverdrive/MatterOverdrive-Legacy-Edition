@@ -88,7 +88,7 @@ public class MOWorldGenCrashedSpaceShip extends MOWorldGenBuilding {
             TileEntity tileEntity = world.getTileEntity(pos);
             if (tileEntity instanceof IInventory) {
                 // TODO: 3/26/2016 Find how to access Chest Gen Hooks
-                LootTableList.register(new ResourceLocation("matteroverdrive", "crashed_space_ship"));
+                LootTableList.register(new ResourceLocation("matteroverdrive", "crashed_ship"));
                 QuestStack questStack = MatterOverdrive.questFactory.generateQuestStack(random, MatterOverdrive.quests.getQuestByName("crash_landing"));
                 questStack.getTagCompound().setLong("pos", pos.toLong());
                 MOInventoryHelper.insertItemStackIntoInventory((IInventory) tileEntity, questStack.getContract(), EnumFacing.DOWN);

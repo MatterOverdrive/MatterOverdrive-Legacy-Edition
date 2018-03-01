@@ -26,10 +26,10 @@ public class MOLootTableManager {
     @SubscribeEvent
     public void generateCrashedShipLoot(LootTableLoadEvent event) {
         //TODO 2/14/2018: Find out what goes between the quotes
-        if(event.getName().toString().equals("")) {
+        if(event.getName().toString().equals("matteroverdrive:crashed_ship")) {
             LootTable crashedShipLootTable = event.getTable();
 
-            LootEntry entry = new LootEntryTable(new ResourceLocation("matteroverdrive:crashedShip"), 100, 1, new LootCondition[]{}, Reference.CHEST_GEN_ANDROID_HOUSE);
+            LootEntry entry = new LootEntryTable(new ResourceLocation("matteroverdrive:crashed_ship"), 100, 1, new LootCondition[]{}, Reference.CHEST_GEN_ANDROID_HOUSE);
 
 
         }
