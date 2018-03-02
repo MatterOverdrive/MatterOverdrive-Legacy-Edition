@@ -9,8 +9,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 2/5/2016.
  */
-public class BiomeGeneratorSpace extends Biome {
-    public BiomeGeneratorSpace(BiomeProperties biomeProperties) {
+public class BiomeSpace extends Biome {
+    public BiomeSpace(BiomeProperties biomeProperties) {
         super(biomeProperties);
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
@@ -18,6 +18,11 @@ public class BiomeGeneratorSpace extends Biome {
         this.spawnableCaveCreatureList.clear();
         this.topBlock = Blocks.AIR.getDefaultState();
         this.fillerBlock = Blocks.AIR.getDefaultState();
+    }
+
+    @Override
+    public boolean canRain() {
+        return false;
     }
 
     @SideOnly(Side.CLIENT)

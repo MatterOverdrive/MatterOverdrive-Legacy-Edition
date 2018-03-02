@@ -24,13 +24,13 @@ import java.util.Random;
 /**
  * Created by Simeon on 2/23/2016.
  */
-public class BiomeGeneratorAlien extends Biome {
+public class BiomeAlien extends Biome {
     protected static final WorldGenAlienBush WORLD_GEN_ALIEN_BUSH = new WorldGenAlienBush();
     protected static final WorldGenBigTree worldGenBigTree = new WorldGenBigTree(false);
     private static final WorldGenAlienForest alienForestTall = new WorldGenAlienForest(false, true);
     private static final WorldGenAlienForest alienForestSmall = new WorldGenAlienForest(false, false);
 
-    public BiomeGeneratorAlien(Biome.BiomeProperties properties) {
+    public BiomeAlien(Biome.BiomeProperties properties) {
         super(properties);
         this.fillerBlock = MatterOverdrive.BLOCKS.alienStone.getDefaultState();
         this.decorator.treesPerChunk = 8;

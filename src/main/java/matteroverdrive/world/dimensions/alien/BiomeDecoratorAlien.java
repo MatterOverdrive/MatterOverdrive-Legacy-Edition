@@ -29,7 +29,7 @@ public class BiomeDecoratorAlien extends BiomeDecorator {
     @Override
     protected void genDecorations(Biome biomeGenBaseIn, World worldIn, Random random) {
         super.genDecorations(biomeGenBaseIn, worldIn, random);
-        if (biomeGenBaseIn instanceof BiomeGeneratorAlien) {
+        if (biomeGenBaseIn instanceof BiomeAlien) {
             if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS)) {
                 for (int l2 = 0; l2 < this.alienFlowerPerChunk; ++l2) {
                     int i7 = random.nextInt(16) + 8;
@@ -39,7 +39,7 @@ public class BiomeDecoratorAlien extends BiomeDecorator {
                     if (j14 > 0) {
                         int k17 = random.nextInt(j14);
                         BlockPos blockpos1 = this.chunkPos.add(i7, k17, l10);
-                        BlockFlowerAlien.EnumAlienFlowerType flowerType = ((BiomeGeneratorAlien) biomeGenBaseIn).pickRandomAlienFlower(random, blockpos1);
+                        BlockFlowerAlien.EnumAlienFlowerType flowerType = ((BiomeAlien) biomeGenBaseIn).pickRandomAlienFlower(random, blockpos1);
                         this.worldGenAlienFlowers.setGeneratedBlock(flowerType);
                         this.worldGenAlienFlowers.generate(worldIn, random, blockpos1);
                     }

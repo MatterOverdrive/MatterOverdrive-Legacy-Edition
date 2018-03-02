@@ -40,6 +40,8 @@ import matteroverdrive.init.*;
 import matteroverdrive.matter_network.MatterNetworkRegistry;
 import matteroverdrive.network.PacketPipeline;
 import matteroverdrive.proxy.CommonProxy;
+import matteroverdrive.space.OxygenHandler;
+import matteroverdrive.space.TemperatureHandler;
 import matteroverdrive.util.AndroidPartsFactory;
 import matteroverdrive.util.DialogFactory;
 import matteroverdrive.util.QuestFactory;
@@ -103,6 +105,8 @@ public class MatterOverdrive {
     public static FluidNetworkHandler FLUID_NETWORK_HANDLER;
     public static MOLootTableManager LOOT_TABLE_MANAGER;
     public static MODimensionHandler DIMENSION_HANDLER;
+    public static OxygenHandler OXYGEN_HANDLER;
+    public static TemperatureHandler TEMPERATURE_HANDLER;
 
     static {
         FluidRegistry.enableUniversalBucket();
@@ -137,9 +141,14 @@ public class MatterOverdrive {
         MATTER_NETWORK_HANDLER = new MatterNetworkHandler();
         FLUID_NETWORK_HANDLER = new FluidNetworkHandler();
         LOOT_TABLE_MANAGER = new MOLootTableManager();
+
         DIMENSION_HANDLER=new MODimensionHandler();
         MinecraftForge.EVENT_BUS.register(DIMENSION_HANDLER);
 
+        OXYGEN_HANDLER=new OxygenHandler();
+        TEMPERATURE_HANDLER=new TemperatureHandler();
+        MinecraftForge.EVENT_BUS.register(OXYGEN_HANDLER);
+        MinecraftForge.EVENT_BUS.register(TEMPERATURE_HANDLER);
 
         ITEMS.init();
         OverdriveFluids.init(event);
@@ -214,7 +223,6 @@ public class MatterOverdrive {
 
         CONFIG_HANDLER.postInit();
     }
-
 
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {

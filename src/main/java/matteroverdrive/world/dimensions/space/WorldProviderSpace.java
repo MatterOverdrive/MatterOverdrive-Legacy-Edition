@@ -1,13 +1,14 @@
 package matteroverdrive.world.dimensions.space;
 
 import matteroverdrive.MatterOverdrive;
-import matteroverdrive.world.MOWorldGen;
+import matteroverdrive.proxy.ClientProxy;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -22,6 +23,12 @@ public class WorldProviderSpace extends WorldProvider {
     protected void init() {
         this.biomeProvider = new BiomeProviderSingle(MatterOverdrive.DIMENSION_HANDLER.SPACE_BIOME);
         this.hasSkyLight = true;
+    }
+
+    @Nullable
+    @Override
+    public IRenderHandler getSkyRenderer() {
+        return ClientProxy.renderHandler.getSpaceSkyRenderer();
     }
 
     @Override
@@ -98,27 +105,13 @@ public class WorldProviderSpace extends WorldProvider {
         return 1;
     }
 
-    @SideOnly(Side.CLIENT)
-    public float getStarBrightnessBody(float partialTicks) {
-        return 1;
-    }
-
     public double getHorizon() {
-        return -10000;
-    }
-
-    public boolean getHasNoSky() {
-        return false;
+        return Double.MIN_VALUE;
     }
 
     @Override
     public float getSunBrightnessFactor(float par1) {
         return 0;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public Vec3d drawClouds(float partialTicks) {
-        return new Vec3d(0, 0, 0);
     }
 
     @SideOnly(Side.CLIENT)

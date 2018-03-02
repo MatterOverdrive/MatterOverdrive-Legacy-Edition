@@ -19,8 +19,8 @@ public class BiomeAlienColorHelper {
 
         for (BlockPos.MutableBlockPos blockpos$mutableblockpos : BlockPos.getAllInBoxMutable(p_180285_1_.add(-1, 0, -1), p_180285_1_.add(1, 0, 1))) {
             Biome biomeGenBase = p_180285_0_.getBiome(blockpos$mutableblockpos);
-            if (biomeGenBase instanceof BiomeGeneratorAlien) {
-                int l = p_180285_2_.getColorAtPos((BiomeGeneratorAlien) biomeGenBase, blockpos$mutableblockpos);
+            if (biomeGenBase instanceof BiomeAlien) {
+                int l = p_180285_2_.getColorAtPos((BiomeAlien) biomeGenBase, blockpos$mutableblockpos);
                 i += (l & 16711680) >> 16;
                 j += (l & 65280) >> 8;
                 k += l & 255;
@@ -36,6 +36,6 @@ public class BiomeAlienColorHelper {
 
     @SideOnly(Side.CLIENT)
     interface ColorResolver {
-        int getColorAtPos(BiomeGeneratorAlien p_180283_1_, BlockPos blockPosition);
+        int getColorAtPos(BiomeAlien p_180283_1_, BlockPos blockPosition);
     }
 }
