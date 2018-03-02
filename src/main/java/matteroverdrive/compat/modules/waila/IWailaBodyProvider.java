@@ -16,22 +16,22 @@ import java.util.List;
 /**
  * @author shadowfacts
  */
-@Optional.Interface(modid = "Waila", iface = "mcp.mobius.waila.api.IWailaDataProvider")
+@Optional.Interface(modid = "waila", iface = "mcp.mobius.waila.api.IWailaDataProvider")
 public interface IWailaBodyProvider extends IWailaDataProvider {
     @Override
-    @Optional.Method(modid = "Waila")
+    @Optional.Method(modid = "waila")
     default ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
         return accessor.getStack();
     }
 
     @Override
-    @Optional.Method(modid = "Waila")
+    @Optional.Method(modid = "waila")
     default List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
         return currenttip;
     }
 
     @Override
-    @Optional.Method(modid = "Waila")
+    @Optional.Method(modid = "waila")
     default List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
         return currenttip;
     }
