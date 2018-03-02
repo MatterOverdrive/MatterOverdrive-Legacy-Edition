@@ -140,7 +140,7 @@ task("uploadCurse") {
                 project {
                     id = System.getenv("GIT_COMMIT")
                     changelogType = 'markdown'
-                    changelog = file('CHANGELOG.MD') // A file can also be set using: changelog = file('changelog.txt')
+                    changelog = file('CHANGELOG.md') // A file can also be set using: changelog = file('changelog.txt')
                     releaseType = 'beta'
                     addGameVersion '1.12.2'
                     relations {
