@@ -25,6 +25,7 @@ public class SpaceHandler {
 
     @SubscribeEvent
     public void renderWorldLast(RenderWorldLastEvent event) {
+        boolean drawClouds = true;
         Minecraft mc = Minecraft.getMinecraft();
         EntityPlayer player = mc.player;
         if (player.dimension == MatterOverdrive.DIMENSION_HANDLER.SPACE_TYPE.getId()) {
@@ -42,17 +43,18 @@ public class SpaceHandler {
             sphere.setTextureFlag(true);
             sphere.draw(600f, 64, 32);
             GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            GlStateManager.rotate(45, 1, 0, 0);
-            GlStateManager.rotate((rotation*1.6f) % 360, 0, 0, 1);
-            mc.getTextureManager().bindTexture(clouds);
-            sphere.draw(605f, 64, 32);
-            GlStateManager.popMatrix();
+            if(drawClouds) {
+                GlStateManager.pushMatrix();
+                GlStateManager.rotate(45, 1, 0, 0);
+                GlStateManager.rotate((rotation * 1.6f) % 360, 0, 0, 1);
+                mc.getTextureManager().bindTexture(clouds);
+                sphere.draw(605f, 64, 32);
+                GlStateManager.popMatrix();
+            }
             GlStateManager.popMatrix();
             rotation += event.getPartialTicks() / 40;
             if (rotation >= 360)
                 rotation -= 360;
-
         }
     }
 
