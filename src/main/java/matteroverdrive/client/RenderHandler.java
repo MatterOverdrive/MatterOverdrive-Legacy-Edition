@@ -262,23 +262,6 @@ public class RenderHandler {
                 }
             }
         }
-
-        Minecraft mc = Minecraft.getMinecraft();
-        EntityPlayer player = mc.player;
-        if (player.dimension == MatterOverdrive.DIMENSION_HANDLER.SPACE_TYPE.getId()) {
-            GlStateManager.pushMatrix();
-            Sphere sphere = new Sphere();
-            RenderUtils.applyColor(Reference.COLOR_HOLO_RED);
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-            GlStateManager.disableTexture2D();
-            GlStateManager.translate(-TileEntityRendererDispatcher.staticPlayerX, -TileEntityRendererDispatcher.staticPlayerY + -600, -TileEntityRendererDispatcher.staticPlayerZ);
-            sphere.draw(600f, 64, 32);
-            GlStateManager.scale(3, 3, 3);
-            mc.getRenderItem().renderItemIntoGUI(new ItemStack(Items.APPLE), 0, 0);
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-            GlStateManager.enableTexture2D();
-            GlStateManager.popMatrix();
-        }
     }
 
     //Called when the client ticks.

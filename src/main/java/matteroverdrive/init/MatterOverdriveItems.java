@@ -30,7 +30,6 @@ import matteroverdrive.items.food.MOItemFood;
 import matteroverdrive.items.food.RomulanAle;
 import matteroverdrive.items.includes.MOBaseItem;
 import matteroverdrive.items.includes.MOItemOre;
-import matteroverdrive.items.starmap.*;
 import matteroverdrive.items.tools.*;
 import matteroverdrive.items.weapon.*;
 import matteroverdrive.items.weapon.module.*;
@@ -113,16 +112,6 @@ public class MatterOverdriveItems {
     public TritaniumArmor tritaniumChestplate;
     public TritaniumArmor tritaniumLeggings;
     public TritaniumArmor tritaniumBoots;
-
-    //	Ships & Buildings
-    public ShipFactory shipFactory;
-    public ItemScoutShip scoutShip;
-    public ItemColonizerShip colonizerShip;
-    public ItemBuildingBase buildingBase;
-    public ItemBuildingResidential buildingResidential;
-    public ItemBuildingMatterExtractor buildingMatterExtractor;
-    public ItemBuildingShipHangar buildingShipHangar;
-    public ItemBuildingPowerGenerator buildingPowerGenerator;
 
     //	Android
     public RougeAndroidParts androidParts;
@@ -219,16 +208,6 @@ public class MatterOverdriveItems {
         tritaniumChestplate = register(new TritaniumArmor("tritanium_chestplate", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.CHEST));
         tritaniumLeggings = register(new TritaniumArmor("tritanium_leggings", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.LEGS));
         tritaniumBoots = register(new TritaniumArmor("tritanium_boots", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.FEET));
-
-//		Ships & Buildings
-        shipFactory = register(new ShipFactory("ship_factory"));
-        scoutShip = register(new ItemScoutShip("scout_ship"));
-        colonizerShip = register(new ItemColonizerShip("ship_colonizer"));
-        buildingBase = register(new ItemBuildingBase("building_base"));
-        buildingResidential = register(new ItemBuildingResidential("building_residential"));
-        buildingMatterExtractor = register(new ItemBuildingMatterExtractor("building_matter_extractor"));
-        buildingShipHangar = register(new ItemBuildingShipHangar("building_ship_hangar"));
-        buildingPowerGenerator = register(new ItemBuildingPowerGenerator("building_power_generator"));
 
 //		Android
         androidParts = register(new RougeAndroidParts("rogue_android_part"));

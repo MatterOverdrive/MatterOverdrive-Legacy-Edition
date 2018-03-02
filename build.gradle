@@ -130,7 +130,7 @@ artifacts {
 
 task("uploadCurse") {
     description = "upload build to curse"
-    
+
 }
 
 task("uploadJars") {

@@ -20,8 +20,6 @@ package matteroverdrive.starmap;
 
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.starmap.GalacticPosition;
-import matteroverdrive.api.starmap.IBuilding;
-import matteroverdrive.api.starmap.IShip;
 import matteroverdrive.handler.ConfigurationHandler;
 import matteroverdrive.network.packet.client.starmap.PacketUpdateGalaxy;
 import matteroverdrive.network.packet.client.starmap.PacketUpdatePlanet;
@@ -170,12 +168,8 @@ public class GalaxyServer extends GalaxyCommon implements IConfigSubscriber {
         planet.setHomeworld(true);
         planet.setBuildingSpaces(8);
         planet.setFleetSpaces(10);
-        ItemStack base = new ItemStack(MatterOverdrive.ITEMS.buildingBase);
-        ((IBuilding) base.getItem()).setOwner(base, EntityPlayer.getUUID(player.getGameProfile()));
-        planet.addBuilding(base);
-        ItemStack scoutShip = new ItemStack(MatterOverdrive.ITEMS.scoutShip);
-        ((IShip) scoutShip.getItem()).setOwner(scoutShip, EntityPlayer.getUUID(player.getGameProfile()));
-        planet.addShip(scoutShip);
+
+        
         planet.markDirty();
     }
 

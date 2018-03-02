@@ -40,8 +40,7 @@ import matteroverdrive.init.*;
 import matteroverdrive.matter_network.MatterNetworkRegistry;
 import matteroverdrive.network.PacketPipeline;
 import matteroverdrive.proxy.CommonProxy;
-import matteroverdrive.space.OxygenHandler;
-import matteroverdrive.space.TemperatureHandler;
+import matteroverdrive.space.SpaceHandler;
 import matteroverdrive.util.AndroidPartsFactory;
 import matteroverdrive.util.DialogFactory;
 import matteroverdrive.util.QuestFactory;
@@ -72,8 +71,6 @@ public class MatterOverdrive {
     public static final OverdriveTab TAB_OVERDRIVE_MODULES = new OverdriveTab("tabMO_modules", () -> new ItemStack(ITEMS.weapon_module_color));
     public static final OverdriveTab TAB_OVERDRIVE_UPGRADES = new OverdriveTab("tabMO_upgrades", () -> new ItemStack(ITEMS.item_upgrade));
     public static final OverdriveTab TAB_OVERDRIVE_FOOD = new OverdriveTab("tabMO_food", () -> new ItemStack(ITEMS.earl_gray_tea));
-    public static final OverdriveTab TAB_OVERDRIVE_SHIPS = new OverdriveTab("tabMO_ships", () -> new ItemStack(ITEMS.colonizerShip));
-    public static final OverdriveTab TAB_OVERDRIVE_BUILDINGS = new OverdriveTab("tabMO_buildings", () -> new ItemStack(ITEMS.buildingBase));
     public static final OverdriveTab TAB_OVERDRIVE_DECORATIVE = new OverdriveTab("tabMO_decorative", () -> new ItemStack(BLOCKS.decorative_stripes));
     public static final OverdriveTab TAB_OVERDRIVE_ANDROID_PARTS = new OverdriveTab("tabMO_androidParts", () -> new ItemStack(ITEMS.androidParts));
 
@@ -105,8 +102,7 @@ public class MatterOverdrive {
     public static FluidNetworkHandler FLUID_NETWORK_HANDLER;
     public static MOLootTableManager LOOT_TABLE_MANAGER;
     public static MODimensionHandler DIMENSION_HANDLER;
-    public static OxygenHandler OXYGEN_HANDLER;
-    public static TemperatureHandler TEMPERATURE_HANDLER;
+    public static SpaceHandler SPACE_HANDLER;
 
     static {
         FluidRegistry.enableUniversalBucket();
@@ -145,10 +141,8 @@ public class MatterOverdrive {
         DIMENSION_HANDLER=new MODimensionHandler();
         MinecraftForge.EVENT_BUS.register(DIMENSION_HANDLER);
 
-        OXYGEN_HANDLER=new OxygenHandler();
-        TEMPERATURE_HANDLER=new TemperatureHandler();
-        MinecraftForge.EVENT_BUS.register(OXYGEN_HANDLER);
-        MinecraftForge.EVENT_BUS.register(TEMPERATURE_HANDLER);
+        SPACE_HANDLER =new SpaceHandler();
+        MinecraftForge.EVENT_BUS.register(SPACE_HANDLER);
 
         ITEMS.init();
         OverdriveFluids.init(event);

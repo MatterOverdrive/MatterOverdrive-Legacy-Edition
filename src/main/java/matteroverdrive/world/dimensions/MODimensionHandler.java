@@ -42,18 +42,4 @@ public class MODimensionHandler {
                 ALIEN_BIOME, SPACE_BIOME
         );
     }
-
-    @SubscribeEvent
-    public void gravitySimulator(LivingEvent.LivingUpdateEvent event) {
-        EntityLivingBase living = event.getEntityLiving();
-        if (!living.world.isRemote && living.dimension == SPACE_TYPE.getId()) {
-            if (!(living instanceof EntityPlayer) || !(((EntityPlayer) living).capabilities.isFlying)) {
-                living.motionY += 0.0784000015258789;
-                living.motionY -= 0.0784000015258789 / 4;
-            }
-            if (living instanceof EntityPlayer && living.posY <= -3)
-                CustomTeleporter.teleportToDimension((EntityPlayer) living, 0, ((EntityPlayer) living).posX, 800, ((EntityPlayer) living).posZ);
-        }
-        living.world.getEntitiesWithinAABB(EntityVillagerMadScientist.class, TileEntity.INFINITE_EXTENT_AABB);
-    }
 }
