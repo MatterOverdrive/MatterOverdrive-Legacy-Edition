@@ -130,33 +130,7 @@ artifacts {
 
 task("uploadCurse") {
     description = "upload build to curse"
-    if (System.getenv("GIT_COMMIT") != null) {
-        def data = new URL("https://api.github.com/repos/matteroverdrive/matteroverdrive/commits/" + System.getenv("GIT_COMMIT")).getText()
-        def parsedJson = new groovy.json.JsonSlurper().parseText(data)
-        if (parsedJson.commit.message.contains("[curse publish]")) {
-            apply plugin: 'com.matthewprenger.cursegradle'
-            curseforge {
-                apiKey = System.getenv("CURSE_KEY")
-                project {
-                    id = System.getenv("GIT_COMMIT")
-                    changelogType = 'markdown'
-                    changelog = file('CHANGELOG.md') // A file can also be set using: changelog = file('changelog.txt')
-                    releaseType = 'beta'
-                    addGameVersion '1.12.2'
-                    relations {
-                        requiredLibrary 'clibrary'
-                    }
-
-                    mainArtifact(jar) {
-                        displayName = "MatterOverdrive $project.version"
-                    }
-                    addArtifact sourceJar
-                    addArtifact deobfJar
-                    addArtifact apiJar
-                }
-            }
-        }
-    }
+    
 }
 
 task("uploadJars") {
