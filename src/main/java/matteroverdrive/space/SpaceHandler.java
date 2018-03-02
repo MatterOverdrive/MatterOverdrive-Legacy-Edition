@@ -21,6 +21,7 @@ public class SpaceHandler {
     private Sphere sphere = new Sphere();
 
     public static ResourceLocation texture = new ResourceLocation(Reference.PATH_GUI + "map.png");
+    public static ResourceLocation clouds = new ResourceLocation(Reference.PATH_GUI + "clouds.png");
 
     @SubscribeEvent
     public void renderWorldLast(RenderWorldLastEvent event) {
@@ -31,6 +32,7 @@ public class SpaceHandler {
             GlStateManager.color(1, 1, 1, 1);
             GlStateManager.disableLighting();
             GlStateManager.translate(-TileEntityRendererDispatcher.staticPlayerX, -TileEntityRendererDispatcher.staticPlayerY + -600, -TileEntityRendererDispatcher.staticPlayerZ);
+            GlStateManager.pushMatrix();
             GlStateManager.rotate(45, 1, 0, 0);
             GlStateManager.rotate(rotation % 360, 0, 0, 1);
             GlStateManager.enableBlend();
@@ -39,6 +41,13 @@ public class SpaceHandler {
             mc.getTextureManager().bindTexture(texture);
             sphere.setTextureFlag(true);
             sphere.draw(600f, 64, 32);
+            GlStateManager.popMatrix();
+            GlStateManager.pushMatrix();
+            GlStateManager.rotate(45, 1, 0, 0);
+            GlStateManager.rotate((rotation*1.6f) % 360, 0, 0, 1);
+            mc.getTextureManager().bindTexture(clouds);
+            sphere.draw(605f, 64, 32);
+            GlStateManager.popMatrix();
             GlStateManager.popMatrix();
             rotation += event.getPartialTicks() / 40;
             if (rotation >= 360)
