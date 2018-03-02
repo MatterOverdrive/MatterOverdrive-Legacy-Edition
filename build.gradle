@@ -150,7 +150,7 @@ task("uploadCurse") {
                     mainArtifact(jar) {
                         displayName = "MatterOverdrive $project.version"
                     }
-                    addArtifact sourcesJar
+                    addArtifact sourceJar
                     addArtifact deobfJar
                     addArtifact apiJar
                 }
