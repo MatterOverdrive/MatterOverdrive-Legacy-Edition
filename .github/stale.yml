@@ -1,5 +1,5 @@
 pulls:
-  daysUntilStale: 30
+  daysUntilStale: 20
   daysUntilClose: 7
   exemptLabels:
     - assigned
@@ -10,12 +10,11 @@ pulls:
     This pull request has been automatically closed because it has not had
     recent activity.
 issues:
-  daysUntilStale: 30
-  daysUntilClose: 14
+  daysUntilStale: 20
+  daysUntilClose: 7
   exemptLabels:
     - bug
-    - todo
-    - feature
+    - confirmed
   markComment: >
     This issue has been automatically marked as stale because it has not had recent
     activity.
