@@ -30,39 +30,6 @@ public class SpaceHandler {
 
     @SubscribeEvent
     public void renderWorldLast(RenderWorldLastEvent event) {
-        boolean drawClouds = true;
-        Minecraft mc = Minecraft.getMinecraft();
-        EntityPlayer player = mc.player;
-        if (player.dimension == MatterOverdrive.DIMENSION_HANDLER.SPACE_TYPE.getId()) {
-            GlStateManager.pushMatrix();
-            GlStateManager.color(1, 1, 1, 1);
-            GlStateManager.disableLighting();
-            GlStateManager.translate(0, -TileEntityRendererDispatcher.staticPlayerY + -1310 + (TileEntityRendererDispatcher.staticPlayerY / 2), 0);
-            GlStateManager.pushMatrix();
-            GlStateManager.rotate(45, 1, 0, 0);
-            GlStateManager.rotate(rotation % 360, 0, 0, 1);
-            GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            GlStateManager.enableTexture2D();
-            GlStateManager.enableAlpha();
-            mc.getTextureManager().bindTexture(texture);
-            sphere.setTextureFlag(true);
-            sphere.draw(1300f, 64, 32);
-            GlStateManager.popMatrix();
-            if (drawClouds) {
-                GlStateManager.pushMatrix();
-                GlStateManager.rotate(45, 1, 0, 0);
-                GlStateManager.rotate((rotation * 1.6f) % 360, 0, 0, 1);
-                GlStateManager.color(1, 1, 1, 0.7f);
-                mc.getTextureManager().bindTexture(clouds);
-                sphere.draw(1305f, 64, 32);
-                GlStateManager.popMatrix();
-            }
-            GlStateManager.popMatrix();
-            rotation += event.getPartialTicks() / 40;
-            if (rotation >= 360)
-                rotation -= 360;
-        }
     }
 
     @SubscribeEvent
@@ -86,7 +53,6 @@ public class SpaceHandler {
             amount = 0.05;
         if (dimension == 1)
             amount = 0.5;
-
         if (!(living instanceof EntityPlayer) || !(((EntityPlayer) living).capabilities.isFlying)) {
             living.motionY += 0.0784000015258789;
             living.motionY -= 0.0784000015258789 * amount;
