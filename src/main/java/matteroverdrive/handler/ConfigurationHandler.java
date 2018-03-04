@@ -128,9 +128,9 @@ public class ConfigurationHandler {
         category.setComment("Option for other mods");
         updateCategoryLang(category);
 
-        config.get(CATEGORY_WORLD_GEN, CATEGORY_WORLD_SPAWN_ORES, true, "Should ores such as dilithium and tritanium ore spawn in the world. This applies for all ores !").setLanguageKey("config." + CATEGORY_WORLD_SPAWN_ORES.replace(' ', '_') + ".name");
-        config.get(CATEGORY_WORLD_GEN, CATEGORY_WORLD_SPAWN + "." + MatterOverdrive.BLOCKS.dilithium_ore.getUnlocalizedName(), true).setLanguageKey(MatterOverdrive.BLOCKS.dilithium_ore.getUnlocalizedName() + ".name");
-        config.get(CATEGORY_WORLD_GEN, CATEGORY_WORLD_SPAWN + "." + MatterOverdrive.BLOCKS.tritaniumOre.getUnlocalizedName(), true).setLanguageKey(MatterOverdrive.BLOCKS.tritaniumOre.getUnlocalizedName() + ".name");
+        config.get(CATEGORY_WORLD_GEN, CATEGORY_WORLD_SPAWN_ORES, true, "Should ores such as dilithium and tritanium ore spawn in the world. This applies for all ores !").setLanguageKey(String.format("config.%s.name", CATEGORY_WORLD_SPAWN_ORES.replace(' ', '_')));
+        config.get(CATEGORY_WORLD_GEN, String.format("%s.%s", CATEGORY_WORLD_SPAWN, MatterOverdrive.BLOCKS.dilithium_ore.getUnlocalizedName()), true).setLanguageKey(String.format("%s.name", MatterOverdrive.BLOCKS.dilithium_ore.getUnlocalizedName()));
+        config.get(CATEGORY_WORLD_GEN, String.format("%s.%s", CATEGORY_WORLD_SPAWN, MatterOverdrive.BLOCKS.tritaniumOre.getUnlocalizedName()), true).setLanguageKey(String.format("%s.name", MatterOverdrive.BLOCKS.tritaniumOre.getUnlocalizedName()));
 
         config.getBoolean(KEY_AUTOMATIC_RECIPE_CALCULATION, CATEGORY_MATTER, true, "Shoud Matter be automaticly calculated from Recipes");
 
@@ -146,7 +146,7 @@ public class ConfigurationHandler {
     }
 
     private void updateCategoryLang(ConfigCategory category) {
-        category.setLanguageKey("config." + category.getName().replace(' ', '_') + ".name");
+        category.setLanguageKey(String.format("config.%s.name", category.getName().replace(' ', '_')));
     }
 
     public boolean getBool(String key, String category, Boolean def, String comment) {
@@ -182,35 +182,35 @@ public class ConfigurationHandler {
     public double getMachineDouble(String machine, String prop, double def, double min, double max, String comment) {
         Property p = config.get(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), prop, def);
         p.setComment(comment);
-        p.setLanguageKey(machine + ".config." + prop);
+        p.setLanguageKey(String.format("%s.config.%s", machine, prop));
         p.setMinValue(min);
         p.setMaxValue(max);
         return p.getDouble(def);
     }
 
     public double getMachineDouble(String machine, String prop, double def, String comment) {
-        Property p = config.get(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), prop, def);
+        Property p = config.get(String.format("%s.%s", CATEGORY_MACHINES, machine.replaceFirst("tile.", "")), prop, def);
         p.setComment(comment);
-        p.setLanguageKey(machine + ".config." + prop);
+        p.setLanguageKey(String.format("%s.config.%s", machine, prop));
         return p.getDouble(def);
     }
 
     public boolean getMachineBool(String machine, String prop, boolean def, String comment) {
-        Property p = config.get(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), prop, def);
+        Property p = config.get(String.format("%s.%s", CATEGORY_MACHINES, machine.replaceFirst("tile.", "")), prop, def);
         p.setComment(comment);
-        p.setLanguageKey(machine + ".config." + prop);
+        p.setLanguageKey(String.format("%s.config.%s", machine, prop));
         return p.getBoolean(def);
     }
 
     public int getMachineInt(String machine, String prop, int def, String comment) {
-        Property p = config.get(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), prop, def);
+        Property p = config.get(String.format("%s.%s", CATEGORY_MACHINES, machine.replaceFirst("tile.", "")), prop, def);
         p.setComment(comment);
-        p.setLanguageKey(machine + ".config." + prop);
+        p.setLanguageKey(String.format("%s.config.%s", machine, prop));
         return p.getInt(def);
     }
 
     public void initMachineCategory(String machine) {
-        config.setCategoryLanguageKey(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), machine + ".name");
+        config.setCategoryLanguageKey(String.format("%s.%s", CATEGORY_MACHINES, machine.replaceFirst("tile.", "")), String.format("%s.name", machine));
     }
 
     public void save() {

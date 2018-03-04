@@ -1,5 +1,6 @@
 package matteroverdrive;
 
+import matteroverdrive.util.MOLog;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -22,7 +23,7 @@ public class OverdriveTab extends CreativeTabs {
             try {
                 itemstack = stackCallable.call();
             } catch (Exception e) {
-                e.printStackTrace();
+                MOLog.error(e.getMessage(), e);
             }
         }
         if (itemstack == null || itemstack.isEmpty())

@@ -37,11 +37,13 @@ public class WorldProviderSpace extends WorldProvider {
     }
 
     @SideOnly(Side.CLIENT)
-    public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
+    @Override
+    public Vec3d getFogColor(float x, float z) {
         return new Vec3d(0, 0, 0);
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public double getVoidFogYFactor() {
         return 0;
     }
@@ -51,19 +53,8 @@ public class WorldProviderSpace extends WorldProvider {
         return "SPACE";
     }
 
-    /*@Override
-	public String getDimensionName()
-    {
-        return "Space";
-    }
-
-    @Override
-    public String getInternalNameSuffix()
-    {
-        return "mo_space";
-    }*/
-
     @SideOnly(Side.CLIENT)
+    @Override
     public boolean doesXZShowFog(int x, int z) {
         return false;
     }
@@ -86,25 +77,30 @@ public class WorldProviderSpace extends WorldProvider {
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public boolean isSkyColored() {
         return true;
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public Vec3d getSkyColor(net.minecraft.entity.Entity cameraEntity, float partialTicks) {
         return new Vec3d(0, 0, 0);
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public float getSunBrightness(float par1) {
         return world.getSunBrightnessBody(par1);
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public float getStarBrightness(float par1) {
         return 1;
     }
 
+    @Override
     public double getHorizon() {
         return Double.MIN_VALUE;
     }
@@ -115,8 +111,9 @@ public class WorldProviderSpace extends WorldProvider {
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public float[] calcSunriseSunsetColors(float celestialAngle, float partialTicks) {
-        return null;
+        return new float[0];
     }
 
     @Override

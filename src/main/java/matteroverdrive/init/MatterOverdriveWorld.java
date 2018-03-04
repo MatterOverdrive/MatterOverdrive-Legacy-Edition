@@ -40,7 +40,7 @@ public class MatterOverdriveWorld {
 
     public void onWorldTick(TickEvent.WorldTickEvent event) {
         if (event.side.equals(Side.SERVER)) {
-            worldGen.manageBuildingGeneration(event);
+            worldGen.manageBuildingGeneration();
         }
     }
 

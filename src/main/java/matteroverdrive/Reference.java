@@ -20,7 +20,10 @@ package matteroverdrive;
 
 import matteroverdrive.client.data.Color;
 
-public class Reference {
+public final class Reference {
+    private Reference() {
+    }
+
     public static final String MOD_ID = "matteroverdrive";
     public static final String MOD_NAME = "MatterOverdrive";
     public static final String VERSION = "@VERSION@";

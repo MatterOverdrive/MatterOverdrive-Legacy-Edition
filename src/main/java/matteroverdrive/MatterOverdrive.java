@@ -57,6 +57,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
+import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -76,54 +77,45 @@ public class MatterOverdrive {
 
     @Instance(Reference.MOD_ID)
     public static MatterOverdrive INSTANCE;
+
     @SidedProxy(clientSide = "matteroverdrive.proxy.ClientProxy", serverSide = "matteroverdrive.proxy.CommonProxy")
     public static CommonProxy PROXY;
 
-    public static TickHandler TICK_HANDLER;
-    public static PlayerEventHandler PLAYER_EVENT_HANDLER;
-    public static ConfigurationHandler CONFIG_HANDLER;
-    public static GuiHandler GUI_HANDLER;
-    public static PacketPipeline NETWORK;
-    public static MatterOverdriveWorld MO_WORLD;
-    public static EntityHandler ENTITY_HANDLER;
-    public static MatterRegistry MATTER_REGISTRY;
-    public static AndroidStatRegistry STAT_REGISTRY;
-    public static DialogRegistry DIALOG_REGISTRY;
-    public static MatterRegistrationHandler MATTER_REGISTRATION_HANDLER;
-    public static WeaponFactory WEAPON_FACTORY;
-    public static AndroidPartsFactory ANDROID_PARTS_FACTORY;
-    public static Quests QUESTS;
-    public static QuestFactory QUEST_FACTORY;
-    public static DialogFactory DIALOG_FACTORY;
-    public static BlockHandler BLOCK_HANDLER;
-    public static QuestAssembler QUEST_ASSEMBLER;
-    public static DialogAssembler DIALOG_ASSEMBLER;
-    public static MatterNetworkHandler MATTER_NETWORK_HANDLER;
-    public static FluidNetworkHandler FLUID_NETWORK_HANDLER;
-    public static MOLootTableManager LOOT_TABLE_MANAGER;
-    public static MODimensionHandler DIMENSION_HANDLER;
-    public static SpaceHandler SPACE_HANDLER;
+    public static final TickHandler TICK_HANDLER;
+    public static final PlayerEventHandler PLAYER_EVENT_HANDLER;
+    public static final ConfigurationHandler CONFIG_HANDLER;
+    public static final GuiHandler GUI_HANDLER;
+    public static final PacketPipeline NETWORK;
+    public static final MatterOverdriveWorld MO_WORLD;
+    public static final EntityHandler ENTITY_HANDLER;
+    public static final MatterRegistry MATTER_REGISTRY;
+    public static final AndroidStatRegistry STAT_REGISTRY;
+    public static final DialogRegistry DIALOG_REGISTRY;
+    public static final MatterRegistrationHandler MATTER_REGISTRATION_HANDLER;
+    public static final WeaponFactory WEAPON_FACTORY;
+    public static final AndroidPartsFactory ANDROID_PARTS_FACTORY;
+    public static final Quests QUESTS;
+    public static final QuestFactory QUEST_FACTORY;
+    public static final DialogFactory DIALOG_FACTORY;
+    public static final BlockHandler BLOCK_HANDLER;
+    public static final QuestAssembler QUEST_ASSEMBLER;
+    public static final DialogAssembler DIALOG_ASSEMBLER;
+    public static final MatterNetworkHandler MATTER_NETWORK_HANDLER;
+    public static final FluidNetworkHandler FLUID_NETWORK_HANDLER;
+    public static final MOLootTableManager LOOT_TABLE_MANAGER;
+    public static final MODimensionHandler DIMENSION_HANDLER;
+    public static final SpaceHandler SPACE_HANDLER;
 
     static {
         FluidRegistry.enableUniversalBucket();
         CLibTech.enable();
-    }
-
-    public MatterOverdrive() {
-    }
-
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(this);
-        AndroidPlayer.register();
-        OverdriveExtendedProperties.register();
+        CONFIG_HANDLER = new ConfigurationHandler(new File("config/MatterOverdrive"));
         MATTER_REGISTRY = new MatterRegistry();
         STAT_REGISTRY = new AndroidStatRegistry();
         DIALOG_REGISTRY = new DialogRegistry();
         GUI_HANDLER = new GuiHandler();
         NETWORK = new PacketPipeline();
         ENTITY_HANDLER = new EntityHandler();
-        CONFIG_HANDLER = new ConfigurationHandler(event.getModConfigurationDirectory());
         PLAYER_EVENT_HANDLER = new PlayerEventHandler(CONFIG_HANDLER);
         MATTER_REGISTRATION_HANDLER = new MatterRegistrationHandler();
         WEAPON_FACTORY = new WeaponFactory();
@@ -137,11 +129,20 @@ public class MatterOverdrive {
         MATTER_NETWORK_HANDLER = new MatterNetworkHandler();
         FLUID_NETWORK_HANDLER = new FluidNetworkHandler();
         LOOT_TABLE_MANAGER = new MOLootTableManager();
-
         DIMENSION_HANDLER=new MODimensionHandler();
+        SPACE_HANDLER =new SpaceHandler();
+        TICK_HANDLER = new TickHandler(CONFIG_HANDLER, PLAYER_EVENT_HANDLER);
+        MO_WORLD = new MatterOverdriveWorld(CONFIG_HANDLER);
+    }
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(this);
+        AndroidPlayer.register();
+        OverdriveExtendedProperties.register();
+
         MinecraftForge.EVENT_BUS.register(DIMENSION_HANDLER);
 
-        SPACE_HANDLER =new SpaceHandler();
         MinecraftForge.EVENT_BUS.register(SPACE_HANDLER);
 
         ITEMS.init();
@@ -157,12 +158,10 @@ public class MatterOverdrive {
 
         MinecraftForge.EVENT_BUS.register(MATTER_REGISTRATION_HANDLER);
         MinecraftForge.EVENT_BUS.register(CONFIG_HANDLER);
-        TICK_HANDLER = new TickHandler(CONFIG_HANDLER, PLAYER_EVENT_HANDLER);
         MinecraftForge.EVENT_BUS.register(TICK_HANDLER);
         MinecraftForge.EVENT_BUS.register(PLAYER_EVENT_HANDLER);
         MinecraftForge.EVENT_BUS.register(BLOCK_HANDLER);
 
-        MO_WORLD = new MatterOverdriveWorld(CONFIG_HANDLER);
         MatterOverdriveEntities.init(event, CONFIG_HANDLER);
         MatterOverdriveEnchantments.init(event, CONFIG_HANDLER);
         MO_WORLD.register();
@@ -236,7 +235,6 @@ public class MatterOverdrive {
 
     @EventHandler
     public void serverStart(FMLServerStartedEvent event) {
-        //MATTER_REGISTRATION_HANDLER.serverStart(event);
         TICK_HANDLER.onServerStart(event);
     }
 
