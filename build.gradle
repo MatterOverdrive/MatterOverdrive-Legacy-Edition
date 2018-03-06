@@ -111,13 +111,20 @@ jar {
 }
 
 task deobfJar(type: Jar) {
-    from(sourceSets.main.output) {
-        classifier = "deobf"
+    from(sourceSets.main.java.srcDirs) {
+        include '*'
     }
+    from(sourceSets.main.resources.srcDirs) {
+        include '*'
+    }
+    from(sourceSets.main.output) {
+        exclude '*'
+    }
+    classifier = "deobf"
 }
 
 task apiJar(type: Jar) {
-    from(sourceSets.main.java.srcDirs) {
+    from(sourceSets.main.output) {
         include 'matteroverdrive/api/*'
     }
     classifier = "api"
