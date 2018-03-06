@@ -40,13 +40,11 @@ import matteroverdrive.init.*;
 import matteroverdrive.matter_network.MatterNetworkRegistry;
 import matteroverdrive.network.PacketPipeline;
 import matteroverdrive.proxy.CommonProxy;
-import matteroverdrive.space.SpaceHandler;
 import matteroverdrive.util.AndroidPartsFactory;
 import matteroverdrive.util.DialogFactory;
 import matteroverdrive.util.QuestFactory;
 import matteroverdrive.util.WeaponFactory;
 import matteroverdrive.world.MOLootTableManager;
-import matteroverdrive.world.dimensions.MODimensionHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -103,8 +101,6 @@ public class MatterOverdrive {
     public static final MatterNetworkHandler MATTER_NETWORK_HANDLER;
     public static final FluidNetworkHandler FLUID_NETWORK_HANDLER;
     public static final MOLootTableManager LOOT_TABLE_MANAGER;
-    public static final MODimensionHandler DIMENSION_HANDLER;
-    public static final SpaceHandler SPACE_HANDLER;
 
     static {
         FluidRegistry.enableUniversalBucket();
@@ -129,8 +125,6 @@ public class MatterOverdrive {
         MATTER_NETWORK_HANDLER = new MatterNetworkHandler();
         FLUID_NETWORK_HANDLER = new FluidNetworkHandler();
         LOOT_TABLE_MANAGER = new MOLootTableManager();
-        DIMENSION_HANDLER=new MODimensionHandler();
-        SPACE_HANDLER =new SpaceHandler();
         TICK_HANDLER = new TickHandler(CONFIG_HANDLER, PLAYER_EVENT_HANDLER);
         MO_WORLD = new MatterOverdriveWorld(CONFIG_HANDLER);
     }
@@ -140,10 +134,6 @@ public class MatterOverdrive {
         MinecraftForge.EVENT_BUS.register(this);
         AndroidPlayer.register();
         OverdriveExtendedProperties.register();
-
-        MinecraftForge.EVENT_BUS.register(DIMENSION_HANDLER);
-
-        MinecraftForge.EVENT_BUS.register(SPACE_HANDLER);
 
         ITEMS.init();
         OverdriveFluids.init(event);
@@ -171,7 +161,6 @@ public class MatterOverdrive {
         MATTER_REGISTRY.preInit(event, CONFIG_HANDLER);
         MinecraftForge.EVENT_BUS.register(MATTER_NETWORK_HANDLER);
         MinecraftForge.EVENT_BUS.register(FLUID_NETWORK_HANDLER);
-        DIMENSION_HANDLER.init();
 
         PROXY.preInit(event);
 

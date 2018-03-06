@@ -22,7 +22,6 @@ import com.astro.clib.api.registration.IItemBlockFactory;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.blocks.*;
-import matteroverdrive.blocks.alien.*;
 import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.blocks.includes.MOBlockMachine;
 import matteroverdrive.blocks.includes.MOBlockOre;
@@ -31,7 +30,6 @@ import matteroverdrive.items.includes.MOMachineBlockItem;
 import matteroverdrive.util.IConfigSubscriber;
 import matteroverdrive.util.MOLog;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.EnumDyeColor;
@@ -94,7 +92,6 @@ public class MatterOverdriveBlocks {
     public BlockPylon pylon;
     //	Misc
     public BlockTransporter transporter;
-    public BlockStarMap starMap;
     public BlockHoloSign holoSign;
     public BlockWeaponStation weapon_station;
     public BlockAndroidStation androidStation;
@@ -121,14 +118,6 @@ public class MatterOverdriveBlocks {
     public BlockDecorative decorative_tritanium_plate_colored;
     public BlockDecorative decorative_engine_exhaust_plasma;
     public BlockIndustrialGlass industrialGlass;
-    //	Alien world
-    public BlockTallGrassAlien alienTallGrass;
-    public BlockFlowerAlien alienFlower;
-    public BlockLogAlien alienLog;
-    public BlockLeavesAlien alienLeaves;
-    public BlockFalling alienSand;
-    public BlockFalling alienGravel;
-    public BlockStoneAlien alienStone;
     //	Internal
     public BlockBoundingBox boundingBox;
     private int registeredCount = 0;
@@ -200,7 +189,6 @@ public class MatterOverdriveBlocks {
 
 //		Misc
         transporter = register(new BlockTransporter(TRITANIUM, "transporter"));
-        starMap = register(new BlockStarMap(TRITANIUM, "star_map"));
         holoSign = register(new BlockHoloSign(TRITANIUM, "holo_sign"));
         weapon_station = register(new BlockWeaponStation(TRITANIUM, "weapon_station"));
         androidStation = register(new BlockAndroidStation(TRITANIUM, "android_station"));
@@ -231,20 +219,6 @@ public class MatterOverdriveBlocks {
         decorative_engine_exhaust_plasma = register(new BlockDecorative(Material.CACTUS, "decorative.engine_exhaust_plasma", 1, 1, 1, 0x387c9e));
         decorative_engine_exhaust_plasma.setLightLevel(1);
         industrialGlass = register(new BlockIndustrialGlass(Material.GLASS, "industrial_glass"));
-
-//		Alien world
-        alienTallGrass = register(new BlockTallGrassAlien("alien_tall_grass"));
-        alienTallGrass.setHardness(0);
-        alienFlower = register(new BlockFlowerAlien("alien_flower"));
-        alienFlower.setHardness(0);
-        alienLog = register(new BlockLogAlien("alien_log"));
-        alienLeaves = register(new BlockLeavesAlien("alien_leaves"));
-        alienSand = register((BlockFalling) new BlockFalling(Material.SAND).setRegistryName(new ResourceLocation(Reference.MOD_ID, "alien_sand")));
-        alienSand.setHardness(1).setUnlocalizedName("alien_sand").setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_DECORATIVE);
-        alienGravel = register((BlockFalling) new BlockFalling(Material.SAND).setRegistryName(new ResourceLocation(Reference.MOD_ID, "alien_gravel")));
-        alienGravel.setHardness(1).setUnlocalizedName("alien_gravel").setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_DECORATIVE);
-        alienStone = register(new BlockStoneAlien("alien_stone", Material.ROCK));
-        alienStone.setHardness(1.5f).setResistance(10.0f).setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_DECORATIVE);
 
 //		Internal
         boundingBox = register(new BlockBoundingBox("bounding_box"));

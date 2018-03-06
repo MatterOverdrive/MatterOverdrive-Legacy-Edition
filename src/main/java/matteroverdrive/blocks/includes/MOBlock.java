@@ -60,12 +60,12 @@ public class MOBlock extends Block implements ItemModelProvider {
 
     public MOBlock(Material material, String name) {
         super(material);
-        setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
-        this.blockState = createBlockState();
-        this.setDefaultState(getBlockState().getBaseState());
-        this.fullBlock = getDefaultState().isOpaqueCube();
-        this.lightOpacity = fullBlock ? 255 : 0;
-        this.setUnlocalizedName(name);
+        setRegistryName(name);
+        blockState = createBlockState();
+        setDefaultState(getBlockState().getBaseState());
+        fullBlock = getDefaultState().isOpaqueCube();
+        lightOpacity = fullBlock ? 255 : 0;
+        setUnlocalizedName(name);
         setCreativeTab(MatterOverdrive.TAB_OVERDRIVE);
         rotationType = RotationType.FOUR_WAY;
     }

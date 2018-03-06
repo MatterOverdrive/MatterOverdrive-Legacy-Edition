@@ -22,7 +22,6 @@ import matteroverdrive.MatterOverdrive;
 import matteroverdrive.compat.MatterOverdriveCompat;
 import matteroverdrive.handler.GoogleAnalyticsCommon;
 import matteroverdrive.handler.weapon.CommonWeaponHandler;
-import matteroverdrive.starmap.GalaxyServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
@@ -53,11 +52,7 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(GalaxyServer.getInstance());
         MinecraftForge.EVENT_BUS.register(getWeaponHandler());
-        MinecraftForge.EVENT_BUS.register(GalaxyServer.getInstance());
-        MatterOverdrive.CONFIG_HANDLER.subscribe(GalaxyServer.getInstance());
-        MatterOverdrive.CONFIG_HANDLER.subscribe(GalaxyServer.getInstance().getGalaxyGenerator());
         MatterOverdrive.CONFIG_HANDLER.subscribe(googleAnalytics);
     }
 

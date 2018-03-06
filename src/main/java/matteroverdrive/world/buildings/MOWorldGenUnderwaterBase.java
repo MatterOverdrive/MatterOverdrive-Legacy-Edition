@@ -70,7 +70,8 @@ public class MOWorldGenUnderwaterBase extends MOWorldGenBuilding {
         addMapping(0x4d8dd3, MatterOverdrive.BLOCKS.pattern_monitor);
         addMapping(0xdb9c3a, MatterOverdrive.BLOCKS.holoSign);
         addMapping(0x68b68c, MatterOverdrive.BLOCKS.matter_analyzer);
-        addMapping(0x2cb0c7, MatterOverdrive.BLOCKS.starMap);
+        //TODO
+        //addMapping(0x2cb0c7, MatterOverdrive.BLOCKS.starMap);
         addMapping(0x1b2ff7, MatterOverdrive.BLOCKS.network_pipe);
         addMapping(0x5eaab, MatterOverdrive.BLOCKS.tritaniumCrate);
         addMapping(0x11003e, MatterOverdrive.BLOCKS.chargingStation);
@@ -141,13 +142,15 @@ public class MOWorldGenUnderwaterBase extends MOWorldGenBuilding {
 
     @Override
     public void onBlockPlace(World world, IBlockState block, BlockPos pos, Random random, int color, MOImageGen.ImageGenWorker worker) {
+        //TODO
+        /*
         if (block == MatterOverdrive.BLOCKS.starMap) {
             EntityMutantScientist mutantScientist = new EntityMutantScientist(world);
             mutantScientist.enablePersistence();
             mutantScientist.setPosition(pos.getX(), pos.getY() + 2, pos.getZ());
             mutantScientist.setCustomNameTag("Mitko'Urrr");
             world.spawnEntity(mutantScientist);
-        }
+        }*/
     }
 
 }

@@ -40,7 +40,6 @@ public class CompatWaila {
 
     public static void registerCallback(IWailaRegistrar registrar) {
         registrar.registerBodyProvider(new WeaponStation(), BlockWeaponStation.class);
-        registrar.registerBodyProvider(new StarMap(), BlockStarMap.class);
         registrar.registerBodyProvider(new Transporter(), BlockTransporter.class);
         registrar.registerBodyProvider(new Matter(), BlockDecomposer.class);
         registrar.registerBodyProvider(new Replicator(), BlockReplicator.class);
