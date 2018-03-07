@@ -48,14 +48,6 @@ item.matteroverdrive.rogue_android_part.melee=混战机械人
 item.matteroverdrive.rogue_android_part.range=枪战机械人
 item.matteroverdrive.forcefield_emitter.name=力场发生器
 item.matteroverdrive.hc_battery.name=高能电池
-item.matteroverdrive.ship_factory.name=星舰工厂
-item.matteroverdrive.ship_factory.details=建造星舰
-item.matteroverdrive.scout_ship.name=侦察快艇
-item.matteroverdrive.scout_ship.details=用于侦察的高速星舰
-item.matteroverdrive.ship_colonizer.name=殖民星舰
-item.matteroverdrive.ship_colonizer.details=占领所抵达的星球并建造基地
-item.matteroverdrive.building_base.name=基地
-item.matteroverdrive.building_base.details=最基本的核心建筑
 item.matteroverdrive.android_pill_red.name=红色药丸
 item.matteroverdrive.android_pill_red.details=吃下红色药丸后你将无所畏惧
 item.matteroverdrive.android_pill_blue.name=蓝色药丸
@@ -116,11 +108,6 @@ item.matteroverdrive.weapon_module_barrel.doomsday.name=衰变聚爆矩阵（末
 item.matteroverdrive.weapon_module_ricochet.name=束流反射装置
 item.matteroverdrive.sniper_scope.name=狙击镜
 
-#/#//////////// Buildings ///////////
-item.matteroverdrive.building_matter_extractor.name=物质提炼厂
-item.matteroverdrive.building_residential.name=住宅大楼
-item.matteroverdrive.building_ship_hangar.name=星港
-item.matteroverdrive.building_power_generator.name=发电厂
 
 item.overdrivef.info.configured=已配置
 
@@ -224,8 +211,6 @@ fusion_reactor.info.anomaly_too_far=引力\n异常点\n距离\n太远
 #/#//////////// Android Station ////////////
 tile.android_station.name=机械人装配台
 tile.android_station.details=机械人升级管理
-tile.star_map.name=星图
-tile.star_map.details=用于星系管理
 tile.charging_station.name=充能台
 tile.charging_station.details=为机械人充能
 container.replicator.name=重组仓
@@ -332,8 +317,6 @@ itemGroup.tabMO=超能物质
 itemGroup.tabMO_modules=超能物质|模块
 itemGroup.tabMO_upgrades=超能物质|升级
 itemGroup.tabMO_food=超能物质|食物
-itemGroup.tabMO_ships=超能物质|舰船
-itemGroup.tabMO_buildings=超能物质|建筑
 itemGroup.tabMO_decorative=超能物质|装饰
 itemGroup.tabMO_androidParts=超能物质|机械人
 
@@ -362,22 +345,9 @@ weaponstat.7.name=射速
 weaponstat.8.name=治疗
 
 ##########################################################################################################
-# Planet Stats
-planet_stat.population_count.name=人口
-planet_stat.building_size.name=建筑空间
-planet_stat.energy_production.name=能源产出
-planet_stat.matter_production.name=物质产出
-planet_stat.fleet_size.name=舰队规模
-
-##########################################################################################################
 # GUI
 
 #/#//////////// tooltips ///////////////
-gui.tooltip.starmap.no_ship_space=没有足够的舰船空间
-gui.tooltip.starmap.no_building_space=没有足够的建造空间
-gui.tooltip.starmap.no_ship_factory=无舰船工厂
-gui.tooltip.starmap.has_base=基地建造已经存在
-gui.tooltip.starmap.no_base=无基地存在
 gui.tooltip.close_menu=关闭菜单
 gui.tooltip.open_menu=打开菜单
 gui.tooltip.close=关闭
@@ -386,20 +356,14 @@ gui.tooltip.page.configurations=配置界面
 gui.tooltip.page.upgrades=升级界面
 gui.tooltip.page.tasks=任务
 gui.tooltip.page.scan_info=扫描信息
-gui.tooltip.page.galaxy=银河系
-gui.tooltip.page.quadrant=象限
-gui.tooltip.page.star=行星系
-gui.tooltip.page.planet=行星
-gui.tooltip.page.planet_stats=行星状态
 gui.tooltip.button.refresh=刷新列表
 gui.tooltip.button.request=发送请求
 gui.tooltip.matter=物质
 gui.tooltip.matter.none=无
 gui.tooltip.energy.io=输入/输出
 gui.tooltip.requires=需要
-gui.tooltip.scout_button=派遣侦察飞船，搜寻行星并开始修建
 gui.tooltip.slot.bionic.head=头部
-gui.tooltip.slot.bionic.arms=双臂
+gui.tooltip.slot.bionic.arms=手臂
 gui.tooltip.slot.bionic.legs=双腿
 gui.tooltip.slot.bionic.chest=躯干
 gui.tooltip.slot.bionic.other=特殊
@@ -592,7 +556,6 @@ config.matter_registry.item_blacklist.name=黑名单
 config.spawn_ores.name=矿物生成
 config.client.name=客户端选项
 config.server.name=服务器选项
-config.starmap.name=星图选项
 config.ore_gen_blacklist.name=矿物黑名单
 config.abilities.name=机械人能力
 config.entities.name=生物
@@ -616,8 +579,6 @@ alert.not_android=检测到生物实体！拒绝访问！
 alert.no_rights.break=只有拥有者可以破坏 $0
 alert.no_rights.dismantle=只有拥有者可以拆除 $0
 alert.new_update=有新版本可用！
-alert.starmap.ship_arrive=§3%1$s &r 已经到达 §3%1$s！
-alert.starmap.on_build=§3%1$s §r 已在 §3%2$s§r 建立！
 
 #############################################################################################################
 # Enchantments
