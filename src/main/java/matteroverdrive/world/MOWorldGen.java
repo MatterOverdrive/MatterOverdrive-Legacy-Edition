@@ -62,23 +62,27 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     boolean generateAnomalies;
     boolean generateBuildings = true;
 
-    public MOWorldGen(ConfigurationHandler configurationHandler) {
+    public MOWorldGen() {
         oreRandom = new Random();
         anomaliesRandom = new Random();
         buildingsRandom = new Random();
         buildings = new ArrayList<>();
         worldGenBuildingQueue = new ArrayDeque<>();
 
+        oreDimentionsBlacklist = new HashSet<>();
+    }
+
+    public void init(ConfigurationHandler configurationHandler) {
         tritaniumGen = new WorldGenMinable(MatterOverdrive.BLOCKS.tritaniumOre.getDefaultState(), TRITANIUM_VEIN_SIZE);
         dilithiumGen = new WorldGenMinable(MatterOverdrive.BLOCKS.dilithium_ore.getDefaultState(), DILITHIUM_VEIN_SIZE);
+
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOAndroidHouseBuilding("android_house"), 40));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOSandPit("sand_pit_house", 3), 100));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenCrashedSpaceShip("crashed_ship"), 75));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenUnderwaterBase("underwater_base"), 30));
         buildings.add(new WeightedRandomMOWorldGenBuilding(new MOWorldGenCargoShip("cargo_ship"), 5));
-        anomalyGen = new WorldGenGravitationalAnomaly("gravitational_anomaly", 0.05f, 2048, 2048 + 8192);
-        oreDimentionsBlacklist = new HashSet<>();
 
+        anomalyGen = new WorldGenGravitationalAnomaly("gravitational_anomaly", 0.05f, 2048, 2048 + 8192);
         configurationHandler.subscribe(anomalyGen);
     }
 
