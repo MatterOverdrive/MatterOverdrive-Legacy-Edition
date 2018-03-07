@@ -1,0 +1,25 @@
+pulls:
+  daysUntilStale: 20
+  daysUntilClose: 7
+  exemptLabels:
+    - assigned
+  markComment: >
+    This pull request has been automatically marked as stale because it has not had recent
+    activity, and will be closed if no further activity occurs.
+  closeComment: >
+    This pull request has been automatically closed because it has not had
+    recent activity.
+issues:
+  daysUntilStale: 20
+  daysUntilClose: 7
+  exemptLabels:
+    - bug
+    - confirmed
+    - feature
+  markComment: >
+    This issue has been automatically marked as stale because it has not had recent
+    activity.
+  closeComment: >
+    This issue has been automatically closed because it has not had
+    recent activity.
+staleLabel: stale

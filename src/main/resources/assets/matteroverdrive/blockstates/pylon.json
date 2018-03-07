@@ -13,6 +13,19 @@
     "normal": {
       "model": "matteroverdrive:pylon.obj"
     },
+    "ctm": {
+      "true": {
+        "submodel": {
+          "ctm": {
+            "custom": {
+              "flip-v": true
+            },
+            "model": "matteroverdrive:pylon_overlay.obj"
+          }
+        }
+      },
+      "false":{}
+    },
     "type":{
       "normal": {
         "model": "cube_all",

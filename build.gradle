@@ -3,10 +3,14 @@ buildscript {
         jcenter()
         mavenCentral()
         maven { url = "http://files.minecraftforge.net/maven" }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'com.selesse:gradle-git-changelog:0.2.+'
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.10"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -26,7 +30,7 @@ changelog {
 
     outputDirectory = file("$projectDir")
 
-    since = 'last_tag'
+    since = 'beginning'
 
     commitFormat = '%s (%an)'
 
@@ -75,6 +79,7 @@ repositories {
 }
 
 dependencies {
+    provided "team.chisel.ctm:CTM:MC1.12-0.2.3.12"
     deobfProvided "mezz.jei:jei_1.12.2:4.8.5.138:api"
     runtime "mezz.jei:jei_1.12.2:4.8.5.138"
 
@@ -84,19 +89,14 @@ dependencies {
 }
 
 processResources {
-    // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
-    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
 
-        // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-
-    // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
@@ -111,19 +111,35 @@ jar {
 }
 
 task deobfJar(type: Jar) {
-    from(sourceSets.main.output) {
-        classifier = "deobf"
+    from(sourceSets.main.java.srcDirs) {
+        include '*'
     }
+    from(sourceSets.main.resources.srcDirs) {
+        include '*'
+    }
+    from(sourceSets.main.output) {
+        exclude '*'
+    }
+    classifier = "deobf"
+}
+
+task apiJar(type: Jar) {
+    from(sourceSets.main.output) {
+        include 'matteroverdrive/api/*'
+    }
+    classifier = "api"
 }
 
 artifacts {
     archives deobfJar
+    archives apiJar
 }
 
 task("uploadCurse") {
     description = "upload build to curse"
 
 }
+
 task("uploadJars") {
     description = "uploads JARs"
     if (System.getenv("local_maven") != null) {

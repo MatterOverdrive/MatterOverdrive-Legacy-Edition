@@ -30,7 +30,6 @@ import matteroverdrive.items.food.MOItemFood;
 import matteroverdrive.items.food.RomulanAle;
 import matteroverdrive.items.includes.MOBaseItem;
 import matteroverdrive.items.includes.MOItemOre;
-import matteroverdrive.items.starmap.*;
 import matteroverdrive.items.tools.*;
 import matteroverdrive.items.weapon.*;
 import matteroverdrive.items.weapon.module.*;
@@ -113,16 +112,6 @@ public class MatterOverdriveItems {
     public TritaniumArmor tritaniumChestplate;
     public TritaniumArmor tritaniumLeggings;
     public TritaniumArmor tritaniumBoots;
-
-    //	Ships & Buildings
-    public ShipFactory shipFactory;
-    public ItemScoutShip scoutShip;
-    public ItemColonizerShip colonizerShip;
-    public ItemBuildingBase buildingBase;
-    public ItemBuildingResidential buildingResidential;
-    public ItemBuildingMatterExtractor buildingMatterExtractor;
-    public ItemBuildingShipHangar buildingShipHangar;
-    public ItemBuildingPowerGenerator buildingPowerGenerator;
 
     //	Android
     public RougeAndroidParts androidParts;
@@ -220,16 +209,6 @@ public class MatterOverdriveItems {
         tritaniumLeggings = register(new TritaniumArmor("tritanium_leggings", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.LEGS));
         tritaniumBoots = register(new TritaniumArmor("tritanium_boots", ARMOR_MATERIAL_TRITANIUM, 2, EntityEquipmentSlot.FEET));
 
-//		Ships & Buildings
-        shipFactory = register(new ShipFactory("ship_factory"));
-        scoutShip = register(new ItemScoutShip("scout_ship"));
-        colonizerShip = register(new ItemColonizerShip("ship_colonizer"));
-        buildingBase = register(new ItemBuildingBase("building_base"));
-        buildingResidential = register(new ItemBuildingResidential("building_residential"));
-        buildingMatterExtractor = register(new ItemBuildingMatterExtractor("building_matter_extractor"));
-        buildingShipHangar = register(new ItemBuildingShipHangar("building_ship_hangar"));
-        buildingPowerGenerator = register(new ItemBuildingPowerGenerator("building_power_generator"));
-
 //		Android
         androidParts = register(new RougeAndroidParts("rogue_android_part"));
         tritaniumSpine = register(new TritaniumSpine("tritainum_spine"));
@@ -270,7 +249,6 @@ public class MatterOverdriveItems {
 
     public void addToDungons() {
         weapon_module_color.addToDunguns();
-        androidPill.addToDunguns();
 //		addToDungons(emergency_ration, 1, 8, 6);
 //		addToDungons(earl_gray_tea, 1, 2, 2);
 //		addToDungons(romulan_ale, 1, 2, 2);
@@ -280,7 +258,7 @@ public class MatterOverdriveItems {
     }
 
     public void addToMODungons() {
-        // TODO: 3/25/2016 Find how to add to dungon chests
+        // TODO: Add to dungeon loot
 		/*ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(emergency_ration),8,20,100));
 		ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(earl_gray_tea),4,10,50));
         ChestGenHooks.getInfo(Reference.CHEST_GEN_ANDROID_HOUSE).addItem(new WeightedRandomChestContent(new ItemStack(romulan_ale),4,10,50));

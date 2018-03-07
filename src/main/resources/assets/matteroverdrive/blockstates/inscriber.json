@@ -13,6 +13,19 @@
     "normal": {
       "model": "matteroverdrive:inscriber.obj"
     },
+    "ctm": {
+      "true": {
+        "submodel": {
+          "ctm": {
+            "custom": {
+              "flip-v": true
+            },
+            "model": "matteroverdrive:inscriber_overlay.obj"
+          }
+        }
+      },
+      "false":{}
+    },
     "facing":{
       "north":{
         "transform": {

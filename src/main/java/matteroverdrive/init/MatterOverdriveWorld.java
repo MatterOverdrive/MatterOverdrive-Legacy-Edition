@@ -33,19 +33,20 @@ public class MatterOverdriveWorld {
     private final DimensionalRifts dimensionalRifts;
 
     public MatterOverdriveWorld(ConfigurationHandler configurationHandler) {
-        worldGen = new MOWorldGen(configurationHandler);
+        worldGen = new MOWorldGen();
         dimensionalRifts = new DimensionalRifts(1);
         configurationHandler.subscribe(worldGen);
     }
 
-    public void onWorldTick(TickEvent.WorldTickEvent event) {
-        if (event.side.equals(Side.SERVER)) {
-            worldGen.manageBuildingGeneration(event);
-        }
+    public void init(ConfigurationHandler configurationHandler) {
+        worldGen.init(configurationHandler);
+        GameRegistry.registerWorldGenerator(worldGen, 0);
     }
 
-    public void register() {
-        GameRegistry.registerWorldGenerator(worldGen, 0);
+    public void onWorldTick(TickEvent.WorldTickEvent event) {
+        if (event.side.equals(Side.SERVER)) {
+            worldGen.manageBuildingGeneration();
+        }
     }
 
     public DimensionalRifts getDimensionalRifts() {

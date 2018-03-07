@@ -21,10 +21,16 @@ package matteroverdrive.blocks;
 import matteroverdrive.blocks.includes.MOBlockMachine;
 import matteroverdrive.tile.TileEntityInscriber;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
 
 import javax.annotation.Nonnull;
 
@@ -32,6 +38,8 @@ import javax.annotation.Nonnull;
  * Created by Simeon on 11/9/2015.
  */
 public class BlockInscriber extends MOBlockMachine<TileEntityInscriber> {
+    public static final PropertyBool CTM = PropertyBool.create("ctm");
+
     public BlockInscriber(Material material, String name) {
         super(material, name);
         setHardness(20.0F);
@@ -41,6 +49,23 @@ public class BlockInscriber extends MOBlockMachine<TileEntityInscriber> {
         setHasRotation();
         setBoundingBox(new AxisAlignedBB(0, 0, 0, 1, 12 / 16d, 1));
     }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return super.getActualState(state, worldIn, pos).withProperty(CTM, Loader.isModLoaded("ctm"));
+    }
+
+    @Override
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    @Nonnull
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, PROPERTY_DIRECTION, CTM);
+    }
+
 
     @Override
     public Class<TileEntityInscriber> getTileEntityClass() {

@@ -44,6 +44,8 @@ public class TileEntityRendererFusionReactorController extends TileEntitySpecial
 
     @Override
     public void render(TileEntityMachineFusionReactorController controller, double x, double y, double z, float ticks, int destoryStage, float a) {
+        if (!controller.shouldRender())
+            return;
         if (!controller.isValidStructure()) {
             GlStateManager.pushMatrix();
             GlStateManager.translate(x, y, z);

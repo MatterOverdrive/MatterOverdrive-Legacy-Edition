@@ -29,7 +29,6 @@ import matteroverdrive.api.android.IBioticStat;
 import matteroverdrive.api.inventory.IBionicPart;
 import matteroverdrive.api.renderer.IBionicPartRenderer;
 import matteroverdrive.api.renderer.IBioticStatRenderer;
-import matteroverdrive.api.starmap.IStarmapRenderRegistry;
 import matteroverdrive.blocks.BlockDecorativeColored;
 import matteroverdrive.client.model.ModelTritaniumArmor;
 import matteroverdrive.client.render.*;
@@ -37,7 +36,6 @@ import matteroverdrive.client.render.biostat.BioticStatRendererShield;
 import matteroverdrive.client.render.biostat.BioticStatRendererTeleporter;
 import matteroverdrive.client.render.entity.*;
 import matteroverdrive.client.render.tileentity.*;
-import matteroverdrive.client.render.tileentity.starmap.*;
 import matteroverdrive.client.render.weapons.*;
 import matteroverdrive.client.render.weapons.layers.WeaponLayerAmmoRender;
 import matteroverdrive.client.render.weapons.modules.ModuleHoloSightsRender;
@@ -60,13 +58,8 @@ import matteroverdrive.machines.fusionReactorController.TileEntityMachineFusionR
 import matteroverdrive.machines.pattern_monitor.TileEntityMachinePatternMonitor;
 import matteroverdrive.machines.pattern_storage.TileEntityMachinePatternStorage;
 import matteroverdrive.machines.replicator.TileEntityMachineReplicator;
-import matteroverdrive.starmap.data.Galaxy;
-import matteroverdrive.starmap.data.Planet;
-import matteroverdrive.starmap.data.Quadrant;
-import matteroverdrive.starmap.data.Star;
 import matteroverdrive.tile.*;
 import matteroverdrive.util.MOLog;
-import matteroverdrive.world.dimensions.alien.AlienColorsReloadListener;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
@@ -78,7 +71,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
@@ -130,7 +122,6 @@ public class RenderHandler {
     private final WeaponLayerAmmoRender weaponLayerAmmoRender = new WeaponLayerAmmoRender();
     //endregion
     //region World
-    private final AlienColorsReloadListener alienColorsReloadListener = new AlienColorsReloadListener();
     public EntityRendererRougeAndroid rendererRougeAndroidHologram;
     //endregion
     //region Models
@@ -144,13 +135,11 @@ public class RenderHandler {
     private RenderWeaponsBeam renderWeaponsBeam;
     private List<IWorldLastRenderer> customRenderers;
     private AndroidStatRenderRegistry statRenderRegistry;
-    private StarmapRenderRegistry starmapRenderRegistry;
     private RenderDialogSystem renderDialogSystem;
     private AndroidBionicPartRenderRegistry bionicPartRenderRegistry;
     private WeaponModuleModelRegistry weaponModuleModelRegistry;
     private PipeRenderManager pipeRenderManager;
     private DimensionalRiftsRender dimensionalRiftsRender;
-    private SpaceSkyRenderer spaceSkyRenderer;
     private WeaponRenderHandler weaponRenderHandler;
     //region Weapon Module Renderers
     private ModuleSniperScopeRender moduleSniperScopeRender;
@@ -159,13 +148,6 @@ public class RenderHandler {
     //region Biostat Renderers
     private BioticStatRendererTeleporter rendererTeleporter;
     private BioticStatRendererShield biostatRendererShield;
-    //endregion
-    //region Starmap Renderers
-    private StarMapRendererPlanet starMapRendererPlanet;
-    private StarMapRendererQuadrant starMapRendererQuadrant;
-    private StarMapRendererStar starMapRendererStar;
-    private StarMapRenderGalaxy starMapRenderGalaxy;
-    private StarMapRenderPlanetStats starMapRenderPlanetStats;
     //endregion
     //region Tile Entity Renderers
     private TileEntityRendererReplicator tileEntityRendererReplicator;
@@ -179,7 +161,6 @@ public class RenderHandler {
     private TileEntityRendererGravitationalStabilizer tileEntityRendererGravitationalStabilizer;
     private TileEntityRendererFusionReactorController tileEntityRendererFusionReactorController;
     private TileEntityRendererAndroidStation tileEntityRendererAndroidStation;
-    private TileEntityRendererStarMap tileEntityRendererStarMap;
     private TileEntityRendererChargingStation tileEntityRendererChargingStation;
     private TileEntityRendererHoloSign tileEntityRendererHoloSign;
     private TileEntityRendererPacketQueue tileEntityRendererPacketQueue;
@@ -200,13 +181,11 @@ public class RenderHandler {
         renderParticlesHandler = new RenderParticlesHandler(world, textureManager);
         renderWeaponsBeam = new RenderWeaponsBeam();
         statRenderRegistry = new AndroidStatRenderRegistry();
-        starmapRenderRegistry = new StarmapRenderRegistry();
         renderDialogSystem = new RenderDialogSystem();
         bionicPartRenderRegistry = new AndroidBionicPartRenderRegistry();
         weaponModuleModelRegistry = new WeaponModuleModelRegistry();
         pipeRenderManager = new PipeRenderManager();
         dimensionalRiftsRender = new DimensionalRiftsRender();
-        spaceSkyRenderer = new SpaceSkyRenderer();
 
 
         addCustomRenderer(matterScannerInfoHandler);
@@ -217,7 +196,6 @@ public class RenderHandler {
 
         MinecraftForge.EVENT_BUS.register(pipeRenderManager);
         MinecraftForge.EVENT_BUS.register(weaponRenderHandler);
-        ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(alienColorsReloadListener);
         if (Minecraft.getMinecraft().getFramebuffer().enableStencil()) {
             stencilBuffer = MinecraftForgeClient.reserveStencilBit();
         }
@@ -270,7 +248,6 @@ public class RenderHandler {
         tileEntityRendererGravitationalStabilizer = new TileEntityRendererGravitationalStabilizer();
         tileEntityRendererFusionReactorController = new TileEntityRendererFusionReactorController();
         tileEntityRendererAndroidStation = new TileEntityRendererAndroidStation();
-        tileEntityRendererStarMap = new TileEntityRendererStarMap();
         tileEntityRendererChargingStation = new TileEntityRendererChargingStation();
         tileEntityRendererHoloSign = new TileEntityRendererHoloSign();
         tileEntityRendererPacketQueue = new TileEntityRendererPacketQueue();
@@ -344,7 +321,6 @@ public class RenderHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineGravitationalStabilizer.class, tileEntityRendererGravitationalStabilizer);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineFusionReactorController.class, tileEntityRendererFusionReactorController);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAndroidStation.class, tileEntityRendererAndroidStation);
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineStarMap.class, tileEntityRendererStarMap);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineChargingStation.class, tileEntityRendererChargingStation);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHoloSign.class, tileEntityRendererHoloSign);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachinePacketQueue.class, tileEntityRendererPacketQueue);
@@ -353,7 +329,7 @@ public class RenderHandler {
     }
 
     public void registerBlockColors() {
-        FMLClientHandler.instance().getClient().getBlockColors().registerBlockColorHandler((state, p_186720_2_, pos, tintIndex) -> {
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, p_186720_2_, pos, tintIndex) -> {
             EnumDyeColor color = state.getValue(BlockDecorativeColored.COLOR);
             return ItemDye.DYE_COLORS[MathHelper.clamp(color.getMetadata(), 0, ItemDye.DYE_COLORS.length - 1)];
         }, MatterOverdrive.BLOCKS.decorative_tritanium_plate_colored);
@@ -489,22 +465,6 @@ public class RenderHandler {
 
     }
 
-    public void createStarmapRenderers() {
-        starMapRendererPlanet = new StarMapRendererPlanet();
-        starMapRendererQuadrant = new StarMapRendererQuadrant();
-        starMapRendererStar = new StarMapRendererStar();
-        starMapRenderGalaxy = new StarMapRenderGalaxy();
-        starMapRenderPlanetStats = new StarMapRenderPlanetStats();
-    }
-
-    public void registerStarmapRenderers() {
-        starmapRenderRegistry.registerRenderer(Planet.class, starMapRendererPlanet);
-        starmapRenderRegistry.registerRenderer(Quadrant.class, starMapRendererQuadrant);
-        starmapRenderRegistry.registerRenderer(Star.class, starMapRendererStar);
-        starmapRenderRegistry.registerRenderer(Galaxy.class, starMapRenderGalaxy);
-        starmapRenderRegistry.registerRenderer(Planet.class, starMapRenderPlanetStats);
-    }
-
     public void createModels() {
         modelTritaniumArmor = new ModelTritaniumArmor(0);
         modelTritaniumArmorFeet = new ModelTritaniumArmor(0.5f);
@@ -528,16 +488,8 @@ public class RenderHandler {
         return renderParticlesHandler;
     }
 
-    public TileEntityRendererStarMap getTileEntityRendererStarMap() {
-        return tileEntityRendererStarMap;
-    }
-
     public IAndroidStatRenderRegistry getStatRenderRegistry() {
         return statRenderRegistry;
-    }
-
-    public IStarmapRenderRegistry getStarmapRenderRegistry() {
-        return starmapRenderRegistry;
     }
 
     public ItemRendererOmniTool getRendererOmniTool() {
@@ -558,10 +510,6 @@ public class RenderHandler {
 
     public void addCustomRenderer(IWorldLastRenderer renderer) {
         customRenderers.add(renderer);
-    }
-
-    public SpaceSkyRenderer getSpaceSkyRenderer() {
-        return spaceSkyRenderer;
     }
 
     public WeaponRenderHandler getWeaponRenderHandler() {

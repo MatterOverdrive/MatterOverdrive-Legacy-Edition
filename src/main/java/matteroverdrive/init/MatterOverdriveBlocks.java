@@ -18,10 +18,10 @@
 
 package matteroverdrive.init;
 
+import com.astro.clib.api.registration.IItemBlockFactory;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.blocks.*;
-import matteroverdrive.blocks.alien.*;
 import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.blocks.includes.MOBlockMachine;
 import matteroverdrive.blocks.includes.MOBlockOre;
@@ -30,9 +30,9 @@ import matteroverdrive.items.includes.MOMachineBlockItem;
 import matteroverdrive.util.IConfigSubscriber;
 import matteroverdrive.util.MOLog;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemColored;
@@ -62,7 +62,7 @@ public class MatterOverdriveBlocks {
     public BlockDecomposer decomposer;
     public BlockMatterRecycler recycler;
     public BlockReplicator replicator;
-    public BlockMatterPipe matter_pipe;
+    public matteroverdrive.blocks.pipe.BlockMatterPipe matter_pipe;
     public BlockMatterPipe heavy_matter_pipe;
     public BlockNetworkPipe network_pipe;
     public BlockNetworkRouter network_router;
@@ -83,7 +83,7 @@ public class MatterOverdriveBlocks {
     public BlockFluidClassic blockMoltenTritanium;
     //	Storage
     public BlockTritaniumCrate tritaniumCrate;
-    public BlockTritaniumCrate tritaniumCrateYellow;
+    public BlockTritaniumCrate[] tritaniumCrateColored;
     //	Machines
     public BlockInscriber inscriber;
     public BlockContractMarket contractMarket;
@@ -92,7 +92,6 @@ public class MatterOverdriveBlocks {
     public BlockPylon pylon;
     //	Misc
     public BlockTransporter transporter;
-    public BlockStarMap starMap;
     public BlockHoloSign holoSign;
     public BlockWeaponStation weapon_station;
     public BlockAndroidStation androidStation;
@@ -118,14 +117,7 @@ public class MatterOverdriveBlocks {
     public BlockDecorative decorative_tritanium_lamp;
     public BlockDecorative decorative_tritanium_plate_colored;
     public BlockDecorative decorative_engine_exhaust_plasma;
-    //	Alien world
-    public BlockTallGrassAlien alienTallGrass;
-    public BlockFlowerAlien alienFlower;
-    public BlockLogAlien alienLog;
-    public BlockLeavesAlien alienLeaves;
-    public BlockFalling alienSand;
-    public BlockFalling alienGravel;
-    public BlockStoneAlien alienStone;
+    public BlockIndustrialGlass industrialGlass;
     //	Internal
     public BlockBoundingBox boundingBox;
     private int registeredCount = 0;
@@ -158,7 +150,7 @@ public class MatterOverdriveBlocks {
         decomposer = register(new BlockDecomposer(TRITANIUM, "decomposer"));
         recycler = register(new BlockMatterRecycler(TRITANIUM, "matter_recycler"));
         replicator = register(new BlockReplicator(TRITANIUM, "replicator"));
-        matter_pipe = register(new BlockMatterPipe(TRITANIUM, "matter_pipe"));
+        matter_pipe = register(new matteroverdrive.blocks.pipe.BlockMatterPipe(TRITANIUM, "matter_pipe"));
         heavy_matter_pipe = register(new BlockHeavyMatterPipe(TRITANIUM, "heavy_matter_pipe"));
         network_pipe = register(new BlockNetworkPipe(TRITANIUM, "network_pipe"));
         network_router = register(new BlockNetworkRouter(TRITANIUM, "network_router"));
@@ -183,7 +175,10 @@ public class MatterOverdriveBlocks {
 
 //		Storage
         tritaniumCrate = register(new BlockTritaniumCrate(TRITANIUM, "tritanium_crate"));
-        tritaniumCrateYellow = register(new BlockTritaniumCrate(TRITANIUM, "tritanium_crate_yellow"));
+        EnumDyeColor[] colors = EnumDyeColor.values();
+        tritaniumCrateColored = new BlockTritaniumCrate[colors.length];
+        for (EnumDyeColor color : colors)
+            tritaniumCrateColored[color.getMetadata()] = register(new BlockTritaniumCrate(TRITANIUM, "tritanium_crate_" + color.getName()));
 
 //		Machines
         inscriber = register(new BlockInscriber(TRITANIUM, "inscriber"));
@@ -194,7 +189,6 @@ public class MatterOverdriveBlocks {
 
 //		Misc
         transporter = register(new BlockTransporter(TRITANIUM, "transporter"));
-        starMap = register(new BlockStarMap(TRITANIUM, "star_map"));
         holoSign = register(new BlockHoloSign(TRITANIUM, "holo_sign"));
         weapon_station = register(new BlockWeaponStation(TRITANIUM, "weapon_station"));
         androidStation = register(new BlockAndroidStation(TRITANIUM, "android_station"));
@@ -224,20 +218,7 @@ public class MatterOverdriveBlocks {
         decorative_tritanium_plate_colored = register(new BlockDecorativeColored(TRITANIUM, "decorative.tritanium_plate_colored", 10, 1, 10, 0x505050));
         decorative_engine_exhaust_plasma = register(new BlockDecorative(Material.CACTUS, "decorative.engine_exhaust_plasma", 1, 1, 1, 0x387c9e));
         decorative_engine_exhaust_plasma.setLightLevel(1);
-
-//		Alien world
-        alienTallGrass = register(new BlockTallGrassAlien("alien_tall_grass"));
-        alienTallGrass.setHardness(0);
-        alienFlower = register(new BlockFlowerAlien("alien_flower"));
-        alienFlower.setHardness(0);
-        alienLog = register(new BlockLogAlien("alien_log"));
-        alienLeaves = register(new BlockLeavesAlien("alien_leaves"));
-        alienSand = register((BlockFalling) new BlockFalling(Material.SAND).setRegistryName(new ResourceLocation(Reference.MOD_ID, "alien_sand")));
-        alienSand.setHardness(1).setUnlocalizedName("alien_sand").setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_DECORATIVE);
-        alienGravel = register((BlockFalling) new BlockFalling(Material.SAND).setRegistryName(new ResourceLocation(Reference.MOD_ID, "alien_gravel")));
-        alienGravel.setHardness(1).setUnlocalizedName("alien_gravel").setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_DECORATIVE);
-        alienStone = register(new BlockStoneAlien("alien_stone", Material.ROCK));
-        alienStone.setHardness(1.5f).setResistance(10.0f).setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_DECORATIVE);
+        industrialGlass = register(new BlockIndustrialGlass(Material.GLASS, "industrial_glass"));
 
 //		Internal
         boundingBox = register(new BlockBoundingBox("bounding_box"));
@@ -249,8 +230,9 @@ public class MatterOverdriveBlocks {
 
     protected <T extends Block> T register(T block) {
         ItemBlock itemBlock;
-
-        if (block instanceof MOBlockMachine) {
+        if (block instanceof IItemBlockFactory) {
+            itemBlock = ((IItemBlockFactory) block).createItemBlock();
+        } else if (block instanceof MOBlockMachine) {
             itemBlock = new MOMachineBlockItem(block);
         } else if (block instanceof BlockDecorativeColored) {
             itemBlock = new ItemColored(block, false);

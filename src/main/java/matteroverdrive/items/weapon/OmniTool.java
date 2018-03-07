@@ -30,7 +30,6 @@ import matteroverdrive.init.MatterOverdriveSounds;
 import matteroverdrive.items.weapon.module.WeaponModuleBarrel;
 import matteroverdrive.network.packet.server.PacketDigBlock;
 import matteroverdrive.proxy.ClientProxy;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
@@ -123,9 +122,9 @@ public class OmniTool extends EnergyWeapon {
 
                 if (hit != null && hit.typeOfHit == RayTraceResult.Type.BLOCK) {
                     IBlockState state = player.world.getBlockState(hit.getBlockPos());
-                    boolean canMine = state.getBlock().canHarvestBlock(player.world, hit.getBlockPos(), (EntityPlayer) player) && ((EntityPlayer) player).capabilities.allowEdit;
+                    boolean canMine = ((EntityPlayer) player).capabilities.allowEdit;
 
-                    if (!state.getBlock().isAir(state,player.world,hit.getBlockPos()) && canMine) {
+                    if (!state.getBlock().isAir(state, player.world, hit.getBlockPos()) && canMine) {
 
                         ++STEP_SOUND_COUNTER;
                         LAST_SIDE = hit.sideHit;
@@ -250,7 +249,7 @@ public class OmniTool extends EnergyWeapon {
 
     @Override
     public boolean canFire(ItemStack itemStack, World world, EntityLivingBase shooter) {
-        return !isOverheated(itemStack) && DrainEnergy(itemStack, getShootCooldown(itemStack), true);
+        return !isOverheated(itemStack) && DrainEnergy(itemStack, getShootCooldown(itemStack), true) && !isEntitySpectator(shooter);
     }
 
     @Override

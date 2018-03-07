@@ -25,7 +25,10 @@ import org.apache.logging.log4j.Logger;
 /**
  * Created by Simeon on 8/11/2015.
  */
-public class MOLog {
+public final class MOLog {
+    private MOLog() {
+    }
+
     private static Logger logger = LogManager.getLogger("MatterOverdrive");
 
     public static void log(Level level, String format, Object... data) {

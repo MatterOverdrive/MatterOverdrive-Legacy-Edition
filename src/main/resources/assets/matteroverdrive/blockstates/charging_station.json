@@ -6,7 +6,6 @@
       "flip-v": true
     },
     "textures": {
-
     }
   },
   "variants": {
@@ -34,6 +33,19 @@
           "translation": [0.5, 0, -0.5]
         }
       }
+    },
+    "ctm": {
+      "true": {
+        "submodel": {
+          "ctm": {
+            "custom": {
+              "flip-v": true
+            },
+            "model": "matteroverdrive:charging_station_overlay.obj"
+          }
+        }
+      },
+      "false":{}
     },
     "inventory": [{
       "transform": {

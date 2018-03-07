@@ -95,6 +95,11 @@ public class TileEntityMachineReplicator extends MOTileEntityMachineMatter imple
         playerSlotsHotbar = true;
     }
 
+    @Override
+    public BlockPos getPosition() {
+        return getPos();
+    }
+
     protected void RegisterSlots(Inventory inventory) {
         OUTPUT_SLOT_ID = inventory.AddSlot(new RemoveOnlySlot(false).setSendToClient(true));
         SECOND_OUTPUT_SLOT_ID = inventory.AddSlot(new RemoveOnlySlot(false));
@@ -231,7 +236,6 @@ public class TileEntityMachineReplicator extends MOTileEntityMachineMatter imple
 
                 PotionEffect[] effects = new PotionEffect[3];
                 //confusion
-                //todo: decide whether to remove or not
                 effects[0] = new PotionEffect(MobEffects.NAUSEA, (int) Math.round(Math.pow(5, distance)), 0);
                 //weakness
                 effects[0] = new PotionEffect(MobEffects.WEAKNESS, (int) Math.round(Math.pow(10, distance)), 0);

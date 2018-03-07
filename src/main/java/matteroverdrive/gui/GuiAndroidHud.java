@@ -41,7 +41,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.shader.ShaderGroup;
@@ -137,7 +136,7 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
 
         AndroidPlayer android = MOPlayerCapabilityProvider.GetAndroidCapability(mc.player);
 
-        if ((mc.currentScreen instanceof GuiDialog || mc.currentScreen instanceof GuiStarMap) && !event.getType().equals(RenderGameOverlayEvent.ElementType.ALL) && event.isCancelable()) {
+        if ((mc.currentScreen instanceof GuiDialog) && !event.getType().equals(RenderGameOverlayEvent.ElementType.ALL) && event.isCancelable()) {
             event.setCanceled(true);
             return;
         }

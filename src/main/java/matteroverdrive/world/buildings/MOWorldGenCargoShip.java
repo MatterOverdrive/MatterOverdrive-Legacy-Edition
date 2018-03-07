@@ -26,6 +26,7 @@ import matteroverdrive.data.quest.logic.QuestLogicBlockInteract;
 import matteroverdrive.tile.TileEntityTritaniumCrate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -47,12 +48,12 @@ public class MOWorldGenCargoShip extends MOWorldGenBuilding<MOWorldGenCargoShip.
         }
         addMapping(0xdb9c3a, MatterOverdrive.BLOCKS.holoSign);
         addMapping(0x5fffbe, MatterOverdrive.BLOCKS.transporter);
-        //addMapping(0xd2fb50, MatterOverdrive.BLOCKS.forceGlass);
+        addMapping(0xd2fb50, MatterOverdrive.BLOCKS.industrialGlass);
         addMapping(0xdc01d8, Blocks.WOODEN_PRESSURE_PLATE);
         addMapping(0xfc6b34, new BlockMapping(true, Blocks.GOLD_ORE, Blocks.IRON_ORE, Blocks.COAL_ORE, MatterOverdrive.BLOCKS.tritaniumOre));
         addMapping(0xd1626, MatterOverdrive.BLOCKS.fusionReactorIO);
         addMapping(0x1b2ff7, MatterOverdrive.BLOCKS.network_pipe);
-        addMapping(0x1f2312, MatterOverdrive.BLOCKS.tritaniumCrate);
+        addMapping(0x1f2312, MatterOverdrive.BLOCKS.tritaniumCrateColored[EnumDyeColor.LIME.getMetadata()]);
         addMapping(0xab4824, Blocks.OAK_FENCE);
         addMapping(0x68d738, Blocks.CARPET);
         addMapping(0xbdea8f, Blocks.LADDER);
@@ -63,7 +64,7 @@ public class MOWorldGenCargoShip extends MOWorldGenBuilding<MOWorldGenCargoShip.
         addMapping(0x4d8dd3, MatterOverdrive.BLOCKS.pattern_monitor);
         addMapping(0x6b3534, Blocks.BED);
         addMapping(0xff00ff, Blocks.AIR);
-        addMapping(0x69960c, MatterOverdrive.BLOCKS.tritaniumCrate);
+        addMapping(0x69960c, MatterOverdrive.BLOCKS.tritaniumCrateColored[EnumDyeColor.RED.getMetadata()]);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class PacketSyncTaskQueue extends TileEntityUpdatePacket {
     }
 
     public PacketSyncTaskQueue(IMatterNetworkDispatcher dispatcher, int taskQueue) {
-        super(dispatcher.getPos());
+        super(dispatcher.getPosition());
         this.taskQueue = dispatcher.getTaskQueue(taskQueue);
         this.queueID = taskQueue;
     }

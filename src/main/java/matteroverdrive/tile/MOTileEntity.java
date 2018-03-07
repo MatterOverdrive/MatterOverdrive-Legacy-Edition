@@ -54,6 +54,10 @@ public abstract class MOTileEntity extends TileEntity implements IMOTileEntity {
         readCustomNBT(nbt, MachineNBTCategory.ALL_OPTS);
     }
 
+    public boolean shouldRender() {
+        return world.getBlockState(getPos()).getBlock() == getBlockType();
+    }
+
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);

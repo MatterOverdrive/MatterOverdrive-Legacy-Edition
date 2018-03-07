@@ -107,7 +107,7 @@ public class PlasmaShotgun extends EnergyWeapon {
 
     @Override
     public boolean canFire(ItemStack itemStack, World world, EntityLivingBase shooter) {
-        return DrainEnergy(itemStack, getShootCooldown(itemStack), true) && !isOverheated(itemStack);
+        return DrainEnergy(itemStack, getShootCooldown(itemStack), true) && !isOverheated(itemStack) && !isEntitySpectator(shooter);
     }
 
     @Override

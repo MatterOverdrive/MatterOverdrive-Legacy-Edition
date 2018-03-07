@@ -47,7 +47,6 @@ public class ConfigurationHandler {
     public static final String CATEGORY_ABILITIES = "abilities";
     public static final String CATEGORY_CLIENT = "client";
     public static final String CATEGORY_ANDROID_HUD = CATEGORY_CLIENT + "." + "android_hud";
-    public static final String CATEGORY_STARMAP = "starmap";
     public static final String CATEGORY_SERVER = "server";
     public static final String CATEGORY_ENCHANTMENTS = "enchantments";
     public static final String CATEGORY_ENTITIES = "entities";
@@ -118,9 +117,6 @@ public class ConfigurationHandler {
         category = config.getCategory(CATEGORY_WORLD_GEN);
         category.setComment("World Generation options.");
         updateCategoryLang(category);
-        category = config.getCategory(CATEGORY_STARMAP);
-        category.setComment("Star Map Galaxy Options");
-        updateCategoryLang(category);
         category = config.getCategory(CATEGORY_ABILITIES);
         category.setComment("Android Player Abilities");
         updateCategoryLang(category);
@@ -128,9 +124,9 @@ public class ConfigurationHandler {
         category.setComment("Option for other mods");
         updateCategoryLang(category);
 
-        config.get(CATEGORY_WORLD_GEN, CATEGORY_WORLD_SPAWN_ORES, true, "Should ores such as dilithium and tritanium ore spawn in the world. This applies for all ores !").setLanguageKey("config." + CATEGORY_WORLD_SPAWN_ORES.replace(' ', '_') + ".name");
-        config.get(CATEGORY_WORLD_GEN, CATEGORY_WORLD_SPAWN + "." + MatterOverdrive.BLOCKS.dilithium_ore.getUnlocalizedName(), true).setLanguageKey(MatterOverdrive.BLOCKS.dilithium_ore.getUnlocalizedName() + ".name");
-        config.get(CATEGORY_WORLD_GEN, CATEGORY_WORLD_SPAWN + "." + MatterOverdrive.BLOCKS.tritaniumOre.getUnlocalizedName(), true).setLanguageKey(MatterOverdrive.BLOCKS.tritaniumOre.getUnlocalizedName() + ".name");
+        config.get(CATEGORY_WORLD_GEN, CATEGORY_WORLD_SPAWN_ORES, true, "Should ores such as dilithium and tritanium ore spawn in the world. This applies for all ores !").setLanguageKey(String.format("config.%s.name", CATEGORY_WORLD_SPAWN_ORES.replace(' ', '_')));
+        config.get(CATEGORY_WORLD_GEN, String.format("%s.%s", CATEGORY_WORLD_SPAWN, MatterOverdrive.BLOCKS.dilithium_ore.getUnlocalizedName()), true).setLanguageKey(String.format("%s.name", MatterOverdrive.BLOCKS.dilithium_ore.getUnlocalizedName()));
+        config.get(CATEGORY_WORLD_GEN, String.format("%s.%s", CATEGORY_WORLD_SPAWN, MatterOverdrive.BLOCKS.tritaniumOre.getUnlocalizedName()), true).setLanguageKey(String.format("%s.name", MatterOverdrive.BLOCKS.tritaniumOre.getUnlocalizedName()));
 
         config.getBoolean(KEY_AUTOMATIC_RECIPE_CALCULATION, CATEGORY_MATTER, true, "Shoud Matter be automaticly calculated from Recipes");
 
@@ -146,7 +142,7 @@ public class ConfigurationHandler {
     }
 
     private void updateCategoryLang(ConfigCategory category) {
-        category.setLanguageKey("config." + category.getName().replace(' ', '_') + ".name");
+        category.setLanguageKey(String.format("config.%s.name", category.getName().replace(' ', '_')));
     }
 
     public boolean getBool(String key, String category, Boolean def, String comment) {
@@ -182,35 +178,35 @@ public class ConfigurationHandler {
     public double getMachineDouble(String machine, String prop, double def, double min, double max, String comment) {
         Property p = config.get(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), prop, def);
         p.setComment(comment);
-        p.setLanguageKey(machine + ".config." + prop);
+        p.setLanguageKey(String.format("%s.config.%s", machine, prop));
         p.setMinValue(min);
         p.setMaxValue(max);
         return p.getDouble(def);
     }
 
     public double getMachineDouble(String machine, String prop, double def, String comment) {
-        Property p = config.get(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), prop, def);
+        Property p = config.get(String.format("%s.%s", CATEGORY_MACHINES, machine.replaceFirst("tile.", "")), prop, def);
         p.setComment(comment);
-        p.setLanguageKey(machine + ".config." + prop);
+        p.setLanguageKey(String.format("%s.config.%s", machine, prop));
         return p.getDouble(def);
     }
 
     public boolean getMachineBool(String machine, String prop, boolean def, String comment) {
-        Property p = config.get(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), prop, def);
+        Property p = config.get(String.format("%s.%s", CATEGORY_MACHINES, machine.replaceFirst("tile.", "")), prop, def);
         p.setComment(comment);
-        p.setLanguageKey(machine + ".config." + prop);
+        p.setLanguageKey(String.format("%s.config.%s", machine, prop));
         return p.getBoolean(def);
     }
 
     public int getMachineInt(String machine, String prop, int def, String comment) {
-        Property p = config.get(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), prop, def);
+        Property p = config.get(String.format("%s.%s", CATEGORY_MACHINES, machine.replaceFirst("tile.", "")), prop, def);
         p.setComment(comment);
-        p.setLanguageKey(machine + ".config." + prop);
+        p.setLanguageKey(String.format("%s.config.%s", machine, prop));
         return p.getInt(def);
     }
 
     public void initMachineCategory(String machine) {
-        config.setCategoryLanguageKey(CATEGORY_MACHINES + "." + machine.replaceFirst("tile.", ""), machine + ".name");
+        config.setCategoryLanguageKey(String.format("%s.%s", CATEGORY_MACHINES, machine.replaceFirst("tile.", "")), String.format("%s.name", machine));
     }
 
     public void save() {
@@ -243,7 +239,6 @@ public class ConfigurationHandler {
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_MATTER_NETWORK)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_MACHINES)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_MATTER)));
-        list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_STARMAP)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_ABILITIES)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_ENTITIES)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_DEBUG)));

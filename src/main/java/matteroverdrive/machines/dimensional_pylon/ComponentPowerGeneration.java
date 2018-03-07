@@ -114,16 +114,12 @@ public class ComponentPowerGeneration extends MachineComponentAbstract<TileEntit
                             }
                         }
                         if (entity instanceof EntityLivingBase) {
-                            // TODO: 3/25/2016 Find out how to access armor
-							/*hasFullIron = true;
-							for (ItemStack armor : entity.getArmorInventoryList())
-                            {
-                                ItemStack eqStack = ((EntityLivingBase)entity).getCurrentArmor(i);
-                                if (!isIronMaterial(eqStack))
-                                {
+                            hasFullIron = true;
+                            for (ItemStack armor : entity.getArmorInventoryList()) {
+                                if (!isIronMaterial(armor)) {
                                     hasFullIron = false;
                                 }
-                            }*/
+                            }
                         }
 
                         y = getPos().getY() + random.nextDouble() * 2;

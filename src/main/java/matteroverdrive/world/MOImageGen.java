@@ -18,6 +18,7 @@
 
 package matteroverdrive.world;
 
+import matteroverdrive.util.MOLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -242,7 +243,7 @@ public abstract class MOImageGen<T extends MOImageGen.ImageGenWorker> {
     }
 
     public void manageTextureLoading() {
-        if (layers == null || layers.size() == 0) {
+        if (layers == null || layers.isEmpty()) {
             loadTexture(getTexture());
         }
     }
@@ -262,7 +263,7 @@ public abstract class MOImageGen<T extends MOImageGen.ImageGenWorker> {
             }
             convertTo2DWithoutUsingGetRGB(image, layerWidth, layerHeight, textureWidth, layers);
         } catch (IOException e) {
-            e.printStackTrace();
+            MOLog.error(e.getMessage(),e);
         }
     }
 

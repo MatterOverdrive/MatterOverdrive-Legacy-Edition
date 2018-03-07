@@ -39,5 +39,5 @@ public interface IMatterNetworkDispatcher {
      */
     int getTaskQueueCount();
 
-    BlockPos getPos();
+    BlockPos getPosition();
 }

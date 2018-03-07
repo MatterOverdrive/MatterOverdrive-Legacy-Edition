@@ -29,9 +29,8 @@ public class MOBlockHelper {
     public static final int[][] SIDE__MOD = new int[][]{{0, -1, 0}, {0, 1, 0}, {0, 0, -1}, {0, 0, 1}, {-1, 0, 0}, {1, 0, 0}};
     public static final byte[] SIDE_LEFT = new byte[]{(byte) 4, (byte) 5, (byte) 5, (byte) 4, (byte) 2, (byte) 3};
     public static final byte[] SIDE_RIGHT = new byte[]{(byte) 5, (byte) 4, (byte) 4, (byte) 5, (byte) 3, (byte) 2};
-    public static final byte[] SIDE_OPPOSITE = new byte[]{(byte) 1, (byte) 0, (byte) 3, (byte) 2, (byte) 5, (byte) 4};
     public static final byte[] SIDE_ABOVE = new byte[]{(byte) 3, (byte) 2, (byte) 1, (byte) 1, (byte) 1, (byte) 1};
-    public static final byte[] SIDE_BELOW = new byte[]{(byte) 2, (byte) 3, (byte) 0, (byte) 0, (byte) 0, (byte) 0};
+    public static final byte[] SIDE_BELOW = new byte[]{(byte) 2, (byte) 3, (byte) 0, (byte) 0, (byte) 0, (byte) 0}; 
 
     public static EnumFacing getLeftSide(EnumFacing side) {
         return EnumFacing.VALUES[SIDE_LEFT[side.ordinal()]];
@@ -39,10 +38,6 @@ public class MOBlockHelper {
 
     public static EnumFacing getRightSide(EnumFacing side) {
         return EnumFacing.VALUES[SIDE_RIGHT[side.ordinal()]];
-    }
-
-    public static EnumFacing getOppositeSide(EnumFacing side) {
-        return EnumFacing.VALUES[SIDE_OPPOSITE[side.ordinal()]];
     }
 
     public static EnumFacing getAboveSide(EnumFacing side) {

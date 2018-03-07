@@ -60,8 +60,6 @@ import net.minecraft.world.World;
 import java.util.EnumSet;
 import java.util.List;
 
-import static matteroverdrive.util.MOBlockHelper.getOppositeSide;
-
 /**
  * Created by Simeon on 3/27/2015.
  */
@@ -86,6 +84,11 @@ public class TileEntityMachinePatternStorage extends MOTileEntityMachineEnergy i
     }
 
     @Override
+    public BlockPos getPosition() {
+        return getPos();
+    }
+
+    @Override
     public void update() {
         super.update();
 
@@ -95,7 +98,7 @@ public class TileEntityMachinePatternStorage extends MOTileEntityMachineEnergy i
             }
         } else {
             if (isActive() && random.nextFloat() < 0.2f && getBlockType(BlockPatternStorage.class) != null && getBlockType(BlockPatternStorage.class).hasVentParticles && world.getBlockState(getPos()).getBlock() == MatterOverdrive.BLOCKS.pattern_storage) {
-                SpawnVentParticles(0.03f, getOppositeSide(world.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION)), 1);
+                SpawnVentParticles(0.03f, world.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION).getOpposite(), 1);
             }
         }
     }

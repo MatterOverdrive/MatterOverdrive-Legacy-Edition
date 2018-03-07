@@ -35,25 +35,9 @@ public class BlockSolarPanel extends MOMatterEnergyStorageBlock<TileEntityMachin
         return new TileEntityMachineSolarPanel();
     }
 
-    /*@Override
-	@SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister registrar)
-    {
-        this.iconTop = registrar.registerIcon(Reference.MOD_ID + ":solar_panel");
-    }
-
     @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int metadata)
-    {
-        return side == 1 ? iconTop : MatterOverdriveIcons.Base;
-    }*/
-
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
-    public boolean renderAsNormalBlock() {
-        return false;
-    }
 }

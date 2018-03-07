@@ -30,8 +30,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
@@ -125,13 +123,13 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
             container = new EnergyContainer(capacity, input, output);
         }
 
+        public EnergyProvider(int capacity, int through) {
+            this(capacity, through, through);
+        }
+
         public EnergyProvider setStack(ItemStack stack) {
             container.setItemStack(stack);
             return this;
-        }
-
-        public EnergyProvider(int capacity, int through) {
-            this(capacity, through, through);
         }
 
         @Override

@@ -18,72 +18,72 @@
 
 package matteroverdrive.client.render.tileentity;
 
+import matteroverdrive.MatterOverdrive;
+import matteroverdrive.blocks.includes.MOBlock;
+import matteroverdrive.tile.TileEntityInscriber;
+import matteroverdrive.util.RenderUtils;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 
 import java.util.Random;
 
 /**
  * Created by Simeon on 11/9/2015.
  */
-public class TileEntityRendererInscriber extends TileEntitySpecialRenderer {
+public class TileEntityRendererInscriber extends TileEntitySpecialRenderer<TileEntityInscriber> {
     private final Random random;
-    //private IModelCustom model;
     private float nextHeadX, nextHeadY;
     private float lastHeadX, lastHeadY;
     private EntityItem item;
 
     public TileEntityRendererInscriber() {
-        //model = AdvancedModelLoader.loadModel(new ResourceLocation(Reference.MODEL_INSCRIBER));
         random = new Random();
     }
 
     @Override
-    public void render(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-		/*if (item == null)
-		{
-            item = new EntityItem(tileEntity.getworld());
-            item.setEntityItemStack(new ItemStack(MatterOverdrive.items.isolinear_circuit,1,2));
+    public void render(TileEntityInscriber tileEntity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        if (!tileEntity.shouldRender())
+            return;
+        if (item == null) {
+            item = new EntityItem(tileEntity.getWorld());
+            item.setItem(new ItemStack(MatterOverdrive.ITEMS.isolinear_circuit, 1, 2));
         }
 
-        if (tileEntity instanceof TileEntityInscriber)
-        {
-            double headX = 0.15*((TileEntityInscriber) tileEntity).geatHeadX()+0.02;
-            double headY = 0.1*((TileEntityInscriber) tileEntity).geatHeadY();
+        GlStateManager.color(0, 0, 1, 0.5f);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y, z);
+        RenderUtils.rotateFromBlock(tileEntity.getWorld(), tileEntity.getPos());
+        IBlockState blockState = tileEntity.getWorld().getBlockState(tileEntity.getPos());
+        EnumFacing rotation = blockState.getValue(MOBlock.PROPERTY_DIRECTION);
+        if (rotation == EnumFacing.EAST) {
+            GlStateManager.translate(-0.75, 0, 0.5);
+        } else if (rotation == EnumFacing.WEST) {
+            GlStateManager.translate(0.25, 0, -0.5);
+        } else if (rotation == EnumFacing.NORTH) {
+            GlStateManager.translate(-0.75, 0, -0.5);
+        } else {
+            GlStateManager.translate(0.25, 0, 0.5);
+        }
 
-            //MatterOverdrive.log.info("Time: " + time);
-            glColor3f(1,1,1);
-            glPushMatrix();
-            bindTexture(new ResourceLocation(Reference.PATH_BLOCKS + "inscriber.png"));
-            GlStateManager.translate(x + 0.5, y, z + 0.5);
-            RenderUtils.rotateFromBlock(tileEntity.getWorld(), tileEntity.x, tileEntity.y, tileEntity.z);
-            glPushMatrix();
-            GlStateManager.translate(0, 0.6, headX);
-            model.renderPart("rail");
-            glPopMatrix();
-
-            glPushMatrix();
-            GlStateManager.translate(headY, 0.84, headX - 0.06);
-            model.renderPart("head");
-            glPopMatrix();
-
-            ItemStack newStack = ((TileEntityInscriber) tileEntity).getStackInSlot(TileEntityInscriber.MAIN_INPUT_SLOT_ID);
-            if (newStack == null)
-            {
-                newStack = ((TileEntityInscriber) tileEntity).getStackInSlot(TileEntityInscriber.OUTPUT_SLOT_ID);
-            }
-            if (newStack != null) {
-                item.setEntityItemStack(newStack);
-                glPushMatrix();
-                GlStateManager.translate(-0.23, 0.69, 0);
-                GlStateManager.rotate(90, 0, 1, 0);
-                GlStateManager.rotate(90, 1, 0, 0);
-                item.hoverStart = 0f;
-                RenderManager.instance.func_147939_a(item, 0, 0, 0, 0, 0, true);
-                glPopMatrix();
-            }
-            glPopMatrix();
-        }*/
+        ItemStack newStack = tileEntity.getStackInSlot(TileEntityInscriber.MAIN_INPUT_SLOT_ID);
+        if (newStack.isEmpty()) {
+            newStack = tileEntity.getStackInSlot(TileEntityInscriber.OUTPUT_SLOT_ID);
+        }
+        if (!newStack.isEmpty()) {
+            item.setItem(newStack);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(-0.23, 0.69, 0);
+            GlStateManager.rotate(90, 0, 1, 0);
+            GlStateManager.rotate(90, 1, 0, 0);
+            item.hoverStart = 0f;
+            Minecraft.getMinecraft().getRenderManager().renderEntity(item, 0, 0, 0, 0, 0, true);
+            GlStateManager.popMatrix();
+        }
+        GlStateManager.popMatrix();
     }
 }

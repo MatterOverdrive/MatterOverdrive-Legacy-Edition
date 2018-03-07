@@ -89,6 +89,6 @@ public class WeaponHelper {
     }
 
     public static boolean isWeapon(ItemStack itemStack) {
-        return!itemStack.isEmpty() && itemStack.getItem() instanceof IWeapon;
+        return !itemStack.isEmpty() && itemStack.getItem() instanceof IWeapon;
     }
 }

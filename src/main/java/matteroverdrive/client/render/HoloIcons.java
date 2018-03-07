@@ -82,8 +82,8 @@ public class HoloIcons implements ITextureMapPopulator {
         wr.pos(x - halfSize, y + halfSize, z).tex(uMax, vMin).color(color.getFloatR() * multiply, color.getFloatG() * multiply, color.getFloatB() * multiply, color.getFloatA()).endVertex();
     }
 
-    private void reg(TextureMap textureMap, String iconName, int originalSize) {
-        registerIcon(textureMap, iconName, originalSize);
+    private void reg(TextureMap map, String icon, int size) {
+        registerIcon(map, icon, size);
     }
 
     public HoloIcon registerIcon(TextureMap textureMap, String iconName, int originalSize) {

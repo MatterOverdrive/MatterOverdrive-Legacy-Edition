@@ -206,7 +206,7 @@ public class AndroidHudMinimap extends AndroidHudElement {
             opacity *= baseColor.getFloatA();
             GlStateManager.enableTexture2D();
             RenderUtils.applyColorWithAlpha(color, OPACITY * opacity);
-            GlStateManager.rotate(mc.getRenderViewEntity().rotationYaw, 0, 0, -1);
+            GlStateManager.rotate(mc.getRenderViewEntity().rotationYaw + 180, 0, 0, -1);
             GlStateManager.translate(pos.x, pos.z, 0);
             GlStateManager.rotate(entityLivingBase.getRotationYawHead(), 0, 0, 1);
             GlStateManager.disableTexture2D();
