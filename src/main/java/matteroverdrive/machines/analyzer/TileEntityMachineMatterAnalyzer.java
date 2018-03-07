@@ -65,6 +65,11 @@ public class TileEntityMachineMatterAnalyzer extends MOTileEntityMachineEnergy i
     }
 
     @Override
+    public BlockPos getPosition() {
+        return getPos();
+    }
+
+    @Override
     public void RegisterSlots(Inventory inventory) {
         input_slot = inventory.AddSlot(new MatterSlot(true));
         super.RegisterSlots(inventory);

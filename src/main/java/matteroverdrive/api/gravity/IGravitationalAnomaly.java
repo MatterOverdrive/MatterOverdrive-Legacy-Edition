@@ -24,7 +24,7 @@ import net.minecraft.util.math.BlockPos;
  * Created by Simeon on 10/14/2015.
  */
 public interface IGravitationalAnomaly {
-    BlockPos getPos();
+    BlockPos getPosition();
 
     /**
      * Gets the event horizon.

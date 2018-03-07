@@ -57,6 +57,11 @@ public class TileEntityMachinePatternMonitor extends MOTileEntityMachine impleme
         playerSlotsHotbar = true;
     }
 
+    @Override
+    public BlockPos getPosition() {
+        return getPos();
+    }
+
     //region Machine Functions
     @Override
     protected void registerComponents() {

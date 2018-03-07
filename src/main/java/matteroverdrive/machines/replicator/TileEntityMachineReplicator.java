@@ -95,6 +95,11 @@ public class TileEntityMachineReplicator extends MOTileEntityMachineMatter imple
         playerSlotsHotbar = true;
     }
 
+    @Override
+    public BlockPos getPosition() {
+        return getPos();
+    }
+
     protected void RegisterSlots(Inventory inventory) {
         OUTPUT_SLOT_ID = inventory.AddSlot(new RemoveOnlySlot(false).setSendToClient(true));
         SECOND_OUTPUT_SLOT_ID = inventory.AddSlot(new RemoveOnlySlot(false));

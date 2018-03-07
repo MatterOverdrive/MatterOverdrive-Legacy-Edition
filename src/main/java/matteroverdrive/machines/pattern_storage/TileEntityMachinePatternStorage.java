@@ -86,6 +86,11 @@ public class TileEntityMachinePatternStorage extends MOTileEntityMachineEnergy i
     }
 
     @Override
+    public BlockPos getPosition() {
+        return getPos();
+    }
+
+    @Override
     public void update() {
         super.update();
 

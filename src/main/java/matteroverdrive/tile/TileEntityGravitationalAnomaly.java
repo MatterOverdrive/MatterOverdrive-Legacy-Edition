@@ -114,6 +114,12 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
     }
     //endregion
 
+
+    @Override
+    public BlockPos getPosition() {
+        return getPos();
+    }
+
     //region Updates
     @Override
     public void update() {
