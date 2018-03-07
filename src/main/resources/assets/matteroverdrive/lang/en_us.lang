@@ -48,14 +48,6 @@ item.matteroverdrive.rogue_android_part.melee=Melee Android
 item.matteroverdrive.rogue_android_part.range=Range Android
 item.matteroverdrive.forcefield_emitter.name=Force Field Emitter
 item.matteroverdrive.hc_battery.name=High Capacity Battery
-item.matteroverdrive.ship_factory.name=Ship Factory
-item.matteroverdrive.ship_factory.details=Allows the building of Ships
-item.matteroverdrive.scout_ship.name=Scout Ship
-item.matteroverdrive.scout_ship.details=A fast ship, used for scouting
-item.matteroverdrive.ship_colonizer.name=Colonizer Ship
-item.matteroverdrive.ship_colonizer.details=Used to claim planets by building a Base building on arrival
-item.matteroverdrive.building_base.name=Base
-item.matteroverdrive.building_base.details=Main building, needed for everything
 item.matteroverdrive.android_pill_red.name=Red Pill
 item.matteroverdrive.android_pill_red.details=Take the red pill /n and lose what's holding you back
 item.matteroverdrive.android_pill_blue.name=Blue Pill
@@ -116,11 +108,6 @@ item.matteroverdrive.weapon_module_barrel.doomsday.name=Degenerative Explosive F
 item.matteroverdrive.weapon_module_ricochet.name=Shot Rebound Module
 item.matteroverdrive.sniper_scope.name=Sniper Scope
 
-#///////////// Buildings ///////////
-item.matteroverdrive.building_matter_extractor.name=Matter Extractor
-item.matteroverdrive.building_residential.name=Residential Buildings
-item.matteroverdrive.building_ship_hangar.name=Ship Hangar
-item.matteroverdrive.building_power_generator.name=Power Generator
 
 item.overdrivef.info.configured=Configured
 
@@ -224,8 +211,6 @@ fusion_reactor.info.anomaly_too_far=GRAVITATIONAL${newline}ANOMALY${newline}TOO$
 #///////////// Android Station ////////////
 tile.android_station.name=Android Station
 tile.android_station.details=Android Upgrade Management
-tile.star_map.name=Star Map
-tile.star_map.details=Used for Galaxy Management
 tile.charging_station.name=Charging Station
 tile.charging_station.details=Used to Charge Androids
 container.replicator.name=Replicator
@@ -332,8 +317,6 @@ itemGroup.tabMO=MatterOverdrive
 itemGroup.tabMO_modules=MatterOverdrive Modules
 itemGroup.tabMO_upgrades=MatterOverdrive Upgrades
 itemGroup.tabMO_food=MatterOverdrive Food
-itemGroup.tabMO_ships=MatterOverdrive Ships
-itemGroup.tabMO_buildings=MatterOverdrive Buildings
 itemGroup.tabMO_decorative=MatterOverdrive Decoration
 itemGroup.tabMO_androidParts=MatterOverdrive Android Parts
 
@@ -362,22 +345,9 @@ weaponstat.7.name=Fire Rate
 weaponstat.8.name=Heal
 
 ##########################################################################################################
-# Planet Stats
-planet_stat.population_count.name=Population
-planet_stat.building_size.name=Building Space
-planet_stat.energy_production.name=Energy Production
-planet_stat.matter_production.name=Matter Production
-planet_stat.fleet_size.name=Matter Production
-
-##########################################################################################################
 # GUI
 
 #///////////// tooltips ///////////////
-gui.tooltip.starmap.no_ship_space=Not enough ship spaces
-gui.tooltip.starmap.no_building_space=Not enough building spaces
-gui.tooltip.starmap.no_ship_factory=No ship factory
-gui.tooltip.starmap.has_base=Base building already present
-gui.tooltip.starmap.no_base=No Base building
 gui.tooltip.close_menu=Close Menu
 gui.tooltip.open_menu=Open Menu
 gui.tooltip.close=Close
@@ -386,18 +356,12 @@ gui.tooltip.page.configurations=Configurations
 gui.tooltip.page.upgrades=Upgrades
 gui.tooltip.page.tasks=Tasks
 gui.tooltip.page.scan_info=Scan Info
-gui.tooltip.page.galaxy=Galaxy
-gui.tooltip.page.quadrant=Quadrant
-gui.tooltip.page.star=Planetary System
-gui.tooltip.page.planet=Planet
-gui.tooltip.page.planet_stats=Planet Stats
 gui.tooltip.button.refresh=Refresh List
 gui.tooltip.button.request=Send Requests
 gui.tooltip.matter=Matter
 gui.tooltip.matter.none=None
 gui.tooltip.energy.io=Input/Output
 gui.tooltip.requires=Requires
-gui.tooltip.scout_button=Send Scout Ships to explore the planet and start building
 gui.tooltip.slot.bionic.head=Head
 gui.tooltip.slot.bionic.arms=Arms
 gui.tooltip.slot.bionic.legs=Legs
@@ -592,7 +556,6 @@ config.matter_registry.item_blacklist.name=Blacklist
 config.spawn_ores.name=Spawn Ores
 config.client.name=Client Options
 config.server.name=Server Options
-config.starmap.name=Star Map Options
 config.ore_gen_blacklist.name=Ore Dimension Blacklist
 config.abilities.name=Android Abilities
 config.entities.name=Entities
@@ -616,8 +579,6 @@ alert.not_android=Biological Entity Detected! Access Denied!
 alert.no_rights.break=Only the owner can break the $0
 alert.no_rights.dismantle=Only the owner can dismantle the $0
 alert.new_update=A new version is available!
-alert.starmap.ship_arrive=§3%1$s §rhas arrived at §3%2$s§r!
-alert.starmap.on_build=§3%1$s §rwas built at §3%2$s§r!
 
 #############################################################################################################
 # Enchantments

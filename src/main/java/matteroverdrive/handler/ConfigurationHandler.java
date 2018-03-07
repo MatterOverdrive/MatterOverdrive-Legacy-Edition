@@ -47,7 +47,6 @@ public class ConfigurationHandler {
     public static final String CATEGORY_ABILITIES = "abilities";
     public static final String CATEGORY_CLIENT = "client";
     public static final String CATEGORY_ANDROID_HUD = CATEGORY_CLIENT + "." + "android_hud";
-    public static final String CATEGORY_STARMAP = "starmap";
     public static final String CATEGORY_SERVER = "server";
     public static final String CATEGORY_ENCHANTMENTS = "enchantments";
     public static final String CATEGORY_ENTITIES = "entities";
@@ -117,9 +116,6 @@ public class ConfigurationHandler {
         updateCategoryLang(category);
         category = config.getCategory(CATEGORY_WORLD_GEN);
         category.setComment("World Generation options.");
-        updateCategoryLang(category);
-        category = config.getCategory(CATEGORY_STARMAP);
-        category.setComment("Star Map Galaxy Options");
         updateCategoryLang(category);
         category = config.getCategory(CATEGORY_ABILITIES);
         category.setComment("Android Player Abilities");
@@ -243,7 +239,6 @@ public class ConfigurationHandler {
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_MATTER_NETWORK)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_MACHINES)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_MATTER)));
-        list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_STARMAP)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_ABILITIES)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_ENTITIES)));
         list.add(new ConfigElement(getCategory(ConfigurationHandler.CATEGORY_DEBUG)));
