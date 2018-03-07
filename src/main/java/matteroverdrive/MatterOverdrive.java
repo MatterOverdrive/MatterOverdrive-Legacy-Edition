@@ -154,7 +154,7 @@ public class MatterOverdrive {
 
         MatterOverdriveEntities.init(event, CONFIG_HANDLER);
         MatterOverdriveEnchantments.init(event, CONFIG_HANDLER);
-        MO_WORLD.register();
+        MO_WORLD.init(CONFIG_HANDLER);
         MatterNetworkRegistry.register();
         NETWORK.registerPackets();
         OverdriveBioticStats.registerAll(CONFIG_HANDLER, STAT_REGISTRY);
