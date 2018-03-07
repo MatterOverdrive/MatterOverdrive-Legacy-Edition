@@ -21,6 +21,7 @@ package matteroverdrive.machines.fusionReactorController;
 
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.inventory.UpgradeTypes;
+import matteroverdrive.blocks.BlockFusionReactorController;
 import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.machines.events.MachineEvent;
@@ -34,6 +35,7 @@ import matteroverdrive.tile.TileEntityGravitationalAnomaly;
 import matteroverdrive.util.MOEnergyHelper;
 import matteroverdrive.util.TimeTracker;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -56,7 +58,6 @@ import java.util.EnumSet;
 
 import static java.lang.Math.round;
 import static matteroverdrive.util.MOBlockHelper.getAboveSide;
-import static matteroverdrive.util.MOBlockHelper.getOppositeSide;
 
 /**
  * Created by Simeon on 5/14/2015.
@@ -394,7 +395,10 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
     @Override
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox() {
-        EnumFacing backSide = getOppositeSide(world.getBlockState(getPos()).getValue(MOBlock.PROPERTY_DIRECTION));
+        IBlockState state = world.getBlockState(pos);
+        if (!(state.getBlock() instanceof BlockFusionReactorController))
+            return Block.FULL_BLOCK_AABB.offset(getPos());
+        EnumFacing backSide = state.getValue(MOBlock.PROPERTY_DIRECTION).getOpposite();
         return new AxisAlignedBB(getPos().getX(), getPos().getY(), getPos().getZ(), getPos().getX() + backSide.getDirectionVec().getX() * 10, getPos().getY() + backSide.getDirectionVec().getY() * 10, getPos().getZ() + backSide.getDirectionVec().getZ() * 10);
     }
 
