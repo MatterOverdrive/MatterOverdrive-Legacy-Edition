@@ -219,7 +219,23 @@ machine.tooltip.energy=充能
 
 #/#//////////// Tritanium Crate ////////////
 tile.tritanium_crate.name=三钛货箱
+
+tile.tritanium_crate_white.name=白色三钛货箱
+tile.tritanium_crate_orange.name=橙色三钛货箱
+tile.tritanium_crate_magenta.name=品红三钛货箱
+tile.tritanium_crate_light_blue.name=浅蓝三钛货箱
 tile.tritanium_crate_yellow.name=黄色三钛货箱
+tile.tritanium_crate_lime.name=黄绿三钛货箱
+tile.tritanium_crate_pink.name=粉色三钛货箱
+tile.tritanium_crate_gray.name=灰色三钛货箱
+tile.tritanium_crate_silver.name=银灰三钛货箱
+tile.tritanium_crate_cyan.name=青色三钛货箱
+tile.tritanium_crate_purple.name=紫色三钛货箱
+tile.tritanium_crate_blue.name=蓝色三钛货箱
+tile.tritanium_crate_brown.name=棕色三钛货箱
+tile.tritanium_crate_green.name=绿色三钛货箱
+tile.tritanium_crate_red.name=红色三钛货箱
+tile.tritanium_crate_black.name=黑色三钛货箱
 
 #/#//////////// Entities /////////////////
 entity.matteroverdrive.rogue_android.name=混战机械人
@@ -372,7 +388,7 @@ gui.tooltip.slot.database=模式数据库
 gui.tooltip.slot.filter=网络过滤器
 gui.tooltip.slot.energy=FE能量
 gui.tooltip.slot.matter=物质
-gui.tooltip.slot.pattern_storage=模式存储
+gui.tooltip.slot.pattern_storage=模式闪存插槽
 gui.tooltip.slot.shielding=防护
 gui.tooltip.slot.upgrade=升级
 gui.tooltip.slot.recycle=可循环
@@ -382,18 +398,16 @@ gui.tooltip.quest.active_quests=当前任务
 gui.tooltip.quest.accept=已接受任务
 gui.tooltip.quest.complete=已完成任务
 gui.tooltip.locks=锁定
-gui.tooltip.parent=Parent
+gui.tooltip.parent=亲本
 
 #//////////// Labels //////////////
 gui.label.button.save=保存
 gui.label.button.remove=删除
 gui.label.button.add=添加
 gui.label.button.reset=重置
-gui.label.button.scout=派遣侦察飞船
 gui.label.button.new=新建
 gui.label.button.import=进占
-gui.label.button.import.too_far=目的地太远
-gui.label.auto_line_size=Auto Line Size
+gui.label.auto_line_size=自动线路规模
 gui.label.accept=接受
 
 #//////////// Machines /////////////
