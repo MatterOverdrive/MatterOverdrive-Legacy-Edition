@@ -204,20 +204,22 @@ public class MadScientistHouse extends StructureVillagePieces.Village {
 
     @Override
     protected void spawnVillagers(@Nonnull World world, @Nonnull StructureBoundingBox structureBoundingBox, int x, int y, int z, int count) {
-        if (this.villagersSpawned < count) {
-            for (int i1 = this.villagersSpawned; i1 < count; ++i1) {
-                int j1 = this.getXWithOffset(x + i1, z);
-                int k1 = this.getYWithOffset(y);
-                int l1 = this.getZWithOffset(x + i1, z);
+        if(MatterOverdriveEntities.enableVillager) {
+            if (this.villagersSpawned < count) {
+                for (int i1 = this.villagersSpawned; i1 < count; ++i1) {
+                    int j1 = this.getXWithOffset(x + i1, z);
+                    int k1 = this.getYWithOffset(y);
+                    int l1 = this.getZWithOffset(x + i1, z);
 
-                if (!structureBoundingBox.isVecInside(new Vec3i(j1, k1, l1))) {
-                    break;
+                    if (!structureBoundingBox.isVecInside(new Vec3i(j1, k1, l1))) {
+                        break;
+                    }
+
+                    ++this.villagersSpawned;
+                    EntityVillagerMadScientist madScientist = new EntityVillagerMadScientist(world);
+                    madScientist.setLocationAndAngles((double) j1 + 0.5D, (double) k1, (double) l1 + 0.5D, 0.0F, 0.0F);
+                    world.spawnEntity(madScientist);
                 }
-
-                ++this.villagersSpawned;
-                EntityVillagerMadScientist madScientist = new EntityVillagerMadScientist(world);
-                madScientist.setLocationAndAngles((double) j1 + 0.5D, (double) k1, (double) l1 + 0.5D, 0.0F, 0.0F);
-                world.spawnEntity(madScientist);
             }
         }
     }

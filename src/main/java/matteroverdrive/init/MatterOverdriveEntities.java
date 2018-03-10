@@ -37,8 +37,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
-import java.util.Random;
-
 /**
  * Created by Simeon on 5/26/2015.
  */
@@ -55,6 +53,8 @@ public class MatterOverdriveEntities {
         configurationHandler.subscribe(rogueandroid);
     }
 
+    public static boolean enableVillager = false;
+
     public static void register(FMLPostInitializationEvent event) {
         MatterOverdrive.CONFIG_HANDLER.config.load();
         int id = 0;
@@ -62,40 +62,38 @@ public class MatterOverdriveEntities {
         addEntity(EntityFailedCow.class, "failed_cow", 4470310, 0x33CC33, id++);
         addEntity(EntityFailedChicken.class, "failed_chicken", 10592673, 0x33CC33, id++);
         addEntity(EntityFailedSheep.class, "failed_sheep", 15198183, 0x33CC33, id++);
-        addEntity(EntityVillagerMadScientist.class, "mad_scientist", 0xFFFFFF, 0, id++);
+        if(addEntity(EntityVillagerMadScientist.class, "mad_scientist", 0xFFFFFF, 0, id++)) {
+            VillageCreatationMadScientist creatationMadScientist = new VillageCreatationMadScientist();
+            VillagerRegistry.instance().registerVillageCreationHandler(creatationMadScientist);
+            enableVillager=true;
+        }
         addEntity(EntityMutantScientist.class, "mutant_scientist", 0xFFFFFF, 0x00FF00, id++);
-        addEntity(EntityMeleeRougeAndroidMob.class, "rogue_android", 0xFFFFF, 0, id++);
-        addEntity(EntityRangedRogueAndroidMob.class, "ranged_rogue_android", 0xFFFFF, 0, id++);
+        if (addEntity(EntityMeleeRougeAndroidMob.class, "rogue_android", 0xFFFFF, 0, id++))
+            EntityRogueAndroid.addAsBiomeGen(EntityMeleeRougeAndroidMob.class);
+        if (addEntity(EntityRangedRogueAndroidMob.class, "ranged_rogue_android", 0xFFFFF, 0, id++))
+            EntityRogueAndroid.addAsBiomeGen(EntityRangedRogueAndroidMob.class);
         addEntity(EntityDrone.class, "drone", 0x3e5154, 0xbaa1c4, id++);
-
-        //VillagerRegistry.instance().registerVillageTradeHandler(666, new TradeHandlerMadScientist());
-        VillageCreatationMadScientist creatationMadScientist = new VillageCreatationMadScientist();
-        VillagerRegistry.instance().registerVillageCreationHandler(creatationMadScientist);
-        EntityRogueAndroid.addAsBiomeGen(EntityMeleeRougeAndroidMob.class);
-        EntityRogueAndroid.addAsBiomeGen(EntityRangedRogueAndroidMob.class);
-
-        //int phaserFireID = loadIDFromConfig(PlasmaBolt.class,"phaser_fire",170);
-        //EntityRegistry.registerGlobalEntityID(PlasmaBolt.class, "phaser_fire", phaserFireID);
         MatterOverdrive.CONFIG_HANDLER.save();
     }
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<VillagerRegistry.VillagerProfession> event) {
-        MAD_SCIENTIST_PROFESSION = new VillagerRegistry.VillagerProfession("matteroverdrive:mad_scientist", Reference.PATH_ENTITIES + "mad_scientist.png", Reference.PATH_ENTITIES + "hulking_scinetist.png"){
-            @Override
-            public VillagerRegistry.VillagerCareer getCareer(int id) {
-                return MAD_SCIENTIST_CAREER;
-            }
-        };
-        MAD_SCIENTIST_CAREER = new VillagerRegistry.VillagerCareer(MAD_SCIENTIST_PROFESSION, "matteroverdrive.mad_scientist");
-        event.getRegistry().register(MAD_SCIENTIST_PROFESSION);
+        if(enableVillager) {
+            MAD_SCIENTIST_PROFESSION = new VillagerRegistry.VillagerProfession("matteroverdrive:mad_scientist", Reference.PATH_ENTITIES + "mad_scientist.png", Reference.PATH_ENTITIES + "hulking_scinetist.png") {
+                @Override
+                public VillagerRegistry.VillagerCareer getCareer(int id) {
+                    return MAD_SCIENTIST_CAREER;
+                }
+            };
+            MAD_SCIENTIST_CAREER = new VillagerRegistry.VillagerCareer(MAD_SCIENTIST_PROFESSION, "matteroverdrive.mad_scientist");
+            event.getRegistry().register(MAD_SCIENTIST_PROFESSION);
+        }
     }
 
-    public static void addEntity(Class<? extends Entity> enityClass, String name, int mainColor, int spotsColor, int id) {
-        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, name), enityClass, name, id, MatterOverdrive.INSTANCE, 64, 1, true,mainColor,spotsColor);
-    }
-
-    private static String getEntityConfigKey(String name) {
-        return "entity." + name + ".id";
+    public static boolean addEntity(Class<? extends Entity> enityClass, String name, int mainColor, int spotsColor, int id) {
+        boolean enabled = MatterOverdrive.CONFIG_HANDLER.config.getBoolean("enable", String.format("%s.%s", ConfigurationHandler.CATEGORY_ENTITIES, name), true, "");
+        if (enabled)
+            EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, name), enityClass, name, id, MatterOverdrive.INSTANCE, 64, 1, true, mainColor, spotsColor);
+        return enabled;
     }
 }
