@@ -105,7 +105,7 @@ public class MatterOverdrive {
     static {
         FluidRegistry.enableUniversalBucket();
         CLibTech.enable();
-        CONFIG_HANDLER = new ConfigurationHandler(new File("config/MatterOverdrive"));
+        CONFIG_HANDLER = new ConfigurationHandler(new File("config"));
         MATTER_REGISTRY = new MatterRegistry();
         STAT_REGISTRY = new AndroidStatRegistry();
         DIALOG_REGISTRY = new DialogRegistry();
