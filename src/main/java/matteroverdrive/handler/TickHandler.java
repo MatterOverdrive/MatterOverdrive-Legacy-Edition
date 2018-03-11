@@ -24,7 +24,6 @@ import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.tile.IMOTickable;
 import matteroverdrive.util.MOLog;
 import net.minecraft.client.Minecraft;
-import net.minecraft.profiler.Profiler;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;

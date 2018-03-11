@@ -27,7 +27,7 @@ public abstract class BlockPipe<TE extends TileEntityPipe> extends MOBlockContai
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         for (EnumFacing facing : EnumFacing.VALUES)
-            state=state.withProperty(CONNECTED_PROPERTIES[facing.getIndex()],canConnectTo(worldIn,pos.offset(facing)));
+            state = state.withProperty(CONNECTED_PROPERTIES[facing.getIndex()], canConnectTo(worldIn, pos.offset(facing)));
         return state;
     }
 

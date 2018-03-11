@@ -43,6 +43,10 @@ import java.util.stream.Collectors;
  * Created by Simeon on 5/26/2015.
  */
 public class AndoidCommands extends CommandBase {
+    public static String[] subCommands = new String[]{
+            "set", "stats", "unlock", "forget"
+    };
+
     @Override
     public String getName() {
         return "android";
@@ -125,11 +129,6 @@ public class AndoidCommands extends CommandBase {
         sender.sendMessage(new TextComponentString("Invalid Android Command. Use /help to learn more."));
     }
 
-
-    public static String[] subCommands = new String[]{
-            "set", "stats", "unlock", "forget"
-    };
-
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] parameters, @Nullable BlockPos targetPos) {
         List<String> commands = new ArrayList<>();
@@ -143,7 +142,7 @@ public class AndoidCommands extends CommandBase {
             } else if (parameters[0].equalsIgnoreCase("stats")) {
                 if ("reset".startsWith(parameters[1]))
                     commands.add("reset");
-            } else if (parameters[0].equalsIgnoreCase("unlock")||parameters[0].equalsIgnoreCase("forget")) {
+            } else if (parameters[0].equalsIgnoreCase("unlock") || parameters[0].equalsIgnoreCase("forget")) {
                 commands.addAll(MatterOverdrive.STAT_REGISTRY.getStats().stream().map(IBioticStat::getUnlocalizedName).filter(s -> s.startsWith(parameters[1])).collect(Collectors.toList()));
             }
         } else {

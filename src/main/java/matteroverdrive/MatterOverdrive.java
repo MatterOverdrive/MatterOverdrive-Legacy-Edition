@@ -72,13 +72,6 @@ public class MatterOverdrive {
     public static final OverdriveTab TAB_OVERDRIVE_FOOD = new OverdriveTab("tabMO_food", () -> new ItemStack(ITEMS.earl_gray_tea));
     public static final OverdriveTab TAB_OVERDRIVE_DECORATIVE = new OverdriveTab("tabMO_decorative", () -> new ItemStack(BLOCKS.decorative_stripes));
     public static final OverdriveTab TAB_OVERDRIVE_ANDROID_PARTS = new OverdriveTab("tabMO_androidParts", () -> new ItemStack(ITEMS.androidParts));
-
-    @Instance(Reference.MOD_ID)
-    public static MatterOverdrive INSTANCE;
-
-    @SidedProxy(clientSide = "matteroverdrive.proxy.ClientProxy", serverSide = "matteroverdrive.proxy.CommonProxy")
-    public static CommonProxy PROXY;
-
     public static final TickHandler TICK_HANDLER;
     public static final PlayerEventHandler PLAYER_EVENT_HANDLER;
     public static final ConfigurationHandler CONFIG_HANDLER;
@@ -101,6 +94,10 @@ public class MatterOverdrive {
     public static final MatterNetworkHandler MATTER_NETWORK_HANDLER;
     public static final FluidNetworkHandler FLUID_NETWORK_HANDLER;
     public static final MOLootTableManager LOOT_TABLE_MANAGER;
+    @Instance(Reference.MOD_ID)
+    public static MatterOverdrive INSTANCE;
+    @SidedProxy(clientSide = "matteroverdrive.proxy.ClientProxy", serverSide = "matteroverdrive.proxy.CommonProxy")
+    public static CommonProxy PROXY;
 
     static {
         FluidRegistry.enableUniversalBucket();
@@ -213,13 +210,6 @@ public class MatterOverdrive {
         event.registerServerCommand(new QuestCommands());
 
         event.registerServerCommand(new WorldGenCommands());
-
-        PROXY.getGoogleAnalytics().load();
-    }
-
-    @EventHandler
-    public void serverStopping(FMLServerStoppingEvent event) {
-        PROXY.getGoogleAnalytics().unload();
     }
 
     @EventHandler

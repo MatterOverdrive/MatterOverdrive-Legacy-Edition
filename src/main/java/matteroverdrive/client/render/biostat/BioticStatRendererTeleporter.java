@@ -40,6 +40,7 @@ import static org.lwjgl.opengl.GL11.GL_ONE;
  */
 public class BioticStatRendererTeleporter implements IBioticStatRenderer<BioticStatTeleport> {
     public static final ResourceLocation glow = new ResourceLocation(Reference.PATH_FX + "teleport_glow.png");
+
     @Override
     public void onWorldRender(BioticStatTeleport stat, int level, RenderWorldLastEvent event) {
         AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(Minecraft.getMinecraft().player);

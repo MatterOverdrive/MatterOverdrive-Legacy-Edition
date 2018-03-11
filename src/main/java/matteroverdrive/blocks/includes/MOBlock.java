@@ -20,7 +20,6 @@ package matteroverdrive.blocks.includes;
 
 import com.astro.clib.api.render.ItemModelProvider;
 import matteroverdrive.MatterOverdrive;
-import matteroverdrive.Reference;
 import matteroverdrive.api.IMOTileEntity;
 import matteroverdrive.tile.MOTileEntity;
 import net.minecraft.block.Block;
@@ -36,7 +35,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;

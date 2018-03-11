@@ -1,6 +1,5 @@
 package matteroverdrive.handler;
 
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
 import matteroverdrive.entity.player.OverdriveExtendedProperties;
@@ -27,7 +26,6 @@ public class BlockHandler {
         if (event.getPlayer() != null) {
             ResourceLocation blockName = event.getState().getBlock().getRegistryName();
             if (blockName.getResourceDomain().equals(Reference.MOD_ID)) {
-                MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_BLOCK_PLACEING, blockName.getResourceDomain(), blockName.getResourcePath(), event.getPlayer());
             }
             OverdriveExtendedProperties extendedProperties = MOPlayerCapabilityProvider.GetExtendedCapability(event.getPlayer());
             if (extendedProperties != null) {

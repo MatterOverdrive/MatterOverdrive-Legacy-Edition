@@ -18,7 +18,6 @@
 
 package matteroverdrive.handler;
 
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.container.*;
 import matteroverdrive.container.matter_network.ContainerPatternMonitor;
 import matteroverdrive.gui.*;
@@ -129,13 +128,10 @@ public class GuiHandler implements IGuiHandler {
                         }
                     } catch (InvocationTargetException e) {
                         MOLog.log(Level.WARN, e, "Could not call TileEntity constructor in server GUI handler");
-                        MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Could not call TileEntity constructor in server GUI handler");
                     } catch (InstantiationException e) {
                         MOLog.log(Level.WARN, e, "Could not instantiate TileEntity in server GUI handler");
-                        MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Could not instantiate TileEntity in server GUI handler");
                     } catch (IllegalAccessException e) {
                         MOLog.log(Level.WARN, e, "Could not access TileEntity constructor in server GUI handler");
-                        MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Could not access TileEntity constructor in server GUI handler");
                     }
                 } else if (entity instanceof MOTileEntityMachine) {
                     return ContainerFactory.createMachineContainer((MOTileEntityMachine) entity, player.inventory);
@@ -174,13 +170,10 @@ public class GuiHandler implements IGuiHandler {
                         }
                     } catch (InvocationTargetException e) {
                         MOLog.log(Level.WARN, e, "Could not call TileEntity constructor in client GUI handler");
-                        MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Could not call TileEntity constructor in client GUI handler");
                     } catch (InstantiationException e) {
                         MOLog.log(Level.WARN, e, "Could not instantiate the TileEntity in client GUI handler");
-                        MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Could not instantiate the TileEntity in client GUI handler");
                     } catch (IllegalAccessException e) {
                         MOLog.log(Level.WARN, e, "Could not access TileEntity constructor in client GUI handler");
-                        MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Could not access TileEntity constructor in client GUI handler");
                     }
                 } else if (entity instanceof MOTileEntityMachine) {
                     return new MOGuiMachine(ContainerFactory.createMachineContainer((MOTileEntityMachine) entity, player.inventory), (MOTileEntityMachine) entity);

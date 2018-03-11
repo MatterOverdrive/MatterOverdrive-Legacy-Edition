@@ -20,11 +20,9 @@ package matteroverdrive.entity.monster;
 
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.handler.ConfigurationHandler;
-import matteroverdrive.handler.GoogleAnalyticsCommon;
 import matteroverdrive.util.IConfigSubscriber;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.config.Property;
 
@@ -122,7 +120,6 @@ public class EntityRogueAndroid implements IConfigSubscriber {
         String category = ConfigurationHandler.CATEGORY_ENTITIES + ".rogue_android";
 
         int spawn_weight = config.config.getInt("spawn_weight", category, 25, 0, 100, "The spawn weight of Androids. This controls how likely are to be chosen to spawn next.");
-        MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_CONFIG, category, "spawn_weight", spawn_weight, null);
 
         for (Biome.SpawnListEntry entry : spawnListEntries) {
             entry.itemWeight = spawn_weight;
@@ -135,14 +132,9 @@ public class EntityRogueAndroid implements IConfigSubscriber {
 
         EntityRangedRogueAndroidMob.UNLIMITED_WEAPON_ENERGY = config.getBool("unlimited_weapon_energy", category, true, "Do Ranged Rogue Androids have unlimited weapon energy in their weapons");
         MAX_ANDROIDS_PER_CHUNK = config.getInt("max_android_per_chunk", category, 4, "The max amount of Rogue Android that can spawn in a given chunk");
-        MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_CONFIG, category, "max_android_per_chunk", MAX_ANDROIDS_PER_CHUNK, null);
         SPAWN_CHANCE = config.config.getFloat("spawn_chance_percent", category, 0.1f, 0, 1, "The spawn chance of rogue androids. How likely are they to spawn once chosen to spawn.");
-        MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_CONFIG, category, "spawn_chance_percent", MathHelper.ceil(SPAWN_CHANCE * 1000), null);
         EntityRangedRogueAndroidMob.DROP_NORMAL_WEAPONS = config.getBool("drop_weapons", category, true, "Should normal Rogue Androids drop their weapons? If set to false they will never drop their weapons, but if set to true there is a small chance they will drop them.");
-        MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_CONFIG, category, String.format("drop_weapons(%s)", EntityRangedRogueAndroidMob.DROP_NORMAL_WEAPONS ? "true" : "false"), null);
         EntityRangedRogueAndroidMob.DROP_LEGENDARY_WEAPONS = config.getBool("drop_legendary_weapons", category, true, "Should Legendary rogue androids drop Legendary weapons");
-        MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_CONFIG, category, String.format("drop_legendary_weapons(%s)", EntityRangedRogueAndroidMob.DROP_LEGENDARY_WEAPONS ? "true" : "false"), null);
         LEGENDARY_SPAWN_CHANCE = config.config.getFloat("legendary_spawn_chance_percent", category, 0.03f, 0, 1, "The chance in percent, of rogue androids becoming legendary. This is the base value. This value is multiplied by the android's level");
-        MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_CONFIG, category, "legendary_spawn_chance_percent", MathHelper.ceil(LEGENDARY_SPAWN_CHANCE * 1000), null);
     }
 }

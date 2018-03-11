@@ -95,11 +95,11 @@ public class QuestLogicPlaceBlock extends AbstractQuestLogicBlock {
         if (event instanceof BlockEvent.PlaceEvent) {
             BlockEvent.PlaceEvent placeEvent = (BlockEvent.PlaceEvent) event;
             boolean isTheSameBlockFlag = false;
-            if (blockStack != null && placeEvent.getItemInHand() != null) {
+            if (blockStack != null && !placeEvent.getItemInHand().isEmpty()) {
                 isTheSameBlockFlag = areBlockStackTheSame(placeEvent.getItemInHand());
             } else {
                 if (areBlocksTheSame(placeEvent.getPlacedBlock())) {
-                    if (namePattern != null && placeEvent.getItemInHand() != null) {
+                    if (namePattern != null && !placeEvent.getItemInHand().isEmpty()) {
                         isTheSameBlockFlag = placeEvent.getItemInHand().getDisplayName().matches(namePattern);
                     } else {
                         isTheSameBlockFlag = true;

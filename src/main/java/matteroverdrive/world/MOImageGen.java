@@ -263,7 +263,7 @@ public abstract class MOImageGen<T extends MOImageGen.ImageGenWorker> {
             }
             convertTo2DWithoutUsingGetRGB(image, layerWidth, layerHeight, textureWidth, layers);
         } catch (IOException e) {
-            MOLog.error(e.getMessage(),e);
+            MOLog.error(e.getMessage(), e);
         }
     }
 

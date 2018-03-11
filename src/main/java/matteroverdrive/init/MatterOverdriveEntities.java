@@ -47,13 +47,12 @@ public class MatterOverdriveEntities {
 
     public static VillagerRegistry.VillagerProfession MAD_SCIENTIST_PROFESSION;
     public static VillagerRegistry.VillagerCareer MAD_SCIENTIST_CAREER;
+    public static boolean enableVillager = false;
 
     public static void init(FMLPreInitializationEvent event, ConfigurationHandler configurationHandler) {
         rogueandroid = new EntityRogueAndroid();
         configurationHandler.subscribe(rogueandroid);
     }
-
-    public static boolean enableVillager = false;
 
     public static void register(FMLPostInitializationEvent event) {
         MatterOverdrive.CONFIG_HANDLER.config.load();
@@ -62,10 +61,10 @@ public class MatterOverdriveEntities {
         addEntity(EntityFailedCow.class, "failed_cow", 4470310, 0x33CC33, id++);
         addEntity(EntityFailedChicken.class, "failed_chicken", 10592673, 0x33CC33, id++);
         addEntity(EntityFailedSheep.class, "failed_sheep", 15198183, 0x33CC33, id++);
-        if(addEntity(EntityVillagerMadScientist.class, "mad_scientist", 0xFFFFFF, 0, id++)) {
+        if (addEntity(EntityVillagerMadScientist.class, "mad_scientist", 0xFFFFFF, 0, id++)) {
             VillageCreatationMadScientist creatationMadScientist = new VillageCreatationMadScientist();
             VillagerRegistry.instance().registerVillageCreationHandler(creatationMadScientist);
-            enableVillager=true;
+            enableVillager = true;
         }
         addEntity(EntityMutantScientist.class, "mutant_scientist", 0xFFFFFF, 0x00FF00, id++);
         if (addEntity(EntityMeleeRougeAndroidMob.class, "rogue_android", 0xFFFFF, 0, id++))
@@ -78,7 +77,7 @@ public class MatterOverdriveEntities {
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<VillagerRegistry.VillagerProfession> event) {
-        if(enableVillager) {
+        if (enableVillager) {
             MAD_SCIENTIST_PROFESSION = new VillagerRegistry.VillagerProfession("matteroverdrive:mad_scientist", Reference.PATH_ENTITIES + "mad_scientist.png", Reference.PATH_ENTITIES + "hulking_scinetist.png") {
                 @Override
                 public VillagerRegistry.VillagerCareer getCareer(int id) {

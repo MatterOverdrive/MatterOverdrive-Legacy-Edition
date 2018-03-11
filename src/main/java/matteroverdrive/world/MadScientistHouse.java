@@ -204,7 +204,7 @@ public class MadScientistHouse extends StructureVillagePieces.Village {
 
     @Override
     protected void spawnVillagers(@Nonnull World world, @Nonnull StructureBoundingBox structureBoundingBox, int x, int y, int z, int count) {
-        if(MatterOverdriveEntities.enableVillager) {
+        if (MatterOverdriveEntities.enableVillager) {
             if (this.villagersSpawned < count) {
                 for (int i1 = this.villagersSpawned; i1 < count; ++i1) {
                     int j1 = this.getXWithOffset(x + i1, z);

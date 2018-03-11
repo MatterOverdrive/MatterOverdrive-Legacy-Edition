@@ -21,7 +21,6 @@ package matteroverdrive.world.buildings;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.blocks.BlockDecorative;
-import matteroverdrive.entity.monster.EntityMutantScientist;
 import matteroverdrive.world.MOImageGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

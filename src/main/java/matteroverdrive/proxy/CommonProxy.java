@@ -18,9 +18,7 @@
 
 package matteroverdrive.proxy;
 
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.compat.MatterOverdriveCompat;
-import matteroverdrive.handler.GoogleAnalyticsCommon;
 import matteroverdrive.handler.weapon.CommonWeaponHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.translation.I18n;
@@ -32,11 +30,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class CommonProxy {
     private final CommonWeaponHandler commonWeaponHandler;
-    protected GoogleAnalyticsCommon googleAnalytics;
 
     public CommonProxy() {
         commonWeaponHandler = new CommonWeaponHandler();
-        googleAnalytics = new GoogleAnalyticsCommon();
     }
 
     public void registerCompatModules() {
@@ -53,7 +49,6 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(getWeaponHandler());
-        MatterOverdrive.CONFIG_HANDLER.subscribe(googleAnalytics);
     }
 
     public void postInit(FMLPostInitializationEvent event) {
@@ -61,10 +56,6 @@ public class CommonProxy {
 
     public CommonWeaponHandler getWeaponHandler() {
         return commonWeaponHandler;
-    }
-
-    public GoogleAnalyticsCommon getGoogleAnalytics() {
-        return googleAnalytics;
     }
 
     public boolean hasTranslation(String key) {

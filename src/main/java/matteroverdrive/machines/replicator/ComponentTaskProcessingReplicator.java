@@ -6,7 +6,6 @@ import matteroverdrive.api.matter.IMatterHandler;
 import matteroverdrive.api.network.MatterNetworkTaskState;
 import matteroverdrive.blocks.BlockReplicator;
 import matteroverdrive.data.matter_network.ItemPattern;
-import matteroverdrive.handler.GoogleAnalyticsCommon;
 import matteroverdrive.handler.SoundHandler;
 import matteroverdrive.init.MatterOverdriveCapabilities;
 import matteroverdrive.init.MatterOverdriveSounds;
@@ -103,14 +102,12 @@ public class ComponentTaskProcessingReplicator extends TaskQueueComponent<Matter
 
             if (chance < getFailChance(itemPattern)) {
                 if (machine.failReplicate(MatterHelper.getMatterAmountFromItem(newItem))) {
-                    MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_MACHINES, GoogleAnalyticsCommon.EVENT_ACTION_REPLICATION_FAIL, newItem.getUnlocalizedName(), null);
                     IMatterHandler storage = machine.getCapability(MatterOverdriveCapabilities.MATTER_HANDLER, null);
                     int matter = storage.getMatterStored();
                     storage.setMatterStored(matter - matterAmount);
                 }
             } else {
                 if (machine.putInOutput(newItem)) {
-                    MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_MACHINES, GoogleAnalyticsCommon.EVENT_ACTION_REPLICATE, newItem.getUnlocalizedName(), null);
                     IMatterHandler storage = machine.getCapability(MatterOverdriveCapabilities.MATTER_HANDLER, null);
                     int matter = storage.getMatterStored();
                     storage.setMatterStored(matter - matterAmount);

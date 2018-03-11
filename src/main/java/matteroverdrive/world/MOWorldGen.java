@@ -23,7 +23,6 @@ import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.data.world.GenPositionWorldData;
 import matteroverdrive.handler.ConfigurationHandler;
-import matteroverdrive.handler.GoogleAnalyticsCommon;
 import matteroverdrive.util.IConfigSubscriber;
 import matteroverdrive.util.MOLog;
 import matteroverdrive.world.buildings.*;
@@ -46,21 +45,20 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
     private static final int TRITANIUM_VEIN_SIZE = 6;
     private static final int DILITHIUM_VEINS_PER_CHUNK = 6;
     private static final int DILITHIUM_VEIN_SIZE = 5;
-    private WorldGenMinable dilithiumGen;
-    private WorldGenMinable tritaniumGen;
-    private WorldGenGravitationalAnomaly anomalyGen;
     private static float BUILDING_SPAWN_CHANCE = 10000000.0f;
+    public final List<WeightedRandomMOWorldGenBuilding> buildings;
     private final Random oreRandom;
     private final Random anomaliesRandom;
     private final Random buildingsRandom;
-    public final List<WeightedRandomMOWorldGenBuilding> buildings;
-    private Queue<MOImageGen.ImageGenWorker> worldGenBuildingQueue;
     HashSet<Integer> oreDimentionsBlacklist;
-
     boolean generateTritanium;
     boolean generateDilithium;
     boolean generateAnomalies;
     boolean generateBuildings = true;
+    private WorldGenMinable dilithiumGen;
+    private WorldGenMinable tritaniumGen;
+    private WorldGenGravitationalAnomaly anomalyGen;
+    private Queue<MOImageGen.ImageGenWorker> worldGenBuildingQueue;
 
     public MOWorldGen() {
         oreRandom = new Random();
@@ -70,6 +68,15 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         worldGenBuildingQueue = new ArrayDeque<>();
 
         oreDimentionsBlacklist = new HashSet<>();
+    }
+
+    public static GenPositionWorldData getWorldPositionData(World world) {
+        GenPositionWorldData data = (GenPositionWorldData) world.loadData(GenPositionWorldData.class, Reference.WORLD_DATA_MO_GEN_POSITIONS);
+        if (data == null) {
+            data = new GenPositionWorldData(Reference.WORLD_DATA_MO_GEN_POSITIONS);
+            world.setData(Reference.WORLD_DATA_MO_GEN_POSITIONS, data);
+        }
+        return data;
     }
 
     public void init(ConfigurationHandler configurationHandler) {
@@ -84,15 +91,6 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
 
         anomalyGen = new WorldGenGravitationalAnomaly("gravitational_anomaly", 0.05f, 2048, 2048 + 8192);
         configurationHandler.subscribe(anomalyGen);
-    }
-
-    public static GenPositionWorldData getWorldPositionData(World world) {
-        GenPositionWorldData data = (GenPositionWorldData) world.loadData(GenPositionWorldData.class, Reference.WORLD_DATA_MO_GEN_POSITIONS);
-        if (data == null) {
-            data = new GenPositionWorldData(Reference.WORLD_DATA_MO_GEN_POSITIONS);
-            world.setData(Reference.WORLD_DATA_MO_GEN_POSITIONS, data);
-        }
-        return data;
     }
 
     @Override
@@ -230,6 +228,5 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
             this.oreDimentionsBlacklist.add(anOreDimentionBlacklist);
         }
         generateBuildings = config.getBool("generate buildings", ConfigurationHandler.CATEGORY_WORLD_GEN, true, "Should Matter Overdrive Buildings Generate aka ImageGen");
-        MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_CONFIG, ConfigurationHandler.CATEGORY_WORLD_GEN, String.format("generate buildings(%s)", generateBuildings ? "true" : "false"), null);
     }
 }

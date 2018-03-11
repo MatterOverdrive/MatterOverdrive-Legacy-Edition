@@ -30,7 +30,6 @@ import matteroverdrive.gui.events.ITextHandler;
 import matteroverdrive.guide.GuideCategory;
 import matteroverdrive.guide.MOGuideEntry;
 import matteroverdrive.guide.MatterOverdriveGuide;
-import matteroverdrive.handler.GoogleAnalyticsCommon;
 import matteroverdrive.network.packet.server.PacketDataPadCommands;
 import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.util.MOStringHelper;
@@ -312,7 +311,6 @@ public class PageGuideEntries extends ElementBaseGroup implements ITextHandler {
     @Override
     public void handleElementButtonClick(MOElementBase element, String buttonName, int mouseButton) {
         if (element instanceof ElementGuideEntry) {
-            MatterOverdrive.PROXY.getGoogleAnalytics().setPageHit(((ElementGuideEntry) element).getEntry().getName(), GoogleAnalyticsCommon.PAGE_PATH_GUIDE_ENTIRES + "/" + ((ElementGuideEntry) element).getEntry().getGroup(), null);
             pageGuideDescription.OpenGuide(((ElementGuideEntry) element).getEntry().getId(), false);
             MatterOverdrive.NETWORK.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
             gui.setPage(1);

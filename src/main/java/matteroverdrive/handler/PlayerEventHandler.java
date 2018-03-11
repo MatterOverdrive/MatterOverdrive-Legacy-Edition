@@ -170,7 +170,6 @@ public class PlayerEventHandler {
         if (event.player != null) {
             if (event.player.world.isRemote) {
                 if (!event.crafting.isEmpty() && event.crafting.getItem() instanceof MOBaseItem) {
-                    MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_ITEMS, GoogleAnalyticsCommon.EVENT_ACTION_CRAFT_ITEMS, event.crafting.getUnlocalizedName(), event.crafting.getCount(), event.player);
                 }
             } else {
                 OverdriveExtendedProperties extendedProperties = MOPlayerCapabilityProvider.GetExtendedCapability(event.player);
@@ -204,13 +203,11 @@ public class PlayerEventHandler {
     /*@SubscribeEvent
 	public void onGuiOpen(GuiOpenEvent event)
     {
-        MatterOverdrive.PROXY.getGoogleAnalytics().sendScreenHit(event.gui != null ? event.gui.getClass().getSimpleName() : "Ingame",null);
-    }*/
+            }*/
 
     @SubscribeEvent
     public void onBioticStatUse(MOEventBionicStat event) {
         if (event.getEntityPlayer().world.isRemote) {
-            MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_BIOTIC_STATS, GoogleAnalyticsCommon.EVENT_ACTION_BIOTIC_STAT_USE, event.stat.getUnlocalizedName(), event.android.getPlayer());
         }
     }
 

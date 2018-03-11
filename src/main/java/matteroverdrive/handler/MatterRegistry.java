@@ -19,7 +19,6 @@
 package matteroverdrive.handler;
 
 import com.google.gson.Gson;
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.events.MOEventRegisterMatterEntry;
 import matteroverdrive.api.matter.IMatterEntry;
@@ -149,7 +148,6 @@ public class MatterRegistry implements IMatterRegistry {
                     }
                 } else {
                     MOLog.error("Trying to load a Matter Registry Custom Handler with invalid item ID: %s", customHandlerJSON.getKey());
-                    MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Trying to load Custom Matter Handler");
                 }
             }
         }

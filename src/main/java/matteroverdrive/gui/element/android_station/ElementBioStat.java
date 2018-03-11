@@ -26,7 +26,6 @@ import matteroverdrive.entity.android_player.AndroidPlayer;
 import matteroverdrive.gui.MOGuiBase;
 import matteroverdrive.gui.element.ElementSlot;
 import matteroverdrive.gui.element.MOElementButton;
-import matteroverdrive.handler.GoogleAnalyticsCommon;
 import matteroverdrive.init.MatterOverdriveSounds;
 import matteroverdrive.network.packet.server.PacketUnlockBioticStat;
 import matteroverdrive.proxy.ClientProxy;
@@ -102,7 +101,6 @@ public class ElementBioStat extends MOElementButton {
             if (stat.canBeUnlocked(player, level + 1) && level < stat.maxLevel()) {
                 MOGuiBase.playSound(MatterOverdriveSounds.guiBioticStatUnlock, 1, 1);
                 MatterOverdrive.NETWORK.sendToServer(new PacketUnlockBioticStat(stat.getUnlocalizedName(), ++level));
-                MatterOverdrive.PROXY.getGoogleAnalytics().sendEventHit(GoogleAnalyticsCommon.EVENT_CATEGORY_BIOTIC_STATS, GoogleAnalyticsCommon.EVENT_ACTION_BIOTIC_STAT_UNLOCK, stat.getUnlocalizedName(), null);
             }
         }
         super.onAction(mouseX, mouseY, mouseButton);

@@ -91,10 +91,8 @@ public class VersionCheckerHandler implements IConfigSubscriber {
                 result = download.get();
             } catch (InterruptedException e) {
                 MOLog.log(Level.ERROR, e, "Version checking from '%1$s' was interrupted", mirrors[currentMirror - 1]);
-                MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Version Checking interrupted");
             } catch (ExecutionException e) {
                 MOLog.log(Level.ERROR, e, "Version checking from '%1$s' has failed", mirrors[currentMirror - 1]);
-                MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Version Checking failed");
             } finally {
                 if (result != null) {
                     try {

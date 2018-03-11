@@ -18,7 +18,6 @@
 
 package matteroverdrive.handler;
 
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.android.IAndroidStatRegistry;
 import matteroverdrive.api.android.IBioticStat;
 import matteroverdrive.api.events.MOEventRegisterAndroidStat;
@@ -40,7 +39,6 @@ public class AndroidStatRegistry implements IAndroidStatRegistry {
     public boolean registerStat(IBioticStat stat) {
         if (stats.containsKey(stat.getUnlocalizedName())) {
             MOLog.warn("Stat with the name '%s' is already present!", stat.getUnlocalizedName());
-            MatterOverdrive.PROXY.getGoogleAnalytics().setExceptionHit("Biotic Stat Registration with existing name");
         } else {
             if (!MinecraftForge.EVENT_BUS.post(new MOEventRegisterAndroidStat(stat))) {
                 stats.put(stat.getUnlocalizedName(), stat);
