@@ -67,13 +67,14 @@ public class EntityMeleeRougeAndroidMob extends EntityRougeAndroidMob {
 
     @Override
     protected void dropFewItems(boolean hit, int looting) {
-        if (recentlyHit > 0) {
-            float lootingModifier = (Math.min(looting, 10) / 10f);
-            if (rand.nextFloat() < (0.1f + lootingModifier) || getIsLegendary()) {
+        if (EntityRogueAndroid.dropItems)
+            if (recentlyHit > 0) {
+                float lootingModifier = (Math.min(looting, 10) / 10f);
+                if (rand.nextFloat() < (0.1f + lootingModifier) || getIsLegendary()) {
 
-                this.entityDropItem(MatterOverdrive.ANDROID_PARTS_FACTORY.generateRandomDecoratedPart(new AndroidPartsFactory.AndroidPartFactoryContext(getAndroidLevel(), this, getIsLegendary())), 0.0F);
+                    this.entityDropItem(MatterOverdrive.ANDROID_PARTS_FACTORY.generateRandomDecoratedPart(new AndroidPartsFactory.AndroidPartFactoryContext(getAndroidLevel(), this, getIsLegendary())), 0.0F);
+                }
             }
-        }
     }
 
     @Override

@@ -86,13 +86,14 @@ public class EntityRangedRogueAndroidMob extends EntityRougeAndroidMob implement
 
     @Override
     protected void dropEquipment(boolean recentlyHit, int lootingLevel) {
-        if (this.recentlyHit > 0 && DROP_NORMAL_WEAPONS) {
-            int j = this.rand.nextInt(400) - lootingLevel;
+        if (EntityRogueAndroid.dropItems)
+            if (this.recentlyHit > 0 && DROP_NORMAL_WEAPONS) {
+                int j = this.rand.nextInt(400) - lootingLevel;
 
-            if (j < 5 || getIsLegendary()) {
-                this.entityDropItem(getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).copy(), 0);
+                if (j < 5 || getIsLegendary()) {
+                    this.entityDropItem(getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).copy(), 0);
+                }
             }
-        }
     }
 
     @Override
@@ -104,26 +105,27 @@ public class EntityRangedRogueAndroidMob extends EntityRougeAndroidMob implement
 
     @Override
     protected void dropFewItems(boolean recentlyHit, int lootingLevel) {
-        if (!hasTeam() || recentlyHit) {
-            int j;
-            int k;
+        if (EntityRogueAndroid.dropItems)
+            if (!hasTeam() || recentlyHit) {
+                int j;
+                int k;
 
-            j = this.rand.nextInt(2 + lootingLevel);
+                j = this.rand.nextInt(2 + lootingLevel);
 
-            for (k = 0; k < j; ++k) {
-                this.dropItem(MatterOverdrive.ITEMS.energyPack, 1);
-            }
-
-            float lootingModifier = (Math.min(lootingLevel, 10) / 10f);
-            if (rand.nextFloat() < (0.15f + lootingModifier) || getIsLegendary()) {
-                ItemStack part = MatterOverdrive.ANDROID_PARTS_FACTORY.generateRandomDecoratedPart(new AndroidPartsFactory.AndroidPartFactoryContext(getAndroidLevel(), this, getIsLegendary()));
-                if (part.getItem() instanceof RougeAndroidParts) {
-                    part.setTagCompound(new NBTTagCompound());
-                    part.getTagCompound().setByte("Type", (byte) 1);
+                for (k = 0; k < j; ++k) {
+                    this.dropItem(MatterOverdrive.ITEMS.energyPack, 1);
                 }
-                this.entityDropItem(part, 0.0F);
+
+                float lootingModifier = (Math.min(lootingLevel, 10) / 10f);
+                if (rand.nextFloat() < (0.15f + lootingModifier) || getIsLegendary()) {
+                    ItemStack part = MatterOverdrive.ANDROID_PARTS_FACTORY.generateRandomDecoratedPart(new AndroidPartsFactory.AndroidPartFactoryContext(getAndroidLevel(), this, getIsLegendary()));
+                    if (part.getItem() instanceof RougeAndroidParts) {
+                        part.setTagCompound(new NBTTagCompound());
+                        part.getTagCompound().setByte("Type", (byte) 1);
+                    }
+                    this.entityDropItem(part, 0.0F);
+                }
             }
-        }
     }
 
     @Override

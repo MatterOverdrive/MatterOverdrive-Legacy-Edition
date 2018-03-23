@@ -43,6 +43,7 @@ public class EntityRogueAndroid implements IConfigSubscriber {
     public static float LEGENDARY_SPAWN_CHANCE;
     public static float SPAWN_CHANCE;
     public static int MAX_ANDROIDS_PER_CHUNK = 4;
+    public static boolean dropItems;
 
     public static void addAsBiomeGen(Class<? extends EntityLiving> entityClass) {
         spawnListEntries.add(new Biome.SpawnListEntry(entityClass, 15, 1, 2));
@@ -136,5 +137,6 @@ public class EntityRogueAndroid implements IConfigSubscriber {
         EntityRangedRogueAndroidMob.DROP_NORMAL_WEAPONS = config.getBool("drop_weapons", category, true, "Should normal Rogue Androids drop their weapons? If set to false they will never drop their weapons, but if set to true there is a small chance they will drop them.");
         EntityRangedRogueAndroidMob.DROP_LEGENDARY_WEAPONS = config.getBool("drop_legendary_weapons", category, true, "Should Legendary rogue androids drop Legendary weapons");
         LEGENDARY_SPAWN_CHANCE = config.config.getFloat("legendary_spawn_chance_percent", category, 0.03f, 0, 1, "The chance in percent, of rogue androids becoming legendary. This is the base value. This value is multiplied by the android's level");
+        dropItems = config.config.getBoolean("do_drops", category, true, "Should the Rouge Androids drop any items");
     }
 }
