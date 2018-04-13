@@ -64,7 +64,6 @@ public class MatterOverdriveEntities {
         if (addEntity(EntityVillagerMadScientist.class, "mad_scientist", 0xFFFFFF, 0, id++)) {
             VillageCreatationMadScientist creatationMadScientist = new VillageCreatationMadScientist();
             VillagerRegistry.instance().registerVillageCreationHandler(creatationMadScientist);
-            enableVillager = true;
         }
         addEntity(EntityMutantScientist.class, "mutant_scientist", 0xFFFFFF, 0x00FF00, id++);
         if (addEntity(EntityMeleeRougeAndroidMob.class, "rogue_android", 0xFFFFF, 0, id++))
@@ -77,16 +76,14 @@ public class MatterOverdriveEntities {
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<VillagerRegistry.VillagerProfession> event) {
-        if (enableVillager) {
-            MAD_SCIENTIST_PROFESSION = new VillagerRegistry.VillagerProfession("matteroverdrive:mad_scientist", Reference.PATH_ENTITIES + "mad_scientist.png", Reference.PATH_ENTITIES + "hulking_scinetist.png") {
-                @Override
-                public VillagerRegistry.VillagerCareer getCareer(int id) {
-                    return MAD_SCIENTIST_CAREER;
-                }
-            };
-            MAD_SCIENTIST_CAREER = new VillagerRegistry.VillagerCareer(MAD_SCIENTIST_PROFESSION, "matteroverdrive.mad_scientist");
-            event.getRegistry().register(MAD_SCIENTIST_PROFESSION);
-        }
+        MAD_SCIENTIST_PROFESSION = new VillagerRegistry.VillagerProfession("matteroverdrive:mad_scientist", Reference.PATH_ENTITIES + "mad_scientist.png", Reference.PATH_ENTITIES + "hulking_scinetist.png") {
+            @Override
+            public VillagerRegistry.VillagerCareer getCareer(int id) {
+                return MAD_SCIENTIST_CAREER;
+            }
+        };
+        MAD_SCIENTIST_CAREER = new VillagerRegistry.VillagerCareer(MAD_SCIENTIST_PROFESSION, "matteroverdrive.mad_scientist");
+        event.getRegistry().register(MAD_SCIENTIST_PROFESSION);
     }
 
     public static boolean addEntity(Class<? extends Entity> enityClass, String name, int mainColor, int spotsColor, int id) {
