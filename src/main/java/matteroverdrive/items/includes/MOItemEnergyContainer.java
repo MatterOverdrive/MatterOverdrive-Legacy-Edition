@@ -141,9 +141,8 @@ public abstract class MOItemEnergyContainer extends MOBaseItem {
         @SuppressWarnings("unchecked")
         public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
             if (capability == CapabilityEnergy.ENERGY) {
-                return CapabilityEnergy.ENERGY.cast(container);
+                return (T) container;
             }
-
             return null;
         }
     }
