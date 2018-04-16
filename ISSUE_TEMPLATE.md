@@ -1,0 +1,21 @@
+#### Issue Description:
+
+
+#### What happens:
+
+
+#### What you expected to happen:
+
+
+#### How to reproduce:
+
+
+#### Affected Versions (Do *not* use "*latest*"):
+
+- CLib:
+- MatterOverdrive:
+- Forge:
+- Minecraft:
+
+#### Crash report, if relevent
+[pastebin/gist link here]
