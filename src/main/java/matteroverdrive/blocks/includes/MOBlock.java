@@ -132,8 +132,8 @@ public class MOBlock extends Block implements ItemModelProvider {
     }
 
     @Override
-    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
-        super.onNeighborChange(world, pos, neighbor);
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos neighbor) {
+        super.neighborChanged(state, world, pos, blockIn, neighbor);
         IMOTileEntity tileEntity = (IMOTileEntity) world.getTileEntity(pos);
         if (tileEntity != null) {
             tileEntity.onNeighborBlockChange(world, pos, world.getBlockState(pos), world.getBlockState(neighbor).getBlock());

@@ -73,7 +73,6 @@ public abstract class BlockPipe<TE extends TileEntity> extends MOBlockContainer<
         }
     }
 
-
     public boolean isConnectableSide(EnumFacing dir, IBlockAccess world, BlockPos pos) {
         TileEntity tileEntity = world.getTileEntity(pos);
         if (tileEntity instanceof TileEntityPipe) {

@@ -62,7 +62,7 @@ public class MatterOverdriveBlocks {
     public BlockDecomposer decomposer;
     public BlockMatterRecycler recycler;
     public BlockReplicator replicator;
-    public matteroverdrive.blocks.pipe.BlockMatterPipe matter_pipe;
+    public BlockMatterPipe matter_pipe;
     public BlockMatterPipe heavy_matter_pipe;
     public BlockNetworkPipe network_pipe;
     public BlockNetworkRouter network_router;
@@ -150,7 +150,7 @@ public class MatterOverdriveBlocks {
         decomposer = register(new BlockDecomposer(TRITANIUM, "decomposer"));
         recycler = register(new BlockMatterRecycler(TRITANIUM, "matter_recycler"));
         replicator = register(new BlockReplicator(TRITANIUM, "replicator"));
-        matter_pipe = register(new matteroverdrive.blocks.pipe.BlockMatterPipe(TRITANIUM, "matter_pipe"));
+        matter_pipe = register(new BlockMatterPipe(TRITANIUM, "matter_pipe"));
         heavy_matter_pipe = register(new BlockHeavyMatterPipe(TRITANIUM, "heavy_matter_pipe"));
         network_pipe = register(new BlockNetworkPipe(TRITANIUM, "network_pipe"));
         network_router = register(new BlockNetworkRouter(TRITANIUM, "network_router"));

@@ -1,18 +1,20 @@
 package matteroverdrive.tile.pipes;
 
+import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.tile.MOTileEntity;
 import matteroverdrive.util.math.MOMathHelper;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 
 public abstract class TileEntityPipe extends MOTileEntity implements ITickable {
     protected boolean needsUpdate = true;
@@ -20,17 +22,20 @@ public abstract class TileEntityPipe extends MOTileEntity implements ITickable {
     private int connections = 0;
 
     @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        connections = pkt.getNbtCompound().getInteger("Connections");
-        world.markBlockRangeForRenderUpdate(getPos(), getPos());
+    public void writeCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk) {
+        if (categories.contains(MachineNBTCategory.DATA)) {
+            nbt.setInteger("connections", (byte) getConnectionsMask());
+        }
     }
 
-    @Nullable
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound tagCompound = new NBTTagCompound();
-        tagCompound.setInteger("Connections", connections);
-        return new SPacketUpdateTileEntity(getPos(), 0, tagCompound);
+    public void readCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
+        if (categories.contains(MachineNBTCategory.DATA)) {
+            setConnections(nbt.getInteger("connections"), false);
+            needsUpdate = false;
+            if(world!=null)
+                world.markBlockRangeForRenderUpdate(pos,pos);
+        }
     }
 
     @Override
@@ -39,6 +44,8 @@ public abstract class TileEntityPipe extends MOTileEntity implements ITickable {
             updateSides(true);
             needsUpdate = false;
         }
+
+        UPDATING_POS.clear();
 
         if (!awoken) {
             onAwake(world.isRemote ? Side.CLIENT : Side.SERVER);
@@ -75,10 +82,20 @@ public abstract class TileEntityPipe extends MOTileEntity implements ITickable {
         return tot;
     }
 
+    public static List<BlockPos> UPDATING_POS = new ArrayList<>();
+
     public void setConnections(int connections, boolean notify) {
         this.connections = connections;
         if (notify) {
-            world.markAndNotifyBlock(getPos(), world.getChunkFromBlockCoords(getPos()), world.getBlockState(getPos()), world.getBlockState(getPos()), 3);
+            UPDATING_POS.add(getPos());
+            world.markBlockRangeForRenderUpdate(pos, pos);
+            for (EnumFacing facing : EnumFacing.VALUES) {
+                if (isConnectedFromSide(facing)) {
+                    if (!UPDATING_POS.contains(getPos().offset(facing)))
+                        world.neighborChanged(getPos().offset(facing), getBlockType(), getPos());
+                }
+            }
+            markDirty();
         }
     }
 

@@ -23,6 +23,7 @@ import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.tile.TileEntityHoloSign;
 import matteroverdrive.util.MOInventoryHelper;
 import matteroverdrive.util.MachineHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -33,7 +34,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -109,8 +109,9 @@ public class BlockHoloSign extends BlockMonitor<TileEntityHoloSign> implements I
         return new TileEntityHoloSign();
     }
 
+
     @Override
-    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos neighbor) {
         boolean flag;
         EnumFacing l = world.getBlockState(pos).getValue(MOBlock.PROPERTY_DIRECTION);
         flag = false;
@@ -120,12 +121,12 @@ public class BlockHoloSign extends BlockMonitor<TileEntityHoloSign> implements I
             flag = true;
         }
 
-        if (flag && world instanceof World) {
-            this.dropBlockAsItem((World) world, pos, world.getBlockState(pos), 0);
-            ((World) world).setBlockToAir(pos);
+        if (flag) {
+            this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+            world.setBlockToAir(pos);
         }
 
-        super.onNeighborChange(world, pos, neighbor);
+        super.neighborChanged(state, world, pos, blockIn, neighbor);
     }
 
     @Override

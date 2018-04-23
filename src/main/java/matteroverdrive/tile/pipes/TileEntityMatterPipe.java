@@ -108,6 +108,7 @@ public class TileEntityMatterPipe extends TileEntityPipe implements IFluidPipe {
                 if (this.getBlockType() != entity.getBlockType()) {
                     return false;
                 }
+                return true;
             }
             return entity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, direction);
         }

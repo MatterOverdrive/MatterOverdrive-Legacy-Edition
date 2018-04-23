@@ -155,7 +155,7 @@ public class TileEntityMachineReplicator extends MOTileEntityMachineMatter imple
     }
 
     boolean putInOutput(ItemStack item) {
-        if (getStackInSlot(OUTPUT_SLOT_ID) == null) {
+        if (getStackInSlot(OUTPUT_SLOT_ID).isEmpty()) {
             setInventorySlotContents(OUTPUT_SLOT_ID, item);
             return true;
         } else {

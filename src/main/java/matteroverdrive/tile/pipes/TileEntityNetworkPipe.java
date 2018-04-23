@@ -22,21 +22,17 @@ import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.matter_network.IMatterNetworkConnection;
 import matteroverdrive.api.transport.IGridNode;
 import matteroverdrive.data.transport.MatterNetwork;
-import matteroverdrive.machines.MachineNBTCategory;
 import matteroverdrive.util.math.MOMathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
-
-import java.util.EnumSet;
 
 /**
  * Created by Simeon on 3/15/2015.
@@ -149,7 +145,6 @@ public class TileEntityNetworkPipe extends TileEntityPipe implements IMatterNetw
 
     }
 
-
     @Override
     public void writeToDropItem(ItemStack itemStack) {
 
@@ -215,21 +210,6 @@ public class TileEntityNetworkPipe extends TileEntityPipe implements IMatterNetw
     @Override
     public void updateSides(boolean notify) {
 
-    }
-
-    @Override
-    public void writeCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk) {
-        if (categories.contains(MachineNBTCategory.DATA) && toDisk) {
-            nbt.setByte("connections", (byte) getConnectionsMask());
-        }
-    }
-
-    @Override
-    public void readCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
-        if (categories.contains(MachineNBTCategory.DATA)) {
-            setConnections(nbt.getByte("connections"), false);
-            needsUpdate = false;
-        }
     }
 
     @Override
