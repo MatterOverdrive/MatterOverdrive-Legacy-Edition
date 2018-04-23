@@ -101,6 +101,7 @@ public abstract class TileEntityPipe extends MOTileEntity implements ITickable {
 
     public void setConnection(EnumFacing connection, boolean value) {
         this.connections = MOMathHelper.setBoolean(connections, connection.ordinal(), value);
+        markDirty();
     }
 
     public boolean isConnectedFromSide(EnumFacing enumFacing) {
