@@ -49,13 +49,6 @@ public class BlockReplicator extends MOMatterEnergyStorageBlock<TileEntityMachin
         setHasGui(true);
     }
 
-    @Nonnull
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
-    }
-
     @Override
     @Deprecated
     public boolean isOpaqueCube(IBlockState state) {

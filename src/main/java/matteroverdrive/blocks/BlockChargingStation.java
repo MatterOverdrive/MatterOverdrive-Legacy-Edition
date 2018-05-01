@@ -65,11 +65,6 @@ public class BlockChargingStation extends MOBlockMachine<TileEntityMachineChargi
     }
 
     @Override
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
-    @Override
     public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, BlockPos pos, boolean returnDrops) {
         return super.dismantleBlock(player, world, pos, returnDrops);
     }

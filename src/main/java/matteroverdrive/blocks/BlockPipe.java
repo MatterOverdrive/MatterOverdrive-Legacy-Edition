@@ -136,7 +136,7 @@ public abstract class BlockPipe<TE extends TileEntity> extends MOBlockContainer<
         if (mask.intersects(center)) {
             list.add(center);
         }
-        
+
         for (EnumFacing side : EnumFacing.VALUES) {
             if (isConnectableSide(side, worldIn, pos)) {
                 AxisAlignedBB sideBox = FACES[side.getIndex()].aabb().offset(pos);

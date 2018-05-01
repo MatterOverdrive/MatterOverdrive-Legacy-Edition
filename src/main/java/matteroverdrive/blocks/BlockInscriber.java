@@ -55,11 +55,6 @@ public class BlockInscriber extends MOBlockMachine<TileEntityInscriber> {
         return super.getActualState(state, worldIn, pos).withProperty(CTM, Loader.isModLoaded("ctm"));
     }
 
-    @Override
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState() {

@@ -18,6 +18,7 @@
 
 package matteroverdrive.guide;
 
+import matteroverdrive.Reference;
 import matteroverdrive.client.data.Color;
 import matteroverdrive.gui.MOGuiBase;
 import matteroverdrive.util.MOLog;
@@ -118,15 +119,15 @@ public abstract class GuideElementAbstract implements IGuideElement {
     }
 
     protected ItemStack shortCodeToStack(Map<String, String> shortCodeMap) {
-        String mod = "mo";
+        String mod = Reference.MOD_ID;
         int count = 1;
         int damage = 0;
         if (shortCodeMap.containsKey("mod")) {
             mod = shortCodeMap.get("mod");
         }
 
-        if (shortCodeMap.containsKey("damage")) {
-            damage = Integer.parseInt(shortCodeMap.get("damage"));
+        if (shortCodeMap.containsKey("meta")) {
+            damage = Integer.parseInt(shortCodeMap.get("meta"));
         }
         if (shortCodeMap.containsKey("count")) {
             count = Integer.parseInt(shortCodeMap.get("Count"));
@@ -143,7 +144,7 @@ public abstract class GuideElementAbstract implements IGuideElement {
                 return new ItemStack(item, count, damage);
             }
         }
-        return null;
+        return ItemStack.EMPTY;
     }
 
     protected void bindTexture(ResourceLocation location) {
@@ -190,9 +191,6 @@ public abstract class GuideElementAbstract implements IGuideElement {
             if (stringMap.get("float").equalsIgnoreCase("left")) {
                 return 1;
             } else if (stringMap.get("float").equalsIgnoreCase("right")) {
-                ;
-            }
-            {
                 return 2;
             }
         }

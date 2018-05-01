@@ -40,12 +40,7 @@ public class BlockPylon extends MOBlockContainer<TileEntityMachineDimensionalPyl
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         return super.getActualState(state, worldIn, pos).withProperty(CTM, Loader.isModLoaded("ctm") && state.getValue(TYPE) == MultiblockType.MAIN);
     }
-
-    @Override
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
+    
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState() {

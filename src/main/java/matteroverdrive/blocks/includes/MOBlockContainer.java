@@ -21,6 +21,7 @@ package matteroverdrive.blocks.includes;
 import com.astro.clib.api.TileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public abstract class MOBlockContainer<TE extends TileEntity> extends MOBlock implements TileEntityProvider<TE> {
@@ -32,4 +33,9 @@ public abstract class MOBlockContainer<TE extends TileEntity> extends MOBlock im
 
     @Override
     public abstract Class<TE> getTileEntityClass();
+
+    @Override
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
 }
