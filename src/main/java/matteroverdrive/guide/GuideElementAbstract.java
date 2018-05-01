@@ -125,12 +125,11 @@ public abstract class GuideElementAbstract implements IGuideElement {
         if (shortCodeMap.containsKey("mod")) {
             mod = shortCodeMap.get("mod");
         }
-
         if (shortCodeMap.containsKey("meta")) {
             damage = Integer.parseInt(shortCodeMap.get("meta"));
         }
         if (shortCodeMap.containsKey("count")) {
-            count = Integer.parseInt(shortCodeMap.get("Count"));
+            count = Integer.parseInt(shortCodeMap.get("count"));
         }
 
         if (shortCodeMap.get("type").equalsIgnoreCase("block") && shortCodeMap.containsKey("name")) {
