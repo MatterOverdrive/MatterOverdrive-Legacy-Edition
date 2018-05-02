@@ -18,8 +18,6 @@
 
 package matteroverdrive.init;
 
-import matteroverdrive.MatterOverdrive;
-import matteroverdrive.data.matter.ItemHandler;
 import matteroverdrive.items.*;
 import matteroverdrive.items.android.RougeAndroidParts;
 import matteroverdrive.items.android.TritaniumSpine;

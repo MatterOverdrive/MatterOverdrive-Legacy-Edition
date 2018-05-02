@@ -58,7 +58,7 @@ public class VersionCheckerHandler implements IConfigSubscriber {
     //Called when a player ticks.
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
 
-        if (Platform.isDevEnv() || event.phase != TickEvent.Phase.START || !checkForUpdates) {
+        if (event.player.world.isRemote || Platform.isDevEnv() || event.phase != TickEvent.Phase.START || !checkForUpdates) {
             return;
         }
 

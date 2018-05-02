@@ -30,11 +30,10 @@ public abstract class BlockPipe<TE extends TileEntity> extends MOBlockContainer<
 
     public static final ImmutableList<PropertyBool> CONNECTED_PROPERTIES = ImmutableList.of(PropertyBool.create(EnumFacing.DOWN.getName()), PropertyBool.create(EnumFacing.UP.getName()), PropertyBool.create(EnumFacing.NORTH.getName()), PropertyBool.create(EnumFacing.SOUTH.getName()), PropertyBool.create(EnumFacing.WEST.getName()), PropertyBool.create(EnumFacing.EAST.getName()));
 
-    private static final Cuboid CENTER = new Cuboid(0.0625*5, 0.0625*5, 0.0625*5, 0.0625*11, 0.0625*11, 0.0625*11);
-    private static final Cuboid DOWN = new Cuboid(0.0625*5, 0, 0.0625*5, 0.0625*11, 0.0625*5, 0.0625*11);
-    private static Cuboid[] FACES;
-    
+    private static final Cuboid CENTER = new Cuboid(0.0625 * 5, 0.0625 * 5, 0.0625 * 5, 0.0625 * 11, 0.0625 * 11, 0.0625 * 11);
+    private static final Cuboid DOWN = new Cuboid(0.0625 * 5, 0, 0.0625 * 5, 0.0625 * 11, 0.0625 * 5, 0.0625 * 11);
     private static final List<Cuboid> CUBES = new ArrayList<>();
+    private static Cuboid[] FACES;
 
     static {
         CUBES.add(CENTER);
@@ -49,6 +48,20 @@ public abstract class BlockPipe<TE extends TileEntity> extends MOBlockContainer<
         super(material, name);
         this.useNeighborBrightness = true;
         this.setRotationType(-1);
+    }
+
+    protected static DistanceRayTraceResult rayTraceBox(BlockPos pos, Vec3d start, Vec3d end, Cuboid box) {
+        Vec3d startRay = start.subtract(new Vec3d(pos));
+        Vec3d endRay = end.subtract(new Vec3d(pos));
+        RayTraceResult bbResult = box.aabb().calculateIntercept(startRay, endRay);
+
+        if (bbResult != null) {
+            Vec3d hitVec = bbResult.hitVec.add(new Vec3d(pos));
+            EnumFacing sideHit = bbResult.sideHit;
+            double dist = start.squareDistanceTo(hitVec);
+            return new DistanceRayTraceResult(hitVec, pos, sideHit, box, dist);
+        }
+        return null;
     }
 
     @Override
@@ -72,7 +85,6 @@ public abstract class BlockPipe<TE extends TileEntity> extends MOBlockContainer<
         return state;
     }
 
-
     @Nonnull
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -82,7 +94,7 @@ public abstract class BlockPipe<TE extends TileEntity> extends MOBlockContainer<
     @Nullable
     @Override
     protected RayTraceResult rayTrace(BlockPos pos, Vec3d start, Vec3d end, AxisAlignedBB boundingBox) {
-        return rayTraceBoxesClosest(start,end,pos, CUBES);
+        return rayTraceBoxesClosest(start, end, pos, CUBES);
     }
 
     @Nullable
@@ -114,19 +126,6 @@ public abstract class BlockPipe<TE extends TileEntity> extends MOBlockContainer<
             }
         }
         return closestHit;
-    }
-    protected static DistanceRayTraceResult rayTraceBox(BlockPos pos, Vec3d start, Vec3d end, Cuboid box) {
-        Vec3d startRay = start.subtract(new Vec3d(pos));
-        Vec3d endRay = end.subtract(new Vec3d(pos));
-        RayTraceResult bbResult = box.aabb().calculateIntercept(startRay, endRay);
-
-        if (bbResult != null) {
-            Vec3d hitVec = bbResult.hitVec.add(new Vec3d(pos));
-            EnumFacing sideHit = bbResult.sideHit;
-            double dist = start.squareDistanceTo(hitVec);
-            return new DistanceRayTraceResult(hitVec, pos, sideHit, box, dist);
-        }
-        return null;
     }
 
     @Override

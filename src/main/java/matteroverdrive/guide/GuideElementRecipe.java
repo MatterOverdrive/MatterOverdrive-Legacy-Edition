@@ -53,7 +53,7 @@ public class GuideElementRecipe extends GuideElementAbstract {
                     int index = x + y * 3;
                     if (index < recipe.getIngredients().size()) {
                         Ingredient ingredient = recipe.getIngredients().get(index);
-                        renderIngredient(ingredient,x,y);
+                        renderIngredient(ingredient, x, y);
                     }
                 }
             }

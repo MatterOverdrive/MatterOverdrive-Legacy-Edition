@@ -8,7 +8,6 @@ import net.minecraftforge.common.util.Constants;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.Iterator;
 
 /**
  * Created by Simeon on 1/17/2016.

@@ -141,6 +141,7 @@ public final class Reference {
     //endregion
     public static final String UNICODE_COMPLETED_OBJECTIVE = "\u25a0";
     public static final String UNICODE_UNCOMPLETED_OBJECTIVE = "\u25a1";
+
     private Reference() {
     }
     //endregion

@@ -12,7 +12,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -40,7 +43,7 @@ public class BlockPylon extends MOBlockContainer<TileEntityMachineDimensionalPyl
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         return super.getActualState(state, worldIn, pos).withProperty(CTM, Loader.isModLoaded("ctm") && state.getValue(TYPE) == MultiblockType.MAIN);
     }
-    
+
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState() {

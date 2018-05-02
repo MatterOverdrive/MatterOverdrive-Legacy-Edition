@@ -17,6 +17,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 public abstract class TileEntityPipe extends MOTileEntity implements ITickable {
+    public static List<BlockPos> UPDATING_POS = new ArrayList<>();
     protected boolean needsUpdate = true;
     protected boolean awoken;
     private int connections = 0;
@@ -33,8 +34,8 @@ public abstract class TileEntityPipe extends MOTileEntity implements ITickable {
         if (categories.contains(MachineNBTCategory.DATA)) {
             setConnections(nbt.getInteger("connections"), false);
             needsUpdate = false;
-            if(world!=null)
-                world.markBlockRangeForRenderUpdate(pos,pos);
+            if (world != null)
+                world.markBlockRangeForRenderUpdate(pos, pos);
         }
     }
 
@@ -81,8 +82,6 @@ public abstract class TileEntityPipe extends MOTileEntity implements ITickable {
 
         return tot;
     }
-
-    public static List<BlockPos> UPDATING_POS = new ArrayList<>();
 
     public void setConnections(int connections, boolean notify) {
         this.connections = connections;
