@@ -21,7 +21,7 @@ package matteroverdrive;
 import com.astro.clib.api.OreDictItem;
 import com.astro.clib.tech.CLibTech;
 import matteroverdrive.commands.AndoidCommands;
-import matteroverdrive.commands.MatterRegistryCommands;
+import matteroverdrive.commands.CommandMatterRegistry;
 import matteroverdrive.commands.QuestCommands;
 import matteroverdrive.commands.WorldGenCommands;
 import matteroverdrive.compat.MatterOverdriveCompat;
@@ -206,7 +206,7 @@ public class MatterOverdrive {
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new AndoidCommands());
-        event.registerServerCommand(new MatterRegistryCommands());
+        event.registerServerCommand(new CommandMatterRegistry());
         event.registerServerCommand(new QuestCommands());
 
         event.registerServerCommand(new WorldGenCommands());

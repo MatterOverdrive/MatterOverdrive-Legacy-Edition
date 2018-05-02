@@ -305,8 +305,6 @@ public class MatterRegistry implements IMatterRegistry {
 
     public int getMatterFromRecipe(final ItemStack item) {
         int matter = 0;
-        if(item.getItem().getRegistryName().getResourcePath().equals("tritanium_plate"))
-            System.out.println("plate!");
         Collection<IRecipe> recipes = ForgeRegistries.RECIPES.getValuesCollection();
         for (IRecipe recipe : recipes) {
             ItemStack recipeOutput = recipe.getRecipeOutput();
@@ -339,7 +337,7 @@ public class MatterRegistry implements IMatterRegistry {
         IMatterEntry tempEntry;
 
         for (Ingredient s : list) {
-            if (s == null||s==Ingredient.EMPTY) {
+            if (s == null || s == Ingredient.EMPTY) {
                 continue;
             }
             tempMatter = 0;
