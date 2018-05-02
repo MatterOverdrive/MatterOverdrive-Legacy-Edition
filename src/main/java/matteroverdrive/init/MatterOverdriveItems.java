@@ -234,11 +234,6 @@ public class MatterOverdriveItems {
 
         TOOL_MATERIAL_TRITANIUM.setRepairItem(new ItemStack(tritanium_ingot));
         ARMOR_MATERIAL_TRITANIUM.setRepairItem(new ItemStack(tritanium_ingot));
-
-        MatterOverdrive.MATTER_REGISTRY.register(dilithium_crystal, new ItemHandler(0, true));
-        MatterOverdrive.MATTER_REGISTRY.register(tritanium_ingot, new ItemHandler(0, true));
-        MatterOverdrive.MATTER_REGISTRY.register(tritanium_dust, new ItemHandler(0, true));
-        MatterOverdrive.MATTER_REGISTRY.register(tritanium_plate, new ItemHandler(0, true));
     }
 
     protected <T extends Item> T register(T item) {

@@ -50,6 +50,7 @@ public class MatterRegistry implements IMatterRegistry {
     public boolean AUTOMATIC_CALCULATION = true;
     public boolean CALCULATE_RECIPES = true;
     public boolean CALCULATE_FURNACE = true;
+    public boolean CALCULATE_INSCRIBER = true;
     public boolean hasComplitedRegistration = false;
     public int basicEntries = 0;
     private boolean REGISTRATION_DEBUG = false;
@@ -62,6 +63,7 @@ public class MatterRegistry implements IMatterRegistry {
         CALCULATION_DEBUG = configurationHandler.getBool(ConfigurationHandler.KEY_MATTER_CALCULATION_DEBUG, ConfigurationHandler.CATEGORY_DEBUG, false, "Enables Debug logging for Matter Calculation");
         CALCULATE_RECIPES = configurationHandler.getBool(ConfigurationHandler.KEY_AUTOMATIC_RECIPE_CALCULATION, ConfigurationHandler.CATEGORY_MATTER, true, "Enables Matter Calculation from recipes");
         CALCULATE_FURNACE = configurationHandler.getBool(ConfigurationHandler.KEY_AUTOMATIC_FURNACE_CALCULATION, ConfigurationHandler.CATEGORY_MATTER, true, "Enables Matter Calculation from furnace recipes");
+        CALCULATE_INSCRIBER = configurationHandler.getBool(ConfigurationHandler.KEY_AUTOMATIC_INSCRIBER_CALCULATION, ConfigurationHandler.CATEGORY_MATTER, true, "Enables Matter Calculation from inscriber recipes");
         AUTOMATIC_CALCULATION = configurationHandler.getBool("automatic_calculation", ConfigurationHandler.CATEGORY_MATTER, true, "Should the matter registry calculation run on world start when recepie ");
     }
 
@@ -198,9 +200,7 @@ public class MatterRegistry implements IMatterRegistry {
         try {
             IMatterEntry e = itemEntires.get(item.getItem());
             if (e == null) {
-
                 e = getOreDicionaryEntry(item);
-
             }
             return e;
         } catch (Exception e) {
@@ -265,6 +265,7 @@ public class MatterRegistry implements IMatterRegistry {
         IMatterEntry existingEntry = oreEntries.get(ore);
         if (existingEntry != null) {
             existingEntry.addHandler(handler);
+            return existingEntry;
         } else {
             MatterEntryOre matterEntryOre = new MatterEntryOre(ore);
             matterEntryOre.addHandler(handler);
@@ -274,7 +275,6 @@ public class MatterRegistry implements IMatterRegistry {
             }
             return matterEntryOre;
         }
-        return null;
     }
     //endregion
 
@@ -305,12 +305,13 @@ public class MatterRegistry implements IMatterRegistry {
 
     public int getMatterFromRecipe(final ItemStack item) {
         int matter = 0;
-
-        List<IRecipe> recipes = ForgeRegistries.RECIPES.getValues();
+        if(item.getItem().getRegistryName().getResourcePath().equals("tritanium_plate"))
+            System.out.println("plate!");
+        Collection<IRecipe> recipes = ForgeRegistries.RECIPES.getValuesCollection();
         for (IRecipe recipe : recipes) {
             ItemStack recipeOutput = recipe.getRecipeOutput();
 
-            if (!recipeOutput.isEmpty() && recipeOutput.isItemEqual(item)) {
+            if (!recipeOutput.isEmpty() && ItemStack.areItemStacksEqual(recipeOutput, item)) {
                 int m = getMatterFromList(recipeOutput, recipe.getIngredients());
 
                 matter += m;
@@ -338,11 +339,10 @@ public class MatterRegistry implements IMatterRegistry {
         IMatterEntry tempEntry;
 
         for (Ingredient s : list) {
-            if (s == null) {
+            if (s == null||s==Ingredient.EMPTY) {
                 continue;
             }
             tempMatter = 0;
-
 
             ItemStack[] l = s.getMatchingStacks();
             //flag for checking if the item in the list was the first to register
@@ -351,19 +351,18 @@ public class MatterRegistry implements IMatterRegistry {
             boolean first = true;
 
             for (ItemStack element : l) {
-                ItemStack stack = element;
 
-                tempEntry = getEntry(stack);
+                tempEntry = getEntry(element);
                 if (tempEntry != null) {
                     //if the item has matter, has lower matter than the previous
                     //if the item was first there is no previous so store that amount
-                    if (tempEntry.getMatter(stack) > 0) {
-                        if ((tempEntry.getMatter(stack) < tempMatter || first)) {
-                            tempMatter = tempEntry.getMatter(stack);
+                    if (tempEntry.getMatter(element) > 0) {
+                        if ((tempEntry.getMatter(element) < tempMatter || first)) {
+                            tempMatter = tempEntry.getMatter(element);
                             first = false;
                         }
                     } else {
-                        debug("entry for %s, found in recipe for: %s was blacklisted or costs lower then previous", stack, item);
+                        debug("entry for %s, found in recipe for: %s was blacklisted or costs lower then previous", element, item);
                     }
 
                 }

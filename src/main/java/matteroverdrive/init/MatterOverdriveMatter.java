@@ -164,6 +164,7 @@ public class MatterOverdriveMatter {
 
         //region Gems
         reg(c, "gemDiamond", 256);
+        reg(c, "gemDilithium", 512);
         reg(c, "gemQuartz", 3);
         reg(c, "gemLapis", 4);
         reg(c, "gemEmerald", 256);
@@ -190,6 +191,7 @@ public class MatterOverdriveMatter {
         reg(c, "ingotZinc", 30);
         reg(c, "ingotQuartz", 24);
         reg(c, "ingotSteel", 38);
+        reg(c, "ingotTritanium", 128);
         //endregion
 
         //region Plants
@@ -240,6 +242,7 @@ public class MatterOverdriveMatter {
         reg(c, "dustInvar", 0, "ingotInvar");
         reg(c, "dustPlatinum", 0, "ingotPlatinum");
         reg(c, "dustBronze", 0, "ingotBronze");
+        reg(c, "dustTritanium", 0, "ingotTritanium");
         //endregion
 
         //region Ore
@@ -261,6 +264,7 @@ public class MatterOverdriveMatter {
         regOre(c, "oreRuby", 2, "gemRuby");
         regOre(c, "oreZinc", 2, "ingotZinc");
         regOre(c, "oreQuartz", 2, "ingotQuartz");
+        regOre(c, "oreTritanium", 1, "ingotTritanium");
         //endregion
 
         //region ender io

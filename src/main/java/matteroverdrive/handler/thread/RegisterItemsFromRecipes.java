@@ -18,10 +18,18 @@
 
 package matteroverdrive.handler.thread;
 
+import com.astro.clib.util.Platform;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.data.matter.ItemStackHandlerCachable;
+import matteroverdrive.data.recipes.InscriberRecipe;
+import matteroverdrive.init.MatterOverdriveRecipes;
 import matteroverdrive.util.MOLog;
 import matteroverdrive.util.MatterHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.toasts.GuiToast;
+import net.minecraft.client.gui.toasts.IToast;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
@@ -46,23 +54,45 @@ public class RegisterItemsFromRecipes implements Runnable {
         this.file = file;
     }
 
+    public static class RegistryToast implements IToast {
+        private long firstDrawTime = 0;
+
+        boolean begin;
+        long time;
+
+        public RegistryToast(boolean begin, long time) {
+            this.begin = begin;
+            this.time = time;
+        }
+
+        @Override
+        public Visibility draw(GuiToast toastGui, long delta) {
+            if (firstDrawTime == 0)
+                this.firstDrawTime = delta;
+            toastGui.getMinecraft().getTextureManager().bindTexture(TEXTURE_TOASTS);
+            GlStateManager.color(1.0F, 1.0F, 1.0F);
+            toastGui.drawTexturedModalRect(0, 0, 0, 32, 160, 32);
+            toastGui.getMinecraft().fontRenderer.drawString("Recipe Calculation", 5, 7, -11534256);
+            if (begin) {
+                toastGui.getMinecraft().fontRenderer.drawString("Starting calculation", 5, 18, -16777216);
+            } else {
+                toastGui.getMinecraft().fontRenderer.drawString("Calculation complete", 5, 18, -16777216);
+            }
+            RenderHelper.enableGUIStandardItemLighting();
+            if (begin && MatterOverdrive.MATTER_REGISTRY.hasComplitedRegistration)
+                return Visibility.HIDE;
+            return delta - this.firstDrawTime >= time ? Visibility.HIDE : Visibility.SHOW;
+        }
+    }
+
     @Override
     public void run() {
-
-        long startTime = System.nanoTime();
-        int startEntriesCount = MatterOverdrive.MATTER_REGISTRY.getItemEntires().size();
-
-        if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_RECIPES) {
-            int passesCount = 8;
-            MOLog.info("Starting Matter Recipe Calculation !");
-
-            for (int pass = 0; pass < passesCount; pass++) {
-                long passStartTime = System.nanoTime();
-                int passStartRecipeCount = MatterOverdrive.MATTER_REGISTRY.getItemEntires().size();
-
-                List<IRecipe> recipes = new CopyOnWriteArrayList<>(ForgeRegistries.RECIPES.getValues());
-
-                MOLog.info("Matter Recipe Calculation Started for %s recipes at pass %s, with %s matter entries", recipes.size(), pass + 1, passStartRecipeCount);
+        if (Platform.isClient())
+            Minecraft.getMinecraft().getToastGui().add(new RegistryToast(true, 8000L));
+        int passesCount = 10;
+        for (int pass = 0; pass < passesCount; pass++) {
+            if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_RECIPES) {
+                List<IRecipe> recipes = new CopyOnWriteArrayList<>(ForgeRegistries.RECIPES.getValuesCollection());
                 for (IRecipe recipe : recipes) {
                     if (recipe == null || recipe.getRecipeOutput().isEmpty()) {
                         continue;
@@ -79,7 +109,6 @@ public class RegisterItemsFromRecipes implements Runnable {
                             int matter = MatterOverdrive.MATTER_REGISTRY.getMatter(itemStack);
                             if (matter <= 0) {
                                 matter = MatterOverdrive.MATTER_REGISTRY.getMatterFromRecipe(itemStack);
-
                                 if (matter > 0) {
                                     MatterOverdrive.MATTER_REGISTRY.register(itemStack.getItem(), new ItemStackHandlerCachable(matter, itemStack.getItemDamage()));
                                 } else {
@@ -98,26 +127,17 @@ public class RegisterItemsFromRecipes implements Runnable {
                     }
                 }
 
-                MOLog.info("Matter Recipe Calculation for pass %s complete. Took %s milliseconds. Registered %s recipes", pass + 1, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - passStartTime), MatterOverdrive.MATTER_REGISTRY.getItemEntires().size() - passStartRecipeCount);
-                if (MatterOverdrive.MATTER_REGISTRY.getItemEntires().size() - passStartRecipeCount <= 0) {
-                    break;
-                }
             }
-
-            MOLog.info("Matter Recipe Calculation, Complete ! Took %s Milliseconds. Registered total of %s items", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime), MatterOverdrive.MATTER_REGISTRY.getItemEntires().size() - startEntriesCount);
+            if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_FURNACE) {
+                registerFromInscriber();
+            }
+            if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_INSCRIBER) {
+                registerFromFurnace();
+            }
         }
 
-        if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_FURNACE) {
-            startTime = System.nanoTime();
-            startEntriesCount = MatterOverdrive.MATTER_REGISTRY.getItemEntires().size();
-
-            MOLog.info("Matter Furnace Calculation Started");
-            registerFromFurnace();
-            MOLog.info("Matter Furnace Calculation Complete. Took %s Milliseconds. Registered %s entries", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime), MatterOverdrive.MATTER_REGISTRY.getItemEntires().size() - startEntriesCount);
-        }
-
-        if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_FURNACE || MatterOverdrive.MATTER_REGISTRY.CALCULATE_RECIPES) {
-            startTime = System.nanoTime();
+        if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_FURNACE || MatterOverdrive.MATTER_REGISTRY.CALCULATE_INSCRIBER || MatterOverdrive.MATTER_REGISTRY.CALCULATE_RECIPES) {
+            long startTime = System.nanoTime();
 
             MOLog.info("Saving Registry to Disk");
             try {
@@ -129,16 +149,34 @@ public class RegisterItemsFromRecipes implements Runnable {
         }
         MatterOverdrive.MATTER_REGISTRY.hasComplitedRegistration = true;
         MatterOverdrive.MATTER_REGISTRATION_HANDLER.onRegistrationComplete();
+        if (Platform.isClient())
+            Minecraft.getMinecraft().getToastGui().add(new RegistryToast(false, 8000L));
+    }
+
+    private void registerFromInscriber() {
+        for (InscriberRecipe recipe : MatterOverdriveRecipes.INSCRIBER.getRecipes()) {
+            if (!recipe.getMain().isEmpty() && !recipe.getOutput().isEmpty()) {
+                int keyMatter = (MatterHelper.getMatterAmountFromItem(recipe.getMain()) * recipe.getMain().getCount()) / recipe.getOutput().getCount();
+                int secMatter = 0;
+                if (!recipe.getSec().isEmpty())
+                    secMatter = (MatterHelper.getMatterAmountFromItem(recipe.getSec()) * recipe.getSec().getCount()) / recipe.getOutput().getCount();
+                keyMatter += secMatter;
+                int valueMatter = MatterHelper.getMatterAmountFromItem(recipe.getOutput());
+                if (keyMatter > 0 && valueMatter <= 0) {
+                    MatterOverdrive.MATTER_REGISTRY.register(recipe.getOutput().getItem(), new ItemStackHandlerCachable(keyMatter, recipe.getOutput().getMetadata()));
+                }
+            }
+        }
     }
 
     private void registerFromFurnace() {
         Map<ItemStack, ItemStack> smeltingMap = new ConcurrentHashMap<>(FurnaceRecipes.instance().getSmeltingList());
         for (Map.Entry<ItemStack, ItemStack> entry : smeltingMap.entrySet()) {
-            if (entry.getKey() != null && entry.getValue() != null) {
+            if (!entry.getKey().isEmpty() && !entry.getValue().isEmpty()) {
                 int keyMatter = (MatterHelper.getMatterAmountFromItem(entry.getKey()) * entry.getKey().getCount()) / entry.getValue().getCount();
                 int valueMatter = MatterHelper.getMatterAmountFromItem(entry.getValue());
                 if (keyMatter > 0 && valueMatter <= 0) {
-                    MatterOverdrive.MATTER_REGISTRY.register(entry.getValue().getItem(), new ItemStackHandlerCachable(keyMatter, entry.getValue().getItemDamage()));
+                    MatterOverdrive.MATTER_REGISTRY.register(entry.getValue().getItem(), new ItemStackHandlerCachable(keyMatter, entry.getValue().getMetadata()));
                 }
             }
         }

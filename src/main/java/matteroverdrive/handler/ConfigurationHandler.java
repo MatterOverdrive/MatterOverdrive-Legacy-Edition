@@ -55,6 +55,7 @@ public class ConfigurationHandler {
     public static final String CATEGORY_DEBUG = "debug";
     public static final String KEY_AUTOMATIC_RECIPE_CALCULATION = "automatic matter calculation from recipe";
     public static final String KEY_AUTOMATIC_FURNACE_CALCULATION = "automatic matter calculation from furnace";
+    public static final String KEY_AUTOMATIC_INSCRIBER_CALCULATION = "automatic matter calculation from inscriber";
     public static final String KEY_MAX_BROADCASTS = "max broadcasts per tick";
     public static final String KEY_MBLACKLIST = "blacklist";
     public static final String KEY_BLACKLIST_MODS = "mod_blacklist";

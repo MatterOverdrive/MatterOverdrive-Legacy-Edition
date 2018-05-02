@@ -97,11 +97,6 @@ public class MatterEntryOre extends MatterEntryAbstract<String, ItemStack> {
     }
 
     public void clearAllCashed() {
-        Iterator<IMatterEntryHandler<ItemStack>> handlerIterator = handlers.iterator();
-        while (handlerIterator.hasNext()) {
-            if (handlerIterator.next() instanceof ItemStackHandlerCachable) {
-                handlerIterator.remove();
-            }
-        }
+        handlers.removeIf(itemStackIMatterEntryHandler -> itemStackIMatterEntryHandler instanceof ItemStackHandlerCachable);
     }
 }
