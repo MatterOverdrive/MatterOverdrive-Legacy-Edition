@@ -33,6 +33,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.apache.logging.log4j.Level;
 
@@ -104,6 +105,8 @@ public class RegisterItemsFromRecipes implements Runnable {
 
                     try {
                         ItemStack itemStack = recipe.getRecipeOutput();
+                        if (itemStack.isItemStackDamageable() || itemStack.hasCapability(CapabilityEnergy.ENERGY, null))
+                            continue;
                         if (!itemStack.isEmpty() && !MatterOverdrive.MATTER_REGISTRY.blacklistedFromMod(itemStack)) {
                             debug("Calculating Recipe for: %s", recipe.getRecipeOutput());
                             int matter = MatterOverdrive.MATTER_REGISTRY.getMatter(itemStack);
