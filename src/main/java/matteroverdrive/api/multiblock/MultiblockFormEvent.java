@@ -37,6 +37,10 @@ public class MultiblockFormEvent extends BlockEvent {
             this.name = name;
         }
 
+        public static Multiblock getMultiblock(String name) {
+            return MAP.get(name);
+        }
+
         public boolean equals(Multiblock multiblock) {
             return this == multiblock;
         }
@@ -47,10 +51,6 @@ public class MultiblockFormEvent extends BlockEvent {
 
         public String getName() {
             return name;
-        }
-
-        public static Multiblock getMultiblock(String name) {
-            return MAP.get(name);
         }
     }
 }

@@ -15,5 +15,5 @@ public abstract class SubCommand {
         return name;
     }
 
-    public abstract void execute(MinecraftServer server, ICommandSender sender, String[] args)throws CommandException;
+    public abstract void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException;
 }
