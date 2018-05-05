@@ -100,7 +100,7 @@ public class CommandMatterRegistry extends MOCommand {
                         throw new CommandException("Invalid type of item. Use either item,itemstack or ore.");
                     }
 
-                    MatterOverdrive.CONFIG_HANDLER.setInt(key, ConfigurationHandler.CATEGORY_NEW_ITEMS, matter);
+                    MatterOverdrive.CONFIG_HANDLER.setInt(key, ConfigurationHandler.CATEGORY_MATTER_ITEMS, matter);
                     MatterOverdrive.CONFIG_HANDLER.save();
                     commandSender.sendMessage(new TextComponentString(TextFormatting.GOLD + "[" + key + "]" + TextFormatting.RESET + " Added $s to matter registry and config.\nYou can now recalculated the registry.\nUse /matter_registry recalculate."));
                 } else {

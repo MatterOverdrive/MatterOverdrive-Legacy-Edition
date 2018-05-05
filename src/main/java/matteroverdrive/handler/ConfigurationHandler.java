@@ -39,8 +39,7 @@ public class ConfigurationHandler {
     public static final String CATEGORY_WORLD_GEN = "world gen";
     public static final String CATEGORY_MATTER_NETWORK = "matter network";
     public static final String CATEGORY_MACHINES = "machine options";
-    public static final String CATEGORY_OVERRIDE_MATTER = CATEGORY_MATTER + ".item overrides";
-    public static final String CATEGORY_NEW_ITEMS = CATEGORY_MATTER + ".new items";
+    public static final String CATEGORY_MATTER_ITEMS = CATEGORY_MATTER + ".add matter";
     public static final String CATEGORY_WORLD_SPAWN_ORES = "spawn ores";
     public static final String CATEGORY_WORLD_SPAWN_OTHER = "spawn other";
     public static final String CATEGORY_WORLD_SPAWN = "spawn";
@@ -87,11 +86,9 @@ public class ConfigurationHandler {
         updateCategoryLang(category);
         config.get(CATEGORY_MATTER, KEY_MBLACKLIST, new String[0]).setComment("Blacklist for items in the matter registry. Automatic Recipe calculation will ignore recipes with these items. Just add the unlocalized name or the ore dictionary name in the list.");
         config.get(CATEGORY_MATTER, KEY_BLACKLIST_MODS, new String[0]).setComment("Blacklist for mods (mod ID). Automatic Recipe calculation will ignore recipes with items from this mod");
-        category = config.getCategory(CATEGORY_NEW_ITEMS);
+        category = config.getCategory(CATEGORY_MATTER_ITEMS);
         category.setComment("Registration of new items and the amount of matter they contain. Add them like so: I:[registered name or ore Dictionary name](meta)=[matter amount]. () - optional parameter. Example I:dye2=10 I:egg=29");
         updateCategoryLang(category);
-        category = config.getCategory(CATEGORY_OVERRIDE_MATTER);
-        category.setComment("Overriding of existing items and the amount of matter they contain. Add them like so: I:[registered name or ore Dictionary name](meta)=[matter amount] () - optional parameter. Example I:dye2=10 I:egg=29");
         updateCategoryLang(category);
         category = config.getCategory(CATEGORY_CLIENT);
         updateCategoryLang(category);

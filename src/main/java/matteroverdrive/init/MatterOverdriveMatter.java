@@ -29,6 +29,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+
+import java.util.Map;
 
 public class MatterOverdriveMatter {
 
@@ -37,10 +42,39 @@ public class MatterOverdriveMatter {
         registerBasicBlocks(c);
 
         registerBasicCompoundItems(c);
+        registerFromConfig(c);
     }
 
     public static void registerBlacklistFromConfig(ConfigurationHandler c) {
         MatterOverdrive.MATTER_REGISTRY.loadModBlacklistFromConfig(c);
+    }
+
+    public static void registerFromConfig(ConfigurationHandler c) {
+        for (Map.Entry<String, Property> entry : c.config.getCategory(ConfigurationHandler.CATEGORY_MATTER_ITEMS).entrySet()) {
+            Object obj = null;
+            if (entry.getKey().contains(":")) {
+                String[] arr = entry.getKey().split("/");
+                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(arr[0]));
+                if (item != null) {
+                    if (arr.length >= 2) {
+                        obj = new ItemStack(item, 1, Integer.parseInt(arr[1]));
+                    } else {
+                        obj = item;
+                    }
+                }
+            } else {
+                obj = entry.getKey();
+            }
+            if (obj == null)
+                continue;
+            if (obj instanceof String) {
+                reg(c, (String) obj, entry.getValue().getInt());
+            } else if (obj instanceof ItemStack) {
+                reg(c, (ItemStack) obj, entry.getValue().getInt());
+            } else {
+                reg(c, (Item) obj, entry.getValue().getInt());
+            }
+        }
     }
 
     public static void registerBasicBlocks(ConfigurationHandler c) {
