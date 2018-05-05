@@ -36,7 +36,6 @@ public class MatterOverdriveGuides {
     public static GuideCategory androidCategory;
     public static GuideCategory weaponsCategory;
     public static GuideCategory generalCategory;
-    public static GuideCategory spaceCategory;
 
     public static void registerGuideElements(FMLInitializationEvent event) {
         MatterOverdriveGuide.registerGuideElementHandler("text", GuideElementText.class);
@@ -57,8 +56,6 @@ public class MatterOverdriveGuides {
         MatterOverdriveGuide.registerCategory(weaponsCategory);
         androidCategory = new GuideCategory("android").setHoloIcon("android_slot_arms");
         MatterOverdriveGuide.registerCategory(androidCategory);
-        spaceCategory = new GuideCategory("space").setHoloIcon("space");
-        MatterOverdriveGuide.registerCategory(spaceCategory);
 
         //region General
         //Ore

@@ -72,41 +72,39 @@ public class CommandMatterRegistry extends MOCommand {
         addCommand(new SubCommand("register") {
             @Override
             public void execute(MinecraftServer server, ICommandSender commandSender, String[] args) throws CommandException {
-                if (args[0].equalsIgnoreCase("register")) {
-                    int matter = parseInt(args[2]);
-                    ItemStack stack;
-                    if (args.length >= 4) {
-                        stack = getPlayer(server, commandSender, args[3]).getHeldItem(EnumHand.MAIN_HAND);
-                    } else {
-                        stack = getPlayer(server, commandSender, commandSender.getName()).getHeldItem(EnumHand.MAIN_HAND);
-                    }
+                int matter = parseInt(args[2]);
+                ItemStack stack;
+                if (args.length >= 4) {
+                    stack = getPlayer(server, commandSender, args[3]).getHeldItem(EnumHand.MAIN_HAND);
+                } else {
+                    stack = getPlayer(server, commandSender, commandSender.getName()).getHeldItem(EnumHand.MAIN_HAND);
+                }
 
-                    if (!stack.isEmpty()) {
-                        String key;
-                        if (args[1].equalsIgnoreCase("itemstack")) {
-                            key = stack.getItem().getRegistryName() + "/" + stack.getItemDamage();
-                            MatterOverdrive.MATTER_REGISTRY.register(stack.getItem(), new DamageAwareStackHandler(stack.getItemDamage(), matter));
+                if (!stack.isEmpty()) {
+                    String key;
+                    if (args[1].equalsIgnoreCase("itemstack")) {
+                        key = stack.getItem().getRegistryName() + "/" + stack.getItemDamage();
+                        MatterOverdrive.MATTER_REGISTRY.register(stack.getItem(), new DamageAwareStackHandler(stack.getItemDamage(), matter));
 
-                        } else if (args[1].equalsIgnoreCase("item")) {
-                            key = stack.getItem().getRegistryName().toString();
-                            MatterOverdrive.MATTER_REGISTRY.register(stack.getItem(), new ItemHandler(matter));
-                        } else if (args[1].equalsIgnoreCase("ore")) {
-                            int[] oreNames = OreDictionary.getOreIDs(stack);
-                            if (oreNames != null && oreNames.length > 0) {
-                                key = OreDictionary.getOreName(oreNames[0]);
-                            } else {
-                                throw new CommandException("Could not find an ore dictionary entry!");
-                            }
+                    } else if (args[1].equalsIgnoreCase("item")) {
+                        key = stack.getItem().getRegistryName().toString();
+                        MatterOverdrive.MATTER_REGISTRY.register(stack.getItem(), new ItemHandler(matter));
+                    } else if (args[1].equalsIgnoreCase("ore")) {
+                        int[] oreNames = OreDictionary.getOreIDs(stack);
+                        if (oreNames != null && oreNames.length > 0) {
+                            key = OreDictionary.getOreName(oreNames[0]);
                         } else {
-                            throw new CommandException("Invalid type of item. Use either item,itemstack or ore.");
+                            throw new CommandException("Could not find an ore dictionary entry!");
                         }
-
-                        MatterOverdrive.CONFIG_HANDLER.setInt(key, ConfigurationHandler.CATEGORY_NEW_ITEMS, matter);
-                        MatterOverdrive.CONFIG_HANDLER.save();
-                        commandSender.sendMessage(new TextComponentString(TextFormatting.GOLD + "[" + key + "]" + TextFormatting.RESET + " Added $s to matter registry and config.\nYou can now recalculated the registry.\nUse /matter_registry recalculate."));
                     } else {
-                        throw new CommandException("Player iz not holding any item", args[1]);
+                        throw new CommandException("Invalid type of item. Use either item,itemstack or ore.");
                     }
+
+                    MatterOverdrive.CONFIG_HANDLER.setInt(key, ConfigurationHandler.CATEGORY_NEW_ITEMS, matter);
+                    MatterOverdrive.CONFIG_HANDLER.save();
+                    commandSender.sendMessage(new TextComponentString(TextFormatting.GOLD + "[" + key + "]" + TextFormatting.RESET + " Added $s to matter registry and config.\nYou can now recalculated the registry.\nUse /matter_registry recalculate."));
+                } else {
+                    throw new CommandException("Player iz not holding any item", args[1]);
                 }
             }
         });
