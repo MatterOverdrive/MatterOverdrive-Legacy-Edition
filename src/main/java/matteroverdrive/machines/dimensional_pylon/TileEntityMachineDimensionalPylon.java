@@ -1,8 +1,10 @@
 package matteroverdrive.machines.dimensional_pylon;
 
+import com.astro.clib.util.TileUtils;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.inventory.UpgradeTypes;
+import matteroverdrive.api.multiblock.MultiblockFormEvent;
 import matteroverdrive.blocks.BlockPylon;
 import matteroverdrive.client.data.Color;
 import matteroverdrive.client.render.RenderParticlesHandler;
@@ -32,6 +34,7 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -406,26 +409,29 @@ public class TileEntityMachineDimensionalPylon extends MOTileEntityMachineMatter
         }
 
         if (mainBlock != null) {
+            if (MinecraftForge.EVENT_BUS.post(new MultiblockFormEvent(world, mainBlock, world.getBlockState(mainBlock), MultiblockFormEvent.Multiblock.PYLON)))
+                return false;
+            final BlockPos finalMainBlock = mainBlock;
             for (BlockPos p : positions) {
                 IBlockState pylonBlockstate = world.getBlockState(p);
                 world.setBlockState(p, pylonBlockstate.withProperty(BlockPylon.TYPE, BlockPylon.MultiblockType.DUMMY));
-                TileEntityMachineDimensionalPylon pylon = (TileEntityMachineDimensionalPylon) world.getTileEntity(p);
-                pylon.setMainBlock(mainBlock);
-
+                TileUtils.getTileEntity(world, p, TileEntityMachineDimensionalPylon.class).ifPresent(pylon -> {
+                    pylon.setMainBlock(finalMainBlock);
+                });
             }
-
             IBlockState pylonBlockstate = world.getBlockState(mainBlock);
             world.setBlockState(mainBlock, pylonBlockstate.withProperty(BlockPylon.TYPE, BlockPylon.MultiblockType.MAIN));
-            TileEntityMachineDimensionalPylon pylon = (TileEntityMachineDimensionalPylon) world.getTileEntity(mainBlock);
-            pylon.children = positions;
-            pylon.setMainBlock(mainBlock);
-            pylon.registerPylonComponents();
+            TileUtils.getTileEntity(world, mainBlock, TileEntityMachineDimensionalPylon.class).ifPresent(pylon -> {
+                pylon.children = positions;
+                pylon.setMainBlock(finalMainBlock);
+                pylon.registerPylonComponents();
+            });
             MOLog.info("Valid Structure");
+            return true;
         } else {
             MOLog.info("Invalid Structure");
             return false;
         }
-        return true;
     }
 
     public void setMainBlock(BlockPos mainBlock) {
