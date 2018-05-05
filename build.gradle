@@ -125,7 +125,7 @@ task deobfJar(type: Jar) {
 
 task apiJar(type: Jar) {
     from(sourceSets.main.output) {
-        include 'matteroverdrive/api/*'
+        include 'matteroverdrive/api/**'
     }
     classifier = "api"
 }
