@@ -25,11 +25,6 @@ import matteroverdrive.data.recipes.InscriberRecipe;
 import matteroverdrive.init.MatterOverdriveRecipes;
 import matteroverdrive.util.MOLog;
 import matteroverdrive.util.MatterHelper;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.toasts.GuiToast;
-import net.minecraft.client.gui.toasts.IToast;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
@@ -57,8 +52,7 @@ public class RegisterItemsFromRecipes implements Runnable {
 
     @Override
     public void run() {
-        if (Platform.isClient())
-            Minecraft.getMinecraft().getToastGui().add(new RegistryToast(true, 8000L));
+        MatterOverdrive.PROXY.matterToast(true,8000L);
         int passesCount = 10;
         for (int pass = 0; pass < passesCount; pass++) {
             if (MatterOverdrive.MATTER_REGISTRY.CALCULATE_RECIPES) {
@@ -121,8 +115,7 @@ public class RegisterItemsFromRecipes implements Runnable {
         }
         MatterOverdrive.MATTER_REGISTRY.hasComplitedRegistration = true;
         MatterOverdrive.MATTER_REGISTRATION_HANDLER.onRegistrationComplete();
-        if (Platform.isClient())
-            Minecraft.getMinecraft().getToastGui().add(new RegistryToast(false, 8000L));
+        MatterOverdrive.PROXY.matterToast(false,8000L);
     }
 
     private void registerFromInscriber() {
@@ -184,33 +177,4 @@ public class RegisterItemsFromRecipes implements Runnable {
         }
     }
 
-    public static class RegistryToast implements IToast {
-        boolean begin;
-        long time;
-        private long firstDrawTime = 0;
-
-        public RegistryToast(boolean begin, long time) {
-            this.begin = begin;
-            this.time = time;
-        }
-
-        @Override
-        public Visibility draw(GuiToast toastGui, long delta) {
-            if (firstDrawTime == 0)
-                this.firstDrawTime = delta;
-            toastGui.getMinecraft().getTextureManager().bindTexture(TEXTURE_TOASTS);
-            GlStateManager.color(1.0F, 1.0F, 1.0F);
-            toastGui.drawTexturedModalRect(0, 0, 0, 32, 160, 32);
-            toastGui.getMinecraft().fontRenderer.drawString("Recipe Calculation", 5, 7, -11534256);
-            if (begin) {
-                toastGui.getMinecraft().fontRenderer.drawString("Starting calculation", 5, 18, -16777216);
-            } else {
-                toastGui.getMinecraft().fontRenderer.drawString("Calculation complete", 5, 18, -16777216);
-            }
-            RenderHelper.enableGUIStandardItemLighting();
-            if (begin && MatterOverdrive.MATTER_REGISTRY.hasComplitedRegistration)
-                return Visibility.HIDE;
-            return delta - this.firstDrawTime >= time ? Visibility.HIDE : Visibility.SHOW;
-        }
-    }
 }

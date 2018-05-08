@@ -5,7 +5,7 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeCategory;
+import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * @author shadowfacts
  */
-public class InscriberRecipeCategory extends BlankRecipeCategory<InscriberRecipeWrapper> {
+public class InscriberRecipeCategory implements IRecipeCategory<InscriberRecipeWrapper> {
 
     public static final String UID = "mo.inscriber";
     private final IDrawable background;

@@ -31,6 +31,7 @@ import matteroverdrive.gui.GuiQuestHud;
 import matteroverdrive.handler.KeyHandler;
 import matteroverdrive.handler.MouseHandler;
 import matteroverdrive.handler.TooltipHandler;
+import matteroverdrive.handler.thread.RegistryToast;
 import matteroverdrive.handler.weapon.ClientWeaponHandler;
 import matteroverdrive.handler.weapon.CommonWeaponHandler;
 import matteroverdrive.init.MatterOverdriveGuides;
@@ -179,5 +180,10 @@ public class ClientProxy extends CommonProxy {
     @Override
     public String translateToLocal(String key, Object... params) {
         return I18n.format(key, params);
+    }
+
+    @Override
+    public void matterToast(boolean b, long l) {
+        Minecraft.getMinecraft().getToastGui().add(new RegistryToast(b, l));
     }
 }

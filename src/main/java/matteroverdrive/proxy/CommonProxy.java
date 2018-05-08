@@ -66,4 +66,6 @@ public class CommonProxy {
         return I18n.translateToLocalFormatted(key, params);
     }
 
+    public void matterToast(boolean b, long l) {
+    }
 }
