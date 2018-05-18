@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "matteroverdrive:tritanium_ingot"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "#NUGGETTRITANIUM"
+    }
+  }
+}
