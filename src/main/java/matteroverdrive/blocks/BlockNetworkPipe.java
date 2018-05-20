@@ -64,7 +64,7 @@ public class BlockNetworkPipe extends BlockPipe<TileEntityNetworkPipe> implement
         IBlockState state = world.getBlockState(pos);
 
         if (!returnDrops) {
-            state.getBlock().harvestBlock(world, player, pos, state, world.getTileEntity(pos), null);
+            state.getBlock().harvestBlock(world, player, pos, state, world.getTileEntity(pos), ItemStack.EMPTY);
             state.getBlock().removedByPlayer(state, world, pos, player, true);
         } else {
             state.getBlock().removedByPlayer(state, world, pos, player, true);

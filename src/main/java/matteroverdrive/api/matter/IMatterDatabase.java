@@ -77,5 +77,5 @@ public interface IMatterDatabase {
 
     int getPatternStorageCount();
 
-    BlockPos getPos();
+    BlockPos getPosition();
 }
