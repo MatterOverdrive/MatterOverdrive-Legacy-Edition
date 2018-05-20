@@ -107,6 +107,13 @@
   {
     "ingredient": {
       "type": "forge:ore_dict",
+      "ore": "blockTritanium"
+    },
+    "name": "BLOCKTRITANIUM"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
       "ore": "paper"
     },
     "name": "PAPER"
