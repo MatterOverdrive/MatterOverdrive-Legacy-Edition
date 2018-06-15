@@ -374,7 +374,7 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
 
     private void renderTransformAnimation(AndroidPlayer player, RenderGameOverlayEvent event) {
         int centerX = event.getResolution().getScaledWidth() / 2;
-        int centerY = event.getResolution().getScaledHeight() / 2;
+        int centerY = event.getResolution().getScaledHeight() / 2 - 30;
         int maxTime = AndroidPlayer.TRANSFORM_TIME;
         int time = maxTime - player.getAndroidEffects().getEffectShort(AndroidPlayer.EFFECT_TURNNING);
         textTyping.setTime(time);
