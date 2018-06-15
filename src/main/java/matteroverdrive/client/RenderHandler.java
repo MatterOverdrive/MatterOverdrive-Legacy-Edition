@@ -71,6 +71,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
@@ -299,6 +300,16 @@ public class RenderHandler {
                         renderer.affectPlayerRenderer(part, androidPlayer, event.getRenderer(), event.getPartialRenderTick());
                     }
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onFOVModifier(EntityViewRenderEvent.FOVModifier event){
+        if (event.getEntity() instanceof EntityPlayer && AndroidPlayer.DISABLE_ANDROID_FOV){
+            AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(event.getEntity());
+            if (androidPlayer != null && androidPlayer.isAndroid()){
+                event.setFOV(Minecraft.getMinecraft().gameSettings.fovSetting);
             }
         }
     }
