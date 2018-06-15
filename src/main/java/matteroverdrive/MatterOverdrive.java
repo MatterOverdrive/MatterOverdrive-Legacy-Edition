@@ -182,7 +182,6 @@ public class MatterOverdrive {
         WEAPON_FACTORY.initWeapons();
         ANDROID_PARTS_FACTORY.initParts();
 
-        AndroidPlayer.loadConfigs(CONFIG_HANDLER);
     }
 
     @EventHandler

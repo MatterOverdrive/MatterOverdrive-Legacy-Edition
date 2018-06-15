@@ -20,6 +20,7 @@ package matteroverdrive.handler;
 
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
+import matteroverdrive.entity.android_player.AndroidPlayer;
 import matteroverdrive.util.IConfigSubscriber;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
@@ -128,6 +129,8 @@ public class ConfigurationHandler {
 
         config.getBoolean(KEY_AUTOMATIC_RECIPE_CALCULATION, CATEGORY_MATTER, true, "Shoud Matter be automaticly calculated from Recipes");
 
+        AndroidPlayer.loadConfigs(this);
+
         save();
     }
 
@@ -167,6 +170,10 @@ public class ConfigurationHandler {
 
     public String[] getStringList(String category, String key) {
         return config.get(category, key, new String[0]).getStringList();
+    }
+
+    public String[] getStringList(String category, String key, String comment) {
+        return config.get(category, key, new String[0], comment).getStringList();
     }
 
     public ConfigCategory getCategory(String cat) {
