@@ -233,7 +233,7 @@ public class RenderHandler {
     //Called when the client ticks.
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
-        renderParticlesHandler.onClientTick(event);
+        if (renderParticlesHandler != null) renderParticlesHandler.onClientTick(event);
     }
 
     public void createTileEntityRenderers(ConfigurationHandler configHandler) {
