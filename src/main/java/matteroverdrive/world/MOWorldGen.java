@@ -18,13 +18,13 @@
 
 package matteroverdrive.world;
 
-import com.astro.clib.util.Platform;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.data.world.GenPositionWorldData;
 import matteroverdrive.handler.ConfigurationHandler;
 import matteroverdrive.util.IConfigSubscriber;
 import matteroverdrive.util.MOLog;
+import matteroverdrive.util.Platform;
 import matteroverdrive.world.buildings.*;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
@@ -135,7 +135,7 @@ public class MOWorldGen implements IWorldGenerator, IConfigSubscriber {
         if (generateAnomalies) {
             BlockPos pos = new BlockPos(chunkX + random.nextInt(16), chunkZ + random.nextInt(16), random.nextInt(60) + 4);
 
-            if (anomalyGen.generate(world, random, pos) && Platform.isDevEnv())
+            if (anomalyGen.generate(world, random, pos) && Platform.isDev())
                 MOLog.debug("Generated Anomaly at %s", pos);
         }
     }

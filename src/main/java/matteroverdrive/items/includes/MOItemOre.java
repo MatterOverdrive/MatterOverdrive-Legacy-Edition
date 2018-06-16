@@ -1,6 +1,6 @@
 package matteroverdrive.items.includes;
 
-import com.astro.clib.api.OreDictItem;
+import matteroverdrive.api.internal.OreDictItem;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**

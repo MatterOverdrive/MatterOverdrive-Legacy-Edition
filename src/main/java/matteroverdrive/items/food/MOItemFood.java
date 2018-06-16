@@ -1,7 +1,7 @@
 package matteroverdrive.items.food;
 
-import com.astro.clib.api.render.ItemModelProvider;
-import com.astro.clib.client.ClientUtil;
+import matteroverdrive.api.internal.ItemModelProvider;
+import matteroverdrive.client.ClientUtil;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

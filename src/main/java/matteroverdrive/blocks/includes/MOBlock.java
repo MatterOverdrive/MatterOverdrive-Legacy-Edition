@@ -18,9 +18,9 @@
 
 package matteroverdrive.blocks.includes;
 
-import com.astro.clib.api.render.ItemModelProvider;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.IMOTileEntity;
+import matteroverdrive.api.internal.ItemModelProvider;
 import matteroverdrive.tile.MOTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

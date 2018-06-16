@@ -18,8 +18,7 @@
 
 package matteroverdrive;
 
-import com.astro.clib.api.OreDictItem;
-import com.astro.clib.tech.CLibTech;
+import matteroverdrive.api.internal.OreDictItem;
 import matteroverdrive.commands.AndoidCommands;
 import matteroverdrive.commands.CommandMatterRegistry;
 import matteroverdrive.commands.QuestCommands;
@@ -101,7 +100,6 @@ public class MatterOverdrive {
 
     static {
         FluidRegistry.enableUniversalBucket();
-        CLibTech.enable();
         CONFIG_HANDLER = new ConfigurationHandler(new File("config"));
         MATTER_REGISTRY = new MatterRegistry();
         STAT_REGISTRY = new AndroidStatRegistry();

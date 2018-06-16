@@ -18,14 +18,13 @@
 
 package matteroverdrive.client;
 
-import com.astro.clib.api.render.ItemModelProvider;
-import com.astro.clib.client.ClientUtil;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.android.IAndroidStatRenderRegistry;
 import matteroverdrive.api.android.IBioticStat;
+import matteroverdrive.api.internal.ItemModelProvider;
 import matteroverdrive.api.inventory.IBionicPart;
 import matteroverdrive.api.renderer.IBionicPartRenderer;
 import matteroverdrive.api.renderer.IBioticStatRenderer;

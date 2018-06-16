@@ -18,7 +18,7 @@
 
 package matteroverdrive.blocks;
 
-import com.astro.clib.api.wrench.IDismantleable;
+import matteroverdrive.api.wrench.IDismantleable;
 import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.tile.TileEntityHoloSign;
 import matteroverdrive.util.MOInventoryHelper;

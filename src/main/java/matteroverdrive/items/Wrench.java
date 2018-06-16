@@ -1,7 +1,7 @@
 package matteroverdrive.items;
 
-import com.astro.clib.api.wrench.IDismantleable;
-import com.astro.clib.api.wrench.IWrenchable;
+import matteroverdrive.api.wrench.IDismantleable;
+import matteroverdrive.api.wrench.IWrenchable;
 import matteroverdrive.items.includes.MOBaseItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

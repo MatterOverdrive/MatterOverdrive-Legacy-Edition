@@ -1,6 +1,6 @@
 package matteroverdrive.init;
 
-import com.astro.clib.api.Storage;
+import matteroverdrive.api.internal.Storage;
 import matteroverdrive.api.matter.IMatterHandler;
 import matteroverdrive.data.MatterStorage;
 import net.minecraftforge.common.capabilities.Capability;

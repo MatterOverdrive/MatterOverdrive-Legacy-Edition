@@ -18,7 +18,6 @@
 
 package matteroverdrive.handler.thread;
 
-import com.astro.clib.util.Platform;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.data.matter.ItemStackHandlerCachable;
 import matteroverdrive.data.recipes.InscriberRecipe;

@@ -18,7 +18,7 @@
 
 package matteroverdrive.blocks;
 
-import com.astro.clib.api.wrench.IDismantleable;
+import matteroverdrive.api.wrench.IDismantleable;
 import matteroverdrive.tile.pipes.TileEntityNetworkPipe;
 import matteroverdrive.util.MOInventoryHelper;
 import net.minecraft.block.material.Material;

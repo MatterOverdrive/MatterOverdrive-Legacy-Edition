@@ -18,9 +18,9 @@
 
 package matteroverdrive.init;
 
-import com.astro.clib.api.registration.IItemBlockFactory;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
+import matteroverdrive.api.internal.IItemBlockFactory;
 import matteroverdrive.blocks.*;
 import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.blocks.includes.MOBlockMachine;

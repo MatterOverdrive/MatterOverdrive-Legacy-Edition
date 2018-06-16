@@ -1,8 +1,15 @@
 package matteroverdrive.util;
 
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.EnumFacing;
 
 public class Platform {
+    private static boolean dev = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
+
+    public static boolean isDev() {
+        return dev;
+    }
+
     public static EnumFacing rotateAround(EnumFacing forward, EnumFacing axis) {
         if (axis == null || forward == null) {
             return forward;

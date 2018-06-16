@@ -1,6 +1,6 @@
 package matteroverdrive.blocks;
 
-import com.astro.clib.api.wrench.IDismantleable;
+import matteroverdrive.api.wrench.IDismantleable;
 import matteroverdrive.blocks.includes.MOBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

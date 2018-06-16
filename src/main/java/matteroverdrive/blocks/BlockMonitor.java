@@ -18,9 +18,9 @@
 
 package matteroverdrive.blocks;
 
-import com.astro.clib.util.AABBUtils;
 import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.blocks.includes.MOBlockMachine;
+import matteroverdrive.util.AABBUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;

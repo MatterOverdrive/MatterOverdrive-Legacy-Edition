@@ -18,7 +18,6 @@
 
 package matteroverdrive.blocks;
 
-import com.astro.clib.util.TileUtils;
 import matteroverdrive.api.IScannable;
 import matteroverdrive.blocks.includes.MOBlockContainer;
 import matteroverdrive.handler.ConfigurationHandler;
@@ -76,7 +75,7 @@ public class BlockGravitationalAnomaly extends MOBlockContainer<TileEntityGravit
     @Nonnull
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        TileEntityGravitationalAnomaly tileEntity = TileUtils.getNullableTileEntity(source, pos, TileEntityGravitationalAnomaly.class);
+        TileEntityGravitationalAnomaly tileEntity = getTileEntity(source,pos);
         if (tileEntity != null) {
             double range = tileEntity.getEventHorizon();
             range = Math.max(range, 0.4);

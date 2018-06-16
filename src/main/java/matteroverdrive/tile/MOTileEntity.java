@@ -18,7 +18,6 @@
 
 package matteroverdrive.tile;
 
-import com.astro.clib.network.CEvents;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.IMOTileEntity;
 import matteroverdrive.machines.MachineNBTCategory;
@@ -84,7 +83,7 @@ public abstract class MOTileEntity extends TileEntity implements IMOTileEntity {
     @Override
     public void markDirty() {
         super.markDirty();
-        CEvents.markForUpdate(this.getPos(), this);
+        PacketDispatcher.dispatchTEToNearbyPlayers(this);
     }
 
     @Override

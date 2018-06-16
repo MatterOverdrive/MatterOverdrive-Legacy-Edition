@@ -18,7 +18,6 @@
 
 package matteroverdrive.handler;
 
-import com.astro.clib.util.Platform;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -27,6 +26,7 @@ import matteroverdrive.Reference;
 import matteroverdrive.handler.thread.VersionCheckThread;
 import matteroverdrive.util.IConfigSubscriber;
 import matteroverdrive.util.MOLog;
+import matteroverdrive.util.Platform;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.*;
 import net.minecraft.util.text.event.ClickEvent;
@@ -58,7 +58,7 @@ public class VersionCheckerHandler implements IConfigSubscriber {
     //Called when a player ticks.
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
 
-        if (event.player.world.isRemote || Platform.isDevEnv() || event.phase != TickEvent.Phase.START || !checkForUpdates) {
+        if (event.player.world.isRemote || Platform.isDev() || event.phase != TickEvent.Phase.START || !checkForUpdates) {
             return;
         }
 

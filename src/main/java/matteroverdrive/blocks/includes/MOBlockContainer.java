@@ -18,7 +18,7 @@
 
 package matteroverdrive.blocks.includes;
 
-import com.astro.clib.api.TileEntityProvider;
+import matteroverdrive.api.internal.TileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;

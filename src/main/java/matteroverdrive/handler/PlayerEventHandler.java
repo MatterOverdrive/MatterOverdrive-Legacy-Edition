@@ -18,7 +18,6 @@
 
 package matteroverdrive.handler;
 
-import com.astro.clib.util.Platform;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.events.MOEventDialogConstruct;
 import matteroverdrive.api.events.MOEventDialogInteract;
@@ -90,11 +89,6 @@ public class PlayerEventHandler {
                 event.player.resetActiveHand();
                 event.player.setActiveHand(EnumHand.MAIN_HAND);
             }
-        }
-
-        if (event.side == Side.CLIENT) {
-            if (Platform.isDevEnv())
-                versionCheckerHandler.onPlayerTick(event);
         }
 
         AndroidPlayer player = MOPlayerCapabilityProvider.GetAndroidCapability(event.player);

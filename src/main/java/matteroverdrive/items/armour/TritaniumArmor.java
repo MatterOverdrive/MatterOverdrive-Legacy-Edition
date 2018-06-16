@@ -18,9 +18,9 @@
 
 package matteroverdrive.items.armour;
 
-import com.astro.clib.api.render.ItemModelProvider;
-import com.astro.clib.client.ClientUtil;
 import matteroverdrive.Reference;
+import matteroverdrive.api.internal.ItemModelProvider;
+import matteroverdrive.client.ClientUtil;
 import matteroverdrive.client.model.ModelTritaniumArmor;
 import matteroverdrive.proxy.ClientProxy;
 import net.minecraft.client.Minecraft;

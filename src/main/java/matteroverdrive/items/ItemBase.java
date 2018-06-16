@@ -1,7 +1,7 @@
 package matteroverdrive.items;
 
-import com.astro.clib.api.render.ItemModelProvider;
-import com.astro.clib.client.ClientUtil;
+import matteroverdrive.client.ClientUtil;
+import matteroverdrive.api.internal.ItemModelProvider;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

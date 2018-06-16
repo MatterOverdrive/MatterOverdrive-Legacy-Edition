@@ -1,6 +1,5 @@
 package matteroverdrive.machines.dimensional_pylon;
 
-import com.astro.clib.util.TileUtils;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.inventory.UpgradeTypes;
@@ -20,6 +19,7 @@ import matteroverdrive.tile.MOTileEntityMachineMatter;
 import matteroverdrive.util.MOLog;
 import matteroverdrive.util.MOStringHelper;
 import matteroverdrive.util.RenderUtils;
+import matteroverdrive.util.TileUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

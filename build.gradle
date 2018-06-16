@@ -84,8 +84,6 @@ dependencies {
     runtime "mezz.jei:jei_1.12.2:4.8.5.138"
 
     deobfCompile group: 'mcp.mobius.waila', name: 'Hwyla', version: '1.8.23-B38_1.12'
-
-    compile "com.astro.clib:CLib:1.0.2.31:deobf"
 }
 
 processResources {
