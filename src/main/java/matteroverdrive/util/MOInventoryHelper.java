@@ -37,7 +37,7 @@ import java.util.List;
 public class MOInventoryHelper {
 
     public static void setInventorySlotContents(@Nonnull ItemStack container, int slot, @Nonnull ItemStack stack) {
-        if (stack.isEmpty()) {
+        if (StackUtils.isNullOrEmpty(stack)) {
             if (!container.hasTagCompound()) {
                 container.setTagCompound(new NBTTagCompound());
             }
@@ -88,9 +88,9 @@ public class MOInventoryHelper {
             if (s.startsWith("Slot")) {
                 NBTBase nbtbase = container.getTagCompound().getTag(s);
                 if (nbtbase instanceof NBTTagCompound) {
-                    ItemStack itemStack = new ItemStack((NBTTagCompound) nbtbase);
-                    if (!itemStack.isEmpty()) {
-                        itemStacks.add(itemStack);
+                    ItemStack stack = new ItemStack((NBTTagCompound) nbtbase);
+                    if (!StackUtils.isNullOrEmpty(stack)) {
+                        itemStacks.add(stack);
                     }
                 }
             }
@@ -101,7 +101,7 @@ public class MOInventoryHelper {
     public static ItemStack addItemInContainer(Container container, ItemStack itemStack) {
         for (int i = 0; i < container.inventorySlots.size(); i++) {
             if (container.getSlot(i).isItemValid(itemStack)) {
-                if (container.getSlot(i).getStack().isEmpty()) {
+                if (StackUtils.isNullOrEmpty(container.getSlot(i).getStack())) {
                     container.getSlot(i).putStack(itemStack);
                     if (itemStack.getCount() > itemStack.getMaxStackSize()) {
                         itemStack.setCount(itemStack.getMaxStackSize());
@@ -160,7 +160,7 @@ public class MOInventoryHelper {
                 }
 
                 for (var9 = 0; var9 < var8 && itemstack != null; ++var9) {
-                    if (inventory.getStackInSlot(var9).isEmpty()) {
+                    if (StackUtils.isNullOrEmpty(inventory.getStackInSlot(var9))) {
                         itemstack = addToEmptyInventorySlot(inventory, var9, itemstack);
                     }
                 }
@@ -208,30 +208,29 @@ public class MOInventoryHelper {
         return mergeItemStack(var0, var1, var2, var3, var4, true);
     }
 
-    public static boolean mergeItemStack(List<Slot> slots, ItemStack itemstack, int var2, int var3, boolean var4, boolean var5) {
+    public static boolean mergeItemStack(List<Slot> slots, ItemStack stack, int var2, int var3, boolean var4, boolean var5) {
         boolean var6 = false;
         int var7 = !var4 ? var2 : var3 - 1;
         int var8 = !var4 ? 1 : -1;
         Slot var9;
         ItemStack var10;
         int var11;
-        if (itemstack.isStackable()) {
-            for (; itemstack.getCount() > 0 && (!var4 && var7 < var3 || var4 && var7 >= var2); var7 += var8) {
+        if (stack.isStackable()) {
+            for (; stack.getCount() > 0 && (!var4 && var7 < var3 || var4 && var7 >= var2); var7 += var8) {
                 var9 = slots.get(var7);
                 var10 = var9.getStack();
-                if (var9.isItemValid(itemstack) && !var10.isEmpty() && var10.getItem().equals(itemstack.getItem()) && (!itemstack.getHasSubtypes() || itemstack.getItemDamage() == var10.getItemDamage()) && ItemStack.areItemStackTagsEqual(itemstack, var10)) {
-                    var11 = var10.getCount() - itemstack.getCount();
-                    var10.grow(itemstack.getCount());
-                    int var12 = Math.min(itemstack.getMaxStackSize(), var9.getSlotStackLimit());
+                if (var9.isItemValid(stack) && !StackUtils.isNullOrEmpty(stack) && var10.getItem().equals(stack.getItem()) && (!stack.getHasSubtypes() || stack.getItemDamage() == var10.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, var10)) {
+                    var11 = var10.getCount() - stack.getCount();
+                    var10.grow(stack.getCount());
+                    int var12 = Math.min(stack.getMaxStackSize(), var9.getSlotStackLimit());
                     if (var11 <= var12) {
-                        itemstack.setCount(0);
+                        stack.setCount(0);
                         var10.setCount(var11);
                         var9.onSlotChanged();
                         var6 = true;
                     } else if (var10.getCount() < var12) {
-                        itemstack.shrink(var12 - var10.getCount());
+                        stack.shrink(var12 - var10.getCount());
                         var10.setCount(var12);
-                        ;
                         var9.onSlotChanged();
                         var6 = true;
                     }
@@ -239,13 +238,13 @@ public class MOInventoryHelper {
             }
         }
 
-        if (itemstack.getCount() > 0) {
-            for (var7 = !var4 ? var2 : var3 - 1; itemstack.getCount() > 0 && (!var4 && var7 < var3 || var4 && var7 >= var2); var7 += var8) {
+        if (stack.getCount() > 0) {
+            for (var7 = !var4 ? var2 : var3 - 1; stack.getCount() > 0 && (!var4 && var7 < var3 || var4 && var7 >= var2); var7 += var8) {
                 var9 = slots.get(var7);
                 var10 = var9.getStack();
-                if (var9.isItemValid(itemstack) && var10.isEmpty()) {
-                    var11 = var5 ? Math.min(itemstack.getMaxStackSize(), var9.getSlotStackLimit()) : var9.getSlotStackLimit();
-                    var10 = itemstack.splitStack(Math.min(itemstack.getCount(), var11));
+                if (var9.isItemValid(stack) && StackUtils.isNullOrEmpty(var10)) {
+                    var11 = var5 ? Math.min(stack.getMaxStackSize(), var9.getSlotStackLimit()) : var9.getSlotStackLimit();
+                    var10 = stack.splitStack(Math.min(stack.getCount(), var11));
                     var9.putStack(var10);
                     var9.onSlotChanged();
                     var6 = true;

@@ -19,15 +19,18 @@ package matteroverdrive.container;
 
 import matteroverdrive.api.container.IMachineWatcher;
 import matteroverdrive.container.slot.SlotInventory;
+import matteroverdrive.container.slot.SlotPlayerInventory;
 import matteroverdrive.data.Inventory;
 import matteroverdrive.data.inventory.UpgradeSlot;
 import matteroverdrive.machines.MOTileEntityMachine;
 import matteroverdrive.util.MOInventoryHelper;
+import matteroverdrive.util.StackUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -123,34 +126,30 @@ public class ContainerMachine<T extends MOTileEntityMachine> extends MOBaseConta
     @Override
     @Nonnull
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
-        /*ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(slotID);
-
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
-
-            if (slotID < machine.getSizeInventory()) {
-                putInPlayerInventory(itemstack1);
-            } else if (slotID >= machine.getSizeInventory()) {
-                tryAndPutInMachineSlots(itemstack1, machine);
-            }
-
-            if (itemstack1.getCount() == 0) {
-                slot.putStack(ItemStack.EMPTY);
-            } else {
-                slot.onSlotChanged();
-            }
-
-            if (itemstack1.getCount() == itemstack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-
-            slot.onTake(player, itemstack1);
+        Slot slot = getSlot(slotID);
+        if (slot == null) {
+            return ItemStack.EMPTY;
+        }
+        ItemStack stack = slot.getStack();
+        if (StackUtils.isNullOrEmpty(stack))
+            return ItemStack.EMPTY;
+        ItemStack copy = stack.copy();
+        if (!(slot instanceof SlotPlayerInventory)) {
+            putInPlayerInventory(stack);
+        } else {
+            tryAndPutInMachineSlots(stack, machine);
         }
 
-        return itemstack;*/
-        return ItemStack.EMPTY; //TODO: Rewrite to not be broken
+        if (StackUtils.isNullOrEmpty(stack)) {
+            slot.putStack(ItemStack.EMPTY);
+        } else {
+            slot.onSlotChanged();
+        }
+
+        if (stack.getCount() == copy.getCount())
+            return ItemStack.EMPTY;
+        slot.onTake(player, stack);
+        return stack;
     }
 
     protected boolean putInPlayerInventory(ItemStack itemStack) {
