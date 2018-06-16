@@ -178,6 +178,11 @@ task("uploadJars") {
                                     roles { role 'developer' }
                                 }
                                 developer {
+                                    id 'Buuz135'
+                                    name 'Buuz135'
+                                    roles { role 'developer' }
+                                }
+                                developer {
                                     id 'Dev-Osmium'
                                     name 'Dev-Osmium'
                                     roles { role 'developer' }
