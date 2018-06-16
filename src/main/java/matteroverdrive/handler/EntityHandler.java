@@ -23,11 +23,14 @@ import matteroverdrive.Reference;
 import matteroverdrive.api.events.MOEventTransport;
 import matteroverdrive.api.events.anomaly.MOEventGravitationalAnomalyConsume;
 import matteroverdrive.data.quest.PlayerQuestData;
+import matteroverdrive.entity.EntityVillagerMadScientist;
 import matteroverdrive.entity.android_player.AndroidPlayer;
 import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
 import matteroverdrive.entity.player.OverdriveExtendedProperties;
+import matteroverdrive.init.MatterOverdriveEntities;
 import matteroverdrive.util.MatterHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -172,6 +175,21 @@ public class EntityHandler {
     public void OnAttachCapability(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof EntityPlayer) {
             event.addCapability(new ResourceLocation(Reference.MOD_NAME, "MOPlayer"), new MOPlayerCapabilityProvider((EntityPlayer) event.getObject()));
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntitySpawn(EntityJoinWorldEvent event){
+        if (event.getEntity() instanceof EntityVillager && ((EntityVillager) event.getEntity()).getProfessionForge().equals(MatterOverdriveEntities.MAD_SCIENTIST_PROFESSION) && !event.getEntity().getClass().equals(EntityVillagerMadScientist.class)){
+            event.setCanceled(true);
+            EntityVillagerMadScientist villager = new EntityVillagerMadScientist(event.getWorld());
+            villager.onInitialSpawn(event.getWorld().getDifficultyForLocation(((EntityVillager) event.getEntity()).getPos()), null);
+            villager.setGrowingAge(-24000);
+            villager.setLocationAndAngles(event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, 0.0F, 0.0F);
+            event.getWorld().spawnEntity(villager);
+            if (event.getEntity().hasCustomName()){
+                villager.setCustomNameTag(event.getEntity().getCustomNameTag());
+            }
         }
     }
 }
