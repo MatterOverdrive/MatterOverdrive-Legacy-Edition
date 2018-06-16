@@ -115,6 +115,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
     private static boolean TRANSFORMATION_DEATH = true;
     private static boolean REMOVE_POTION_EFFECTS = true;
     private static List<String> POTION_REMOVAL_BLACKLIST = new ArrayList<>();
+    public static boolean DISABLE_ANDROID_FOV = true;
     private final int ENERGY_SLOT;
     private final Inventory inventory;
     private NonNullList<ItemStack> previousBionicParts = NonNullList.withSize(5, ItemStack.EMPTY);
@@ -164,6 +165,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
         HURT_GLITCHING = configurationHandler.getBool("hurt_glitching", ConfigurationHandler.CATEGORY_ANDROID_PLAYER, true, "Should the glitch effect be displayed every time the player gets hurt");
         RECHARGE_AMOUNT_ON_RESPAWN = configurationHandler.getInt("recharge_amount_on_respawn", ConfigurationHandler.CATEGORY_ANDROID_PLAYER, RECHARGE_AMOUNT_ON_RESPAWN, "How much does the android player recharge after respawning");
         POTION_REMOVAL_BLACKLIST = Arrays.asList(configurationHandler.getStringList(ConfigurationHandler.CATEGORY_ANDROID_PLAYER, "potion_removal_blacklist", "Collection of potion ids that won't get removed while being an android. Example: minecraft:wither"));
+        DISABLE_ANDROID_FOV = configurationHandler.getBool("disable_android_fov", ConfigurationHandler.CATEGORY_ANDROID_PLAYER,true, "If true android speed modifiers won't change players FOV");
     }
 
     public static boolean isVisibleOnMinimap(EntityLivingBase entityLivingBase, EntityPlayer player, Vec3d relativePosition) {
