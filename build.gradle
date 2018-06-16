@@ -33,6 +33,7 @@ license {
     ext.year = Calendar.getInstance().get(Calendar.YEAR)
     ext.name = 'Horizon Studio'
     ext.email = 'contact@hrznstudio.com'
+    ignoreFailures =true
     mapping {
         java='SLASHSTAR_STYLE'
     }
