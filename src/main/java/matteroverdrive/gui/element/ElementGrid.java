@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,14 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.gui.element;
 
 import matteroverdrive.gui.MOGuiBase;
 import matteroverdrive.util.MOStringHelper;
 import matteroverdrive.util.RenderUtils;
 import matteroverdrive.util.math.MOMathHelper;
-
 
 /**
  * Created by Simeon on 3/13/2015.
@@ -65,8 +63,6 @@ public class ElementGrid extends ElementBaseGroup {
                     widthCount = marginLeft;
                     maxTempHeigh = 0;
                 }
-
-
                 if (Math.round(height + scrollYSmooth) < this.sizeY || maxTempHeigh == 0 && Math.round(height + scrollYSmooth) > -maxTempHeigh) {
                     element.setPosition(widthCount, Math.round(height + scrollYSmooth));
                     element.setVisible(true);
@@ -82,8 +78,6 @@ public class ElementGrid extends ElementBaseGroup {
         }
 
         manageDrag(height);
-
-
         RenderUtils.beginStencil();
         drawStencil(posX, posY, posX + sizeX, posY + sizeY, 1);
         super.drawBackground(mouseX, mouseY, gameTicks);

@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.gui.element;
 
 import matteroverdrive.data.matter_network.ItemPattern;
@@ -36,7 +35,6 @@ public class MatterDatabaseListBox extends MOElementListBox {
     private static final ResourceLocation SLOT_BG = ElementSlot.getTexture("big");
     public ItemStack scanner;
     public String filter = "";
-
 
     public MatterDatabaseListBox(MOGuiBase gui, int x, int y, int width, int height, ItemStack scanner) {
         super(gui, x, y, width, height);
@@ -131,7 +129,6 @@ public class MatterDatabaseListBox extends MOElementListBox {
                 RenderUtils.renderStack(3 + x, 3 + y, itemStack);
             }
         }
-
 
         public void drawToolTop(MOElementListBox listBox, int x, int y) {
             ItemStack item = itemComp.toItemStack(false);

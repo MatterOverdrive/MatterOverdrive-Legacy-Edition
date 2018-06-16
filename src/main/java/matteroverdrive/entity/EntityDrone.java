@@ -1,5 +1,21 @@
+/*
+ * This file is part of Matter Overdrive
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
+ *
+ * Matter Overdrive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Matter Overdrive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
+ */
 package matteroverdrive.entity;
-
 
 import com.google.common.base.Optional;
 import matteroverdrive.entity.ai.EntityAIFollowCreator;
@@ -55,7 +71,6 @@ public class EntityDrone extends EntityCreature implements IEntityOwnable {
         return this.navigator;
     }
 
-
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         if (getOwnerId() != null) {
@@ -92,8 +107,6 @@ public class EntityDrone extends EntityCreature implements IEntityOwnable {
         if (!getNavigator().noPath()) {
             Vec3d target = getNavigator().getPath().getPosition(this);
         }
-
-
         if (world.isRemote) {
             if (ticksExisted % 2 == 0) {
                 int motionSpeed = Math.min(6, (int) (Math.sqrt(motionX * motionX + motionY * motionY + motionZ * motionZ) * 30d));

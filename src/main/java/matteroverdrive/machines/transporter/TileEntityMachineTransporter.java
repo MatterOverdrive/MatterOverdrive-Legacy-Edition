@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.machines.transporter;
 
 import matteroverdrive.MatterOverdrive;
@@ -204,8 +203,6 @@ public class TileEntityMachineTransporter extends MOTileEntityMachineMatter impl
                 for (Entity entity : entities) {
                     SpawnReplicateParticles(entity, new Vector3f((float) entity.posX, getPos().getY(), (float) entity.posZ));
                 }
-
-
                 for (Entity entity : entities) {
                     SpawnReplicateParticles(entity, new Vector3f(position.pos.getX(), position.pos.getY(), position.pos.getZ()));
                 }

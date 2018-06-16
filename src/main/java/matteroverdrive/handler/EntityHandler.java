@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.handler;
 
 import matteroverdrive.MatterOverdrive;
@@ -179,15 +178,15 @@ public class EntityHandler {
     }
 
     @SubscribeEvent
-    public void onEntitySpawn(EntityJoinWorldEvent event){
-        if (event.getEntity() instanceof EntityVillager && ((EntityVillager) event.getEntity()).getProfessionForge().equals(MatterOverdriveEntities.MAD_SCIENTIST_PROFESSION) && !event.getEntity().getClass().equals(EntityVillagerMadScientist.class)){
+    public void onEntitySpawn(EntityJoinWorldEvent event) {
+        if (event.getEntity() instanceof EntityVillager && ((EntityVillager) event.getEntity()).getProfessionForge().equals(MatterOverdriveEntities.MAD_SCIENTIST_PROFESSION) && !event.getEntity().getClass().equals(EntityVillagerMadScientist.class)) {
             event.setCanceled(true);
             EntityVillagerMadScientist villager = new EntityVillagerMadScientist(event.getWorld());
             villager.onInitialSpawn(event.getWorld().getDifficultyForLocation(((EntityVillager) event.getEntity()).getPos()), null);
             villager.setGrowingAge(-24000);
             villager.setLocationAndAngles(event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, 0.0F, 0.0F);
             event.getWorld().spawnEntity(villager);
-            if (event.getEntity().hasCustomName()){
+            if (event.getEntity().hasCustomName()) {
                 villager.setCustomNameTag(event.getEntity().getCustomNameTag());
             }
         }

@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.blocks;
 
 import matteroverdrive.api.wrench.IDismantleable;
@@ -69,10 +68,7 @@ public class BlockHoloSign extends BlockMonitor<TileEntityHoloSign> implements I
     {
         this.blockIcon = MatterOverdriveIcons.Monitor_back;
         iconConnectedTexture = new IconConnectedTexture(this.blockIcon);
-    }*/
-
-
-    /*@Override
+    }*/    /*@Override
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z)
     {
@@ -108,7 +104,6 @@ public class BlockHoloSign extends BlockMonitor<TileEntityHoloSign> implements I
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return new TileEntityHoloSign();
     }
-
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos neighbor) {

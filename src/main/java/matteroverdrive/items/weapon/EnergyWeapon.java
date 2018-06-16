@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.items.weapon;
 
 import matteroverdrive.MatterOverdrive;
@@ -378,10 +377,8 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
      */
     @SideOnly(Side.CLIENT)
     public abstract void onProjectileHit(RayTraceResult hit, ItemStack weapon, World world, float amount);
-    //endregion
 
-
-    //region Projectile
+    //endregion    //region Projectile
     public PlasmaBolt getDefaultProjectile(ItemStack weapon, EntityLivingBase shooter, Vec3d position, Vec3d dir, WeaponShot shot) {
         PlasmaBolt fire = new PlasmaBolt(shooter.world, shooter, position, dir, shot, getShotSpeed(weapon, shooter));
         fire.setWeapon(weapon);
@@ -588,10 +585,8 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         }
         return getBaseZoom(weapon, entityPlayer);
     }
-    //endregion
 
-
-    @Override
+    //endregion    @Override
     public ICapabilityProvider createProvider(ItemStack stack) {
         return new EnergyProvider(stack, getCapacity(), getInput(), getOutput());
     }

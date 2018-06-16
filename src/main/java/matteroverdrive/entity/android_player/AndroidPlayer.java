@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.entity.android_player;
 
 import com.google.common.collect.Multimap;
@@ -109,13 +108,13 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
     private static final Map<Integer, MinimapEntityInfo> entityInfoMap = new HashMap<>();
     @CapabilityInject(AndroidPlayer.class)
     public static Capability<AndroidPlayer> CAPABILITY;
+    public static boolean DISABLE_ANDROID_FOV = true;
     private static int RECHARGE_AMOUNT_ON_RESPAWN = 64000;
     private static boolean HURT_GLITCHING = true;
     private static DataParameter<Integer> ENERGY;
     private static boolean TRANSFORMATION_DEATH = true;
     private static boolean REMOVE_POTION_EFFECTS = true;
     private static List<String> POTION_REMOVAL_BLACKLIST = new ArrayList<>();
-    public static boolean DISABLE_ANDROID_FOV = true;
     private final int ENERGY_SLOT;
     private final Inventory inventory;
     private NonNullList<ItemStack> previousBionicParts = NonNullList.withSize(5, ItemStack.EMPTY);
@@ -165,7 +164,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
         HURT_GLITCHING = configurationHandler.getBool("hurt_glitching", ConfigurationHandler.CATEGORY_ANDROID_PLAYER, true, "Should the glitch effect be displayed every time the player gets hurt");
         RECHARGE_AMOUNT_ON_RESPAWN = configurationHandler.getInt("recharge_amount_on_respawn", ConfigurationHandler.CATEGORY_ANDROID_PLAYER, RECHARGE_AMOUNT_ON_RESPAWN, "How much does the android player recharge after respawning");
         POTION_REMOVAL_BLACKLIST = Arrays.asList(configurationHandler.getStringList(ConfigurationHandler.CATEGORY_ANDROID_PLAYER, "potion_removal_blacklist", "Collection of potion ids that won't get removed while being an android. Example: minecraft:wither"));
-        DISABLE_ANDROID_FOV = configurationHandler.getBool("disable_android_fov", ConfigurationHandler.CATEGORY_ANDROID_PLAYER,true, "If true android speed modifiers won't change players FOV");
+        DISABLE_ANDROID_FOV = configurationHandler.getBool("disable_android_fov", ConfigurationHandler.CATEGORY_ANDROID_PLAYER, true, "If true android speed modifiers won't change players FOV");
     }
 
     public static boolean isVisibleOnMinimap(EntityLivingBase entityLivingBase, EntityPlayer player, Vec3d relativePosition) {
@@ -387,8 +386,6 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
         if (player.capabilities.isCreativeMode) {
             return getMaxEnergyStored();
         }
-
-
         if (getStackInSlot(ENERGY_SLOT) != null && getStackInSlot(ENERGY_SLOT).hasCapability(CapabilityEnergy.ENERGY, null)) {
             return (getStackInSlot(ENERGY_SLOT).getCapability(CapabilityEnergy.ENERGY, null)).getEnergyStored();
         } else {
@@ -784,7 +781,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
     private void managePotionEffects() {
         if (isAndroid() && REMOVE_POTION_EFFECTS) {
             for (PotionEffect potionEffect : new ArrayList<>(player.getActivePotionEffects())) {
-                if (!POTION_REMOVAL_BLACKLIST.contains(potionEffect.getPotion().getRegistryName().toString())){
+                if (!POTION_REMOVAL_BLACKLIST.contains(potionEffect.getPotion().getRegistryName().toString())) {
                     player.removePotionEffect(potionEffect.getPotion());
                 }
             }
@@ -840,8 +837,6 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
             getPlayer().addPotionEffect(new PotionEffect(MobEffects.HUNGER, AndroidPlayer.TRANSFORM_TIME));
             getPlayer().addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, AndroidPlayer.TRANSFORM_TIME));
             getPlayer().addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, AndroidPlayer.TRANSFORM_TIME));
-
-
             if (turnningTime % 40 == 0) {
                 player.attackEntityFrom(fake, 0.1f);
                 playGlitchSound(this, player.world.rand, 0.2f);

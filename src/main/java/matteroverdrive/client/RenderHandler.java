@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.client;
 
 import com.google.common.base.Function;
@@ -44,6 +43,7 @@ import matteroverdrive.entity.android_player.AndroidPlayer;
 import matteroverdrive.entity.monster.EntityMeleeRougeAndroidMob;
 import matteroverdrive.entity.monster.EntityMutantScientist;
 import matteroverdrive.entity.monster.EntityRangedRogueAndroidMob;
+import matteroverdrive.entity.monster.EntityRougeAndroidMob;
 import matteroverdrive.entity.player.MOPlayerCapabilityProvider;
 import matteroverdrive.entity.weapon.PlasmaBolt;
 import matteroverdrive.handler.ConfigurationHandler;
@@ -122,7 +122,7 @@ public class RenderHandler {
     private final WeaponLayerAmmoRender weaponLayerAmmoRender = new WeaponLayerAmmoRender();
     //endregion
     //region World
-    public EntityRendererRougeAndroid rendererRougeAndroidHologram;
+    public EntityRendererRougeAndroid<EntityRougeAndroidMob> rendererRougeAndroidHologram;
     //endregion
     //region Models
     public ModelTritaniumArmor modelTritaniumArmor;
@@ -186,8 +186,6 @@ public class RenderHandler {
         weaponModuleModelRegistry = new WeaponModuleModelRegistry();
         pipeRenderManager = new PipeRenderManager();
         dimensionalRiftsRender = new DimensionalRiftsRender();
-
-
         addCustomRenderer(matterScannerInfoHandler);
         addCustomRenderer(renderParticlesHandler);
         addCustomRenderer(renderWeaponsBeam);
@@ -304,10 +302,10 @@ public class RenderHandler {
     }
 
     @SubscribeEvent
-    public void onFOVModifier(EntityViewRenderEvent.FOVModifier event){
-        if (event.getEntity() instanceof EntityPlayer && AndroidPlayer.DISABLE_ANDROID_FOV){
+    public void onFOVModifier(EntityViewRenderEvent.FOVModifier event) {
+        if (event.getEntity() instanceof EntityPlayer && AndroidPlayer.DISABLE_ANDROID_FOV) {
             AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(event.getEntity());
-            if (androidPlayer != null && androidPlayer.isAndroid()){
+            if (androidPlayer != null && androidPlayer.isAndroid()) {
                 event.setFOV(Minecraft.getMinecraft().gameSettings.fovSetting);
             }
         }
@@ -445,11 +443,11 @@ public class RenderHandler {
     }
 
     public void createEntityRenderers(RenderManager renderManager) {
-        rendererRougeAndroidHologram = new EntityRendererRougeAndroid(renderManager, true);
+        rendererRougeAndroidHologram = new EntityRendererRougeAndroid<>(renderManager, true);
     }
 
     public void registerEntityRenderers() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityMeleeRougeAndroidMob.class, renderManager -> new EntityRendererRougeAndroid(renderManager, false));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMeleeRougeAndroidMob.class, renderManager -> new EntityRendererRougeAndroid<>(renderManager, false));
         RenderingRegistry.registerEntityRenderingHandler(EntityVillagerMadScientist.class, EntityRendererMadScientist::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityFailedPig.class, EntityRendererFailedPig::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityFailedCow.class, EntityRendererFailedCow::new);

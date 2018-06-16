@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.machines;
 
 import matteroverdrive.MatterOverdrive;
@@ -345,10 +344,8 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
             }
         }
     }
-    //endregion
 
-
-    @Nullable
+    //endregion    @Nullable
     @Override
     public SPacketUpdateTileEntity getUpdatePacket() {
         NBTTagCompound syncData = new NBTTagCompound();
@@ -675,8 +672,6 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
                 rotation.rotate((float) Math.PI / 2f, new Vector3f(-1, 0, 0));
                 offset = new Vector3f(0.5f, 0.5f, -0.2f);
             }
-
-
             Vector3f circle = MOMathHelper.randomCirclePoint(random.nextFloat(), random);
             circle.scale(0.4f);
             Vector4f circleTransformed = new Vector4f(circle.x, circle.y, circle.z, 1);
@@ -809,10 +804,8 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
     public List<IMachineWatcher> getWatchers() {
         return watchers;
     }
-    //endregion
 
-
-    @Override
+    //endregion    @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }

@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.matter_network.tasks;
 
 import matteroverdrive.api.network.MatterNetworkTask;
@@ -69,10 +68,8 @@ public class MatterNetworkTaskStorePattern extends MatterNetworkTask {
             compound.setTag("Item", itemComp);
             compound.setInteger(MatterDatabaseHelper.PROGRESS_TAG_NAME, progress);
         }
-    }
+    }    //region Getters and Setters
 
-
-    //region Getters and Setters
     @Override
     public String getName() {
         return itemStack.getDisplayName() + " +" + DecimalFormat.getPercentInstance().format(progress / 100f);

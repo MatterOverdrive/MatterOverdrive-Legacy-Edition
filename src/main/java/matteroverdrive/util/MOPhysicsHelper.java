@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.util;
 
 import matteroverdrive.util.math.MOMathHelper;
@@ -115,7 +114,6 @@ public class MOPhysicsHelper {
         }
         return objectMouseOver;
     }
-
 
     public static RayTraceResult rayTraceForBlocks(EntityLivingBase viewer, World world, double distance, float ticks, Vec3d offset, boolean collisionCheck, boolean onlySolid) {
         return rayTraceForBlocks(viewer, world, distance, ticks, offset, collisionCheck, onlySolid, null);

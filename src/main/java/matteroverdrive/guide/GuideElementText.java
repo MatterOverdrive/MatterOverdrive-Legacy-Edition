@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.guide;
 
 import matteroverdrive.gui.GuiDataPad;
@@ -60,8 +59,6 @@ public class GuideElementText extends GuideElementTextAbstract {
 
                     }
                 }
-
-
                 Minecraft.getMinecraft().fontRenderer.drawString(lines[i].chunks.get(c).getText(), marginLeft + x, y, color.getColor());
                 int w = calculateWidth(null, lines[i].chunks.get(c), null);
                 if (c > 0 && c < lines[i].chunks.size() - 1) {

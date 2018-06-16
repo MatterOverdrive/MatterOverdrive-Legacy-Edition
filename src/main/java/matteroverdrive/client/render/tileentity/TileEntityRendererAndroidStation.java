@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.client.render.tileentity;
 
 import matteroverdrive.Reference;
@@ -37,36 +36,27 @@ public class TileEntityRendererAndroidStation extends TileEntityRendererStation<
     }
 
     @Override
-    protected void renderHologram(TileEntityAndroidStation station, double x, double y, double z, float partialTicks, double noise) {
-        if ((station).isUsableByPlayer(Minecraft.getMinecraft().player)) {
+    protected void renderHologram(TileEntityAndroidStation tile, double x, double y, double z, float partialTicks, double noise) {
+        if ((tile).isUsableByPlayer(Minecraft.getMinecraft().player)) {
             if (mob == null) {
                 mob = new EntityMeleeRougeAndroidMob(Minecraft.getMinecraft().world);
                 mob.getEntityData().setBoolean("Hologram", true);
             }
 
             GlStateManager.depthMask(false);
-            //glDisable(GL_DEPTH_TEST);
-            //GlStateManager.enableBlend();
-            //GlStateManager.blendFunc(GL_ONE, GL_ONE);
             GlStateManager.pushMatrix();
             GlStateManager.translate(x + 0.5, y + 0.8, z + 0.5);
-            rotate(station, noise);
+            rotate(tile, noise);
 
             RenderUtils.applyColorWithMultipy(Reference.COLOR_HOLO, 0.3f);
 
-            if (station.isUsableByPlayer(Minecraft.getMinecraft().player)) {
+            if (tile.isUsableByPlayer(Minecraft.getMinecraft().player)) {
                 ClientProxy.renderHandler.rendererRougeAndroidHologram.doRender(mob, 0, 0, 0, 0, 0);
-                //Render render = Minecraft.getMinecraft().getRenderManager().getEntityRenderObject(Minecraft.getMinecraft().getRenderViewEntity());
-                //render.doRender(Minecraft.getMinecraft().player,0,0,0,0,partialTicks);
-                //ModelBiped biped = new ModelBiped(0);
-                //biped.render(mob,0,0,0,0,0,0.1f);
-                //Render render = RenderManager.instance.getEntityRenderObject(mob);
-                //render.doRender(mob,0,0,0,0,0);
             }
 
             GlStateManager.popMatrix();
         } else {
-            super.renderHologram(station, x, y, z, partialTicks, noise);
+            super.renderHologram(tile, x, y, z, partialTicks, noise);
         }
     }
 }

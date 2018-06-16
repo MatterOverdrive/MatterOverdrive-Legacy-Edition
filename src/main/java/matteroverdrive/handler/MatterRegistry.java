@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.handler;
 
 import com.google.gson.Gson;
@@ -239,10 +238,7 @@ public class MatterRegistry implements IMatterRegistry {
         return 0;
     }
 
-    //region Registration
-
-
-    @Override
+    //region Registration    @Override
     public IMatterEntry register(final @Nonnull Item item, final IMatterEntryHandler handler) {
         IMatterEntry existingEntry = itemEntires.get(item);
         if (existingEntry != null) {

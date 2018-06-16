@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.client.render.tileentity;
 
 import matteroverdrive.Reference;
@@ -34,32 +33,32 @@ import static matteroverdrive.util.MOBlockHelper.getRightSide;
  */
 public class TileEntityRendererHoloSign extends TileEntitySpecialRenderer<TileEntityHoloSign> {
     @Override
-    public void render(TileEntityHoloSign holoSign, double x, double y, double z, float ticks, int destoryStage, float a) {
-        if (!holoSign.shouldRender())
+    public void render(TileEntityHoloSign tile, double x, double y, double z, float ticks, int destoryStage, float a) {
+        if (!tile.shouldRender())
             return;
 
-        EnumFacing side = holoSign.getWorld().getBlockState(holoSign.getPos()).getValue(MOBlock.PROPERTY_DIRECTION);
+        EnumFacing side = tile.getWorld().getBlockState(tile.getPos()).getValue(MOBlock.PROPERTY_DIRECTION);
 
-        RenderUtils.beginDrawinngBlockScreen(x, y, z, side, Reference.COLOR_HOLO, holoSign, -0.8375, 0.2f);
+        RenderUtils.beginDrawinngBlockScreen(x, y, z, side, Reference.COLOR_HOLO, tile, -0.8375, 0.2f);
 
-        String text = holoSign.getText();
+        String text = tile.getText();
         if (text != null) {
             String[] infos = text.split("\n");
             int leftMargin = 10;
             int rightMargin = 10;
             float maxSize = 4f;
             EnumFacing leftSide = getLeftSide(side);
-            if (holoSign.getWorld().getBlockState(holoSign.getPos().offset(leftSide)).getBlock() instanceof BlockHoloSign) {
+            if (tile.getWorld().getBlockState(tile.getPos().offset(leftSide)).getBlock() instanceof BlockHoloSign) {
                 leftMargin = 0;
                 maxSize = 8;
             }
             EnumFacing rightSide = getRightSide(side);
-            if (holoSign.getWorld().getBlockState(holoSign.getPos().offset(rightSide)).getBlock() instanceof BlockHoloSign) {
+            if (tile.getWorld().getBlockState(tile.getPos().offset(rightSide)).getBlock() instanceof BlockHoloSign) {
                 rightMargin = 0;
                 maxSize = 8;
             }
 
-            if (holoSign.getConfigs().getBoolean("AutoLineSize", false)) {
+            if (tile.getConfigs().getBoolean("AutoLineSize", false)) {
                 RenderUtils.drawScreenInfoWithLocalAutoSize(infos, Reference.COLOR_HOLO, side, leftMargin, rightMargin, maxSize);
             } else {
                 RenderUtils.drawScreenInfoWithGlobalAutoSize(infos, Reference.COLOR_HOLO, side, leftMargin, rightMargin, maxSize);

@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.init;
 
 import matteroverdrive.MatterOverdrive;
@@ -128,7 +127,6 @@ public class MatterOverdriveMatter {
         reg(c, Blocks.DOUBLE_PLANT, 1, 6);
         //endregion
     }
-
 
     public static void registerBasicItems(ConfigurationHandler c) {
         reg(c, new ItemStack(Items.APPLE), 1);
@@ -261,10 +259,7 @@ public class MatterOverdriveMatter {
         reg(c, "dustFlour", 0, "cropWheat");
         reg(c, "dustNetherQuartz", 0, "oreQuartz");
         reg(c, "gemGreenSapphire", 0, "gemEmerald");
-        reg(c, "dustEmerald", 0, "gemEmerald");
-
-
-        //region dusts
+        reg(c, "dustEmerald", 0, "gemEmerald");        //region dusts
         reg(c, "dustIron", 0, "ingotIron");
         reg(c, "dustGold", 0, "ingotGold");
         reg(c, "dustTin", 0, "ingotTin");

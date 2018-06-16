@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.gui;
 
 import matteroverdrive.Reference;
@@ -362,10 +361,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
                 this.lastIndex = var6.slotNumber;
                 this.handleMouseClick(var6, var6.slotNumber, 0, 0);
             }
-        } else {
-
-
-        }
+        } else {        }
         */
         this.lastIndex = -1;
         super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
@@ -382,8 +378,6 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
                 elements.get(i).updateInfo();
             }
         }
-
-
     }
     //endregion
 
@@ -534,8 +528,6 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
             onPageChange(page);
         }
         currentPage = page;
-
-
         for (int i = 0; i < pages.size(); i++) {
             pages.get(i).setVisible(i == currentPage);
 

@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.client.render.tileentity;
 
 import matteroverdrive.Reference;
@@ -49,8 +48,6 @@ public class TileEntityRendererGravitationalStabilizer extends TileEntitySpecial
         if (stabilizer.getHit() != null) {
             RayTraceResult hit = stabilizer.getHit();
             TileEntity tileEntityHit = stabilizer.getWorld().getTileEntity(hit.getBlockPos());
-
-
             GlStateManager.pushMatrix();
             GlStateManager.translate(x + 0.5, y + 0.5, z + 0.5);
 
@@ -65,8 +62,6 @@ public class TileEntityRendererGravitationalStabilizer extends TileEntitySpecial
             Vector3f front = new Vector3f(0, 0, -1);
             Vector3f c = Vector3f.cross(dir, front, null);
             double omega = Math.acos(Vector3f.dot(dir, front));
-
-
             GlStateManager.enableBlend();
             GlStateManager.disableCull();
             GlStateManager.disableLighting();
@@ -107,7 +102,6 @@ public class TileEntityRendererGravitationalStabilizer extends TileEntitySpecial
             }
         }
     }
-
 
     public void renderScreen(double x, double y, double z, TileEntityMachineGravitationalStabilizer stabilizer, TileEntityGravitationalAnomaly anomaly) {
 

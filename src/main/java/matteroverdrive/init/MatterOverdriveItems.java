@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.init;
 
 import matteroverdrive.items.*;
@@ -224,12 +223,8 @@ public class MatterOverdriveItems {
         security_protocol = register(new SecurityProtocol("security_protocol"));
         spacetime_equalizer = register(new SpacetimeEqualizer("spacetime_equalizer"));
         recordTransformation = register(new ItemRecordTransformation());
-
-
         MOLog.info("Finished registering items");
         MOLog.info("Registered %d items", registeredCount);
-
-
         TOOL_MATERIAL_TRITANIUM.setRepairItem(new ItemStack(tritanium_ingot));
         ARMOR_MATERIAL_TRITANIUM.setRepairItem(new ItemStack(tritanium_ingot));
     }

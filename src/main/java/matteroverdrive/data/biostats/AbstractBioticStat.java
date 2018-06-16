@@ -1,6 +1,6 @@
 /*
  * This file is part of Matter Overdrive
- * Copyright (c) 2015., Simeon Radivoev, All rights reserved.
+ * Copyright (C) 2018, Horizon Studio <contact@hrznstudio.com>, All rights reserved.
  *
  * Matter Overdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.data.biostats;
 
 import matteroverdrive.api.android.BionicStatGuiInfo;
@@ -163,8 +162,6 @@ public abstract class AbstractBioticStat implements IBioticStat {
         for (String detail : detailsSplit) {
             list.add(TextFormatting.GRAY + detail);
         }
-
-
         if (root != null) {
             String rootLevel = "";
             if (root.maxLevel() > 1) {
