@@ -108,7 +108,7 @@ public class EntityReward implements IQuestReward {
         return false;
     }
 
-    //region Getters and setters
+
     public String getEntityId() {
         return entityId;
     }
@@ -148,5 +148,5 @@ public class EntityReward implements IQuestReward {
     public void setNbtTagCompound(NBTTagCompound nbtTagCompound) {
         this.nbtTagCompound = nbtTagCompound;
     }
-    //endregion
+
 }

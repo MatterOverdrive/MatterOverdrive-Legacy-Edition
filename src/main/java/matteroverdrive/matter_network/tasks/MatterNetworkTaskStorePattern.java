@@ -68,7 +68,7 @@ public class MatterNetworkTaskStorePattern extends MatterNetworkTask {
             compound.setTag("Item", itemComp);
             compound.setInteger(MatterDatabaseHelper.PROGRESS_TAG_NAME, progress);
         }
-    }    //region Getters and Setters
+    }
 
     @Override
     public String getName() {
@@ -98,5 +98,5 @@ public class MatterNetworkTaskStorePattern extends MatterNetworkTask {
 
         return MatterHelper.getMatterAmountFromItem(itemStack) > 0;
     }
-    //endregion
+
 }

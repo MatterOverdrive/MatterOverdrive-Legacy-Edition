@@ -42,7 +42,7 @@ public class ModelHulkingScientist extends ModelBiped {
         super(2, 2, 64, 64);
 
         float expand = 0;
-        //region body
+
         lowerBody = new ModelRenderer(this, 40, 0);
         lowerBody.addBox(-4, -7, -2, 8, 9, 4, expand);
         lowerBody.setRotationPoint(0F, 11, 0F);
@@ -56,8 +56,8 @@ public class ModelHulkingScientist extends ModelBiped {
         body.mirror = true;
         setRotation(body, 0.6723132F, 0F, 0F);
         lowerBody.addChild(body);
-        //endregion
-        //region Head
+
+
         head = new ModelRenderer(this, 0, 0);
         head.addBox(-3F, -8F, -4F, 6, 8, 6, expand);
         head.setRotationPoint(0F, -6F, -1F);
@@ -75,8 +75,8 @@ public class ModelHulkingScientist extends ModelBiped {
         nose.setRotationPoint(0F, 0, -5F);
         nose.setTextureSize(64, 64);
         head.addChild(nose);
-        //endregion
-        //region Right Arm
+
+
         rightArm = new ModelRenderer(this, 0, 35);
         rightArm.addBox(-3F, -2F, -2F, 4, 10, 3, expand);
         rightArm.setRotationPoint(-7F, -4F, 1F);
@@ -91,8 +91,8 @@ public class ModelHulkingScientist extends ModelBiped {
         lowerRightArm.mirror = true;
         setRotation(lowerRightArm, -1.041993F, 0F, 0);
         rightArm.addChild(lowerRightArm);
-        //endregion
-        //region Left Arm
+
+
         leftArm = new ModelRenderer(this, 14, 35);
         leftArm.addBox(-1F, -2F, -2F, 4, 10, 3, expand);
         leftArm.setRotationPoint(7F, -4F, 1F);
@@ -107,8 +107,8 @@ public class ModelHulkingScientist extends ModelBiped {
         lowerLeftArm.mirror = true;
         setRotation(lowerLeftArm, -1.041996F, 0F, 0);
         leftArm.addChild(lowerLeftArm);
-        //endregion
-        //region Right Leg
+
+
         rightLeg = new ModelRenderer(this, 16, 21);
         rightLeg.addBox(-2F, 0F, -2F, 4, 10, 4, expand);
         rightLeg.setRotationPoint(-3F, 11F, 1F);
@@ -122,8 +122,8 @@ public class ModelHulkingScientist extends ModelBiped {
         lowerRightLeg.mirror = true;
         setRotation(lowerRightLeg, 1, 0, 0F);
         rightLeg.addChild(lowerRightLeg);
-        //endregion
-        //region Left Leg
+
+
         leftLeg = new ModelRenderer(this, 0, 21);
         leftLeg.addBox(-2F, 0F, -2F, 4, 10, 4, expand);
         leftLeg.setRotationPoint(3F, 11F, 1F);
@@ -137,7 +137,7 @@ public class ModelHulkingScientist extends ModelBiped {
         lowerLeftLeg.mirror = true;
         setRotation(lowerLeftLeg, 1, 0, 0F);
         leftLeg.addChild(lowerLeftLeg);
-        //endregion
+
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {

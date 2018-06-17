@@ -56,7 +56,7 @@ public class MatterOverdriveGuides {
         androidCategory = new GuideCategory("android").setHoloIcon("android_slot_arms");
         MatterOverdriveGuide.registerCategory(androidCategory);
 
-        //region General
+
         //Ore
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.dilithium_ore).setGroup("resources"), 3, 0);
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.tritaniumOre).setGroup("resources"), 4, 0);
@@ -94,7 +94,7 @@ public class MatterOverdriveGuides {
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.network_switch).setGroup("matter_network"), 7, 4);
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.networkFlashDrive).setGroup("matter_network"), 6, 5);
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.network_router).setGroup("matter_network"), 7, 5);
-        //endregion
+
         //Items
         int itemsY = 7;
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.spacetime_equalizer).setGroup("items"), 0, itemsY);
@@ -106,7 +106,7 @@ public class MatterOverdriveGuides {
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.wrench).setGroup("items"), 0, itemsY);
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.transportFlashDrive).setGroup("items"), 1, itemsY);
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.contract).setGroup("items"), 2, itemsY);
-        //region Weapons
+
         //Weapons
         addEntry(weaponsCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.phaser).setGroup("weapons"), 4, 0);
         addEntry(weaponsCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.phaserRifle).setGroup("weapons"), 5, 0);
@@ -123,9 +123,8 @@ public class MatterOverdriveGuides {
         addEntry(weaponsCategory, new MOGuideEntry("tritanium_armor").setStackIcons(new ItemStack(MatterOverdrive.ITEMS.tritaniumChestplate), new ItemStack(MatterOverdrive.ITEMS.tritaniumLeggings), new ItemStack(MatterOverdrive.ITEMS.tritaniumBoots), new ItemStack(MatterOverdrive.ITEMS.tritaniumHelmet)).setGroup("armor"), 1, 3);
         //Machines
         addEntry(weaponsCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.weapon_station).setGroup("machines"), 4, 3);
-        //endregion
 
-        //region Android
+
         //Items
         addEntry(androidCategory, new MOGuideEntry("android.pills").setStackIcons(MatterOverdrive.ITEMS.androidPill).setGroup("items"), 5, 1);
         addEntry(androidCategory, new MOGuideEntry("android.parts").setStackIcons(MatterOverdrive.ITEMS.androidParts).setGroup("items"), 5, 2);
@@ -133,11 +132,7 @@ public class MatterOverdriveGuides {
         //Machines
         addEntry(androidCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.androidStation).setGroup("machines"), 2, 2);
         addEntry(androidCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.chargingStation).setGroup("machines"), 3, 2);
-        //endregion
 
-        //region Space
-
-        //endregion
 
     }
 

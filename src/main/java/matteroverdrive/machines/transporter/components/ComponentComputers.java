@@ -57,7 +57,7 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
         super(machine);
     }
 
-    //region Computer methods
+
     private Object[] callMethod(int method, Object[] args) {
         switch (method) {
             case 0:
@@ -275,9 +275,9 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
         return null;
     }
 
-    //endregion
 
-    //region ComputerCraft
+
+
     @Override
     @Optional.Method(modid = "ComputerCraft")
     public String getType() {
@@ -317,9 +317,9 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     public boolean equals(IPeripheral other) {
         return false;
     }
-    //endregion
 
-    //region Open Computers
+
+
     @Optional.Method(modid = "OpenComputers")
     public String[] methods() {
         return methodNames;
@@ -340,9 +340,7 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     public String getComponentName() {
         return peripheralName;
     }
-    //endregion*/
-
-    //region Component Functions
+*/
     @Override
     public void readFromNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
 
@@ -373,5 +371,5 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
 
     }
 
-    //endregion
+
 }

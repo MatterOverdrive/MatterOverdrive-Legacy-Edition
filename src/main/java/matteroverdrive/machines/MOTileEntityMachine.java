@@ -250,7 +250,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
         onMachineEventCompoments(unload);
     }
 
-    //region NBT
+
     @Override
     public void readCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
         if (categories.contains(MachineNBTCategory.DATA)) {
@@ -345,7 +345,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
         }
     }
 
-    //endregion    @Nullable
+    @Nullable
     @Override
     public SPacketUpdateTileEntity getUpdatePacket() {
         NBTTagCompound syncData = new NBTTagCompound();
@@ -395,7 +395,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
         }
     }
 
-    //region Events
+
     protected abstract void onMachineEvent(MachineEvent event);
 
     protected void onMachineEventCompoments(MachineEvent event) {
@@ -452,9 +452,8 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
         onMachineEvent(event);
         onMachineEventCompoments(event);
     }
-    //endregion
 
-    //region Inventory Methods
+
     public boolean isItemValidForSlot(int slot, ItemStack item) {
         return getInventory() != null && getInventory().isItemValidForSlot(slot, item);
     }
@@ -596,9 +595,8 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
     public boolean hasCustomName() {
         return false;
     }
-    //endregion
 
-    //region Watcher Methods
+
     public void addWatcher(IMachineWatcher watcher) {
         if (!watchers.contains(watcher)) {
             watchers.add(watcher);
@@ -609,7 +607,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
     public void removeWatcher(IMachineWatcher watcher) {
         watchers.remove(watcher);
     }
-    //endregion
+
 
     public void forceSync() {
         forceClientUpdate = true;
@@ -620,7 +618,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
         sendNBTToServer(EnumSet.of(MachineNBTCategory.CONFIGS), forceUpdate, true);
     }
 
-    //region Upgrades
+
     public double getUpgradeMultiply(UpgradeTypes type) {
         double multiply = 1;
 
@@ -648,7 +646,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
 
         return multiply;
     }
-    //endregion
+
 
     @SideOnly(Side.CLIENT)
     public void SpawnVentParticles(float speed, EnumFacing side, int count) {
@@ -685,7 +683,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
         }
     }
 
-    //region Getters and settrs
+
     public <T extends MOBlock> T getBlockType(Class<T> type) {
         if (this.blockType == null) {
             this.blockType = this.world.getBlockState(getPos()).getBlock();
@@ -805,7 +803,7 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
         return watchers;
     }
 
-    //endregion    @Override
+    @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }

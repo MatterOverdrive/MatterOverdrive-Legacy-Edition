@@ -158,7 +158,7 @@ public class TileEntityMachinePatternStorage extends MOTileEntityMachineEnergy i
 
     }
 
-    //region NBT
+
     @Override
     public void writeCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk) {
         super.writeCustomNBT(nbt, categories, toDisk);
@@ -168,9 +168,9 @@ public class TileEntityMachinePatternStorage extends MOTileEntityMachineEnergy i
     public void readCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
         super.readCustomNBT(nbt, categories);
     }
-    //endregion
 
-    //region Database functions
+
+
 	/*@Override
 	public List<ItemPattern> getPatterns()
     {
@@ -339,9 +339,7 @@ public class TileEntityMachinePatternStorage extends MOTileEntityMachineEnergy i
         return pattern_storage_slots.length;
     }
 
-    //endregion
 
-    //region Invetory Functions
     @Override
     public int[] getSlotsForFace(EnumFacing side) {
         if (side == EnumFacing.UP) {
@@ -355,9 +353,7 @@ public class TileEntityMachinePatternStorage extends MOTileEntityMachineEnergy i
     public boolean canExtractItem(int slot, ItemStack item, EnumFacing side) {
         return true;
     }
-    //endregion
 
-    //region Matter Network Functions
 
     @Override
     public boolean canConnectFromSide(IBlockState blockState, EnumFacing side) {
@@ -404,17 +400,13 @@ public class TileEntityMachinePatternStorage extends MOTileEntityMachineEnergy i
         return networkComponent.canConnectToNetworkNode(blockState, toNode, direction);
     }
 
-    //endregion
 
-    //region Events
     @Override
     public void onScan(World world, double x, double y, double z, EntityPlayer player, ItemStack scanner) {
 
     }
 
-    //endregion
 
-    //region Getters and Setters
     @Override
     public SoundEvent getSound() {
         return null;
@@ -449,5 +441,5 @@ public class TileEntityMachinePatternStorage extends MOTileEntityMachineEnergy i
     public int getTaskQueueCount() {
         return 1;
     }
-    //endregion
+
 }

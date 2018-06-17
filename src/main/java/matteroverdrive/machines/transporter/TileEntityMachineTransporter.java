@@ -389,7 +389,7 @@ public class TileEntityMachineTransporter extends MOTileEntityMachineMatter impl
     }
 
 	/*//region All Computers
-    //region ComputerCraft
+
 	@Override
 	@Optional.Method(modid = "ComputerCraft")
 	public String getType() {
@@ -425,8 +425,8 @@ public class TileEntityMachineTransporter extends MOTileEntityMachineMatter impl
 	public boolean equals(IPeripheral other) { // Does this mean if it's the same type or if they're the same one?
 		return computerComponent.equals(other);
 	}
-    //endregion
-    //region Open Computers
+
+
 	@Override
 	@Optional.Method(modid = "OpenComputers")
 	public String getComponentName() {
@@ -444,6 +444,6 @@ public class TileEntityMachineTransporter extends MOTileEntityMachineMatter impl
 	public Object[] invoke(String method, Context context, Arguments args) throws Exception {
 		return computerComponent.invoke(method,context,args);
 	}
-    //endregion
-    //endregion*/
+
+*/
 }

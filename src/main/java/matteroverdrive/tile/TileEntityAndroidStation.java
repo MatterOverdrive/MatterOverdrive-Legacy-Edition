@@ -91,7 +91,7 @@ public class TileEntityAndroidStation extends MOTileEntityMachine {
         return pass == 1;
     }
 
-    //region Inventory Functions
+
     @Override
     @Nonnull
     public ItemStack getStackInSlot(int slot) {
@@ -107,14 +107,13 @@ public class TileEntityAndroidStation extends MOTileEntityMachine {
     public void setInventorySlotContents(int slot, ItemStack itemStack) {
         super.setInventorySlotContents(slot, itemStack);
     }
-    //endregion
 
-    //region Upgrades
+
     @Override
     public boolean isAffectedByUpgrade(UpgradeTypes type) {
         return false;
     }
-    //endregion
+
 
     @Override
     @SideOnly(Side.CLIENT)

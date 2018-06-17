@@ -244,7 +244,7 @@ public class TileEntityInscriber extends MOTileEntityMachineEnergy {
         cachedRecipe = null;
     }
 
-    //region Inventory
+
     @Override
     public ItemStack decrStackSize(int slot, int size) {
         ItemStack stack = super.decrStackSize(slot, size);
@@ -261,5 +261,5 @@ public class TileEntityInscriber extends MOTileEntityMachineEnergy {
     public int[] getSlotsForFace(EnumFacing side) {
         return new int[]{MAIN_INPUT_SLOT_ID, SEC_INPUT_SLOT_ID, OUTPUT_SLOT_ID};
     }
-    //endregion
+
 }

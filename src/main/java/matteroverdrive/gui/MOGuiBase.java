@@ -68,7 +68,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
     int texW;
     int texH;
 
-    //region Constructors
+
     public MOGuiBase(MOBaseContainer container) {
         this(container, 225, 186);
 
@@ -94,7 +94,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
 
         registerPages(container);
     }
-    //endregion
+
 
     public static void playSound(SoundEvent event, float volume, float pitch) {
         Minecraft.getMinecraft().player.playSound(event, volume, pitch);
@@ -120,7 +120,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         setPage(currentPage);
     }
 
-    //region Main Draw Methods
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTick) {
         this.updateElementInformation();
@@ -175,13 +175,13 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         }
 
     }
-    //endregion
+
 
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         this.drawElements(0.0F, true);
     }
 
-    //region Tooltips
+
     public void addTooltips(List<String> list) {
         for (int i = elements.size(); i-- > 0; ) {
             MOElementBase element = elements.get(i);
@@ -195,7 +195,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         this.drawTooltipHoveringText(tooltips, this.mouseX + this.guiLeft, this.mouseY + this.guiTop, this.fontRenderer);
         this.tooltip.clear();
     }
-    //endregion
+
 
     @SuppressWarnings("rawtypes")
     protected void drawTooltipHoveringText(List list, int x, int y, FontRenderer font) {
@@ -260,7 +260,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
     }
 
-    //region Mouse and Keyboard
+
     @Override
     public void handleElementButtonClick(MOElementBase element, String buttonName, int mouseButton) {
         for (int i = 0; i < pageButtons.size(); i++) {
@@ -351,7 +351,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         mouseY += this.guiTop;
         super.mouseReleased(mouseX, mouseY, state);
     }
-    //endregion
+
 
     protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
 		/*Slot var6 = this.getSlotAtPosition(var1, var2);
@@ -367,7 +367,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
     }
 
-    //region Update Methods
+
     protected void updateElementInformation() {
         for (int i = 0; i < pageButtons.size(); i++) {
             pageButtons.get(i).setPosition(6, 8 + (pageButtons.get(i).getHeight() + 2) * i);
@@ -379,7 +379,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
             }
         }
     }
-    //endregion
+
 
     protected final void updateElements(float partialTicks) {
         int elementCount = this.elements.size();
@@ -393,7 +393,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
 
     }
 
-    //region Slot Automation
+
     protected void AddMainPlayerSlots(Container container, GuiElementList elements) {
         AddPlayerSlots(45, ySize - 106, container, elements, true, false, "small", null);
     }
@@ -409,7 +409,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
     protected void AddHotbarPlayerSlots(Container container, GuiElementList elements, String type, Color color, int x, int y) {
         AddPlayerSlots(x, y, container, elements, false, true, type, color);
     }
-    //endregion
+
 
     protected void AddPlayerSlots(int x, int y, Container container, GuiElementList elements, boolean main, boolean hotbar, String type, Color color) {
         for (int i = 0; i < container.inventorySlots.size(); i++) {
@@ -430,7 +430,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         }
     }
 
-    //region Draw Helper Methods
+
     public void drawSizedModalRect(int x1, int y1, int x2, int y2, int color) {
         int var6;
         if (x1 < x2) {
@@ -495,7 +495,7 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         var11.draw();
         GL11.glEnable(3553);
     }
-    //endregion
+
 
     public void drawSizedTexturedModalRect(int x, int y, int u, int v, int width, int height, float texW, float texH) {
         float var9 = 1.0F / texW;
@@ -510,18 +510,18 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         var11.draw();
     }
 
-    //region Handlers and Events
+
     public void onPageChange(int newPage) {
     }
 
     public void handleListChange(String listName, int mouseButton, int element) {
     }
-    //endregion
+
 
     public void registerPages(MOBaseContainer container) {
     }
 
-    //region Getters and Setters
+
     public void setPage(int page) {
         page = MathHelper.clamp(page, 0, pages.size() - 1);
         if (currentPage != page) {
@@ -627,7 +627,6 @@ public abstract class MOGuiBase extends GuiContainer implements IButtonHandler, 
         return elements;
     }
 
-    //endregion
 
     public void bindTexture(ResourceLocation location) {
         this.mc.renderEngine.bindTexture(location);

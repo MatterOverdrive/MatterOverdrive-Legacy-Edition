@@ -99,7 +99,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
     private long mass;
     private float suppression;
 
-    //region Constructors
+
     public TileEntityGravitationalAnomaly() {
         blockDestoryTimer = new TimeTracker();
         this.mass = 2048 + Math.round(Math.random() * 8192);
@@ -111,12 +111,12 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
         this.mass = mass;
     }
 
-    //endregion    @Override
+    @Override
     public BlockPos getPosition() {
         return getPos();
     }
 
-    //region Updates
+
     @Override
     public void update() {
         if (world.isRemote) {
@@ -142,7 +142,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
             manageBlockDestory(world);
         }
     }
-    //endregion
+
 
     @SideOnly(Side.CLIENT)
     public void spawnParticles(World world) {
@@ -239,7 +239,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
         }
     }
 
-    //region Sounds
+
     @SideOnly(Side.CLIENT)
     public void stopSounds() {
         if (sound != null) {
@@ -270,9 +270,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
             sound.setRange(getMaxRange());
         }
     }
-    //endregion
 
-    //region Super Events
 
     @Override
     public void onAdded(World world, BlockPos pos, IBlockState state) {
@@ -343,9 +341,8 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
             stopSounds();
         }
     }
-    //endregion
 
-    //region Events
+
     private boolean onEntityConsume(Entity entity, boolean pre) {
         if (entity instanceof IGravityEntity) {
             ((IGravityEntity) entity).onEntityConsumed(this);
@@ -358,7 +355,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
 
         return true;
     }
-    //endregion
+
 
     public void manageBlockDestory(World world) {
         if (!BLOCK_DESTRUCTION) {
@@ -422,7 +419,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
         }
     }
 
-    //region Consume Type Handlers
+
     public void consume(Entity entity) {
 
         if (!entity.isDead && onEntityConsume(entity, true)) {
@@ -498,7 +495,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
         entity.attackEntityFrom(damageSource, strength);
         return true;
     }
-    //endregion
+
 
     public boolean breakBlock(World world, BlockPos pos, float strength, double eventHorizon, int range) {
         IBlockState blockState = world.getBlockState(pos);
@@ -561,7 +558,6 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
         return false;
     }
 
-    //region Helper Methods
 
     public boolean cleanLiquids(IBlockState blockState, BlockPos pos) {
         if (blockState.getBlock() instanceof IFluidBlock && FORGE_FLUIDS) {
@@ -601,7 +597,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
         }
         return false;
     }
-    //endregion
+
 
     //TODO: Rewrite explosion to be more.. explosion
     public void collapse() {
@@ -643,7 +639,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
         return suppression;
     }
 
-    //region NBT
+
     @Override
     public void writeCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk) {
         if (categories.contains(MachineNBTCategory.DATA)) {
@@ -675,9 +671,8 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
             }
         }
     }
-    //endregion
 
-    //region Getters and Setters
+
     @SideOnly(Side.CLIENT)
     public double getMaxRenderDistanceSquared() {
         return Math.max(Math.pow(getMaxRange(), 3), 2048);
@@ -725,9 +720,7 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
     public float getBreakStrength() {
         return (float) getRealMass() * 4 * suppression;
     }
-    //endregion
 
-    //region Sub Classes
 
     public static class BlockComparitor implements Comparator<BlockPos> {
         private final BlockPos pos;
@@ -741,5 +734,5 @@ public class TileEntityGravitationalAnomaly extends MOTileEntity implements ISca
             return Double.compare(o1.distanceSq(pos.getX(), pos.getY(), pos.getZ()), o2.distanceSq(pos.getX(), pos.getY(), pos.getZ()));
         }
     }
-    //endregion
+
 }

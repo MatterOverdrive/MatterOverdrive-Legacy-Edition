@@ -869,7 +869,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
         return getAndroidEffects().getEffectShort(EFFECT_TURNNING) > (short) 0;
     }
 
-    //region Events
+
     public void triggerEventOnStats(LivingEvent event) {
         if (event.getEntityLiving() instanceof EntityPlayer) {
             AndroidPlayer androidPlayer = MOPlayerCapabilityProvider.GetAndroidCapability(event.getEntityLiving());
@@ -912,7 +912,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
             extractEnergyScaled(ENERGY_PER_JUMP);
         }
     }
-    //endregion
+
 
     public void onEntityFall(LivingFallEvent event) {
         triggerEventOnStats(event);
@@ -922,7 +922,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
         triggerEventOnStats(eventEnergyWeapon);
     }
 
-    //region getters and setters
+
     @Override
     public EntityPlayer getPlayer() {
         return player;
@@ -933,17 +933,17 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
         sync(EnumSet.of(DataType.EFFECTS));
     }
 
-    //region Effect Getters and Setters
+
     public NBTTagCompound getUnlockedNBT() {
         return unlocked;
     }
 
-    //endregion
+
     @Override
     public IBioticStat getActiveStat() {
         return activeStat;
     }
-    //endregion
+
 
     public void setActiveStat(IBioticStat stat) {
         this.activeStat = stat;
@@ -954,7 +954,7 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
 
     }
 
-    //region inventory
+
     @Override
     public int getSizeInventory() {
         return inventory.getSizeInventory();
@@ -1050,6 +1050,5 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid {
         return androidEffects;
     }
 
-    //endregion
 
 }

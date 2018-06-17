@@ -52,7 +52,7 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
         super(machine);
     }
 
-    //region Computer Methods
+
     private Object[] callMethod(int method, Object[] args) {
         switch (method) {
             case 0:
@@ -95,7 +95,7 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     private Object[] computerGetMatterStored(Object[] args) {
         return new Object[]{machine.getCapability(MatterOverdriveCapabilities.MATTER_HANDLER, null).getMatterStored()};
     }
-    //endregion
+
 
     /*//region ComputerCraft
 	@Override
@@ -137,9 +137,9 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     public boolean equals(IPeripheral other) {
         return false;
     }
-    //endregion
 
-    //region Open Computers
+
+
     @Optional.Method(modid = "OpenComputers")
     public String[] methods() {
         return methodNames;
@@ -160,9 +160,9 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
     public String getComponentName() {
         return peripheralName;
     }
-    //endregion*/
+*/
 
-    //region Component Functions
+
     @Override
     public void readFromNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
 
@@ -193,5 +193,5 @@ public class ComponentComputers extends MachineComponentAbstract<TileEntityMachi
 
     }
 
-    //endregion
+
 }

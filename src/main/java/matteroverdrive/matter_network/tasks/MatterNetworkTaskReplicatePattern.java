@@ -71,7 +71,7 @@ public class MatterNetworkTaskReplicatePattern extends MatterNetworkTask {
         }
     }
 
-    //region Getters and setters
+
     @Override
     public String getName() {
         return String.format("[%s] %s", amount, MOStringHelper.translateToLocal(pattern.getItem().getUnlocalizedName() + ".name"));
@@ -96,5 +96,5 @@ public class MatterNetworkTaskReplicatePattern extends MatterNetworkTask {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-    //endregion
+
 }

@@ -53,7 +53,7 @@ public class WeaponFactory {
         this.weapons = new ArrayList<>();
     }
 
-    //region random calculation
+
     public static int getTotalModulesWeight(Collection<WeightedRandomWeaponModule> collection, WeaponGenerationContext context) {
         int i = 0;
 
@@ -206,9 +206,8 @@ public class WeaponFactory {
     public void setSeed(long seed) {
         random.setSeed(seed);
     }
-    //endregion
 
-    //region Classes
+
     public static class WeaponGenerationContext {
         public final int level;
         public Entity entity;
@@ -289,5 +288,5 @@ public class WeaponFactory {
             return context.level >= minLevel && context.level <= maxLevel && weaponSupportModule;
         }
     }
-    //endregion
+
 }

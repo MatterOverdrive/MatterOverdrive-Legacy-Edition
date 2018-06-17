@@ -76,9 +76,9 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
         this.tasks.addTask(1, new EntityAIWatchDialogPlayer(this));
     }
 
-    //region Dialog Functions
+
     public static void registerDialogMessages(IDialogRegistry registry, Side side) {
-        //region Human
+
         convertMe = new DialogMessageQuestOnObjectivesCompleted(null, "dialog.mad_scientist.convert.question", new QuestStack(MatterOverdriveQuests.punyHumans), new int[]{0}).setUnlocalized(true);
         registry.registerMessage(convertMe);
 
@@ -87,9 +87,8 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
         canYouConvert.addOption(convertMe);
         canYouConvert.addOption(MatterOverdriveDialogs.backHomeMessage);
         canYouConvert.setUnlocalized(true);
-        //endregion
 
-        //region Android
+
         DialogMessage undo = new DialogMessage("dialog.mad_scientist.undo.line", "dialog.mad_scientist.undo.question");
         registry.registerMessage(undo);
         undo.setUnlocalized(true);
@@ -101,9 +100,8 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
         whatDidYouDo.setUnlocalized(true);
         whatDidYouDo.addOption(undo);
         whatDidYouDo.addOption(MatterOverdriveDialogs.backHomeMessage);
-        //endregion
 
-        //region Junkie
+
         DialogMessage acceptCocktail = new DialogMessageQuestGive(null, "dialog.mad_scientist.junkie.cocktail_quest.question.accept", new QuestStack(MatterOverdriveQuests.cocktailOfAscension)).setReturnToMain(true).setUnlocalized(true);
         registry.registerMessage(acceptCocktail);
         DialogMessage declineCocktail = new DialogMessageBackToMain(null, "dialog.mad_scientist.junkie.cocktail_quest.question.decline").setUnlocalized(true);
@@ -118,7 +116,7 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
         cocktailOfAscensionComplete = new DialogMessageQuestOnObjectivesCompleted("dialog.mad_scientist.junkie.cocktail_quest.line", "dialog.mad_scientist.junkie.cocktail_quest.complete.question", new QuestStack(MatterOverdriveQuests.cocktailOfAscension), new int[]{0, 1, 2}).setUnlocalized(true);
         DialogMessage areYouOk = new DialogMessageQuit(null, "dialog.mad_scientist.junkie.cocktail_quest.are_you_ok.question").setUnlocalized(true);
         cocktailOfAscensionComplete.addOption(areYouOk);
-        //endregion
+
 
         if (side == Side.CLIENT) {
             canYouConvert.setShots(DialogShot.closeUp);
@@ -271,5 +269,5 @@ public class EntityVillagerMadScientist extends EntityVillager implements IDialo
             this.setCustomNameTag(MOStringHelper.translateToLocal("entity.matteroverdrive.mad_scientist.junkie.name"));
         }
     }
-    //endregion
+
 }

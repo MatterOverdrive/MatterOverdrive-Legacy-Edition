@@ -112,7 +112,7 @@ public class PacketPipeline {
         }
     }
 
-    //region Util functions
+
     public void sendToServer(IMessage message) {
         dispatcher.sendToServer(message);
     }
@@ -148,5 +148,5 @@ public class PacketPipeline {
     public void sendToDimention(IMessage message, WorldProvider worldProvider) {
         dispatcher.sendToDimension(message, worldProvider.getDimension());
     }
-    //endregion
+
 }

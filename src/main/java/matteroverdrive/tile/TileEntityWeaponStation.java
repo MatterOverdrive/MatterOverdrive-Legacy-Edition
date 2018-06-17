@@ -97,7 +97,7 @@ public class TileEntityWeaponStation extends MOTileEntityMachine {
         return pass == 1;
     }
 
-    //region Inventory Functions
+
     @Override
     @Nonnull
     public ItemStack getStackInSlot(int slot) {
@@ -133,14 +133,13 @@ public class TileEntityWeaponStation extends MOTileEntityMachine {
             super.setInventorySlotContents(slot, itemStack);
         }
     }
-    //endregion
 
-    //region Upgrades
+
     @Override
     public boolean isAffectedByUpgrade(UpgradeTypes type) {
         return false;
     }
-    //endregion
+
 
     @Override
     @SideOnly(Side.CLIENT)

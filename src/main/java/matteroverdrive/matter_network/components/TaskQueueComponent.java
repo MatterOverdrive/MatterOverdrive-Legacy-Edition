@@ -90,7 +90,7 @@ public class TaskQueueComponent<T extends MatterNetworkTask, M extends MOTileEnt
         machine.getWatchers().stream().filter(watcher -> watcher instanceof ITaskQueueWatcher).forEach(watcher -> ((ITaskQueueWatcher) watcher).onTaskRemoved(machine, taskId, queueId));
     }
 
-    //region Getters and Setters
+
     public MatterNetworkTaskQueue<T> getTaskQueue() {
         return taskQueue;
     }
@@ -98,5 +98,5 @@ public class TaskQueueComponent<T extends MatterNetworkTask, M extends MOTileEnt
     public int getQueueId() {
         return queueId;
     }
-    //endregion
+
 }

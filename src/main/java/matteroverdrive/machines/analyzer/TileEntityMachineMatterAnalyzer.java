@@ -90,7 +90,7 @@ public class TileEntityMachineMatterAnalyzer extends MOTileEntityMachineEnergy i
         return upgradeTypes.contains(type);
     }
 
-    //region Inventory Methods
+
     @Override
     public boolean canExtractItem(int slot, ItemStack item, EnumFacing side) {
         return true;
@@ -105,9 +105,6 @@ public class TileEntityMachineMatterAnalyzer extends MOTileEntityMachineEnergy i
         }
     }
 
-    //endregion
-
-    //region Matter Network Functions
 
     @Override
     public boolean canConnectFromSide(IBlockState blockState, EnumFacing side) {
@@ -150,18 +147,15 @@ public class TileEntityMachineMatterAnalyzer extends MOTileEntityMachineEnergy i
         return networkComponent.canConnectToNetworkNode(blockState, toNode, direction);
     }
 
-    //endregion
 
-    //region Events
     @Override
     protected void onMachineEvent(MachineEvent event) {
         if (event instanceof MachineEvent.ActiveChange) {
             forceSync();
         }
     }
-    //endregion
 
-    //region Getters and Setters
+
     @Override
     public boolean getServerActive() {
         return taskProcessingComponent.isAnalyzing();
@@ -208,5 +202,5 @@ public class TileEntityMachineMatterAnalyzer extends MOTileEntityMachineEnergy i
     public int getTaskQueueCount() {
         return 1;
     }
-    //endregion
+
 }

@@ -109,22 +109,22 @@ public class RenderHandler {
         }
     };
     public static int stencilBuffer;
-    //endregion
-    //region Item Renderers
+
+
     private static ItemRendererPhaser rendererPhaser;
     private static ItemRendererPhaserRifle rendererPhaserRifle;
     private static ItemRendererOmniTool rendererOmniTool;
     private static ItemRenderPlasmaShotgun renderPlasmaShotgun;
     private static ItemRendererIonSniper rendererIonSniper;
     private final Random random = new Random();
-    //endregion
-    //region Weapon Layers
+
+
     private final WeaponLayerAmmoRender weaponLayerAmmoRender = new WeaponLayerAmmoRender();
-    //endregion
-    //region World
+
+
     public EntityRendererRougeAndroid<EntityRougeAndroidMob> rendererRougeAndroidHologram;
-    //endregion
-    //region Models
+
+
     public ModelTritaniumArmor modelTritaniumArmor;
     public ModelTritaniumArmor modelTritaniumArmorFeet;
     public ModelBiped modelMeleeRogueAndroidParts;
@@ -141,15 +141,15 @@ public class RenderHandler {
     private PipeRenderManager pipeRenderManager;
     private DimensionalRiftsRender dimensionalRiftsRender;
     private WeaponRenderHandler weaponRenderHandler;
-    //region Weapon Module Renderers
+
     private ModuleSniperScopeRender moduleSniperScopeRender;
     private ModuleHoloSightsRender moduleHoloSightsRender;
-    //endregion
-    //region Biostat Renderers
+
+
     private BioticStatRendererTeleporter rendererTeleporter;
     private BioticStatRendererShield biostatRendererShield;
-    //endregion
-    //region Tile Entity Renderers
+
+
     private TileEntityRendererReplicator tileEntityRendererReplicator;
     private TileEntityRendererPipe tileEntityRendererPipe;
     private TileEntityRendererMatterPipe tileEntityRendererMatterPipe;
@@ -166,7 +166,7 @@ public class RenderHandler {
     private TileEntityRendererPacketQueue tileEntityRendererPacketQueue;
     private TileEntityRendererInscriber tileEntityRendererInscriber;
     private TileEntityRendererContractMarket tileEntityRendererContractMarket;
-    //endregion
+
 
     public RenderHandler() {
         customRenderers = new ArrayList<>();

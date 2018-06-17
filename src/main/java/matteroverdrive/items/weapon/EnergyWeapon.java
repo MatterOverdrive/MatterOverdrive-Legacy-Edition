@@ -115,9 +115,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
             }
         }
     }
-    //endregion
 
-    //region Tooltips
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -187,9 +185,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
             infos.add("");*/
         }
     }
-    //endregion
 
-    //region client only
 
     /**
      * Used to manage the sending of weapons tick to the server.
@@ -250,9 +246,8 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
     public boolean onLeftClick(ItemStack weapon, EntityPlayer entityPlayer) {
         return leftClickFire;
     }
-    //endregion
 
-    //region Reloading, Heating and Cooling managment
+
     public void chargeFromEnergyPack(ItemStack weapon, EntityPlayer player) {
         if (!player.world.isRemote) {
             for (int i = 0; i < player.inventory.mainInventory.size(); i++) {
@@ -323,9 +318,8 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
             }
         }
     }
-    //endregion
 
-    //region Abstract Functions
+
     @SideOnly(Side.CLIENT)
     protected abstract void addCustomDetails(ItemStack weapon, EntityPlayer player, List infos);
 
@@ -378,7 +372,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
     @SideOnly(Side.CLIENT)
     public abstract void onProjectileHit(RayTraceResult hit, ItemStack weapon, World world, float amount);
 
-    //endregion    //region Projectile
+
     public PlasmaBolt getDefaultProjectile(ItemStack weapon, EntityLivingBase shooter, Vec3d position, Vec3d dir, WeaponShot shot) {
         PlasmaBolt fire = new PlasmaBolt(shooter.world, shooter, position, dir, shot, getShotSpeed(weapon, shooter));
         fire.setWeapon(weapon);
@@ -402,9 +396,8 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         }
         return fire;
     }
-    //endregion
 
-    //region Getters and setters
+
     public int getRange(ItemStack weapon) {
         int range = defaultRange;
         range = Math.round(modifyStatFromModules(Reference.WS_RANGE, weapon, range));
@@ -586,7 +579,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         return getBaseZoom(weapon, entityPlayer);
     }
 
-    //endregion    @Override
+    @Override
     public ICapabilityProvider createProvider(ItemStack stack) {
         return new EnergyProvider(stack, getCapacity(), getInput(), getOutput());
     }

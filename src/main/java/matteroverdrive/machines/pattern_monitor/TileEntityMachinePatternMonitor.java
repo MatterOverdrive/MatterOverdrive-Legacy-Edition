@@ -61,7 +61,7 @@ public class TileEntityMachinePatternMonitor extends MOTileEntityMachine impleme
         return getPos();
     }
 
-    //region Machine Functions
+
     @Override
     protected void registerComponents() {
         super.registerComponents();
@@ -82,9 +82,8 @@ public class TileEntityMachinePatternMonitor extends MOTileEntityMachine impleme
     public boolean shouldRenderInPass(int pass) {
         return pass == 1;
     }
-    //endregion
 
-    //region NBT
+
     @Override
     public void writeCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories, boolean toDisk) {
         super.writeCustomNBT(nbt, categories, toDisk);
@@ -94,9 +93,7 @@ public class TileEntityMachinePatternMonitor extends MOTileEntityMachine impleme
     public void readCustomNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
         super.readCustomNBT(nbt, categories);
     }
-    //endregion
 
-    //region Matter Network Functions
 
     @Override
     public boolean canConnectFromSide(IBlockState blockState, EnumFacing side) {
@@ -139,9 +136,7 @@ public class TileEntityMachinePatternMonitor extends MOTileEntityMachine impleme
         return networkComponent.canConnectToNetworkNode(blockState, toNode, direction);
     }
 
-    //endregion
 
-    //region Matter Database Watcher
     @Override
     public List<IMatterDatabase> getConnectedDatabases() {
         List<IMatterNetworkClient> clients = getNetwork().getClients();
@@ -153,9 +148,8 @@ public class TileEntityMachinePatternMonitor extends MOTileEntityMachine impleme
         }
         return databases;
     }
-    //endregion
 
-    //region Getters and Setters
+
     @Override
     public SoundEvent getSound() {
         return null;
@@ -199,5 +193,5 @@ public class TileEntityMachinePatternMonitor extends MOTileEntityMachine impleme
     public int getTaskQueueCount() {
         return 1;
     }
-    //endregion
+
 }

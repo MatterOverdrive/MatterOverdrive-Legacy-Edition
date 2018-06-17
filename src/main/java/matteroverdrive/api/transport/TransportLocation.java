@@ -37,7 +37,7 @@ public class TransportLocation {
      */
     public String name;
 
-    //region constructors
+
     public TransportLocation(BlockPos pos, String name) {
         this.pos = pos;
         this.name = name;
@@ -55,8 +55,7 @@ public class TransportLocation {
         }
     }
 
-    //endregion
-    //region Buffer and NBT
+
     public void writeToBuffer(ByteBuf buf) {
         buf.writeLong(pos.toLong());
         ByteBufUtils.writeUTF8String(buf, name);
@@ -66,7 +65,7 @@ public class TransportLocation {
         nbtTagCompound.setLong("tl", pos.toLong());
         nbtTagCompound.setString("tl_name", name);
     }
-    //endregion
+
 
     /**
      * Sets the name of the transport location.

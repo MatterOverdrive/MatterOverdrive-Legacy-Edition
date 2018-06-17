@@ -355,7 +355,7 @@ public class MOElementListBox extends MOElementBase {
         }
     }
 
-    //region indirect Element Access
+
     public void DrawElement(int i, int x, int y, int selectedLineColor, int selectedTextColor, boolean selected, boolean BG) {
         getElement(i).draw(this, x, y, selectedLineColor, selectedTextColor, selected, BG);
     }
@@ -385,9 +385,8 @@ public class MOElementListBox extends MOElementBase {
 
         return _elements.size();
     }
-    //endregion
 
-    //region events
+
     protected void onElementClicked(int index, int mousX, int mouseY) {
 
     }
@@ -403,5 +402,5 @@ public class MOElementListBox extends MOElementBase {
     protected void onSelectionChanged(int newIndex, IMOListBoxElement imoListBoxElement) {
         listHandler.ListSelectionChange(getName(), newIndex);
     }
-    //endregion
+
 }

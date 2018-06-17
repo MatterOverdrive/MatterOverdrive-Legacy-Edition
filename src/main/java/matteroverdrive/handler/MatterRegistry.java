@@ -238,7 +238,7 @@ public class MatterRegistry implements IMatterRegistry {
         return 0;
     }
 
-    //region Registration    @Override
+
     public IMatterEntry register(final @Nonnull Item item, final IMatterEntryHandler handler) {
         IMatterEntry existingEntry = itemEntires.get(item);
         if (existingEntry != null) {
@@ -272,7 +272,7 @@ public class MatterRegistry implements IMatterRegistry {
             return matterEntryOre;
         }
     }
-    //endregion
+
 
     private IMatterEntry<String, ItemStack> getOreDicionaryEntry(final ItemStack stack) {
         IMatterEntry<String, ItemStack> e;

@@ -235,7 +235,7 @@ public class MOMathHelper {
         }
     }
 
-    //region Matrix
+
     public static void setScale(javax.vecmath.Vector3f vec, javax.vecmath.Matrix4f src, javax.vecmath.Matrix4f dest) {
         if (dest == null) {
             dest = new javax.vecmath.Matrix4f();
@@ -254,5 +254,5 @@ public class MOMathHelper {
         dest.m22 = src.m22 * vec.getZ();
         dest.m23 = src.m23 * vec.getZ();
     }
-    //endregion
+
 }

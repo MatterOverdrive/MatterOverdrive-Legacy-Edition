@@ -84,7 +84,7 @@ public abstract class MatterNetworkTask {
     public boolean isValid(World world) {
         return true;
     }
-    //region NBT
+
 
     /**
      * Read the NBT data of the task.
@@ -112,7 +112,7 @@ public abstract class MatterNetworkTask {
             compound.setLong("id", id);
         }
     }
-    //endregion
+
 
     /**
      * This method is called by the tooltip of the task.
@@ -153,7 +153,6 @@ public abstract class MatterNetworkTask {
         }
     }
 
-    //region Setters and getters
 
     /**
      * Gets the name of the task.
@@ -218,5 +217,5 @@ public abstract class MatterNetworkTask {
     public void setState(MatterNetworkTaskState state) {
         this.state = state;
     }
-    //endregion
+
 }

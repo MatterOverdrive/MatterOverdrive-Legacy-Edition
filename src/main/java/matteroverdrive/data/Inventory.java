@@ -40,7 +40,7 @@ public class Inventory implements IInventory {
     String name;
     IUsableCondition usableCondition;
 
-    //region Constructors
+
     public Inventory(String name) {
         this(name, new ArrayList<>());
     }
@@ -59,7 +59,7 @@ public class Inventory implements IInventory {
     @Override
     public boolean isEmpty() {
         return slots.isEmpty();
-    }    //endregion
+    }
 
     public int AddSlot(Slot slot) {
         if (slots.add(slot)) {

@@ -441,7 +441,7 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
         return super.getCapability(capability, facing);
     }
 
-    //region All Computers
+
 	/*//region ComputerCraft
 	@Override
 	@Optional.Method(modid = "ComputerCraft")
@@ -474,8 +474,8 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
 	public boolean equals(IPeripheral other) {
 		return componentComputers.equals(other);
 	}
-    //endregion
-    //region OpenComputers
+
+
 	@Override
 	@Optional.Method(modid = "OpenComputers")
 	public String getComponentName() {
@@ -493,8 +493,8 @@ public class TileEntityMachineFusionReactorController extends MOTileEntityMachin
 	public Object[] invoke(String method, Context context, Arguments args) throws Exception {
 		return componentComputers.invoke(method,context,args);
 	}
-    //endregion*/
-    //endregion
+*/
+
 
     public static enum MonitorInfo implements IStringSerializable {
         INVALID_STRUCTURE,

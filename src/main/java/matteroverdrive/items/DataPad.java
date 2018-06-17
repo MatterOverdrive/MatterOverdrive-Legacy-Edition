@@ -226,7 +226,7 @@ public class DataPad extends MOBaseItem implements IBlockScanner {
         itemStack.getTagCompound().setTag("whitelist", list);
     }
 
-    //region Setters
+
     public void setOrdering(ItemStack stack, int order) {
         stack.setTagInfo("Ordering", new NBTTagInt(order));
     }
@@ -246,9 +246,8 @@ public class DataPad extends MOBaseItem implements IBlockScanner {
     public void setSelectedActiveQuest(ItemStack itemStack, int quest) {
         itemStack.setTagInfo("SelectedActiveQuest", new NBTTagShort((short) quest));
     }
-    //endregion
 
-    //region Getters
+
     public int getGuideID(ItemStack stack) {
         TagCompountCheck(stack);
         if (hasOpenGuide(stack)) {
@@ -320,5 +319,5 @@ public class DataPad extends MOBaseItem implements IBlockScanner {
     public boolean hasGui(ItemStack itemStack) {
         return itemStack.getTagCompound() == null || !itemStack.getTagCompound().getBoolean("nogui");
     }
-    //endregion
+
 }

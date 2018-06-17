@@ -141,7 +141,7 @@ public abstract class MatterNetworkComponentClient<T extends MOTileEntityMachine
         return canConnectFromSide(blockState, direction);
     }
 
-    //region Getters and Setters
+
     @Override
     public BlockPos getNodePos() {
         return rootClient.getPos();
@@ -174,9 +174,8 @@ public abstract class MatterNetworkComponentClient<T extends MOTileEntityMachine
     {
         return 1;
     }*/
-    //endregion
 
-    //region Machine Component
+
     @Override
     public void readFromNBT(NBTTagCompound nbt, EnumSet<MachineNBTCategory> categories) {
         /*if (categories.contains(MachineNBTCategory.DATA))
@@ -292,5 +291,5 @@ public abstract class MatterNetworkComponentClient<T extends MOTileEntityMachine
             }
         }
     }
-    //endregion
+
 }

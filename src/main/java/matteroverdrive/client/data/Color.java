@@ -59,7 +59,6 @@ public class Color extends Number {
         return new Color(getIntR() - color.getIntR(), getIntG() - color.getIntG(), getIntB() - color.getIntB(), getIntA() - color.getIntA());
     }
 
-    //region INT getters and setters
 
     public int getIntR() {
         return this.color >> 16 & 255;
@@ -81,8 +80,7 @@ public class Color extends Number {
         return color;
     }
 
-    //endregion
-    //region FLOAT setters and getters
+
     public float getFloatR() {
         return (float) getIntR() / 255f;
     }
@@ -118,5 +116,5 @@ public class Color extends Number {
     public double doubleValue() {
         return (double) color;
     }
-    //endregion
+
 }

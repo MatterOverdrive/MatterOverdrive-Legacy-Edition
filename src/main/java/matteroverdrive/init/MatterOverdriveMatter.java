@@ -114,7 +114,7 @@ public class MatterOverdriveMatter {
         reg(c, Blocks.COBBLESTONE_WALL, 1);
         reg(c, Blocks.WEB, 1);
 
-        //region flowers
+
         reg(c, Blocks.RED_FLOWER, 1, 9);
         reg(c, Blocks.YELLOW_FLOWER, 1);
         reg(c, Blocks.BROWN_MUSHROOM, 1);
@@ -125,7 +125,7 @@ public class MatterOverdriveMatter {
         reg(c, Blocks.WATERLILY, 1);
         reg(c, "treeSapling", 2);
         reg(c, Blocks.DOUBLE_PLANT, 1, 6);
-        //endregion
+
     }
 
     public static void registerBasicItems(ConfigurationHandler c) {
@@ -194,7 +194,7 @@ public class MatterOverdriveMatter {
         reg(c, Items.GLASS_BOTTLE, 3);
         reg(c, "silicon", 2);
 
-        //region Gems
+
         reg(c, "gemDiamond", 256);
         reg(c, "gemDilithium", 512);
         reg(c, "gemQuartz", 3);
@@ -203,9 +203,8 @@ public class MatterOverdriveMatter {
         reg(c, "gemRuby", 64);
         reg(c, "gemRupee", 64);
         reg(c, "gemSapphire", 64);
-        //endregion
 
-        //region Ingots
+
         reg(c, "ingotBrick", 2);
         reg(c, "ingotIron", 32);
         reg(c, "ingotGold", 42);
@@ -224,31 +223,27 @@ public class MatterOverdriveMatter {
         reg(c, "ingotQuartz", 24);
         reg(c, "ingotSteel", 38);
         reg(c, "ingotTritanium", 128);
-        //endregion
 
-        //region Plants
+
         reg(c, Items.REEDS, 1);
-        //endregion
 
-        //region dyes
+
         reg(c, new ItemStack(Items.DYE, 1, 2), 1);
         reg(c, new ItemStack(Items.DYE, 1, 3), 1);
-        //endregion
 
-        //region rouge android parts
+
         reg(c, new ItemStack(MatterOverdrive.ITEMS.androidParts, 1, Reference.BIONIC_HEAD), 64 * 5);
         reg(c, new ItemStack(MatterOverdrive.ITEMS.androidParts, 1, Reference.BIONIC_ARMS), 64 * 6);
         reg(c, new ItemStack(MatterOverdrive.ITEMS.androidParts, 1, Reference.BIONIC_LEGS), 64 * 6);
         reg(c, new ItemStack(MatterOverdrive.ITEMS.androidParts, 1, Reference.BIONIC_CHEST), 64 * 9);
-        //endregion
 
-        //region Matter Overdrive Basic Items
+
         reg(c, MatterOverdrive.ITEMS.emergency_ration, 3);
         reg(c, MatterOverdrive.ITEMS.earl_gray_tea, 2);
         reg(c, MatterOverdrive.ITEMS.romulan_ale, 2);
         reg(c, new ItemStack(MatterOverdrive.ITEMS.androidPill, 1, 1), 64);
         reg(c, new ItemStack(MatterOverdrive.ITEMS.androidPill, 1, 2), 32);
-        //endregion
+
     }
 
     public static void registerBasicCompoundItems(ConfigurationHandler c) {
@@ -259,7 +254,7 @@ public class MatterOverdriveMatter {
         reg(c, "dustFlour", 0, "cropWheat");
         reg(c, "dustNetherQuartz", 0, "oreQuartz");
         reg(c, "gemGreenSapphire", 0, "gemEmerald");
-        reg(c, "dustEmerald", 0, "gemEmerald");        //region dusts
+        reg(c, "dustEmerald", 0, "gemEmerald");
         reg(c, "dustIron", 0, "ingotIron");
         reg(c, "dustGold", 0, "ingotGold");
         reg(c, "dustTin", 0, "ingotTin");
@@ -272,9 +267,8 @@ public class MatterOverdriveMatter {
         reg(c, "dustPlatinum", 0, "ingotPlatinum");
         reg(c, "dustBronze", 0, "ingotBronze");
         reg(c, "dustTritanium", 0, "ingotTritanium");
-        //endregion
 
-        //region Ore
+
         regOre(c, "oreDiamond", 2, "gemDiamond");
         regOre(c, "oreEmerald", 2, "gemEmerald");
         regOre(c, "oreCoal", 2, Items.COAL);
@@ -294,9 +288,8 @@ public class MatterOverdriveMatter {
         regOre(c, "oreZinc", 2, "ingotZinc");
         regOre(c, "oreQuartz", 2, "ingotQuartz");
         regOre(c, "oreTritanium", 1, "ingotTritanium");
-        //endregion
 
-        //region ender io
+
         reg(c, "enderio.electricalSteel", 0, "ingotIron", "silicon", "dustCoal");
         reg(c, "enderio.energeticAlloy", 0, "dustRedstone", "ingotGold", "dustGlowstone");
         reg(c, "enderio.phasedGold", 0, "enderio.energeticAlloy", Items.ENDER_PEARL);
@@ -307,7 +300,7 @@ public class MatterOverdriveMatter {
         reg(c, "enderio.soularium", 0, Blocks.SOUL_SAND, "ingotGold");
         reg(c, "enderio.silicon", 0, "silicon");
         reg(c, "enderio.conduitBinder", 1);
-        //endregion
+
     }
 
     private static void reg(ConfigurationHandler c, String name, int matter) {

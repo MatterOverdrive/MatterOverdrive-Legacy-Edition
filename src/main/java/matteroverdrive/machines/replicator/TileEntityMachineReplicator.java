@@ -273,7 +273,7 @@ public class TileEntityMachineReplicator extends MOTileEntityMachineMatter imple
         return upgradeTypes.contains(type);
     }
 
-    //region Inventory Functions
+
     @Override
     public int[] getSlotsForFace(EnumFacing side) {
         return new int[]{OUTPUT_SLOT_ID, SECOND_OUTPUT_SLOT_ID};
@@ -290,9 +290,7 @@ public class TileEntityMachineReplicator extends MOTileEntityMachineMatter imple
         forceSync();
         return s;
     }
-    //endregion
 
-    //region Matter Network functions
 
     @Override
     public boolean canConnectFromSide(IBlockState blockState, EnumFacing side) {
@@ -334,22 +332,17 @@ public class TileEntityMachineReplicator extends MOTileEntityMachineMatter imple
         return networkComponent.canConnectToNetworkNode(blockState, toNode, direction);
     }
 
-    //endregion
-
-    //region Events
 
     @Override
     protected void onMachineEvent(MachineEvent event) {
 
     }
 
-    //endregion
 
-    //region Getters and Setters
-/*    public ItemPattern getInternalPatternStorage()
-	{
-        return internalPatternStorage;
-    }*/
+    /*    public ItemPattern getInternalPatternStorage()
+        {
+            return internalPatternStorage;
+        }*/
     /*    public void setInternalPatternStorage(ItemPattern internalPatternStorage){this.internalPatternStorage = internalPatternStorage;}*/
     private int getShielding() {
         if (getStackInSlot(SHIELDING_SLOT_ID) != null && getStackInSlot(SHIELDING_SLOT_ID).getItem() == MatterOverdrive.ITEMS.tritanium_plate) {
@@ -419,5 +412,5 @@ public class TileEntityMachineReplicator extends MOTileEntityMachineMatter imple
     public int getEnergyDrainMax() {
         return taskProcessingComponent.getEnergyDrainMax();
     }
-    //endregion
+
 }

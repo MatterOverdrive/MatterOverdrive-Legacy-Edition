@@ -82,7 +82,7 @@ public abstract class TileEntityMachinePacketQueue extends MOTileEntityMachine i
     @Override
     public boolean isAffectedByUpgrade(UpgradeTypes type) {
         return type.equals(UpgradeTypes.Speed);
-    }    //region Matter Network
+    }
 	/*@Override
 	public int onNetworkTick(World world,TickEvent.Phase phase)
     {
@@ -121,9 +121,6 @@ public abstract class TileEntityMachinePacketQueue extends MOTileEntityMachine i
         return networkComponent.canConnectToNetworkNode(blockState, toNode, direction);
     }
 
-    //endregion
-
-    //region Events
 
     @Override
     public void onPlaced(World world, EntityLivingBase entityLiving) {
@@ -134,9 +131,8 @@ public abstract class TileEntityMachinePacketQueue extends MOTileEntityMachine i
     protected void onAwake(Side side) {
 
     }
-    //endregion
 
-    //region Getters and Setters
+
     @Override
     public SoundEvent getSound() {
         return null;
@@ -182,5 +178,5 @@ public abstract class TileEntityMachinePacketQueue extends MOTileEntityMachine i
     public int getPacketQueueCount() {
         return networkComponent.getPacketQueueCount();
     }*/
-    //endregion
+
 }

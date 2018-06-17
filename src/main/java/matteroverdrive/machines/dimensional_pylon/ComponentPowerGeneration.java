@@ -96,7 +96,7 @@ public class ComponentPowerGeneration extends MachineComponentAbstract<TileEntit
         }
     }
 
-    //region Power Generation
+
     public void managePowerGeneration() {
         float dimValue = machine.getDimensionalValue();
         float chargePercent = (float) machine.charge / (float) TileEntityMachineDimensionalPylon.MAX_CHARGE;
@@ -110,9 +110,8 @@ public class ComponentPowerGeneration extends MachineComponentAbstract<TileEntit
             machine.UpdateClientPower();
         }
     }
-    //endregion
 
-    //region Lightning
+
     public void manageServerLightning() {
         if (machine.isMainStructureBlock() && machine.isActive()) {
             double y, dirX, dirZ;
@@ -204,9 +203,8 @@ public class ComponentPowerGeneration extends MachineComponentAbstract<TileEntit
         }
         return false;
     }
-    //endregion
 
-    //region Charge
+
     public void manageCharge() {
         if (machine.charge > 0) {
             if (getWorld().getWorldTime() % 40 == 0) {
@@ -215,9 +213,8 @@ public class ComponentPowerGeneration extends MachineComponentAbstract<TileEntit
             }
         }
     }
-    //endregion
 
-    //region Getters and Setters
+
     public int getEnergyGenPerTick() {
         return energyGenPerTick;
     }
@@ -225,7 +222,7 @@ public class ComponentPowerGeneration extends MachineComponentAbstract<TileEntit
     public int getMatterDrainPerSec() {
         return matterDrainPerSec;
     }
-    //endregion
+
 
     @Override
     public boolean isAffectedByUpgrade(UpgradeTypes type) {

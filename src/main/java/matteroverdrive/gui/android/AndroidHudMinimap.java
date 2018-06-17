@@ -91,12 +91,12 @@ public class AndroidHudMinimap extends AndroidHudElement {
 
                     if (pos.lengthVector() < Math.min(256, (RADIUS + 16 / ZOOM))) {
 
-                        //region Push
+
                         GlStateManager.pushMatrix();
                         GlStateManager.translate(0, 0, -130);
                         drawEntity(entityLivingBase, scale, x, y, pos);
                         GlStateManager.popMatrix();
-                        //endregion
+
                     }
                 }
             }
@@ -210,7 +210,7 @@ public class AndroidHudMinimap extends AndroidHudElement {
             GlStateManager.rotate(entityLivingBase.getRotationYawHead(), 0, 0, 1);
             GlStateManager.disableTexture2D();
 
-            //region Depth Meter
+
             GlStateManager.pushMatrix();
             RenderUtils.applyColorWithAlpha(color, OPACITY * opacity);
             RenderUtils.drawCircle(2, 18);
@@ -226,7 +226,7 @@ public class AndroidHudMinimap extends AndroidHudElement {
                 glNormal3f(0, 0, 1);
             }
             GlStateManager.popMatrix();
-            //endregion
+
 
             RenderUtils.applyColorWithAlpha(color, 0.2f * OPACITY * opacity);
             RenderUtils.drawCircle(size, 18);
