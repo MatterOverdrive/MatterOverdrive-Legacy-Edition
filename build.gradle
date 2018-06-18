@@ -20,6 +20,7 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'com.selesse.git.changelog'
+apply plugin: 'java'
 
 def BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "0"
 def mod_version = "0.6.0.$BUILD_NUMBER"
@@ -82,6 +83,7 @@ minecraft {
 }
 
 repositories {
+    mavenCentral()
     maven {
         name "tterrag"
         url "http://maven.tterrag.com"
@@ -98,6 +100,7 @@ dependencies {
     provided "team.chisel.ctm:CTM:MC1.12-0.2.3.12"
     deobfProvided "mezz.jei:jei_1.12.2:4.8.5.138:api"
     runtime "mezz.jei:jei_1.12.2:4.8.5.138"
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
 
     deobfCompile group: 'mcp.mobius.waila', name: 'Hwyla', version: '1.8.23-B38_1.12'
 }

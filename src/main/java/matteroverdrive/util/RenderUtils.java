@@ -130,17 +130,17 @@ public class RenderUtils {
         }
     }
 
-    private static void func_181565_a(BufferBuilder p_181565_1_, int p_181565_2_, int p_181565_3_, int p_181565_4_, int p_181565_5_, int p_181565_6_, int p_181565_7_, int p_181565_8_, int p_181565_9_) {
-        p_181565_1_.begin(7, DefaultVertexFormats.POSITION_COLOR);
-        p_181565_1_.pos((double) (p_181565_2_ + 0), (double) (p_181565_3_ + 0), 0.0D).color(p_181565_6_, p_181565_7_, p_181565_8_, p_181565_9_).endVertex();
-        p_181565_1_.pos((double) (p_181565_2_ + 0), (double) (p_181565_3_ + p_181565_5_), 0.0D).color(p_181565_6_, p_181565_7_, p_181565_8_, p_181565_9_).endVertex();
-        p_181565_1_.pos((double) (p_181565_2_ + p_181565_4_), (double) (p_181565_3_ + p_181565_5_), 0.0D).color(p_181565_6_, p_181565_7_, p_181565_8_, p_181565_9_).endVertex();
-        p_181565_1_.pos((double) (p_181565_2_ + p_181565_4_), (double) (p_181565_3_ + 0), 0.0D).color(p_181565_6_, p_181565_7_, p_181565_8_, p_181565_9_).endVertex();
+    private static void func_181565_a(BufferBuilder bufferBuilder, int posX, int posY, int p_181565_4_, int p_181565_5_, int p_181565_6_, int p_181565_7_, int p_181565_8_, int p_181565_9_) {
+        bufferBuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bufferBuilder.pos((double) (posX), (double) (posY), 0.0D).color(p_181565_6_, p_181565_7_, p_181565_8_, p_181565_9_).endVertex();
+        bufferBuilder.pos((double) (posX), (double) (posY + p_181565_5_), 0.0D).color(p_181565_6_, p_181565_7_, p_181565_8_, p_181565_9_).endVertex();
+        bufferBuilder.pos((double) (posX + p_181565_4_), (double) (posY + p_181565_5_), 0.0D).color(p_181565_6_, p_181565_7_, p_181565_8_, p_181565_9_).endVertex();
+        bufferBuilder.pos((double) (posX + p_181565_4_), (double) (posY), 0.0D).color(p_181565_6_, p_181565_7_, p_181565_8_, p_181565_9_).endVertex();
         Tessellator.getInstance().draw();
     }
 
     public static void renderStack(int x, int y, ItemStack stack, float opacity) {
-        if (!stack.isEmpty() && stack.getItem() != null) {
+        if (!StackUtils.isNullOrEmpty(stack)) {
             GlStateManager.color(1, 1, 1);
             GlStateManager.disableCull();
             GlStateManager.depthMask(true);
