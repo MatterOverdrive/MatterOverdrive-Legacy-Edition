@@ -136,7 +136,7 @@ public class BioticStatTeleport extends AbstractBioticStat implements IConfigSub
                 return null;
             }
 
-            if (block.getBlock().isAir(block, world, blockPos) || !block.getBlock().isPassable(world, blockPos) || !block.getBlock().isCollidable() || block instanceof IFluidBlock) {
+            if (block.getBlock().isAir(block, world, blockPos) || block.getBlock().isPassable(world, blockPos) || !block.getBlock().isCollidable() || block instanceof IFluidBlock) {
                 airBlockCount++;
             } else {
                 airBlockCount = 0;
