@@ -29,6 +29,7 @@ import matteroverdrive.util.MOStringHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.init.MobEffects;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.SoundCategory;
@@ -71,12 +72,12 @@ public class BioticStatNightVision extends AbstractBioticStat implements IConfig
     @SideOnly(Side.CLIENT)
     private void manageNightvision(AndroidPlayer android, int level) {
         if (isActive(android, level)) {
-            android.getPlayer().addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("night_vision"), 500));
+            android.getPlayer().addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 500));
         }
     }
 
     private void setActive(AndroidPlayer androidPlayer, int level, boolean active) {
-        androidPlayer.getPlayer().addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("night_vision"), 500));
+        androidPlayer.getPlayer().addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 500));
         androidPlayer.getAndroidEffects().updateEffect(AndroidPlayer.EFFECT_NIGHTVISION, active);
         androidPlayer.sync(EnumSet.of(AndroidPlayer.DataType.EFFECTS), true);
     }
