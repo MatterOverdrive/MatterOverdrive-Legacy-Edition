@@ -24,6 +24,7 @@ import matteroverdrive.tile.TileEntityHoloSign;
 import matteroverdrive.util.RenderUtils;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.text.TextFormatting;
 
 import static matteroverdrive.util.MOBlockHelper.getLeftSide;
 import static matteroverdrive.util.MOBlockHelper.getRightSide;
@@ -43,6 +44,9 @@ public class TileEntityRendererHoloSign extends TileEntitySpecialRenderer<TileEn
 
         String text = tile.getText();
         if (text != null) {
+            for (TextFormatting formatting : TextFormatting.values()) {
+                text = text.replaceAll(formatting.toString().replace('§', '&'), formatting.toString());
+            }
             String[] infos = text.split("\n");
             int leftMargin = 10;
             int rightMargin = 10;
