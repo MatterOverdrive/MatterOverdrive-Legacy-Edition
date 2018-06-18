@@ -17,20 +17,19 @@
  */
 package matteroverdrive.util;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.util.math.MathHelper;
 
 public class Vector3 {
-    /**
-     * X inate of Vec3D
-     */
+    @Getter
+    @Setter
     public double x;
-    /**
-     * Y inate of Vec3D
-     */
+    @Getter
+    @Setter
     public double y;
-    /**
-     * Z inate of Vec3D
-     */
+    @Getter
+    @Setter
     public double z;
 
     public Vector3(double x, double y, double z) {
@@ -114,30 +113,6 @@ public class Vector3 {
         this.y = y;
         this.z = z;
         return this;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public double getZ() {
-        return z;
-    }
-
-    public void setZ(double z) {
-        this.z = z;
     }
 
     /**

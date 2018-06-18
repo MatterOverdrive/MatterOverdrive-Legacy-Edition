@@ -17,8 +17,11 @@
  */
 package matteroverdrive;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import matteroverdrive.client.data.Color;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Reference {
     public static final String MOD_ID = "matteroverdrive";
     public static final String MOD_NAME = "MatterOverdrive";
@@ -114,8 +117,4 @@ public final class Reference {
     public static final String UNICODE_LEGENDARY = "\u272a";
     public static final String UNICODE_COMPLETED_OBJECTIVE = "\u25a0";
     public static final String UNICODE_UNCOMPLETED_OBJECTIVE = "\u25a1";
-
-    private Reference() {
-    }
-
 }
