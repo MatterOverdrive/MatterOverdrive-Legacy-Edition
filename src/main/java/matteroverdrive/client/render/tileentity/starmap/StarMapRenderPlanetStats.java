@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Matter Overdrive.  If not, see <http://www.gnu.org/licenses>.
  */
-
 package matteroverdrive.client.render.tileentity.starmap;
 
 import matteroverdrive.proxy.ClientProxy;
