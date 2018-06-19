@@ -23,13 +23,15 @@ import matteroverdrive.api.starmap.GalacticPosition;
 import matteroverdrive.starmap.GalaxyGenerator;
 import matteroverdrive.starmap.GalaxyServer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
 import java.io.File;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by Simeon on 6/13/2015.
@@ -46,7 +48,6 @@ public class Galaxy extends SpaceBody {
     //region Private Vars
     private long seed;
     private HashMap<Integer, Quadrant> quadrantHashMap;
-    private List<TravelEvent> travelEvents;
     private World world;
     private int version;
     private boolean isDirty;
@@ -75,14 +76,11 @@ public class Galaxy extends SpaceBody {
 
     private void init() {
         quadrantHashMap = new HashMap<>();
-        travelEvents = new ArrayList<>();
         quadrantUpdateIterator = getQuadrants().iterator();
     }
 
     //region update functions
     public void update(World world) {
-        manageTravelEvents(world);
-
         try {
             if (quadrantUpdateIterator.hasNext()) {
                 quadrantUpdateIterator.next().update(world);
@@ -93,27 +91,6 @@ public class Galaxy extends SpaceBody {
             quadrantUpdateIterator = getQuadrants().iterator();
         }
 
-    }
-
-    private void manageTravelEvents(World world) {
-        Iterator<TravelEvent> travelEventIterator = travelEvents.iterator();
-
-        while (travelEventIterator.hasNext()) {
-            TravelEvent travelEvent = travelEventIterator.next();
-
-            if (travelEvent.isValid(this)) {
-
-                if (travelEvent.isComplete(world)) {
-                    if (!world.isRemote) {
-                        Planet to = getPlanet(travelEvent.getTo());
-                        Planet from = getPlanet(travelEvent.getFrom());
-                    }
-                    travelEventIterator.remove();
-                }
-            } else {
-                travelEventIterator.remove();
-            }
-        }
     }
     //endregion
 
@@ -139,11 +116,6 @@ public class Galaxy extends SpaceBody {
             quadrantList.appendTag(quadrantNBT);
         }
         tagCompound.setTag("Quadrants", quadrantList);
-        NBTTagList travelEventsList = new NBTTagList();
-        for (TravelEvent travelEvent : travelEvents) {
-            travelEventsList.appendTag(travelEvent.toNBT());
-        }
-        tagCompound.setTag("TravelEvents", travelEventsList);
     }
 
     public void writeToBuffer(ByteBuf buf) {
@@ -152,16 +124,11 @@ public class Galaxy extends SpaceBody {
         for (Quadrant quadrant : getQuadrants()) {
             quadrant.writeToBuffer(buf);
         }
-        buf.writeInt(travelEvents.size());
-        for (TravelEvent travelEvent : travelEvents) {
-            travelEvent.writeToBuffer(buf);
-        }
     }
 
     public void readFromNBT(NBTTagCompound tagCompound, GalaxyGenerator generator) {
         super.readFromNBT(tagCompound, generator);
         quadrantHashMap.clear();
-        travelEvents.clear();
 
         version = tagCompound.getInteger("Version");
         NBTTagList quadrantList = tagCompound.getTagList("Quadrants", 10);
@@ -171,15 +138,10 @@ public class Galaxy extends SpaceBody {
             addQuadrant(quadrant);
             quadrant.setGalaxy(this);
         }
-        NBTTagList travelEventsList = tagCompound.getTagList("TravelEvents", 10);
-        for (int i = 0; i < travelEventsList.tagCount(); i++) {
-            travelEvents.add(new TravelEvent(travelEventsList.getCompoundTagAt(i)));
-        }
     }
 
     public void readFromBuffer(ByteBuf buf) {
         quadrantHashMap.clear();
-        travelEvents.clear();
 
         version = buf.readInt();
         int size = buf.readInt();
@@ -188,11 +150,6 @@ public class Galaxy extends SpaceBody {
             quadrant.readFromBuffer(buf);
             addQuadrant(quadrant);
             quadrant.setGalaxy(this);
-        }
-        int travelEventsSize = buf.readInt();
-        for (int i = 0; i < travelEventsSize; i++) {
-            TravelEvent travelEvent = new TravelEvent(buf);
-            travelEvents.add(travelEvent);
         }
     }
     //endregion
@@ -300,30 +257,6 @@ public class Galaxy extends SpaceBody {
             }
         }
         return count;
-    }
-
-    public boolean addTravelEvent(TravelEvent travelEvent) {
-        travelEvents.add(travelEvent);
-        return true;
-    }
-
-    public boolean canCompleteTravelEvent(TravelEvent travelEvent) {
-        if (travelEvent.getTo() != null) {
-            Planet to = getPlanet(travelEvent.getTo());
-            ItemStack shipStack = travelEvent.getShip();
-            if (shipStack != null && to != null) {
-                EntityPlayer owner = null;
-            }
-        }
-        return false;
-    }
-
-    public List<TravelEvent> getTravelEvents() {
-        return travelEvents;
-    }
-
-    public void setTravelEvents(List<TravelEvent> travelEvents) {
-        this.travelEvents = travelEvents;
     }
 
     public boolean isDirty() {

@@ -21,20 +21,20 @@ package matteroverdrive.client.render.tileentity.starmap;
 import matteroverdrive.Reference;
 import matteroverdrive.client.data.Color;
 import matteroverdrive.proxy.ClientProxy;
-import matteroverdrive.starmap.GalaxyClient;
-import matteroverdrive.starmap.data.*;
+import matteroverdrive.starmap.data.Galaxy;
+import matteroverdrive.starmap.data.Quadrant;
+import matteroverdrive.starmap.data.SpaceBody;
 import matteroverdrive.tile.TileEntityMachineStarMap;
-import matteroverdrive.util.MOStringHelper;
 import matteroverdrive.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_QUADS;
+import static org.lwjgl.opengl.GL11.glLineWidth;
 
 /**
  * Created by Simeon on 6/17/2015.
@@ -54,33 +54,6 @@ public class StarMapRenderGalaxy extends StarMapRendererStars {
         }
         Tessellator.getInstance().draw();
         GlStateManager.disableTexture2D();
-
-
-        for (int i = 0; i < galaxy.getTravelEvents().size(); i++) {
-            TravelEvent travelEvent = galaxy.getTravelEvents().get(i);
-            if (travelEvent.isValid(GalaxyClient.getInstance().getTheGalaxy())) {
-
-                Vec3d from = GalaxyClient.getInstance().getTheGalaxy().getPlanet(travelEvent.getFrom()).getStar().getPosition(2);
-                Vec3d to = GalaxyClient.getInstance().getTheGalaxy().getPlanet(travelEvent.getTo()).getStar().getPosition(2);
-                Vec3d dir = from.subtract(to);
-                double percent = travelEvent.getPercent(starMap.getWorld());
-
-                RenderUtils.applyColorWithMultipy(Reference.COLOR_HOLO, 0.5f);
-                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-                GlStateManager.pushMatrix();
-                GlStateManager.translate(from.x + dir.x * percent, from.y + dir.y * percent, from.z + dir.z * percent);
-                RenderUtils.rotateTowards(new Vec3d(-1, 0, 0.0), dir.normalize(), new Vec3d(0, 1, 0));
-                RenderUtils.drawShip(0, 0, 0, 0.02);
-                GlStateManager.popMatrix();
-
-                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-                RenderUtils.applyColorWithMultipy(Reference.COLOR_HOLO_PURPLE, 0.5f);
-                glBegin(GL_LINE_STRIP);
-                glVertex3d(from.x, from.y, from.z);
-                glVertex3d(to.x, to.y, to.z);
-                glEnd();
-            }
-        }
         GlStateManager.enableTexture2D();
     }
 
@@ -104,16 +77,6 @@ public class StarMapRenderGalaxy extends StarMapRendererStars {
         RenderUtils.applyColorWithMultipy(color, opacity);
         ClientProxy.holoIcons.renderIcon("page_icon_star", 128, -30);
         RenderUtils.drawString(String.format("x%s", freeSystemCount), 152, -23, color, opacity);
-
-        for (int i = 0; i < galaxy.getTravelEvents().size(); i++) {
-            TravelEvent travelEvent = galaxy.getTravelEvents().get(i);
-            if (travelEvent.isValid(GalaxyClient.getInstance().getTheGalaxy())) {
-                Planet from = GalaxyClient.getInstance().getTheGalaxy().getPlanet(travelEvent.getFrom());
-                Planet to = GalaxyClient.getInstance().getTheGalaxy().getPlanet(travelEvent.getTo());
-
-                RenderUtils.drawString(String.format("%s -> %s : %s", from.getSpaceBodyName(), to.getSpaceBodyName(), MOStringHelper.formatRemainingTime(galaxy.getTravelEvents().get(i).getTimeRemainning(starMap.getWorld()) / 20)), 0, -48 - i * 10, Reference.COLOR_HOLO, opacity);
-            }
-        }
         GlStateManager.disableAlpha();
     }
 

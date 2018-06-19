@@ -19,11 +19,13 @@
 package matteroverdrive.starmap;
 
 import matteroverdrive.MatterOverdrive;
-import matteroverdrive.api.starmap.GalacticPosition;
 import matteroverdrive.handler.ConfigurationHandler;
 import matteroverdrive.network.packet.client.starmap.PacketUpdateGalaxy;
 import matteroverdrive.network.packet.client.starmap.PacketUpdatePlanet;
-import matteroverdrive.starmap.data.*;
+import matteroverdrive.starmap.data.Galaxy;
+import matteroverdrive.starmap.data.Planet;
+import matteroverdrive.starmap.data.Quadrant;
+import matteroverdrive.starmap.data.Star;
 import matteroverdrive.util.IConfigSubscriber;
 import matteroverdrive.util.MOLog;
 import net.minecraft.entity.player.EntityPlayer;
@@ -187,21 +189,6 @@ public class GalaxyServer extends GalaxyCommon implements IConfigSubscriber {
             }
         }
         return false;
-    }
-
-    /**
-     * a Helper function that tries to create a travel event from one
-     * Galactic Position to another, by checking if the event can be finished
-     * and if so, then removes the ship from the source planet and puts it in the
-     * travel event and returns the event itself
-     *
-     * @param from   The source planet position
-     * @param to     The Destination Planet position
-     * @param shipID The Id of the ship. The id will be checked if valid
-     * @return The Travel event if valid, and if not then returns null
-     */
-    public TravelEvent createTravelEvent(GalacticPosition from, GalacticPosition to, int shipID) {
-        return null;
     }
 
     //region Events

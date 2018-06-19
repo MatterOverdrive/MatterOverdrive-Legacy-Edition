@@ -755,51 +755,6 @@ public class RenderUtils {
         GlStateManager.disableDepth();
     }
 
-    public static void drawSizeableBackground(int left, int top, int width, int height, int texW, int texH, ResourceLocation texture, float zLevel, int chunkSize) {
-        Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-
-        //topLeft
-        drawSizedTexturedModalRect(left, top, 0, 0, chunkSize, chunkSize, chunkSize, chunkSize, 255, 255, zLevel);
-        //top middle
-        drawSizedTexturedModalRect(left + chunkSize, top, chunkSize, 0, width - chunkSize * 2, chunkSize, texW - chunkSize * 2, chunkSize, 255, 255, zLevel);
-        //top right
-        drawSizedTexturedModalRect(left + width - chunkSize, top, texW - chunkSize, 0, chunkSize, chunkSize, chunkSize, chunkSize, 255, 255, zLevel);
-        //left middle
-        drawSizedTexturedModalRect(left, top + chunkSize, 0, chunkSize, chunkSize, height - chunkSize * 2, chunkSize, texH - chunkSize * 2, 255, 255, zLevel);
-        //right middle
-        drawSizedTexturedModalRect(left + width - chunkSize, top + chunkSize, texW - chunkSize, chunkSize, chunkSize, height - chunkSize * 2, chunkSize, texH - chunkSize * 2, 255, 255, zLevel);
-        //bottom left
-        drawSizedTexturedModalRect(left, top + height - chunkSize, 0, texH - chunkSize, chunkSize, chunkSize, chunkSize, chunkSize, 255, 255, zLevel);
-        //bottom right
-        drawSizedTexturedModalRect(left + width - chunkSize, top + height - chunkSize, texW - chunkSize, texH - chunkSize, chunkSize, chunkSize, chunkSize, chunkSize, 255, 255, zLevel);
-        //bottom middle
-        drawSizedTexturedModalRect(left + chunkSize, top + height - chunkSize, chunkSize, texH - chunkSize, width - chunkSize * 2, chunkSize, texW - chunkSize * 2, chunkSize, 255, 255, zLevel);
-        //midddle
-        drawSizedTexturedModalRect(left + chunkSize, top + chunkSize, chunkSize, chunkSize, width - chunkSize * 2, height - chunkSize * 2, texW - chunkSize * 2, texH - chunkSize * 2, 255, 255, zLevel);
-    }
-
-    public static void drawSizeableVertical(int left, int top, int u, int v, int width, int height, int texW, int texH, ResourceLocation texture, float zLevel, int chunkSize) {
-        Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-
-        //top
-        drawSizedTexturedModalRect(left, top, u, v, width, v + chunkSize, width, chunkSize, texW, texH, zLevel);
-        //middle
-        drawSizedTexturedModalRect(left, top + chunkSize, u, chunkSize, width, height - chunkSize * 2, width, texH - chunkSize * 2, texW, texH, zLevel);
-        //bottom
-        drawSizedTexturedModalRect(left, top + height - chunkSize, u, v + texH - chunkSize, width, chunkSize, width, chunkSize, texW, texH, zLevel);
-    }
-
-    public static void drawSizeableHorizontal(int left, int top, int u, int v, int width, int height, int texW, int texH, ResourceLocation texture, float zLevel, int chunkSize) {
-        Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-
-        //left
-        drawSizedTexturedModalRect(left, top, u, v, chunkSize, height, chunkSize, height, texW, texH, zLevel);
-        //middle
-        drawSizedTexturedModalRect(left + chunkSize, top, u + chunkSize, v, width - chunkSize * 2, height, texW - chunkSize * 2, height, texW, texH, zLevel);
-        //right
-        drawSizedTexturedModalRect(left + width - chunkSize, top, u + texW - chunkSize, v, chunkSize, height, chunkSize, height, texW, texH, zLevel);
-    }
-
     public static void drawShip(double x, double y, double z, double size) {
         BufferBuilder wr = Tessellator.getInstance().getBuffer();
         wr.begin(GL_TRIANGLES, DefaultVertexFormats.POSITION);
@@ -843,9 +798,5 @@ public class RenderUtils {
         wr.pos(x + (double) width, y, z).tex((double) icon.getMaxU(), (double) icon.getMinV()).endVertex();
         wr.pos(x, y, z).tex((double) icon.getMinU(), (double) icon.getMinV()).endVertex();
         Tessellator.getInstance().draw();
-    }
-
-    public static void setBlockTextureSheet() {
-        new ResourceLocation("textures/atlas/blocks.png");
     }
 }
