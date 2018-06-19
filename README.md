@@ -26,7 +26,7 @@ Although it may seem overpowered, Matter Overdrive takes a more realistic approa
 * [@TheCodedOne](https://twitter.com/TheCodedOne)
 * [Dev_Osmium](mailto:devosmium@gmail.com)
 * [@DevOsmium](https://twitter.com/DevOsmium)
-* [Website](http://devosmium.ddns.net/matteroverdrive/matteroverdrive.html)
+* [Website](https://mo.simeonradivoev.com/)
 * [Discord](https://discord.gg/PC5GXyQ)
 
 ## Features
