@@ -28,7 +28,7 @@ import matteroverdrive.util.MOStringHelper;
  * Created by Simeon on 8/16/2015.
  */
 public class AutoConfigPage extends ElementBaseGroup {
-    protected final MOGuiMachine machineGui;
+    final MOGuiMachine machineGui;
     private final ComponentConfigs componentConfigs;
 
     public AutoConfigPage(MOGuiMachine gui, int posX, int posY, int width, int height) {

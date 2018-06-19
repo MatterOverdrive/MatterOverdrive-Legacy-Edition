@@ -19,7 +19,6 @@ package matteroverdrive.gui.pages;
 
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
-import matteroverdrive.data.ScaleTexture;
 import matteroverdrive.gui.MOGuiBase;
 import matteroverdrive.gui.element.ElementBaseGroup;
 import matteroverdrive.gui.element.MOElementBase;
@@ -56,20 +55,17 @@ import java.util.regex.Pattern;
  * Created by Simeon on 4/3/2015.
  */
 public class PageGuideDescription extends ElementBaseGroup {
-    public static final ScaleTexture GUIDES_BG = new ScaleTexture(new ResourceLocation(Reference.PATH_ELEMENTS + "guides_bg.png"), 166, 142).setOffsets(80, 80, 72, 69);
-
-    public static final String SCROLL_RIGHT_ELEMENT_NAME = "scroll_right";
-    public static final String SCROLL_LEFT_ELEMENT_NAME = "scroll_left";
-    public static final String RETURN_ELEMENT_NAME = "return";
+    private static final String SCROLL_RIGHT_ELEMENT_NAME = "scroll_right";
+    private static final String SCROLL_LEFT_ELEMENT_NAME = "scroll_left";
+    private static final String RETURN_ELEMENT_NAME = "return";
     private static final Stack<HistoryEntry> historyStack = new Stack<>();
-    public static int tabID;
-    public static int scroll;
-    public final MOElementButton bt_return;
-    final DocumentBuilderFactory builderFactory;
-    final List<IGuideElement> pages;
-    DocumentBuilder builder;
-    MOElementButton bt_scroll_right;
-    MOElementButton bt_scroll_left;
+    private static int tabID;
+    private static int scroll;
+    private final MOElementButton bt_return;
+    private final List<IGuideElement> pages;
+    private DocumentBuilder builder;
+    private MOElementButton bt_scroll_right;
+    private MOElementButton bt_scroll_left;
     private ItemStack dataPadStack;
     private EnumHand hand;
 
@@ -86,7 +82,7 @@ public class PageGuideDescription extends ElementBaseGroup {
         bt_return = new MOElementButton(gui, this, sizeX / 2 - 5, sizeY - 16, RETURN_ELEMENT_NAME, 0, 0, 11, 0, 11, 11, "");
         bt_return.setTexture(Reference.PATH_ELEMENTS + "return_arrow.png", 22, 11);
 
-        builderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         builderFactory.setIgnoringElementContentWhitespace(true);
         try {
             builder = builderFactory.newDocumentBuilder();
@@ -109,7 +105,7 @@ public class PageGuideDescription extends ElementBaseGroup {
     public void drawForeground(int mouseX, int mouseY) {
         if (MatterOverdrive.ITEMS.dataPad.getGuideID(dataPadStack) >= 0) {
             boolean lastUnicodeFlag = Minecraft.getMinecraft().fontRenderer.getUnicodeFlag();
-            //set yunicode for smaller text and all characters
+            //set unicode for smaller text and all characters
             Minecraft.getMinecraft().fontRenderer.setUnicodeFlag(true);
 
             if (tabID == 0) {
@@ -241,7 +237,7 @@ public class PageGuideDescription extends ElementBaseGroup {
                 String rawStyle = IOUtils.toString(stylesheetStream, "UTF-8");
                 rawStyle = rawStyle.replaceAll("\\r|\\n|\\s+", "");
                 rawStyle = rawStyle.replaceAll("(?s)/\\*.*?\\*/", "");  //remove comments
-                Matcher matcher = Pattern.compile("([^\\}\\{]+)(\\{[^\\}]+\\})", Pattern.DOTALL | Pattern.MULTILINE).matcher(rawStyle);
+                Matcher matcher = Pattern.compile("([^}{]+)(\\{[^}]+})", Pattern.DOTALL | Pattern.MULTILINE).matcher(rawStyle);
                 while (matcher.find()) {
                     styleMap.put(matcher.group(1), matcher.group(2).substring(1, matcher.group(2).length() - 1));
                 }
@@ -260,9 +256,9 @@ public class PageGuideDescription extends ElementBaseGroup {
 
     private class HistoryEntry {
         public final int entry;
-        public final int scroll;
+        private final int scroll;
 
-        public HistoryEntry(int entry, int scroll) {
+        private HistoryEntry(int entry, int scroll) {
             this.entry = entry;
             this.scroll = scroll;
         }

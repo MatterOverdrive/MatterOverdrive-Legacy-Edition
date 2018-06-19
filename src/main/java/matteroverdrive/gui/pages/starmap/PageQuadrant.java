@@ -36,9 +36,9 @@ import net.minecraft.client.Minecraft;
  */
 public class PageQuadrant extends ElementBaseGroup implements IListHandler {
 
-    public static int scroll;
-    TileEntityMachineStarMap starMap;
-    ElementGroupList starList;
+    private static int scroll;
+    private TileEntityMachineStarMap starMap;
+    private ElementGroupList starList;
 
     public PageQuadrant(GuiStarMap gui, int posX, int posY, int width, int height, TileEntityMachineStarMap starMap) {
         super(gui, posX, posY, width, height);

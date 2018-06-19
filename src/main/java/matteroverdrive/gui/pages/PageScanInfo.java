@@ -42,14 +42,14 @@ public class PageScanInfo extends ElementBaseGroup {
     public static final String SCROLL_UP_BUTTON_NAME = "scroll_up";
     public static final String SCROLL_DOWN_BUTTON_NAME = "scroll_down";
     public MatterDatabaseListBox list;
-    ItemPattern pattern;
-    ElementProgress scan_progress;
-    ElementScanProgress scan_info_graph;
-    MOElementTextField searchField;
-    MOElementButton scrollButtonUp;
-    MOElementButton scrollButtonDown;
+    private ItemPattern pattern;
+    private ElementProgress scan_progress;
+    private ElementScanProgress scan_info_graph;
+    private MOElementTextField searchField;
+    private MOElementButton scrollButtonUp;
+    private MOElementButton scrollButtonDown;
 
-    ElementItemPreview itemPreview;
+    private ElementItemPreview itemPreview;
 
     public PageScanInfo(MOGuiBase gui, int posX, int posY, String name, ItemPattern pattern, ItemStack scanner) {
         super(gui, posX, posY);
@@ -94,19 +94,17 @@ public class PageScanInfo extends ElementBaseGroup {
         ItemStack item = pattern.toItemStack(false);
 
         if (item != null) {
-            //GL11.glEnable(GL11.GL_BLEND);
             GlStateManager.enableAlpha();
             GlStateManager.alphaFunc(GL11.GL_GREATER, 0.5f);
-            List infos = item.getTooltip(null, ITooltipFlag.TooltipFlags.NORMAL);
+            List<String> infos = item.getTooltip(null, ITooltipFlag.TooltipFlags.NORMAL);
 
             if (MatterHelper.CanScan(item)) {
-                String Matter = "Matter: " + String.valueOf(MatterHelper.getMatterAmountFromItem(item)) + MatterHelper.MATTER_UNIT;
-                infos.add(Matter);
+                String text = "Matter: " + String.valueOf(MatterHelper.getMatterAmountFromItem(item)) + MatterHelper.MATTER_UNIT;
+                infos.add(text);
             }
 
             RenderUtils.DrawMultilineInfo(infos, 50, 98, 8, 200, Color.WHITE.getColor());
         } else {
-            String Matter = "Matter: " + String.valueOf(MatterHelper.getMatterAmountFromItem(item)) + MatterHelper.MATTER_UNIT;
             Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("No Item Selected!", 80, 90, new Color(255, 150, 50).getColor());
         }
     }

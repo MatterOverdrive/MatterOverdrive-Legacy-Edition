@@ -31,6 +31,7 @@ import matteroverdrive.gui.element.ElementInventorySlot;
 import matteroverdrive.util.MOStringHelper;
 import matteroverdrive.util.MatterHelper;
 import matteroverdrive.util.RenderUtils;
+import matteroverdrive.util.StackUtils;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
@@ -44,8 +45,8 @@ import java.util.Map;
  * Created by Simeon on 4/11/2015.
  */
 public class PageUpgrades extends ElementBaseGroup {
-    Container container;
-    MOGuiMachine guiMachine;
+    private Container container;
+    private MOGuiMachine guiMachine;
 
     public PageUpgrades(MOGuiMachine gui, int posX, int posY, Container container) {
         this(gui, posX, posY, 0, 0, container);
@@ -76,7 +77,7 @@ public class PageUpgrades extends ElementBaseGroup {
         for (int i = 0; i < container.inventorySlots.size(); i++) {
             if (container.getSlot(i) instanceof SlotInventory && ((SlotInventory) container.getSlot(i)).getSlot() instanceof UpgradeSlot) {
                 ItemStack upgradeItem = container.getSlot(i).getStack();
-                if (upgradeItem != null && MatterHelper.isUpgrade(upgradeItem)) {
+                if (!StackUtils.isNullOrEmpty(upgradeItem) && MatterHelper.isUpgrade(upgradeItem)) {
                     IUpgrade upgrade = (IUpgrade) upgradeItem.getItem();
                     Map<UpgradeTypes, Double> upgradeMap = upgrade.getUpgrades(upgradeItem);
                     for (final Map.Entry<UpgradeTypes, Double> entry : upgradeMap.entrySet()) {

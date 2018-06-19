@@ -29,7 +29,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +42,7 @@ public class EntityRendererRougeAndroid<T extends EntityRougeAndroidMob> extends
     public static final ResourceLocation TEXTURE = new ResourceLocation(Reference.PATH_ENTITIES + "android.png");
     public static final ResourceLocation TEXTURE_HOLOGRAM = new ResourceLocation(Reference.PATH_ENTITIES + "android_holo.png");
     public static final ResourceLocation TEXTURE_COLORLESS = new ResourceLocation(Reference.PATH_ENTITIES + "android_colorless.png");
-    public static final List<String> NAMES = Arrays.asList("the_codedone","chairosto", "buuz135");
+    public static final List<String> NAMES = Arrays.asList("the_codedone", "chairosto", "buuz135");
 
     private final boolean hologram;
 
@@ -58,7 +57,7 @@ public class EntityRendererRougeAndroid<T extends EntityRougeAndroidMob> extends
 
     @Override
     protected ResourceLocation getEntityTexture(T entity) {
-        if (entity.hasCustomName() && NAMES.contains(TextFormatting.getTextWithoutFormattingCodes(entity.getCustomNameTag().toLowerCase()))){
+        if (entity.hasCustomName() && NAMES.contains(TextFormatting.getTextWithoutFormattingCodes(entity.getCustomNameTag().toLowerCase()))) {
             return TEXTURE_COLORLESS;
         } else if (hologram) {
             return TEXTURE_HOLOGRAM;
@@ -77,7 +76,7 @@ public class EntityRendererRougeAndroid<T extends EntityRougeAndroidMob> extends
         if (entity.getIsLegendary()) {
             GlStateManager.scale(1.5, 1.5, 1.5);
         }
-        if (entity.hasCustomName() && NAMES.contains(TextFormatting.getTextWithoutFormattingCodes(entity.getCustomNameTag().toLowerCase()))){
+        if (entity.hasCustomName() && NAMES.contains(TextFormatting.getTextWithoutFormattingCodes(entity.getCustomNameTag().toLowerCase()))) {
             float speed = 360 * 0.2f;
             int hsb = (int) (entity.world.getTotalWorldTime() % speed);
             Color color = Color.getHSBColor(hsb / speed, 0.5f, 1f);

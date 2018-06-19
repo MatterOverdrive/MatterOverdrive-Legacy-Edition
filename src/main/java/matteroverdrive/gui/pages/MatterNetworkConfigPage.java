@@ -29,9 +29,9 @@ import matteroverdrive.machines.components.ComponentMatterNetworkConfigs;
  * Created by Simeon on 7/17/2015.
  */
 public class MatterNetworkConfigPage extends AutoConfigPage implements ITextHandler {
-    ComponentMatterNetworkConfigs componentMatterNetworkConfigs;
-    ElementInventorySlot filterSlot;
-    MOElementTextField destinationTextField;
+    private ComponentMatterNetworkConfigs componentMatterNetworkConfigs;
+    private ElementInventorySlot filterSlot;
+    private MOElementTextField destinationTextField;
 
     public MatterNetworkConfigPage(MOGuiMachine gui, int posX, int posY, int width, int height) {
         super(gui, posX, posY, width, height);
@@ -74,11 +74,5 @@ public class MatterNetworkConfigPage extends AutoConfigPage implements ITextHand
     @Override
     public void update(int mouseX, int mouseY, float partialTicks) {
         super.update(mouseX, mouseY, partialTicks);
-        int x = destinationTextField.getPosX() + destinationTextField.getWidth() + 10;
-		/*for (ElementSlot slot : networkConfigSlots)
-		{
-            slot.setPosition(x,destinationTextField.getPosY() + 6);
-            x += slot.getWidth();
-        }*/
     }
 }

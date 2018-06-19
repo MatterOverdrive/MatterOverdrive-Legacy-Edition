@@ -30,7 +30,7 @@ import net.minecraft.client.renderer.GlStateManager;
  */
 public class PagePlanetMenu extends ElementBaseGroup {
 
-    TileEntityMachineStarMap starMap;
+    private TileEntityMachineStarMap starMap;
 
     public PagePlanetMenu(MOGuiBase gui, int posX, int posY, int width, int height, ContainerStarMap starMapContainer, TileEntityMachineStarMap starMap) {
         super(gui, posX, posY, width, height);

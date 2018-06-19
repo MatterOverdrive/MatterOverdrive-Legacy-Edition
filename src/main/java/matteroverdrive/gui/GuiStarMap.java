@@ -41,8 +41,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import org.lwjgl.util.glu.Project;
 
 import java.util.Collection;
@@ -54,21 +52,15 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class GuiStarMap extends MOGuiMachine<TileEntityMachineStarMap> {
     public static ScaleTexture BG = new ScaleTexture(new ResourceLocation(Reference.PATH_GUI + "star_map.png"), 255, 141).setOffsets(213, 34, 42, 94);
-    Minecraft mc;
-    IModel sphere;
-    PagePlanetMenu planetPage;
-    PageGalaxy pageGalaxy;
-    PageQuadrant pageQuadrant;
-    PageStar pageStar;
+    private Minecraft mc;
+    private PagePlanetMenu planetPage;
+    private PageGalaxy pageGalaxy;
+    private PageQuadrant pageQuadrant;
+    private PageStar pageStar;
 
     public GuiStarMap(InventoryPlayer inventoryPlayer, TileEntityMachineStarMap machine) {
         super(new ContainerStarMap(inventoryPlayer, machine), machine, 480, 360);
         mc = Minecraft.getMinecraft();
-        try {
-            sphere = OBJLoader.INSTANCE.loadModel(new ResourceLocation(Reference.MODEL_SPHERE));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         background = BG;
         texW = 255;
         texH = 237;

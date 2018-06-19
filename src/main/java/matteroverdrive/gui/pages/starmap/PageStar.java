@@ -32,8 +32,8 @@ import matteroverdrive.tile.TileEntityMachineStarMap;
  * Created by Simeon on 6/21/2015.
  */
 public class PageStar extends ElementBaseGroup implements IListHandler {
-    TileEntityMachineStarMap starMap;
-    ElementGroupList planetList;
+    private TileEntityMachineStarMap starMap;
+    private ElementGroupList planetList;
 
     public PageStar(GuiStarMap gui, int posX, int posY, int width, int height, TileEntityMachineStarMap starMap) {
         super(gui, posX, posY, width, height);

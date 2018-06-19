@@ -122,6 +122,12 @@ public class PageActiveQuests extends ElementBaseGroup implements IListHandler {
         IMOListBoxElement selectedElement = quests.getSelectedElement();
         if (selectedElement != null) {
             QuestStack selectedQuest = (QuestStack) selectedElement.getValue();
+            if (selectedQuest == null) {
+                ((GuiDataPad) gui).completeQuestButton.setEnabled(false);
+                ((GuiDataPad) gui).abandonQuestButton.setEnabled(false);
+                return;
+            }
+
             String info = selectedQuest.getInfo(Minecraft.getMinecraft().player).replace("/n/", "\n");
             if (info != null) {
                 List<String> list = getFontRenderer().listFormattedStringToWidth(info, sizeX - 32);
@@ -151,14 +157,8 @@ public class PageActiveQuests extends ElementBaseGroup implements IListHandler {
                     questRewards.addElement(itemPreview);
                 }
             }
-
-            if (selectedQuest == null) {
-                ((GuiDataPad) gui).completeQuestButton.setEnabled(false);
-                ((GuiDataPad) gui).abandonQuestButton.setEnabled(false);
-            } else {
-                ((GuiDataPad) gui).completeQuestButton.setEnabled(QuestStack.canComplete(Minecraft.getMinecraft().player, selectedQuest));
-                ((GuiDataPad) gui).abandonQuestButton.setEnabled(true);
-            }
+            ((GuiDataPad) gui).completeQuestButton.setEnabled(QuestStack.canComplete(Minecraft.getMinecraft().player, selectedQuest));
+            ((GuiDataPad) gui).abandonQuestButton.setEnabled(true);
         } else {
             ((GuiDataPad) gui).completeQuestButton.setEnabled(false);
             ((GuiDataPad) gui).abandonQuestButton.setEnabled(false);

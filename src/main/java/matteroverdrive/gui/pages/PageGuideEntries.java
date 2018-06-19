@@ -57,7 +57,7 @@ public class PageGuideEntries extends ElementBaseGroup implements ITextHandler {
     private static String searchFilter = "";
     private final Map<String, Bounds> groups;
     private final List<ElementGuideEntry> guideEntries;
-    ScaleTexture groupBackground = new ScaleTexture(new ResourceLocation(Reference.PATH_ELEMENTS + "guide_group.png"), 16, 16).setOffsets(5, 5, 5, 5);
+    private ScaleTexture groupBackground = new ScaleTexture(new ResourceLocation(Reference.PATH_ELEMENTS + "guide_group.png"), 16, 16).setOffsets(5, 5, 5, 5);
     private ElementStatesHoloIcons orderButtonElement;
     private MOElementTextField searchField;
     private PageGuideDescription pageGuideDescription;
@@ -110,9 +110,7 @@ public class PageGuideEntries extends ElementBaseGroup implements ITextHandler {
         elements.add(searchField);
         searchField.setText(searchFilter);
         orderButtonElement.setSelectedState(MatterOverdrive.ITEMS.dataPad.getOrdering(dataPadStack));
-        for (ElementGuideEntry entry : guideEntries) {
-            elements.add(entry);
-        }
+        elements.addAll(guideEntries);
     }
 
     @Override
@@ -122,9 +120,7 @@ public class PageGuideEntries extends ElementBaseGroup implements ITextHandler {
 
         int groupPadding = 6;
         int topOffset = 22;
-        int bottomOffset = 16;
         int leftOffset = 8;
-        int rightOffset = 8;
         int x = leftOffset + scrollX;
         int y = topOffset + scrollY;
         int heightCount = 0;
@@ -336,7 +332,7 @@ public class PageGuideEntries extends ElementBaseGroup implements ITextHandler {
         return cat;
     }
 
-    public void setActiveCategory(String category) {
+    private void setActiveCategory(String category) {
         MatterOverdrive.ITEMS.dataPad.setCategory(dataPadStack, category);
         MatterOverdrive.NETWORK.sendToServer(new PacketDataPadCommands(hand, dataPadStack));
         gui.setPage(0);

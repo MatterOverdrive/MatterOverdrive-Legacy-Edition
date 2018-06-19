@@ -27,11 +27,7 @@ import matteroverdrive.matter_network.MatterNetworkTaskQueue;
  * Created by Simeon on 4/21/2015.
  */
 public class PageTasks extends ElementBaseGroup {
-    ElementTaskList taskList;
-
-    public PageTasks(MOGuiBase gui, int posX, int posY, MatterNetworkTaskQueue<? extends MatterNetworkTask> taskQueue) {
-        this(gui, posX, posY, 0, 0, taskQueue);
-    }
+    private ElementTaskList taskList;
 
     public PageTasks(MOGuiBase gui, int posX, int posY, int width, int height, MatterNetworkTaskQueue<? extends MatterNetworkTask> taskQueue) {
         super(gui, posX, posY, width, height);

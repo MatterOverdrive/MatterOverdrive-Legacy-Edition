@@ -31,9 +31,9 @@ import matteroverdrive.tile.TileEntityMachineStarMap;
  * Created by Simeon on 6/27/2015.
  */
 public class PageGalaxy extends ElementBaseGroup implements IListHandler {
-    public static int scroll;
-    TileEntityMachineStarMap starMap;
-    ElementGroupList quadrantList;
+    private static int scroll;
+    private TileEntityMachineStarMap starMap;
+    private ElementGroupList quadrantList;
 
     public PageGalaxy(GuiStarMap gui, int posX, int posY, int width, int height, TileEntityMachineStarMap starMap) {
         super(gui, posX, posY, width, height);

@@ -50,14 +50,14 @@ public abstract class MOBlockMachine<TE extends TileEntity> extends MOBlockConta
     public float volume = 1;
     public boolean hasGui;
 
+    public MOBlockMachine(Material material, String name) {
+        super(material, name);
+    }
+
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState() {
         return super.createBlockState();
-    }
-
-    public MOBlockMachine(Material material, String name) {
-        super(material, name);
     }
 
     public boolean doNormalDrops(World world, int x, int y, int z) {
