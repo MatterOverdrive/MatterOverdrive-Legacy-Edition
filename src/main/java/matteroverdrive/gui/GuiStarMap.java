@@ -25,13 +25,15 @@ import matteroverdrive.client.data.Color;
 import matteroverdrive.container.ContainerStarMap;
 import matteroverdrive.container.MOBaseContainer;
 import matteroverdrive.data.ScaleTexture;
-import matteroverdrive.gui.pages.starmap.*;
+import matteroverdrive.gui.pages.starmap.PageGalaxy;
+import matteroverdrive.gui.pages.starmap.PagePlanetMenu;
+import matteroverdrive.gui.pages.starmap.PageQuadrant;
+import matteroverdrive.gui.pages.starmap.PageStar;
 import matteroverdrive.network.packet.server.starmap.PacketStarMapClientCommands;
 import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.starmap.GalaxyClient;
 import matteroverdrive.starmap.data.Planet;
 import matteroverdrive.starmap.data.Star;
-import matteroverdrive.starmap.data.TravelEvent;
 import matteroverdrive.tile.TileEntityMachineStarMap;
 import matteroverdrive.util.RenderUtils;
 import net.minecraft.client.Minecraft;
@@ -44,7 +46,6 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import org.lwjgl.util.glu.Project;
 
 import java.util.Collection;
-import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -59,7 +60,6 @@ public class GuiStarMap extends MOGuiMachine<TileEntityMachineStarMap> {
     PageGalaxy pageGalaxy;
     PageQuadrant pageQuadrant;
     PageStar pageStar;
-    PagePlanetStats pagePlanetStats;
 
     public GuiStarMap(InventoryPlayer inventoryPlayer, TileEntityMachineStarMap machine) {
         super(new ContainerStarMap(inventoryPlayer, machine), machine, 480, 360);
@@ -93,9 +93,6 @@ public class GuiStarMap extends MOGuiMachine<TileEntityMachineStarMap> {
         planetPage = new PagePlanetMenu(this, 0, 0, width, height, (ContainerStarMap) container, starMap);
         planetPage.setName("Planet");
         AddPage(planetPage, ClientProxy.holoIcons.getIcon("page_icon_planet"), I18n.format("gui.tooltip.page.planet")).setIconColor(Reference.COLOR_MATTER);
-        pagePlanetStats = new PagePlanetStats(this, 0, 0, width, height, starMap);
-        pagePlanetStats.setName("Planet Stats");
-        AddPage(pagePlanetStats, ClientProxy.holoIcons.getIcon("icon_stats"), I18n.format("gui.tooltip.page.planet_stats")).setIconColor(Reference.COLOR_MATTER);
         setPage(machine.getZoomLevel());
     }
 
@@ -207,7 +204,6 @@ public class GuiStarMap extends MOGuiMachine<TileEntityMachineStarMap> {
         pageQuadrant.init();
         pageStar.init();
         planetPage.init();
-        pagePlanetStats.init();
         if (newPage != machine.getZoomLevel()) {
             MatterOverdrive.NETWORK.sendToServer(new PacketStarMapClientCommands(machine, newPage, machine.getGalaxyPosition(), machine.getDestination()));
         }
@@ -216,10 +212,6 @@ public class GuiStarMap extends MOGuiMachine<TileEntityMachineStarMap> {
     public void onPlanetChange(Planet planet) {
         pageStar.init();
         planetPage.init();
-    }
-
-    public void onTravelEventsChange(List<TravelEvent> travelEvents) {
-        pagePlanetStats.init();
     }
 
     @Override
@@ -248,11 +240,9 @@ public class GuiStarMap extends MOGuiMachine<TileEntityMachineStarMap> {
             setPage(machine.getZoomLevel());
         }
         super.updateElementInformation();
-        pageButtons.get(4).setVisible(machine.getPlanet() != null);
         pageButtons.get(3).setVisible(machine.getPlanet() != null);
         pageButtons.get(2).setVisible(machine.getStar() != null);
         pageButtons.get(1).setVisible(machine.getQuadrant() != null);
-
     }
 
     public boolean doesGuiPauseGame() {

@@ -182,7 +182,7 @@ public class TileEntityMachineStarMap extends MOTileEntityMachineEnergy {
 
     public int getMaxZoom() {
         if (getPlanet() != null) {
-            return 4;
+            return 3;
         } else {
             return 2;
         }

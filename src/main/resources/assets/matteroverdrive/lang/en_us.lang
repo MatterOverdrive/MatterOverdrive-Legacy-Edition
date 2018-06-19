@@ -64,7 +64,7 @@ item.matteroverdrive.transport_flash_drive.details=Used to mark locations for qu
 item.matteroverdrive.matter_container_empty.name=Empty Matter Container
 item.matteroverdrive.matter_container_full.name=Matter Container
 item.matteroverdrive.tritanium_nugget.name=Tritanium Nugget
-item.matteroverdrive.tritainum_spine.name=Tritanium Spine
+item.matteroverdrive.tritanium_spine.name=Tritanium Spine
 item.matteroverdrive.data_pad.name=Data Pad
 item.matteroverdrive.data_pad.details=Holds information on all of MatterOverdrive Items
 item.matteroverdrive.omni_tool.name=Omni Tool
@@ -88,6 +88,8 @@ item.matteroverdrive.plasma_core.name=Plasma Core
 item.matteroverdrive.portable_decomposer.name=Portable Decomposer
 item.matteroverdrive.portable_decomposer.details=Decomposes picked up items into Matter Plasma
 item.matteroverdrive.record.matteroverdrive.transformation.desc=BoxCat Games - Trace Route
+item.matteroverdrive.trilithium_crystal.name=Pure Trilithium Crystal
+item.matteroverdrive.artifact.name=Unknown Artifact
 
 #///////////// Upgrades ////////////
 item.matteroverdrive.upgrade.speed.name=Speed Upgrade

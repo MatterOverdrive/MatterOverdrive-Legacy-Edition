@@ -17,6 +17,7 @@
  */
 package matteroverdrive.init;
 
+import com.google.common.base.Preconditions;
 import matteroverdrive.items.*;
 import matteroverdrive.items.android.RougeAndroidParts;
 import matteroverdrive.items.android.TritaniumSpine;
@@ -127,6 +128,9 @@ public class MatterOverdriveItems {
     public SecurityProtocol security_protocol;
     public SpacetimeEqualizer spacetime_equalizer;
     public ItemRecordTransformation recordTransformation;
+    public MOBaseItem trilithiumCrystal;
+    public MOBaseItem artifact;
+
     private int registeredCount = 0;
 
     @SubscribeEvent
@@ -208,7 +212,7 @@ public class MatterOverdriveItems {
 
 //		Android
         androidParts = register(new RougeAndroidParts("rogue_android_part"));
-        tritaniumSpine = register(new TritaniumSpine("tritainum_spine"));
+        tritaniumSpine = register(new TritaniumSpine("tritanium_spine"));
 
 //		Misc
         matter_scanner = register(new MatterScanner("matter_scanner"));
@@ -223,10 +227,12 @@ public class MatterOverdriveItems {
         security_protocol = register(new SecurityProtocol("security_protocol"));
         spacetime_equalizer = register(new SpacetimeEqualizer("spacetime_equalizer"));
         recordTransformation = register(new ItemRecordTransformation());
+        artifact = register(new MOBaseItem("artifact"));
+        trilithiumCrystal = register(new MOBaseItem("trilithium_crystal"));
+        Preconditions.checkNotNull(TOOL_MATERIAL_TRITANIUM).setRepairItem(new ItemStack(tritanium_ingot));
+        Preconditions.checkNotNull(ARMOR_MATERIAL_TRITANIUM).setRepairItem(new ItemStack(tritanium_ingot));
         MOLog.info("Finished registering items");
         MOLog.info("Registered %d items", registeredCount);
-        TOOL_MATERIAL_TRITANIUM.setRepairItem(new ItemStack(tritanium_ingot));
-        ARMOR_MATERIAL_TRITANIUM.setRepairItem(new ItemStack(tritanium_ingot));
     }
 
     protected <T extends Item> T register(T item) {
