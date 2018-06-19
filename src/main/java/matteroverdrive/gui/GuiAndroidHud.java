@@ -135,7 +135,7 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
 
         AndroidPlayer android = MOPlayerCapabilityProvider.GetAndroidCapability(mc.player);
 
-        if ((mc.currentScreen instanceof GuiDialog) && !event.getType().equals(RenderGameOverlayEvent.ElementType.ALL) && event.isCancelable()) {
+        if ((mc.currentScreen instanceof GuiDialog || mc.currentScreen instanceof GuiStarMap) && !event.getType().equals(RenderGameOverlayEvent.ElementType.ALL) && event.isCancelable()) {
             event.setCanceled(true);
             return;
         }

@@ -34,6 +34,7 @@ import matteroverdrive.handler.thread.RegistryToast;
 import matteroverdrive.handler.weapon.ClientWeaponHandler;
 import matteroverdrive.handler.weapon.CommonWeaponHandler;
 import matteroverdrive.init.MatterOverdriveGuides;
+import matteroverdrive.starmap.GalaxyClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
@@ -43,6 +44,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -77,6 +79,7 @@ public class ClientProxy extends CommonProxy {
     private void registerSubscribtions() {
         MinecraftForge.EVENT_BUS.register(keyHandler);
         MinecraftForge.EVENT_BUS.register(mouseHandler);
+        MinecraftForge.EVENT_BUS.register(GalaxyClient.getInstance());
         MinecraftForge.EVENT_BUS.register(new TooltipHandler());
         MinecraftForge.EVENT_BUS.register(androidHud);
         MinecraftForge.EVENT_BUS.register(questHud);
@@ -130,6 +133,7 @@ public class ClientProxy extends CommonProxy {
         //renderHandler.createBlockRenderers();
         renderHandler.createTileEntityRenderers(MatterOverdrive.CONFIG_HANDLER);
         renderHandler.createBioticStatRenderers();
+        renderHandler.createStarmapRenderers();
         renderHandler.createModels();
 
 
@@ -140,6 +144,7 @@ public class ClientProxy extends CommonProxy {
         renderHandler.registerItemColors();
         renderHandler.registerBioticStatRenderers();
         renderHandler.registerBionicPartRenderers();
+        renderHandler.registerStarmapRenderers();
 
 
         MatterOverdrive.CONFIG_HANDLER.subscribe(androidHud);

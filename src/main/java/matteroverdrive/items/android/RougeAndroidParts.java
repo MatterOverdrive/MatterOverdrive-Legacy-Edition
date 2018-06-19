@@ -144,7 +144,7 @@ public class RougeAndroidParts extends BionicPart implements IBionicPart, IAdvan
                 return EntityRendererRangedRougeAndroid.texture;
             }
         }
-        return EntityRendererRougeAndroid.texture;
+        return EntityRendererRougeAndroid.TEXTURE;
     }
 
     @SideOnly(Side.CLIENT)

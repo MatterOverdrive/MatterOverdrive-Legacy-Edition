@@ -27,6 +27,7 @@ import matteroverdrive.api.internal.ItemModelProvider;
 import matteroverdrive.api.inventory.IBionicPart;
 import matteroverdrive.api.renderer.IBionicPartRenderer;
 import matteroverdrive.api.renderer.IBioticStatRenderer;
+import matteroverdrive.api.starmap.IStarmapRenderRegistry;
 import matteroverdrive.blocks.BlockDecorativeColored;
 import matteroverdrive.client.model.ModelTritaniumArmor;
 import matteroverdrive.client.render.*;
@@ -34,6 +35,7 @@ import matteroverdrive.client.render.biostat.BioticStatRendererShield;
 import matteroverdrive.client.render.biostat.BioticStatRendererTeleporter;
 import matteroverdrive.client.render.entity.*;
 import matteroverdrive.client.render.tileentity.*;
+import matteroverdrive.client.render.tileentity.starmap.*;
 import matteroverdrive.client.render.weapons.*;
 import matteroverdrive.client.render.weapons.layers.WeaponLayerAmmoRender;
 import matteroverdrive.client.render.weapons.modules.ModuleHoloSightsRender;
@@ -57,6 +59,10 @@ import matteroverdrive.machines.fusionReactorController.TileEntityMachineFusionR
 import matteroverdrive.machines.pattern_monitor.TileEntityMachinePatternMonitor;
 import matteroverdrive.machines.pattern_storage.TileEntityMachinePatternStorage;
 import matteroverdrive.machines.replicator.TileEntityMachineReplicator;
+import matteroverdrive.starmap.data.Galaxy;
+import matteroverdrive.starmap.data.Planet;
+import matteroverdrive.starmap.data.Quadrant;
+import matteroverdrive.starmap.data.Star;
 import matteroverdrive.tile.*;
 import matteroverdrive.util.MOLog;
 import net.minecraft.block.Block;
@@ -109,22 +115,14 @@ public class RenderHandler {
         }
     };
     public static int stencilBuffer;
-
-
     private static ItemRendererPhaser rendererPhaser;
     private static ItemRendererPhaserRifle rendererPhaserRifle;
     private static ItemRendererOmniTool rendererOmniTool;
     private static ItemRenderPlasmaShotgun renderPlasmaShotgun;
     private static ItemRendererIonSniper rendererIonSniper;
     private final Random random = new Random();
-
-
     private final WeaponLayerAmmoRender weaponLayerAmmoRender = new WeaponLayerAmmoRender();
-
-
     public EntityRendererRougeAndroid<EntityRougeAndroidMob> rendererRougeAndroidHologram;
-
-
     public ModelTritaniumArmor modelTritaniumArmor;
     public ModelTritaniumArmor modelTritaniumArmorFeet;
     public ModelBiped modelMeleeRogueAndroidParts;
@@ -135,6 +133,7 @@ public class RenderHandler {
     private RenderWeaponsBeam renderWeaponsBeam;
     private List<IWorldLastRenderer> customRenderers;
     private AndroidStatRenderRegistry statRenderRegistry;
+    private StarmapRenderRegistry starmapRenderRegistry;
     private RenderDialogSystem renderDialogSystem;
     private AndroidBionicPartRenderRegistry bionicPartRenderRegistry;
     private WeaponModuleModelRegistry weaponModuleModelRegistry;
@@ -148,8 +147,11 @@ public class RenderHandler {
 
     private BioticStatRendererTeleporter rendererTeleporter;
     private BioticStatRendererShield biostatRendererShield;
-
-
+    private StarMapRenderPlanetStats starMapRenderPlanetStats;
+    private StarMapRenderGalaxy starMapRenderGalaxy;
+    private StarMapRendererStar starMapRendererStar;
+    private StarMapRendererQuadrant starMapRendererQuadrant;
+    private StarMapRendererPlanet starMapRendererPlanet;
     private TileEntityRendererReplicator tileEntityRendererReplicator;
     private TileEntityRendererPipe tileEntityRendererPipe;
     private TileEntityRendererMatterPipe tileEntityRendererMatterPipe;
@@ -161,6 +163,7 @@ public class RenderHandler {
     private TileEntityRendererGravitationalStabilizer tileEntityRendererGravitationalStabilizer;
     private TileEntityRendererFusionReactorController tileEntityRendererFusionReactorController;
     private TileEntityRendererAndroidStation tileEntityRendererAndroidStation;
+    private TileEntityRendererStarMap tileEntityRendererStarMap;
     private TileEntityRendererChargingStation tileEntityRendererChargingStation;
     private TileEntityRendererHoloSign tileEntityRendererHoloSign;
     private TileEntityRendererPacketQueue tileEntityRendererPacketQueue;
@@ -181,6 +184,7 @@ public class RenderHandler {
         renderParticlesHandler = new RenderParticlesHandler(world, textureManager);
         renderWeaponsBeam = new RenderWeaponsBeam();
         statRenderRegistry = new AndroidStatRenderRegistry();
+        starmapRenderRegistry = new StarmapRenderRegistry();
         renderDialogSystem = new RenderDialogSystem();
         bionicPartRenderRegistry = new AndroidBionicPartRenderRegistry();
         weaponModuleModelRegistry = new WeaponModuleModelRegistry();
@@ -246,6 +250,7 @@ public class RenderHandler {
         tileEntityRendererGravitationalStabilizer = new TileEntityRendererGravitationalStabilizer();
         tileEntityRendererFusionReactorController = new TileEntityRendererFusionReactorController();
         tileEntityRendererAndroidStation = new TileEntityRendererAndroidStation();
+        tileEntityRendererStarMap = new TileEntityRendererStarMap();
         tileEntityRendererChargingStation = new TileEntityRendererChargingStation();
         tileEntityRendererHoloSign = new TileEntityRendererHoloSign();
         tileEntityRendererPacketQueue = new TileEntityRendererPacketQueue();
@@ -329,6 +334,7 @@ public class RenderHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineGravitationalStabilizer.class, tileEntityRendererGravitationalStabilizer);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineFusionReactorController.class, tileEntityRendererFusionReactorController);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAndroidStation.class, tileEntityRendererAndroidStation);
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineStarMap.class, tileEntityRendererStarMap);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineChargingStation.class, tileEntityRendererChargingStation);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHoloSign.class, tileEntityRendererHoloSign);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachinePacketQueue.class, tileEntityRendererPacketQueue);
@@ -473,6 +479,22 @@ public class RenderHandler {
 
     }
 
+    public void createStarmapRenderers() {
+        starMapRendererPlanet = new StarMapRendererPlanet();
+        starMapRendererQuadrant = new StarMapRendererQuadrant();
+        starMapRendererStar = new StarMapRendererStar();
+        starMapRenderGalaxy = new StarMapRenderGalaxy();
+        starMapRenderPlanetStats = new StarMapRenderPlanetStats();
+    }
+
+    public void registerStarmapRenderers() {
+        starmapRenderRegistry.registerRenderer(Planet.class, starMapRendererPlanet);
+        starmapRenderRegistry.registerRenderer(Quadrant.class, starMapRendererQuadrant);
+        starmapRenderRegistry.registerRenderer(Star.class, starMapRendererStar);
+        starmapRenderRegistry.registerRenderer(Galaxy.class, starMapRenderGalaxy);
+        starmapRenderRegistry.registerRenderer(Planet.class, starMapRenderPlanetStats);
+    }
+
     public void createModels() {
         modelTritaniumArmor = new ModelTritaniumArmor(0);
         modelTritaniumArmorFeet = new ModelTritaniumArmor(0.5f);
@@ -496,8 +518,16 @@ public class RenderHandler {
         return renderParticlesHandler;
     }
 
+    public TileEntityRendererStarMap getTileEntityRendererStarMap() {
+        return tileEntityRendererStarMap;
+    }
+
     public IAndroidStatRenderRegistry getStatRenderRegistry() {
         return statRenderRegistry;
+    }
+
+    public IStarmapRenderRegistry getStarmapRenderRegistry() {
+        return starmapRenderRegistry;
     }
 
     public ItemRendererOmniTool getRendererOmniTool() {

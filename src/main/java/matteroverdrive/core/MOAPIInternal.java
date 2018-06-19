@@ -24,6 +24,7 @@ import matteroverdrive.api.android.IAndroidStatRenderRegistry;
 import matteroverdrive.api.dialog.IDialogRegistry;
 import matteroverdrive.api.matter.IMatterRegistry;
 import matteroverdrive.api.renderer.IBionicPartRenderRegistry;
+import matteroverdrive.api.starmap.IStarmapRenderRegistry;
 import matteroverdrive.proxy.ClientProxy;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -59,5 +60,11 @@ public class MOAPIInternal implements MatterOverdriveAPI {
     @SideOnly(Side.CLIENT)
     public IBionicPartRenderRegistry getBionicStatRenderRegistry() {
         return ClientProxy.renderHandler.getBionicPartRenderRegistry();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IStarmapRenderRegistry getStarmapRenderRegistry() {
+        return ClientProxy.renderHandler.getStarmapRenderRegistry();
     }
 }

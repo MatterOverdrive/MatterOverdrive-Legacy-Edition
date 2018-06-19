@@ -60,6 +60,7 @@ public class GuiHandler implements IGuiHandler {
             registerContainer(TileEntityWeaponStation.class, ContainerWeaponStation.class);
             registerContainer(TileEntityMachineFusionReactorController.class, ContainerFusionReactor.class);
             registerContainer(TileEntityAndroidStation.class, ContainerAndroidStation.class);
+            registerContainer(TileEntityMachineStarMap.class, ContainerStarMap.class);
             registerContainer(TileEntityInscriber.class, ContainerInscriber.class);
             registerContainer(TileEntityAndroidSpawner.class, ContainerAndroidSpawner.class);
             registerContainer(TileEntityMachineReplicator.class, ContainerReplicator.class);
@@ -81,6 +82,7 @@ public class GuiHandler implements IGuiHandler {
             registerGui(TileEntityMachineMatterRecycler.class, GuiRecycler.class);
             registerGuiAndContainer(TileEntityMachineFusionReactorController.class, GuiFusionReactor.class, ContainerFusionReactor.class);
             registerGuiAndContainer(TileEntityAndroidStation.class, GuiAndroidStation.class, ContainerAndroidStation.class);
+            registerGuiAndContainer(TileEntityMachineStarMap.class, GuiStarMap.class, ContainerStarMap.class);
             registerGui(TileEntityHoloSign.class, GuiHoloSign.class);
             registerGui(TileEntityMachineChargingStation.class, GuiChargingStation.class);
             registerGuiAndContainer(TileEntityInscriber.class, GuiInscriber.class, ContainerInscriber.class);

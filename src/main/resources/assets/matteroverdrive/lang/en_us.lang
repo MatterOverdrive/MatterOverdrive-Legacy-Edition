@@ -405,8 +405,10 @@ gui.label.button.save=Save
 gui.label.button.remove=Remove
 gui.label.button.add=Add
 gui.label.button.reset=Reset
+gui.label.button.scout=Send Scout
 gui.label.button.new=New
 gui.label.button.import=Import
+gui.label.button.import.too_far=Destination Too Far
 gui.label.auto_line_size=Auto Line Size
 gui.label.accept=Accept
 

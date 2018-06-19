@@ -27,7 +27,7 @@ public abstract class MOBlockContainer<TE extends TileEntity> extends MOBlock im
     public MOBlockContainer(Material material, String name) {
         super(material, name);
         if (hasTileEntity(getDefaultState()) && TileEntity.getKey(getTileEntityClass()) == null)
-            GameRegistry.registerTileEntity(getTileEntityClass(), getRegistryName().getResourceDomain() + ":" + name);
+            GameRegistry.registerTileEntity(getTileEntityClass(), "matteroverdrive:" + name);
     }
 
     @Override

@@ -47,6 +47,7 @@ public class ConfigurationHandler {
     public static final String CATEGORY_CLIENT = "client";
     public static final String CATEGORY_ANDROID_HUD = CATEGORY_CLIENT + "." + "android_hud";
     public static final String CATEGORY_SERVER = "server";
+    public static final String CATEGORY_STARMAP = "starmap";
     public static final String CATEGORY_ENCHANTMENTS = "enchantments";
     public static final String CATEGORY_ENTITIES = "entities";
     public static final String CATEGORY_ANDROID_PLAYER = CATEGORY_ENTITIES + "." + "android_player";

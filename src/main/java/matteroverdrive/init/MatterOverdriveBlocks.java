@@ -91,6 +91,7 @@ public class MatterOverdriveBlocks {
     public BlockPylon pylon;
     //	Misc
     public BlockTransporter transporter;
+    public BlockStarMap starMap;
     public BlockHoloSign holoSign;
     public BlockWeaponStation weapon_station;
     public BlockAndroidStation androidStation;
@@ -117,7 +118,6 @@ public class MatterOverdriveBlocks {
     public BlockDecorative decorative_tritanium_plate_colored;
     public BlockDecorative decorative_engine_exhaust_plasma;
     public BlockIndustrialGlass industrialGlass;
-    //	Internal
     public BlockBoundingBox boundingBox;
     private int registeredCount = 0;
 
@@ -188,6 +188,7 @@ public class MatterOverdriveBlocks {
 
 //		Misc
         transporter = register(new BlockTransporter(TRITANIUM, "transporter"));
+        starMap = register(new BlockStarMap(TRITANIUM, "star_map"));
         holoSign = register(new BlockHoloSign(TRITANIUM, "holo_sign"));
         weapon_station = register(new BlockWeaponStation(TRITANIUM, "weapon_station"));
         androidStation = register(new BlockAndroidStation(TRITANIUM, "android_station"));
@@ -219,7 +220,6 @@ public class MatterOverdriveBlocks {
         decorative_engine_exhaust_plasma.setLightLevel(1);
         industrialGlass = register(new BlockIndustrialGlass(Material.GLASS, "industrial_glass"));
 
-//		Internal
         boundingBox = register(new BlockBoundingBox("bounding_box"));
 
         MOLog.info("Finished registering blocks");

@@ -20,6 +20,7 @@ package matteroverdrive.util;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.inventory.UpgradeTypes;
+import matteroverdrive.api.starmap.PlanetStatType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
@@ -87,6 +88,10 @@ public class MOStringHelper {
 
     public static String translateToLocal(String key, Object... params) {
         return MatterOverdrive.PROXY.translateToLocal(key, params);
+    }
+
+    public static String translateToLocal(PlanetStatType statType) {
+        return translateToLocal("planet_stat." + statType.getUnlocalizedName() + ".name");
     }
 
     public static String translateToLocal(UpgradeTypes type) {

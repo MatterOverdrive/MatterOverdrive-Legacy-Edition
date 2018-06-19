@@ -18,6 +18,7 @@
 package matteroverdrive.blocks.includes;
 
 import matteroverdrive.MatterOverdrive;
+import matteroverdrive.Reference;
 import matteroverdrive.api.IMOTileEntity;
 import matteroverdrive.api.internal.ItemModelProvider;
 import matteroverdrive.tile.MOTileEntity;
@@ -34,6 +35,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -57,12 +59,12 @@ public class MOBlock extends Block implements ItemModelProvider {
 
     public MOBlock(Material material, String name) {
         super(material);
-        setRegistryName(name);
-        blockState = createBlockState();
-        setDefaultState(getBlockState().getBaseState());
-        fullBlock = getDefaultState().isOpaqueCube();
-        lightOpacity = fullBlock ? 255 : 0;
-        setUnlocalizedName(name);
+        setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
+        this.blockState = createBlockState();
+        this.setDefaultState(getBlockState().getBaseState());
+        this.fullBlock = getDefaultState().isOpaqueCube();
+        this.lightOpacity = fullBlock ? 255 : 0;
+        this.setUnlocalizedName(name);
         setCreativeTab(MatterOverdrive.TAB_OVERDRIVE);
         rotationType = RotationType.FOUR_WAY;
     }
