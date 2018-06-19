@@ -17,12 +17,15 @@
  */
 package matteroverdrive.client.render.tileentity;
 
+import matteroverdrive.Reference;
 import matteroverdrive.blocks.BlockNetworkSwitch;
 import matteroverdrive.tile.TileEntityMachinePacketQueue;
+import matteroverdrive.util.RenderUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Created by Simeon on 8/22/2015.
@@ -44,16 +47,15 @@ public class TileEntityRendererPacketQueue extends TileEntitySpecialRenderer<Til
     }
 
     private void renderBlock(Block block) {
-		/*float distance = 0.1f;
+        float distance = 0.1f;
 
         GlStateManager.disableLighting();
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(GL_ONE,GL_ONE);
+        GlStateManager.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
         RenderUtils.disableLightmap();
-        RenderUtils.setBlockTextureSheet();
-        RenderUtils.drawCube(-0.01, -0.01, -0.01, 1.02, 1.02, 1.02, icon.getMinU(), icon.getMinV(), icon.getMaxU(), icon.getMaxV(), Reference.COLOR_HOLO);
+        RenderUtils.drawCube(-0.01, -0.01, -0.01, 1.02, 1.02, 1.02, Reference.COLOR_HOLO);
         GlStateManager.disableBlend();
         GlStateManager.enableLighting();
-        RenderUtils.enableLightmap();*/
+        RenderUtils.enableLightmap();
     }
 }

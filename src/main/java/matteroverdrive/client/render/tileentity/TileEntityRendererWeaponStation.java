@@ -33,7 +33,7 @@ import net.minecraft.item.ItemStack;
  */
 public class TileEntityRendererWeaponStation extends TileEntityRendererStation<TileEntityWeaponStation> {
 
-    EntityItem itemEntity;
+    private EntityItem itemEntity;
 
     public TileEntityRendererWeaponStation() {
         super();

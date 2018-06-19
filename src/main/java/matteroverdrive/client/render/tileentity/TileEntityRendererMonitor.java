@@ -22,9 +22,9 @@ import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.machines.MOTileEntityMachine;
 import matteroverdrive.util.RenderUtils;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 
@@ -36,7 +36,7 @@ public abstract class TileEntityRendererMonitor<T extends MOTileEntityMachine> e
     public static final ResourceLocation screenTextureGlow = new ResourceLocation(Reference.PATH_FX + "holo_monitor_glow.png");
 
     @Override
-    public void render(MOTileEntityMachine tileEntity, double x, double y, double z, float ticks, int destroyStage, float a) {
+    public void render(T tileEntity, double x, double y, double z, float ticks, int destroyStage, float a) {
         if (!tileEntity.shouldRender())
             return;
         GlStateManager.pushMatrix();
@@ -45,25 +45,13 @@ public abstract class TileEntityRendererMonitor<T extends MOTileEntityMachine> e
         EnumFacing rotation = blockState.getValue(MOBlock.PROPERTY_DIRECTION);
 
         GlStateManager.pushAttrib();
-        //GlStateManager.disableLighting();
-        //GlStateManager.disableCull();
-        //GlStateManager.enableBlend();
-        //GlStateManager.blendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR);
-        //RenderUtils.disableLightmap();
-
         RenderUtils.beginDrawinngBlockScreen(x, y, z, rotation, Reference.COLOR_HOLO, tileEntity, -0.65, 1f);
         GlStateManager.translate(0, 0, -0.05);
         drawScreen(tileEntity, ticks);
         RenderUtils.endDrawinngBlockScreen();
-
-        //GlStateManager.disableBlend();
-        //GlStateManager.enableCull();
-        //GlStateManager.enableLighting();
-        //GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        //RenderUtils.enableLightmap();
         GlStateManager.popAttrib();
         GlStateManager.popMatrix();
     }
 
-    public abstract void drawScreen(TileEntity tileEntity, float ticks);
+    public abstract void drawScreen(T tileEntity, float ticks);
 }

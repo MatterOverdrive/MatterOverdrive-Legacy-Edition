@@ -164,7 +164,6 @@ public class RenderHandler {
     private TileEntityRendererFusionReactorController tileEntityRendererFusionReactorController;
     private TileEntityRendererAndroidStation tileEntityRendererAndroidStation;
     private TileEntityRendererStarMap tileEntityRendererStarMap;
-    private TileEntityRendererChargingStation tileEntityRendererChargingStation;
     private TileEntityRendererHoloSign tileEntityRendererHoloSign;
     private TileEntityRendererPacketQueue tileEntityRendererPacketQueue;
     private TileEntityRendererInscriber tileEntityRendererInscriber;
@@ -251,7 +250,6 @@ public class RenderHandler {
         tileEntityRendererFusionReactorController = new TileEntityRendererFusionReactorController();
         tileEntityRendererAndroidStation = new TileEntityRendererAndroidStation();
         tileEntityRendererStarMap = new TileEntityRendererStarMap();
-        tileEntityRendererChargingStation = new TileEntityRendererChargingStation();
         tileEntityRendererHoloSign = new TileEntityRendererHoloSign();
         tileEntityRendererPacketQueue = new TileEntityRendererPacketQueue();
         tileEntityRendererInscriber = new TileEntityRendererInscriber();
@@ -335,7 +333,6 @@ public class RenderHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineFusionReactorController.class, tileEntityRendererFusionReactorController);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAndroidStation.class, tileEntityRendererAndroidStation);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineStarMap.class, tileEntityRendererStarMap);
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineChargingStation.class, tileEntityRendererChargingStation);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHoloSign.class, tileEntityRendererHoloSign);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachinePacketQueue.class, tileEntityRendererPacketQueue);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityInscriber.class, tileEntityRendererInscriber);
