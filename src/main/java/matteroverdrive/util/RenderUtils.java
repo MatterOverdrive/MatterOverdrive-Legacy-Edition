@@ -80,7 +80,6 @@ public class RenderUtils {
             renderItem.zLevel = 0.0F;
 
             GlStateManager.enableAlpha();
-            GlStateManager.disableBlend();
             RenderHelper.disableStandardItemLighting();
             GlStateManager.popMatrix();
         }

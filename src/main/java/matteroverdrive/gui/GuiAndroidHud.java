@@ -165,7 +165,6 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
             mc.getTextureManager().bindTexture(Gui.ICONS);
         } else if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
             //glPushAttrib(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            GlStateManager.enableBlend();
             renderHud(event);
 
             if (android.isAndroid()) {
@@ -183,7 +182,6 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
     }
 
     public void renderCrosshair(RenderGameOverlayEvent event) {
-        GlStateManager.pushAttrib();
         GlStateManager.pushMatrix();
         float scale = 6 + ClientProxy.instance().getClientWeaponHandler().getEquippedWeaponAccuracyPercent(Minecraft.getMinecraft().player) * 256;
         GlStateManager.enableBlend();
@@ -193,7 +191,6 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
         GlStateManager.color(1, 1, 1);
         crosshairIcon = ClientProxy.holoIcons.getIcon("crosshair");
         GlStateManager.translate(event.getResolution().getScaledWidth() / 2, event.getResolution().getScaledHeight() / 2, 0);
-        GlStateManager.pushMatrix();
         ClientProxy.holoIcons.bindSheet();
         GlStateManager.rotate(90, 0, 0, 1);
         ClientProxy.holoIcons.renderIcon(crosshairIcon, -1, -scale);
@@ -204,8 +201,6 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
         GlStateManager.rotate(90, 0, 0, 1);
         ClientProxy.holoIcons.renderIcon(crosshairIcon, -1, -scale + 1);
         GlStateManager.popMatrix();
-        GlStateManager.popMatrix();
-        GlStateManager.popAttrib();
     }
 
     public void renderRadialMenu(RenderGameOverlayEvent event) {
@@ -226,15 +221,11 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
                 stats.add(stat);
             }
         }
-
-        GlStateManager.color(1, 1, 1, 1);
-        GlStateManager.depthMask(false);
-        //glDisable(GL_DEPTH_TEST);
-        GlStateManager.enableBlend();
-        GlStateManager.blendFunc(GL_ONE, GL_ONE);
         GlStateManager.pushMatrix();
+        GlStateManager.color(1, 1, 1, 1);
+        //GlStateManager.blendFunc(GL_ONE, GL_ONE);
         GlStateManager.rotate((float) radialAngle, 0, 0, -1);
-        RenderUtils.applyColorWithMultipy(baseGuiColor, 0.4f);
+        RenderUtils.applyColorWithAlpha(baseGuiColor, 1f);
         ClientProxy.holoIcons.renderIcon("up_arrow_large", -9, -50);
         GlStateManager.popMatrix();
 
@@ -251,7 +242,6 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
 
             GlStateManager.disableTexture2D();
             GlStateManager.disableAlpha();
-            GlStateManager.enableBlend();
             GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
             if (stat.equals(androidPlayer.getActiveStat())) {
@@ -288,11 +278,9 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
             Tessellator.getInstance().draw();
             GlStateManager.enableTexture2D();
 
-            GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GL_ONE, GL_ONE);
+            //GlStateManager.blendFunc(GL_ONE, GL_ONE);
             GlStateManager.enableAlpha();
             GlStateManager.enableDepth();
-            GlStateManager.depthMask(false);
 
             ClientProxy.holoIcons.bindSheet();
             if (androidPlayer.getActiveStat() != null) {
@@ -308,15 +296,15 @@ public class GuiAndroidHud extends Gui implements IConfigSubscriber {
                 } else {
                     x = Math.sin(angle) * radius;
                     y = Math.cos(angle) * radius;
-                    RenderUtils.applyColorWithMultipy(baseGuiColor, 0.2f);
+                    RenderUtils.applyColorWithMultipy(baseGuiColor, 0.8f);
                     ClientProxy.holoIcons.renderIcon(stat.getIcon(0), -12 + x, -12 + y);
                 }
             }
 
             i++;
         }
-        GlStateManager.disableAlpha();
         GlStateManager.enableDepth();
+        GlStateManager.enableAlpha();
         GlStateManager.popMatrix();
     }
 

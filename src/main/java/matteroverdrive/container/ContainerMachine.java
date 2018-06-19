@@ -126,30 +126,35 @@ public class ContainerMachine<T extends MOTileEntityMachine> extends MOBaseConta
     @Override
     @Nonnull
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
-        Slot slot = getSlot(slotID);
-        if (slot == null) {
-            return ItemStack.EMPTY;
-        }
-        ItemStack stack = slot.getStack();
-        if (StackUtils.isNullOrEmpty(stack))
-            return ItemStack.EMPTY;
-        ItemStack copy = stack.copy();
-        if (!(slot instanceof SlotPlayerInventory)) {
-            putInPlayerInventory(stack);
-        } else {
-            tryAndPutInMachineSlots(stack, machine);
-        }
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = inventorySlots.get(slotID);
+        if (slot != null && slot.getHasStack()) {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
 
-        if (StackUtils.isNullOrEmpty(stack)) {
-            slot.putStack(ItemStack.EMPTY);
-        } else {
-            slot.onSlotChanged();
-        }
+            int containerSlots = inventorySlots.size() - player.inventory.mainInventory.size();
 
-        if (stack.getCount() == copy.getCount())
-            return ItemStack.EMPTY;
-        slot.onTake(player, stack);
-        return stack;
+            if (slotID < containerSlots) {
+                if (!this.mergeItemStack(itemstack1, containerSlots, inventorySlots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.mergeItemStack(itemstack1, 0, containerSlots, false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemstack1.getCount() == 0) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
+            }
+
+            if (itemstack1.getCount() == itemstack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(player, itemstack1);
+        }
+        return itemstack;
     }
 
     protected boolean putInPlayerInventory(ItemStack itemStack) {
