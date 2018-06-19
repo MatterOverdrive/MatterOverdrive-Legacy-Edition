@@ -115,7 +115,6 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     }
 
     private void drawAndroidPart(ItemStack stack, Color color, int x, int y) {
-        GlStateManager.enableBlend();
         drawNormalBG(color, x, y);
         GlStateManager.color(1, 1, 1, 0.5f);
         GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE);
@@ -123,7 +122,6 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     }
 
     private void drawBioticStat(IBioticStat stat, AndroidPlayer androidPlayer, int level, Color color, int x, int y) {
-        GlStateManager.enableBlend();
         if (stat.isActive(androidPlayer, level) && stat.isEnabled(androidPlayer, level)) {
             drawActiveBG(color, x, y);
         } else {
@@ -135,7 +133,6 @@ public class AndroidHudBionicStats extends AndroidHudElement {
             int delayWidth = ClientProxy.moFontRender.getStringWidth(delay);
             ClientProxy.moFontRender.drawString(delay, x + 22 - delayWidth, y + 22 - ClientProxy.moFontRender.FONT_HEIGHT - 1, Reference.COLOR_HOLO.getColor());
         }
-        GlStateManager.disableBlend();
     }
 
     private void drawNormalBG(Color color, int x, int y) {
@@ -152,14 +149,12 @@ public class AndroidHudBionicStats extends AndroidHudElement {
 
     private void drawActiveBG(Color color, int x, int y) {
         GlStateManager.disableAlpha();
-        GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         GlStateManager.color(0, 0, 0, backgroundAlpha);
         ClientProxy.holoIcons.renderIcon("android_feature_icon_bg_black", x, y, 22, 22);
         GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE);
         RenderUtils.applyColorWithAlpha(color);
         ClientProxy.holoIcons.renderIcon("android_feature_icon_bg_active", x, y, 22, 22);
-        GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
     }
 
