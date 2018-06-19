@@ -144,7 +144,7 @@ public class MOBlock extends Block implements ItemModelProvider {
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
         if (hasRotation)
-            return getDefaultState().withProperty(PROPERTY_DIRECTION, EnumFacing.fromAngle(placer.rotationYaw).getOpposite());
+            return getDefaultState().withProperty(PROPERTY_DIRECTION, placer.getHorizontalFacing().getOpposite());
         return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
     }
 

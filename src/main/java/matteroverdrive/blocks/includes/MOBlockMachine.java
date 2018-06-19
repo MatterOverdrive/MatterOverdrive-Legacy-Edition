@@ -25,6 +25,7 @@ import matteroverdrive.handler.ConfigurationHandler;
 import matteroverdrive.machines.MOTileEntityMachine;
 import matteroverdrive.util.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,6 +40,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 /**
@@ -47,6 +49,12 @@ import java.util.ArrayList;
 public abstract class MOBlockMachine<TE extends TileEntity> extends MOBlockContainer<TE> implements IDismantleable, IConfigSubscriber {
     public float volume = 1;
     public boolean hasGui;
+
+    @Nonnull
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return super.createBlockState();
+    }
 
     public MOBlockMachine(Material material, String name) {
         super(material, name);

@@ -1,0 +1,47 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "matteroverdrive:microwave",
+    "custom":{
+      "flip-v": true
+    },
+    "textures": {
+
+    }
+  },
+  "variants": {
+    "normal": {
+      "model": "matteroverdrive:microwave"
+    },
+    "facing":{
+      "north":{
+        "transform": {
+          "rotation": {
+            "y":180
+          }
+        }
+      },
+      "south":{
+
+      },
+      "west": {
+        "transform": {
+          "rotation": {
+            "y": 270
+          }
+        }
+      },
+      "east":{
+        "transform": {
+          "rotation": {
+            "y":90
+          }
+        }
+      }
+    },
+    "inventory": {
+      "model": "matteroverdrive:microwave",
+      "transform": "forge:default-block"
+    }
+  }
+}

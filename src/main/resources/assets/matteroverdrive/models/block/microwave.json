@@ -1,0 +1,23 @@
+{
+	"textures": {
+		"0": "matteroverdrive:blocks/microwave",
+		"1": "matteroverdrive:blocks/microwave_front",
+		"2": "matteroverdrive:blocks/microwave_back",
+		"particle": "matteroverdrive:blocks/microwave"
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"from": [1, 0, 5],
+			"to": [15, 10, 16],
+			"faces": {
+				"north": {"uv": [1, 6, 15, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 11, 10], "texture": "#0"},
+				"south": {"uv": [1, 6, 15, 16], "texture": "#2"},
+				"west": {"uv": [0, 0, 11, 10], "texture": "#0"},
+				"up": {"uv": [0, 0, 14, 11], "texture": "#0"},
+				"down": {"uv": [0, 0, 14, 11], "texture": "#0"}
+			}
+		}
+	]
+}

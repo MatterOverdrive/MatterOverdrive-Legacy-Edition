@@ -1,0 +1,32 @@
+{
+  "result": {
+    "item": "matteroverdrive:star_map"
+  },
+  "pattern": [
+    " S ",
+    "CFC",
+    "GMR"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "R": {
+      "item": "#DUSTREDSTONE"
+    },
+    "S": {
+      "item": "matteroverdrive:security_protocol"
+    },
+    "C": {
+      "item": "matteroverdrive:isolinear_circuit",
+      "data": 2
+    },
+    "F": {
+      "item": "matteroverdrive:forcefield_emitter"
+    },
+    "G": {
+      "item": "#DUSTGLOWSTONE"
+    },
+    "M": {
+      "item": "matteroverdrive:machine_casing"
+    }
+  }
+}

@@ -117,6 +117,7 @@ public class MatterOverdriveBlocks {
     public BlockDecorative decorative_tritanium_lamp;
     public BlockDecorative decorative_tritanium_plate_colored;
     public BlockDecorative decorative_engine_exhaust_plasma;
+    public BlockMicrowave microwave;
     public BlockIndustrialGlass industrialGlass;
     public BlockBoundingBox boundingBox;
     private int registeredCount = 0;
@@ -218,6 +219,7 @@ public class MatterOverdriveBlocks {
         decorative_tritanium_plate_colored = register(new BlockDecorativeColored(TRITANIUM, "decorative.tritanium_plate_colored", 10, 1, 10, 0x505050));
         decorative_engine_exhaust_plasma = register(new BlockDecorative(Material.CACTUS, "decorative.engine_exhaust_plasma", 1, 1, 1, 0x387c9e));
         decorative_engine_exhaust_plasma.setLightLevel(1);
+        microwave = register(new BlockMicrowave(Material.IRON,"microwave"));
         industrialGlass = register(new BlockIndustrialGlass(Material.GLASS, "industrial_glass"));
 
         boundingBox = register(new BlockBoundingBox("bounding_box"));
