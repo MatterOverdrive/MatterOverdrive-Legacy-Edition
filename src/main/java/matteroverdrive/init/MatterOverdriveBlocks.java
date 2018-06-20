@@ -57,18 +57,15 @@ public class MatterOverdriveBlocks {
     public MOBlockOre tritanium_block;
     //	Crafting
     public MOBlock machine_hull;
+
+    //TODO: Remove
     //	Matter Network
     public BlockDecomposer decomposer;
     public BlockMatterRecycler recycler;
     public BlockReplicator replicator;
-    public BlockMatterPipe matter_pipe;
-    public BlockMatterPipe heavy_matter_pipe;
-    public BlockNetworkPipe network_pipe;
-    public BlockNetworkRouter network_router;
     public BlockMatterAnalyzer matter_analyzer;
     public BlockPatternMonitor pattern_monitor;
     public BlockPatternStorage pattern_storage;
-    public BlockNetworkSwitch network_switch;
     //	Energy Generation
     public BlockSolarPanel solar_panel;
     //	Gravitational Anomaly / Fusion Reactor
@@ -150,14 +147,9 @@ public class MatterOverdriveBlocks {
         decomposer = register(new BlockDecomposer(TRITANIUM, "decomposer"));
         recycler = register(new BlockMatterRecycler(TRITANIUM, "matter_recycler"));
         replicator = register(new BlockReplicator(TRITANIUM, "replicator"));
-        matter_pipe = register(new BlockMatterPipe(TRITANIUM, "matter_pipe"));
-        heavy_matter_pipe = register(new BlockHeavyMatterPipe(TRITANIUM, "heavy_matter_pipe"));
-        network_pipe = register(new BlockNetworkPipe(TRITANIUM, "network_pipe"));
-        network_router = register(new BlockNetworkRouter(TRITANIUM, "network_router"));
         matter_analyzer = register(new BlockMatterAnalyzer(TRITANIUM, "matter_analyzer"));
         pattern_monitor = register(new BlockPatternMonitor(TRITANIUM, "pattern_monitor"));
         pattern_storage = register(new BlockPatternStorage(TRITANIUM, "pattern_storage"));
-        network_switch = register(new BlockNetworkSwitch(TRITANIUM, "network_switch"));
 
 //		Energy Generation
         solar_panel = register(new BlockSolarPanel(TRITANIUM, "solar_panel"));

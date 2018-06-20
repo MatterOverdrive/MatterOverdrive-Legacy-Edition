@@ -83,17 +83,17 @@ public class MatterOverdriveGuides {
         addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.solar_panel).setGroup("power"), 4, 4);
         addEntry(generalCategory, new MOGuideEntry("batteries").setStackIcons(new ItemStack(MatterOverdrive.ITEMS.battery), new ItemStack(MatterOverdrive.ITEMS.hc_battery), new ItemStack(MatterOverdrive.ITEMS.creative_battery)).setGroup("power"), 3, 5);
         //Matter
-        addEntry(generalCategory, new MOGuideEntry("matter_transport").setStackIcons(MatterOverdrive.BLOCKS.heavy_matter_pipe).setGroup("matter"), 6, 0);
+        //addEntry(generalCategory, new MOGuideEntry("matter_transport").setStackIcons(MatterOverdrive.BLOCKS.heavy_matter_pipe).setGroup("matter"), 6, 0);
         addEntry(generalCategory, new MOGuideEntry("matter_fail").setStackIcons(MatterOverdrive.ITEMS.matter_dust).setGroup("matter"), 7, 0);
         addEntry(generalCategory, new MOGuideEntry("matter_plasma", MatterOverdrive.ITEMS.matterContainer.getFullStack()).setGroup("matter"), 6, 1);
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.matter_scanner).setGroup("matter"), 7, 1);
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.pattern_drive).setGroup("matter"), 6, 2);
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.portableDecomposer).setGroup("matter"), 7, 2);
         //Matter Network
-        addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.network_pipe).setGroup("matter_network"), 6, 4);
-        addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.network_switch).setGroup("matter_network"), 7, 4);
+        //addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.network_pipe).setGroup("matter_network"), 6, 4);
+        //addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.network_switch).setGroup("matter_network"), 7, 4);
         addEntry(generalCategory, new MOGuideEntryItem(MatterOverdrive.ITEMS.networkFlashDrive).setGroup("matter_network"), 6, 5);
-        addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.network_router).setGroup("matter_network"), 7, 5);
+        //addEntry(generalCategory, new MOGuideEntryBlock(MatterOverdrive.BLOCKS.network_router).setGroup("matter_network"), 7, 5);
 
         //Items
         int itemsY = 7;

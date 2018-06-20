@@ -154,8 +154,6 @@ public class RenderHandler {
     private StarMapRendererPlanet starMapRendererPlanet;
     private TileEntityRendererReplicator tileEntityRendererReplicator;
     private TileEntityRendererPipe tileEntityRendererPipe;
-    private TileEntityRendererMatterPipe tileEntityRendererMatterPipe;
-    private TileEntityRendererNetworkPipe tileEntityRendererNetworkPipe;
     private TileEntityRendererPatterStorage tileEntityRendererPatterStorage;
     private TileEntityRendererWeaponStation tileEntityRendererWeaponStation;
     private TileEntityRendererPatternMonitor tileEntityRendererPatternMonitor;
@@ -165,7 +163,6 @@ public class RenderHandler {
     private TileEntityRendererAndroidStation tileEntityRendererAndroidStation;
     private TileEntityRendererStarMap tileEntityRendererStarMap;
     private TileEntityRendererHoloSign tileEntityRendererHoloSign;
-    private TileEntityRendererPacketQueue tileEntityRendererPacketQueue;
     private TileEntityRendererInscriber tileEntityRendererInscriber;
     private TileEntityRendererContractMarket tileEntityRendererContractMarket;
 
@@ -240,8 +237,6 @@ public class RenderHandler {
     public void createTileEntityRenderers(ConfigurationHandler configHandler) {
         tileEntityRendererReplicator = new TileEntityRendererReplicator();
         tileEntityRendererPipe = new TileEntityRendererPipe();
-        tileEntityRendererMatterPipe = new TileEntityRendererMatterPipe();
-        tileEntityRendererNetworkPipe = new TileEntityRendererNetworkPipe();
         tileEntityRendererPatterStorage = new TileEntityRendererPatterStorage();
         tileEntityRendererWeaponStation = new TileEntityRendererWeaponStation();
         tileEntityRendererPatternMonitor = new TileEntityRendererPatternMonitor();
@@ -251,7 +246,6 @@ public class RenderHandler {
         tileEntityRendererAndroidStation = new TileEntityRendererAndroidStation();
         tileEntityRendererStarMap = new TileEntityRendererStarMap();
         tileEntityRendererHoloSign = new TileEntityRendererHoloSign();
-        tileEntityRendererPacketQueue = new TileEntityRendererPacketQueue();
         tileEntityRendererInscriber = new TileEntityRendererInscriber();
         tileEntityRendererContractMarket = new TileEntityRendererContractMarket();
 
@@ -334,7 +328,6 @@ public class RenderHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAndroidStation.class, tileEntityRendererAndroidStation);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineStarMap.class, tileEntityRendererStarMap);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHoloSign.class, tileEntityRendererHoloSign);
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachinePacketQueue.class, tileEntityRendererPacketQueue);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityInscriber.class, tileEntityRendererInscriber);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineContractMarket.class, tileEntityRendererContractMarket);
     }

@@ -61,7 +61,7 @@ public class MOWorldGenUnderwaterBase extends MOWorldGenBuilding {
         addMapping(0x1f2312, MatterOverdrive.BLOCKS.tritaniumCrate); //white
         addMapping(0xd3371d, MatterOverdrive.BLOCKS.machine_hull);
         addMapping(0x3640f9, Blocks.STONE_BUTTON);
-        addMapping(0xeff73d, MatterOverdrive.BLOCKS.network_switch);
+        //addMapping(0xeff73d, MatterOverdrive.BLOCKS.network_switch);
         addMapping(0x5a6388, MatterOverdrive.BLOCKS.boundingBox);
         addMapping(0xbf19a9, Blocks.GRASS);
         addMapping(0xc05e5e, Blocks.FLOWER_POT);
@@ -69,7 +69,7 @@ public class MOWorldGenUnderwaterBase extends MOWorldGenBuilding {
         addMapping(0xdb9c3a, MatterOverdrive.BLOCKS.holoSign);
         addMapping(0x68b68c, MatterOverdrive.BLOCKS.matter_analyzer);
         addMapping(0x2cb0c7, MatterOverdrive.BLOCKS.starMap);
-        addMapping(0x1b2ff7, MatterOverdrive.BLOCKS.network_pipe);
+        //addMapping(0x1b2ff7, MatterOverdrive.BLOCKS.network_pipe);
         addMapping(0x5eaab, MatterOverdrive.BLOCKS.tritaniumCrate);
         addMapping(0x11003e, MatterOverdrive.BLOCKS.chargingStation);
         addMapping(0xb31e83, Blocks.CARROTS);
