@@ -365,10 +365,11 @@ public abstract class MOTileEntityMachine extends MOTileEntity implements IMOTil
     protected void manageRedstoneState() {
         if (redstoneStateDirty) {
             boolean flag = redstoneState;
+            redstoneState = false; //Set this to false so that falling-edge can be detected as well
             for (int i = 0; i < EnumFacing.VALUES.length; i++) {
                 if (getWorld().getRedstonePower(getPos(), EnumFacing.VALUES[i]) > 0) {
-                    redstoneState = true;
-                    return;
+                    redstoneState = true; //If any side is powered, we can exit here.
+                    break; //Changed to 'break' so that redstoneStateDirty and forceClientUpdate are still set properly
                 }
             }
             redstoneStateDirty = false;
