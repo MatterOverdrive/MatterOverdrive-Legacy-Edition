@@ -247,7 +247,7 @@ public class TileEntityMachineDecomposer extends MOTileEntityMachineMatter imple
 
     @Override
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-        return index == INPUT_SLOT_ID;
+        return index == OUTPUT_SLOT_ID;
     }
 
     @Override
