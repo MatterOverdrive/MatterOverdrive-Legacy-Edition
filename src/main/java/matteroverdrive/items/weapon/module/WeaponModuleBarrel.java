@@ -66,7 +66,7 @@ public class WeaponModuleBarrel extends WeaponModuleBase implements IAdvancedMod
 
         applyWeaponStat(BLOCK_BARREL_ID, WeaponStats.DAMAGE, 0f);
         applyWeaponStat(BLOCK_BARREL_ID, WeaponStats.AMMO, 0.5f);
-        applyWeaponStat(BLOCK_BARREL_ID, WeaponStats.BLOCK_DAMAGE, 2f);
+        applyWeaponStat(BLOCK_BARREL_ID, WeaponStats.BLOCK_DAMAGE, 3f);
     }
 
     @Override
