@@ -29,6 +29,7 @@ import net.minecraft.util.ResourceLocation;
 public class WeaponModuleSniperScope extends WeaponModuleBase implements IWeaponScope {
     public WeaponModuleSniperScope(String name) {
         super(name);
+        setHasSubtypes(false);
         applySlot(Reference.MODULE_SIGHTS);
         applyWeaponStat(0, WeaponStats.RANGE, 1.5f);
     }

@@ -52,10 +52,6 @@ public class WeaponModuleColor extends WeaponModuleBase implements IWeaponColor 
         applySlot(Reference.MODULE_COLOR);
     }
 
-    public int getMetadata(int damage) {
-        return 0;
-    }
-
     public void addToDunguns() {
         for (int i = 0; i < colors.length; i++) {
             // TODO: Add to dungeon loot
