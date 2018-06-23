@@ -22,7 +22,6 @@ import matteroverdrive.blocks.includes.MOBlock;
 import matteroverdrive.machines.MOTileEntityMachine;
 import matteroverdrive.util.RenderUtils;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;

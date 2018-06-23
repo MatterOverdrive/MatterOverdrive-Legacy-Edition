@@ -16,21 +16,9 @@ import java.util.Map;
 
 public abstract class WeaponModuleBase extends MOBaseItem implements IWeaponModule {
 
-    private Map<Integer,Map<IWeaponStat,Float>> metaStatMap = new HashMap<>();
+    private Map<Integer, Map<IWeaponStat, Float>> metaStatMap = new HashMap<>();
 
     private int slot = -1;
-
-    public void applySlot(int slot) {
-        this.slot = slot;
-    }
-
-    public void applyWeaponStat(int meta, IWeaponStat stat, float value) {
-        if(!metaStatMap.containsKey(meta)) {
-            metaStatMap.put(meta,new HashMap<>());
-        }
-        Map<IWeaponStat,Float> statMap = metaStatMap.get(meta);
-        statMap.put(stat,value);
-    }
 
     public WeaponModuleBase(String name) {
         super(name);
@@ -38,6 +26,18 @@ public abstract class WeaponModuleBase extends MOBaseItem implements IWeaponModu
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setMaxStackSize(1);
+    }
+
+    public void applySlot(int slot) {
+        this.slot = slot;
+    }
+
+    public void applyWeaponStat(int meta, IWeaponStat stat, float value) {
+        if (!metaStatMap.containsKey(meta)) {
+            metaStatMap.put(meta, new HashMap<>());
+        }
+        Map<IWeaponStat, Float> statMap = metaStatMap.get(meta);
+        statMap.put(stat, value);
     }
 
     @Override

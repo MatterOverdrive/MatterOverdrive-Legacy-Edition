@@ -18,7 +18,6 @@
 package matteroverdrive.util;
 
 import matteroverdrive.MatterOverdrive;
-import matteroverdrive.Reference;
 import matteroverdrive.api.inventory.UpgradeTypes;
 import matteroverdrive.api.starmap.PlanetStatType;
 import matteroverdrive.api.weapon.IWeaponStat;

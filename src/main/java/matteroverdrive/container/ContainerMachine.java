@@ -19,12 +19,10 @@ package matteroverdrive.container;
 
 import matteroverdrive.api.container.IMachineWatcher;
 import matteroverdrive.container.slot.SlotInventory;
-import matteroverdrive.container.slot.SlotPlayerInventory;
 import matteroverdrive.data.Inventory;
 import matteroverdrive.data.inventory.UpgradeSlot;
 import matteroverdrive.machines.MOTileEntityMachine;
 import matteroverdrive.util.MOInventoryHelper;
-import matteroverdrive.util.StackUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;

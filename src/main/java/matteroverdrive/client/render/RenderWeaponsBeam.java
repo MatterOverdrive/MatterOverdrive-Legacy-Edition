@@ -27,6 +27,7 @@ import matteroverdrive.items.weapon.EnergyWeapon;
 import matteroverdrive.items.weapon.OmniTool;
 import matteroverdrive.items.weapon.Phaser;
 import matteroverdrive.util.RenderUtils;
+import matteroverdrive.util.StackUtils;
 import matteroverdrive.util.WeaponHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -54,7 +55,7 @@ import static org.lwjgl.opengl.GL11.GL_ONE;
  */
 @SideOnly(Side.CLIENT)
 public class RenderWeaponsBeam extends RenderBeam<EntityPlayer> {
-    public static final ResourceLocation beamTexture = new ResourceLocation(Reference.PATH_FX + "plasmabeam.png");
+    private static final ResourceLocation beamTexture = new ResourceLocation(Reference.PATH_FX + "plasmabeam.png");
     final Map<Entity, WeaponSound> soundMap = new HashMap<>();
 
     public void onRenderWorldLast(RenderHandler renderHandler, RenderWorldLastEvent event) {
@@ -93,7 +94,7 @@ public class RenderWeaponsBeam extends RenderBeam<EntityPlayer> {
         EntityPlayerSP player = Minecraft.getMinecraft().player;
 
         if (shouldRenderBeam(player)) {
-            Vec3d pos = player.getPositionEyes(1);
+            Vec3d pos = player.getPositionEyes(ticks);
             Vec3d look = player.getLook(0);
             renderRaycastedBeam(pos, look, new Vec3d(-0.1, -0.1, 0.15), player);
         } else {
@@ -105,7 +106,7 @@ public class RenderWeaponsBeam extends RenderBeam<EntityPlayer> {
     private void playWeaponSound(EntityPlayer player, Random random) {
         if (!soundMap.containsKey(player)) {
             ItemStack weaponStack = player.getActiveItemStack();
-            if (weaponStack != null && weaponStack.getItem() instanceof IWeapon) {
+            if (!StackUtils.isNullOrEmpty(weaponStack) && weaponStack.getItem() instanceof IWeapon) {
                 //WeaponSound sound = new WeaponSound(new ResourceLocation(((IWeapon)weaponStack.getItem()).getFireSound(weaponStack, player)), (float)player.posX, (float)player.posY, (float)player.posZ, random.nextFloat() * 0.05f + 0.2f, 1);
                 WeaponSound sound = ((IWeapon) weaponStack.getItem()).getFireSound(weaponStack, player);
                 soundMap.put(player, sound);
@@ -133,14 +134,14 @@ public class RenderWeaponsBeam extends RenderBeam<EntityPlayer> {
     @Override
     protected boolean shouldRenderBeam(EntityPlayer entity) {
         return entity.isHandActive() &&
-                entity.getActiveItemStack() != null &&
+                !StackUtils.isNullOrEmpty(entity.getActiveItemStack()) &&
                 (entity.getActiveItemStack().getItem() instanceof Phaser || entity.getActiveItemStack().getItem() instanceof OmniTool);
     }
 
     @Override
     protected void onBeamRaycastHit(RayTraceResult hit, EntityPlayer caster) {
         ItemStack weaponStack = caster.getActiveItemStack();
-        if (weaponStack != null && weaponStack.getItem() instanceof EnergyWeapon) {
+        if (!StackUtils.isNullOrEmpty(weaponStack) && weaponStack.getItem() instanceof EnergyWeapon) {
             ((EnergyWeapon) weaponStack.getItem()).onProjectileHit(hit, weaponStack, caster.world, 1);
             if (weaponStack.getItem() instanceof OmniTool && hit.typeOfHit == RayTraceResult.Type.BLOCK) {
                 GlStateManager.pushMatrix();
@@ -179,7 +180,7 @@ public class RenderWeaponsBeam extends RenderBeam<EntityPlayer> {
     @Override
     protected ResourceLocation getBeamTexture(EntityPlayer caster) {
         ItemStack weaponStack = caster.getActiveItemStack();
-        if (weaponStack != null && weaponStack.getItem() instanceof IWeapon) {
+        if (!StackUtils.isNullOrEmpty(weaponStack) && weaponStack.getItem() instanceof IWeapon) {
             if (weaponStack.getItem() instanceof Phaser) {
                 return beamTexture;
 
@@ -194,7 +195,7 @@ public class RenderWeaponsBeam extends RenderBeam<EntityPlayer> {
     protected float getBeamMaxDistance(EntityPlayer caster) {
         int range = Phaser.RANGE;
         ItemStack weaponStack = caster.getActiveItemStack();
-        if (weaponStack != null && weaponStack.getItem() instanceof IWeapon) {
+        if (!StackUtils.isNullOrEmpty(weaponStack) && weaponStack.getItem() instanceof IWeapon) {
             range = ((IWeapon) weaponStack.getItem()).getRange(weaponStack);
         }
         return range;
@@ -203,7 +204,7 @@ public class RenderWeaponsBeam extends RenderBeam<EntityPlayer> {
     @Override
     protected float getBeamThickness(EntityPlayer caster) {
         ItemStack weaponStack = caster.getActiveItemStack();
-        if (weaponStack != null && weaponStack.getItem() instanceof IWeapon) {
+        if (!StackUtils.isNullOrEmpty(weaponStack) && weaponStack.getItem() instanceof IWeapon) {
             if (weaponStack.getItem() instanceof Phaser) {
                 return 0.03f;
             } else if (weaponStack.getItem() instanceof OmniTool) {

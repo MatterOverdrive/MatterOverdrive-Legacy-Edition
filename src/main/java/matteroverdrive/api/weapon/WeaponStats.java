@@ -29,8 +29,7 @@ public enum WeaponStats implements IWeaponStat {
     ACCURACY,
     MAX_HEAT,
     RANGE,
-    RICOCHET
-    ;
+    RICOCHET;
 
     @Override
     public boolean isPositive(float value) {
