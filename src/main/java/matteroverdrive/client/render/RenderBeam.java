@@ -63,13 +63,12 @@ public abstract class RenderBeam<T extends EntityLivingBase> implements IWorldLa
 
         RayTraceResult hit = MOPhysicsHelper.rayTrace(position, caster.world, maxDistance, 0, new Vec3d(0, 0, 0), false, true, direction, caster);
         if (hit != null && hit.typeOfHit != RayTraceResult.Type.MISS) {
-            renderBeam(position, hit.hitVec, offset, getBeamColor(caster), getBeamTexture(caster), getBeamThickness(caster), caster);
+            renderBeam(position.add(direction.scale(0.2)), hit.hitVec, offset, getBeamColor(caster), getBeamTexture(caster), getBeamThickness(caster), caster);
             onBeamRender(caster);
             onBeamRaycastHit(hit, caster);
             return true;
         } else {
-
-            renderBeam(position, position.addVector(direction.x * maxDistance, direction.y * maxDistance, direction.z * maxDistance), offset, getBeamColor(caster), getBeamTexture(caster), getBeamThickness(caster), caster);
+            renderBeam(position.add(direction.scale(0.2)), position.addVector(direction.x * maxDistance, direction.y * maxDistance, direction.z * maxDistance), offset, getBeamColor(caster), getBeamTexture(caster), getBeamThickness(caster), caster);
             onBeamRender(caster);
         }
         return false;
