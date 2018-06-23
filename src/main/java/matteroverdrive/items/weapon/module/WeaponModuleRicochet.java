@@ -18,22 +18,18 @@
 package matteroverdrive.items.weapon.module;
 
 import matteroverdrive.Reference;
-import matteroverdrive.api.weapon.IWeaponModule;
-import matteroverdrive.items.includes.MOBaseItem;
+import matteroverdrive.api.weapon.WeaponStats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 /**
  * Created by Simeon on 2/16/2016.
  */
-public class WeaponModuleRicochet extends MOBaseItem implements IWeaponModule {
+public class WeaponModuleRicochet extends WeaponModuleBase {
     public WeaponModuleRicochet(String name) {
         super(name);
-    }
-
-    @Override
-    public int getSlot(ItemStack module) {
-        return Reference.MODULE_OTHER;
+        applySlot(Reference.MODULE_OTHER);
+        applyWeaponStat(0, WeaponStats.RICOCHET, 1);
     }
 
     @Override
@@ -49,13 +45,5 @@ public class WeaponModuleRicochet extends MOBaseItem implements IWeaponModule {
     @Override
     public String getModelName(ItemStack module) {
         return null;
-    }
-
-    @Override
-    public float modifyWeaponStat(int statID, ItemStack module, ItemStack weapon, float originalStat) {
-        if (statID == Reference.WS_RICOCHET) {
-            return 1;
-        }
-        return originalStat;
     }
 }

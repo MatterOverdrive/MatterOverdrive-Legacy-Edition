@@ -17,10 +17,8 @@
  */
 package matteroverdrive.items.weapon.module;
 
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.IWeaponScope;
-import matteroverdrive.items.includes.MOBaseItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,12 +31,10 @@ import java.util.List;
 /**
  * Created by Simeon on 2/18/2016.
  */
-public class WeaponModuleHoloSights extends MOBaseItem implements IWeaponScope {
+public class WeaponModuleHoloSights extends WeaponModuleBase implements IWeaponScope {
     public WeaponModuleHoloSights(String name) {
         super(name);
-        setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_MODULES);
-        setHasSubtypes(true);
-        this.setMaxStackSize(1);
+        applySlot(Reference.MODULE_SIGHTS);
     }
 
     @SideOnly(Side.CLIENT)
@@ -62,11 +58,6 @@ public class WeaponModuleHoloSights extends MOBaseItem implements IWeaponScope {
     }
 
     @Override
-    public int getSlot(ItemStack module) {
-        return Reference.MODULE_SIGHTS;
-    }
-
-    @Override
     public String getModelPath() {
         return null;
     }
@@ -79,10 +70,5 @@ public class WeaponModuleHoloSights extends MOBaseItem implements IWeaponScope {
     @Override
     public String getModelName(ItemStack module) {
         return null;
-    }
-
-    @Override
-    public float modifyWeaponStat(int statID, ItemStack module, ItemStack weapon, float originalStat) {
-        return originalStat;
     }
 }

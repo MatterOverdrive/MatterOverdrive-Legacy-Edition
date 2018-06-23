@@ -21,6 +21,7 @@ import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.inventory.UpgradeTypes;
 import matteroverdrive.api.starmap.PlanetStatType;
+import matteroverdrive.api.weapon.IWeaponStat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
@@ -98,8 +99,8 @@ public class MOStringHelper {
         return translateToLocal("upgradetype." + type.name() + ".name");
     }
 
-    public static String weaponStatTranslateToLocal(int type) {
-        return translateToLocal("weaponstat." + type + ".name");
+    public static String weaponStatTranslateToLocal(IWeaponStat type) {
+        return translateToLocal("weaponstat." + type.getName() + ".name");
     }
 
     public static String toInfo(UpgradeTypes type, double value, boolean good) {
@@ -115,25 +116,21 @@ public class MOStringHelper {
         return info + "%";
     }
 
-    public static String weaponStatToInfo(int type, double value, boolean good) {
+    public static String weaponStatToInfo(IWeaponStat stat, float value) {
         String info = "";
-        if (good) {
+        if (stat.isPositive(value)) {
             info += TextFormatting.GREEN;
         } else {
             info += TextFormatting.RED;
         }
         DecimalFormat format = new DecimalFormat("##");
-        info += weaponStatTranslateToLocal(type) + ": ";
+        info += weaponStatTranslateToLocal(stat) + ": ";
         info += format.format(value * 100);
         return info + "%";
     }
 
     public static String toInfo(UpgradeTypes type, double value) {
         return toInfo(type, value, getGood(type, value));
-    }
-
-    public static String weaponStatToInfo(int type, double value) {
-        return weaponStatToInfo(type, value, weaponStatGetGood(type, value));
     }
 
     public static boolean getGood(UpgradeTypes type, double value) {
@@ -183,15 +180,6 @@ public class MOStringHelper {
             return name + suffix.substring(1);
         } else {
             return name + " " + suffix;
-        }
-    }
-
-    public static boolean weaponStatGetGood(int type, double value) {
-        switch (type) {
-            case Reference.WS_HEAL:
-                return value > 0;
-            default:
-                return value >= 1;
         }
     }
 

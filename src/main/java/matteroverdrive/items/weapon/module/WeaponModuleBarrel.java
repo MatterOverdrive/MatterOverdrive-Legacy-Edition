@@ -17,97 +17,61 @@
  */
 package matteroverdrive.items.weapon.module;
 
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
-import matteroverdrive.api.weapon.IWeaponModule;
+import matteroverdrive.api.weapon.WeaponStats;
 import matteroverdrive.items.IAdvancedModelProvider;
-import matteroverdrive.items.includes.MOBaseItem;
-import matteroverdrive.util.MOStringHelper;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 /**
  * Created by Simeon on 4/15/2015.
  */
-public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule, IAdvancedModelProvider {
+public class WeaponModuleBarrel extends WeaponModuleBase implements IAdvancedModelProvider {
     public static final int DAMAGE_BARREL_ID = 0;
     public static final int FIRE_BARREL_ID = 1;
     public static final int EXPLOSION_BARREL_ID = 2;
     public static final int HEAL_BARREL_ID = 3;
     public static final int DOOMSDAY_BARREL_ID = 4;
-    public static final String[] names = {"damage", "fire", "explosion", "heal", "doomsday"};
+    public static final int BLOCK_BARREL_ID = 5;
+    public static final String[] names = {"damage", "fire", "explosion", "heal", "doomsday", "block"};
 
     public WeaponModuleBarrel(String name) {
         super(name);
-        setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_MODULES);
-        this.setHasSubtypes(true);
-        this.setMaxDamage(0);
-        this.setMaxStackSize(1);
+        applySlot(Reference.MODULE_BARREL);
+        applyWeaponStat(DAMAGE_BARREL_ID, WeaponStats.DAMAGE, 1.5f);
+        applyWeaponStat(DAMAGE_BARREL_ID, WeaponStats.AMMO, 0.5f);
+        applyWeaponStat(DAMAGE_BARREL_ID, WeaponStats.EFFECT, 0.5f);
+
+        applyWeaponStat(FIRE_BARREL_ID, WeaponStats.DAMAGE, 0.75f);
+        applyWeaponStat(FIRE_BARREL_ID, WeaponStats.FIRE_DAMAGE, 1f);
+        applyWeaponStat(FIRE_BARREL_ID, WeaponStats.AMMO, 0.5f);
+
+        applyWeaponStat(EXPLOSION_BARREL_ID, WeaponStats.EXPLOSION_DAMAGE, 1f);
+        applyWeaponStat(EXPLOSION_BARREL_ID, WeaponStats.AMMO, 0.2f);
+        applyWeaponStat(EXPLOSION_BARREL_ID, WeaponStats.EFFECT, 0.5f);
+        applyWeaponStat(EXPLOSION_BARREL_ID, WeaponStats.FIRE_RATE, 0.15f);
+
+        applyWeaponStat(HEAL_BARREL_ID, WeaponStats.DAMAGE, 0f);
+        applyWeaponStat(HEAL_BARREL_ID, WeaponStats.AMMO, 0.5f);
+        applyWeaponStat(HEAL_BARREL_ID, WeaponStats.HEAL, 0.2f);
+
+        applyWeaponStat(DOOMSDAY_BARREL_ID, WeaponStats.EXPLOSION_DAMAGE, 3f);
+        applyWeaponStat(DOOMSDAY_BARREL_ID, WeaponStats.AMMO, 0.2f);
+        applyWeaponStat(DOOMSDAY_BARREL_ID, WeaponStats.EFFECT, 0.3f);
+        applyWeaponStat(DOOMSDAY_BARREL_ID, WeaponStats.FIRE_RATE, 0.1f);
+
+        applyWeaponStat(BLOCK_BARREL_ID, WeaponStats.DAMAGE, 0f);
+        applyWeaponStat(BLOCK_BARREL_ID, WeaponStats.AMMO, 0.5f);
+        applyWeaponStat(BLOCK_BARREL_ID, WeaponStats.BLOCK_DAMAGE, 2f);
     }
 
     @Override
     public String[] getSubNames() {
         return names;
-    }
-
-    @Override
-    public int getMetadata(int damage) {
-        return damage;
-    }
-
-    @Override
-    public boolean hasDetails(ItemStack itemStack) {
-        return true;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addDetails(ItemStack itemstack, EntityPlayer player, @Nullable World worldIn, List<String> infos) {
-        super.addDetails(itemstack, player, worldIn, infos);
-        int damage = itemstack.getItemDamage();
-        switch (damage) {
-            case DAMAGE_BARREL_ID:
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_DAMAGE, 1.5f));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.5f));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EFFECT, 0.5f));
-                break;
-            case FIRE_BARREL_ID:
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.5f));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_DAMAGE, 0.75f));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_FIRE_DAMAGE, 1));
-                break;
-            case EXPLOSION_BARREL_ID:
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EXPLOSION_DAMAGE, 1));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.2));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EFFECT, 0.5));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_FIRE_RATE, 0.15));
-                break;
-            case HEAL_BARREL_ID:
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_DAMAGE, 0));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.5));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_HEAL, 0.1));
-                break;
-            case DOOMSDAY_BARREL_ID:
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EXPLOSION_DAMAGE, 3.0));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_AMMO, 0.2));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_EFFECT, 0.3));
-                infos.add(MOStringHelper.weaponStatToInfo(Reference.WS_FIRE_RATE, 0.05));
-                break;
-        }
-    }
-
-    @Override
-    public int getSlot(ItemStack module) {
-        return Reference.MODULE_BARREL;
     }
 
     @Override
@@ -126,65 +90,6 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule, IAd
     }
 
     @Override
-    public float modifyWeaponStat(int statID, ItemStack module, ItemStack weapon, float originalStat) {
-        int damage = module.getItemDamage();
-        switch (damage) {
-            case DAMAGE_BARREL_ID:
-                if (statID == Reference.WS_DAMAGE) {
-                    return originalStat * 1.5f;
-                } else if (statID == Reference.WS_AMMO) {
-                    return originalStat * 0.5f;
-                } else if (statID == Reference.WS_EFFECT) {
-                    return originalStat * 0.5f;
-                }
-                break;
-            case FIRE_BARREL_ID:
-                if (statID == Reference.WS_AMMO) {
-                    return originalStat * 0.5f;
-                }
-                if (statID == Reference.WS_DAMAGE) {
-                    return originalStat * 0.75f;
-                }
-                if (statID == Reference.WS_FIRE_DAMAGE) {
-                    return originalStat + 1;
-                }
-                break;
-            case EXPLOSION_BARREL_ID:
-                if (statID == Reference.WS_EXPLOSION_DAMAGE) {
-                    return originalStat + 1f;
-                } else if (statID == Reference.WS_AMMO) {
-                    return originalStat * 0.2f;
-                } else if (statID == Reference.WS_EFFECT) {
-                    return originalStat * 0.5f;
-                } else if (statID == Reference.WS_FIRE_RATE) {
-                    return originalStat * 2f;
-                }
-                break;
-            case HEAL_BARREL_ID:
-                if (statID == Reference.WS_DAMAGE) {
-                    return 0;
-                } else if (statID == Reference.WS_AMMO) {
-                    return originalStat * 0.5f;
-                } else if (statID == Reference.WS_HEAL) {
-                    return originalStat + 0.1f;
-                }
-                break;
-            case DOOMSDAY_BARREL_ID:
-                if (statID == Reference.WS_EXPLOSION_DAMAGE) {
-                    return originalStat + 3.0f;
-                } else if (statID == Reference.WS_AMMO) {
-                    return originalStat * 0.2f;
-                } else if (statID == Reference.WS_EFFECT) {
-                    return originalStat * 0.3f;
-                } else if (statID == Reference.WS_FIRE_RATE) {
-                    return originalStat + 0.05f;
-                }
-                break;
-        }
-        return originalStat;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
         if (isInCreativeTab(creativeTabs))
@@ -193,32 +98,9 @@ public class WeaponModuleBarrel extends MOBaseItem implements IWeaponModule, IAd
             }
     }
 
-    /*@Override
-	@SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int damage)
-    {
-        if (damage >= 0 && damage < icons.length)
-        {
-            return icons[damage];
-        }
-        return null;
-    }*/
-
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
         int damage = itemStack.getItemDamage();
         return this.getUnlocalizedName() + "." + names[damage];
     }
-
-    /*@Override
-	@SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        icons = new IIcon[names.length];
-
-        for (int i = 0; i < names.length;i++)
-        {
-            icons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":barrel_" + names[i]);
-        }
-    }*/
 }

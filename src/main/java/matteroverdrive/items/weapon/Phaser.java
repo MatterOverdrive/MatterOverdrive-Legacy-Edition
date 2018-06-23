@@ -21,6 +21,7 @@ import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.IWeapon;
 import matteroverdrive.api.weapon.WeaponShot;
+import matteroverdrive.api.weapon.WeaponStats;
 import matteroverdrive.client.sound.WeaponSound;
 import matteroverdrive.handler.SoundHandler;
 import matteroverdrive.init.MatterOverdriveSounds;
@@ -157,13 +158,13 @@ public class Phaser extends EnergyWeapon implements IWeapon {
                 el.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("mining_fatigue"), GetSleepTime(item), 100));
                 el.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("jump_boost"), GetSleepTime(item), -10));
 
-                if (WeaponHelper.hasStat(Reference.WS_FIRE_DAMAGE, item) && isKillMode(item)) {
-                    el.setFire(Math.round(WeaponHelper.modifyStat(Reference.WS_FIRE_DAMAGE, item, 0) * item.getTagCompound().getByte("power")));
-                } else if (WeaponHelper.hasStat(Reference.WS_HEAL, item)) {
-                    el.heal((WeaponHelper.modifyStat(Reference.WS_HEAL, item, 0) * item.getTagCompound().getByte("power")));
+                if (WeaponHelper.hasStat(WeaponStats.FIRE_DAMAGE, item) && isKillMode(item)) {
+                    el.setFire(Math.round(WeaponHelper.modifyStat(WeaponStats.FIRE_DAMAGE, item, 0) * item.getTagCompound().getByte("power")));
+                } else if (WeaponHelper.hasStat(WeaponStats.HEAL, item)) {
+                    el.heal((WeaponHelper.modifyStat(WeaponStats.HEAL, item, 0) * item.getTagCompound().getByte("power")));
                 }
             } else {
-                if (WeaponHelper.hasStat(Reference.WS_FIRE_DAMAGE, item)) {
+                if (WeaponHelper.hasStat(WeaponStats.FIRE_DAMAGE, item)) {
                     BlockPos pos = hit.getBlockPos();
 
                     if (hit.typeOfHit == RayTraceResult.Type.BLOCK && player.world.getBlockState(pos).getBlock().isFlammable(player.world, pos, hit.sideHit)) {
@@ -180,8 +181,8 @@ public class Phaser extends EnergyWeapon implements IWeapon {
             }
 
             if (isKillMode(item) && useCount % getShootCooldown(item) == getShootCooldown(item) / 2) {
-                if (WeaponHelper.hasStat(Reference.WS_EXPLOSION_DAMAGE, item)) {
-                    w.createExplosion(player, hitVector.x, hitVector.y, hitVector.z, WeaponHelper.modifyStat(Reference.WS_EXPLOSION_DAMAGE, item, 0) * item.getTagCompound().getByte("power") - (MAX_LEVEL / 2), true);
+                if (WeaponHelper.hasStat(WeaponStats.EXPLOSION_DAMAGE, item)) {
+                    w.createExplosion(player, hitVector.x, hitVector.y, hitVector.z, WeaponHelper.modifyStat(WeaponStats.EXPLOSION_DAMAGE, item, 0) * item.getTagCompound().getByte("power") - (MAX_LEVEL / 2), true);
                 }
             }
         }
@@ -294,7 +295,7 @@ public class Phaser extends EnergyWeapon implements IWeapon {
     }
 
     private double sleepTimeMultipy(ItemStack phaser) {
-        return WeaponHelper.modifyStat(Reference.WS_DAMAGE, phaser, 1);
+        return WeaponHelper.modifyStat(WeaponStats.DAMAGE, phaser, 1);
     }
 
     @Override
@@ -335,9 +336,9 @@ public class Phaser extends EnergyWeapon implements IWeapon {
 
         IBlockState b = world.getBlockState(hit.getBlockPos());
         if (hit.entityHit != null && hit.entityHit instanceof EntityLivingBase) {
-            if (WeaponHelper.hasStat(Reference.WS_HEAL, weapon)) {
+            if (WeaponHelper.hasStat(WeaponStats.HEAL, weapon)) {
                 world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, hit.hitVec.x, hit.hitVec.y, hit.hitVec.z, 0, 0, 0);
-            } else if (WeaponHelper.hasStat(Reference.WS_FIRE_DAMAGE, weapon) && isKillMode(weapon)) {
+            } else if (WeaponHelper.hasStat(WeaponStats.FIRE_DAMAGE, weapon) && isKillMode(weapon)) {
                 world.spawnParticle(EnumParticleTypes.FLAME, hit.hitVec.x, hit.hitVec.y, hit.hitVec.z, 0, 0, 0);
             } else {
                 if (isKillMode(weapon)) {
@@ -348,7 +349,7 @@ public class Phaser extends EnergyWeapon implements IWeapon {
             }
 
         } else if (!b.getBlock().isAir(b, world, hit.getBlockPos())) {
-            if (WeaponHelper.hasStat(Reference.WS_FIRE_DAMAGE, weapon) && isKillMode(weapon)) {
+            if (WeaponHelper.hasStat(WeaponStats.FIRE_DAMAGE, weapon) && isKillMode(weapon)) {
                 world.spawnParticle(EnumParticleTypes.FLAME, hit.hitVec.x, hit.hitVec.y, hit.hitVec.z, 0, 0, 0);
             }
 

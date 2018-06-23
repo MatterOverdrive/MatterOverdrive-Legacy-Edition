@@ -17,22 +17,20 @@
  */
 package matteroverdrive.items.weapon.module;
 
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.IWeaponScope;
-import matteroverdrive.items.includes.MOBaseItem;
+import matteroverdrive.api.weapon.WeaponStats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 /**
  * Created by Simeon on 12/8/2015.
  */
-public class WeaponModuleSniperScope extends MOBaseItem implements IWeaponScope {
+public class WeaponModuleSniperScope extends WeaponModuleBase implements IWeaponScope {
     public WeaponModuleSniperScope(String name) {
         super(name);
-        setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_MODULES);
-        this.setMaxDamage(0);
-        this.setMaxStackSize(1);
+        applySlot(Reference.MODULE_SIGHTS);
+        applyWeaponStat(0, WeaponStats.RANGE, 1.5f);
     }
 
     @Override
@@ -49,11 +47,6 @@ public class WeaponModuleSniperScope extends MOBaseItem implements IWeaponScope 
     }
 
     @Override
-    public int getSlot(ItemStack module) {
-        return Reference.MODULE_SIGHTS;
-    }
-
-    @Override
     public String getModelPath() {
         return Reference.PATH_MODEL_ITEMS + "sniper_scope.obj";
     }
@@ -66,13 +59,5 @@ public class WeaponModuleSniperScope extends MOBaseItem implements IWeaponScope 
     @Override
     public String getModelName(ItemStack module) {
         return "sniper_scope";
-    }
-
-    @Override
-    public float modifyWeaponStat(int statID, ItemStack module, ItemStack weapon, float originalStat) {
-        if (statID == Reference.WS_RANGE) {
-            return originalStat * 1.5f;
-        }
-        return originalStat;
     }
 }

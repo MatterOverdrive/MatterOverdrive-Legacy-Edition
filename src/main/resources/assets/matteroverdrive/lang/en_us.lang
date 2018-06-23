@@ -354,15 +354,19 @@ upgradetype.MatterUsage.name=Matter Usage
 
 ##########################################################################################################
 # Weapon Stats
-weaponstat.0.name=Damage
-weaponstat.1.name=Ammo
-weaponstat.2.name=Effect
-weaponstat.3.name=Range
-weaponstat.4.name=Fire Damage
-weaponstat.5.name=Block Damage
-weaponstat.6.name=Explosion Damage
-weaponstat.7.name=Fire Rate
-weaponstat.8.name=Heal
+weaponstat.damage.name=Damage
+weaponstat.ammo.name=Ammo
+weaponstat.effect.name=Effect
+weaponstat.range.name=Range
+weaponstat.fire_damage.name=Fire Damage
+weaponstat.block_damage.name=Block Damage
+weaponstat.explosion_damage.name=Explosion Damage
+weaponstat.fire_rate.name=Fire Rate
+weaponstat.heal.name=Heal
+weaponstat.range.name=Range
+weaponstat.ricochet.name=Ricochet
+weaponstat.max_heat.name=Max Heat
+weaponstat.accuracy.name=Accuracy
 
 ##########################################################################################################
 # GUI
@@ -473,6 +477,12 @@ module.color.grey=Gray
 module.barrel.name=Barrel Module
 module.sights.name=Sights Module
 module.other.name=Other Module
+moduleslot.-1.name=Slot not set, please report to module author
+moduleslot.0.name=Applicable to Battery slot
+moduleslot.1.name=Applicable to Color slot
+moduleslot.2.name=Applicable to Barrel slot
+moduleslot.3.name=Applicable to Sights slot
+moduleslot.4.name=Applicable to Misc slot
 
 ##########################################################################################################
 # Bioparts

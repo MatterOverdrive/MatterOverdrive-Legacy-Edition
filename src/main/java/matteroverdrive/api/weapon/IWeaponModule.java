@@ -66,5 +66,5 @@ public interface IWeaponModule {
      * @param originalStat the original stat value.
      * @return general value provided by the module.
      */
-    float modifyWeaponStat(int statID, ItemStack module, ItemStack weapon, float originalStat);
+    float modifyWeaponStat(IWeaponStat statID, ItemStack module, ItemStack weapon, float originalStat);
 }

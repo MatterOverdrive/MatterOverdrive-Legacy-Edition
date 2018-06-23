@@ -20,6 +20,7 @@ package matteroverdrive.items.weapon;/* Created by Simeon on 10/17/2015. */
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.WeaponShot;
+import matteroverdrive.api.weapon.WeaponStats;
 import matteroverdrive.client.data.Color;
 import matteroverdrive.client.sound.MOPositionedSound;
 import matteroverdrive.client.sound.WeaponSound;
@@ -29,6 +30,7 @@ import matteroverdrive.init.MatterOverdriveSounds;
 import matteroverdrive.items.weapon.module.WeaponModuleBarrel;
 import matteroverdrive.network.packet.server.PacketDigBlock;
 import matteroverdrive.proxy.ClientProxy;
+import matteroverdrive.util.StackUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
@@ -140,7 +142,7 @@ public class OmniTool extends EnergyWeapon {
                                 MatterOverdrive.NETWORK.sendToServer(new PacketDigBlock(hit.getBlockPos(), PacketDigBlock.Type.CLICK, hit.sideHit));
                             }
 
-                            BLOCK_DAMAGE = MathHelper.clamp(modifyStatFromModules(Reference.WS_DAMAGE, stack, BLOCK_DAMAGE + state.getPlayerRelativeBlockHardness((EntityPlayer) player, player.world, hit.getBlockPos())), 0, 1);
+                            BLOCK_DAMAGE = MathHelper.clamp(modifyStatFromModules(WeaponStats.BLOCK_DAMAGE, stack, BLOCK_DAMAGE + state.getPlayerRelativeBlockHardness((EntityPlayer) player, player.world, hit.getBlockPos())), 0, 1);
                             player.world.sendBlockBreakProgress(player.getEntityId(), hit.getBlockPos(), (int) (BLOCK_DAMAGE * 10));
                         } else {
                             stopMiningLastBlock((EntityPlayer) player, player.world);
@@ -157,6 +159,7 @@ public class OmniTool extends EnergyWeapon {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private boolean isSameBlock(BlockPos pos) {
         return CURRENT_BLOCK != null && CURRENT_BLOCK.equals(pos);
     }
@@ -296,7 +299,7 @@ public class OmniTool extends EnergyWeapon {
 
     @Override
     public boolean supportsModule(ItemStack weapon, ItemStack module) {
-        return !module.isEmpty() && (module.getItem() == MatterOverdrive.ITEMS.weapon_module_color || (module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel && module.getItemDamage() != WeaponModuleBarrel.HEAL_BARREL_ID));
+        return !StackUtils.isNullOrEmpty(module) &&!StackUtils.isNullOrEmpty(weapon) && (module.getItem() == MatterOverdrive.ITEMS.weapon_module_color || (module.getItem() == MatterOverdrive.ITEMS.weapon_module_barrel && module.getItemDamage() == WeaponModuleBarrel.BLOCK_BARREL_ID));
     }
 
     @Override

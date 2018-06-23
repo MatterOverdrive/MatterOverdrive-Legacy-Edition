@@ -21,6 +21,7 @@ import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.IWeapon;
 import matteroverdrive.api.weapon.IWeaponColor;
 import matteroverdrive.api.weapon.IWeaponModule;
+import matteroverdrive.api.weapon.IWeaponStat;
 import matteroverdrive.items.weapon.module.WeaponModuleColor;
 import net.minecraft.item.ItemStack;
 
@@ -57,7 +58,7 @@ public class WeaponHelper {
         return WeaponModuleColor.defaultColor.getColor();
     }
 
-    public static float modifyStat(int stat, ItemStack weapon, float original) {
+    public static float modifyStat(IWeaponStat stat, ItemStack weapon, float original) {
         if (isWeapon(weapon)) {
             List<ItemStack> itemStacks = MOInventoryHelper.getStacks(weapon);
             if (itemStacks != null) {
@@ -71,7 +72,7 @@ public class WeaponHelper {
         return original;
     }
 
-    public static boolean hasStat(int stat, ItemStack weapon) {
+    public static boolean hasStat(IWeaponStat stat, ItemStack weapon) {
         float statValue = 1f;
         if (isWeapon(weapon)) {
             for (ItemStack module : MOInventoryHelper.getStacks(weapon)) {

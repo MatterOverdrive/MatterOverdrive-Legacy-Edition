@@ -21,9 +21,7 @@ import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.events.weapon.MOEventEnergyWeapon;
 import matteroverdrive.api.inventory.IEnergyPack;
-import matteroverdrive.api.weapon.IWeapon;
-import matteroverdrive.api.weapon.IWeaponScope;
-import matteroverdrive.api.weapon.WeaponShot;
+import matteroverdrive.api.weapon.*;
 import matteroverdrive.entity.weapon.PlasmaBolt;
 import matteroverdrive.handler.weapon.ClientWeaponHandler;
 import matteroverdrive.init.MatterOverdriveEnchantments;
@@ -133,7 +131,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         infos.add(addStatWithMultiplyInfo("DPS", damageFormater.format((getWeaponScaledDamage(weapon, player) / getShootCooldown(weapon)) * 20), 1, ""));
         infos.add(addStatWithMultiplyInfo("Speed", (int) (20d / getShootCooldown(weapon) * 60), (double) getBaseShootCooldown(weapon) / (double) getShootCooldown(weapon), " s/m"));
         infos.add(addStatWithMultiplyInfo("Range", getRange(weapon), (double) getRange(weapon) / (double) defaultRange, "b"));
-        infos.add(addStatWithMultiplyInfo("Accuracy", "", 1 / (modifyStatFromModules(Reference.WS_ACCURACY, weapon, 1) * getCustomFloatStat(weapon, CUSTOM_ACCURACY_MULTIPLY_TAG, 1)), ""));
+        infos.add(addStatWithMultiplyInfo("Accuracy", "", 1 / (modifyStatFromModules(WeaponStats.ACCURACY, weapon, 1) * getCustomFloatStat(weapon, CUSTOM_ACCURACY_MULTIPLY_TAG, 1)), ""));
 
         StringBuilder heatInfo = new StringBuilder(TextFormatting.DARK_RED + "Heat: ");
         double heatPercent = getHeat(weapon) / getMaxHeat(weapon);
@@ -376,12 +374,12 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
     public PlasmaBolt getDefaultProjectile(ItemStack weapon, EntityLivingBase shooter, Vec3d position, Vec3d dir, WeaponShot shot) {
         PlasmaBolt fire = new PlasmaBolt(shooter.world, shooter, position, dir, shot, getShotSpeed(weapon, shooter));
         fire.setWeapon(weapon);
-        fire.setFireDamageMultiply(WeaponHelper.modifyStat(Reference.WS_FIRE_DAMAGE, weapon, 0));
-        float explosionAmount = WeaponHelper.modifyStat(Reference.WS_EXPLOSION_DAMAGE, weapon, 0);
+        fire.setFireDamageMultiply(WeaponHelper.modifyStat(WeaponStats.FIRE_DAMAGE, weapon, 0));
+        float explosionAmount = WeaponHelper.modifyStat(WeaponStats.EXPLOSION_DAMAGE, weapon, 0);
         if (explosionAmount > 0) {
             fire.setExplodeMultiply(getWeaponBaseDamage(weapon) * 0.3f * explosionAmount);
         }
-        if (WeaponHelper.modifyStat(Reference.WS_RICOCHET, weapon, 0) == 1) {
+        if (WeaponHelper.modifyStat(WeaponStats.RICOCHET, weapon, 0) == 1) {
             fire.markRicochetable();
         }
 
@@ -400,14 +398,14 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
     public int getRange(ItemStack weapon) {
         int range = defaultRange;
-        range = Math.round(modifyStatFromModules(Reference.WS_RANGE, weapon, range));
+        range = Math.round(modifyStatFromModules(WeaponStats.RANGE, weapon, range));
         range *= getCustomIntStat(weapon, CUSTOM_RANGE_MULTIPLY_TAG, 1);
         return range;
     }
 
     public int getShootCooldown(ItemStack weapon) {
         int shootCooldown = getCustomIntStat(weapon, CUSTOM_SPEED_TAG, getBaseShootCooldown(weapon));
-        shootCooldown = (int) modifyStatFromModules(Reference.WS_FIRE_RATE, weapon, shootCooldown);
+        shootCooldown = (int) modifyStatFromModules(WeaponStats.FIRE_RATE, weapon, shootCooldown);
         shootCooldown *= getCustomFloatStat(weapon, CUSTOM_SPEED_MULTIPLY_TAG, 1);
         return shootCooldown;
     }
@@ -421,7 +419,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         return new WeaponShot(itemRand.nextInt(), getWeaponScaledDamage(weaponStack, shooter), getAccuracy(weaponStack, shooter, zoomed), WeaponHelper.getColor(weaponStack), getRange(weaponStack));
     }
 
-    public float modifyStatFromModules(int statID, ItemStack weapon, float original) {
+    public float modifyStatFromModules(IWeaponStat statID, ItemStack weapon, float original) {
         return WeaponHelper.modifyStat(statID, weapon, original);
     }
 
@@ -432,7 +430,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
     public float getWeaponScaledDamage(ItemStack weapon, EntityLivingBase shooter) {
         float damage = getCustomFloatStat(weapon, CUSTOM_DAMAGE_TAG, getWeaponBaseDamage(weapon));
-        damage = modifyStatFromModules(Reference.WS_DAMAGE, weapon, damage);
+        damage = modifyStatFromModules(WeaponStats.DAMAGE, weapon, damage);
         damage += damage * EnchantmentHelper.getEnchantmentLevel(MatterOverdriveEnchantments.overclock, weapon) * 0.04f;
         damage *= getCustomFloatStat(weapon, CUSTOM_DAMAGE_MULTIPLY_TAG, 1);
         damage += shooter.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
@@ -441,20 +439,20 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
     public DamageSource getDamageSource(ItemStack weapon, EntityPlayer player) {
         DamageSource damageInfo = new EntityDamageSourcePhaser(player);
-        if (WeaponHelper.hasStat(Reference.WS_FIRE_DAMAGE, weapon)) {
+        if (WeaponHelper.hasStat(WeaponStats.FIRE_RATE, weapon)) {
             damageInfo.setFireDamage();
-        } else if (WeaponHelper.hasStat(Reference.WS_HEAL, weapon)) {
+        } else if (WeaponHelper.hasStat(WeaponStats.HEAL, weapon)) {
             damageInfo.setMagicDamage();
         }
 
-        if (WeaponHelper.hasStat(Reference.WS_EXPLOSION_DAMAGE, weapon)) {
+        if (WeaponHelper.hasStat(WeaponStats.EXPLOSION_DAMAGE, weapon)) {
             damageInfo.setExplosion();
         }
         return damageInfo;
     }
 
     public int getEnergyUse(ItemStack weapon) {
-        float energyUse = modifyStatFromModules(Reference.WS_AMMO, weapon, getBaseEnergyUse(weapon));
+        float energyUse = modifyStatFromModules(WeaponStats.AMMO, weapon, getBaseEnergyUse(weapon));
         energyUse -= energyUse * EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("unbreaking"), weapon) * 0.04f;
         return Math.max((int) energyUse, 0);
     }
@@ -479,7 +477,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
 
     @Override
     public float getMaxHeat(ItemStack weapon) {
-        return modifyStatFromModules(Reference.WS_MAX_HEAT, weapon, getBaseMaxHeat(weapon));
+        return modifyStatFromModules(WeaponStats.MAX_HEAT, weapon, getBaseMaxHeat(weapon));
     }
 
     public boolean isOverheated(ItemStack weapon) {
@@ -502,7 +500,7 @@ public abstract class EnergyWeapon extends MOItemEnergyContainer implements IWea
         accuracy = getCustomFloatStat(weapon, CUSTOM_ACCURACY_TAG, accuracy);
         accuracy += (float) new Vec3d(shooter.motionX, shooter.motionY * 0.1, shooter.motionZ).lengthVector() * 10;
         accuracy *= shooter.isSneaking() ? 0.6f : 1;
-        accuracy = modifyStatFromModules(Reference.WS_ACCURACY, weapon, accuracy);
+        accuracy = modifyStatFromModules(WeaponStats.ACCURACY, weapon, accuracy);
         if (WeaponHelper.hasModule(Reference.MODULE_SIGHTS, weapon)) {
             ItemStack sights = WeaponHelper.getModuleAtSlot(Reference.MODULE_SIGHTS, weapon);
             if (!sights.isEmpty() && sights.getItem() instanceof IWeaponScope) {

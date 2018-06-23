@@ -17,11 +17,9 @@
  */
 package matteroverdrive.items.weapon.module;
 
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.IWeaponColor;
 import matteroverdrive.client.data.Color;
-import matteroverdrive.items.includes.MOBaseItem;
 import matteroverdrive.util.MOStringHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -33,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Simeon on 4/14/2015.
  */
-public class WeaponModuleColor extends MOBaseItem implements IWeaponColor {
+public class WeaponModuleColor extends WeaponModuleBase implements IWeaponColor {
     public static final Color defaultColor = new Color(255, 255, 255);
     public static final Color colors[] = {
             new Color(204, 0, 0),      //red
@@ -51,10 +49,7 @@ public class WeaponModuleColor extends MOBaseItem implements IWeaponColor {
 
     public WeaponModuleColor(String name) {
         super(name);
-        setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_MODULES);
-        this.setHasSubtypes(true);
-        this.setMaxDamage(0);
-        this.setMaxStackSize(1);
+        applySlot(Reference.MODULE_COLOR);
     }
 
     public int getMetadata(int damage) {
@@ -79,11 +74,6 @@ public class WeaponModuleColor extends MOBaseItem implements IWeaponColor {
     }
 
     @Override
-    public int getSlot(ItemStack module) {
-        return Reference.MODULE_COLOR;
-    }
-
-    @Override
     public String getModelPath() {
         return null;
     }
@@ -96,11 +86,6 @@ public class WeaponModuleColor extends MOBaseItem implements IWeaponColor {
     @Override
     public String getModelName(ItemStack module) {
         return null;
-    }
-
-    @Override
-    public float modifyWeaponStat(int statID, ItemStack module, ItemStack weapon, float originalStat) {
-        return originalStat;
     }
 
     @Override

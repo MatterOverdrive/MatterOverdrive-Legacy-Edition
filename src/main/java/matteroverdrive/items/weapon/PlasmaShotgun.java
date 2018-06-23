@@ -20,6 +20,7 @@ package matteroverdrive.items.weapon;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.Reference;
 import matteroverdrive.api.weapon.WeaponShot;
+import matteroverdrive.api.weapon.WeaponStats;
 import matteroverdrive.client.sound.MOPositionedSound;
 import matteroverdrive.client.sound.WeaponSound;
 import matteroverdrive.entity.weapon.PlasmaBolt;
@@ -147,13 +148,13 @@ public class PlasmaShotgun extends EnergyWeapon {
             bolts[i] = new PlasmaBolt(shooter.world, shooter, position, dir, newShot, getShotSpeed(weapon, shooter));
             bolts[i].setWeapon(weapon);
             bolts[i].setRenderSize((getShotCount(weapon, shooter) / shot.getCount()) * 0.5f);
-            bolts[i].setFireDamageMultiply(WeaponHelper.modifyStat(Reference.WS_FIRE_DAMAGE, weapon, 0));
-            float explosionMultiply = WeaponHelper.modifyStat(Reference.WS_EXPLOSION_DAMAGE, weapon, 0);
+            bolts[i].setFireDamageMultiply(WeaponHelper.modifyStat(WeaponStats.FIRE_DAMAGE, weapon, 0));
+            float explosionMultiply = WeaponHelper.modifyStat(WeaponStats.EXPLOSION_DAMAGE, weapon, 0);
             if (explosionMultiply > 0) {
                 bolts[i].setExplodeMultiply((getWeaponBaseDamage(weapon) * 0.3f * explosionMultiply) / shot.getCount());
             }
             bolts[i].setKnockBack(0.5f);
-            if (WeaponHelper.modifyStat(Reference.WS_RICOCHET, weapon, 0) == 1) {
+            if (WeaponHelper.modifyStat(WeaponStats.RICOCHET, weapon, 0) == 1) {
                 bolts[i].markRicochetable();
             }
             shooter.world.spawnEntity(bolts[i]);
