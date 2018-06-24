@@ -47,7 +47,7 @@ public class ItemUpgrade extends MOBaseItem implements IUpgrade, IAdvancedModelP
         this.setMaxStackSize(16);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
-        setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_UPGRADES);
+        setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_MODULES);
     }
 
     @Override

@@ -18,6 +18,7 @@
 package matteroverdrive.items;
 
 import matteroverdrive.MatterOverdrive;
+import matteroverdrive.api.quest.IQuest;
 import matteroverdrive.api.quest.Quest;
 import matteroverdrive.api.quest.QuestStack;
 import matteroverdrive.data.quest.WeightedRandomQuest;
@@ -25,13 +26,11 @@ import matteroverdrive.gui.GuiQuestPreview;
 import matteroverdrive.init.MatterOverdriveQuests;
 import matteroverdrive.items.includes.MOBaseItem;
 import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.WeightedRandom;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -45,6 +44,7 @@ import java.util.List;
 public class Contract extends MOBaseItem {
     public Contract(String name) {
         super(name);
+        setCreativeTab(MatterOverdrive.TAB_OVERDRIVE_CONTRACTS);
     }
 
     public QuestStack getQuest(ItemStack itemStack) {
@@ -67,6 +67,22 @@ public class Contract extends MOBaseItem {
             for (int i = 0; i < questStack.getObjectivesCount(player); i++) {
                 infos.add(MatterOverdrive.QUEST_FACTORY.getFormattedQuestObjective(player, questStack, i));
             }
+        }
+    }
+
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+        if (isInCreativeTab(tab)) {
+            MatterOverdrive.QUESTS.getAllQuestName().forEach(name -> {
+                        ItemStack stack = new ItemStack(this);
+                        IQuest quest = MatterOverdrive.QUESTS.getQuestByName(name);
+                        QuestStack questStack = MatterOverdrive.QUEST_FACTORY.generateQuestStack(itemRand, quest);
+                        NBTTagCompound questTag = new NBTTagCompound();
+                        questStack.writeToNBT(questTag);
+                        stack.setTagCompound(questTag);
+                        items.add(stack);
+                    }
+            );
         }
     }
 

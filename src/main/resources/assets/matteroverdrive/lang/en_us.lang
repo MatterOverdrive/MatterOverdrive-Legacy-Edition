@@ -334,12 +334,10 @@ dialog.mad_scientist.trade_route_quest.1.line=What do you mean? It's nothing rea
 ##########################################################################################################
 # Creative Panels
 
-itemGroup.tabMO=MatterOverdrive
-itemGroup.tabMO_modules=MatterOverdrive Modules
-itemGroup.tabMO_upgrades=MatterOverdrive Upgrades
-itemGroup.tabMO_food=MatterOverdrive Food
-itemGroup.tabMO_decorative=MatterOverdrive Decoration
-itemGroup.tabMO_androidParts=MatterOverdrive Android Parts
+itemGroup.tabMO=Matter Overdrive
+itemGroup.tabMO_modules=Matter Overdrive Modules
+itemGroup.tabMO_androidParts=Matter Overdrive Android Parts
+itemGroup.tabMO_contracts=Matter Overdrive Contracts
 
 ##########################################################################################################
 # Upgrade Types

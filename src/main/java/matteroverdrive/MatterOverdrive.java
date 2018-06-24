@@ -66,9 +66,7 @@ public class MatterOverdrive {
 
     public static final OverdriveTab TAB_OVERDRIVE = new OverdriveTab("tabMO", () -> new ItemStack(ITEMS.matter_scanner));
     public static final OverdriveTab TAB_OVERDRIVE_MODULES = new OverdriveTab("tabMO_modules", () -> new ItemStack(ITEMS.weapon_module_color));
-    public static final OverdriveTab TAB_OVERDRIVE_UPGRADES = new OverdriveTab("tabMO_upgrades", () -> new ItemStack(ITEMS.item_upgrade));
-    public static final OverdriveTab TAB_OVERDRIVE_FOOD = new OverdriveTab("tabMO_food", () -> new ItemStack(ITEMS.earl_gray_tea));
-    public static final OverdriveTab TAB_OVERDRIVE_DECORATIVE = new OverdriveTab("tabMO_decorative", () -> new ItemStack(BLOCKS.decorative_stripes));
+    public static final OverdriveTab TAB_OVERDRIVE_CONTRACTS = new OverdriveTab("tabMO_contracts", () -> new ItemStack(ITEMS.contract));
     public static final OverdriveTab TAB_OVERDRIVE_ANDROID_PARTS = new OverdriveTab("tabMO_androidParts", () -> new ItemStack(ITEMS.androidParts));
     public static final TickHandler TICK_HANDLER;
     public static final PlayerEventHandler PLAYER_EVENT_HANDLER;
