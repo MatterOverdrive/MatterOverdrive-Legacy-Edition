@@ -130,6 +130,7 @@ public class MatterOverdriveItems {
     public ItemRecordTransformation recordTransformation;
     public MOBaseItem trilithiumCrystal;
     public MOBaseItem artifact;
+    public MOBaseItem quantumFoldManipulator;
 
     private int registeredCount = 0;
 
@@ -229,6 +230,7 @@ public class MatterOverdriveItems {
         recordTransformation = register(new ItemRecordTransformation());
         artifact = register(new MOBaseItem("artifact"));
         trilithiumCrystal = register(new MOBaseItem("trilithium_crystal"));
+        quantumFoldManipulator = register(new MOBaseItem("quantum_fold_manipulator"));
         Preconditions.checkNotNull(TOOL_MATERIAL_TRITANIUM).setRepairItem(new ItemStack(tritanium_ingot));
         Preconditions.checkNotNull(ARMOR_MATERIAL_TRITANIUM).setRepairItem(new ItemStack(tritanium_ingot));
         MOLog.info("Finished registering items");

@@ -90,6 +90,7 @@ item.matteroverdrive.portable_decomposer.details=Decomposes picked up items into
 item.matteroverdrive.record.matteroverdrive.transformation.desc=BoxCat Games - Trace Route
 item.matteroverdrive.trilithium_crystal.name=Pure Trilithium Crystal
 item.matteroverdrive.artifact.name=Unknown Artifact
+item.matteroverdrive.quantum_fold_manipulator.name=Quantum Fold Manipulator
 
 #///////////// Upgrades ////////////
 item.matteroverdrive.upgrade.speed.name=Speed Upgrade
