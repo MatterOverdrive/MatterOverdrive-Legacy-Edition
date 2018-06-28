@@ -16,17 +16,14 @@
 * [Contacts](#contacts)
 * [Issues](#issues)
 * [Building](#building)
-* [IMC](#imc)
 
 ## About
 Matter Overdrive is a Minecraft mod inspired by the popular Sci-fi TV series Star Trek. It dwells in the concept of replicating and transforming one type matter into another.
 Although it may seem overpowered, Matter Overdrive takes a more realistic approach and requires the player to build a complex system before even the simplest replication can be achieved.
 
 ## Contacts
-* [@TheCodedOne](https://twitter.com/TheCodedOne)
-* [Dev_Osmium](mailto:devosmium@gmail.com)
-* [@DevOsmium](https://twitter.com/DevOsmium)
-* [Website](https://mo.simeonradivoev.com/)
+* [Email](mailto:contact@hrznstudio.com)
+* [Website](https://hrnz.studio/mo)
 * [Discord](https://discord.gg/PC5GXyQ)
 
 ## Features
@@ -45,7 +42,7 @@ Although it may seem overpowered, Matter Overdrive takes a more realistic approa
 
 ## Issues
 If you have any crashes, problems or suggestions just open a [new Issue](https://github.com/MatterOverdrive/MatterOverdrive/issues/new).
-If your crash or problem was fixed, but is not yet released as a public download you can always download the latest [Dev Build](https://mo.simeonradivoev.com/builds/).
+If your crash or problem was fixed, but is not yet released as a public download you can always download the latest [Dev Build](http://jenkins.k-4u.nl/job/MatterOverdrive/).
 
 ## Building
 1. Clone this repository via 
@@ -60,6 +57,3 @@ If your crash or problem was fixed, but is not yet released as a public download
   - IntelliJ: Import into IDE and execute `gradlew genIntellijRuns` afterwards
   - Eclipse: execute `gradlew eclipse`
   - Don't forget to install [Lombok](https://projectlombok.org)
-  
-## IMC
-See the example on [IMC](https://github.com/MatterOverdrive/MatterOverdrive/blob/1.12.2/src/main/java/matteroverdrive/api/IMC.java) or you can see the [IMC handler](https://github.com/MatterOverdrive/MatterOverdrive/blob/1.12.2/src/main/java/matteroverdrive/imc/MOIMCHandler.java).
