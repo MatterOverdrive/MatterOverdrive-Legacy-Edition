@@ -18,6 +18,7 @@ about: Create a report to help us improve
 
 #### Affected Versions (Do *not* use "*latest*"):
 
+- Titanium:
 - MatterOverdrive:
 - Forge:
 - Minecraft:
