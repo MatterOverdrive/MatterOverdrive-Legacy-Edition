@@ -1,6 +1,6 @@
-![alt tag](https://raw.githubusercontent.com/MatterOverdrive/MatterOverdrive/1.12.2/MatterOverdriveLogo.png)
+![alt tag](https://raw.githubusercontent.com/MatterOverdrive/MatterOverdrive/1.12.2/.github/MatterOverdriveLogo.png)
 
-[![Jenkins](https://img.shields.io/jenkins/s/http/jenkins.k-4u.nl/job/MatterOverdrive/.svg?style=for-the-badge)](http://jenkins.k-4u.nl/view/Astro/job/CLib/)
+[![Jenkins](https://img.shields.io/jenkins/s/http/jenkins.k-4u.nl/job/MatterOverdrive/.svg?style=for-the-badge)](http://jenkins.k-4u.nl/job/MatterOverdrive/)
 [![GitHub issues](https://img.shields.io/github/issues-raw/MatterOverdrive/MatterOverdrive.svg?style=for-the-badge)](https://github.com/MatterOverdrive/MatterOverdrive/issues)
 [![](https://img.shields.io/github/issues-pr-raw/MatterOverdrive/MatterOverdrive.svg?style=for-the-badge)](https://github.com/MatterOverdrive/MatterOverdrive/pulls)
 [![license](https://img.shields.io/github/license/matteroverdrive/matteroverdrive.svg?style=for-the-badge)](https://github.com/MatterOverdrive/MatterOverdrive/blob/1.12.2/LICENSE.md)

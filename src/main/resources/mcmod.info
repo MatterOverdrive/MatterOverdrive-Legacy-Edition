@@ -5,9 +5,10 @@
     "description": "A mod that dwells within matter and energy.",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "https://mo.simeonradivoev.com",
+    "url": "https://hrzn.studio/mo",
     "updateUrl": "",
     "authorList": [
+      "Horizon Studio",
       "Coded",
       "Simeon Radivoev",
       "Shadowfacts",
