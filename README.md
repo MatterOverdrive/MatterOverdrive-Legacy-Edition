@@ -23,7 +23,7 @@ Although it may seem overpowered, Matter Overdrive takes a more realistic approa
 
 ## Contacts
 * [Email](mailto:contact@hrznstudio.com)
-* [Website](https://hrnz.studio/mo)
+* [Website](https://hrzn.studio/mo)
 * [Discord](https://discord.gg/PC5GXyQ)
 
 ## Features
