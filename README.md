@@ -56,4 +56,3 @@ If your crash or problem was fixed, but is not yet released as a public download
 4. For core developer: Setup IDE
   - IntelliJ: Import into IDE and execute `gradlew genIntellijRuns` afterwards
   - Eclipse: execute `gradlew eclipse`
-  - Don't forget to install [Lombok](https://projectlombok.org)
