@@ -88,6 +88,9 @@ item.matteroverdrive.plasma_core.name=相位能量整流核心
 item.matteroverdrive.portable_decomposer.name=便携式物质分解仪
 item.matteroverdrive.portable_decomposer.details=分解所拾取的物品
 item.matteroverdrive.record.matteroverdrive.transformation.desc=BoxCat Games - Trace Route
+item.matteroverdrive.trilithium_crystal.name=Pure Trilithium Crystal
+item.matteroverdrive.artifact.name=Unknown Artifact
+item.matteroverdrive.quantum_fold_manipulator.name=Quantum Fold Manipulator
 
 #/#//////////// Upgrades ////////////
 item.matteroverdrive.upgrade.speed.name=速度升级
@@ -105,6 +108,7 @@ item.matteroverdrive.weapon_module_barrel.fire.name=高能燃烧弹
 item.matteroverdrive.weapon_module_barrel.explosion.name=爆裂电磁炮
 item.matteroverdrive.weapon_module_barrel.heal.name=再生转换器
 item.matteroverdrive.weapon_module_barrel.doomsday.name=衰变聚爆矩阵（末日型）
+item.matteroverdrive.weapon_module_barrel.block.name=Voxel Exaggerating Nullification Obliteration Matrix (VENOM)
 item.matteroverdrive.weapon_module_ricochet.name=束流反射装置
 item.matteroverdrive.sniper_scope.name=狙击镜
 
@@ -174,6 +178,8 @@ tile.solar_panel.name=光伏板
 tile.solar_panel.details=利用光能发电
 tile.weapon_station.name=武器装配台
 tile.weapon_station.details=进行武器配置和充能
+tile.star_map.name=星图
+tile.star_map.details=纯装饰用
 tile.microwave.name=微波炉
 tile.pattern_monitor.name=物质网络终端
 tile.pattern_monitor.details=用于管理复制任务
@@ -329,12 +335,10 @@ dialog.mad_scientist.trade_route_quest.1.line=我不知道你在说什么？没�
 ##########################################################################################################
 # Creative Panels
 
-itemGroup.tabMO=超能物质
-itemGroup.tabMO_modules=超能物质|模块
-itemGroup.tabMO_upgrades=超能物质|升级
-itemGroup.tabMO_food=超能物质|食物
-itemGroup.tabMO_decorative=超能物质|装饰
-itemGroup.tabMO_androidParts=超能物质|机械人
+itemGroup.tabMO=Matter Overdrive
+itemGroup.tabMO_modules=Matter Overdrive Modules
+itemGroup.tabMO_androidParts=Matter Overdrive Android Parts
+itemGroup.tabMO_contracts=Matter Overdrive Contracts
 
 ##########################################################################################################
 # Upgrade Types
@@ -350,15 +354,19 @@ upgradetype.MatterUsage.name=物质消耗
 
 ##########################################################################################################
 # Weapon Stats
-weaponstat.0.name=伤害
-weaponstat.1.name=弹药
-weaponstat.2.name=眩晕时间
-weaponstat.3.name=范围
-weaponstat.4.name=火焰伤害
-weaponstat.5.name=方块破坏
-weaponstat.6.name=爆炸伤害
-weaponstat.7.name=射速
-weaponstat.8.name=治疗
+weaponstat.damage.name=Damage
+weaponstat.ammo.name=Ammo
+weaponstat.effect.name=Effect
+weaponstat.range.name=Range
+weaponstat.fire_damage.name=Fire Damage
+weaponstat.block_damage.name=Block Damage
+weaponstat.explosion_damage.name=Explosion Damage
+weaponstat.fire_rate.name=Fire Rate
+weaponstat.heal.name=Heal
+weaponstat.range.name=Range
+weaponstat.ricochet.name=Ricochet
+weaponstat.max_heat.name=Max Heat
+weaponstat.accuracy.name=Accuracy
 
 ##########################################################################################################
 # GUI
@@ -372,6 +380,10 @@ gui.tooltip.page.configurations=配置界面
 gui.tooltip.page.upgrades=升级界面
 gui.tooltip.page.tasks=任务
 gui.tooltip.page.scan_info=扫描信息
+gui.tooltip.page.galaxy=星系
+gui.tooltip.page.quadrant=Quadrant
+gui.tooltip.page.star=Planetary System
+gui.tooltip.page.planet=Planet
 gui.tooltip.button.refresh=刷新列表
 gui.tooltip.button.request=发送请求
 gui.tooltip.matter=物质
@@ -382,7 +394,7 @@ gui.tooltip.slot.bionic.head=头部
 gui.tooltip.slot.bionic.arms=手臂
 gui.tooltip.slot.bionic.legs=双腿
 gui.tooltip.slot.bionic.chest=躯干
-gui.tooltip.slot.bionic.other=特殊
+gui.tooltip.slot.bionic.other=外附
 gui.tooltip.slot.bionic.battery=电池
 gui.tooltip.slot.database=模式数据库
 gui.tooltip.slot.filter=网络过滤器
@@ -405,8 +417,10 @@ gui.label.button.save=保存
 gui.label.button.remove=删除
 gui.label.button.add=添加
 gui.label.button.reset=重置
+gui.label.button.scout=Send Scout
 gui.label.button.new=新建
 gui.label.button.import=进占
+gui.label.button.import.too_far=Destination Too Far
 gui.label.auto_line_size=自动线路规模
 gui.label.accept=接受
 
@@ -463,6 +477,12 @@ module.color.grey=灰色
 module.barrel.name=枪管模块
 module.sights.name=视野模块
 module.other.name=其它模块
+moduleslot.-1.name=Slot not set, please report to module author
+moduleslot.0.name=Applicable to Battery slot
+moduleslot.1.name=Applicable to Color slot
+moduleslot.2.name=Applicable to Barrel slot
+moduleslot.3.name=Applicable to Sights slot
+moduleslot.4.name=Applicable to Misc slot
 
 ##########################################################################################################
 # Bioparts
@@ -570,6 +590,7 @@ config.matter_registry.item_blacklist.name=黑名单
 config.spawn_ores.name=矿物生成
 config.client.name=客户端选项
 config.server.name=服务器选项
+config.starmap.name=Star Map Options
 config.ore_gen_blacklist.name=矿物黑名单
 config.abilities.name=机械人能力
 config.entities.name=生物
@@ -731,4 +752,4 @@ quest.stem_bolts.title=Self-Sealing Stem Bolts
 quest.stem_bolts.info.0=After speaking with the Mad Scientist, you were left with an unwary feeling. The scientist was keeping something from you./n/You had that feeling ever since you saw the trade route agreement, so you decided to make a copy, before giving it to the scientist. You realise you might have missed something.
 quest.stem_bolts.info.1=You found it! A small text at the end, reefers to a disclaimer stating that the shipping party will not be responsible for any undesirable mutations caused by Ionizing radiation. You begin to wonder what sort of cargo can have mutations. You decide to revisit the cargo ship for more clues.
 quest.stem_bolts.objective.0=Read the $itemName
-quest.stem_bolts.objective.1=Return to the cargo ship
+quest.stem_bolts.objective.1=返回货船
