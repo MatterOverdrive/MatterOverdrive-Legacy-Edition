@@ -17,7 +17,7 @@ item.matteroverdrive.integration_matrix.name=集成矩阵
 item.matteroverdrive.s_magnet.name=超导磁体
 item.matteroverdrive.matter_dust_refined.name=精炼物质粉尘
 item.matteroverdrive.matter_dust.name=物质粉尘
-item.matteroverdrive.matter_dust.details=放入循环仓中回收精炼
+item.matteroverdrive.matter_dust.details=放入物质回收机中回收精炼
 item.matteroverdrive.machine_casing.name=机械铸件
 item.matteroverdrive.dilithium_crystal.name=二锂晶体
 item.matteroverdrive.tritanium_ingot.name=三钛合金锭
@@ -55,12 +55,12 @@ item.matteroverdrive.android_pill_blue.details=吃下蓝色药丸后/n你将在�
 item.matteroverdrive.creative_pattern_drive.name=创造模式储存单元
 item.matteroverdrive.creative_pattern_drive.details=包含绝大多数可重组物品/n潜行右键重置模式
 item.matteroverdrive.network_flash_drive.name=网络闪存驱动器
-item.matteroverdrive.network_flash_drive.details=物质网络设备中的过滤器
+item.matteroverdrive.network_flash_drive.details=为物质网络中的设备配置过滤功能
 item.matteroverdrive.energy_pack.name=能量包
-item.matteroverdrive.energy_pack.details=用于快速充电\n让能量武器'重装弹药'
+item.matteroverdrive.energy_pack.details=用于快速充电/n为能量武器装弹
 item.matteroverdrive.phaser_rifle.name=相位来复枪
 item.matteroverdrive.transport_flash_drive.name=传送闪存驱动器
-item.matteroverdrive.transport_flash_drive.details=记录坐标以便快速使用传送器
+item.matteroverdrive.transport_flash_drive.details=记录坐标以便快速使用传送仪
 item.matteroverdrive.matter_container_empty.name=空物质仓
 item.matteroverdrive.matter_container_full.name=满物质仓
 item.matteroverdrive.tritanium_nugget.name=三钛合金粒
@@ -73,7 +73,7 @@ item.matteroverdrive.android_pill_yellow.details=重置机械人技能
 item.matteroverdrive.tritanium_helmet.name=三钛头盔
 item.matteroverdrive.tritanium_chestplate.name=三钛胸甲
 item.matteroverdrive.tritanium_leggings.name=三钛护腿
-item.matteroverdrive.tritanium_boots.name=三钛靴子
+item.matteroverdrive.tritanium_boots.name=三钛战靴
 item.matteroverdrive.tritanium_hoe.name=三钛合金锄
 item.matteroverdrive.tritanium_sword.name=三钛合金剑
 item.matteroverdrive.tritanium_pickaxe.name=三钛合金镐
@@ -86,11 +86,11 @@ item.matteroverdrive.weapon_receiver.name=武装导能器
 item.matteroverdrive.weapon_handle.name=武器手柄
 item.matteroverdrive.plasma_core.name=相位能量整流核心
 item.matteroverdrive.portable_decomposer.name=便携式物质分解仪
-item.matteroverdrive.portable_decomposer.details=分解所拾取的物品
+item.matteroverdrive.portable_decomposer.details=将拾取的物品分解为等离子物质
 item.matteroverdrive.record.matteroverdrive.transformation.desc=BoxCat Games - Trace Route
-item.matteroverdrive.trilithium_crystal.name=Pure Trilithium Crystal
-item.matteroverdrive.artifact.name=Unknown Artifact
-item.matteroverdrive.quantum_fold_manipulator.name=Quantum Fold Manipulator
+item.matteroverdrive.trilithium_crystal.name=纯净三锂晶体
+item.matteroverdrive.artifact.name=未知工艺品
+item.matteroverdrive.quantum_fold_manipulator.name=量子折叠操纵仪
 
 #/#//////////// Upgrades ////////////
 item.matteroverdrive.upgrade.speed.name=速度升级
@@ -99,7 +99,7 @@ item.matteroverdrive.upgrade.failsafe.name=故障保护升级
 item.matteroverdrive.upgrade.range.name=范围升级
 item.matteroverdrive.upgrade.power_storage.name=储能升级
 item.matteroverdrive.upgrade.hyper_speed.name=超速升级
-item.matteroverdrive.upgrade.matter_storage.name=物质存储升级
+item.matteroverdrive.upgrade.matter_storage.name=仓储升级
 
 #/#//////////// Weapon Modules ///////
 item.matteroverdrive.weapon_module_color.name=颜色模块
@@ -108,7 +108,7 @@ item.matteroverdrive.weapon_module_barrel.fire.name=高能燃烧弹
 item.matteroverdrive.weapon_module_barrel.explosion.name=爆裂电磁炮
 item.matteroverdrive.weapon_module_barrel.heal.name=再生转换器
 item.matteroverdrive.weapon_module_barrel.doomsday.name=衰变聚爆矩阵（末日型）
-item.matteroverdrive.weapon_module_barrel.block.name=Voxel Exaggerating Nullification Obliteration Matrix (VENOM)
+item.matteroverdrive.weapon_module_barrel.block.name=体素扩张失能湮灭矩阵（剧毒）
 item.matteroverdrive.weapon_module_ricochet.name=束流反射装置
 item.matteroverdrive.sniper_scope.name=狙击镜
 
@@ -121,18 +121,18 @@ item.overdrivef.info.configured=已配置
 #/#//////////// Replicator ////////////
 tile.replicator.name=物质重组机
 tile.replicator.config.volume.replicate=复制数目
-tile.replicator.config.particles.vent=排出粒子
+tile.replicator.config.particles.vent=粒子排放
 tile.replicator.config.storage.matter=物质储量
 tile.replicator.config.storage.energy=能量储量
-tile.replicator.config.cost.replication.energy=物质重组所需能量
-tile.replicator.config.speed.replication=物质重组速度
+tile.replicator.config.cost.replication.energy=单位物质重组能耗
+tile.replicator.config.speed.replication=单位物质重组速率
 tile.replicator.config.fail=失败概率
-tile.replicator.details=将等离子态物质重组为物品和方块
+tile.replicator.details=将等离子物质重组为物品和方块
 tile.replicator_active.name=物质重组机
 
 #/#//////////// Decomposer ////////////
 tile.decomposer.name=物质分解机
-tile.decomposer.details=将普通物质分解为等离子态物质
+tile.decomposer.details=将正常物质分解为等离子物质
 tile.decomposer.config.storage.matter=物质储量
 tile.decomposer.config.storage.energy=能量储量
 tile.decomposer.config.speed.decompose=分解速度
@@ -140,38 +140,38 @@ tile.decomposer.config.cost.decompose=分解耗能
 
 
 tile.matter_pipe.name=物质运输管道
-tile.matter_pipe.details=运输等离子态物质
+tile.matter_pipe.details=运输等离子物质
 tile.network_pipe.name=物质网络线缆
 tile.network_pipe.details=将设备接入物质网络
 tile.network_router.name=物质网络路由器
-tile.network_router.details=用于访问机器或从一个子网络转换到另一个
+tile.network_router.details=向内部机械传送信息或切换本地子网络
 tile.network_switch.name=物质网络转换器
-tile.network_switch.details=用于连接机器并建立子网络
+tile.network_switch.details=将机器连接成本地网络
 tile.transporter.name=传送仪
 tile.transporter.details=传送生物
 tile.matter_analyzer.name=物质分析仪
 tile.matter_analyzer.details=分析物品模式
 tile.dilithium_ore.name=二锂矿石
-tile.tritanium_ore.name=三钛合金矿石
+tile.tritanium_ore.name=三钛矿石
 tile.tritanium_block.name=三钛合金块
 tile.heavy_matter_pipe.name=重型物质运输管道
-tile.heavy_matter_pipe.details=运输等离子态物质
+tile.heavy_matter_pipe.details=运输等离子物质
 tile.holo_sign.name=全息显示屏
 tile.industrial_glass.name=工业玻璃
-tile.bounding_box.name=绑定方块
+tile.bounding_box.name=限界方块
 tile.inscriber.name=分子刻录仪
 tile.fusion_reactor_io.name=湮灭反应堆接口
 tile.contract_market.name=赏金公会
 tile.spacetime_accelerator.name=时空加速仪
 tile.spacetime_accelerator.details=加速方块和机器
-tile.pylon.name=空间桥
+tile.pylon.name=维度塔
 
 #/#//////////// Pattern Storage ////////////
-tile.pattern_storage.name=模式存储仓
-tile.pattern_storage.details=存储物品模式，用于复制
-tile.pattern_storage.config.particles.vent=Vent Particles
+tile.pattern_storage.name=模式保存仓
+tile.pattern_storage.details=保存用于复制的物品模式
+tile.pattern_storage.config.particles.vent=粒子排放
 tile.pattern_storage.config.storage.energy=能量储存
-tile.pattern_storage.config.transfer.energy=能量传输速度
+tile.pattern_storage.config.transfer.energy=导能速率
 
 tile.machine_hull.name=机械外壳
 tile.solar_panel.name=光伏板
@@ -186,8 +186,8 @@ tile.pattern_monitor.details=用于管理复制任务
 tile.gravitational_anomaly.name=引力异常点
 tile.gravitational_stabilizer.name=引力稳定器
 tile.gravitational_stabilizer.details=用于减弱引力异常点的影响
-tile.matter_recycler.name=物质循环仓
-tile.matter_recycler.details=用于物品循环，为分解做准备
+tile.matter_recycler.name=物质回收机
+tile.matter_recycler.details=回收物质以便再次分解
 tile.android_spawner.name=机械人刷怪笼
 
 #/#//////////// Fluids ////////////
@@ -202,17 +202,17 @@ tile.fusion_reactor_controller.config.storage.matter=物质储存
 tile.fusion_reactor_controller.config.output.energy=能量输出
 tile.fusion_reactor_controller.config.drain.matter=物质消耗
 tile.fusion_reactor_controller.config.distance.anomaly=引力异常点最大距离
-tile.fusion_reactor_controller.config.check.delay=Structure Check Delay
+tile.fusion_reactor_controller.config.check.delay=结构检测延时
 tile.fusion_reactor_controller.details=湮灭反应堆的主要控制装置
 tile.fusion_reactor_coil.name=反应堆外层线圈
-tile.fusion_reactor_coil.details=用于限制湮灭反应堆内的粒子范围
+tile.fusion_reactor_coil.details=用于限制湮灭反应堆内的等离子体
 
-fusion_reactor.info.invalid_structure=此\n多方块结构无效
-fusion_reactor.info.ok=POWER ${power}\n消耗 ${charge}\n物质 ${matter}
-fusion_reactor.info.invalid_materials=这不是有效的\n材料
-fusion_reactor.info.need_coils=需要\n更多\n线圈
-fusion_reactor.info.no_anomaly=没有\n引力\n异常点
-fusion_reactor.info.anomaly_too_far=引力\n异常点\n距离\n太远
+fusion_reactor.info.invalid_structure=无效${newline}结构
+fusion_reactor.info.ok=能量${power}${newline}消耗${charge}${newline}物质${matter}
+fusion_reactor.info.invalid_materials=无效${newline}材料
+fusion_reactor.info.need_coils=NEED${newline}增加${newline}线圈数
+fusion_reactor.info.no_anomaly=NO${newline}GRAVITATIONAL${newline}ANOMALY
+fusion_reactor.info.anomaly_too_far=GRAVITATIONAL${newline}ANOMALY${newline}TOO${newline}FAR
 
 #/#//////////// Android Station ////////////
 tile.android_station.name=机械人装配台
