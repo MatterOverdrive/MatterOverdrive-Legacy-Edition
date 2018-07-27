@@ -211,15 +211,15 @@ fusion_reactor.info.invalid_structure=无效${newline}结构
 fusion_reactor.info.ok=能量${power}${newline}消耗${charge}${newline}物质${matter}
 fusion_reactor.info.invalid_materials=无效${newline}材料
 fusion_reactor.info.need_coils=NEED${newline}增加${newline}线圈数
-fusion_reactor.info.no_anomaly=NO${newline}GRAVITATIONAL${newline}ANOMALY
-fusion_reactor.info.anomaly_too_far=GRAVITATIONAL${newline}ANOMALY${newline}TOO${newline}FAR
+fusion_reactor.info.no_anomaly=无${newline}引力${newline}异常点
+fusion_reactor.info.anomaly_too_far=引力${newline}异常点${newline}过${newline}远
 
 #/#//////////// Android Station ////////////
-tile.android_station.name=机械人装配台
+tile.android_station.name=机械人改造台
 tile.android_station.details=机械人升级管理
-tile.charging_station.name=充能台
+tile.charging_station.name=充能站
 tile.charging_station.details=为机械人充能
-container.replicator.name=重组仓
+container.replicator.name=重组机
 machine.tooltip.matter=物质
 machine.tooltip.energy=充能
 
@@ -245,10 +245,10 @@ tile.tritanium_crate_black.name=黑色三钛货箱
 
 #/#//////////// Entities /////////////////
 entity.matteroverdrive.rogue_android.name=混战机械人
-entity.matteroverdrive.failed_pig.name=实验失败的猪
-entity.matteroverdrive.failed_chicken.name=实验失败的鸡
-entity.matteroverdrive.failed_cow.name=实验失败的牛
-entity.matteroverdrive.failed_sheep.name=实验失败的羊
+entity.matteroverdrive.failed_pig.name=失败品改造猪
+entity.matteroverdrive.failed_chicken.name=失败品改造鸡
+entity.matteroverdrive.failed_cow.name=失败品改造牛
+entity.matteroverdrive.failed_sheep.name=失败品改造羊
 entity.matteroverdrive.mad_scientist.name=疯狂科学家
 entity.mad_scientist.name=疯狂科学家
 entity.matteroverdrive.mad_scientist.junkie.name=疯狂科学家（瘾君子）
