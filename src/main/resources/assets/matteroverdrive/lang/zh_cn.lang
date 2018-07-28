@@ -23,8 +23,8 @@ item.matteroverdrive.dilithium_crystal.name=二锂晶体
 item.matteroverdrive.tritanium_ingot.name=三钛合金锭
 item.matteroverdrive.tritanium_plate.name=三钛合金板
 item.matteroverdrive.tritanium_dust.name=三钛合金粉
-item.matteroverdrive.pattern_drive.name=模式存储单元
-item.matteroverdrive.pattern_drive.details=可存储2个物品模式
+item.matteroverdrive.pattern_drive.name=模式保存单元
+item.matteroverdrive.pattern_drive.details=可保存2个物品模式
 item.matteroverdrive.earl_gray_tea.name=格雷伯爵茶
 item.matteroverdrive.romulan_ale.name=罗慕兰麦酒
 item.matteroverdrive.romulan_ale.details=原产自罗慕兰醇香醉人的酒饮料
@@ -52,7 +52,7 @@ item.matteroverdrive.android_pill_red.name=红色药丸
 item.matteroverdrive.android_pill_red.details=吃下红色药丸/n后你将无所畏惧
 item.matteroverdrive.android_pill_blue.name=蓝色药丸
 item.matteroverdrive.android_pill_blue.details=吃下蓝色药丸后/n你将在床上一无所知地醒来
-item.matteroverdrive.creative_pattern_drive.name=创造模式储存单元
+item.matteroverdrive.creative_pattern_drive.name=创造模式保存单元
 item.matteroverdrive.creative_pattern_drive.details=包含绝大多数可重组物品/n潜行右键重置模式
 item.matteroverdrive.network_flash_drive.name=网络闪存驱动器
 item.matteroverdrive.network_flash_drive.details=为物质网络中的设备配置过滤功能
@@ -167,7 +167,7 @@ tile.spacetime_accelerator.details=加速方块和机器
 tile.pylon.name=维度塔
 
 #/#//////////// Pattern Storage ////////////
-tile.pattern_storage.name=模式保存仓
+tile.pattern_storage.name=模式保存仪
 tile.pattern_storage.details=保存用于复制的物品模式
 tile.pattern_storage.config.particles.vent=粒子排放
 tile.pattern_storage.config.storage.energy=能量储存
@@ -265,43 +265,43 @@ tile.decorative.holo_matrix.name=全息甲板
 tile.decorative.tritanium_plate.name=三钛板材
 tile.decorative.carbon_fiber_plate.name=碳纤维板材
 tile.decorative.matter_tube.name=物质管道
-tile.decorative.beams.name=三钛合金格栅
-tile.decorative.floor_tiles.name=地板瓷砖
-tile.decorative.floor_tiles_green.name=绿色地板瓷砖
-tile.decorative.floor_noise.name=油地毡地面
-tile.decorative.tritanium_plate_stripe.name=导向三钛合金板材
-tile.decorative.floor_tile_white.name=白色瓷砖
+tile.decorative.beams.name=三钛格栅
+tile.decorative.floor_tiles.name=瓷地砖
+tile.decorative.floor_tiles_green.name=绿瓷地砖
+tile.decorative.floor_noise.name=油地毡
+tile.decorative.tritanium_plate_stripe.name=导向三钛板材
+tile.decorative.floor_tile_white.name=白瓷地砖
 tile.decorative.white_plate.name=软壁隔板
 tile.decorative.separator.name=三钛导轨
 tile.decorative.engine_exhaust_plasma.name=等离子引擎排流
 tile.decorative.tritanium_lamp.name=三钛灯饰
-tile.decorative.tritanium_plate_colored.name=染色三钛合金板材
+tile.decorative.tritanium_plate_colored.name=染色三钛板材
 
 ##########################################################################################################
 # Dialogs
 
-dialog.generic.quit.0.question=下次再见。
-dialog.generic.quit.1.question=我必须要走了。
-dialog.generic.quit.2.question=我有急事要办。
+dialog.generic.quit.0.question=回见。
+dialog.generic.quit.1.question=我得走了。
+dialog.generic.quit.2.question=我还有急事。
 dialog.generic.quit.3.question=再见。
-dialog.generic.quit.4.question=告辞。
+dialog.generic.quit.4.question=再会。
 dialog.generic.quit.5.question=拜拜。
 dialog.generic.back.0.question=别在意。
-dialog.generic.back.1.question=让我们聊些其他的吧。
+dialog.generic.back.1.question=让我们聊点别的吧。
 dialog.generic.back.2.question=关我什么事。
 dialog.generic.trade.0.question=我想做个交易。
-dialog.generic.trade.1.question=让我们做个交易吧。
+dialog.generic.trade.1.question=让我们做个买卖吧。
 dialog.generic.trade.2.question=让我看看你的货物。
 dialog.generic.trade.3.question=你都卖些什么？
 
 #/#//////////// Mad Scientist ///////////////
 dialog.mad_scientist.convert.question=我有全套机械人部件！
-dialog.mad_scientist.requirements.line=终于！<br>摆脱那具脆弱的肉体是一个明智的选择。<br>在开始之前，唯一的问题就是我需要你给我带来一套机械人部件。
-dialog.mad_scientist.requirements.question=我想要成为一名机械战士。
+dialog.mad_scientist.requirements.line=终于！<br>摆脱那具脆弱的肉体是最好的选择。<br>唯一的问题是，我们得准备好全套的机械人部件才行。
+dialog.mad_scientist.requirements.question=我想化身机械战士。
 dialog.mad_scientist.main.line.0.human=我不和人类打交道。
 dialog.mad_scientist.main.line.1.human=天哪！简直无法直视。你太脆弱了！
-dialog.mad_scientist.main.line.2.human=你还好么？你看起来糟透了！你是怎么用这具肉身坚持下来的？
-dialog.mad_scientist.main.line.0.android=啊 %1$s，很高兴见到你！来这有什么事么？
+dialog.mad_scientist.main.line.2.human=你还好么？你看起来糟透了！你怎么受得了这种皮囊？
+dialog.mad_scientist.main.line.0.android=啊%1$s，很高兴见到你！来这有什么事么？
 dialog.mad_scientist.main.line.1.android=嘿，你今天看起来棒极了！
 dialog.mad_scientist.main.line.2.android=看起来你的左眼好像有些错位了，我很乐意帮你修复它。
 dialog.mad_scientist.undo.line=你为什么想要这么做？唯一的办法就是吃掉一颗蓝色药丸。你可以在地牢中找到它，不过最好的办法是从别人手中买到。我想我的车间里可能有一些。我需要去查看一下。
@@ -320,7 +320,7 @@ dialog.mad_scientist.junkie.cocktail_quest.3.line=但你看我还需要这些材
 dialog.mad_scientist.junkie.cocktail_quest.4.question=[你开始挠屁股]
 dialog.mad_scientist.junkie.cocktail_quest.4.line=但是你要知道，兄弟！嘿，别挠你屁股了，兄弟，这非-非-非常重要！
 dialog.mad_scientist.junkie.cocktail_quest.5.question=抱歉。
-dialog.mad_scientist.junkie.cocktail_quest.5.line=这种火药只有在爬行者被铲子杀死的时候才会保留效果，兄弟。
+dialog.mad_scientist.junkie.cocktail_quest.5.line=这种火药只有用铲子敲死爬行者才会保留效果，兄弟。
 dialog.mad_scientist.junkie.cocktail_quest.6.question=一把铲子？
 dialog.mad_scientist.junkie.cocktail_quest.6.line=对，一把TMD铲子，兄弟，你-你要铲碎它的脑子，重复这样的钝伤，兄弟，你才能获取好东西！
 dialog.mad_scientist.junkie.cocktail_quest.7.line=现在，快去，兄弟，赶紧的，兄弟，快！
@@ -335,15 +335,14 @@ dialog.mad_scientist.trade_route_quest.1.line=我不知道你在说什么？没�
 ##########################################################################################################
 # Creative Panels
 
-itemGroup.tabMO=Matter Overdrive
-itemGroup.tabMO_modules=Matter Overdrive Modules
-itemGroup.tabMO_androidParts=Matter Overdrive Android Parts
-itemGroup.tabMO_contracts=Matter Overdrive Contracts
-
+itemGroup.tabMO=超能物质
+itemGroup.tabMO_modules=超能物质 组件
+itemGroup.tabMO_androidParts=超能物质 机械人部件
+itemGroup.tabMO_contracts=超能物质 任务卡
 ##########################################################################################################
 # Upgrade Types
 upgradetype.Speed.name=时间
-upgradetype.PowerUsage.name=耗能
+upgradetype.PowerUsage.name=能耗
 upgradetype.Output.name=输出
 upgradetype.SecondOutput.name=次级输出
 upgradetype.Fail.name=故障
@@ -354,19 +353,19 @@ upgradetype.MatterUsage.name=物质消耗
 
 ##########################################################################################################
 # Weapon Stats
-weaponstat.damage.name=Damage
-weaponstat.ammo.name=Ammo
-weaponstat.effect.name=Effect
-weaponstat.range.name=Range
-weaponstat.fire_damage.name=Fire Damage
-weaponstat.block_damage.name=Block Damage
-weaponstat.explosion_damage.name=Explosion Damage
-weaponstat.fire_rate.name=Fire Rate
-weaponstat.heal.name=Heal
-weaponstat.range.name=Range
-weaponstat.ricochet.name=Ricochet
-weaponstat.max_heat.name=Max Heat
-weaponstat.accuracy.name=Accuracy
+weaponstat.damage.name=伤害
+weaponstat.ammo.name=弹药
+weaponstat.effect.name=效果
+weaponstat.range.name=射程
+weaponstat.fire_damage.name=火焰伤害
+weaponstat.block_damage.name=范围伤害
+weaponstat.explosion_damage.name=爆炸伤害
+weaponstat.fire_rate.name=射击速度
+weaponstat.heal.name=治疗
+weaponstat.range.name=射程
+weaponstat.ricochet.name=反射
+weaponstat.max_heat.name=热量上限
+weaponstat.accuracy.name=精准度
 
 ##########################################################################################################
 # GUI
@@ -375,15 +374,15 @@ weaponstat.accuracy.name=Accuracy
 gui.tooltip.close_menu=关闭菜单
 gui.tooltip.open_menu=打开菜单
 gui.tooltip.close=关闭
-gui.tooltip.page.home=主界面
+gui.tooltip.page.home=主页
 gui.tooltip.page.configurations=配置界面
 gui.tooltip.page.upgrades=升级界面
 gui.tooltip.page.tasks=任务
 gui.tooltip.page.scan_info=扫描信息
 gui.tooltip.page.galaxy=星系
-gui.tooltip.page.quadrant=Quadrant
-gui.tooltip.page.star=Planetary System
-gui.tooltip.page.planet=Planet
+gui.tooltip.page.quadrant=象限
+gui.tooltip.page.star=行星系
+gui.tooltip.page.planet=行星
 gui.tooltip.button.refresh=刷新列表
 gui.tooltip.button.request=发送请求
 gui.tooltip.matter=物质
@@ -417,11 +416,11 @@ gui.label.button.save=保存
 gui.label.button.remove=删除
 gui.label.button.add=添加
 gui.label.button.reset=重置
-gui.label.button.scout=Send Scout
+gui.label.button.scout=搜索
 gui.label.button.new=新建
-gui.label.button.import=进占
-gui.label.button.import.too_far=Destination Too Far
-gui.label.auto_line_size=自动线路规模
+gui.label.button.import=输入
+gui.label.button.import.too_far=目标距离过远
+gui.label.auto_line_size=自动化生产线规模
 gui.label.accept=接受
 
 #//////////// Machines /////////////
@@ -429,13 +428,13 @@ gui.replicator.name=物质重组机
 gui.decomposer.name=物质分解机
 gui.matter_analyzer.name=物质分析仪
 gui.network_router.name=物质网络路由器
-gui.pattern_storage.name=模式存储仪
+gui.pattern_storage.name=模式保存仪
 gui.solar_panel.name=光伏板
 gui.pattern_monitor.name=网络终端
-gui.network_switch.name=网络转换器
-gui.recycler.name=物质循环仓
+gui.network_switch.name=物质网络转换器
+gui.recycler.name=物质回收机
 gui.fusion_reactor.name=湮灭反应堆
-gui.charging_station.name=充能台
+gui.charging_station.name=充能站
 gui.weapon_station.name=武器装配台
 gui.inscriber.name=分子刻录仪
 gui.contract_market.name=赏金公会
@@ -446,14 +445,14 @@ gui.redstone_mode.low=低频
 gui.redstone_mode.disabled=禁用
 gui.config.redstone=红石
 gui.config.owner=拥有者
-gui.config.mnet.address=Address
+gui.config.mnet.address=地址
 
 gui.android_hud.transforming.line.0=启动系统
 gui.android_hud.transforming.line.1=构建神经网络
 gui.android_hud.transforming.line.2=进行神经网络配置
 gui.android_hud.transforming.line.3=正在安装驱动
 gui.android_hud.transforming.line.4=校准机械臂
-gui.android_hud.transforming.line.5=清除生物污染
+gui.android_hud.transforming.line.5=升级隐私策略
 gui.android_hud.transforming.line.final=转化进行中
 gui.hologram.access_denied=拒绝访问
 gui.time_until_next_quest=下次请求时间：%1$s
@@ -465,11 +464,11 @@ module.battery.name=能量模块
 module.color.name=颜色模块
 module.color.red=红色
 module.color.green=绿色
-module.color.lime_green=黄绿色
+module.color.lime_green=黄绿
 module.color.brown=棕色
 module.color.pink=粉色
 module.color.blue=蓝色
-module.color.sky_blue=淡蓝色
+module.color.sky_blue=天蓝
 module.color.gold=金色
 module.color.black=黑色
 module.color.grey=灰色
@@ -477,103 +476,103 @@ module.color.grey=灰色
 module.barrel.name=枪管模块
 module.sights.name=视野模块
 module.other.name=其它模块
-moduleslot.-1.name=Slot not set, please report to module author
-moduleslot.0.name=Applicable to Battery slot
-moduleslot.1.name=Applicable to Color slot
-moduleslot.2.name=Applicable to Barrel slot
-moduleslot.3.name=Applicable to Sights slot
-moduleslot.4.name=Applicable to Misc slot
+moduleslot.-1.name=模块未实装，请报告给模组作者。
+moduleslot.0.name=可安装能量模块
+moduleslot.1.name=可安装颜色模块
+moduleslot.2.name=可安装枪管模块
+moduleslot.3.name=可安装视野模块
+moduleslot.4.name=可安装多种模块
 
 ##########################################################################################################
 # Bioparts
 
-biopart.head.name=头部组件
-biopart.arms.name=手臂组件
-biopart.legs.name=腿部组件
-biopart.chest.name=胸部组件
-biopart.other.name=其他组件
-biopart.battery.name=能量单元
+biopart.head.name=头部
+biopart.arms.name=手臂
+biopart.legs.name=腿部
+biopart.chest.name=胸部
+biopart.other.name=其它
+biopart.battery.name=能源
 
 ##########################################################################################################
 # Biostats
 
 biotic_stat.teleport.name=末影传送
-biotic_stat.teleport.details=点击 '%1$s' 键进行短距离传送 /n/每次传送消耗 %2$s /n/需要一个输出超过 %2$s 的电池
+biotic_stat.teleport.details=按下'%1$s'键进行短距离传送，/n/每次传送消耗%2$s/n/需要一个输出超过 %2$s 的电池
 biotic_stat.nanobots.name=纳米机器人
-biotic_stat.nanobots.details=使用能量和等离子物质治疗伤口
+biotic_stat.nanobots.details=消耗%s/s/n/能量，提升%s生命恢复效率
 biotic_stat.nano_armor.name=纳米护甲
-biotic_stat.nano_armor.details=吸收 %1$s 的攻击伤害
+biotic_stat.nano_armor.details=吸收%1$s的攻击伤害
 biotic_stat.floatation.name=气囊
 biotic_stat.floatation.details=能够浮在水面上
 biotic_stat.speed.name=超频
 biotic_stat.speed.details=移动速度提升 %1$s
 biotic_stat.high_jump.name=蓄力弹跳
-biotic_stat.high_jump.details=潜行时跳的更高 /n/每次弹跳消耗 %1$s /n/需要一个输出超过 %1$s 的电池
+biotic_stat.high_jump.details=潜行时跳的更高/n/每次弹跳消耗%1$s/n/需要一个输出超过%1$s的电池
 biotic_stat.equalizer.name=时空均衡器
-biotic_stat.equalizer.details=内置时空均衡器 /n/用于抵消来自于 /n/引力异常点的影响
+biotic_stat.equalizer.details=内置时空均衡器/n/用于抵消来自于/n/引力异常点的影响
 biotic_stat.shield.name=粒子护盾
 biotic_stat.shield.details=减免弹射物伤害
 biotic_stat.attack.name=伤害增强
-biotic_stat.attack.details=攻击伤害提升 %1$s
-biotic_stat.cloak.name=隐形斗篷
-biotic_stat.cloak.details=允许玩家隐形. /n/激活时, 消耗 %1$s 每tick /n/需要一个输出超过 %1$s 的电池
+biotic_stat.attack.details=攻击伤害提升%1$s
+biotic_stat.cloak.name=隐身斗篷
+biotic_stat.cloak.details=赋予玩家主动隐身能力。/n/激活时，每tick消耗%1$s能量/n/需要一个输出超过%1$s的电池
 biotic_stat.nightvision.name=夜视
-biotic_stat.nightvision.details=让玩家看穿黑暗. /n/激活时, 消耗 %1$s 每tick /n/需要一个输出超过 %1$s 的电池
+biotic_stat.nightvision.details=让玩家看穿黑暗。/n/激活时，每tick消耗%1$s能量/n/需要一个输出超过%1$s的电池
 biotic_stat.minimap.name=小地图
 biotic_stat.minimap.details=在HUD上添加小地图
-biotic_stat.flash_cooling.name=瞬间冷却
-biotic_stat.flash_cooling.details=改进 %s 让其能够在武器/n/过热时瞬间冷却.
+biotic_stat.flash_cooling.name=超频冷却
+biotic_stat.flash_cooling.details=/n/在武器过热时提升%s的瞬间冷却效果/n/每次冷却消耗%s
 biotic_stat.shockwave.name=音波震荡
-biotic_stat.shockwave.details=释放一种动能爆炸/n/对周围敌人造成伤害并击飞最多至%1$s格/n/激活时按下释放键发动/n/或者在下落时按住Shift
+biotic_stat.shockwave.details=爆发性地释放动能/n/对周围敌人造成伤害/n/并震飞最多至%1$s格/n/按下'%2$s'发动
 biotic_stat.auto_shield.name=紧急护盾
-biotic_stat.auto_shield.details=在受到远程伤害时/n/将自动开启护盾
+biotic_stat.auto_shield.details=在受到远程伤害时/n/自发激活护盾
 biotic_stat.step_assist.name=行走辅助
 biotic_stat.step_assist.details=自动辅助攀登/n/一格高的方块
 biotic_stat.zero_calories.name=辟谷
 biotic_stat.zero_calories.details=无需有机营养
 biotic_stat.wireless_charger.name=无线充能
-biotic_stat.wireless_charger.details=为快捷栏除手持物品/n/以外的物品进行充能/n/充能速度: %s/t FE
+biotic_stat.wireless_charger.details=为快捷栏除手持物品以外的/n/物品进行充能/n/充能速度:%s/t FE
 biotic_stat.inertial_dampers.name=惯性阻尼器
 biotic_stat.inertial_dampers.details=消除摔落伤害 %s
 biotic_stat.item_magnet.name=物品磁铁
-biotic_stat.item_magnet.details=吸取掉落物品/n/西区物品消耗 %s
+biotic_stat.item_magnet.details=吸取掉落物品/n/每次吸取物品消耗 %s
 biotic_stat.air_dash.name=凌空冲刺
 biotic_stat.air_dash.details=在空中按两次前进激活/n/使玩家向前冲刺一段距离
 biotic_stat.oxygen.name=呼吸机
-biotic_stat.oxygen.details=移除机体对氧气的需求
+biotic_stat.oxygen.details=机体不再需要氧气
 
 ##########################################################################################################
 # Deaths
 
-death.attack.phaser=%1$s 被 %2$s 分解掉了
-death.attack.phaser.item=%1$s 被 %2$s 使用 %3$s 分解掉了
-death.attack.blackHole=%1$s 被巨大的引力扭曲碾碎了
-death.attack.android_transformation=%1$s 结束了作为生命体的存在
-death.attack.plasmaBolt=%1$s 被 %2$s 爆头
-death.attack.plasmaBolt.item=%1$s被 %2$s 用 %3$s 打成了筛子
+death.attack.phaser=%1$s被%2$s分解掉了
+death.attack.phaser.item=%2$s用%3$s分解掉了%1$s
+death.attack.blackHole=%1$s被巨大的引力扭曲碾碎了
+death.attack.android_transformation=%1$s抛弃了碳基物种的皮囊
+death.attack.plasmaBolt=%1$s被%2$s爆头
+death.attack.plasmaBolt.item=%2$s用%3$s把%1$s打成了筛子
 
 ##########################################################################################################
 # Tasks
 
 task.state.INVALID.name=无效
-task.state.INVALID.description=该任务出现错误。
+task.state.INVALID.description=该任务无效。
 task.state.UNKNOWN.name=未知
 task.state.UNKNOWN.description=未知
 task.state.WAITING.name=等待中
-task.state.WAITING.description=等待寻找接收器。
+task.state.WAITING.description=正在搜寻接收端，请稍候。
 task.state.QUEUED.name=队列中
-task.state.QUEUED.description=接收器已定位。\n等待过程中。
+task.state.QUEUED.description=已定位接收端。\n等待任务执行。
 task.state.PROCESSING.name=处理中
 task.state.PROCESSING.description=等待加工结束。
 task.state.FINISHED.name=完成
 task.state.FINISHED.description=任务已完成。
 
-task.store_pattern.state.WAITING.description=搜索模式存储空间。
-task.store_pattern.state.QUEUED.description=队列中。\n等待过程中。
-task.store_pattern.state.PROCESSING.description=正在存储物品模式。
-task.store_pattern.state.FINISHED.description=成功存储物品模式。
+task.store_pattern.state.WAITING.description=搜索模式保存空间。
+task.store_pattern.state.QUEUED.description=队列中。\n等待任务执行。
+task.store_pattern.state.PROCESSING.description=正在保存物品模式。
+task.store_pattern.state.FINISHED.description=成功保存物品模式。
 
-task.replicate_pattern.state.WAITING.description=搜索可用重组机。
+task.replicate_pattern.state.WAITING.description=正在搜索可用重组机。
 
 info.matteroverdrive.updater.download=下载
 info.matteroverdrive.updater.hover=点击下载最新版本。
@@ -585,12 +584,12 @@ config.world_gen.name=世界生成
 config.matter_network.name=物质网络
 config.matter_registry.name=物质注册
 config.matter_registry.item_overrides.name=重写
-config.matter_registry.new_items.name=最新
+config.matter_registry.new_items.name=新
 config.matter_registry.item_blacklist.name=黑名单
 config.spawn_ores.name=矿物生成
 config.client.name=客户端选项
 config.server.name=服务器选项
-config.starmap.name=Star Map Options
+config.starmap.name=星图选项
 config.ore_gen_blacklist.name=矿物黑名单
 config.abilities.name=机械人能力
 config.entities.name=生物
@@ -608,11 +607,11 @@ config.compatibility.name=兼容性
 ##########################################################################################################
 # Chat Alerts
 
-alert.no_rights=无权访问 $0
-alert.no_access_default=访问被拒绝 $0
+alert.no_rights=无权访问$0
+alert.no_access_default=访问被$0拒绝
 alert.not_android=检测到生物实体！拒绝访问！
-alert.no_rights.break=只有拥有者可以破坏 $0
-alert.no_rights.dismantle=只有拥有者可以拆除 $0
+alert.no_rights.break=只有拥有者可以破坏$0
+alert.no_rights.dismantle=只有拥有者可以拆除$0
 alert.new_update=有新版本可用！
 
 #############################################################################################################
@@ -638,7 +637,7 @@ guide.group.matter_network.name=网络
 guide.group.weapons.name=武器
 guide.group.parts.name=部件
 guide.group.items.name=物品
-guide.group.power.name=能源
+guide.group.power.name=能量
 guide.group.blocks.name=方块
 guide.group.drinks.name=饮品
 guide.group.food.name=食物
@@ -649,7 +648,7 @@ guide.entry.matter_plasma.name=等离子物质
 guide.entry.matter_transport.name=物质传输
 guide.entry.weapon.modules.barrels.name=武器枪管
 guide.entry.weapon.modules.colors.name=武器颜色
-guide.entry.android.pills.name=药片
+guide.entry.android.pills.name=药丸
 guide.entry.android.parts.name=机械人部件
 guide.entry.fusion_reactor.name=湮灭反应堆
 guide.entry.batteries.name=能量单元
@@ -664,7 +663,7 @@ guide.entry.tritanium_tools.name=三钛合金工具
 
 modifier.bionic.max_health=生命上限
 attribute.name.android.glitchTime=故障时间
-attribute.name.android.batteryUse=电池使用
+attribute.name.android.batteryUse=能量消耗
 
 
 ###############################################################################################################
@@ -677,13 +676,13 @@ color.brown=棕色
 color.blue=蓝色
 color.purple=紫色
 color.cyan=青色
-color.silver=淡灰色
+color.silver=银灰
 color.gray=灰色
 color.pink=粉色
-color.lime=黄绿色
+color.lime=黄绿
 color.yellow=黄色
-color.lightBlue=淡蓝色
-color.magenta=品红色
+color.lightBlue=天蓝
+color.magenta=品红
 color.orange=橙色
 color.white=白色
 
@@ -691,20 +690,20 @@ material.tritanium=三钛合金
 container.tritanium_crate=三钛合金货箱
 rarity.legendary=传奇
 
-mo.jei.time=%d 秒
+mo.jei.time=%d秒
 mo.jei.inscriber=分子刻录仪
 
 
 ###############################################################################################################
 # quests
-quest.kill_androids.title=它们会杀了我们！
-quest.kill_androids.info=机械人正在接管我们的世界！我不知道它们究竟来自何处，但最近的统计数据表明，它们的数量还在源源不断的增长。我们必须为我们自己而战，如果不这样做，我们都将灭亡。战斗始于你，$player！我们需要你的帮助，以最大限度为这次战争争取时间。
-quest.kill_androids.objective.0=杀死 $killCount/$maxKillCount 机械人
+quest.kill_androids.title=异族将屠净我等！
+quest.kill_androids.info=机械人正在抢走我们的世界！我不知道它们究竟来自何处，但它们的数量与日俱增，源源不绝。如若不想就此灭亡，我们必须奋起反抗！Player，带领我们战斗吧！在它们彻底夺取这个世界前，尽力干掉它们吧！
+quest.kill_androids.objective.0=杀死$killCount/$maxKillCount机械人
 quest.cocktail_of_ascension.title=鸡尾酒的升华
-quest.cocktail_of_ascension.info=曾经有一位疯狂科学家告诉你需要使用%2$s份火药和%3$s份红蘑菇对鸡尾酒进行提纯升华。
-quest.cocktail_of_ascension.objective.0=杀死 %2$s/%3$s 爬行者（使用铲子）
-quest.cocktail_of_ascension.objective.1=收集 %2$s/%3$s 火药
-quest.cocktail_of_ascension.objective.2=收集 %2$s/%3$s 红蘑菇
+quest.cocktail_of_ascension.info=曾经有一位疯狂科学家要你带给他%2$s份锹杀爬行者身上的火药和%3$s份下界最阴暗深处生长的红蘑菇，方便他升华鸡尾酒。
+quest.cocktail_of_ascension.objective.0=用锹杀死%2$s/%3$s爬行者
+quest.cocktail_of_ascension.objective.1=收集%2$s/%3$s份火药
+quest.cocktail_of_ascension.objective.2=收集%2$s/%3$s枚红蘑菇
 quest.cocktail_of_ascension.objective.3=跟疯狂科学家（瘾君子）进行交谈
 quest.sacrifice.title=献祭
 quest.sacrifice.info=我们是Dark Vail。我们已经通过古老的技艺重新制作了一个古老神器，但是这其中的效果还不能公开。我们需要你，$player以黑暗领主的名义杀死$maxKillCount只新生的动物，以便使他人提起我们时闻风丧胆。Barry the dark lord，你的努力将会得到很好的回报。
