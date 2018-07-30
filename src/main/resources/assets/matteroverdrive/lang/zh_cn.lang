@@ -168,7 +168,7 @@ tile.pylon.name=维度塔
 
 #/#//////////// Pattern Storage ////////////
 tile.pattern_storage.name=模式保存仪
-tile.pattern_storage.details=保存用于复制的物品模式
+tile.pattern_storage.details=保存物品模式以供复制
 tile.pattern_storage.config.particles.vent=粒子排放
 tile.pattern_storage.config.storage.energy=能量储存
 tile.pattern_storage.config.transfer.energy=导能速率
@@ -187,7 +187,7 @@ tile.gravitational_anomaly.name=引力异常点
 tile.gravitational_stabilizer.name=引力稳定器
 tile.gravitational_stabilizer.details=用于减弱引力异常点的影响
 tile.matter_recycler.name=物质回收机
-tile.matter_recycler.details=回收物质以便再次分解
+tile.matter_recycler.details=回收物质以便重新分解
 tile.android_spawner.name=机械人刷怪笼
 
 #/#//////////// Fluids ////////////
@@ -336,7 +336,7 @@ dialog.mad_scientist.trade_route_quest.1.line=我不知道你在说什么？没�
 # Creative Panels
 
 itemGroup.tabMO=超能物质
-itemGroup.tabMO_modules=超能物质 组件
+itemGroup.tabMO_modules=超能物质 武器配件
 itemGroup.tabMO_androidParts=超能物质 机械人部件
 itemGroup.tabMO_contracts=超能物质 任务卡
 ##########################################################################################################
@@ -409,7 +409,7 @@ gui.tooltip.quest.active_quests=当前任务
 gui.tooltip.quest.accept=已接受任务
 gui.tooltip.quest.complete=已完成任务
 gui.tooltip.locks=锁定
-gui.tooltip.parent=亲本
+gui.tooltip.parent=前置
 
 #//////////// Labels //////////////
 gui.label.button.save=保存
@@ -475,13 +475,13 @@ module.color.grey=灰色
 
 module.barrel.name=枪管模块
 module.sights.name=视野模块
-module.other.name=其它模块
+module.other.name=附属模块
 moduleslot.-1.name=模块未实装，请报告给模组作者。
-moduleslot.0.name=可安装能量模块
-moduleslot.1.name=可安装颜色模块
-moduleslot.2.name=可安装枪管模块
-moduleslot.3.name=可安装视野模块
-moduleslot.4.name=可安装多种模块
+moduleslot.0.name=可作为能量模块安装
+moduleslot.1.name=可作为颜色模块安装
+moduleslot.2.name=可作为枪管模块安装
+moduleslot.3.name=可作为视野模块安装
+moduleslot.4.name=可作为附属模块安装
 
 ##########################################################################################################
 # Bioparts
@@ -699,8 +699,8 @@ mo.jei.inscriber=分子刻录仪
 quest.kill_androids.title=异族将屠净我等！
 quest.kill_androids.info=机械人正在抢走我们的世界！我不知道它们究竟来自何处，但它们的数量与日俱增，源源不绝。如若不想就此灭亡，我们必须奋起反抗！Player，带领我们战斗吧！在它们彻底夺取这个世界前，尽力干掉它们吧！
 quest.kill_androids.objective.0=杀死$killCount/$maxKillCount机械人
-quest.cocktail_of_ascension.title=鸡尾酒的升华
-quest.cocktail_of_ascension.info=曾经有一位疯狂科学家要你带给他%2$s份锹杀爬行者身上的火药和%3$s份下界最阴暗深处生长的红蘑菇，方便他升华鸡尾酒。
+quest.cocktail_of_ascension.title=调制鸡尾酒
+quest.cocktail_of_ascension.info=曾经有一位疯狂科学家要你带给他%2$s份锹杀爬行者身上的火药和%3$s份下界最阴暗深处生长的红蘑菇，方便他调制鸡尾酒。
 quest.cocktail_of_ascension.objective.0=用锹杀死%2$s/%3$s爬行者
 quest.cocktail_of_ascension.objective.1=收集%2$s/%3$s份火药
 quest.cocktail_of_ascension.objective.2=收集%2$s/%3$s枚红蘑菇
@@ -714,22 +714,22 @@ quest.department_of_agriculture.objective.0=收获%2$s/%3$s %4$s
 quest.one_true_love.title=真挚的爱
 quest.one_true_love.info=我真的好开心！你甚至无法想象这一刻我是多么快乐！Merry终于同意嫁给我，你也许不知道我为这一刻付出了多少心血。不过这一切归根到底还是得力于她的父亲给予我们的祝福，我知道以我现在的能力足以给她一个美好生活，但我还是想给她一些特别的礼物。我希望你能帮助我找到一颗钻石，这样我就能做个钻戒戴在她的手上，我相信她一定会记住这难忘的一天。另外，作为回报，我很乐意尽我最大的能力帮助你。
 quest.one_true_love.objective.0=采掘$mineAmount/$maxMineAmount钻石
-quest.weapons_of_war.title=起义的开始
-quest.weapons_of_war.info=当初那个任人宰割的日子将一去不复返了！我们向往自由和平的人类将与机械人展开一场孤注一掷的战争，是时候终结机械人对世界的掌控了。只要我们意志坚定，就没有什么是不可战胜的。不过，在战争开始之前。我们可能需要先酝酿一下准备好一些趁手的武器和保护自己的盔甲。
-quest.weapons_of_war.objective.0=制造 $craftAmount/$craftMaxAmount $craftItem
-quest.weapons_of_war.objective.1=制造 $craftAmount swords.
-quest.to_the_power_of.title=To the power of
-quest.to_the_power_of.info=Before I can begin work on my ascension from my limiting mortality I need to ensure a consistent source of power.
-quest.to_the_power_of.objective.0=创建 $craftAmount/$craftMaxAmount $craftItem
-quest.puny_humans.title=改造人体
-quest.puny_humans.info=我曾经与一位疯狂科学家交谈过，虽然这次交谈几经波折但还算顺利。他同意将我改造成机械人，我需要做的就是要收集一套适用的机械人部件。混战机械人似乎是一个不错的选择。
-quest.puny_humans.objective.0=收集一套机械人部件
-quest.puny_humans.objective.1=跟疯狂科学家交谈
-quest.is_it_really_me.title=这真的存在吗？
-quest.is_it_really_me.info=我们即将开创首个由人类主导的史无前例的远程交互。无论怎样，我们都准备好了。我们对动物以及其他生命体都做了精确的测试，得出的数据表明失败率远低于25%。可以说，一切都按照计划正常的进行。当然，也许换做是我们可能还需要克服一些心理上的障碍，但出于对事物探索的好奇心。我们将会全力以赴，或许换个思路想想也就踏上平台闭上眼睛罢了。
-quest.is_it_really_me.objective.0=使用传送器
-quest.beast_belly.title=血肉之躯
-quest.beast_belly.info=用一个通俗易懂的话来说，你必须为了我们而死，为科学而死！请问你何曾受到过奇怪的引力异常影响？我们无法窥视这其中的奥秘，使得我们必须牺牲这当中的某些人。据目前了解，它会不断增长并并试图吞噬一切。所以我们希望你能借助这股吸引力进入到事件视界，从而窥视其中的奥秘所在。请小心，它可能会让你受到伤害。
+quest.weapons_of_war.title=战备武装
+quest.weapons_of_war.info=他们已经压迫了我们太久太久！我族的尊严决不能再这样被践踏下去，多少年的迫害将就此终结！但无论我们的精神多么顽强，我们的肉体也不会刀枪不入。所以我们需要你的帮助。尽管听上去并不美好，但在未来的战争中，他们必定会将所有的武装力量倒在我们头上，我们必须保护好自己。首先，我们需要铸造大批铁砧并打造紧缺的武器。
+quest.weapons_of_war.objective.0=铸造$craftAmount/$craftMaxAmount$craftItem
+quest.weapons_of_war.objective.1=打造$craftAmount把剑。
+quest.to_the_power_of.title=获取能量
+quest.to_the_power_of.info=我得先开发出源源不绝的稳定能源，才能着手突破这有限的生命形式。
+quest.to_the_power_of.objective.0=制造$craftAmount/$craftMaxAmount台$craftItem
+quest.puny_humans.title=人类之孱弱
+quest.puny_humans.info=我与一位科学家谈过了，虽然他有点疯疯癫癫的，但还是让我受益匪浅。他已经同意为我进行生体改造手术，而我则需要准备好相应的整套机械人部件。得好好对付一下携带着这些部件的混战机械人了。
+quest.puny_humans.objective.0=集齐全套机械人部件
+quest.puny_humans.objective.1=与疯狂科学家交谈
+quest.is_it_really_me.title=这还是我自己吗？
+quest.is_it_really_me.info=我们的开发人员终于决定开始传送真人了。无论你在哪，我们都做好了进行下去的准备。在用非生命物体和动物进行了大量的精确实验后，我们已能将失败率压在25%以下。我们可以保证一切都会按照计划进行。当然啦，心理障碍肯定还是存在的，我们也搞不懂这套电子设备是怎么传送意识的，但我们相信你会说服自己的。就是踏上平台然后闭上眼，对吧。
+quest.is_it_really_me.objective.0=使用传送仪
+quest.beast_belly.title=野兽之腹
+quest.beast_belly.info=虽然难以启齿，但我们请求您作出牺牲，为了科学献身。你可曾遇见过引力异常点？我们仍未弄清物质进入事件视界后都发生了什么，只能观测到异常点变大，却不知消失的物质去了哪里。我们希望你能进入事件视界，观测里面的奥秘。当心哪，这会很危险的。
 quest.beast_belly.objective.0=进入事件视界
 quest.crash_landing.title=坠机日记
 quest.crash_landing.info=船长的日记-星历 48940.8./n//n/我不得不启动紧急迫降程序，飞船的发动机损坏的程度看来不容乐观。如果有足够的后勤物资补给的话我想我还能撑一段时间并修好飞船，但是储存着生命之源的储罐却破裂了。/n/我不得不出去寻找纯净的水源。/n/从星图所显示的信息来看，我似乎已经坠毁在猎户座的某个星球上。然后慢慢的与总部的通讯联络逐渐消失了.../n/这将意味着我已经处于失联状态，这将是非常棘手的。/n/现在回想起来这件事情已经过去整整5年了。
