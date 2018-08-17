@@ -34,6 +34,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 /**
  * @author shadowfacts
@@ -112,8 +113,8 @@ public class TileEntityBoundingBox extends TileEntity implements IMOTileEntity, 
         this.ownerBlock = ownerBlock;
     }
 
-    public TileEntity getOwnerTile() {
-        return world.getTileEntity(getOwnerPos());
+    public Optional<TileEntity> getOwnerTile() {
+        return Optional.ofNullable(world.getTileEntity(getOwnerPos()));
     }
 
     @Override
@@ -148,12 +149,12 @@ public class TileEntityBoundingBox extends TileEntity implements IMOTileEntity, 
 
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-        return getOwnerTile().hasCapability(capability, facing);
+        return getOwnerTile().map(tile -> tile.hasCapability(capability, facing)).orElseGet(() -> super.hasCapability(capability, facing));
     }
 
     @Nullable
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-        return getOwnerTile().getCapability(capability, facing);
+        return getOwnerTile().map(tile -> tile.getCapability(capability, facing)).orElseGet(() -> super.getCapability(capability, facing));
     }
 }
