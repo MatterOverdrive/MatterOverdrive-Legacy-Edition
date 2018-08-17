@@ -94,7 +94,7 @@ item.matteroverdrive.quantum_fold_manipulator.name=Quantum Fold Manipulator
 
 #///////////// Upgrades ////////////
 item.matteroverdrive.upgrade.speed.name=Speed Upgrade
-item.matteroverdrive.upgrade.power.name=Power Efficiency Upgrade
+item.matteroverdrive.upgrade.power.name=Power Upgrade
 item.matteroverdrive.upgrade.failsafe.name=Fail-Safe Upgrade
 item.matteroverdrive.upgrade.range.name=Range Upgrade
 item.matteroverdrive.upgrade.power_storage.name=Power Storage Upgrade
