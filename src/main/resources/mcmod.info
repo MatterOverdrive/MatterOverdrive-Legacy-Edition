@@ -1,15 +1,16 @@
 [
   {
     "modid": "matteroverdrive",
-    "name": "MatterOverdrive",
+    "name": "MatterOverdrive: Legacy Edition",
     "description": "A mod that dwells within matter and energy.",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "https://hrzn.studio/mo",
+    "url": "https://hrzn.studio/p/mo",
     "updateUrl": "",
     "authorList": [
       "Horizon Studio",
       "Coded",
+      "Buuz135",
       "Simeon Radivoev",
       "Shadowfacts",
       "Dev_Osmium"

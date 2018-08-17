@@ -24,7 +24,7 @@ import matteroverdrive.client.data.Color;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Reference {
     public static final String MOD_ID = "matteroverdrive";
-    public static final String MOD_NAME = "MatterOverdrive";
+    public static final String MOD_NAME = "MatterOverdrive: Legacy Edition";
     public static final String VERSION = "@VERSION@";
     public static final String VERSION_DATE = "@DATE@";
     public static final String GUI_FACTORY_CLASS = "matteroverdrive.gui.GuiConfigFactory";
