@@ -48,6 +48,8 @@ public class TileEntityWeaponStation extends MOTileEntityMachine {
     public int OTHER_MODULE_ONE;
     public int OTHER_MODULE_TWO;
 
+    private IInventory itemInventory;
+
     public TileEntityWeaponStation() {
         super(0);
     }
@@ -66,10 +68,13 @@ public class TileEntityWeaponStation extends MOTileEntityMachine {
     }
 
     public IInventory getActiveInventory() {
-        if (!inventory.getSlot(INPUT_SLOT).getItem().isEmpty() && WeaponHelper.isWeapon(inventory.getSlot(INPUT_SLOT).getItem())) {
-            return new ItemInventoryWrapper(inventory.getSlot(INPUT_SLOT).getItem(), 6);
+        if (itemInventory == null && !inventory.getSlot(INPUT_SLOT).getItem().isEmpty() && WeaponHelper.isWeapon(inventory.getSlot(INPUT_SLOT).getItem())){
+            itemInventory = new ItemInventoryWrapper(inventory.getSlot(INPUT_SLOT).getItem(), 6);
         }
-        return inventory;
+        if (inventory.getSlot(INPUT_SLOT).getItem().isEmpty() || !WeaponHelper.isWeapon(inventory.getSlot(INPUT_SLOT).getItem())){
+            itemInventory = null;
+        }
+        return itemInventory == null ? inventory : itemInventory;
     }
 
     @Override
@@ -101,7 +106,7 @@ public class TileEntityWeaponStation extends MOTileEntityMachine {
     @Override
     @Nonnull
     public ItemStack getStackInSlot(int slot) {
-        if (slot != INPUT_SLOT) {
+        if (slot != INPUT_SLOT && slot < INPUT_SLOT) {
             return getActiveInventory().getStackInSlot(slot);
         } else {
             return super.getStackInSlot(slot);
@@ -109,7 +114,7 @@ public class TileEntityWeaponStation extends MOTileEntityMachine {
     }
 
     public boolean isItemValidForSlot(int slot, ItemStack item) {
-        if (slot != INPUT_SLOT) {
+        if (slot != INPUT_SLOT && slot < INPUT_SLOT) {
             return getActiveInventory().isItemValidForSlot(slot, item);
         } else {
             return super.isItemValidForSlot(slot, item);
@@ -118,7 +123,7 @@ public class TileEntityWeaponStation extends MOTileEntityMachine {
 
     @Override
     public ItemStack decrStackSize(int slot, int size) {
-        if (slot != INPUT_SLOT) {
+        if (slot != INPUT_SLOT && slot < INPUT_SLOT) {
             return getActiveInventory().decrStackSize(slot, size);
         } else {
             return super.decrStackSize(slot, size);
@@ -127,7 +132,7 @@ public class TileEntityWeaponStation extends MOTileEntityMachine {
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack itemStack) {
-        if (slot != INPUT_SLOT) {
+        if (slot != INPUT_SLOT && slot < INPUT_SLOT) {
             getActiveInventory().setInventorySlotContents(slot, itemStack);
         } else {
             super.setInventorySlotContents(slot, itemStack);

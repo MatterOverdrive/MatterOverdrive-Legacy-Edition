@@ -43,8 +43,8 @@ public class BioticStatItemMagnet extends AbstractBioticStat {
     @Override
     public void onAndroidUpdate(AndroidPlayer android, int level) {
         if (isActive(android, level)) {
-            if (!android.getPlayer().world.isRemote && !android.getPlayer().isDead && android.getPlayer().world.getGameRules().getBoolean("mobGriefing")) {
-                for (Entity entityitem : android.getPlayer().world.getEntitiesWithinAABBExcludingEntity(android.getPlayer(), android.getPlayer().getEntityBoundingBox().expand(10.0D, 5.0D, 10.0D))) {
+            if (!android.getPlayer().world.isRemote && !android.getPlayer().isDead) {
+                for (Entity entityitem : android.getPlayer().world.getEntitiesWithinAABBExcludingEntity(android.getPlayer(), android.getPlayer().getEntityBoundingBox().grow(10.0D, 5.0D, 10.0D))) {
                     if (entityitem instanceof EntityItem) {
                         if (!((EntityItem) entityitem).cannotPickup()) {
                             Vec3d dir = android.getPlayer().getPositionVector().addVector(0, android.getPlayer().getEyeHeight(), 0).subtract(entityitem.getPositionVector()).normalize();

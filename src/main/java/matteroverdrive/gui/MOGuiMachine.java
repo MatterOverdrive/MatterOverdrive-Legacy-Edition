@@ -112,7 +112,7 @@ public class MOGuiMachine<T extends MOTileEntityMachine> extends MOGuiBase {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         if (name != null && !name.isEmpty()) {
             String n = MOStringHelper.translateToLocal("gui." + name + ".name");
-            fontRenderer.drawString(n, width / 2 - (fontRenderer.getStringWidth(n) / 2), 7, new Color(44, 54, 52).getColor());
+            fontRenderer.drawString(n, 11+xSize / 2 - (fontRenderer.getStringWidth(n) / 2), 7, Reference.COLOR_MATTER.getColor());
         }
 
         drawElements(0, true);
