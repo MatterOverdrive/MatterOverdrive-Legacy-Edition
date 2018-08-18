@@ -91,7 +91,6 @@ public class AndroidHudBionicStats extends AndroidHudElement {
             RenderUtils.drawPlane(12 - 24 * getPosition().x, 10, 0, 174, 11);
         }
         lastHeightCount = count;
-        GlStateManager.disableAlpha();
     }
 
     private int getTotalElementCount(AndroidPlayer android) {

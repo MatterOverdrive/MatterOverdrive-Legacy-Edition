@@ -131,7 +131,6 @@ public class AndroidHudStats extends AndroidHudElement {
             renderIconWithPercent("health", health_perc, x - getWidthIconWithPercent(health_perc, 18) - 22, y - 8, 0, 0, true, Reference.COLOR_HOLO_RED, baseColor, 18, 18);
             renderIconWithPercent("battery", energy_perc, x + 24, y - 9, 0, 0, false, Reference.COLOR_HOLO_RED, baseColor, 20, 20);
         }
-        GlStateManager.disableAlpha();
     }
 
     private int getWidthIconWithInfo(String info, int iconWidth) {
