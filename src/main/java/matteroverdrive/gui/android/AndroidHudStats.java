@@ -55,7 +55,7 @@ public class AndroidHudStats extends AndroidHudElement {
 
     @Override
     public void drawElement(AndroidPlayer androidPlayer, ScaledResolution resolution, float ticks) {
-        GlStateManager.disableAlpha();
+        GlStateManager.enableAlpha();
 
         double energy_perc = (double) androidPlayer.getEnergyStored() / (double) androidPlayer.getMaxEnergyStored();
         double health_perc = androidPlayer.getPlayer().getHealth() / androidPlayer.getPlayer().getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
@@ -131,8 +131,7 @@ public class AndroidHudStats extends AndroidHudElement {
             renderIconWithPercent("health", health_perc, x - getWidthIconWithPercent(health_perc, 18) - 22, y - 8, 0, 0, true, Reference.COLOR_HOLO_RED, baseColor, 18, 18);
             renderIconWithPercent("battery", energy_perc, x + 24, y - 9, 0, 0, false, Reference.COLOR_HOLO_RED, baseColor, 20, 20);
         }
-
-        GlStateManager.enableAlpha();
+        GlStateManager.disableAlpha();
     }
 
     private int getWidthIconWithInfo(String info, int iconWidth) {
