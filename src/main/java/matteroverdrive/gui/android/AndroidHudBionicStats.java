@@ -91,6 +91,7 @@ public class AndroidHudBionicStats extends AndroidHudElement {
             RenderUtils.drawPlane(12 - 24 * getPosition().x, 10, 0, 174, 11);
         }
         lastHeightCount = count;
+        GlStateManager.enableBlend();
     }
 
     private int getTotalElementCount(AndroidPlayer android) {
@@ -135,10 +136,10 @@ public class AndroidHudBionicStats extends AndroidHudElement {
     }
 
     private void drawNormalBG(Color color, int x, int y) {
-        GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         GlStateManager.color(0, 0, 0, backgroundAlpha);
         ClientProxy.holoIcons.renderIcon("android_feature_icon_bg_black", x, y, 22, 22);
+        GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE, GL_SRC_ALPHA, GL_ONE);
         RenderUtils.applyColorWithAlpha(color);
         ClientProxy.holoIcons.renderIcon("android_feature_icon_bg", x, y, 22, 22);
@@ -149,9 +150,11 @@ public class AndroidHudBionicStats extends AndroidHudElement {
         GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         GlStateManager.color(0, 0, 0, backgroundAlpha);
         ClientProxy.holoIcons.renderIcon("android_feature_icon_bg_black", x, y, 22, 22);
+        GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE);
         RenderUtils.applyColorWithAlpha(color);
         ClientProxy.holoIcons.renderIcon("android_feature_icon_bg_active", x, y, 22, 22);
+        GlStateManager.disableBlend();
     }
 
     private int getX(int count, ScaledResolution resolution, AndroidPlayer androidPlayer) {
